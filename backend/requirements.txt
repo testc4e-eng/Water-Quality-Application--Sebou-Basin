@@ -1,0 +1,26 @@
+﻿# === Core API ===
+fastapi
+uvicorn
+pydantic
+python-dotenv
+
+# === Data science ===
+numpy
+pandas
+scipy
+
+# === Database ===
+sqlalchemy
+psycopg2-binary
+
+# === Geospatial ===
+pyproj
+shapely
+fiona
+geopandas
+geojson
+
+# === Utilities ===
+requests
+click
+colorama

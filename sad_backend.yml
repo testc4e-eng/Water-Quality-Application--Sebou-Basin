@@ -1,0 +1,35 @@
+name: sad_backend
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.11.*
+  - pip
+  - setuptools
+  - wheel
+
+  - fastapi
+  - uvicorn
+  - pydantic
+  - python-dotenv
+
+  - numpy
+  - pandas
+  - scipy
+
+  - sqlalchemy
+  - psycopg2
+
+  - proj
+  - pyproj
+  - shapely
+  - fiona
+  - geopandas
+
+  - requests
+  - click
+  - colorama
+
+  - pip:
+      - geojson

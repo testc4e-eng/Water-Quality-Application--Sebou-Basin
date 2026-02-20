@@ -1,0 +1,1518 @@
+{
+  "generated_from": "Dictionnaire_donnees_ABH_Sebou.xlsx",
+  "tables": [
+    {
+      "table": "adm_cercles_abhs",
+      "columns": [
+        "code_cercle",
+        "cercle_fr",
+        "cercle_ar",
+        "code_province",
+        "geom"
+      ],
+      "types": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "geometry"
+      ],
+      "descriptions": [
+        "code unique du cercle",
+        "nom du cercle en français",
+        "nom du cercle en arabe",
+        "code de la province à laquelle appartient le cercle",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 5
+    },
+    {
+      "table": "adm_communes_abhs",
+      "columns": [
+        "code_region",
+        "region_fr",
+        "region_ar",
+        "code_province",
+        "province_fr",
+        "province_ar",
+        "code_cercle",
+        "cercle_fr",
+        "cercle_ar",
+        "code_commune",
+        "commune_fr",
+        "commune_ar",
+        "milieu",
+        "geom"
+      ],
+      "types": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "geometry"
+      ],
+      "descriptions": [
+        "code de la région à laquelle appartient la commune",
+        "nom de la région à laquelle appartient la commune  en français",
+        "nom de la région à laquelle appartient la commune en arabe",
+        "code de la province à laquelle appartient la commune",
+        "nom de la province à laquelle appartient la commune  en français",
+        "nom de la province à laquelle appartient la commune en arabe",
+        "code du cercle à laquelle appartient la commune",
+        "nom du cercle à laquelle appartient la commune  en français",
+        "nom deu cercle à laquelle appartient la commune en arabe",
+        "code unique de la commune",
+        "nom de la commune en français",
+        "nom de la commune en arabe",
+        "milieu de la commune (rural ou urbain)",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 14
+    },
+    {
+      "table": "adm_douars_abhs",
+      "columns": [
+        "id",
+        "code_commune",
+        "code_douar",
+        "douar_fr",
+        "douar_ar",
+        "coord_x",
+        "coord_y",
+        "geom"
+      ],
+      "types": [
+        "integer",
+        "text",
+        "text",
+        "text",
+        "text",
+        "double precision",
+        "double precision",
+        "geometry"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "code de la commune à laquelle appartient cette entité",
+        "code unique du douar",
+        "nom du douar en français",
+        "nom du douar en arabe",
+        "coordonnées de longitude/X",
+        "coordonnées de latitude/Y",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 8
+    },
+    {
+      "table": "adm_provinces_abhs",
+      "columns": [
+        "code_region",
+        "code_province",
+        "province_fr",
+        "geom"
+      ],
+      "types": [
+        "text",
+        "text",
+        "text",
+        "geometry"
+      ],
+      "descriptions": [
+        "code de la région à laquelle appartient la province",
+        "code de la province",
+        "nom de la province en français",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 4
+    },
+    {
+      "table": "adm_regions_abhs",
+      "columns": [
+        "code_region",
+        "region_fr",
+        "region_ar",
+        "geom"
+      ],
+      "types": [
+        "text",
+        "text",
+        "text",
+        "geometry"
+      ],
+      "descriptions": [
+        "code de la région",
+        "nom de la région en français",
+        "nom de la région en arabe",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 4
+    },
+    {
+      "table": "adm_villes_abhs",
+      "columns": [
+        "id",
+        "code_commune",
+        "nom_ville",
+        "coord_x",
+        "coord_y",
+        "geom"
+      ],
+      "types": [
+        "integer",
+        "text",
+        "text",
+        "double precision",
+        "double precision",
+        "geometry"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "code de la commune à laquelle appartient cette entité",
+        "nom de la ville",
+        "coordonnées de longitude/X",
+        "coordonnées de latitude/Y",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 6
+    },
+    {
+      "table": "barrages_abhs",
+      "columns": [
+        "id",
+        "code_commune",
+        "ire",
+        "nom_barrage",
+        "nom_oued",
+        "statut",
+        "buts",
+        "type_barrage",
+        "vrn_hm3",
+        "hauteur",
+        "apports_hm",
+        "montant_md",
+        "mise_en_se",
+        "observation",
+        "coord_x",
+        "coord_y",
+        "geom"
+      ],
+      "types": [
+        "integer",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "double precision",
+        "double precision",
+        "double precision",
+        "double precision",
+        "text",
+        "text",
+        "double precision",
+        "double precision",
+        "geometry"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "code de la commune à laquelle appartient cette entité",
+        "numero d'indice et d'ordre",
+        "nom du barrage",
+        "nom du oued",
+        "statut de réalisation du barrage (réalisé, programmé, en cours)",
+        "utilisation du barrage (AEP, Irrigation etc.)",
+        "type du barrage (bcr, enrechement etc.)",
+        "volume de la retenue en hm3",
+        "hauteur de l'axe du barrage",
+        "nan",
+        "nan",
+        "année de la mise en service du barrage",
+        "observation",
+        "cordonnée de longitude/X du barrage",
+        "cordonnée de latitude/Y du barrage",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 17
+    },
+    {
+      "table": "bassin_sebou",
+      "columns": [
+        "id",
+        "nom",
+        "perimetre",
+        "superficie_km2",
+        "geom"
+      ],
+      "types": [
+        "integer",
+        "text",
+        "double precision",
+        "double precision",
+        "geometry"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "nom du bassin",
+        "perimetre du bassin",
+        "superficie du bassin en km2",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 5
+    },
+    {
+      "table": "capteurs_abhs",
+      "columns": [
+        "code_capteur",
+        "code_station",
+        "ire_station",
+        "code_commune",
+        "code_type_mesure",
+        "mode_mesure",
+        "frequence",
+        "date_installation"
+      ],
+      "types": [
+        "integer",
+        "integer",
+        "text",
+        "text",
+        "integer",
+        "text",
+        "text",
+        "date"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "identifiant de la station de mesure",
+        "numero d'indice et d'ordre",
+        "code de la commune à laquelle appartient cette entité",
+        "identifiants du type de mesure",
+        "mode de mesure (manuel, automatique)",
+        "frequence des mesures par type",
+        "date d'installation du capteur"
+      ],
+      "has_geometry": false,
+      "geom_columns": [],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [
+        "code_station"
+      ],
+      "value_columns_guess": [],
+      "columns_count": 8
+    },
+    {
+      "table": "decharges_abhs",
+      "columns": [
+        "id",
+        "commune_fr",
+        "code_decharge",
+        "nom_decharge",
+        "type_decharge",
+        "sup_tot_ha",
+        "sup_occupee_ha",
+        "quantite_t_j",
+        "date_mise_service",
+        "station_traitement_lixiviat",
+        "exit_puits",
+        "observation",
+        "coord_x",
+        "coord_y",
+        "altitude_z",
+        "geom"
+      ],
+      "types": [
+        "integer",
+        "text",
+        "text",
+        "text",
+        "text",
+        "double precision",
+        "double precision",
+        "double precision",
+        "text",
+        "text",
+        "text",
+        "text",
+        "double precision",
+        "double precision",
+        "double precision",
+        "geometry"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "nom de la commune en français",
+        "identifiant unique de la table",
+        "nom de la décharge",
+        "type de la décharge (controlée, sauvage, abondonnée)",
+        "superficie total de la décharge en hectare",
+        "superficie occupé de la décharge en hectare",
+        "quantite de déchets reçus par jour dans la décharge",
+        "date de mise en service de la décharge",
+        "existance d'une station de traitement de lexiviat (oui, non)",
+        "existance d'un puits dans la décharge (oui, non)",
+        "observation",
+        "cordonnée de longitude/X de la décharge",
+        "cordonnée de latitude/Y de la décharge",
+        "altitude Z",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [
+        "sup_tot_ha",
+        "sup_occupee_ha"
+      ],
+      "columns_count": 16
+    },
+    {
+      "table": "fosses_septiques_abhs",
+      "columns": [
+        "id",
+        "code_commune",
+        "centre_fr",
+        "coord_x",
+        "coord_y",
+        "geom"
+      ],
+      "types": [
+        "integer",
+        "text",
+        "text",
+        "double precision",
+        "double precision",
+        "geometry"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "code de la commune à laquelle appartient cette entité",
+        "nom du centre ne français",
+        "cordonnée de longitude/X de la fosse septique",
+        "cordonnée de latitude/Y de la fosse septique",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 6
+    },
+    {
+      "table": "huileries_abhs",
+      "columns": [
+        "id",
+        "code_commune",
+        "localite",
+        "nom_huilerie",
+        "code_huilerie",
+        "etat",
+        "type_huilerie",
+        "adresse",
+        "proprietaire",
+        "exploitant",
+        "coord_x",
+        "coord_y",
+        "geom"
+      ],
+      "types": [
+        "integer",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "double precision",
+        "double precision",
+        "geometry"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "code de la commune à laquelle appartient cette entité",
+        "nom de la localité",
+        "nom de la huilerie",
+        "code identifiant de la huilerie",
+        "etat de la huilerie",
+        "type de huilerie",
+        "adresse de localisation",
+        "nom du propriétaire",
+        "nom de l’exploitant",
+        "coordonnée de longitude/X",
+        "coordonnée de latitude/Y",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 13
+    },
+    {
+      "table": "mesures_debit_jr",
+      "columns": [
+        "code_debit",
+        "date_jr",
+        "debit_jr",
+        "ire_station"
+      ],
+      "types": [
+        "integer",
+        "date",
+        "double precision",
+        "text"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "date de la mesure",
+        "valeur de debit",
+        "numero d'indice et d'ordre"
+      ],
+      "has_geometry": false,
+      "geom_columns": [],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [
+        "code_debit",
+        "debit_jr"
+      ],
+      "columns_count": 4
+    },
+    {
+      "table": "mesures_debit_m",
+      "columns": [
+        "code_debit_m",
+        "ire_station",
+        "mois",
+        "annee",
+        "debit_m"
+      ],
+      "types": [
+        "integer",
+        "text",
+        "text",
+        "text",
+        "double precision"
+      ],
+      "descriptions": [
+        "identifiant unique de la mesure de débit",
+        "numero d'indice et d'ordre",
+        "mois de la mesure de débit",
+        "année de la mesure de débit",
+        "valeur du débit"
+      ],
+      "has_geometry": false,
+      "geom_columns": [],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [
+        "code_debit_m",
+        "debit_m"
+      ],
+      "columns_count": 5
+    },
+    {
+      "table": "mesures_evaporation_jr",
+      "columns": [
+        "id",
+        "date_mesure",
+        "code_commune",
+        "ire_station",
+        "val_evaporation",
+        "geom"
+      ],
+      "types": [
+        "integer",
+        "date",
+        "text",
+        "text",
+        "double precision",
+        "geometry"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "date de la mesure",
+        "code de la commune à laquelle appartient cette entité",
+        "numero d'indice et d'ordre",
+        "valeur d'évaporation",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 6
+    },
+    {
+      "table": "mesures_precipitations_jr",
+      "columns": [
+        "code_precipitation_jr",
+        "ire_precipitation",
+        "date_jr",
+        "precipitation_jr",
+        "ire_station"
+      ],
+      "types": [
+        "integer",
+        "text",
+        "date",
+        "double precision",
+        "text"
+      ],
+      "descriptions": [
+        "identifiant unique de la mesure journalière de précipitation",
+        "numero d'indice et d'ordre",
+        "date de la mesure journalière",
+        "valeur du précipitation journalière",
+        "numero d'indice et d'ordre"
+      ],
+      "has_geometry": false,
+      "geom_columns": [],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 5
+    },
+    {
+      "table": "mesures_qualite_barrages",
+      "columns": [
+        "id",
+        "date_prelevement",
+        "ire_station",
+        "parametre_qualite",
+        "milieu_prelevement",
+        "val_qual_barr"
+      ],
+      "types": [
+        "integer",
+        "date",
+        "text",
+        "text",
+        "text",
+        "double precision"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "date de prélèvement",
+        "numero d'indice et d'ordre",
+        "paramètre de la qualité d'eau",
+        "milieu de prelevement (surface, milieu, fond)",
+        "valeur de la qualite"
+      ],
+      "has_geometry": false,
+      "geom_columns": [],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 6
+    },
+    {
+      "table": "mesures_qualite_nappes",
+      "columns": [
+        "id",
+        "date_prelevement",
+        "ire_station",
+        "parametre_qualite",
+        "val_qual_nap"
+      ],
+      "types": [
+        "integer",
+        "date",
+        "text",
+        "text",
+        "double precision"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "date de prelevement",
+        "numero d'indice et d'ordre",
+        "paramètre de qualité mesuré",
+        "valeur du paramètre de qualité pour la nappe"
+      ],
+      "has_geometry": false,
+      "geom_columns": [],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 5
+    },
+    {
+      "table": "mesures_qualite_rivieres",
+      "columns": [
+        "id",
+        "date_prelevement",
+        "ire_station",
+        "parametre_qualite",
+        "val_qual_riv"
+      ],
+      "types": [
+        "integer",
+        "date",
+        "text",
+        "text",
+        "double precision"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "date de prelevement",
+        "numero d'indice et d'ordre",
+        "paramètre de qualité mesuré",
+        "valeur du paramètre de qualité pour la rivière"
+      ],
+      "has_geometry": false,
+      "geom_columns": [],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 5
+    },
+    {
+      "table": "mesures_temperatures_jr",
+      "columns": [
+        "code_temperature",
+        "ire_station",
+        "date_jr",
+        "temperature_jr"
+      ],
+      "types": [
+        "integer",
+        "integer",
+        "date",
+        "double precision"
+      ],
+      "descriptions": [
+        "identifiant unique de la mesure de température",
+        "identifiant de la station",
+        "date de la mesure journalière",
+        "valeur de température journalière"
+      ],
+      "has_geometry": false,
+      "geom_columns": [],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [
+        "code_temperature",
+        "temperature_jr"
+      ],
+      "columns_count": 4
+    },
+    {
+      "table": "mines_abhs",
+      "columns": [
+        "id",
+        "code_commune",
+        "code_mine",
+        "nom_mine",
+        "num_licence_exploit",
+        "coord_x",
+        "coord_y",
+        "minerais",
+        "geom"
+      ],
+      "types": [
+        "integer",
+        "text",
+        "text",
+        "text",
+        "text",
+        "double precision",
+        "double precision",
+        "text",
+        "geometry"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "code de la commune à laquelle appartient cette entité",
+        "code unique attribué à la mine",
+        "nom du  mine",
+        "numéro de licence d’exploitation de la mine",
+        "coordonnée de longitude/X",
+        "coordonnée de latitude/Y",
+        "types de minerai exploités",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 9
+    },
+    {
+      "table": "nappes_abhs",
+      "columns": [
+        "id",
+        "nappes",
+        "code_nappe",
+        "nom",
+        "superficie_km2",
+        "geom"
+      ],
+      "types": [
+        "integer",
+        "text",
+        "text",
+        "text",
+        "double precision",
+        "geometry"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "nom de la nappe",
+        "code unique de la nappe",
+        "nom officiel de la nappe",
+        "superficie en km²",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 6
+    },
+    {
+      "table": "points_eau_abhs",
+      "columns": [
+        "id",
+        "code_commune",
+        "code_pt_eau",
+        "utilisation",
+        "dist_pt_eau_foyer_pollut_m",
+        "foyer_pollution",
+        "nom_pt_eau",
+        "date_realisation",
+        "profond_tot_m",
+        "vol_preleve_m3_an",
+        "nature",
+        "niv_piezometrique_m",
+        "equipe",
+        "coord_x",
+        "coord_y",
+        "altitude_z",
+        "observation",
+        "geom"
+      ],
+      "types": [
+        "integer",
+        "text",
+        "text",
+        "text",
+        "double precision",
+        "text",
+        "text",
+        "date",
+        "double precision",
+        "double precision",
+        "text",
+        "double precision",
+        "text",
+        "double precision",
+        "double precision",
+        "double precision",
+        "text",
+        "geometry"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "code de la commune à laquelle appartient cette entité",
+        "code unique du point d’eau",
+        "utilisation du point d'eau (AEP, Agricole, ..)",
+        "distance du points d'eau du foyer de pollution en metre",
+        "type de foyer de pollution associé",
+        "nom du point d’eau",
+        "date de realisation",
+        "profondeur totale en m",
+        "volume prelever en m3 par an",
+        "nature du point d’eau",
+        "niveau piézométrique en mètres",
+        "équipement du point d’eau",
+        "coordonnée de longitude/X",
+        "coordonnée de latitude/Y",
+        "valeur d'altitude Z",
+        "observation",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 18
+    },
+    {
+      "table": "profils_stations",
+      "columns": [
+        "id",
+        "ire_station",
+        "points",
+        "type_profil",
+        "coord_x",
+        "coord_y",
+        "altitude_z",
+        "geom"
+      ],
+      "types": [
+        "integer",
+        "text",
+        "text",
+        "text",
+        "double precision",
+        "double precision",
+        "double precision",
+        "geometry"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "numero d'indice et d'ordre",
+        "indice et numéro de point",
+        "type du profil (en long/en travers)",
+        "coordonnée de longitude/X",
+        "coordonnée de latitude/Y",
+        "valeur d'altitude Z",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 8
+    },
+    {
+      "table": "rejets_abattoirs_abhs",
+      "columns": [
+        "id",
+        "code_commune",
+        "code_abattoir",
+        "coord_x",
+        "coord_y",
+        "geom"
+      ],
+      "types": [
+        "integer",
+        "text",
+        "text",
+        "double precision",
+        "double precision",
+        "geometry"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "code de la commune à laquelle appartient cette entité",
+        "code unique attribué à l’abattoir",
+        "coordonnée de longitude/X",
+        "coordonnée de latitude/Y",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 6
+    },
+    {
+      "table": "rejets_domestiques_abhs",
+      "columns": [
+        "id",
+        "code_commune",
+        "code_rejet",
+        "dimension",
+        "forme",
+        "debit_l_s",
+        "milieu_recepteur",
+        "reutilisation",
+        "coord_x",
+        "coord_y",
+        "observation",
+        "geom"
+      ],
+      "types": [
+        "integer",
+        "text",
+        "text",
+        "double precision",
+        "text",
+        "double precision",
+        "text",
+        "text",
+        "double precision",
+        "double precision",
+        "text",
+        "geometry"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "code de la commune à laquelle appartient cette entité",
+        "code unique du rejet",
+        "dimension",
+        "forme de l’exutoire du rejet",
+        "débit du rejet en litres par seconde",
+        "milieu récepteur du rejet",
+        "indication sur la réutilisation des eaux rejetées",
+        "coordonnée de longitude/X",
+        "coordonnée de longitude/Y",
+        "observation",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [
+        "debit_l_s"
+      ],
+      "columns_count": 12
+    },
+    {
+      "table": "rejets_ind_abhs",
+      "columns": [
+        "id",
+        "code_commune",
+        "code_rejet",
+        "nom_rejet",
+        "secteur",
+        "coord_x",
+        "coord_y",
+        "geom"
+      ],
+      "types": [
+        "integer",
+        "text",
+        "text",
+        "text",
+        "text",
+        "double precision",
+        "double precision",
+        "geometry"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "code de la commune à laquelle appartient cette entité",
+        "code unique du rejet",
+        "nom du rejet",
+        "secteur géographique du rejet",
+        "coordonnée de longitude/X",
+        "coordonnée de longitude/Y",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 8
+    },
+    {
+      "table": "reseau_hydro_abhs",
+      "columns": [
+        "id",
+        "code_oued",
+        "nom_oued",
+        "longueur_km",
+        "geom"
+      ],
+      "types": [
+        "integer",
+        "text",
+        "text",
+        "double precision",
+        "geometry"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "code unique attribué à l’oued",
+        "nom de l’oued",
+        "longueur de l’oued en kilomètres",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 5
+    },
+    {
+      "table": "sous_bassin_sebou",
+      "columns": [
+        "id",
+        "code_sb",
+        "nom_sous_bassin",
+        "nom_oued",
+        "superficie_km2",
+        "geom"
+      ],
+      "types": [
+        "integer",
+        "text",
+        "text",
+        "text",
+        "double precision",
+        "geometry"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "code unique attribué au sous-bassin",
+        "nom du sous-bassin",
+        "nom de l’oued",
+        "superficie en km²",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 6
+    },
+    {
+      "table": "stations_abhs",
+      "columns": [
+        "id_station",
+        "code_commune",
+        "ire_station",
+        "nom_station",
+        "type_station",
+        "code_ressource",
+        "etat",
+        "organisme_resp",
+        "ire_precipitation",
+        "types_mesures",
+        "observation",
+        "coord_x",
+        "coord_y",
+        "altitude_z",
+        "geom"
+      ],
+      "types": [
+        "integer",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "double precision",
+        "double precision",
+        "double precision",
+        "geometry"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "code de la commune à laquelle appartient cette entité",
+        "numero d'indice et d'ordre",
+        "nom de la station de mesure",
+        "type de la station de mesure",
+        "code de la station de mesure",
+        "etat de la station de mesure",
+        "organisme responsble de la station de mesure",
+        "numero d'indice et d'ordre precipitation",
+        "types de la station de mesure",
+        "observation",
+        "coord longitude/X de la station de mesure",
+        "coord latitude/Y de la station de mesure",
+        "altitude Z de la station de mesure",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [
+        "id_station"
+      ],
+      "value_columns_guess": [],
+      "columns_count": 15
+    },
+    {
+      "table": "step_abhs",
+      "columns": [
+        "id",
+        "code_commune",
+        "code_step",
+        "type_station",
+        "niveau_epuration",
+        "etat",
+        "superficie_ha",
+        "vol_eaux_us_trait_m3_an",
+        "cap_equiv_hab",
+        "reutilisation_eaux_us_epur",
+        "usage",
+        "coord_x",
+        "coord_y",
+        "observation",
+        "geom"
+      ],
+      "types": [
+        "integer",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "double precision",
+        "double precision",
+        "double precision",
+        "text",
+        "text",
+        "double precision",
+        "double precision",
+        "text",
+        "geometry"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "code de la commune à laquelle appartient cette entité",
+        "code unique attribué à la station d’épuration",
+        "type de station d’épuration",
+        "niveau d’épuration atteint par la STEP",
+        "état de fonctionnement de la STEP",
+        "superficie en hectares",
+        "volume annuel des eaux usées traitées en m³",
+        "capacité équivalente en habitants",
+        "réutilisation prévue ou existante des eaux usées épurées",
+        "usage de l’eau épurée",
+        "coordonnée de longitude/X",
+        "coordonnée de longitude/Y",
+        "observation",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [
+        "cap_equiv_hab"
+      ],
+      "columns_count": 15
+    },
+    {
+      "table": "step_ind_abhs",
+      "columns": [
+        "id",
+        "code_commune",
+        "code_step",
+        "nom_step",
+        "secteur",
+        "coord_x",
+        "coord_y",
+        "geom"
+      ],
+      "types": [
+        "character varying",
+        "character varying",
+        "character varying",
+        "character varying",
+        "character varying",
+        "double precision",
+        "double precision",
+        "geometry"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "code de la commune à laquelle appartient cette entité",
+        "code unique de la STEP",
+        "nom de la STEP",
+        "secteur géographique de la STEP",
+        "coordonnée de longitude/X",
+        "coordonnée de longitude/Y",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 8
+    },
+    {
+      "table": "stm_abhs",
+      "columns": [
+        "id",
+        "code_commune",
+        "code_stm",
+        "nom_stm",
+        "etat",
+        "coord_x",
+        "coord_y",
+        "geom"
+      ],
+      "types": [
+        "integer",
+        "text",
+        "text",
+        "text",
+        "text",
+        "double precision",
+        "double precision",
+        "geometry"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "code de la commune à laquelle appartient cette entité",
+        "code de la station de traitemennt des margines",
+        "nom de la station de traitemennt des margines",
+        "état de fonctionnement",
+        "coordonnée de longitude/X",
+        "coordonnée de longitude/Y",
+        "colonne de la geometry"
+      ],
+      "has_geometry": true,
+      "geom_columns": [
+        "geom"
+      ],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 8
+    },
+    {
+      "table": "suivi_qualite_brg_garde_hebdo",
+      "columns": [
+        "id",
+        "date_prelevement",
+        "ire_station",
+        "milieu_prelevement",
+        "parametre_qualite",
+        "val_qual_brg_garde_hebdo",
+        "observation"
+      ],
+      "types": [
+        "integer",
+        "date",
+        "text",
+        "text",
+        "text",
+        "double precision",
+        "text"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "date de prelevement",
+        "numero d'indice et d'ordre",
+        "milieu de prélèvement",
+        "paramètre de qualité mesuré",
+        "valeur de la qualité mesurée au barrage de garde hebdomadaire",
+        "observation"
+      ],
+      "has_geometry": false,
+      "geom_columns": [],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 7
+    },
+    {
+      "table": "suivi_qualite_sebou_jr",
+      "columns": [
+        "id",
+        "date_prelevement",
+        "ire_station",
+        "parametre_qualite",
+        "val_qual_sebou_jr",
+        "observation"
+      ],
+      "types": [
+        "integer",
+        "date",
+        "text",
+        "text",
+        "double precision",
+        "text"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "date de prelevement",
+        "numero d'indice et d'ordre",
+        "paramètre de qualité mesuré",
+        "valeur de la qualité mesurée dans l’oued Sebou  journalière",
+        "observation"
+      ],
+      "has_geometry": false,
+      "geom_columns": [],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 6
+    },
+    {
+      "table": "types_mesures",
+      "columns": [
+        "id",
+        "type_mesure",
+        "code_parametre_qua",
+        "parametre_qualite",
+        "unite",
+        "description"
+      ],
+      "types": [
+        "integer",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ],
+      "descriptions": [
+        "identifiant unique de la table",
+        "type de mesure effectuée",
+        "code unique du paramètre de qualité",
+        "paramètre de qualité mesuré",
+        "unité de mesure du paramètre",
+        "description détaillée du paramètre de qualité"
+      ],
+      "has_geometry": false,
+      "geom_columns": [],
+      "coord_columns": [],
+      "time_columns_guess": [],
+      "station_columns_guess": [],
+      "value_columns_guess": [],
+      "columns_count": 6
+    }
+  ]
+}
