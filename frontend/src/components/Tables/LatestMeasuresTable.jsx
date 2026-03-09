@@ -30,10 +30,10 @@ export default function LatestMeasuresTable({ stationId, range }) {
           .reverse()
           .map((r) => ({
             date: r.date || r.timestamp || r.ts,
-            flow: toNum(r.flow ?? r.debit ?? r.q),
-            no3: toNum(r.no3 ?? r.nitrates),
-            p: toNum(r.p ?? r.phosphore),
-            temp: toNum(r.temp ?? r.temperature),
+            flow: toNum(r.flow ?? r.debit ?? r.debit_m3s ?? r.q ?? r.debit_jr),
+            no3: toNum(r.no3 ?? r.nitrates ?? r.no3_mgl),
+            p: toNum(r.p ?? r.phosphore ?? r.p_mgl),
+            temp: toNum(r.temp ?? r.temperature ?? r.temp_c ?? r.temperature_jr),
           }));
         setRows(last);
       })

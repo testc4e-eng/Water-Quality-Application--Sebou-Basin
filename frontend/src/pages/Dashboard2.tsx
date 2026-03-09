@@ -131,13 +131,16 @@ function geomKind(fc: FeatureCollection): "point" | "line" | "polygon" {
    COMPONENT PRINCIPAL
 ===================================================== */
 export default function Dashboard2() {
+  const today = new Date();
+  const todayStr = today.toISOString().slice(0, 10);
+
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [selectedSousBassinId, setSelectedSousBassinId] = useState<string | null>(null);
   const [selectedBarrageId, setSelectedBarrageId] = useState<number | null>(null);
 
   const [range, setRange] = useState<{ from: string; to: string }>({
-    from: "2025-08-01",
-    to: "2025-09-01",
+    from: "2024-01-01",
+    to: todayStr,
   });
 
   const [layers, setLayers] = useState<LayersState>({
@@ -182,42 +185,6 @@ export default function Dashboard2() {
   }, []);
 
 
-  /* ---------- Interaction : clic sur station ---------- */
-useEffect(() => {
-  const map = mapRef.current;
-  if (!map) return;
-
-  const onClickStation = (e: maplibregl.MapMouseEvent) => {
-    const feature = e.features?.[0];
-    if (!feature || !feature.properties) return;
-
-    const stationId = Number(feature.properties.id_station);
-    if (Number.isNaN(stationId)) return;
-
-    // ✅ MAJ centrale
-    setSelectedId(stationId);
-    setSelectedSousBassinId(null);
-    setSelectedBarrageId(null);
-
-    console.log("📍 Station sélectionnée :", stationId);
-  };
-
-  // 🔹 Activer clic sur la couche stations
-  map.on("click", "base-layer-stations_abhs", onClickStation);
-
-  // 🔹 Curseur pointer
-  map.on("mouseenter", "base-layer-stations_abhs", () => {
-    map.getCanvas().style.cursor = "pointer";
-  });
-  map.on("mouseleave", "base-layer-stations_abhs", () => {
-    map.getCanvas().style.cursor = "";
-  });
-
-  return () => {
-    map.off("click", "base-layer-stations_abhs", onClickStation);
-  };
-}, []);
-
   /* ---------- Charger données principales ---------- */
   useEffect(() => {
     let alive = true;
@@ -228,14 +195,14 @@ useEffect(() => {
         if (!alive) return;
         setStations(st);
         setBarrages(br);
-        if (st.length && selectedId == null) setSelectedId(st[0].id);
+        setSelectedId((prev) => prev ?? (st.length ? st[0].id : null));
       })
       .catch(() => setLoadError("Erreur de chargement"))
       .finally(() => alive && setLoading(false));
     return () => {
       alive = false;
     };
-  }, [selectedId]);
+  }, []);
 
   /* ==========================================================
      A. Chargement des couches de base (checkbox)
@@ -259,13 +226,16 @@ useEffect(() => {
       }
       const srcId = `base-src-${key}`;
       try {
-        const res = await fetch(`http://127.0.0.1:8000/api/v1/layers/${key}`);
-        if (!res.ok) {
-          console.warn(`⚠️ Couche ${key} introuvable (${res.status})`);
-          return;
+        let url = `/layers/${key}`;
+        if (key === "stations_abhs") {
+          const stationIds = stations
+            .map((s) => s.id)
+            .filter((id) => Number.isFinite(id));
+          if (!stationIds.length) return;
+          url += `?ids=${encodeURIComponent(stationIds.join(","))}`;
         }
-
-        const data: FeatureCollection = await res.json();
+        const res = await api.get<FeatureCollection>(url);
+        const data: FeatureCollection = res.data;
         if (!data || !data.features || data.features.length === 0) {
           console.info(`ℹ️ Couche ${key} vide`);
           return;
@@ -308,7 +278,7 @@ useEffect(() => {
         if (map.getSource(srcId)) map.removeSource(srcId);
       }
     });
-  }, [togglesKey]);
+  }, [togglesKey, stations]);
 
   /* ==========================================================
      B. Chargement d’une sélection filtrée (sous-bassin, barrage…)
@@ -337,10 +307,8 @@ useEffect(() => {
           ? `?ids=${encodeURIComponent(idsArray.join(","))}`
           : "";
 
-      const res = await fetch(`http://127.0.0.1:8000/api/v1/layers/${layerKey}${query}`);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
-      const data: FeatureCollection = await res.json();
+      const res = await api.get<FeatureCollection>(`/layers/${layerKey}${query}`);
+      const data: FeatureCollection = res.data;
       if (!data.features || data.features.length === 0) {
         console.warn(`⚠️ Couche ${layerKey} vide`);
         return;
@@ -389,34 +357,57 @@ useEffect(() => {
   const map = mapRef.current;
   if (!map) return;
 
-  const layerId = "base-layer-stations_abhs";
-
   const onClickStation = (e: maplibregl.MapMouseEvent) => {
-    const feature = e.features?.[0];
+    const stationLayers = ["base-layer-stations_abhs", "sel-layer-stations_abhs"].filter(
+      (id) => !!map.getLayer(id)
+    );
+    if (!stationLayers.length) return;
+    const features = map.queryRenderedFeatures(
+      e.point,
+      { layers: stationLayers }
+    );
+    const feature = features[0];
     if (!feature || !feature.properties) return;
 
-    const stationId = Number(feature.properties.id);   
+    const stationId = Number(
+      feature.properties.id ??
+      feature.properties.id_station ??
+      feature.properties.station_id
+    );
     if (Number.isNaN(stationId)) return;
+    if (!stations.some((s) => s.id === stationId)) return;
 
     setSelectedId(stationId);
     setSelectedSousBassinId(null);
     setSelectedBarrageId(null);
-
-    console.log("📍 Station sélectionnée :", stationId);
   };
 
-  map.on("click", layerId, onClickStation);
-  map.on("mouseenter", layerId, () => {
-    map.getCanvas().style.cursor = "pointer";
-  });
-  map.on("mouseleave", layerId, () => {
+  const onMouseMove = (e: maplibregl.MapMouseEvent) => {
+    const stationLayers = ["base-layer-stations_abhs", "sel-layer-stations_abhs"].filter(
+      (id) => !!map.getLayer(id)
+    );
+    if (!stationLayers.length) {
+      map.getCanvas().style.cursor = "";
+      return;
+    }
+    const features = map.queryRenderedFeatures(
+      e.point,
+      { layers: stationLayers }
+    );
+    map.getCanvas().style.cursor = features.length ? "pointer" : "";
+  };
+
+  map.on("click", onClickStation);
+  map.on("mousemove", onMouseMove);
+  map.on("mouseleave", () => {
     map.getCanvas().style.cursor = "";
   });
 
   return () => {
-    map.off("click", layerId, onClickStation);
+    map.off("click", onClickStation);
+    map.off("mousemove", onMouseMove);
   };
-}, []);
+}, [stations]);
 
 
 
@@ -465,7 +456,7 @@ if (type === "douar") loadLayerForFilter("adm_douars_abhs", idArray);
 
 
   },
-  [loadLayerForFilter]
+  [loadLayerForFilter, stations]
 );
 
 
@@ -503,7 +494,10 @@ if (type === "douar") loadLayerForFilter("adm_douars_abhs", idArray);
         </aside>
 
         <main className="space-y-6 min-w-0">
-          <KPISection />
+          <KPISection
+            stationId={selectedId}
+            range={{ dateFrom: range.from, dateTo: range.to }}
+          />
           <section className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <div className="lg:col-span-2 rounded-2xl border bg-white shadow-sm">
               <div className="flex items-center justify-between px-4 py-2 border-b">
@@ -559,3 +553,4 @@ if (type === "douar") loadLayerForFilter("adm_douars_abhs", idArray);
     </div>
   );
 }
+

@@ -4,7 +4,7 @@ import ScenarioSelector from "@/components/Filters/ScenarioSelector";
 import MultiCheckList, { MultiCheckItem } from "./MultiCheckList";
 import { Calendar, Layers, Filter, MapPin, Database, ChevronDown, ChevronUp } from "lucide-react";
 import { DEFAULT_TOGGLES } from "@/layers/config";
-import axios from "axios";
+import { api } from "@/api/client";
 import type { AxiosResponse } from "axios";
 
 /* =========================================================
@@ -33,6 +33,10 @@ export type SidebarFiltersProps = {
 interface NameItem {
   id: string | number;
   label: string;
+}
+interface StationItem {
+  id: string | number;
+  name?: string | null;
 }
 
 /* =========================================================
@@ -77,14 +81,12 @@ export default function SidebarFilters({
 
     async function fetchLists() {
       try {
-        const [sb, br, st]: [
-          AxiosResponse<NameItem[]>,
+        const [sb, br]: [
           AxiosResponse<NameItem[]>,
           AxiosResponse<NameItem[]>
         ] = await Promise.all([
-          axios.get("http://127.0.0.1:8000/api/v1/names/sous-bassins"),
-          axios.get("http://127.0.0.1:8000/api/v1/names/barrages"),
-          axios.get("http://127.0.0.1:8000/api/v1/names/stations"),
+          api.get("/names/sous-bassins"),
+          api.get("/names/barrages"),
         ]);
 
         if (!alive) return;
@@ -103,12 +105,30 @@ export default function SidebarFilters({
           }))
         );
 
-        setListStations(
-          (st.data ?? []).map((x: NameItem) => ({
-            id: String(x.id),
-            label: x.label,
-          }))
-        );
+        try {
+          const st = await api.get<StationItem[]>(
+            "/stations?with_data=true&limit=2000",
+            { timeout: 20000 }
+          );
+          if (alive) {
+            setListStations(
+              (st.data ?? []).map((x: StationItem) => ({
+                id: String(x.id),
+                label: (x.name ?? "").trim() || `Station ${x.id}`,
+              }))
+            );
+          }
+        } catch {
+          const stFallback = await api.get<NameItem[]>("/names/stations");
+          if (alive) {
+            setListStations(
+              (stFallback.data ?? []).map((x: NameItem) => ({
+                id: String(x.id),
+                label: x.label,
+              }))
+            );
+          }
+        }
 
         const [
           regions,
@@ -125,12 +145,12 @@ export default function SidebarFilters({
           AxiosResponse<NameItem[]>,
           AxiosResponse<NameItem[]>
         ] = await Promise.all([
-          axios.get("http://127.0.0.1:8000/api/v1/names/regions"),
-          axios.get("http://127.0.0.1:8000/api/v1/names/provinces"),
-          axios.get("http://127.0.0.1:8000/api/v1/names/cercles"),
-          axios.get("http://127.0.0.1:8000/api/v1/names/communes"),
-          axios.get("http://127.0.0.1:8000/api/v1/names/villes"),
-          axios.get("http://127.0.0.1:8000/api/v1/names/douars"),
+          api.get("/names/regions"),
+          api.get("/names/provinces"),
+          api.get("/names/cercles"),
+          api.get("/names/communes"),
+          api.get("/names/villes"),
+          api.get("/names/douars"),
         ]);
 
         if (!alive) return;

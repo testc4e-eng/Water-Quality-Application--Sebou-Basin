@@ -62,8 +62,9 @@ npm run dev -- --port 3001
 
 
 
-le dernier commende pour lancer le backend :
+le dernier commande pour lancer le backend :
 
+micromamba create -f sad_backend.yml
 # micromamba activate sad_backend
 # cd backend
 # uvicorn app.main:app --reload --host 127.0.0.1 --port 8000

@@ -57,10 +57,10 @@ export default function TimeSeriesLinked({ stationId, range }) {
       const date = r.date || r.timestamp || r.ts;
       return {
         date,
-        flow: toNum(r.flow ?? r.debit ?? r.q),
-        temp: toNum(r.temp ?? r.temperature),
-        no3: toNum(r.no3 ?? r.nitrates),
-        p: toNum(r.p ?? r.phosphore),
+        flow: toNum(r.flow ?? r.debit ?? r.debit_m3s ?? r.q ?? r.debit_jr),
+        temp: toNum(r.temp ?? r.temperature ?? r.temp_c ?? r.temperature_jr),
+        no3: toNum(r.no3 ?? r.nitrates ?? r.no3_mgl),
+        p: toNum(r.p ?? r.phosphore ?? r.p_mgl),
       };
     });
     return arr.sort((a, b) => new Date(a.date) - new Date(b.date));

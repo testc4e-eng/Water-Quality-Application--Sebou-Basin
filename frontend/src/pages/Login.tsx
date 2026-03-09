@@ -57,7 +57,7 @@ const AuthPage = () => {
     try {
       const data = await postLoginForm(loginEmail, loginPassword);
       console.log("Connexion réussie :", data);
-      // TODO: stocker token + navigate("/dashboard")
+      // TODO: stocker token + navigate("/dashboard-2")
     } catch (err) {
       const message = extractApiError(err);
       console.error("Erreur connexion :", message);

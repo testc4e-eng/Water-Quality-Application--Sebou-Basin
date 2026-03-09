@@ -36,7 +36,7 @@ const Footer = () => {
                 Accueil
               </NavLink>
               <NavLink
-                to="/dashboard"
+                to="/dashboard-2"
                 className="text-sm opacity-80 hover:opacity-100 transition-opacity"
               >
                 Dashboard

@@ -1,5 +1,5 @@
 # backend/app/api/v1/raw.py
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, HTTPException, Query, Body
 from typing import List, Optional
 from psycopg2 import sql
 from psycopg2.extras import RealDictCursor
@@ -22,6 +22,21 @@ def _has_coords(schema: str, table: str) -> tuple[bool, list[str]]:
     has_lat = any(c.lower() in LAT_CANDIDATES for c in coord_cols)
     has_lon = any(c.lower() in LON_CANDIDATES for c in coord_cols)
     return (has_lat and has_lon, sorted(set(coord_cols)))
+
+def _primary_key_column(schema: str, table: str) -> Optional[str]:
+    q = """
+      SELECT a.attname
+      FROM pg_index i
+      JOIN pg_attribute a ON a.attrelid = i.indrelid AND a.attnum = ANY(i.indkey)
+      WHERE i.indrelid = %s::regclass
+        AND i.indisprimary
+      LIMIT 1
+    """
+    regclass = f"{schema}.{table}"
+    with connection() as cx, cx.cursor() as cur:
+        cur.execute(q, (regclass,))
+        row = cur.fetchone()
+        return row[0] if row else None
 
 @router.get("/tables")
 def list_tables(schema: Optional[str] = Query(None)):
@@ -109,4 +124,115 @@ def table_rows(
     with connection() as cx, cx.cursor(cursor_factory=RealDictCursor) as cur:
         cur.execute(query, (limit, offset))
         rows = cur.fetchall()
-        return {"rows": rows, "limit": limit, "offset": offset}
+        return {
+            "rows": rows,
+            "limit": limit,
+            "offset": offset,
+            "primary_key": _primary_key_column(schema, table),
+        }
+
+@router.get("/{schema}/{table}/pk")
+def table_primary_key(schema: str, table: str):
+    if not table_exists(f"{schema}.{table}"):
+        raise HTTPException(404, "Table introuvable")
+    return {"primary_key": _primary_key_column(schema, table)}
+
+@router.post("/{schema}/{table}")
+def create_row(schema: str, table: str, data: dict = Body(...)):
+    if not table_exists(f"{schema}.{table}"):
+        raise HTTPException(404, "Table introuvable")
+    if data is None:
+        raise HTTPException(400, "Aucune donnée envoyée")
+
+    clean_data = {k: (None if v == "" else v) for k, v in data.items()}
+    for field in ["geom", "geometry", "the_geom", "shape"]:
+        clean_data.pop(field, None)
+
+    try:
+        with connection() as cx, cx.cursor(cursor_factory=RealDictCursor) as cur:
+            if not clean_data:
+                q = sql.SQL("INSERT INTO {}.{} DEFAULT VALUES RETURNING *").format(
+                    sql.Identifier(schema), sql.Identifier(table)
+                )
+                cur.execute(q)
+            else:
+                cols = list(clean_data.keys())
+                q = sql.SQL("INSERT INTO {}.{} ({}) VALUES ({}) RETURNING *").format(
+                    sql.Identifier(schema),
+                    sql.Identifier(table),
+                    sql.SQL(", ").join(sql.Identifier(c) for c in cols),
+                    sql.SQL(", ").join(sql.Placeholder() for _ in cols),
+                )
+                cur.execute(q, [clean_data[c] for c in cols])
+            created = cur.fetchone()
+            return {"status": "ok", "created": created}
+    except Exception as e:
+        raise HTTPException(400, f"Insertion échouée : {e}")
+
+@router.put("/{schema}/{table}/{row_id}")
+def update_row(schema: str, table: str, row_id: str, data: dict = Body(...)):
+    if not table_exists(f"{schema}.{table}"):
+        raise HTTPException(404, "Table introuvable")
+    if not data:
+        raise HTTPException(400, "Aucune donnée à mettre à jour")
+
+    pk_col = _primary_key_column(schema, table)
+    if not pk_col:
+        raise HTTPException(400, "Clé primaire introuvable sur cette table")
+
+    clean_data = {k: (None if v == "" else v) for k, v in data.items()}
+    clean_data.pop(pk_col, None)
+    if not clean_data:
+        raise HTTPException(400, "Aucune colonne modifiable fournie")
+
+    set_clause = sql.SQL(", ").join(
+        sql.SQL("{} = {}").format(sql.Identifier(k), sql.Placeholder())
+        for k in clean_data.keys()
+    )
+    q = sql.SQL("UPDATE {}.{} SET {} WHERE {} = {} RETURNING *").format(
+        sql.Identifier(schema),
+        sql.Identifier(table),
+        set_clause,
+        sql.Identifier(pk_col),
+        sql.Placeholder(),
+    )
+    params = [clean_data[k] for k in clean_data.keys()] + [row_id]
+
+    try:
+        with connection() as cx, cx.cursor(cursor_factory=RealDictCursor) as cur:
+            cur.execute(q, params)
+            updated = cur.fetchone()
+            if not updated:
+                raise HTTPException(404, "Ligne introuvable")
+            return {"status": "ok", "updated": updated}
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(400, f"Erreur update : {e}")
+
+@router.delete("/{schema}/{table}/{row_id}")
+def delete_row(schema: str, table: str, row_id: str):
+    if not table_exists(f"{schema}.{table}"):
+        raise HTTPException(404, "Table introuvable")
+
+    pk_col = _primary_key_column(schema, table)
+    if not pk_col:
+        raise HTTPException(400, "Clé primaire introuvable sur cette table")
+
+    q = sql.SQL("DELETE FROM {}.{} WHERE {} = {} RETURNING *").format(
+        sql.Identifier(schema),
+        sql.Identifier(table),
+        sql.Identifier(pk_col),
+        sql.Placeholder(),
+    )
+    try:
+        with connection() as cx, cx.cursor(cursor_factory=RealDictCursor) as cur:
+            cur.execute(q, (row_id,))
+            deleted = cur.fetchone()
+            if not deleted:
+                raise HTTPException(404, "Ligne introuvable")
+            return {"status": "ok", "deleted": deleted}
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(400, f"Erreur delete : {e}")

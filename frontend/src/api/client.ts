@@ -230,8 +230,11 @@ export async function postRegister(
 
 // 🔹 1. Liste des tables disponibles
 export async function listRawTables(): Promise<{ schema: string; table: string }[]> {
-  const data = await getJSON<{ schema: string; table: string }[]>("/raw/tables");
-  return Array.isArray(data) ? data : [];
+  const data = await getJSON<
+    { tables?: { schema: string; table: string }[] } | { schema: string; table: string }[]
+  >("/raw/tables");
+  if (Array.isArray(data)) return data;
+  return Array.isArray(data?.tables) ? data.tables : [];
 }
 
 // 🔹 2. Lecture du contenu d’une table
@@ -239,9 +242,32 @@ export async function getRawData(
   schema: string,
   table: string,
   limit: number = 500
-): Promise<Record<string, unknown>[]> {
-  const data = await getJSON<Record<string, unknown>[]>(
-    `/raw/data/${encodeURIComponent(schema)}/${encodeURIComponent(table)}?limit=${limit}`
+): Promise<{ rows: Record<string, unknown>[]; primaryKey: string | null }> {
+  const data = await getJSON<{
+    rows?: Record<string, unknown>[];
+    primary_key?: string | null;
+  }>(
+    `/raw/${encodeURIComponent(schema)}/${encodeURIComponent(table)}/rows?limit=${limit}`
+  );
+  return {
+    rows: Array.isArray(data?.rows) ? data.rows : [],
+    primaryKey: data?.primary_key ?? null,
+  };
+}
+
+export interface RawColumnMeta {
+  column_name: string;
+  data_type: string;
+  is_nullable: "YES" | "NO";
+  column_default: string | null;
+}
+
+export async function getRawColumns(
+  schema: string,
+  table: string
+): Promise<RawColumnMeta[]> {
+  const data = await getJSON<RawColumnMeta[]>(
+    `/raw/${encodeURIComponent(schema)}/${encodeURIComponent(table)}/columns`
   );
   return Array.isArray(data) ? data : [];
 }

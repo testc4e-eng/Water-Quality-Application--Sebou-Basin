@@ -54,11 +54,11 @@ export default function ExtraCharts({ stationId, range }) {
   const dataset = useMemo(
     () =>
       rows.map((r) => ({
-        date: r.date,
-        flow: toNum(r.flow),
-        temp: toNum(r.temp),
-        no3: toNum(r.no3),
-        p: toNum(r.p),
+        date: r.date || r.ts || r.timestamp,
+        flow: toNum(r.flow ?? r.debit ?? r.debit_m3s ?? r.q ?? r.debit_jr),
+        temp: toNum(r.temp ?? r.temperature ?? r.temp_c ?? r.temperature_jr),
+        no3: toNum(r.no3 ?? r.nitrates ?? r.no3_mgl),
+        p: toNum(r.p ?? r.phosphore ?? r.p_mgl),
       })),
     [rows]
   );

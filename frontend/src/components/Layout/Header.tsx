@@ -9,8 +9,7 @@ const Header = () => {
 
   const navItems = [
     { to: "/", label: "Accueil" },
-    { to: "/dashboard", label: "Dashboard" },
-    { to: "/dashboard-2", label: "Dashboard 2" },
+    { to: "/dashboard-2", label: "Dashboard" },
     { to: "/dashboard-climate", label: "Dashboard Climate" },
     { to: "/data", label: "Données brutes" },
     { to: "/about", label: "À propos" },
