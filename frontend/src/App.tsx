@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
+  Navigate,
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
@@ -22,6 +23,11 @@ import DashboardClimate from "./pages/DashboardClimate";
 
 const queryClient = new QueryClient();
 
+function AdminOnly({ children }: { children: JSX.Element }) {
+  const isAdmin = localStorage.getItem("is_superuser") === "true";
+  return isAdmin ? children : <Navigate to="/" replace />;
+}
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -32,7 +38,14 @@ const router = createBrowserRouter(
         <Route path="dashboard-climate" element={<DashboardClimate />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
-        <Route path="data" element={<DataViewer />} />
+        <Route
+          path="data"
+          element={
+            <AdminOnly>
+              <DataViewer />
+            </AdminOnly>
+          }
+        />
       </Route>
 
       <Route path="/login" element={<AuthPage />} />

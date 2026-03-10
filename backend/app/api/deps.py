@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 from app.db.session import SessionLocal
 from app.core.security import decode_token
 from app.models.user import User
+import app.models.item  # noqa: F401  # ensure Item mapper is registered
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")
 

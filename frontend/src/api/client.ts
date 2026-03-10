@@ -196,12 +196,10 @@ export async function getGeoJSON(
 export async function postLoginForm(
   username: string,
   password: string
-): Promise<{ access_token: string; token_type: string }> {
-  const form = new URLSearchParams({ username, password });
-  const { data } = await api.post<{ access_token: string; token_type: string }>(
+): Promise<{ access_token: string; token_type: string; email: string; is_superuser: boolean }> {
+  const { data } = await api.post<{ access_token: string; token_type: string; email: string; is_superuser: boolean }>(
     "/auth/login",
-    form,
-    { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
+    { email: username, password }
   );
   return data;
 }
