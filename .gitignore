@@ -38,3 +38,9 @@ Thumbs.db
 # Garder fichiers utiles à la racine
 !.gitignore
 !README.md
+
+# Re-ignore Python cache artifacts under backend
+backend/**/__pycache__/
+backend/**/*.pyc
+backend/**/*.pyo
+backend/**/*.pyd
