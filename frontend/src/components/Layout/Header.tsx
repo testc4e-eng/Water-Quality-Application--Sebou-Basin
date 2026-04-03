@@ -1,12 +1,17 @@
 /* frontend/src/components/Layout/Header.tsx */
 import { NavLink, useNavigate } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, PanelLeftClose, PanelLeftOpen, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 
 type NavItem = { to: string; label: string };
 
-const Header = () => {
+type HeaderProps = {
+  sidebarCollapsed: boolean;
+  onToggleSidebar: () => void;
+};
+
+const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -39,43 +44,32 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-card border-b border-border shadow-card sticky top-0 z-50">
-      <div className="container mx-auto px-6 py-4">
+    <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur">
+      <div className="px-4 py-4 sm:px-6">
         <div className="flex items-center justify-between">
-          <NavLink to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-            <div className="flex items-center gap-2">
-              <img src="/logo.jpg" alt="Logo" className="h-10 w-auto" />
-            </div>
-            <div>
-              <h1 className="font-roboto font-bold text-xl text-primary">WaterQual SEBOU</h1>
-              <p className="text-xs text-muted-foreground">Systeme d'aide a la decision</p>
-            </div>
-          </NavLink>
+          <div className="flex items-center gap-3">
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="hidden lg:inline-flex"
+              onClick={onToggleSidebar}
+              aria-label={sidebarCollapsed ? "Afficher la sidebar" : "Masquer la sidebar"}
+            >
+              {sidebarCollapsed ? <PanelLeftOpen className="h-5 w-5" /> : <PanelLeftClose className="h-5 w-5" />}
+            </Button>
+            <NavLink to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+              <div className="flex items-center gap-3">
+              <img src="/logo.jpg" alt="Logo" className="h-10 w-auto rounded-xl" />
+              </div>
+              <div>
+                <h1 className="font-roboto font-bold text-xl text-primary">WaterQual SEBOU</h1>
+                <p className="text-xs text-muted-foreground">Systeme d'aide a la decision</p>
+              </div>
+            </NavLink>
+          </div>
 
-          <nav className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                className={({ isActive }) =>
-                  `font-medium transition-colors hover:text-primary relative ${
-                    isActive ? "text-primary" : "text-muted-foreground"
-                  }`
-                }
-              >
-                {({ isActive }) => (
-                  <>
-                    {item.label}
-                    {isActive && (
-                      <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full" />
-                    )}
-                  </>
-                )}
-              </NavLink>
-            ))}
-          </nav>
-
-          <div className="hidden md:flex items-center space-x-3">
+          <div className="hidden lg:flex items-center space-x-3">
             {!isAuthenticated ? (
               <>
                 <Button variant="outline" asChild>
@@ -95,7 +89,7 @@ const Header = () => {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden"
+            className="lg:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -103,7 +97,7 @@ const Header = () => {
         </div>
 
         {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-border pt-4">
+          <div className="lg:hidden mt-4 border-t border-border pb-4 pt-4">
             <nav className="flex flex-col space-y-3">
               {navItems.map((item) => (
                 <NavLink

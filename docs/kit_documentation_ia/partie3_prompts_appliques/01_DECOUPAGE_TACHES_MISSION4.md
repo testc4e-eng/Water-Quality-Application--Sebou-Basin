@@ -61,3 +61,6 @@ Taches :
 - [Frontend] verifier les flux login, dashboard et carte
 - [Backend] centraliser la configuration et verifier CORS / secrets / healthcheck
 - [Transversal] preparer la base pour roadmap et priorisation
+
+
+

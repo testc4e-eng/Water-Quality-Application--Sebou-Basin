@@ -1,15 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import ScenarioSelector from "@/components/Filters/ScenarioSelector";
-import MultiCheckList, { MultiCheckItem } from "./MultiCheckList";
-import { Calendar, Layers, Filter, MapPin, Database, ChevronDown, ChevronUp } from "lucide-react";
+import React, { useEffect, useMemo, useState } from "react";
+import { ChevronDown, ChevronRight, Radar, Search } from "lucide-react";
 import { DEFAULT_TOGGLES } from "@/layers/config";
 import { api } from "@/api/client";
 import type { AxiosResponse } from "axios";
 
-/* =========================================================
-   TYPES
-========================================================= */
 export type LayersState = {
   toggles: Record<string, boolean>;
   barrages_list: Record<string, boolean>;
@@ -25,146 +19,303 @@ export type SidebarFiltersProps = {
   setLayers: React.Dispatch<React.SetStateAction<LayersState>>;
   onApply: () => void;
   onSelectFilter?: (type: string, ids: string | string[]) => void;
+  onZoomLayer?: (layerKey: string) => void;
 };
 
-/* =========================================================
-   API TYPES
-========================================================= */
 interface NameItem {
   id: string | number;
   label: string;
 }
+
 interface StationItem {
   id: string | number;
   name?: string | null;
 }
 
-/* =========================================================
-   COMPONENT
-========================================================= */
+type SectionKey =
+  | "hydro"
+  | "administratif"
+  | "infra"
+  | "sousBassins"
+  | "barrages"
+  | "stations";
+
+type ListItem = {
+  id: string;
+  label: string;
+};
+
+function groupLabel(key: string): string {
+  const labels: Record<string, string> = {
+    bassin_sebou: "Bassin versant",
+    sous_bassin_sebou: "Sous-bassins",
+    reseau_hydro_abhs: "Reseau hydrographique",
+    barrages_abhs: "Barrages",
+    stations_abhs: "Stations hydrologiques",
+    adm_regions_abhs: "Regions",
+    adm_provinces_abhs: "Provinces",
+    adm_cercles_abhs: "Cercles",
+    adm_communes_abhs: "Communes",
+    adm_villes_abhs: "Villes",
+    adm_douars_abhs: "Douars",
+  };
+  return labels[key] ?? key.replace(/_/g, " ");
+}
+
+function CollapsibleBlock({
+  title,
+  count,
+  iconColor,
+  open,
+  onToggle,
+  children,
+}: {
+  title: string;
+  count?: number;
+  iconColor: string;
+  open: boolean;
+  onToggle: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="overflow-hidden rounded-2xl border border-emerald-100/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md">
+      <button
+        type="button"
+        onClick={onToggle}
+        className="flex w-full items-center justify-between px-4 py-3.5 text-left transition hover:bg-white/[0.08]"
+      >
+        <div className="flex items-center gap-3">
+          <span className={`h-2.5 w-2.5 rounded-full shadow-[0_0_14px_currentColor] ${iconColor}`} />
+          <span className="font-semibold tracking-[0.01em] text-white">{title}</span>
+        </div>
+        <div className="flex items-center gap-3">
+          {typeof count === "number" && (
+            <span className="rounded-full border border-emerald-100/10 bg-slate-950/25 px-2.5 py-1 text-xs text-emerald-50">
+              {count}
+            </span>
+          )}
+          {open ? (
+            <ChevronDown className="h-4 w-4 text-slate-300" />
+          ) : (
+            <ChevronRight className="h-4 w-4 text-slate-300" />
+          )}
+        </div>
+      </button>
+      {open && <div className="border-t border-emerald-100/10 bg-slate-950/15 px-3 py-3">{children}</div>}
+    </div>
+  );
+}
+
+function LayerCheckbox({
+  checked,
+  label,
+  onChange,
+}: {
+  checked: boolean;
+  label: string;
+  onChange: (checked: boolean) => void;
+}) {
+  return (
+    <label className="flex cursor-pointer items-center gap-3 rounded-xl border border-transparent px-3 py-2.5 text-sm text-slate-100 transition hover:border-emerald-200/10 hover:bg-emerald-300/[0.08]">
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={(e) => onChange(e.target.checked)}
+        className="h-4 w-4 rounded border-white/20 bg-transparent text-secondary focus:ring-secondary"
+      />
+      <span className="font-medium text-slate-100/95">{label}</span>
+    </label>
+  );
+}
+
+function SearchableChecklist({
+  items,
+  value,
+  onChange,
+  placeholder,
+  height = 180,
+}: {
+  items: ListItem[];
+  value: Record<string, boolean>;
+  onChange: (next: Record<string, boolean>) => void;
+  placeholder: string;
+  height?: number;
+}) {
+  const [query, setQuery] = useState("");
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return items;
+    return items.filter((item) => item.label.toLowerCase().includes(q));
+  }, [items, query]);
+
+  const selectedCount = Object.values(value).filter(Boolean).length;
+
+  const toggleOne = (id: string, checked: boolean) => {
+    const next = { ...value };
+    if (checked) next[id] = true;
+    else delete next[id];
+    onChange(next);
+  };
+
+  return (
+    <div className="space-y-3">
+      <div className="relative">
+        <Search className="absolute left-3 top-3.5 h-4 w-4 text-slate-400" />
+        <input
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder={placeholder}
+          className="w-full rounded-xl border border-emerald-100/10 bg-slate-950/55 py-2.5 pl-10 pr-3 text-sm text-white outline-none transition placeholder:text-slate-400 focus:border-amber-300/50 focus:bg-slate-950/75"
+        />
+      </div>
+
+      <div className="text-xs font-medium text-slate-400">
+        {selectedCount} selectionne(s) • {filtered.length} visible(s)
+      </div>
+
+      <div
+        className="space-y-1 overflow-auto rounded-xl border border-emerald-100/10 bg-slate-950/40 p-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]"
+        style={{ maxHeight: height }}
+      >
+        {filtered.map((item) => (
+          <label
+            key={item.id}
+            className="flex cursor-pointer items-center gap-3 rounded-lg border border-transparent px-2 py-2 text-sm text-slate-100 transition hover:border-emerald-100/10 hover:bg-emerald-300/[0.08]"
+          >
+            <input
+              type="checkbox"
+              checked={!!value[item.id]}
+              onChange={(e) => toggleOne(item.id, e.target.checked)}
+              className="h-4 w-4 rounded border-white/20 bg-transparent text-secondary focus:ring-secondary"
+            />
+            <span className="truncate">{item.label}</span>
+          </label>
+        ))}
+        {!filtered.length && <div className="px-2 py-3 text-sm text-slate-400">Aucun resultat</div>}
+      </div>
+    </div>
+  );
+}
+
+function LayerRowWithList({
+  checked,
+  label,
+  listOpen,
+  listCount,
+  onCheckedChange,
+  onToggleList,
+  children,
+}: {
+  checked: boolean;
+  label: string;
+  listOpen: boolean;
+  listCount: number;
+  onCheckedChange: (checked: boolean) => void;
+  onToggleList: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="rounded-xl border border-emerald-100/10 bg-[linear-gradient(180deg,rgba(20,35,62,0.55),rgba(12,25,47,0.35))]">
+      <div className="flex items-center gap-2 px-3 py-2.5">
+        <label className="flex min-w-0 flex-1 cursor-pointer items-center gap-3 text-sm text-slate-100">
+          <input
+            type="checkbox"
+            checked={checked}
+            onChange={(e) => onCheckedChange(e.target.checked)}
+            className="h-4 w-4 rounded border-white/20 bg-transparent text-secondary focus:ring-secondary"
+          />
+          <span className="truncate font-medium text-slate-100/95">{label}</span>
+        </label>
+
+        <button
+          type="button"
+          onClick={onToggleList}
+          className="flex items-center gap-2 rounded-lg border border-amber-200/20 bg-amber-300/10 px-2.5 py-1.5 text-xs font-medium text-amber-50 transition hover:border-amber-200/35 hover:bg-amber-300/15"
+        >
+          <span>Liste</span>
+          <span className="rounded-full bg-white/10 px-1.5 py-0.5 text-[10px] text-slate-300">
+            {listCount}
+          </span>
+          {listOpen ? <ChevronDown className="h-3.5 w-3.5" /> : <ChevronRight className="h-3.5 w-3.5" />}
+        </button>
+      </div>
+
+      {listOpen && <div className="border-t border-emerald-100/10 bg-slate-950/10 px-3 pb-3 pt-3">{children}</div>}
+    </div>
+  );
+}
+
 export default function SidebarFilters({
-  range,
-  setRange,
   layers,
   setLayers,
-  onApply,
   onSelectFilter,
+  onZoomLayer,
 }: SidebarFiltersProps) {
-  const [localRange, setLocalRange] = useState(range);
   const [localLayers, setLocalLayers] = useState<LayersState>({
-    toggles: layers.toggles || DEFAULT_TOGGLES,
+    toggles: { ...(layers.toggles || DEFAULT_TOGGLES) },
     barrages_list: layers.barrages_list || {},
     sous_bassins_list: layers.sous_bassins_list || {},
     stations_list: layers.stations_list || {},
     zones_admin_list: layers.zones_admin_list || {},
   });
-  const [isApplying, setIsApplying] = useState(false);
-  const [expandedSections, setExpandedSections] = useState({
-    periode: true,
-    sousBassins: true,
-    barrages: true,
-    stations: true,
-    zonesAdmin: true,
-    autresCouches: true,
+
+  const [openSections, setOpenSections] = useState<Record<SectionKey, boolean>>({
+    hydro: false,
+    administratif: false,
+    infra: false,
+    sousBassins: false,
+    barrages: false,
+    stations: false,
   });
 
-  const [listBarrages, setListBarrages] = useState<MultiCheckItem[]>([]);
-  const [listStations, setListStations] = useState<MultiCheckItem[]>([]);
-  const [listSousBassins, setListSousBassins] = useState<MultiCheckItem[]>([]);
-  const [listAdmin, setListAdmin] = useState<MultiCheckItem[]>([]);
+  const [listBarrages, setListBarrages] = useState<ListItem[]>([]);
+  const [listStations, setListStations] = useState<ListItem[]>([]);
+  const [listSousBassins, setListSousBassins] = useState<ListItem[]>([]);
 
-  /* =========================================================
-     CHARGEMENT DES LISTES DYNAMIQUES
-  ========================================================= */
+  useEffect(() => {
+    setLocalLayers({
+      toggles: { ...(layers.toggles || DEFAULT_TOGGLES) },
+      barrages_list: layers.barrages_list || {},
+      sous_bassins_list: layers.sous_bassins_list || {},
+      stations_list: layers.stations_list || {},
+      zones_admin_list: layers.zones_admin_list || {},
+    });
+  }, [layers]);
+
   useEffect(() => {
     let alive = true;
 
     async function fetchLists() {
       try {
-        const [sb, br]: [
-          AxiosResponse<NameItem[]>,
-          AxiosResponse<NameItem[]>
-        ] = await Promise.all([
+        const [sb, br]: [AxiosResponse<NameItem[]>, AxiosResponse<NameItem[]>] = await Promise.all([
           api.get("/names/sous-bassins"),
           api.get("/names/barrages"),
         ]);
 
         if (!alive) return;
 
-        setListSousBassins(
-          (sb.data ?? []).map((x: NameItem) => ({
-            id: String(x.id),
-            label: x.label,
-          }))
-        );
-
-        setListBarrages(
-          (br.data ?? []).map((x: NameItem) => ({
-            id: String(x.id),
-            label: x.label,
-          }))
-        );
+        setListSousBassins((sb.data ?? []).map((x) => ({ id: String(x.id), label: x.label })));
+        setListBarrages((br.data ?? []).map((x) => ({ id: String(x.id), label: x.label })));
 
         try {
-          const st = await api.get<StationItem[]>(
-            "/stations?with_data=true&limit=2000",
-            { timeout: 20000 }
+          const st = await api.get<StationItem[]>("/stations?with_data=true&limit=2000", {
+            timeout: 20000,
+          });
+          if (!alive) return;
+          setListStations(
+            (st.data ?? []).map((x) => ({
+              id: String(x.id),
+              label: (x.name ?? "").trim() || `Station ${x.id}`,
+            }))
           );
-          if (alive) {
-            setListStations(
-              (st.data ?? []).map((x: StationItem) => ({
-                id: String(x.id),
-                label: (x.name ?? "").trim() || `Station ${x.id}`,
-              }))
-            );
-          }
         } catch {
           const stFallback = await api.get<NameItem[]>("/names/stations");
-          if (alive) {
-            setListStations(
-              (stFallback.data ?? []).map((x: NameItem) => ({
-                id: String(x.id),
-                label: x.label,
-              }))
-            );
-          }
+          if (!alive) return;
+          setListStations((stFallback.data ?? []).map((x) => ({ id: String(x.id), label: x.label })));
         }
-
-        const [
-          regions,
-          provinces,
-          cercles,
-          communes,
-          villes,
-          douars,
-        ]: [
-          AxiosResponse<NameItem[]>,
-          AxiosResponse<NameItem[]>,
-          AxiosResponse<NameItem[]>,
-          AxiosResponse<NameItem[]>,
-          AxiosResponse<NameItem[]>,
-          AxiosResponse<NameItem[]>
-        ] = await Promise.all([
-          api.get("/names/regions"),
-          api.get("/names/provinces"),
-          api.get("/names/cercles"),
-          api.get("/names/communes"),
-          api.get("/names/villes"),
-          api.get("/names/douars"),
-        ]);
-
-        if (!alive) return;
-
-        setListAdmin([
-          { id: "region", label: `Régions (${regions.data.length})` },
-          { id: "province", label: `Provinces (${provinces.data.length})` },
-          { id: "cercle", label: `Cercles (${cercles.data.length})` },
-          { id: "commune", label: `Communes (${communes.data.length})` },
-          { id: "ville", label: `Villes (${villes.data.length})` },
-          { id: "douar", label: `Douars (${douars.data.length})` },
-        ]);
       } catch (err) {
-        console.error("⚠️ Erreur chargement listes :", err);
+        console.error("Erreur chargement listes :", err);
       }
     }
 
@@ -174,444 +325,197 @@ export default function SidebarFilters({
     };
   }, []);
 
-  /* =========================================================
-     ACTION : appliquer les filtres
-  ========================================================= */
-  const handleApply = async () => {
-    setIsApplying(true);
-    setRange(localRange);
-    setLayers((prev) => ({ ...prev, ...localLayers }));
-    await onApply();
-    setIsApplying(false);
+  const setAndSyncLayers = (updater: (prev: LayersState) => LayersState) => {
+    setLocalLayers((prev) => {
+      const next = updater(prev);
+      setLayers(next);
+      return next;
+    });
   };
 
-  const toggleLayerKey = (key: string, checked: boolean) =>
-    setLocalLayers((prev) => ({
+  const toggleSection = (key: SectionKey) => {
+    setOpenSections((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const toggleLayerKey = (key: string, checked: boolean) => {
+    setAndSyncLayers((prev) => ({
       ...prev,
       toggles: { ...prev.toggles, [key]: checked },
     }));
-
-  const toggleSection = (section: keyof typeof expandedSections) => {
-    setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }));
   };
 
-  const safeRange = localRange ?? { from: "", to: "" };
+  const adminToggleKeys = [
+    "adm_regions_abhs",
+    "adm_provinces_abhs",
+    "adm_cercles_abhs",
+    "adm_communes_abhs",
+    "adm_villes_abhs",
+    "adm_douars_abhs",
+  ];
 
-  // Fonction pour compter les éléments sélectionnés
-  const getSelectedCount = (obj: Record<string, boolean>) => {
-    return Object.values(obj).filter(Boolean).length;
-  };
+  const hydroToggleKeys = ["bassin_sebou", "sous_bassin_sebou", "reseau_hydro_abhs"];
+  const infraToggleKeys = ["barrages_abhs", "stations_abhs"];
 
-  /* =========================================================
-     RENDU VISUEL COMPLET AMÉLIORÉ
-  ========================================================= */
+  const selectedSousBassins = Object.values(localLayers.sous_bassins_list).filter(Boolean).length;
+  const selectedBarrages = Object.values(localLayers.barrages_list).filter(Boolean).length;
+  const selectedStations = Object.values(localLayers.stations_list).filter(Boolean).length;
 
   return (
-    <aside className="bg-white rounded-2xl shadow-xl border border-gray-100 sticky top-24 overflow-hidden">
-      {/* En-tête avec dégradé */}
-      <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 p-5 text-white">
-        <div className="flex items-center justify-between">
+    <aside className="overflow-hidden rounded-[30px] border border-emerald-100/15 bg-[radial-gradient(circle_at_top_left,rgba(52,211,153,0.18),transparent_22%),radial-gradient(circle_at_bottom_right,rgba(251,191,36,0.14),transparent_28%),linear-gradient(180deg,#083344_0%,#115e59_42%,#1f2937_100%)] shadow-[0_28px_90px_-34px_rgba(8,15,30,0.96)] backdrop-blur-xl">
+      <div className="max-h-[calc(100vh-140px)] space-y-4 overflow-y-auto p-4">
+        <CollapsibleBlock
+          title="Geo"
+          count={hydroToggleKeys.filter((key) => localLayers.toggles[key]).length}
+          iconColor="bg-cyan-400"
+          open={openSections.hydro}
+          onToggle={() => toggleSection("hydro")}
+        >
+          <div className="space-y-2">
+            <LayerCheckbox
+              checked={!!localLayers.toggles.bassin_sebou}
+              label={groupLabel("bassin_sebou")}
+              onChange={(checked) => {
+                toggleLayerKey("bassin_sebou", checked);
+                if (checked) onZoomLayer?.("bassin_sebou");
+              }}
+            />
+
+            <LayerRowWithList
+              checked={!!localLayers.toggles.sous_bassin_sebou}
+              label={groupLabel("sous_bassin_sebou")}
+              listOpen={openSections.sousBassins}
+              listCount={selectedSousBassins}
+              onCheckedChange={(checked) => {
+                toggleLayerKey("sous_bassin_sebou", checked);
+                if (checked) onZoomLayer?.("sous_bassin_sebou");
+              }}
+              onToggleList={() => toggleSection("sousBassins")}
+            >
+              <SearchableChecklist
+                items={listSousBassins}
+                value={localLayers.sous_bassins_list}
+                onChange={(next) => {
+                  setAndSyncLayers((prev) => ({
+                    ...prev,
+                    sous_bassins_list: next,
+                    toggles: { ...prev.toggles, sous_bassin_sebou: true },
+                  }));
+                  const ids = Object.keys(next).filter((id) => next[id]);
+                  if (ids.length && onSelectFilter) onSelectFilter("sous-bassin", ids);
+                }}
+                placeholder="Rechercher un sous-bassin..."
+              />
+            </LayerRowWithList>
+
+            <LayerCheckbox
+              checked={!!localLayers.toggles.reseau_hydro_abhs}
+              label={groupLabel("reseau_hydro_abhs")}
+              onChange={(checked) => {
+                toggleLayerKey("reseau_hydro_abhs", checked);
+                if (checked) onZoomLayer?.("reseau_hydro_abhs");
+              }}
+            />
+          </div>
+        </CollapsibleBlock>
+
+        <CollapsibleBlock
+          title="Infra"
+          count={infraToggleKeys.filter((key) => localLayers.toggles[key]).length}
+          iconColor="bg-emerald-400"
+          open={openSections.infra}
+          onToggle={() => toggleSection("infra")}
+        >
+          <div className="space-y-2">
+            <LayerRowWithList
+              checked={!!localLayers.toggles.barrages_abhs}
+              label={groupLabel("barrages_abhs")}
+              listOpen={openSections.barrages}
+              listCount={selectedBarrages}
+              onCheckedChange={(checked) => {
+                toggleLayerKey("barrages_abhs", checked);
+                if (checked) onZoomLayer?.("barrages_abhs");
+              }}
+              onToggleList={() => toggleSection("barrages")}
+            >
+              <SearchableChecklist
+                items={listBarrages}
+                value={localLayers.barrages_list}
+                onChange={(next) => {
+                  setAndSyncLayers((prev) => ({
+                    ...prev,
+                    barrages_list: next,
+                    toggles: { ...prev.toggles, barrages_abhs: true },
+                  }));
+                  const ids = Object.keys(next).filter((id) => next[id]);
+                  if (ids.length && onSelectFilter) onSelectFilter("barrage", ids);
+                }}
+                placeholder="Rechercher un barrage..."
+              />
+            </LayerRowWithList>
+
+            <LayerRowWithList
+              checked={!!localLayers.toggles.stations_abhs}
+              label={groupLabel("stations_abhs")}
+              listOpen={openSections.stations}
+              listCount={selectedStations}
+              onCheckedChange={(checked) => {
+                toggleLayerKey("stations_abhs", checked);
+                if (checked) onZoomLayer?.("stations_abhs");
+              }}
+              onToggleList={() => toggleSection("stations")}
+            >
+              <SearchableChecklist
+                items={listStations}
+                value={localLayers.stations_list}
+                onChange={(next) => {
+                  setAndSyncLayers((prev) => ({
+                    ...prev,
+                    stations_list: next,
+                    toggles: { ...prev.toggles, stations_abhs: true },
+                  }));
+                  const ids = Object.keys(next).filter((id) => next[id]);
+                  if (ids.length && onSelectFilter) onSelectFilter("station", ids);
+                }}
+                placeholder="Rechercher une station..."
+              />
+            </LayerRowWithList>
+          </div>
+        </CollapsibleBlock>
+
+        <CollapsibleBlock
+          title="Administratif"
+          count={adminToggleKeys.filter((key) => localLayers.toggles[key]).length}
+          iconColor="bg-amber-400"
+          open={openSections.administratif}
+          onToggle={() => toggleSection("administratif")}
+        >
+          <div className="space-y-1">
+            {adminToggleKeys.map((key) => (
+              <LayerCheckbox
+                key={key}
+                checked={!!localLayers.toggles[key]}
+                label={groupLabel(key)}
+                onChange={(checked) => {
+                  toggleLayerKey(key, checked);
+                  if (checked) onZoomLayer?.(key);
+                }}
+              />
+            ))}
+          </div>
+        </CollapsibleBlock>
+
+        <div className="rounded-2xl border border-emerald-100/10 bg-[linear-gradient(180deg,rgba(251,191,36,0.12),rgba(8,15,30,0.72))] px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
           <div className="flex items-center gap-3">
-            <div className="bg-white/20 backdrop-blur p-2 rounded-lg">
-              <Filter className="h-5 w-5" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-emerald-400/20 bg-emerald-400/10">
+              <Radar className="h-4 w-4 text-emerald-300" />
             </div>
             <div>
-              <h2 className="font-bold text-lg">Filtres cartographiques</h2>
-              <p className="text-xs text-blue-100">Affinez votre visualisation</p>
+              <div className="text-sm font-semibold text-white">Etat des couches</div>
+              <div className="text-xs font-medium text-slate-400">
+                {Object.values(localLayers.toggles).filter(Boolean).length} couches visibles
+              </div>
             </div>
           </div>
-          <div className="bg-white/20 backdrop-blur px-3 py-1 rounded-full text-xs">
-            v2.0
-          </div>
-        </div>
-      </div>
-
-      <div className="p-5 space-y-4 max-h-[calc(100vh-120px)] overflow-y-auto custom-scrollbar">
-        {/* ================== SECTION PÉRIODE ================== */}
-        <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 overflow-hidden">
-          <button
-            onClick={() => toggleSection('periode')}
-            className="w-full flex items-center justify-between p-4 hover:bg-gray-50/80 transition-colors"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white shadow-md">
-                <Calendar className="h-4 w-4" />
-              </div>
-              <span className="font-semibold text-gray-700">Période</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full">
-                {safeRange.from && safeRange.to ? 'Définie' : 'Non définie'}
-              </span>
-              {expandedSections.periode ? (
-                <ChevronUp className="h-4 w-4 text-gray-400" />
-              ) : (
-                <ChevronDown className="h-4 w-4 text-gray-400" />
-              )}
-            </div>
-          </button>
-
-          {expandedSections.periode && (
-            <div className="p-4 pt-0 space-y-3">
-              <div className="space-y-2">
-                <label className="text-xs font-medium text-gray-500 flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full"></span>
-                  Depuis
-                </label>
-                <div className="relative">
-                  <input
-                    type="date"
-                    value={safeRange.from}
-                    onChange={(e) =>
-                      setLocalRange((r) => ({ ...r, from: e.target.value }))
-                    }
-                    className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none"
-                  />
-                  <Calendar className="absolute right-3 top-2.5 h-4 w-4 text-gray-400" />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-xs font-medium text-gray-500 flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full"></span>
-                  Jusqu'à
-                </label>
-                <div className="relative">
-                  <input
-                    type="date"
-                    value={safeRange.to}
-                    onChange={(e) =>
-                      setLocalRange((r) => ({ ...r, to: e.target.value }))
-                    }
-                    className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all outline-none"
-                  />
-                  <Calendar className="absolute right-3 top-2.5 h-4 w-4 text-gray-400" />
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* ================== FILTRES HYDROLOGIQUES ================== */}
-        <div className="space-y-3">
-          {/* SOUS-BASSINS */}
-          <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 overflow-hidden">
-            <button
-              onClick={() => toggleSection('sousBassins')}
-              className="w-full flex items-center justify-between p-4 hover:bg-gray-50/80 transition-colors"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-green-500 flex items-center justify-center text-white shadow-md">
-                  <Database className="h-4 w-4" />
-                </div>
-                <span className="font-semibold text-gray-700">Sous-bassins</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs bg-emerald-100 text-emerald-600 px-2 py-1 rounded-full">
-                  {getSelectedCount(localLayers.sous_bassins_list)} sélectionné(s)
-                </span>
-                {expandedSections.sousBassins ? (
-                  <ChevronUp className="h-4 w-4 text-gray-400" />
-                ) : (
-                  <ChevronDown className="h-4 w-4 text-gray-400" />
-                )}
-              </div>
-            </button>
-
-            {expandedSections.sousBassins && (
-              <div className="p-4 pt-0">
-                <MultiCheckList
-                  title=""
-                  items={listSousBassins}
-                  value={localLayers.sous_bassins_list}
-                  onChange={(next) => {
-                    setLocalLayers((p) => ({ ...p, sous_bassins_list: next }));
-                    const selectedIds = Object.keys(next).filter((id) => next[id]);
-                    if (selectedIds.length > 0 && onSelectFilter) {
-                      onSelectFilter("sous-bassin", selectedIds);
-                      setLocalLayers((p) => ({
-                        ...p,
-                        toggles: { ...p.toggles, sous_bassin_sebou: true },
-                      }));
-                    }
-                  }}
-                  height={140}
-                  searchPlaceholder="Rechercher un sous-bassin..."
-                  className="border-0 bg-transparent"
-                />
-              </div>
-            )}
-          </div>
-
-          {/* BARRAGES */}
-          <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 overflow-hidden">
-            <button
-              onClick={() => toggleSection('barrages')}
-              className="w-full flex items-center justify-between p-4 hover:bg-gray-50/80 transition-colors"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white shadow-md">
-                  <Database className="h-4 w-4" />
-                </div>
-                <span className="font-semibold text-gray-700">Barrages</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full">
-                  {getSelectedCount(localLayers.barrages_list)} sélectionné(s)
-                </span>
-                {expandedSections.barrages ? (
-                  <ChevronUp className="h-4 w-4 text-gray-400" />
-                ) : (
-                  <ChevronDown className="h-4 w-4 text-gray-400" />
-                )}
-              </div>
-            </button>
-
-            {expandedSections.barrages && (
-              <div className="p-4 pt-0">
-                <MultiCheckList
-                  title=""
-                  items={listBarrages}
-                  value={localLayers.barrages_list}
-                  onChange={(next) => {
-                    setLocalLayers((p) => ({ ...p, barrages_list: next }));
-                    const selectedIds = Object.keys(next).filter((id) => next[id]);
-                    if (selectedIds.length > 0 && onSelectFilter) {
-                      onSelectFilter("barrage", selectedIds);
-                      setLocalLayers((p) => ({
-                        ...p,
-                        toggles: { ...p.toggles, barrages_abhs: true },
-                      }));
-                    }
-                  }}
-                  height={160}
-                  searchPlaceholder="Rechercher un barrage..."
-                  className="border-0 bg-transparent"
-                />
-              </div>
-            )}
-          </div>
-
-          {/* STATIONS */}
-          <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 overflow-hidden">
-            <button
-              onClick={() => toggleSection('stations')}
-              className="w-full flex items-center justify-between p-4 hover:bg-gray-50/80 transition-colors"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white shadow-md">
-                  <MapPin className="h-4 w-4" />
-                </div>
-                <span className="font-semibold text-gray-700">Stations</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-full">
-                  {getSelectedCount(localLayers.stations_list)} sélectionné(s)
-                </span>
-                {expandedSections.stations ? (
-                  <ChevronUp className="h-4 w-4 text-gray-400" />
-                ) : (
-                  <ChevronDown className="h-4 w-4 text-gray-400" />
-                )}
-              </div>
-            </button>
-
-            {expandedSections.stations && (
-              <div className="p-4 pt-0">
-                <MultiCheckList
-                  title=""
-                  items={listStations}
-                  value={localLayers.stations_list}
-                  onChange={(next) => {
-                    setLocalLayers((p) => ({ ...p, stations_list: next }));
-                    const selectedIds = Object.keys(next).filter((id) => next[id]);
-                    if (selectedIds.length > 0 && onSelectFilter) {
-                      onSelectFilter("station", selectedIds);
-                      setLocalLayers((p) => ({
-                        ...p,
-                        toggles: { ...p.toggles, stations_abhs: true },
-                      }));
-                    }
-                  }}
-                  height={160}
-                  searchPlaceholder="Rechercher une station..."
-                  className="border-0 bg-transparent"
-                />
-              </div>
-            )}
-          </div>
-
-          {/* ZONES ADMINISTRATIVES */}
-          <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 overflow-hidden">
-            <button
-              onClick={() => toggleSection('zonesAdmin')}
-              className="w-full flex items-center justify-between p-4 hover:bg-gray-50/80 transition-colors"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center text-white shadow-md">
-                  <Layers className="h-4 w-4" />
-                </div>
-                <span className="font-semibold text-gray-700">Zones administratives</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs bg-amber-100 text-amber-600 px-2 py-1 rounded-full">
-                  {getSelectedCount(localLayers.zones_admin_list)} sélectionné(s)
-                </span>
-                {expandedSections.zonesAdmin ? (
-                  <ChevronUp className="h-4 w-4 text-gray-400" />
-                ) : (
-                  <ChevronDown className="h-4 w-4 text-gray-400" />
-                )}
-              </div>
-            </button>
-
-            {expandedSections.zonesAdmin && (
-              <div className="p-4 pt-0">
-                <MultiCheckList
-                  title=""
-                  items={listAdmin}
-                  value={localLayers.zones_admin_list}
-                  onChange={(next) => {
-                    setLocalLayers((p) => ({ ...p, zones_admin_list: next }));
-                    const selectedIds = Object.keys(next).filter((id) => next[id]);
-                    if (onSelectFilter && selectedIds.length > 0) {
-                      selectedIds.forEach((id) => {
-                        switch (id) {
-                          case "region":
-                            onSelectFilter("region", []);
-                            setLocalLayers((p) => ({
-                              ...p,
-                              toggles: { ...p.toggles, adm_regions_abhs: true },
-                            }));
-                            break;
-                          case "province":
-                            onSelectFilter("province", []);
-                            setLocalLayers((p) => ({
-                              ...p,
-                              toggles: { ...p.toggles, adm_provinces_abhs: true },
-                            }));
-                            break;
-                          case "cercle":
-                            onSelectFilter("cercle", []);
-                            setLocalLayers((p) => ({
-                              ...p,
-                              toggles: { ...p.toggles, adm_cercles_abhs: true },
-                            }));
-                            break;
-                          case "commune":
-                            onSelectFilter("commune", []);
-                            setLocalLayers((p) => ({
-                              ...p,
-                              toggles: { ...p.toggles, adm_communes_abhs: true },
-                            }));
-                            break;
-                          case "ville":
-                            onSelectFilter("ville", []);
-                            setLocalLayers((p) => ({
-                              ...p,
-                              toggles: { ...p.toggles, adm_villes_abhs: true },
-                            }));
-                            break;
-                          case "douar":
-                            onSelectFilter("douar", []);
-                            setLocalLayers((p) => ({
-                              ...p,
-                              toggles: { ...p.toggles, adm_douars_abhs: true },
-                            }));
-                            break;
-                        }
-                      });
-                    }
-                  }}
-                  height={140}
-                  searchPlaceholder="Rechercher une zone..."
-                  className="border-0 bg-transparent"
-                />
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* ================== AUTRES COUCHES ================== */}
-        <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 overflow-hidden">
-          <button
-            onClick={() => toggleSection('autresCouches')}
-            className="w-full flex items-center justify-between p-4 hover:bg-gray-50/80 transition-colors"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-gray-600 to-gray-700 flex items-center justify-center text-white shadow-md">
-                <Layers className="h-4 w-4" />
-              </div>
-              <span className="font-semibold text-gray-700">Autres couches</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
-                {Object.values(localLayers.toggles).filter(Boolean).length} active(s)
-              </span>
-              {expandedSections.autresCouches ? (
-                <ChevronUp className="h-4 w-4 text-gray-400" />
-              ) : (
-                <ChevronDown className="h-4 w-4 text-gray-400" />
-              )}
-            </div>
-          </button>
-
-          {expandedSections.autresCouches && (
-            <div className="p-4 pt-0">
-              <div className="grid grid-cols-1 gap-2">
-                {Object.entries(localLayers.toggles).map(([key, v]) => (
-                  <label
-                    key={key}
-                    className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
-                  >
-                    <input
-                      type="checkbox"
-                      checked={!!v}
-                      onChange={(e) => toggleLayerKey(key, e.target.checked)}
-                      className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                    />
-                    <span className="text-sm text-gray-700 capitalize">
-                      {key.replace(/_/g, ' ')}
-                    </span>
-                  </label>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* ================== SCÉNARIO ================== */}
-        <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl border border-indigo-100 p-4">
-          <ScenarioSelector />
-        </div>
-
-        {/* ================== BOUTON APPLIQUER ================== */}
-        <Button
-          onClick={handleApply}
-          className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 rounded-xl shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
-          disabled={isApplying}
-        >
-          {isApplying ? (
-            <div className="flex items-center justify-center gap-2">
-              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-              <span>Application...</span>
-            </div>
-          ) : (
-            <div className="flex items-center justify-center gap-2">
-              <Filter className="h-4 w-4" />
-              <span>Appliquer les filtres</span>
-            </div>
-          )}
-        </Button>
-
-        {/* Indicateur de filtres actifs */}
-        <div className="flex items-center justify-center gap-2 text-xs text-gray-400 pt-2">
-          <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
-          {getSelectedCount(localLayers.sous_bassins_list) +
-            getSelectedCount(localLayers.barrages_list) +
-            getSelectedCount(localLayers.stations_list) +
-            getSelectedCount(localLayers.zones_admin_list) +
-            Object.values(localLayers.toggles).filter(Boolean).length} filtres actifs
         </div>
       </div>
     </aside>

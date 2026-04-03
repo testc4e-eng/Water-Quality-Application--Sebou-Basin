@@ -82,7 +82,7 @@ Le resultat doit etre utile pour une equipe dev SIG qui prepare la mission 4 pou
 ```text
 Tu agis comme un expert senior en securite API, FastAPI, controle d'acces, validation des entrees et protection des donnees geospatiales et hydrologiques.
 
-Tu travailles sur le projet SAD Sebou 2026, mission 4.
+Tu travailles sur le projet SAD Sebou 2026, mission 4.              
 
 Contexte reel :
 - API backend exposee via `/api/v1`

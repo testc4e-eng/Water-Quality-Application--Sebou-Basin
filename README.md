@@ -144,12 +144,12 @@ npm run dev -- --port 3001
 - Garder un seul contrat API par endpoint (payload + path)
 - Limiter `any` en TypeScript (types metier explicites)
 - Ajouter des tests minimaux:
-  - backend: endpoints critiques
-  - frontend: rendu pages et appels API
+- backend: endpoints critiques
+- frontend: rendu pages et appels API
 
 ## 8) Points d'evolution
 - Harmoniser completement les routes auth et raw entre frontend/backend
 - Brancher totalement le module qualite sur la vraie API si mock encore actif
-- Renforcer la qualite TypeScript et lint
+- Renforcer la qualite TypeScript et lint 
 - Ajouter documentation API versionnee (OpenAPI + exemples)
 

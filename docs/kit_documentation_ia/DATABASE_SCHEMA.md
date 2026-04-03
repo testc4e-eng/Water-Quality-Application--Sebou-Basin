@@ -39,6 +39,7 @@ Le code confirme l'existence d'une base PostgreSQL metier riche, mais le schema 
    - `models`: sorties SWAT et scenarios
    - `security`: utilisateurs, roles, traces d'acces
 
+
 ## Risques
 - Couplage fort aux vues `api.*`
 - Absence de dictionnaire versionne des champs

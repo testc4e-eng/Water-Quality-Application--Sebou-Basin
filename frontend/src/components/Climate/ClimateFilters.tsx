@@ -1,8 +1,5 @@
-import { useEffect, useState } from "react";
-import {
-  listClimateStations,
-  getClimateStationStats,
-} from "@/api/climate";
+import { useEffect, useMemo, useState } from "react";
+import { getClimateStationStats, listClimateStations } from "@/api/climate";
 
 type Props = {
   onChange: (params: {
@@ -18,158 +15,222 @@ type Props = {
   }) => void;
 };
 
+type ScenarioItem = {
+  key: string;
+  label: string;
+  scenario_code: string;
+  run_id: number;
+};
+
 export default function ClimateFilters({ onChange }: Props) {
   const [stations, setStations] = useState<any[]>([]);
   const [stats, setStats] = useState<any[]>([]);
 
-  const [stationId, setStationId] = useState<number>();
-  const [sourceType, setSourceType] = useState<string>();
-  const [scenario, setScenario] = useState<any>();
-  const [variable, setVariable] = useState<string>();
-  const [aggregation, setAggregation] = useState<string>();
-  const [dateStart, setDateStart] = useState<string>();
-  const [dateEnd, setDateEnd] = useState<string>();
+  const [stationId, setStationId] = useState<number | undefined>(undefined);
+  const [sourceType, setSourceType] = useState<string | undefined>(undefined);
+  const [scenario, setScenario] = useState<ScenarioItem | undefined>(undefined);
+  const [variable, setVariable] = useState<string | undefined>(undefined);
+  const [aggregation, setAggregation] = useState<string | undefined>(undefined);
+  const [dateStart, setDateStart] = useState<string | undefined>(undefined);
+  const [dateEnd, setDateEnd] = useState<string | undefined>(undefined);
 
-  const scenarioKey = scenario
-    ? `${scenario.scenario_code}_${scenario.run_id}`
-    : "";
+  const scenarioKey = scenario ? `${scenario.scenario_code}_${scenario.run_id}` : "";
 
-  /* ===========================
-     LOAD STATIONS
-  =========================== */
   useEffect(() => {
     listClimateStations().then(setStations);
   }, []);
 
-  /* ===========================
-     LOAD STATION STATS
-  =========================== */
- useEffect(() => {
-  if (!stationId) return;
+  useEffect(() => {
+    if (!stationId) {
+      setStats([]);
+      return;
+    }
 
-  getClimateStationStats(stationId).then((rows) => {
-    setStats(rows);
+    getClimateStationStats(stationId).then((rows) => {
+      setStats(rows || []);
 
-    setSourceType(undefined);
+      // reset cascade after station change
+      setSourceType(undefined);
+      setScenario(undefined);
+      setVariable(undefined);
+      setAggregation(undefined);
+      setDateStart(undefined);
+      setDateEnd(undefined);
+      onChange({});
+    });
+  }, [stationId, onChange]);
+
+  const sourceTypes = useMemo(
+    () =>
+      Array.from(
+        new Set((stats || []).map((r) => String(r.source_type || "").toLowerCase()))
+      ).filter(Boolean),
+    [stats]
+  );
+
+  const scenariosForType = useMemo(
+    () =>
+      (stats || []).filter(
+        (r) =>
+          String(r.source_type || "").toLowerCase() ===
+          String(sourceType || "").toLowerCase()
+      ),
+    [stats, sourceType]
+  );
+
+  const scenarioItems = useMemo(
+    () =>
+      Array.from(
+        new Map(
+          scenariosForType.map((r) => {
+            const key = `${r.scenario_code}_${r.run_id}`;
+            return [
+              key,
+              {
+                key,
+                label: r.scenario_name
+                  ? `${r.scenario_code} - ${r.scenario_name}`
+                  : String(r.scenario_code),
+                scenario_code: String(r.scenario_code),
+                run_id: Number(r.run_id),
+              } as ScenarioItem,
+            ];
+          })
+        ).values()
+      ),
+    [scenariosForType]
+  );
+
+  const variables = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          (stats || [])
+            .filter(
+              (r) =>
+                String(r.source_type || "").toLowerCase() ===
+                  String(sourceType || "").toLowerCase() &&
+                String(r.scenario_code) === String(scenario?.scenario_code) &&
+                String(r.run_id) === String(scenario?.run_id)
+            )
+            .map((r) => String(r.property_name))
+        )
+      ).filter(Boolean),
+    [stats, sourceType, scenario]
+  );
+
+  const aggregations = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          (stats || [])
+            .filter(
+              (r) =>
+                String(r.source_type || "").toLowerCase() ===
+                  String(sourceType || "").toLowerCase() &&
+                String(r.scenario_code) === String(scenario?.scenario_code) &&
+                String(r.run_id) === String(scenario?.run_id) &&
+                String(r.property_name) === String(variable)
+            )
+            .map((r) => String(r.time_step))
+        )
+      ).filter(Boolean),
+    [stats, sourceType, scenario, variable]
+  );
+
+  useEffect(() => {
+    if (!sourceType) {
+      onChange({});
+      return;
+    }
+
+    // reset children when source changes
     setScenario(undefined);
     setVariable(undefined);
     setAggregation(undefined);
     setDateStart(undefined);
     setDateEnd(undefined);
-
     onChange({});
-  });
-}, [stationId]);
+  }, [sourceType, onChange]);
 
-  /* ===========================
-     DERIVED LISTS
-  =========================== */
-  const sourceTypes = [...new Set(stats.map((r) => r.source_type))];
-
-  const scenarios = stats.filter(
-    (r) => r.source_type === sourceType
-  );
-
-  const scenarioItems = Array.from(
-    new Map(
-      scenarios.map((r) => [
-        `${r.scenario_code}_${r.run_id}`,
-        {
-          label: r.scenario_name
-            ? `${r.scenario_code} – ${r.scenario_name}`
-            : r.scenario_code,
-          scenario_code: r.scenario_code,
-          run_id: r.run_id,
-        },
-      ])
-    ).values()
-  );
-
-  const variables = stats
-    .filter(
-      (r) =>
-        r.source_type === sourceType &&
-        r.scenario_code === scenario?.scenario_code &&
-        r.run_id === scenario?.run_id
-    )
-    .map((r) => r.property_name);
-
-  const aggregations = stats
-    .filter(
-      (r) =>
-        r.source_type === sourceType &&
-        r.scenario_code === scenario?.scenario_code &&
-        r.run_id === scenario?.run_id &&
-        r.property_name === variable
-    )
-    .map((r) => r.time_step);
-
-  /* ===========================
-     HANDLE FINAL CHANGE
-  =========================== */
   useEffect(() => {
-    if (
-      !stationId ||
-      !sourceType ||
-      !scenario?.scenario_code ||
-      !scenario?.run_id ||
-      !variable ||
-      !aggregation
-    ) {
+    if (!scenario) {
+      onChange({});
       return;
     }
 
-    const match = stats.find(
+    // reset children when scenario changes
+    setVariable(undefined);
+    setAggregation(undefined);
+    setDateStart(undefined);
+    setDateEnd(undefined);
+    onChange({});
+  }, [scenario, onChange]);
+
+  useEffect(() => {
+    if (!variable) {
+      onChange({});
+      return;
+    }
+
+    // reset children when variable changes
+    setAggregation(undefined);
+    setDateStart(undefined);
+    setDateEnd(undefined);
+    onChange({});
+  }, [variable, onChange]);
+
+  useEffect(() => {
+    if (!stationId || !sourceType || !scenario || !variable || !aggregation) {
+      return;
+    }
+
+    const match = (stats || []).find(
       (r: any) =>
-        r.source_type === sourceType &&
-        r.scenario_code === scenario.scenario_code &&
-        r.run_id === scenario.run_id &&
-        r.property_name === variable &&
-        r.time_step === aggregation
+        String(r.source_type || "").toLowerCase() ===
+          String(sourceType || "").toLowerCase() &&
+        String(r.scenario_code) === String(scenario.scenario_code) &&
+        String(r.run_id) === String(scenario.run_id) &&
+        String(r.property_name) === String(variable) &&
+        String(r.time_step) === String(aggregation)
     );
 
-
-
     if (!match) {
-  console.warn("❌ No matching ts_id");
-  return;
-}
+      setDateStart(undefined);
+      setDateEnd(undefined);
+      onChange({});
+      return;
+    }
 
-const start = match.dt_min?.slice(0, 10);
-const end = match.dt_max?.slice(0, 10);
+    const start = match.dt_min?.slice(0, 10);
+    const end = match.dt_max?.slice(0, 10);
 
-setDateStart(start);
-setDateEnd(end);
+    setDateStart(start);
+    setDateEnd(end);
 
-onChange({
-  stationId,
-  sourceType,
-  scenarioCode: scenario.scenario_code,
-  runId: scenario.run_id,
-  variable,
-  aggregation,
-  tsId: match.ts_id,
-  dateStart: start,
-  dateEnd: end,
-});
-
-
-
-
-
+    onChange({
+      stationId,
+      sourceType,
+      scenarioCode: scenario.scenario_code,
+      runId: scenario.run_id,
+      variable,
+      aggregation,
+      tsId: match.ts_id,
+      dateStart: start,
+      dateEnd: end,
+    });
   }, [stationId, sourceType, scenario, variable, aggregation, stats, onChange]);
 
   return (
     <div className="space-y-4">
-      {/* STATION */}
       <div className="space-y-1.5">
         <label className="text-xs font-semibold text-gray-700 uppercase tracking-wider flex items-center gap-1">
-          <span className="text-sky-600">📍</span> Station
+          Station
         </label>
         <Select
           value={stationId}
-          onChange={setStationId}
-          placeholder="Sélectionner une station..."
+          onChange={(v: string | undefined) => setStationId(v ? Number(v) : undefined)}
+          placeholder="Selectionner une station..."
         >
           {stations.map((s) => (
             <option key={s.station_id} value={s.station_id}>
@@ -179,102 +240,89 @@ onChange({
         </Select>
       </div>
 
-      {/* TYPE DE SÉRIE */}
       <div className="space-y-1.5">
         <label className="text-xs font-semibold text-gray-700 uppercase tracking-wider flex items-center gap-1">
-          <span className="text-purple-600">📊</span> Type de série
+          Type de serie
         </label>
         <Select
           value={sourceType}
           onChange={setSourceType}
           disabled={!stationId}
-          placeholder="Sélectionner un type..."
+          placeholder="Selectionner un type..."
         >
           {sourceTypes.map((s) => (
             <option key={s} value={s}>
-              {s === "observed" ? "📋 Observé" : "🔄 Simulé"}
+              {s === "observed" ? "Observe" : "Simule"}
             </option>
           ))}
         </Select>
       </div>
 
-      {/* SCÉNARIO */}
       <div className="space-y-1.5">
         <label className="text-xs font-semibold text-gray-700 uppercase tracking-wider flex items-center gap-1">
-          <span className="text-amber-600">🎯</span> Scénario
+          Scenario
         </label>
         <Select
           value={scenarioKey}
-          onChange={(v) =>
-            setScenario(
-              scenarioItems.find((s) => `${s.scenario_code}_${s.run_id}` === v)
-            )
-          }
+          onChange={(v: string | undefined) => {
+            setScenario(scenarioItems.find((s) => s.key === v));
+          }}
           disabled={!sourceType || scenarioItems.length === 0}
-          placeholder="Sélectionner un scénario..."
+          placeholder="Selectionner un scenario..."
         >
           {scenarioItems.map((s) => (
-            <option
-              key={`${s.scenario_code}_${s.run_id}`}
-              value={`${s.scenario_code}_${s.run_id}`}
-            >
+            <option key={s.key} value={s.key}>
               {s.label}
             </option>
           ))}
         </Select>
       </div>
 
-      {/* VARIABLE */}
       <div className="space-y-1.5">
         <label className="text-xs font-semibold text-gray-700 uppercase tracking-wider flex items-center gap-1">
-          <span className="text-emerald-600">📏</span> Variable
+          Variable
         </label>
         <Select
           value={variable}
           onChange={setVariable}
           disabled={!scenario}
-          placeholder="Sélectionner une variable..."
+          placeholder="Selectionner une variable..."
         >
           {variables.map((v) => (
-            <option key={v} value={v}>
-              {v.includes("temperature") ? "🌡️ " : v.includes("precip") ? "☔ " : "📊 "}
-              {v}
-            </option>
+            <option key={v} value={v}>{v}</option>
           ))}
         </Select>
       </div>
 
-      {/* AGRÉGATION */}
       <div className="space-y-1.5">
         <label className="text-xs font-semibold text-gray-700 uppercase tracking-wider flex items-center gap-1">
-          <span className="text-indigo-600">⏱️</span> Agrégation
+          Agregation
         </label>
         <Select
           value={aggregation}
           onChange={setAggregation}
           disabled={!variable}
-          placeholder="Sélectionner une agrégation..."
+          placeholder="Selectionner une agregation..."
         >
           {aggregations.map((a) => (
             <option key={a} value={a}>
-              {a === "daily" && "📅 Journalier"}
-              {a === "monthly" && "📆 Mensuel"}
-              {a === "annual" && "📅 Annuel"}
-              {a === "instantaneous" && "⚡ Instantané"}
-              </option>
+              {a === "daily" && "Journalier"}
+              {a === "monthly" && "Mensuel"}
+              {a === "annual" && "Annuel"}
+              {a === "instantaneous" && "Instantane"}
+            </option>
           ))}
         </Select>
       </div>
 
-      {/* DATES - READ ONLY */}
       <div className="space-y-2 pt-2">
         <label className="text-xs font-semibold text-gray-700 uppercase tracking-wider flex items-center gap-1">
-          <span className="text-cyan-600">📆</span> Période disponible
+          Periode disponible
         </label>
-        
+
         <div className="grid grid-cols-2 gap-2">
           <div className="space-y-1">
-            <label className="text-xs text-gray-500">Début</label>
+            <label className="text-xs text-gray-500">Debut</label>
             <div className="relative">
               <input
                 type="date"
@@ -282,7 +330,6 @@ onChange({
                 value={dateStart || ""}
                 readOnly
               />
-              <span className="absolute right-2 top-2.5 text-gray-400 text-xs">📅</span>
             </div>
           </div>
 
@@ -295,39 +342,36 @@ onChange({
                 value={dateEnd || ""}
                 readOnly
               />
-              <span className="absolute right-2 top-2.5 text-gray-400 text-xs">📅</span>
             </div>
           </div>
         </div>
-        <p className="text-xs text-gray-400 italic">Période déterminée par les données</p>
+
+        <p className="text-xs text-gray-400 italic">Periode determinee par les donnees</p>
       </div>
 
-      {/* BOUTON RÉINITIALISER */}
       {stationId && (
         <button
           onClick={() => {
-  setStationId(undefined);
-  setSourceType(undefined);
-  setScenario(undefined);
-  setVariable(undefined);
-  setAggregation(undefined);
-  setDateStart(undefined);
-  setDateEnd(undefined);
-  onChange({});
-}}
+            setStationId(undefined);
+            setStats([]);
+            setSourceType(undefined);
+            setScenario(undefined);
+            setVariable(undefined);
+            setAggregation(undefined);
+            setDateStart(undefined);
+            setDateEnd(undefined);
+            onChange({});
+          }}
           className="w-full mt-2 px-4 py-2.5 bg-gradient-to-r from-gray-100 to-gray-200 hover:from-gray-200 hover:to-gray-300 text-gray-700 rounded-lg font-medium text-sm transition-all flex items-center justify-center gap-2"
         >
-          <span>🔄</span> Réinitialiser
+          Reinitialiser
         </button>
       )}
     </div>
   );
 }
 
-/* ===========================
-   REUSABLE SELECT STYLISÉ
-=========================== */
-function Select({ label, value, onChange, children, disabled, placeholder }: any) {
+function Select({ value, onChange, children, disabled, placeholder }: any) {
   return (
     <div className="relative">
       <select
@@ -337,7 +381,7 @@ function Select({ label, value, onChange, children, disabled, placeholder }: any
         disabled={disabled}
       >
         <option value="" disabled hidden>
-          {placeholder || "Sélectionner..."}
+          {placeholder || "Selectionner..."}
         </option>
         {children}
       </select>

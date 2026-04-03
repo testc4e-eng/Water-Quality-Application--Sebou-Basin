@@ -191,40 +191,6 @@ const [refreshKey, setRefreshKey] = useState(0);
   /* ================= RENDER ================= */
   return (
     <div className="space-y-6">
-      {/* EN-TÊTE COLORÉ - CLIMAT */}
-      <div className="bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-600 rounded-xl p-6 text-white shadow-lg">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-2xl font-bold flex items-center gap-2">
-              <span className="text-3xl">🌤️</span> Dashboard Climat - Séries temporelles
-            </h2>
-            <p className="text-sky-100 mt-1">
-              Analyse des données climatiques : température, précipitations et plus
-            </p>
-          </div>
-
-          {selection.stationId && (
-  <div className="flex items-center gap-3">
-    <div className="bg-white/20 backdrop-blur px-4 py-2 rounded-lg flex items-center gap-2">
-      <span className="text-xl">📍</span>
-      <span className="font-semibold">{selection.stationId}</span>
-    </div>
-
-    <button
-      onClick={() => {
-        setRefreshKey((prev) => prev + 1);
-      }}
-      className="bg-white/20 hover:bg-white/30 backdrop-blur px-3 py-2 rounded-lg text-sm transition-all"
-    >
-      🔄 Actualiser
-    </button>
-  </div>
-)}
-
-
-        </div>
-      </div>
-
       {/* GRILLE PRINCIPALE */}
       <div className="grid grid-cols-12 gap-6">
         
