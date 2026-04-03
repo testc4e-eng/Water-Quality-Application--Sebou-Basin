@@ -19,12 +19,138 @@ import QualityChart from "@/components/quality/QualityChart";
 
 type PollutionMode = "inventaire" | "ponctuelle" | "diffuse";
 
-const inventoryRows = [
-  { source: "Stations de suivi", category: "Eau de surface", entities: 18, status: "Actif" },
-  { source: "Campagnes terrain", category: "Pollution ponctuelle", entities: 9, status: "Actif" },
-  { source: "Rejets identifies", category: "Industrie", entities: 14, status: "A verifier" },
-  { source: "Apports diffus", category: "Agriculture", entities: 26, status: "Actif" },
-  { source: "Barrages", category: "Retenues", entities: 7, status: "Actif" },
+type InventoryRow = {
+  source: string;
+  sourceType: string;
+  parameter: string;
+  sourceName: string;
+  location: string;
+  period: string;
+  entities: number;
+  measuredValue: number;
+  unit: string;
+  pressure: "Faible" | "Moyenne" | "Elevee";
+  status: "Actif" | "Surveillance" | "A verifier";
+};
+
+const inventoryRows: InventoryRow[] = [
+  {
+    source: "Industrie",
+    sourceType: "Rejets liquides industriels",
+    parameter: "DBO5",
+    sourceName: "Zone industrielle Dokkarat",
+    location: "Fes amont",
+    period: "2025",
+    entities: 12,
+    measuredValue: 87.4,
+    unit: "mg/L",
+    pressure: "Elevee",
+    status: "Actif",
+  },
+  {
+    source: "Industrie",
+    sourceType: "Rejets liquides industriels",
+    parameter: "MES",
+    sourceName: "Plateforme industrielle Meknes",
+    location: "Meknes aval",
+    period: "2025",
+    entities: 9,
+    measuredValue: 132.8,
+    unit: "mg/L",
+    pressure: "Moyenne",
+    status: "Actif",
+  },
+  {
+    source: "Assainissement",
+    sourceType: "Stations d'epuration",
+    parameter: "Nitrate",
+    sourceName: "STEP Ain Nokbi",
+    location: "Couloir Sebou central",
+    period: "2025",
+    entities: 7,
+    measuredValue: 24.3,
+    unit: "mg/L",
+    pressure: "Moyenne",
+    status: "Actif",
+  },
+  {
+    source: "Ruissellement agricole",
+    sourceType: "Diffuse",
+    parameter: "Phosphore",
+    sourceName: "Parcelle irriguee Gharb Nord",
+    location: "Plaine du Gharb",
+    period: "2024",
+    entities: 21,
+    measuredValue: 3.8,
+    unit: "mg/L",
+    pressure: "Elevee",
+    status: "Surveillance",
+  },
+  {
+    source: "Ruissellement agricole",
+    sourceType: "Diffuse",
+    parameter: "Nitrate",
+    sourceName: "Parcelle Saiss Ouest",
+    location: "Plaine du Saiss",
+    period: "2024",
+    entities: 18,
+    measuredValue: 31.7,
+    unit: "mg/L",
+    pressure: "Elevee",
+    status: "Actif",
+  },
+  {
+    source: "Erosion des sols",
+    sourceType: "Diffuse",
+    parameter: "Sediments",
+    sourceName: "Versant Sebou amont",
+    location: "Sebou amont",
+    period: "2024",
+    entities: 16,
+    measuredValue: 412.5,
+    unit: "mg/L",
+    pressure: "Moyenne",
+    status: "Actif",
+  },
+  {
+    source: "Depots urbains",
+    sourceType: "Diffuse",
+    parameter: "Oxygene",
+    sourceName: "Perimetre urbain Fes Sud",
+    location: "Perimetre urbain Fes",
+    period: "2025",
+    entities: 11,
+    measuredValue: 5.4,
+    unit: "mg/L",
+    pressure: "Moyenne",
+    status: "A verifier",
+  },
+  {
+    source: "Barrages",
+    sourceType: "Qualite barrage",
+    parameter: "Chlorophylle",
+    sourceName: "Barrage Al Wahda",
+    location: "Ouazzane",
+    period: "2025",
+    entities: 5,
+    measuredValue: 11.2,
+    unit: "ug/L",
+    pressure: "Faible",
+    status: "Actif",
+  },
+  {
+    source: "Barrages",
+    sourceType: "Qualite barrage",
+    parameter: "Oxygene",
+    sourceName: "Barrage Idriss 1er",
+    location: "Sidi Kacem",
+    period: "2025",
+    entities: 4,
+    measuredValue: 7.9,
+    unit: "mg/L",
+    pressure: "Faible",
+    status: "Actif",
+  },
 ];
 
 const diffuseChartData = [
@@ -83,72 +209,241 @@ function PollutionModeBar({
 }
 
 function InventoryMode() {
-  const totalEntities = useMemo(
-    () => inventoryRows.reduce((sum, row) => sum + row.entities, 0),
+  const [source, setSource] = useState<string>("all");
+  const [sourceType, setSourceType] = useState<string>("all");
+  const [parameterSearch, setParameterSearch] = useState("");
+  const [selectedParameter, setSelectedParameter] = useState<string>("all");
+
+  const sourceOptions = useMemo(
+    () => Array.from(new Set(inventoryRows.map((row) => row.source))),
     []
   );
 
+  const sourceTypeOptions = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          inventoryRows
+            .filter((row) => source === "all" || row.source === source)
+            .map((row) => row.sourceType)
+        )
+      ),
+    [source]
+  );
+
+  const parameterOptions = useMemo(() => {
+    const scopedRows = inventoryRows.filter((row) => {
+      const sourceMatch = source === "all" || row.source === source;
+      const typeMatch = sourceType === "all" || row.sourceType === sourceType;
+      return sourceMatch && typeMatch;
+    });
+
+    return Array.from(new Set(scopedRows.map((row) => row.parameter))).filter((item) =>
+      item.toLowerCase().includes(parameterSearch.toLowerCase())
+    );
+  }, [source, sourceType, parameterSearch]);
+
+  const filteredRows = useMemo(() => {
+    return inventoryRows.filter((row) => {
+      const sourceMatch = source === "all" || row.source === source;
+      const typeMatch = sourceType === "all" || row.sourceType === sourceType;
+      const parameterMatch = selectedParameter === "all" || row.parameter === selectedParameter;
+      return sourceMatch && typeMatch && parameterMatch;
+    });
+  }, [source, sourceType, selectedParameter]);
+
+  const totalEntities = useMemo(
+    () => filteredRows.reduce((sum, row) => sum + row.entities, 0),
+    [filteredRows]
+  );
+
+  const activeSourceTypes = useMemo(
+    () => new Set(filteredRows.map((row) => row.sourceType)).size,
+    [filteredRows]
+  );
+
+  const criticalCount = useMemo(
+    () => filteredRows.filter((row) => row.pressure === "Elevee").length,
+    [filteredRows]
+  );
+
+  const averageValue = useMemo(() => {
+    if (filteredRows.length === 0) return 0;
+    return filteredRows.reduce((sum, row) => sum + row.measuredValue, 0) / filteredRows.length;
+  }, [filteredRows]);
+
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+    <div className="grid grid-cols-12 gap-6">
+      <div className="col-span-12 xl:col-span-3">
         <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Sources</div>
-          <div className="mt-2 text-3xl font-bold text-slate-900">{inventoryRows.length}</div>
-        </div>
-        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Entites suivies</div>
-          <div className="mt-2 text-3xl font-bold text-slate-900">{totalEntities}</div>
-        </div>
-        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Etat de l'inventaire</div>
-          <div className="mt-2 text-3xl font-bold text-emerald-600">Actif</div>
+          <h3 className="mb-4 text-lg font-semibold text-slate-800">Filtres inventaire</h3>
+          <div className="space-y-4">
+            <div className="space-y-1">
+              <label className="text-xs font-semibold uppercase tracking-wider text-slate-500">Source de pollution</label>
+              <select
+                value={source}
+                onChange={(e) => setSource(e.target.value)}
+                className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
+              >
+                <option value="all">Toutes les sources</option>
+                {sourceOptions.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="space-y-1">
+              <label className="text-xs font-semibold uppercase tracking-wider text-slate-500">Type de source</label>
+              <select
+                value={sourceType}
+                onChange={(e) => setSourceType(e.target.value)}
+                className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
+              >
+                <option value="all">Tous les types</option>
+                {sourceTypeOptions.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-xs font-semibold uppercase tracking-wider text-slate-500">Parametre</label>
+              <input
+                type="text"
+                value={parameterSearch}
+                onChange={(e) => setParameterSearch(e.target.value)}
+                placeholder="Filtrer les parametres..."
+                className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
+              />
+              <select
+                value={selectedParameter}
+                onChange={(e) => setSelectedParameter(e.target.value)}
+                className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
+              >
+                <option value="all">Tous les parametres</option>
+                {parameterOptions.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="rounded-2xl border border-emerald-100 bg-emerald-50/70 p-4">
+              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">Vue active</div>
+              <div className="mt-2 text-sm text-slate-700">{source === "all" ? "Toutes les sources" : source}</div>
+              <div className="mt-1 text-sm text-slate-700">{sourceType === "all" ? "Tous les types" : sourceType}</div>
+              <div className="mt-1 text-sm text-slate-700">
+                {selectedParameter === "all" ? "Tous les parametres" : selectedParameter}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-[0.95fr_1.05fr]">
+      <div className="col-span-12 xl:col-span-9 space-y-6">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Types de source</div>
+            <div className="mt-2 text-3xl font-bold text-slate-900">{activeSourceTypes}</div>
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Entites filtrees</div>
+            <div className="mt-2 text-3xl font-bold text-slate-900">{totalEntities}</div>
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Valeur moyenne</div>
+            <div className="mt-2 text-3xl font-bold text-slate-900">{averageValue.toFixed(1)}</div>
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Pression elevee</div>
+            <div className="mt-2 text-3xl font-bold text-amber-600">{criticalCount}</div>
+          </div>
+        </div>
+
         <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <h3 className="mb-4 text-lg font-semibold text-slate-800">Inventaire des sources de pollution</h3>
+          <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+            <div>
+              <h3 className="text-lg font-semibold text-slate-800">Tableau des donnees filtrees</h3>
+              <p className="text-sm text-slate-500">Apercu des donnees d'exemple selon les filtres selectionnes.</p>
+            </div>
+            <div className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
+              {filteredRows.length} ligne{filteredRows.length > 1 ? "s" : ""}
+            </div>
+          </div>
+
           <div className="overflow-auto rounded-xl border border-slate-200">
             <table className="min-w-full divide-y divide-slate-200 text-sm">
               <thead className="bg-slate-50">
                 <tr>
                   <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">Source</th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">Categorie</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">Type</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">Parametre</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">Nom source</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">Localisation</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">Periode</th>
+                  <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wider text-slate-500">Valeur</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">Unite</th>
                   <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wider text-slate-500">Entites</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">Pression</th>
                   <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">Statut</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 bg-white text-slate-700">
-                {inventoryRows.map((row) => (
-                  <tr key={`${row.source}-${row.category}`} className="hover:bg-slate-50">
+                {filteredRows.map((row) => (
+                  <tr key={`${row.source}-${row.parameter}-${row.location}-${row.period}`} className="hover:bg-slate-50">
                     <td className="px-4 py-3 font-medium">{row.source}</td>
-                    <td className="px-4 py-3">{row.category}</td>
+                    <td className="px-4 py-3">{row.sourceType}</td>
+                    <td className="px-4 py-3">{row.parameter}</td>
+                    <td className="px-4 py-3">{row.sourceName}</td>
+                    <td className="px-4 py-3">{row.location}</td>
+                    <td className="px-4 py-3">{row.period}</td>
+                    <td className="px-4 py-3 text-right font-medium">{row.measuredValue}</td>
+                    <td className="px-4 py-3">{row.unit}</td>
                     <td className="px-4 py-3 text-right">{row.entities}</td>
                     <td className="px-4 py-3">
-                      <span className="rounded-full bg-emerald-50 px-2 py-1 text-xs font-medium text-emerald-700">
+                      <span
+                        className={[
+                          "rounded-full px-2 py-1 text-xs font-medium",
+                          row.pressure === "Elevee"
+                            ? "bg-amber-50 text-amber-700"
+                            : row.pressure === "Moyenne"
+                              ? "bg-sky-50 text-sky-700"
+                              : "bg-emerald-50 text-emerald-700",
+                        ].join(" ")}
+                      >
+                        {row.pressure}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3">
+                      <span
+                        className={[
+                          "rounded-full px-2 py-1 text-xs font-medium",
+                          row.status === "Actif"
+                            ? "bg-emerald-50 text-emerald-700"
+                            : row.status === "Surveillance"
+                              ? "bg-amber-50 text-amber-700"
+                              : "bg-rose-50 text-rose-700",
+                        ].join(" ")}
+                      >
                         {row.status}
                       </span>
                     </td>
                   </tr>
                 ))}
+                {filteredRows.length === 0 && (
+                  <tr>
+                    <td colSpan={11} className="px-4 py-10 text-center text-sm text-slate-500">
+                      Aucun resultat pour ce filtrage.
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
-          </div>
-        </div>
-
-        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <h3 className="mb-4 text-lg font-semibold text-slate-800">Synthese de l'inventaire</h3>
-          <div className="h-[340px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={inventoryRows}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                <XAxis dataKey="source" tick={{ fontSize: 11 }} />
-                <YAxis tick={{ fontSize: 11 }} />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="entities" fill="#14b8a6" name="Entites inventoriees" radius={[8, 8, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
           </div>
         </div>
       </div>
