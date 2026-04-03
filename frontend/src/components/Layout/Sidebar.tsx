@@ -7,6 +7,7 @@ import {
   Home,
   Info,
   Mail,
+  Search,
   Sparkles,
 } from "lucide-react";
 
@@ -14,6 +15,7 @@ type NavItem = {
   to: string;
   label: string;
   icon: typeof Home;
+  group?: "main" | "admin" | "support";
 };
 
 type SidebarProps = {
@@ -23,26 +25,36 @@ type SidebarProps = {
 const Sidebar = ({ collapsed }: SidebarProps) => {
   const isAdmin = localStorage.getItem("is_superuser") === "true";
   const allNavItems: NavItem[] = [
-    { to: "/", label: "Accueil", icon: Home },
-    { to: "/dashboard-2", label: "Dashboard Cartographique", icon: BarChart3 },
-    { to: "/dashboard-climate", label: "Dashboard Analytique", icon: Droplets },
-    { to: "/dashboard-scenarios", label: "Dashboard Scenarios", icon: Sparkles },
-    { to: "/data", label: "Donnees brutes", icon: Database },
-    { to: "/about", label: "A propos", icon: Info },
-    { to: "/contact", label: "Contact", icon: Mail },
+    { to: "/", label: "Accueil", icon: Home, group: "main" },
+    { to: "/dashboard-2", label: "Dashboard Cartographique", icon: BarChart3, group: "main" },
+    { to: "/dashboard-climate", label: "Dashboard Analytique", icon: Droplets, group: "main" },
+    { to: "/dashboard-scenarios", label: "Dashboard Scenarios", icon: Sparkles, group: "main" },
+    { to: "/data", label: "Gestion Données", icon: Database, group: "admin" },
+    { to: "/admin/data-scan", label: "Scan de données", icon: Search, group: "admin" },
+    { to: "/about", label: "A propos", icon: Info, group: "support" },
+    { to: "/contact", label: "Contact", icon: Mail, group: "support" },
   ];
 
   const primaryItems = useMemo(
     () =>
       allNavItems.filter((item) => {
         if (isAdmin) return true;
-        return ["/", "/dashboard-2", "/dashboard-climate", "/dashboard-scenarios", "/about", "/contact"].includes(item.to);
+        return [
+          "/",
+          "/dashboard-2",
+          "/dashboard-climate",
+          "/dashboard-scenarios",
+          "/about",
+          "/contact",
+          "/admin/data-scan",
+        ].includes(item.to);
       }),
     [isAdmin]
   );
 
-  const supportItems = primaryItems.filter((item) => ["/about", "/contact"].includes(item.to));
-  const mainItems = primaryItems.filter((item) => !supportItems.some((support) => support.to === item.to));
+  const supportItems = primaryItems.filter((item) => item.group === "support");
+  const adminItems = primaryItems.filter((item) => item.group === "admin");
+  const mainItems = primaryItems.filter((item) => item.group === "main");
 
   return (
     <aside
@@ -99,6 +111,40 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
               );
             })}
           </nav>
+
+          <div>
+            {adminItems.length > 0 && (
+              <>
+                {!collapsed && (
+                  <p className="px-3 text-xs font-medium text-slate-500">Administration</p>
+                )}
+                <nav className="mt-3 space-y-1">
+                  {adminItems.map((item) => {
+                    const Icon = item.icon;
+
+                    return (
+                      <NavLink
+                        key={item.to}
+                        to={item.to}
+                        className={({ isActive }) =>
+                          [
+                            "flex items-center rounded-xl py-3 text-sm font-medium transition-colors",
+                            collapsed ? "justify-center px-2" : "gap-3 px-3",
+                            isActive
+                              ? "bg-blue-50 text-blue-700"
+                              : "text-slate-700 hover:bg-slate-50 hover:text-slate-900",
+                          ].join(" ")
+                        }
+                      >
+                        <Icon className="h-4 w-4" />
+                        {!collapsed && <span>{item.label}</span>}
+                      </NavLink>
+                    );
+                  })}
+                </nav>
+              </>
+            )}
+          </div>
 
           <div>
             {!collapsed && <p className="px-3 text-xs font-medium text-slate-500">Support</p>}

@@ -22,7 +22,8 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
     { to: "/", label: "Accueil" },
     { to: "/dashboard-2", label: "Dashboard" },
     { to: "/dashboard-climate", label: "Dashboard Climate" },
-    { to: "/data", label: "Donnees brutes" },
+    { to: "/data", label: "Gestion Données" },
+    { to: "/admin/data-scan", label: "Scan de données" },
     { to: "/about", label: "A propos" },
     { to: "/contact", label: "Contact" },
   ];
@@ -31,7 +32,14 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
     () =>
       allNavItems.filter((item) => {
         if (isAdmin) return true;
-        return ["/", "/dashboard-2", "/dashboard-climate", "/about", "/contact"].includes(item.to);
+        return [
+          "/",
+          "/dashboard-2",
+          "/dashboard-climate",
+          "/about",
+          "/contact",
+          "/admin/data-scan",
+        ].includes(item.to);
       }),
     [isAdmin]
   );

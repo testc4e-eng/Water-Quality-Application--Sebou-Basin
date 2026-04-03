@@ -15,6 +15,7 @@ from app.api.v1 import swat_analysis
 from app.routers import hydro, quality, climate
 
 from app.routers.layers import router as layers_router
+from app.routers.admin_data_scan import router as admin_data_scan_router
 from app.routers.names import router as names_router
 
 
@@ -42,6 +43,11 @@ api_router.include_router(raw_router, tags=["raw"])
 # =========================
 api_router.include_router(layers_router, prefix="/layers", tags=["layers"])
 api_router.include_router(names_router, prefix="/names", tags=["names"])
+
+# =========================
+# ADMIN
+# =========================
+api_router.include_router(admin_data_scan_router, prefix="/admin", tags=["admin"])
 
 
 # =========================
