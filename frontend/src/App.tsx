@@ -20,6 +20,7 @@ import DataViewer from "./pages/DataViewer";
 import NotFound from "./pages/NotFound";
 import Dashboard2 from "./pages/Dashboard2";
 import DashboardClimate from "./pages/DashboardClimate";
+import DashboardScenarios from "./pages/DashboardScenarios";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const router = createBrowserRouter(
         <Route path="dashboard" element={<Dashboard2 />} />
         <Route path="dashboard-2" element={<Dashboard2 />} />
         <Route path="dashboard-climate" element={<DashboardClimate />} />
+        <Route path="dashboard-scenarios" element={<DashboardScenarios />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route

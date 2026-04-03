@@ -10,6 +10,7 @@ import Layout from "./components/Layout/Layout";
 import LandingPage from "./pages/LandingPage";
 import Dashboard2 from "./pages/Dashboard2";
 import DashboardClimate from "./pages/DashboardClimate";
+import DashboardScenarios from "./pages/DashboardScenarios";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import DataViewer from "./pages/DataViewer";
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
         <Route path="dashboard" element={<Dashboard2 />} />
         <Route path="dashboard-2" element={<Dashboard2 />} />
         <Route path="dashboard-climate"element={<DashboardClimate />}/>
+        <Route path="dashboard-scenarios" element={<DashboardScenarios />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route path="data" element={<DataViewer />} />

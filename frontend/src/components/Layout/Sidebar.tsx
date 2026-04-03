@@ -7,6 +7,7 @@ import {
   Home,
   Info,
   Mail,
+  Sparkles,
 } from "lucide-react";
 
 type NavItem = {
@@ -25,6 +26,7 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
     { to: "/", label: "Accueil", icon: Home },
     { to: "/dashboard-2", label: "Dashboard Cartographique", icon: BarChart3 },
     { to: "/dashboard-climate", label: "Dashboard Analytique", icon: Droplets },
+    { to: "/dashboard-scenarios", label: "Dashboard Scenarios", icon: Sparkles },
     { to: "/data", label: "Donnees brutes", icon: Database },
     { to: "/about", label: "A propos", icon: Info },
     { to: "/contact", label: "Contact", icon: Mail },
@@ -34,7 +36,7 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
     () =>
       allNavItems.filter((item) => {
         if (isAdmin) return true;
-        return ["/", "/dashboard-2", "/dashboard-climate", "/about", "/contact"].includes(item.to);
+        return ["/", "/dashboard-2", "/dashboard-climate", "/dashboard-scenarios", "/about", "/contact"].includes(item.to);
       }),
     [isAdmin]
   );

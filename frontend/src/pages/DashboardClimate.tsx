@@ -118,7 +118,7 @@ export default function DashboardClimate() {
 
             <div className="flex-1 text-left">
               <div className="flex items-center gap-2">
-                <span className="text-base font-bold">Qualit√©</span>
+                <span className="text-base font-bold">Pollution</span>
                 {tab === "qualite" && (
                   <span className="rounded-full bg-white/30 px-2 py-0.5 text-xs backdrop-blur">
                     Actif
@@ -126,7 +126,7 @@ export default function DashboardClimate() {
                 )}
               </div>
               <p className={`mt-0.5 text-xs ${tab === "qualite" ? "text-white/80" : "text-gray-500"}`}>
-                N ‚Ä¢ O ‚Ä¢ P
+                Inventaire ï Ponctuelle ï Diffuse
               </p>
             </div>
           </div>
