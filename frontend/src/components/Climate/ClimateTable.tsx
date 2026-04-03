@@ -13,6 +13,19 @@ export default function ClimateTable({
 }: any) {
   const [rows, setRows] = useState<any[]>([]);
 
+  const formatPeriod = (value: string) => {
+    const date = new Date(value);
+    if (aggregation === "annual") return String(date.getFullYear());
+    if (aggregation === "monthly") {
+      return date.toLocaleDateString("fr-FR", { month: "2-digit", year: "numeric" });
+    }
+    return date.toLocaleDateString("fr-FR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+  };
+
 useEffect(() => {
   if (!tsId || !aggregation) {
     setRows([]);
@@ -113,13 +126,7 @@ useEffect(() => {
 
                 return (
                   <tr key={i} className="hover:bg-gradient-to-r hover:from-sky-50/50 hover:to-indigo-50/50 transition-colors">
-                    <td className="px-4 py-2.5 text-gray-700 font-medium">
-                      {new Date(r.datetime).toLocaleDateString('fr-FR', {
-                        day: '2-digit',
-                        month: '2-digit',
-                        year: 'numeric'
-                      })}
-                    </td>
+                    <td className="px-4 py-2.5 text-gray-700 font-medium">{formatPeriod(r.datetime)}</td>
                     <td className={`px-4 py-2.5 text-right font-mono ${valueColor}`}>
                       {value.toFixed(3)}
                       <span className="text-gray-400 text-xs ml-1">{unit}</span>

@@ -52,6 +52,9 @@ function groupLabel(key: string): string {
     reseau_hydro_abhs: "Reseau hydrographique",
     barrages_abhs: "Barrages",
     stations_abhs: "Stations hydrologiques",
+    points_eau: "Points d'eau",
+    step_industrielles: "STEP industrielles",
+    stm: "STM",
     adm_regions_abhs: "Regions",
     adm_provinces_abhs: "Provinces",
     adm_cercles_abhs: "Cercles",
@@ -354,7 +357,7 @@ export default function SidebarFilters({
   ];
 
   const hydroToggleKeys = ["bassin_sebou", "sous_bassin_sebou", "reseau_hydro_abhs"];
-  const infraToggleKeys = ["barrages_abhs", "stations_abhs"];
+  const infraToggleKeys = ["barrages_abhs", "stations_abhs", "points_eau", "step_industrielles", "stm"];
 
   const selectedSousBassins = Object.values(localLayers.sous_bassins_list).filter(Boolean).length;
   const selectedBarrages = Object.values(localLayers.barrages_list).filter(Boolean).length;
@@ -479,6 +482,33 @@ export default function SidebarFilters({
                 placeholder="Rechercher une station..."
               />
             </LayerRowWithList>
+
+            <LayerCheckbox
+              checked={!!localLayers.toggles.points_eau}
+              label={groupLabel("points_eau")}
+              onChange={(checked) => {
+                toggleLayerKey("points_eau", checked);
+                if (checked) onZoomLayer?.("points_eau");
+              }}
+            />
+
+            <LayerCheckbox
+              checked={!!localLayers.toggles.step_industrielles}
+              label={groupLabel("step_industrielles")}
+              onChange={(checked) => {
+                toggleLayerKey("step_industrielles", checked);
+                if (checked) onZoomLayer?.("step_industrielles");
+              }}
+            />
+
+            <LayerCheckbox
+              checked={!!localLayers.toggles.stm}
+              label={groupLabel("stm")}
+              onChange={(checked) => {
+                toggleLayerKey("stm", checked);
+                if (checked) onZoomLayer?.("stm");
+              }}
+            />
           </div>
         </CollapsibleBlock>
 

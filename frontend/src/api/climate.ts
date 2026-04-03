@@ -102,9 +102,9 @@ export const listClimateStations = async () => {
 /* =====================================================
    STATION STATS
 ===================================================== */
-export const getClimateStationStats = async (stationId: number) => {
+export const getClimateStationStats = async (stationId: string) => {
   const res = await fetch(
-    `${API_BASE}/station-stats?station_id=${stationId}`
+    `${API_BASE}/station-stats?station_id=${encodeURIComponent(stationId)}`
   );
   if (!res.ok) throw new Error("Erreur station stats");
   return res.json();
@@ -114,7 +114,7 @@ export const getClimateStationStats = async (stationId: number) => {
    TIMESERIES
 ===================================================== */
 export const getClimateTimeseries = async (params: {
-  ts_id: number;
+  ts_id: string | number;
   time_step: string;
   date_start?: string;
   date_end?: string;
@@ -136,8 +136,8 @@ export const getClimateTimeseries = async (params: {
 /* =====================================================
    KPIs
 ===================================================== */
-export const getClimateKPIs = async (ts_id: number) => {
-  const res = await fetch(`${API_BASE}/kpis?ts_id=${ts_id}`);
+export const getClimateKPIs = async (ts_id: string | number, time_step = "annual") => {
+  const res = await fetch(`${API_BASE}/kpis?ts_id=${encodeURIComponent(String(ts_id))}&time_step=${encodeURIComponent(time_step)}`);
   if (!res.ok) throw new Error("Erreur KPIs");
   return res.json();
 };

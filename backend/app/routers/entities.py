@@ -1,9 +1,10 @@
 # backend/app/routers/entities.py
-from typing import List, Dict, Any
-from fastapi import APIRouter, HTTPException, Depends
+from typing import List, Dict, Any, Optional
+from fastapi import APIRouter, HTTPException, Depends, Query
 from sqlalchemy.orm import Session
 from sqlalchemy import text
 from app.db.session import SessionLocal
+from app.util_dbmeta import table_exists
 
 router = APIRouter()
 
@@ -47,20 +48,40 @@ def get_stations(db: Session = Depends(get_db)):
 # ------- Barrages -------
 @router.get("/barrages", summary="Barrages (format simple)")
 def get_barrages(db: Session = Depends(get_db)):
-    sql = text("""
-        SELECT
-            id::int AS id,
-            COALESCE(nom_barrage,'') AS nom_barrage,
-            nom_oued::text,
-            statut::text,
-            type_barrage::text,
-            hauteur::float8,
-            apports_hm::float8,
-            mise_en_se::text,
-            coord_x::float8,
-            coord_y::float8
-        FROM public.barrages_abhs
-    """)
+    if table_exists("api.v_barrage_dimension"):
+        sql = text("""
+            SELECT
+                COALESCE(barrage_id, id)::int AS id,
+                ire::text AS ire,
+                COALESCE(nom_barrage,'') AS nom_barrage,
+                nom_oued::text,
+                statut::text,
+                type_barrage::text,
+                vrn_hm3::float8,
+                hauteur::float8,
+                apports_hm::float8,
+                mise_en_se::text,
+                longitude::float8 AS coord_x,
+                latitude::float8 AS coord_y
+            FROM api.v_barrage_dimension
+        """)
+    else:
+        sql = text("""
+            SELECT
+                id::int AS id,
+                ire::text AS ire,
+                COALESCE(nom_barrage,'') AS nom_barrage,
+                nom_oued::text,
+                statut::text,
+                type_barrage::text,
+                vrn_hm3::float8,
+                hauteur::float8,
+                apports_hm::float8,
+                mise_en_se::text,
+                coord_x::float8,
+                coord_y::float8
+            FROM public.barrages_abhs
+        """)
     try:
         rows = db.execute(sql).fetchall()
     except Exception as e:
@@ -70,10 +91,12 @@ def get_barrages(db: Session = Depends(get_db)):
     for r in rows:
         out.append({
             "id": int(r.id),
+            "ire": r.ire,
             "nom_barrage": r.nom_barrage,
             "nom_oued": r.nom_oued,
             "statut": r.statut,
             "type_barrage": r.type_barrage,
+            "vrn_hm3": float(r.vrn_hm3) if r.vrn_hm3 is not None else None,
             "hauteur": float(r.hauteur) if r.hauteur is not None else None,
             "apports_hm": float(r.apports_hm) if r.apports_hm is not None else None,
             "mise_en_se": r.mise_en_se,
@@ -81,6 +104,98 @@ def get_barrages(db: Session = Depends(get_db)):
             "coord_y": float(r.coord_y) if r.coord_y is not None else None,
         })
     return out
+
+
+@router.get("/barrages/{barrage_id}/quality-parameters", summary="Parametres qualite barrage")
+def get_barrage_quality_parameters(barrage_id: int, db: Session = Depends(get_db)):
+    query = text("""
+        WITH barrage AS (
+            SELECT NULLIF(TRIM(ire), '') AS ire
+            FROM public.barrages_abhs
+            WHERE id = :barrage_id
+        )
+        SELECT
+            mqb.parametre_qualite::text AS parameter,
+            MIN(mqb.date_prelevement)::date AS date_min,
+            MAX(mqb.date_prelevement)::date AS date_max
+        FROM public.mesures_qualite_barrages mqb
+        INNER JOIN barrage b
+            ON b.ire IS NOT NULL
+           AND mqb.ire_station = b.ire
+        WHERE NULLIF(TRIM(mqb.parametre_qualite), '') IS NOT NULL
+        GROUP BY mqb.parametre_qualite
+        ORDER BY mqb.parametre_qualite
+    """)
+    try:
+        rows = db.execute(query, {"barrage_id": barrage_id}).mappings().all()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"DB error: {e}")
+    return rows
+
+
+@router.get("/barrages/{barrage_id}/quality-series", summary="Serie temporelle qualite barrage")
+def get_barrage_quality_series(
+    barrage_id: int,
+    aggregation: str = Query("raw"),
+    date_start: str = Query(""),
+    date_end: str = Query(""),
+    parameter: str = Query(...),
+    parameter_secondary: Optional[str] = Query(None),
+    db: Session = Depends(get_db),
+):
+    if aggregation not in {"raw", "monthly", "annual"}:
+        raise HTTPException(status_code=400, detail="Aggregation invalide")
+
+    if aggregation == "monthly":
+        datetime_expr = "date_trunc('month', mqb.date_prelevement)::date"
+        group_expr = "date_trunc('month', mqb.date_prelevement)::date, mqb.parametre_qualite"
+    elif aggregation == "annual":
+        datetime_expr = "date_trunc('year', mqb.date_prelevement)::date"
+        group_expr = "date_trunc('year', mqb.date_prelevement)::date, mqb.parametre_qualite"
+    else:
+        datetime_expr = "mqb.date_prelevement::date"
+        group_expr = "mqb.date_prelevement::date, mqb.parametre_qualite"
+
+    query = text(f"""
+        WITH barrage AS (
+            SELECT NULLIF(TRIM(ire), '') AS ire
+            FROM public.barrages_abhs
+            WHERE id = :barrage_id
+        )
+        SELECT
+            {datetime_expr} AS datetime,
+            mqb.parametre_qualite::text AS parameter,
+            AVG(mqb.val_qual_barr)::float8 AS value
+        FROM public.mesures_qualite_barrages mqb
+        INNER JOIN barrage b
+            ON b.ire IS NOT NULL
+           AND mqb.ire_station = b.ire
+        WHERE mqb.val_qual_barr IS NOT NULL
+          AND mqb.parametre_qualite = ANY(:parameters)
+          AND (:date_start = '' OR mqb.date_prelevement >= CAST(:date_start AS date))
+          AND (:date_end = '' OR mqb.date_prelevement <= CAST(:date_end AS date))
+        GROUP BY {group_expr}
+        ORDER BY datetime, mqb.parametre_qualite
+    """)
+
+    parameters = [parameter]
+    if parameter_secondary and parameter_secondary != parameter:
+        parameters.append(parameter_secondary)
+
+    try:
+        rows = db.execute(
+            query,
+            {
+                "barrage_id": barrage_id,
+                "parameters": parameters,
+                "date_start": date_start or "",
+                "date_end": date_end or "",
+            },
+        ).mappings().all()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"DB error: {e}")
+
+    return rows
 
 # ------- Alerts (placeholder) -------
 @router.get("/alerts", summary="Alertes")

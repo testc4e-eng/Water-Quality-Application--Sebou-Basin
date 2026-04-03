@@ -3,38 +3,26 @@ import { getClimateStationStats, listClimateStations } from "@/api/climate";
 
 type Props = {
   onChange: (params: {
-    stationId?: number;
+    stationId?: string;
     sourceType?: string;
-    scenarioCode?: string;
-    runId?: number;
     variable?: string;
     aggregation?: string;
     dateStart?: string;
     dateEnd?: string;
-    tsId?: number;
+    tsId?: string;
   }) => void;
-};
-
-type ScenarioItem = {
-  key: string;
-  label: string;
-  scenario_code: string;
-  run_id: number;
 };
 
 export default function ClimateFilters({ onChange }: Props) {
   const [stations, setStations] = useState<any[]>([]);
   const [stats, setStats] = useState<any[]>([]);
 
-  const [stationId, setStationId] = useState<number | undefined>(undefined);
+  const [stationId, setStationId] = useState<string | undefined>(undefined);
   const [sourceType, setSourceType] = useState<string | undefined>(undefined);
-  const [scenario, setScenario] = useState<ScenarioItem | undefined>(undefined);
   const [variable, setVariable] = useState<string | undefined>(undefined);
   const [aggregation, setAggregation] = useState<string | undefined>(undefined);
   const [dateStart, setDateStart] = useState<string | undefined>(undefined);
   const [dateEnd, setDateEnd] = useState<string | undefined>(undefined);
-
-  const scenarioKey = scenario ? `${scenario.scenario_code}_${scenario.run_id}` : "";
 
   useEffect(() => {
     listClimateStations().then(setStations);
@@ -51,7 +39,6 @@ export default function ClimateFilters({ onChange }: Props) {
 
       // reset cascade after station change
       setSourceType(undefined);
-      setScenario(undefined);
       setVariable(undefined);
       setAggregation(undefined);
       setDateStart(undefined);
@@ -68,39 +55,6 @@ export default function ClimateFilters({ onChange }: Props) {
     [stats]
   );
 
-  const scenariosForType = useMemo(
-    () =>
-      (stats || []).filter(
-        (r) =>
-          String(r.source_type || "").toLowerCase() ===
-          String(sourceType || "").toLowerCase()
-      ),
-    [stats, sourceType]
-  );
-
-  const scenarioItems = useMemo(
-    () =>
-      Array.from(
-        new Map(
-          scenariosForType.map((r) => {
-            const key = `${r.scenario_code}_${r.run_id}`;
-            return [
-              key,
-              {
-                key,
-                label: r.scenario_name
-                  ? `${r.scenario_code} - ${r.scenario_name}`
-                  : String(r.scenario_code),
-                scenario_code: String(r.scenario_code),
-                run_id: Number(r.run_id),
-              } as ScenarioItem,
-            ];
-          })
-        ).values()
-      ),
-    [scenariosForType]
-  );
-
   const variables = useMemo(
     () =>
       Array.from(
@@ -109,14 +63,12 @@ export default function ClimateFilters({ onChange }: Props) {
             .filter(
               (r) =>
                 String(r.source_type || "").toLowerCase() ===
-                  String(sourceType || "").toLowerCase() &&
-                String(r.scenario_code) === String(scenario?.scenario_code) &&
-                String(r.run_id) === String(scenario?.run_id)
+                  String(sourceType || "").toLowerCase()
             )
             .map((r) => String(r.property_name))
         )
       ).filter(Boolean),
-    [stats, sourceType, scenario]
+    [stats, sourceType]
   );
 
   const aggregations = useMemo(
@@ -128,15 +80,25 @@ export default function ClimateFilters({ onChange }: Props) {
               (r) =>
                 String(r.source_type || "").toLowerCase() ===
                   String(sourceType || "").toLowerCase() &&
-                String(r.scenario_code) === String(scenario?.scenario_code) &&
-                String(r.run_id) === String(scenario?.run_id) &&
                 String(r.property_name) === String(variable)
             )
             .map((r) => String(r.time_step))
         )
       ).filter(Boolean),
-    [stats, sourceType, scenario, variable]
+    [stats, sourceType, variable]
   );
+
+  useEffect(() => {
+    if (sourceTypes.length === 1 && !sourceType) {
+      setSourceType(sourceTypes[0]);
+    }
+  }, [sourceTypes, sourceType]);
+
+  useEffect(() => {
+    if (aggregations.length === 1 && !aggregation) {
+      setAggregation(aggregations[0]);
+    }
+  }, [aggregations, aggregation]);
 
   useEffect(() => {
     if (!sourceType) {
@@ -145,27 +107,12 @@ export default function ClimateFilters({ onChange }: Props) {
     }
 
     // reset children when source changes
-    setScenario(undefined);
     setVariable(undefined);
     setAggregation(undefined);
     setDateStart(undefined);
     setDateEnd(undefined);
     onChange({});
   }, [sourceType, onChange]);
-
-  useEffect(() => {
-    if (!scenario) {
-      onChange({});
-      return;
-    }
-
-    // reset children when scenario changes
-    setVariable(undefined);
-    setAggregation(undefined);
-    setDateStart(undefined);
-    setDateEnd(undefined);
-    onChange({});
-  }, [scenario, onChange]);
 
   useEffect(() => {
     if (!variable) {
@@ -181,7 +128,7 @@ export default function ClimateFilters({ onChange }: Props) {
   }, [variable, onChange]);
 
   useEffect(() => {
-    if (!stationId || !sourceType || !scenario || !variable || !aggregation) {
+    if (!stationId || !sourceType || !variable || !aggregation) {
       return;
     }
 
@@ -189,8 +136,6 @@ export default function ClimateFilters({ onChange }: Props) {
       (r: any) =>
         String(r.source_type || "").toLowerCase() ===
           String(sourceType || "").toLowerCase() &&
-        String(r.scenario_code) === String(scenario.scenario_code) &&
-        String(r.run_id) === String(scenario.run_id) &&
         String(r.property_name) === String(variable) &&
         String(r.time_step) === String(aggregation)
     );
@@ -211,15 +156,13 @@ export default function ClimateFilters({ onChange }: Props) {
     onChange({
       stationId,
       sourceType,
-      scenarioCode: scenario.scenario_code,
-      runId: scenario.run_id,
       variable,
       aggregation,
       tsId: match.ts_id,
       dateStart: start,
       dateEnd: end,
     });
-  }, [stationId, sourceType, scenario, variable, aggregation, stats, onChange]);
+  }, [stationId, sourceType, variable, aggregation, stats, onChange]);
 
   return (
     <div className="space-y-4">
@@ -229,7 +172,7 @@ export default function ClimateFilters({ onChange }: Props) {
         </label>
         <Select
           value={stationId}
-          onChange={(v: string | undefined) => setStationId(v ? Number(v) : undefined)}
+          onChange={(v: string | undefined) => setStationId(v || undefined)}
           placeholder="Selectionner une station..."
         >
           {stations.map((s) => (
@@ -260,32 +203,12 @@ export default function ClimateFilters({ onChange }: Props) {
 
       <div className="space-y-1.5">
         <label className="text-xs font-semibold text-gray-700 uppercase tracking-wider flex items-center gap-1">
-          Scenario
-        </label>
-        <Select
-          value={scenarioKey}
-          onChange={(v: string | undefined) => {
-            setScenario(scenarioItems.find((s) => s.key === v));
-          }}
-          disabled={!sourceType || scenarioItems.length === 0}
-          placeholder="Selectionner un scenario..."
-        >
-          {scenarioItems.map((s) => (
-            <option key={s.key} value={s.key}>
-              {s.label}
-            </option>
-          ))}
-        </Select>
-      </div>
-
-      <div className="space-y-1.5">
-        <label className="text-xs font-semibold text-gray-700 uppercase tracking-wider flex items-center gap-1">
           Variable
         </label>
         <Select
           value={variable}
           onChange={setVariable}
-          disabled={!scenario}
+          disabled={!sourceType}
           placeholder="Selectionner une variable..."
         >
           {variables.map((v) => (

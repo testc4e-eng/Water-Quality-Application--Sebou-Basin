@@ -12,7 +12,10 @@ router = APIRouter(prefix="/stations")
 # 1) table depuis variable d'env, sinon auto-détection
 TABLE = os.getenv("STATIONS_TABLE")
 if TABLE is None:
-    TABLE = find_candidate_station_table()
+    for candidate in ("api.v_station_dimension", "api.v_profils_stations", find_candidate_station_table()):
+        if candidate and table_exists(candidate):
+            TABLE = candidate
+            break
 TBL_DEBIT = os.getenv("TBL_DEBIT", "public.mesures_debit_jr")
 TBL_TEMP = os.getenv("TBL_TEMP", "public.mesures_temperatures_jr")
 TBL_QUAL = os.getenv("TBL_QUAL", "public.mesures_qualite_rivieres")
@@ -27,13 +30,13 @@ def list_stations(
         raise HTTPException(500, "Table des stations introuvable. Définis STATIONS_TABLE ou renomme la table.")
 
     pk = get_primary_key(TABLE) or "id"
-    id_col = pick_first_existing(TABLE, ["id_station", "id"]) or pk
+    id_col = pick_first_existing(TABLE, ["legacy_station_id", "station_id", "id_station", "id"]) or pk
     name_col = pick_first_existing(
         TABLE,
-        ["nom_station", "name", "nom", "libelle", "libelle_station", "station", "label"],
+        ["station_nom", "nom_station", "name", "nom", "libelle", "libelle_station", "station", "label"],
     ) or id_col
-    river_col = pick_first_existing(TABLE, ["river","riviere","cours_eau","oued","nom_oued"])
-    ire_col = pick_first_existing(TABLE, ["ire_station", "code_station"])
+    river_col = pick_first_existing(TABLE, ["river","riviere","cours_eau","oued","nom_oued","bassin","sous_bassin"])
+    ire_col = pick_first_existing(TABLE, ["ire_station", "legacy_code_station", "code_station"])
     geom_col = get_geom_column(TABLE)
     if not geom_col:
         raise HTTPException(500, f"Colonne géométrique introuvable sur {TABLE}")

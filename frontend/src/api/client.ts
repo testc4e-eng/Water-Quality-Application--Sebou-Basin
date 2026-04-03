@@ -35,10 +35,12 @@ export interface Station {
 
 export interface Barrage {
   id: number;
+  ire: string | null;
   nom_barrage: string;
   nom_oued: string | null;
   statut: string | null;
   type_barrage: string | null;
+  vrn_hm3: number | null;
   hauteur: number | null;
   apports_hm: number | null;
   mise_en_se: string | null;
@@ -74,10 +76,12 @@ interface StationDto {
 
 interface BarrageDto {
   id: string | number;
+  ire?: string | null;
   nom_barrage: string;
   nom_oued?: string | null;
   statut?: string | null;
   type_barrage?: string | null;
+  vrn_hm3?: number | null;
   hauteur?: number | null;
   apports_hm?: number | null;
   mise_en_se?: string | null;
@@ -119,10 +123,12 @@ function normalizeStation(s: StationDto): Station {
 function normalizeBarrage(b: BarrageDto): Barrage {
   return {
     id: Number(b.id),
+    ire: b.ire ?? null,
     nom_barrage: b.nom_barrage,
     nom_oued: b.nom_oued ?? null,
     statut: b.statut ?? null,
     type_barrage: b.type_barrage ?? null,
+    vrn_hm3: b.vrn_hm3 ? Number(b.vrn_hm3) : null,
     hauteur: b.hauteur ? Number(b.hauteur) : null,
     apports_hm: b.apports_hm ? Number(b.apports_hm) : null,
     mise_en_se: b.mise_en_se ?? null,

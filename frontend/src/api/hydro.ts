@@ -106,27 +106,32 @@
 //     mean: 62.789,
 //   };
 // };
-
-
-
-const API = "http://localhost:8000/api/v1/hydro";
+import { api } from "@/api/client";
 
 /* =====================================================
    STATIONS
 ===================================================== */
 export const fetchHydroStations = async () => {
-  const res = await fetch(`${API}/stations`);
-  if (!res.ok) throw new Error("Erreur stations hydro");
-  return res.json();
+  const { data } = await api.get("/hydro/stations");
+  return data ?? [];
+};
+
+export const fetchPointWaterOptions = async () => {
+  const { data } = await api.get("/hydro/points-eau");
+  return data ?? [];
+};
+
+export const fetchPointWaterDetails = async (point_id: string) => {
+  const { data } = await api.get("/hydro/points-eau/details", { params: { point_id } });
+  return data ?? [];
 };
 
 /* =====================================================
    STATS
 ===================================================== */
 export const fetchHydroStats = async (station_id: number) => {
-  const res = await fetch(`${API}/stats?station_id=${station_id}`);
-  if (!res.ok) throw new Error("Erreur stats hydro");
-  return res.json();
+  const { data } = await api.get("/hydro/stats", { params: { station_id } });
+  return data ?? [];
 };
 
 /* =====================================================
@@ -138,16 +143,40 @@ export const fetchHydroTimeseries = async (p: {
   date_start: string;
   date_end: string;
 }) => {
-  const params = new URLSearchParams({
-    ts_id: String(p.ts_id),
-    aggregation: p.aggregation,
-    date_start: p.date_start,
-    date_end: p.date_end,
+  const { data } = await api.get("/hydro/timeseries", {
+    params: {
+      ts_id: p.ts_id,
+      aggregation: p.aggregation,
+      date_start: p.date_start,
+      date_end: p.date_end,
+    },
   });
+  return data ?? [];
+};
 
-  const res = await fetch(`${API}/timeseries?${params.toString()}`);
-  if (!res.ok) throw new Error("Erreur timeseries hydro");
-  return res.json();
+export const fetchBarrageQualityParameters = async (barrageId: number) => {
+  const { data } = await api.get(`/barrages/${barrageId}/quality-parameters`);
+  return data ?? [];
+};
+
+export const fetchBarrageQualitySeries = async (p: {
+  barrage_id: number;
+  aggregation: string;
+  date_start: string;
+  date_end: string;
+  parameter: string;
+  parameter_secondary?: string;
+}) => {
+  const { data } = await api.get(`/barrages/${p.barrage_id}/quality-series`, {
+    params: {
+      aggregation: p.aggregation,
+      date_start: p.date_start,
+      date_end: p.date_end,
+      parameter: p.parameter,
+      parameter_secondary: p.parameter_secondary || undefined,
+    },
+  });
+  return data ?? [];
 };
 
 /* =====================================================
@@ -159,14 +188,13 @@ export const fetchHydroKPIs = async (p: {
   date_start: string;
   date_end: string;
 }) => {
-  const params = new URLSearchParams({
-    ts_id: String(p.ts_id),
-    aggregation: p.aggregation,
-    date_start: p.date_start,
-    date_end: p.date_end,
+  const { data } = await api.get("/hydro/kpis", {
+    params: {
+      ts_id: p.ts_id,
+      aggregation: p.aggregation,
+      date_start: p.date_start,
+      date_end: p.date_end,
+    },
   });
-
-  const res = await fetch(`${API}/kpis?${params.toString()}`);
-  if (!res.ok) throw new Error("Erreur kpis hydro");
-  return res.json();
+  return data ?? null;
 };

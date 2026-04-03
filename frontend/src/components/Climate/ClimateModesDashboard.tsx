@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+﻿import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Bar,
   BarChart,
@@ -21,30 +21,27 @@ import { getClimateStationStats, getClimateTimeseries, listClimateStations } fro
 type Mode = "simple" | "multi";
 
 type ClimateStat = {
-  station_id: number;
+  station_id: string;
   source_type: string;
   scenario_code: string;
   scenario_name?: string;
   run_id: number;
   property_name: string;
   time_step: string;
-  ts_id: number;
+  ts_id: string;
   dt_min?: string;
   dt_max?: string;
 };
 
 type StationItem = {
-  station_id: number;
+  station_id: string;
   station_name: string;
 };
 
 type ConfigCard = {
   id: string;
-  stationId?: number;
+  stationId?: string;
   sourceType?: string;
-  scenarioKey?: string;
-  scenarioCode?: string;
-  runId?: number;
   variable?: string;
   aggregation?: string;
   color: string;
@@ -93,7 +90,7 @@ function Select({
   return (
     <div className="relative">
       <select
-        className="w-full appearance-none rounded-md border border-slate-200 bg-white px-2 py-1 text-[11px] text-slate-700 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100 disabled:bg-slate-100 disabled:text-slate-400"
+        className="w-full appearance-none rounded-lg border border-slate-200 bg-white px-3 py-2 text-[11px] text-slate-700 outline-none transition focus:border-cyan-400 focus:ring-2 focus:ring-cyan-100 disabled:bg-slate-100 disabled:text-slate-400"
         value={value ?? ""}
         onChange={(e) => onChange(e.target.value || undefined)}
         disabled={disabled}
@@ -103,7 +100,7 @@ function Select({
         </option>
         {children}
       </select>
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-400">⌄</div>
+      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-400">▼</div>
     </div>
   );
 }
@@ -114,38 +111,17 @@ function SeriesConfigurator({
   stations,
   stats,
   onUpdate,
-  scenarioMode = false,
 }: {
   title: string;
   config: ConfigCard;
   stations: StationItem[];
   stats: ClimateStat[];
   onUpdate: (next: Partial<ConfigCard>) => void;
-  scenarioMode?: boolean;
 }) {
   const sourceTypes = useMemo(
     () => Array.from(new Set(stats.map((r) => String(r.source_type || "").toLowerCase()))).filter(Boolean),
     [stats]
   );
-
-  const scenarioItems = useMemo(() => {
-    const rows = stats.filter(
-      (r) => String(r.source_type || "").toLowerCase() === String(config.sourceType || "").toLowerCase()
-    );
-    return Array.from(
-      new Map(
-        rows.map((r) => [
-          `${r.scenario_code}_${r.run_id}`,
-          {
-            key: `${r.scenario_code}_${r.run_id}`,
-            label: r.scenario_name ? `${r.scenario_code} - ${r.scenario_name}` : String(r.scenario_code),
-            scenarioCode: String(r.scenario_code),
-            runId: Number(r.run_id),
-          },
-        ])
-      ).values()
-    );
-  }, [stats, config.sourceType]);
 
   const variables = useMemo(() => {
     return Array.from(
@@ -153,14 +129,12 @@ function SeriesConfigurator({
         stats
           .filter(
             (r) =>
-              String(r.source_type || "").toLowerCase() === String(config.sourceType || "").toLowerCase() &&
-              String(r.scenario_code) === String(config.scenarioCode || "") &&
-              String(r.run_id) === String(config.runId || "")
+              String(r.source_type || "").toLowerCase() === String(config.sourceType || "").toLowerCase()
           )
           .map((r) => String(r.property_name))
       )
     ).filter(Boolean);
-  }, [stats, config.sourceType, config.scenarioCode, config.runId]);
+  }, [stats, config.sourceType]);
 
   const aggregations = useMemo(() => {
     return Array.from(
@@ -169,34 +143,29 @@ function SeriesConfigurator({
           .filter(
             (r) =>
               String(r.source_type || "").toLowerCase() === String(config.sourceType || "").toLowerCase() &&
-              String(r.scenario_code) === String(config.scenarioCode || "") &&
-              String(r.run_id) === String(config.runId || "") &&
               String(r.property_name) === String(config.variable || "")
           )
           .map((r) => String(r.time_step))
       )
     ).filter(Boolean);
-  }, [stats, config.sourceType, config.scenarioCode, config.runId, config.variable]);
+  }, [stats, config.sourceType, config.variable]);
 
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-1.5 shadow-sm">
-      <div className="mb-0.5 flex items-center gap-1">
+    <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-md">
+      <div className="mb-2 flex items-center gap-2">
         <span className="h-2 w-2 rounded-full" style={{ backgroundColor: config.color }} />
-        <h3 className="text-[11px] font-semibold text-slate-800">{title}</h3>
+        <h3 className="text-xs font-semibold text-slate-800">{title}</h3>
       </div>
 
-      <div className="space-y-1">
-        <div className="space-y-0.5">
-          <label className="text-[9px] font-semibold uppercase tracking-wider text-slate-500">Station</label>
+      <div className="space-y-2">
+        <div className="space-y-1">
+          <label className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Station</label>
           <Select
             value={config.stationId}
             onChange={(value) =>
               onUpdate({
-                stationId: value ? Number(value) : undefined,
+                stationId: value || undefined,
                 sourceType: undefined,
-                scenarioKey: undefined,
-                scenarioCode: undefined,
-                runId: undefined,
                 variable: undefined,
                 aggregation: undefined,
               })
@@ -211,62 +180,30 @@ function SeriesConfigurator({
           </Select>
         </div>
 
-        <div className="grid grid-cols-1 gap-1.5 md:grid-cols-2">
-          <div className="space-y-0.5">
-            <label className="text-[9px] font-semibold uppercase tracking-wider text-slate-500">Source</label>
-            <Select
-              value={config.sourceType}
-              onChange={(value) =>
-                onUpdate({
-                  sourceType: value,
-                  scenarioKey: undefined,
-                  scenarioCode: undefined,
-                  runId: undefined,
-                  variable: undefined,
-                  aggregation: undefined,
-                })
-              }
-              disabled={!config.stationId}
-              placeholder="Source..."
-            >
-              {sourceTypes.map((sourceType) => (
-                <option key={sourceType} value={sourceType}>
-                  {sourceType === "observed" ? "Observé" : "Simulé"}
-                </option>
-              ))}
-            </Select>
-          </div>
-
-          <div className="space-y-0.5">
-            <label className="text-[9px] font-semibold uppercase tracking-wider text-slate-500">
-              {scenarioMode ? "Scénario" : "Scénario"}
-            </label>
-            <Select
-              value={config.scenarioKey}
-              onChange={(value) => {
-                const picked = scenarioItems.find((item) => item.key === value);
-                onUpdate({
-                  scenarioKey: picked?.key,
-                  scenarioCode: picked?.scenarioCode,
-                  runId: picked?.runId,
-                  variable: undefined,
-                  aggregation: undefined,
-                });
-              }}
-              disabled={!config.sourceType}
-              placeholder="Choisir un scénario..."
-            >
-              {scenarioItems.map((item) => (
-                <option key={item.key} value={item.key}>
-                  {item.label}
-                </option>
-              ))}
-            </Select>
-          </div>
+        <div className="space-y-1">
+          <label className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Source</label>
+          <Select
+            value={config.sourceType}
+            onChange={(value) =>
+              onUpdate({
+                sourceType: value,
+                variable: undefined,
+                aggregation: undefined,
+              })
+            }
+            disabled={!config.stationId}
+            placeholder="Source..."
+          >
+            {sourceTypes.map((sourceType) => (
+              <option key={sourceType} value={sourceType}>
+                {sourceType === "observed" ? "Observé" : "Simulé"}
+              </option>
+            ))}
+          </Select>
         </div>
 
-        <div className="grid grid-cols-1 gap-1.5 md:grid-cols-2">
-          <div className="space-y-0.5">
+        <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+          <div className="space-y-1">
             <label className="text-[9px] font-semibold uppercase tracking-wider text-slate-500">Paramètre</label>
             <Select
               value={config.variable}
@@ -276,7 +213,7 @@ function SeriesConfigurator({
                   aggregation: undefined,
                 })
               }
-              disabled={!config.scenarioKey}
+              disabled={!config.sourceType}
               placeholder="Choisir un paramètre..."
             >
               {variables.map((variable) => (
@@ -287,7 +224,7 @@ function SeriesConfigurator({
             </Select>
           </div>
 
-          <div className="space-y-0.5">
+          <div className="space-y-1">
             <label className="text-[9px] font-semibold uppercase tracking-wider text-slate-500">Agrégation</label>
             <Select
               value={config.aggregation}
@@ -370,15 +307,11 @@ export default function ClimateModesDashboard() {
   const [mode, setMode] = useState<Mode>("simple");
   const [multiChartType, setMultiChartType] = useState<"line" | "bar">("line");
   const [stations, setStations] = useState<StationItem[]>([]);
-  const [statsCache, setStatsCache] = useState<Record<number, ClimateStat[]>>({});
+  const [statsCache, setStatsCache] = useState<Record<string, ClimateStat[]>>({});
   const [multiConfigs, setMultiConfigs] = useState<ConfigCard[]>(
     SERIES_COLORS.slice(0, 3).map((color, index) => ({ id: `multi-${index + 1}`, color }))
   );
-  const [scenarioConfigs, setScenarioConfigs] = useState<ConfigCard[]>(
-    SERIES_COLORS.map((color, index) => ({ id: `scenario-${index + 1}`, color }))
-  );
   const [multiSeries, setMultiSeries] = useState<LoadedSeries[]>([]);
-  const [scenarioSeries, setScenarioSeries] = useState<LoadedSeries[]>([]);
   const multiChartRef = useRef<HTMLDivElement | null>(null);
   const multiChartExportRef = useRef<HTMLDivElement | null>(null);
 
@@ -389,9 +322,9 @@ export default function ClimateModesDashboard() {
   useEffect(() => {
     const missingStationIds = Array.from(
       new Set(
-        [...multiConfigs, ...scenarioConfigs]
+        [...multiConfigs]
           .map((config) => config.stationId)
-          .filter((stationId): stationId is number => !!stationId && !statsCache[stationId])
+          .filter((stationId): stationId is string => !!stationId && !statsCache[stationId])
       )
     );
 
@@ -404,21 +337,19 @@ export default function ClimateModesDashboard() {
           setStatsCache((prev) => ({ ...prev, [stationId]: [] }));
         });
     });
-  }, [multiConfigs, scenarioConfigs, statsCache]);
+  }, [multiConfigs, statsCache]);
 
   useEffect(() => {
     const load = async () => {
       const nextSeries = await Promise.all(
         multiConfigs.map(async (config, index) => {
-          if (!config.stationId || !config.sourceType || !config.scenarioCode || !config.runId || !config.variable || !config.aggregation) {
+          if (!config.stationId || !config.sourceType || !config.variable || !config.aggregation) {
             return null;
           }
 
           const row = (statsCache[config.stationId] || []).find(
             (item) =>
               String(item.source_type || "").toLowerCase() === String(config.sourceType || "").toLowerCase() &&
-              String(item.scenario_code) === String(config.scenarioCode) &&
-              String(item.run_id) === String(config.runId) &&
               String(item.property_name) === String(config.variable) &&
               String(item.time_step) === String(config.aggregation)
           );
@@ -453,59 +384,10 @@ export default function ClimateModesDashboard() {
     if (mode === "multi") void load();
   }, [multiConfigs, statsCache, stations, mode]);
 
-  useEffect(() => {
-    const load = async () => {
-      const nextSeries = await Promise.all(
-        scenarioConfigs.map(async (config, index) => {
-          if (!config.stationId || !config.sourceType || !config.scenarioCode || !config.runId || !config.variable || !config.aggregation) {
-            return null;
-          }
-
-          const row = (statsCache[config.stationId] || []).find(
-            (item) =>
-              String(item.source_type || "").toLowerCase() === String(config.sourceType || "").toLowerCase() &&
-              String(item.scenario_code) === String(config.scenarioCode) &&
-              String(item.run_id) === String(config.runId) &&
-              String(item.property_name) === String(config.variable) &&
-              String(item.time_step) === String(config.aggregation)
-          );
-
-          if (!row) return null;
-
-          const data = await getClimateTimeseries({
-            ts_id: row.ts_id,
-            time_step: row.time_step,
-            date_start: row.dt_min?.slice(0, 10),
-            date_end: row.dt_max?.slice(0, 10),
-          });
-
-          const stationName = stations.find((station) => station.station_id === config.stationId)?.station_name || `Station ${index + 1}`;
-          return {
-            id: config.id,
-            stationName,
-            color: config.color,
-            label: `${config.scenarioCode} • ${stationName}`,
-            variable: String(config.variable),
-            aggregation: String(config.aggregation),
-            points: Array.isArray(data)
-              ? data.map((entry: any) => ({ date: entry.datetime, value: Number(entry.value) }))
-              : [],
-          } as LoadedSeries;
-        })
-      );
-
-      setScenarioSeries(nextSeries.filter((item): item is LoadedSeries => !!item && item.points.length > 0));
-    };
-
-    if (mode === "scenarios") void load();
-  }, [scenarioConfigs, statsCache, stations, mode]);
-
   const multiChartData = useMemo(() => mergeSeries(multiSeries), [multiSeries]);
   const multiSummary = useMemo(() => buildSummary(multiSeries), [multiSeries]);
   const multiDetailRows = useMemo(() => buildDetailRows(multiSeries), [multiSeries]);
   const multiGlobalStats = useMemo(() => buildGlobalStats(multiSeries), [multiSeries]);
-  const scenarioChartData = useMemo(() => mergeSeries(scenarioSeries), [scenarioSeries]);
-  const scenarioSummary = useMemo(() => buildSummary(scenarioSeries), [scenarioSeries]);
   const multiAxisVariables = useMemo(
     () => Array.from(new Set(multiSeries.map((serie) => serie.variable))).filter(Boolean),
     [multiSeries]
@@ -616,14 +498,15 @@ export default function ClimateModesDashboard() {
             ))}
           </div>
 
-          <div className="space-y-4">
-            <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
-              <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
-                <h3 className="text-base font-semibold text-slate-800">
+          <div className="space-y-5">
+            <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-md">
+              <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-3">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <h3 className="text-base font-semibold text-white">
                   Séries temporelles comparées{multiAggregationLabel ? ` - ${multiAggregationLabel}` : ""}
                 </h3>
                 <div className="flex flex-wrap items-center gap-2">
-                  <div className="inline-flex rounded-lg border border-slate-200 bg-slate-50 p-0.5">
+                  <div className="inline-flex rounded-lg border border-white/20 bg-white/10 p-0.5 backdrop-blur">
                     <button
                       type="button"
                       className={`rounded-md px-2 py-1 text-xs font-medium ${multiChartType === "line" ? "bg-white text-slate-800 shadow-sm" : "text-slate-500"}`}
@@ -641,7 +524,7 @@ export default function ClimateModesDashboard() {
                   </div>
                   <button
                     type="button"
-                    className="rounded-lg border border-slate-200 px-2 py-1 text-xs font-medium text-slate-600 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="rounded-lg border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white transition hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-50"
                     onClick={exportMultiChartImage}
                     disabled={!multiChartData.length}
                   >
@@ -649,7 +532,7 @@ export default function ClimateModesDashboard() {
                   </button>
                   <button
                     type="button"
-                    className="rounded-lg border border-slate-200 px-2 py-1 text-xs font-medium text-slate-600 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="rounded-lg border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white transition hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-50"
                     onClick={exportMultiChartPdf}
                     disabled={!multiChartData.length}
                   >
@@ -657,17 +540,19 @@ export default function ClimateModesDashboard() {
                   </button>
                 </div>
               </div>
-              <div className="mb-3 grid grid-cols-1 gap-2 md:grid-cols-3">
-                <div className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2">
-                  <div className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Minimum</div>
+              </div>
+              <div className="space-y-4 p-4">
+              <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+                <div className="rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50 to-cyan-50 px-3 py-3 shadow-sm">
+                  <div className="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Minimum</div>
                   <div className="text-sm font-semibold text-slate-800">{multiGlobalStats.min}</div>
                 </div>
-                <div className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2">
-                  <div className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Moyenne</div>
+                <div className="rounded-xl border border-purple-200 bg-gradient-to-br from-purple-50 to-fuchsia-50 px-3 py-3 shadow-sm">
+                  <div className="text-[10px] font-semibold uppercase tracking-wider text-purple-700">Moyenne</div>
                   <div className="text-sm font-semibold text-slate-800">{multiGlobalStats.mean}</div>
                 </div>
-                <div className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2">
-                  <div className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Maximum</div>
+                <div className="rounded-xl border border-emerald-200 bg-gradient-to-br from-green-50 to-emerald-50 px-3 py-3 shadow-sm">
+                  <div className="text-[10px] font-semibold uppercase tracking-wider text-emerald-700">Maximum</div>
                   <div className="text-sm font-semibold text-slate-800">{multiGlobalStats.max}</div>
                 </div>
               </div>
@@ -773,11 +658,12 @@ export default function ClimateModesDashboard() {
                   Les paramètres supplémentaires utilisent aussi l'axe droit.
                 </p>
               ) : null}
+              </div>
             </div>
 
             <div className="grid grid-cols-1 gap-4 xl:grid-cols-[0.95fr_1.25fr]">
-            <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm xl:order-2">
-              <h3 className="mb-2 text-base font-semibold text-slate-800">Tableau détaillé des données</h3>
+            <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-md xl:order-2">
+              <h3 className="mb-3 bg-gradient-to-r from-emerald-500 to-teal-500 px-4 py-3 text-base font-semibold text-white">Tableau détaillé des données</h3>
               {multiDetailRows.length > 0 ? (
                 <div className="max-h-[300px] overflow-auto rounded-lg border border-slate-200">
                   <table className="min-w-full divide-y divide-slate-200 text-xs">
@@ -809,9 +695,9 @@ export default function ClimateModesDashboard() {
                 </div>
               )}
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm xl:order-1">
-              <h3 className="mb-2 text-base font-semibold text-slate-800">Synthèse des stations</h3>
-              <div className="h-[300px]">
+            <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-md xl:order-1">
+              <h3 className="mb-3 bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-3 text-base font-semibold text-white">Synthèse des stations</h3>
+              <div className="h-[300px] px-3 pb-3">
                 {multiSummary.length > 0 ? (
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={multiSummary}>
@@ -840,3 +726,4 @@ export default function ClimateModesDashboard() {
     </div>
   );
 }
+

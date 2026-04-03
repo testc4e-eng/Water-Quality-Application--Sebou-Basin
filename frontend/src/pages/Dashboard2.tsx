@@ -160,6 +160,9 @@ async function loadBarrages(): Promise<Barrage[]> {
 
       if (!Number.isNaN(cx) && !Number.isNaN(cy)) {
         [lon, lat] = convertXYtoLonLat(cx, cy);
+      } else if (f.geometry?.type === "Point" && Array.isArray(f.geometry.coordinates)) {
+        lon = Number(f.geometry.coordinates[0]);
+        lat = Number(f.geometry.coordinates[1]);
       }
 
       return {

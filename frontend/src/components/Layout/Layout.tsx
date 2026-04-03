@@ -9,14 +9,19 @@ const Layout = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="flex min-h-screen bg-slate-50">
       <Sidebar collapsed={sidebarCollapsed} />
-      <div className={["flex min-w-0 flex-1 flex-col", sidebarCollapsed ? "lg:pl-20" : "lg:pl-72"].join(" ")}>
+      <div
+        className={[
+          "flex min-h-screen min-w-0 flex-1 flex-col",
+          sidebarCollapsed ? "lg:pl-20" : "lg:pl-72",
+        ].join(" ")}
+      >
         <Header
           sidebarCollapsed={sidebarCollapsed}
           onToggleSidebar={() => setSidebarCollapsed((value) => !value)}
         />
-        <main className="flex-1 min-w-0">
+        <main className="min-w-0 flex-1">
           <Outlet />
         </main>
         <Footer />

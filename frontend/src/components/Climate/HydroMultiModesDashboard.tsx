@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+﻿import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Bar,
   BarChart,
@@ -73,20 +73,20 @@ const SERIES_TYPES: Array<{
   entitySource: "hydroStation" | "barrage";
   parameters: string[];
 }> = [
-  { id: "debit_station", label: "Debit (SWAT output) / station", entityLabel: "Station", entitySource: "hydroStation", parameters: ["Debit"] },
+  { id: "debit_station", label: "Débit (SWAT output) / station", entityLabel: "Station", entitySource: "hydroStation", parameters: ["Débit"] },
   { id: "niveau_eau_barrage", label: "Niveau eau barrage", entityLabel: "Barrage", entitySource: "barrage", parameters: ["Niveau eau barrage"] },
-  { id: "qualite_barrage", label: "Qualite barrage", entityLabel: "Barrage", entitySource: "barrage", parameters: ["N", "O", "P"] },
-  { id: "qualite_nappe", label: "Qualite nappe", entityLabel: "Station", entitySource: "hydroStation", parameters: ["N", "O", "P"] },
-  { id: "points_eau", label: "Points eau", entityLabel: "Station", entitySource: "hydroStation", parameters: ["Debit", "Temperature", "N", "O", "P"] },
-  { id: "suivi_qualite", label: "Suivi de qualite / point de prelevement", entityLabel: "Station", entitySource: "hydroStation", parameters: ["N", "O", "P"] },
-  { id: "qualite_eau_surface", label: "Qualite eau de surface (WASP) / segment", entityLabel: "Station", entitySource: "hydroStation", parameters: ["N", "O", "P"] },
+  { id: "qualite_barrage", label: "Qualité barrage", entityLabel: "Barrage", entitySource: "barrage", parameters: ["N", "O", "P"] },
+  { id: "qualite_nappe", label: "Qualité nappe", entityLabel: "Station", entitySource: "hydroStation", parameters: ["N", "O", "P"] },
+  { id: "points_eau", label: "Points eau", entityLabel: "Station", entitySource: "hydroStation", parameters: ["Débit", "Temperature", "N", "O", "P"] },
+  { id: "suivi_qualite", label: "Suivi de qualité / point de prélèvement", entityLabel: "Station", entitySource: "hydroStation", parameters: ["N", "O", "P"] },
+  { id: "qualite_eau_surface", label: "Qualité eau de surface (WASP) / segment", entityLabel: "Station", entitySource: "hydroStation", parameters: ["N", "O", "P"] },
 ];
 
 function formatAggregationLabel(value?: string) {
   if (value === "annual") return "Annuel";
   if (value === "monthly") return "Mensuel";
   if (value === "daily") return "Journalier";
-  if (value === "instantaneous") return "Instantane";
+  if (value === "instantaneous") return "Instantané";
   return value || "";
 }
 
@@ -111,7 +111,7 @@ function Select({
   return (
     <div className="relative">
       <select
-        className="w-full appearance-none rounded-md border border-slate-200 bg-white px-2 py-1 text-[11px] text-slate-700 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100 disabled:bg-slate-100 disabled:text-slate-400"
+        className="w-full appearance-none rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-[11px] text-slate-700 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100 disabled:bg-slate-100 disabled:text-slate-400"
         value={value ?? ""}
         onChange={(e) => onChange(e.target.value || undefined)}
         disabled={disabled}
@@ -121,7 +121,7 @@ function Select({
         </option>
         {children}
       </select>
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-400">⌄</div>
+      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-400">▼</div>
     </div>
   );
 }
@@ -151,7 +151,7 @@ function hashSeed(value: string) {
 
 function scaleForParameter(seriesType?: SeriesTypeId, parameter?: string) {
   if (seriesType === "niveau_eau_barrage") return { base: 45, amplitude: 18 };
-  if (parameter === "Debit") return { base: 8, amplitude: 5 };
+  if (parameter === "Débit") return { base: 8, amplitude: 5 };
   if (parameter === "Temperature") return { base: 18, amplitude: 6 };
   if (parameter === "N") return { base: 6, amplitude: 2.2 };
   if (parameter === "O") return { base: 10, amplitude: 3.5 };
@@ -284,7 +284,7 @@ function SeriesConfigurator({
               String(row.scenario_code || "") === String(config.scenarioCode || "") &&
               String(row.run_id || "") === String(config.runId || "")
           )
-          .map((row) => String(row.property_name || "Debit"))
+          .map((row) => String(row.property_name || "Débit"))
       )
     ).filter(Boolean);
   }, [config.seriesType, config.sourceType, config.scenarioCode, config.runId, stats, typeMeta]);
@@ -307,14 +307,14 @@ function SeriesConfigurator({
   }, [config.seriesType, config.sourceType, config.scenarioCode, config.runId, config.parameter, stats]);
 
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-1.5 shadow-sm">
-      <div className="mb-1 flex items-center gap-1">
-        <span className="h-2 w-2 rounded-full" style={{ backgroundColor: config.color }} />
-        <h3 className="text-[11px] font-semibold text-slate-800">{title}</h3>
+    <div className="rounded-2xl border border-slate-200 bg-white p-2 shadow-sm shadow-slate-100">
+      <div className="mb-1.5 flex items-center gap-2">
+        <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: config.color }} />
+        <h3 className="text-[13px] font-semibold text-slate-800">{title}</h3>
       </div>
 
-      <div className="space-y-1">
-        <div className="space-y-0.5">
+      <div className="space-y-1.5">
+        <div className="space-y-1">
           <label className="text-[9px] font-semibold uppercase tracking-wider text-slate-500">Type</label>
           <Select
             value={config.seriesType}
@@ -340,9 +340,9 @@ function SeriesConfigurator({
           </Select>
         </div>
 
-        <div className="space-y-0.5">
+        <div className="space-y-1">
           <label className="text-[9px] font-semibold uppercase tracking-wider text-slate-500">
-            {typeMeta?.entityLabel || "Entite"}
+            {typeMeta?.entityLabel || "Entité"}
           </label>
           <Select
             value={config.entityId}
@@ -370,7 +370,7 @@ function SeriesConfigurator({
 
         {config.seriesType === "debit_station" ? (
           <div className="grid grid-cols-1 gap-1.5 md:grid-cols-2">
-            <div className="space-y-0.5">
+            <div className="space-y-1">
               <label className="text-[9px] font-semibold uppercase tracking-wider text-slate-500">Source</label>
               <Select
                 value={config.sourceType}
@@ -389,14 +389,14 @@ function SeriesConfigurator({
               >
                 {sourceTypes.map((sourceType) => (
                   <option key={sourceType} value={sourceType}>
-                    {sourceType === "observed" ? "Observe" : "Simule"}
+                    {sourceType === "observed" ? "Observé" : "Simulé"}
                   </option>
                 ))}
               </Select>
             </div>
 
-            <div className="space-y-0.5">
-              <label className="text-[9px] font-semibold uppercase tracking-wider text-slate-500">Scenario</label>
+            <div className="space-y-1">
+              <label className="text-[9px] font-semibold uppercase tracking-wider text-slate-500">Scénario</label>
               <Select
                 value={config.scenarioKey}
                 onChange={(value) => {
@@ -423,8 +423,8 @@ function SeriesConfigurator({
         ) : null}
 
         <div className="grid grid-cols-1 gap-1.5 md:grid-cols-2">
-          <div className="space-y-0.5">
-            <label className="text-[9px] font-semibold uppercase tracking-wider text-slate-500">Parametre</label>
+          <div className="space-y-1">
+            <label className="text-[9px] font-semibold uppercase tracking-wider text-slate-500">Paramètre</label>
             <Select
               value={config.parameter}
               onChange={(value) => onUpdate({ parameter: value, aggregation: undefined })}
@@ -439,8 +439,8 @@ function SeriesConfigurator({
             </Select>
           </div>
 
-          <div className="space-y-0.5">
-            <label className="text-[9px] font-semibold uppercase tracking-wider text-slate-500">Aggregation</label>
+          <div className="space-y-1">
+            <label className="text-[9px] font-semibold uppercase tracking-wider text-slate-500">Agrégation</label>
             <Select
               value={config.aggregation}
               onChange={(value) => onUpdate({ aggregation: value })}
@@ -504,7 +504,7 @@ export default function HydroMultiModesDashboard() {
             typeMeta?.entitySource === "barrage"
               ? barrages.find((item) => String(item.id) === String(config.entityId))?.nom_barrage
               : hydroStations.find((item) => String(item.station_id) === String(config.entityId))?.station_name;
-          const label = entityLabel || `Serie ${index + 1}`;
+          const label = entityLabel || `Série ${index + 1}`;
 
           if (config.seriesType === "debit_station") {
             if (!config.sourceType || !config.scenarioCode || !config.runId) return null;
@@ -527,7 +527,7 @@ export default function HydroMultiModesDashboard() {
 
             return {
               id: config.id,
-              label: `${label} • ${config.parameter}`,
+              label: `${label} â€¢ ${config.parameter}`,
               entityLabel: label,
               parameter: String(config.parameter),
               aggregation: String(config.aggregation),
@@ -541,7 +541,7 @@ export default function HydroMultiModesDashboard() {
 
           return {
             id: config.id,
-            label: `${label} • ${config.parameter}`,
+            label: `${label} â€¢ ${config.parameter}`,
             entityLabel: label,
             parameter: String(config.parameter),
             aggregation: String(config.aggregation),
@@ -592,12 +592,12 @@ export default function HydroMultiModesDashboard() {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-5">
       <div className="grid grid-cols-1 gap-3 xl:grid-cols-3">
         {configs.map((config, index) => (
           <SeriesConfigurator
             key={config.id}
-            title={`Serie ${index + 1}`}
+            title={`Série ${index + 1}`}
             config={config}
             hydroStations={hydroStations}
             barrageOptions={barrages}
@@ -609,59 +609,63 @@ export default function HydroMultiModesDashboard() {
         ))}
       </div>
 
-      <div className="space-y-4">
-        <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
-          <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
-            <h3 className="text-base font-semibold text-slate-800">
-              Series temporelles comparees{aggregationLabel ? ` - ${aggregationLabel}` : ""}
-            </h3>
-            <div className="flex flex-wrap items-center gap-2">
-              <div className="inline-flex rounded-lg border border-slate-200 bg-slate-50 p-0.5">
+      <div className="space-y-6">
+        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-md">
+          <div className="bg-gradient-to-r from-cyan-600 via-sky-600 to-violet-600 px-4 py-3">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <h3 className="text-base font-semibold text-white">
+                Séries temporelles comparées{aggregationLabel ? ` - ${aggregationLabel}` : ""}
+              </h3>
+              <div className="flex flex-wrap items-center gap-2">
+                <div className="inline-flex rounded-lg border border-white/20 bg-white/10 p-0.5 backdrop-blur">
+                  <button
+                    type="button"
+                    className={`rounded-md px-2 py-1 text-xs font-medium ${chartType === "line" ? "bg-white text-slate-800 shadow-sm" : "text-white/75"}`}
+                    onClick={() => setChartType("line")}
+                  >
+                    Courbe
+                  </button>
+                  <button
+                    type="button"
+                    className={`rounded-md px-2 py-1 text-xs font-medium ${chartType === "bar" ? "bg-white text-slate-800 shadow-sm" : "text-white/75"}`}
+                    onClick={() => setChartType("bar")}
+                  >
+                    Barres
+                  </button>
+                </div>
                 <button
                   type="button"
-                  className={`rounded-md px-2 py-1 text-xs font-medium ${chartType === "line" ? "bg-white text-slate-800 shadow-sm" : "text-slate-500"}`}
-                  onClick={() => setChartType("line")}
+                  className="rounded-lg border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white transition hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-50"
+                  onClick={exportChartImage}
+                  disabled={!chartData.length}
                 >
-                  Courbe
+                  Export Image
                 </button>
                 <button
                   type="button"
-                  className={`rounded-md px-2 py-1 text-xs font-medium ${chartType === "bar" ? "bg-white text-slate-800 shadow-sm" : "text-slate-500"}`}
-                  onClick={() => setChartType("bar")}
+                  className="rounded-lg border border-white/20 bg-white/10 px-2 py-1 text-xs font-medium text-white transition hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-50"
+                  onClick={exportChartPdf}
+                  disabled={!chartData.length}
                 >
-                  Barres
+                  Export PDF
                 </button>
               </div>
-              <button
-                type="button"
-                className="rounded-lg border border-slate-200 px-2 py-1 text-xs font-medium text-slate-600 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
-                onClick={exportChartImage}
-                disabled={!chartData.length}
-              >
-                Export Image
-              </button>
-              <button
-                type="button"
-                className="rounded-lg border border-slate-200 px-2 py-1 text-xs font-medium text-slate-600 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
-                onClick={exportChartPdf}
-                disabled={!chartData.length}
-              >
-                Export PDF
-              </button>
             </div>
           </div>
-          <div className="mb-3 grid grid-cols-1 gap-2 md:grid-cols-3">
-            <div className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2">
-              <div className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Minimum</div>
+          <div className="px-4 pb-4 pt-5">
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+            <div className="rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50 to-cyan-50 px-3 py-3 shadow-sm">
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-blue-700">Minimum</div>
               <div className="text-sm font-semibold text-slate-800">{globalStats.min}</div>
             </div>
-            <div className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2">
-              <div className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Moyenne</div>
+            <div className="rounded-xl border border-purple-200 bg-gradient-to-br from-purple-50 to-fuchsia-50 px-3 py-3 shadow-sm">
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-purple-700">Moyenne</div>
               <div className="text-sm font-semibold text-slate-800">{globalStats.mean}</div>
             </div>
-            <div className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2">
-              <div className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Maximum</div>
+            <div className="rounded-xl border border-emerald-200 bg-gradient-to-br from-green-50 to-emerald-50 px-3 py-3 shadow-sm">
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-emerald-700">Maximum</div>
               <div className="text-sm font-semibold text-slate-800">{globalStats.max}</div>
+            </div>
             </div>
           </div>
 
@@ -736,34 +740,37 @@ export default function HydroMultiModesDashboard() {
                 </ResponsiveContainer>
               ) : (
                 <div className="flex h-full items-center justify-center rounded-lg bg-slate-50 px-4 text-center text-xs text-slate-500">
-                  Configurez au moins une serie complete pour afficher le graphe.
+                  Configurez au moins une série complète pour afficher le graphe.
                 </div>
               )}
             </div>
           </div>
 
           {axisParameters.length > 2 ? (
-            <p className="mt-2 text-xs text-slate-500">Les parametres supplementaires utilisent aussi l'axe droit.</p>
+            <p className="mt-2 text-xs text-slate-500">Les paramètres supplémentaires utilisent aussi l'axe droit.</p>
           ) : null}
           {hasPreviewSeries ? (
             <p className="mt-2 text-xs text-amber-600">
-              Certaines familles non encore branchees au backend sont affichees en mode previsualisation pour garder la meme logique que le dashboard climat.
+              Certaines familles non encore branchées au backend sont affichées en mode prévisualisation pour garder la même logique que le dashboard climat.
             </p>
           ) : null}
         </div>
 
         <div className="grid grid-cols-1 gap-4 xl:grid-cols-[0.95fr_1.25fr]">
-          <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm xl:order-2">
-            <h3 className="mb-2 text-base font-semibold text-slate-800">Tableau detaille des donnees</h3>
+          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-md xl:order-2">
+            <div className="bg-gradient-to-r from-emerald-500 to-teal-500 px-4 py-3">
+              <h3 className="text-base font-semibold text-white">Tableau détaillé des données</h3>
+            </div>
+            <div className="p-4">
             {detailRows.length > 0 ? (
               <div className="max-h-[300px] overflow-auto rounded-lg border border-slate-200">
                 <table className="min-w-full divide-y divide-slate-200 text-xs">
                   <thead className="sticky top-0 bg-slate-50 text-slate-600">
                     <tr>
-                      <th className="px-3 py-2 text-left font-semibold">Periode</th>
-                      <th className="px-3 py-2 text-left font-semibold">Entite</th>
-                      <th className="px-3 py-2 text-left font-semibold">Parametre</th>
-                      <th className="px-3 py-2 text-left font-semibold">Aggregation</th>
+                      <th className="px-3 py-2 text-left font-semibold">Période</th>
+                      <th className="px-3 py-2 text-left font-semibold">Entité</th>
+                      <th className="px-3 py-2 text-left font-semibold">Paramètre</th>
+                      <th className="px-3 py-2 text-left font-semibold">Agrégation</th>
                       <th className="px-3 py-2 text-right font-semibold">Valeur</th>
                     </tr>
                   </thead>
@@ -782,13 +789,17 @@ export default function HydroMultiModesDashboard() {
               </div>
             ) : (
               <div className="flex h-[300px] items-center justify-center rounded-xl bg-slate-50 text-sm text-slate-500">
-                Le tableau detaille apparaitra ici apres selection des series.
+                Le tableau détaillé apparaîtra ici après sélection des séries.
               </div>
             )}
+            </div>
           </div>
 
-          <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm xl:order-1">
-            <h3 className="mb-2 text-base font-semibold text-slate-800">Synthese des stations</h3>
+          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-md xl:order-1">
+            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-3">
+              <h3 className="text-base font-semibold text-white">Synthèse des stations</h3>
+            </div>
+            <div className="p-4">
             <div className="h-[300px]">
               {summaryRows.length > 0 ? (
                 <ResponsiveContainer width="100%" height="100%">
@@ -805,9 +816,10 @@ export default function HydroMultiModesDashboard() {
                 </ResponsiveContainer>
               ) : (
                 <div className="flex h-full items-center justify-center rounded-xl bg-slate-50 text-sm text-slate-500">
-                  La synthese apparaitra ici apres selection des series.
+                  La synthèse apparaîtra ici après sélection des séries.
                 </div>
               )}
+            </div>
             </div>
           </div>
         </div>
@@ -815,3 +827,4 @@ export default function HydroMultiModesDashboard() {
     </div>
   );
 }
+

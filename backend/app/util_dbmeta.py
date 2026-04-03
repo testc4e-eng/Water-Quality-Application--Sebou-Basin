@@ -36,7 +36,7 @@ def table_exists(fullname: str) -> bool:
     SELECT 1
     FROM   pg_catalog.pg_class c
     JOIN   pg_catalog.pg_namespace n ON n.oid = c.relnamespace
-    WHERE  c.relkind = 'r'
+    WHERE  c.relkind IN ('r','v','m')
       AND  n.nspname = %s
       AND  c.relname = %s
     LIMIT 1;
@@ -101,6 +101,36 @@ def get_geom_column(fullname: str) -> Optional[str]:
     """
     with connection() as cx, cx.cursor() as cur:
         cur.execute(q3, (schema, table))
+        r = cur.fetchone()
+        return r[0] if r else None
+
+# -------------------------------
+# Colonne GeoJSON deja serialisee
+# -------------------------------
+@lru_cache(maxsize=512)
+def get_geojson_column(fullname: str) -> Optional[str]:
+    schema, table = _split_table(fullname)
+    candidates = (
+        "geojson",
+        "geometry",
+        "geom_geojson",
+        "feature_geojson",
+        "bassin_geojson",
+        "sous_bassin_geojson",
+    )
+    placeholders = ",".join(["%s"] * len(candidates))
+    q = f"""
+    SELECT column_name
+    FROM information_schema.columns
+    WHERE table_schema = %s
+      AND table_name = %s
+      AND lower(column_name) IN ({placeholders})
+    ORDER BY array_position(ARRAY[{placeholders}]::text[], lower(column_name))
+    LIMIT 1;
+    """
+    params = [schema, table] + list(candidates) + list(candidates)
+    with connection() as cx, cx.cursor() as cur:
+        cur.execute(q, params)
         r = cur.fetchone()
         return r[0] if r else None
 

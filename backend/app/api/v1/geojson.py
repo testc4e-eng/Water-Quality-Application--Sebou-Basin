@@ -8,12 +8,12 @@ router = APIRouter(prefix="/geojson")
 
 # Env overrides possibles (sinon on tente une recherche par motif)
 ENV_TABLES = {
-    "bassin_sebou":      os.getenv("BASSIN_TABLE"),
-    "sous_bassin_sebou": os.getenv("SOUSBASSIN_TABLE"),
+    "bassin_sebou":      os.getenv("BASSIN_TABLE", "api.v_bassin_geojson"),
+    "sous_bassin_sebou": os.getenv("SOUSBASSIN_TABLE", "api.v_sous_bassin_geojson"),
     "reseau_hydro_abhs":      os.getenv("RESEAU_TABLE"),
-    "stations_abh":    os.getenv("STATIONS_TABLE"),
-    "barrages":    os.getenv("BARRAGES_TABLE"),
-    "points_eau":  os.getenv("POINTSEAU_TABLE"),
+    "stations_abh":    os.getenv("STATIONS_TABLE", "api.v_station_dimension"),
+    "barrages":    os.getenv("BARRAGES_TABLE", "api.v_barrage_dimension"),
+    "points_eau":  os.getenv("POINTSEAU_TABLE", "api.v_points_eau"),
     "mines":       os.getenv("MINES_TABLE"),
     "capteurs":    os.getenv("CAPTEURS_TABLE"),
 }

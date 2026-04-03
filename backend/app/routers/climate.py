@@ -1,120 +1,182 @@
 # backend/app/routers/climate.py
 
 from fastapi import APIRouter, Depends, Query
-from sqlalchemy.orm import Session
 from sqlalchemy import text
-from app.db.climate_database import get_climate_db
+from sqlalchemy.orm import Session
 
 from app.core.logger import get_logger
-log = get_logger("CLIMATE_API")
+from app.db.climate_database import get_climate_db
 
+log = get_logger("CLIMATE_API")
 
 router = APIRouter(tags=["climate"])
 
-# =====================================================
-# 1. STATIONS (pour combo Station)
-# =====================================================
+SOURCE_TYPE = "observed"
+SCENARIO_CODE = "OBS"
+SCENARIO_NAME = "Mesures ABH"
+RUN_ID = 1
+
+
+def _metric_from_ts_id(ts_id: str) -> tuple[str | None, str | None]:
+    if "|" not in ts_id:
+        return None, None
+    station_id, metric = ts_id.split("|", 1)
+    if metric not in {"p_max", "p_annuelle"}:
+        return None, None
+    return station_id, metric
+
+
+def _datetime_expression():
+    return "make_date(annee, 1, 1)"
+
+
 @router.get("/stations")
 def climate_stations(db: Session = Depends(get_climate_db)):
     log.info("GET /climate/stations")
 
-    rows = db.execute(text("""
-        SELECT DISTINCT station_id, station_code, station_name
-        FROM api.v_stations_stats
-        ORDER BY station_name
-    """)).mappings().all()
+    rows = db.execute(
+        text(
+            """
+            SELECT DISTINCT
+              d.station_id::text AS station_id,
+              COALESCE(NULLIF(d.code_station, ''), p.ire_station) AS station_code,
+              COALESCE(NULLIF(d.station_nom, ''), NULLIF(p.station_nom, ''), NULLIF(d.code_station, ''), p.ire_station) AS station_name
+            FROM api.v_meteo_precipitation_annuelle_max p
+            LEFT JOIN api.v_station_dimension d
+              ON d.station_id = p.station_id
+            WHERE p.station_id IS NOT NULL
+            ORDER BY 3
+            """
+        )
+    ).mappings().all()
 
-
-
-
-    log.info(f"→ stations count = {len(rows)}")
+    log.info("stations count = %s", len(rows))
     return rows
 
-# =====================================================
-# 2. STATS MÉTIER (équivalent dm.get_station_stats)
-# =====================================================
+
 @router.get("/station-stats")
-def climate_station_stats(station_id: int, db: Session = Depends(get_climate_db)):
-    log.info(f"GET /climate/station-stats | station_id={station_id}")
+def climate_station_stats(station_id: str, db: Session = Depends(get_climate_db)):
+    log.info("GET /climate/station-stats | station_id=%s", station_id)
 
-    rows = db.execute(text("""
-        SELECT *
-        FROM api.v_stations_stats
-        WHERE station_id = :station_id
-    """), {"station_id": station_id}).mappings().all()
+    row = db.execute(
+        text(
+            f"""
+            SELECT
+              MIN({_datetime_expression()})::date AS dt_min,
+              MAX({_datetime_expression()})::date AS dt_max,
+              COUNT(*) AS n_rows
+            FROM api.v_meteo_precipitation_annuelle_max
+            WHERE station_id::text = :station_id
+            """
+        ),
+        {"station_id": station_id},
+    ).mappings().first()
 
-    log.info(f"→ stats rows = {len(rows)}")
-    return rows
+    if not row or not row["n_rows"]:
+        return []
 
-# =====================================================
-# 3. SÉRIE TEMPORELLE
-# =====================================================
+    stats = [
+        {
+            "station_id": station_id,
+            "source_type": SOURCE_TYPE,
+            "scenario_code": SCENARIO_CODE,
+            "scenario_name": SCENARIO_NAME,
+            "run_id": RUN_ID,
+            "property_name": "Précipitation maximale",
+            "time_step": "annual",
+            "ts_id": f"{station_id}|p_max",
+            "dt_min": row["dt_min"].isoformat() if row["dt_min"] else None,
+            "dt_max": row["dt_max"].isoformat() if row["dt_max"] else None,
+        },
+        {
+            "station_id": station_id,
+            "source_type": SOURCE_TYPE,
+            "scenario_code": SCENARIO_CODE,
+            "scenario_name": SCENARIO_NAME,
+            "run_id": RUN_ID,
+            "property_name": "Précipitation annuelle",
+            "time_step": "annual",
+            "ts_id": f"{station_id}|p_annuelle",
+            "dt_min": row["dt_min"].isoformat() if row["dt_min"] else None,
+            "dt_max": row["dt_max"].isoformat() if row["dt_max"] else None,
+        },
+    ]
+
+    log.info("stats rows = %s", len(stats))
+    return stats
+
+
 @router.get("/timeseries")
 def climate_timeseries(
-    ts_id: int,
+    ts_id: str,
     time_step: str,
     date_start: str | None = None,
     date_end: str | None = None,
     db: Session = Depends(get_climate_db),
 ):
-    log.info(f"GET /climate/timeseries | ts_id={ts_id} | time_step={time_step}")
+    log.info("GET /climate/timeseries | ts_id=%s | time_step=%s", ts_id, time_step)
 
-    view_map = {
-        "daily": "api.v_measurements_daily",
-        "monthly": "api.v_measurements_monthly",
-        "annual": "api.v_measurements_annual",
-        "instantaneous": "api.v_measurements_latest",
-    }
+    if time_step.lower() != "annual":
+        return []
 
-    view_name = view_map.get(time_step.lower())
+    station_id, metric = _metric_from_ts_id(ts_id)
+    if not station_id or not metric:
+        return []
 
-    if not view_name:
-        return {"error": "Invalid time_step"}
+    value_column = "p_max" if metric == "p_max" else "p_annuelle"
 
-    sql = f"""
-        SELECT datetime, value
-        FROM {view_name}
-        WHERE ts_id = :ts_id
-          AND (:date_start IS NULL OR datetime >= :date_start)
-          AND (:date_end IS NULL OR datetime <= :date_end)
-        ORDER BY datetime
-    """
-
-    rows = db.execute(text(sql), {
-        "ts_id": ts_id,
-        "date_start": date_start,
-        "date_end": date_end,
-    }).mappings().all()
+    rows = db.execute(
+        text(
+            f"""
+            SELECT
+              {_datetime_expression()}::date AS datetime,
+              {value_column} AS value
+            FROM api.v_meteo_precipitation_annuelle_max
+            WHERE station_id::text = :station_id
+              AND {value_column} IS NOT NULL
+              AND (:date_start IS NULL OR {_datetime_expression()}::date >= :date_start::date)
+              AND (:date_end IS NULL OR {_datetime_expression()}::date <= :date_end::date)
+            ORDER BY datetime
+            """
+        ),
+        {
+            "station_id": station_id,
+            "date_start": date_start,
+            "date_end": date_end,
+        },
+    ).mappings().all()
 
     return rows
 
 
-# =====================================================
-# 4. KPIs (MIN / MAX / MOY + extrêmes)
-# =====================================================
 @router.get("/kpis")
 def climate_kpis(
-    ts_id: int,
-    time_step: str,
+    ts_id: str,
+    time_step: str = Query("annual"),
     db: Session = Depends(get_climate_db),
 ):
-    view_map = {
-        "daily": "api.v_measurements_daily",
-        "monthly": "api.v_measurements_monthly",
-        "annual": "api.v_measurements_annual",
-        "instantaneous": "api.v_measurements_latest",
-    }
+    if time_step.lower() != "annual":
+        return {"min": None, "max": None, "mean": None}
 
-    view_name = view_map.get(time_step.lower())
+    station_id, metric = _metric_from_ts_id(ts_id)
+    if not station_id or not metric:
+        return {"min": None, "max": None, "mean": None}
 
-    sql = f"""
-        SELECT
-            MIN(value) AS min,
-            MAX(value) AS max,
-            AVG(value) AS mean
-        FROM {view_name}
-        WHERE ts_id = :ts_id
-    """
+    value_column = "p_max" if metric == "p_max" else "p_annuelle"
 
-    row = db.execute(text(sql), {"ts_id": ts_id}).mappings().one()
+    row = db.execute(
+        text(
+            f"""
+            SELECT
+              MIN({value_column}) AS min,
+              MAX({value_column}) AS max,
+              AVG({value_column}) AS mean
+            FROM api.v_meteo_precipitation_annuelle_max
+            WHERE station_id::text = :station_id
+              AND {value_column} IS NOT NULL
+            """
+        ),
+        {"station_id": station_id},
+    ).mappings().one()
+
     return row

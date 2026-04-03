@@ -8,6 +8,9 @@ export const LAYERS = [
 
   { key: "barrages_abhs", label: "Barrages" },
   { key: "stations_abhs", label: "Stations hydrologiques" },
+  { key: "points_eau", label: "Points d'eau" },
+  { key: "step_industrielles", label: "STEP industrielles" },
+  { key: "stm", label: "STM" },
 
   { key: "adm_regions_abhs", label: "Régions" },
   { key: "adm_provinces_abhs", label: "Provinces" },
@@ -24,6 +27,9 @@ export const DEFAULT_TOGGLES: Record<string, boolean> = {
 
   barrages_abhs: false,
   stations_abhs: false,
+  points_eau: false,
+  step_industrielles: false,
+  stm: false,
 
   adm_regions_abhs: false,
   adm_provinces_abhs: false,
