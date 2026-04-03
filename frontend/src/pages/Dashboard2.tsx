@@ -5,7 +5,6 @@ import maplibregl, {
   LayerSpecification,
   StyleSpecification,
 } from "maplibre-gl";
-import proj4 from "proj4";
 import * as turf from "@turf/turf";
 import { Layers3, PanelLeft, X } from "lucide-react";
 
@@ -24,31 +23,6 @@ interface Station {
   lon: number;
 }
 
-interface BarrageDto {
-  id: number;
-  nom_barrage: string;
-  nom_oued?: string | null;
-  statut?: string | null;
-  type_barrage?: string | null;
-  hauteur?: number | null;
-  apports_hm?: number | null;
-  capacite?: number | null;
-  mise_en_se?: string | null;
-  coord_x: number | null;
-  coord_y: number | null;
-}
-
-interface Barrage extends BarrageDto {
-  lon: number;
-  lat: number;
-}
-
-const LAMBERT =
-  "+proj=lcc +lat_1=33.3 +lat_2=35.9 +lat_0=32.1 +lon_0=-5.4 +x_0=500000 +y_0=300000 +ellps=clrk80 +units=m +no_defs";
-
-function convertXYtoLonLat(x: number, y: number): [number, number] {
-  return proj4(LAMBERT, "EPSG:4326", [x, y]) as [number, number];
-}
 
 function geomKind(fc: FeatureCollection): "point" | "line" | "polygon" {
   const f = fc.features?.[0];
@@ -145,41 +119,11 @@ async function loadStations(): Promise<Station[]> {
   }
 }
 
-async function loadBarrages(): Promise<Barrage[]> {
-  try {
-    const res = await api.get<any>("/layers/barrages_abhs");
-    const features = res.data?.features || [];
-
-    return features.map((f: any) => {
-      const props = f.properties;
-      const cx = props.coord_x ?? NaN;
-      const cy = props.coord_y ?? NaN;
-
-      let lon = NaN;
-      let lat = NaN;
-
-      if (!Number.isNaN(cx) && !Number.isNaN(cy)) {
-        [lon, lat] = convertXYtoLonLat(cx, cy);
-      }
-
-      return {
-        ...props,
-        lon,
-        lat,
-      };
-    });
-  } catch {
-    return [];
-  }
-}
-
 export default function Dashboard2() {
   const today = new Date();
   const todayStr = today.toISOString().slice(0, 10);
 
   const [selectedId, setSelectedId] = useState<number | null>(null);
-  const [selectedSousBassinId, setSelectedSousBassinId] = useState<string | null>(null);
-  const [selectedBarrageId, setSelectedBarrageId] = useState<number | null>(null);
 
   const [range, setRange] = useState<{ from: string; to: string }>({
     from: "2024-01-01",
@@ -195,7 +139,6 @@ export default function Dashboard2() {
   });
 
   const [stations, setStations] = useState<Station[]>([]);
-  const [barrages, setBarrages] = useState<Barrage[]>([]);
   const [loading, setLoading] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [basemapOpen, setBasemapOpen] = useState(false);
@@ -256,11 +199,10 @@ export default function Dashboard2() {
     setLoading(true);
     setLoadError(null);
 
-    Promise.all([loadStations(), loadBarrages()])
-      .then(([st, br]) => {
+    Promise.all([loadStations()])
+      .then(([st]) => {
         if (!alive) return;
         setStations(st);
-        setBarrages(br);
         setSelectedId((prev) => prev ?? (st.length ? st[0].id : null));
       })
       .catch(() => setLoadError("Erreur de chargement"))
@@ -295,7 +237,7 @@ export default function Dashboard2() {
 
       try {
         let url = `/layers/${key}`;
-        if (key === "stations_abhs") {
+        if (key === "stms") {
           const stationIds = stations.map((s) => s.id).filter((id) => Number.isFinite(id));
           if (!stationIds.length) return;
           url += `?ids=${encodeURIComponent(stationIds.join(","))}`;
@@ -414,7 +356,7 @@ export default function Dashboard2() {
 
       try {
         let url = `/layers/${layerKey}`;
-        if (layerKey === "stations_abhs") {
+        if (layerKey === "stms") {
           const stationIds = stations.map((s) => s.id).filter((id) => Number.isFinite(id));
           if (!stationIds.length) return;
           url += `?ids=${encodeURIComponent(stationIds.join(","))}`;
@@ -438,7 +380,7 @@ export default function Dashboard2() {
     if (!map) return;
 
     const onClickStation = (e: maplibregl.MapMouseEvent) => {
-      const stationLayers = ["base-layer-stations_abhs", "sel-layer-stations_abhs"].filter(
+      const stationLayers = ["base-layer-stms", "sel-layer-stms"].filter(
         (id) => !!map.getLayer(id)
       );
       if (!stationLayers.length) return;
@@ -459,7 +401,7 @@ export default function Dashboard2() {
     };
 
     const onMouseMove = (e: maplibregl.MapMouseEvent) => {
-      const stationLayers = ["base-layer-stations_abhs", "sel-layer-stations_abhs"].filter(
+      const stationLayers = ["base-layer-stms", "sel-layer-stms"].filter(
         (id) => !!map.getLayer(id)
       );
       if (!stationLayers.length) {
@@ -489,26 +431,14 @@ export default function Dashboard2() {
       const idArray = Array.isArray(ids) ? ids : [ids];
       setActiveFilterSelection({ type, ids: idArray });
 
-      if (type === "sous-bassin") loadLayerForFilter("sous_bassin_sebou", idArray);
-      if (type === "barrage") loadLayerForFilter("barrages_abhs", idArray);
-
       if (type === "station") {
-        loadLayerForFilter("stations_abhs", idArray);
+        loadLayerForFilter("stms", idArray);
         const firstId = idArray[0];
         const station = stations.find((s) => String(s.id) === String(firstId));
         if (station) {
           setSelectedId(station.id);
-          setSelectedSousBassinId(null);
-          setSelectedBarrageId(null);
         }
       }
-
-      if (type === "region") loadLayerForFilter("adm_regions_abhs", idArray);
-      if (type === "province") loadLayerForFilter("adm_provinces_abhs", idArray);
-      if (type === "cercle") loadLayerForFilter("adm_cercles_abhs", idArray);
-      if (type === "commune") loadLayerForFilter("adm_communes_abhs", idArray);
-      if (type === "ville") loadLayerForFilter("adm_villes_abhs", idArray);
-      if (type === "douar") loadLayerForFilter("adm_douars_abhs", idArray);
     },
     [loadLayerForFilter, stations]
   );
@@ -518,30 +448,9 @@ export default function Dashboard2() {
     const { type, ids } = activeFilterSelection;
     const idArray = ids;
 
-    if (type === "sous-bassin") void loadLayerForFilter("sous_bassin_sebou", idArray);
-    if (type === "barrage") void loadLayerForFilter("barrages_abhs", idArray);
-    if (type === "station") void loadLayerForFilter("stations_abhs", idArray);
-    if (type === "region") void loadLayerForFilter("adm_regions_abhs", idArray);
-    if (type === "province") void loadLayerForFilter("adm_provinces_abhs", idArray);
-    if (type === "cercle") void loadLayerForFilter("adm_cercles_abhs", idArray);
-    if (type === "commune") void loadLayerForFilter("adm_communes_abhs", idArray);
-    if (type === "ville") void loadLayerForFilter("adm_villes_abhs", idArray);
-    if (type === "douar") void loadLayerForFilter("adm_douars_abhs", idArray);
+    if (type === "station") void loadLayerForFilter("stms", idArray);
   }, [activeFilterSelection, loadLayerForFilter, styleRevision]);
 
-  const selectedLabel = useMemo(() => {
-    if (selectedId) return `Station ${selectedId}`;
-    if (selectedSousBassinId) return `Sous-bassin ${selectedSousBassinId}`;
-    if (selectedBarrageId) return `Barrage ${selectedBarrageId}`;
-    return "—";
-  }, [selectedId, selectedSousBassinId, selectedBarrageId]);
-
-  const selectedName = useMemo(() => {
-    if (selectedId) return stations.find((s) => s.id === selectedId)?.name ?? "—";
-    if (selectedBarrageId) return barrages.find((b) => b.id === selectedBarrageId)?.nom_barrage ?? "—";
-    if (selectedSousBassinId) return `ID ${selectedSousBassinId}`;
-    return "—";
-  }, [stations, barrages, selectedId, selectedSousBassinId, selectedBarrageId]);
 
   return (
     <div className="h-full bg-white">

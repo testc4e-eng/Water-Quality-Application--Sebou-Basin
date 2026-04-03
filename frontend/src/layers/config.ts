@@ -1,34 +1,26 @@
-// ✅ frontend/src/layers/config.ts
-// Configuration centralisée des couches affichables sur la carte
+// frontend/src/layers/config.ts
+// Configuration centralisee des couches affichables sur la carte
 
 export const LAYERS = [
-  { key: "bassin_sebou", label: "Bassin du Sebou" },
-  { key: "sous_bassin_sebou", label: "Sous-bassins" },
-  { key: "reseau_hydro_abhs", label: "Réseau hydrographique" },
-
-  { key: "barrages_abhs", label: "Barrages" },
-  { key: "stations_abhs", label: "Stations hydrologiques" },
-
-  { key: "adm_regions_abhs", label: "Régions" },
-  { key: "adm_provinces_abhs", label: "Provinces" },
-  { key: "adm_cercles_abhs", label: "Cercles" },
-  { key: "adm_communes_abhs", label: "Communes" },
-  { key: "adm_villes_abhs", label: "Villes" },
-  { key: "adm_douars_abhs", label: "Douars" },
+  { key: "stms", label: "Stations de mesure (STMS)" },
+  { key: "steps", label: "Stations d'epuration (STEP)" },
+  { key: "steps_industrielles", label: "STEP industrielles" },
+  { key: "decharges", label: "Decharges" },
+  { key: "decharges_abandonnees", label: "Decharges abandonnees" },
+  { key: "rejets_brutes", label: "Rejets brutes" },
+  { key: "rejet_abattoir", label: "Rejets abattoirs" },
+  { key: "huileries", label: "Huileries" },
+  { key: "mines", label: "Mines" },
 ];
 
 export const DEFAULT_TOGGLES: Record<string, boolean> = {
-  bassin_sebou: true,
-  sous_bassin_sebou: true,
-  reseau_hydro_abhs: true,
-
-  barrages_abhs: false,
-  stations_abhs: false,
-
-  adm_regions_abhs: false,
-  adm_provinces_abhs: false,
-  adm_cercles_abhs: false,
-  adm_communes_abhs: false,
-  adm_villes_abhs: false,
-  adm_douars_abhs: false,
+  stms: true,
+  steps: false,
+  steps_industrielles: false,
+  decharges: false,
+  decharges_abandonnees: false,
+  rejets_brutes: false,
+  rejet_abattoir: false,
+  huileries: false,
+  mines: false,
 };

@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import { ChevronDown, ChevronRight, Radar, Search } from "lucide-react";
 import { DEFAULT_TOGGLES } from "@/layers/config";
 import { api } from "@/api/client";
-import type { AxiosResponse } from "axios";
 
 export type LayersState = {
   toggles: Record<string, boolean>;
@@ -22,23 +21,15 @@ export type SidebarFiltersProps = {
   onZoomLayer?: (layerKey: string) => void;
 };
 
-interface NameItem {
-  id: string | number;
-  label: string;
-}
-
 interface StationItem {
   id: string | number;
   name?: string | null;
 }
 
 type SectionKey =
-  | "hydro"
-  | "administratif"
-  | "infra"
-  | "sousBassins"
-  | "barrages"
-  | "stations";
+  | "stations"
+  | "stationsList"
+  | "infra";
 
 type ListItem = {
   id: string;
@@ -47,17 +38,15 @@ type ListItem = {
 
 function groupLabel(key: string): string {
   const labels: Record<string, string> = {
-    bassin_sebou: "Bassin versant",
-    sous_bassin_sebou: "Sous-bassins",
-    reseau_hydro_abhs: "Reseau hydrographique",
-    barrages_abhs: "Barrages",
-    stations_abhs: "Stations hydrologiques",
-    adm_regions_abhs: "Regions",
-    adm_provinces_abhs: "Provinces",
-    adm_cercles_abhs: "Cercles",
-    adm_communes_abhs: "Communes",
-    adm_villes_abhs: "Villes",
-    adm_douars_abhs: "Douars",
+    stms: "Stations de mesure",
+    steps: "Stations d'epuration (STEP)",
+    steps_industrielles: "STEP industrielles",
+    decharges: "Decharges",
+    decharges_abandonnees: "Decharges abandonnees",
+    rejets_brutes: "Rejets brutes",
+    rejet_abattoir: "Rejets abattoirs",
+    huileries: "Huileries",
+    mines: "Mines",
   };
   return labels[key] ?? key.replace(/_/g, " ");
 }
@@ -261,17 +250,12 @@ export default function SidebarFilters({
   });
 
   const [openSections, setOpenSections] = useState<Record<SectionKey, boolean>>({
-    hydro: false,
-    administratif: false,
-    infra: false,
-    sousBassins: false,
-    barrages: false,
     stations: false,
+    stationsList: false,
+    infra: false,
   });
 
-  const [listBarrages, setListBarrages] = useState<ListItem[]>([]);
   const [listStations, setListStations] = useState<ListItem[]>([]);
-  const [listSousBassins, setListSousBassins] = useState<ListItem[]>([]);
 
   useEffect(() => {
     setLocalLayers({
@@ -288,16 +272,6 @@ export default function SidebarFilters({
 
     async function fetchLists() {
       try {
-        const [sb, br]: [AxiosResponse<NameItem[]>, AxiosResponse<NameItem[]>] = await Promise.all([
-          api.get("/names/sous-bassins"),
-          api.get("/names/barrages"),
-        ]);
-
-        if (!alive) return;
-
-        setListSousBassins((sb.data ?? []).map((x) => ({ id: String(x.id), label: x.label })));
-        setListBarrages((br.data ?? []).map((x) => ({ id: String(x.id), label: x.label })));
-
         try {
           const st = await api.get<StationItem[]>("/stations?with_data=true&limit=2000", {
             timeout: 20000,
@@ -310,9 +284,14 @@ export default function SidebarFilters({
             }))
           );
         } catch {
-          const stFallback = await api.get<NameItem[]>("/names/stations");
+          const stFallback = await api.get<StationItem[]>("/stations?limit=2000");
           if (!alive) return;
-          setListStations((stFallback.data ?? []).map((x) => ({ id: String(x.id), label: x.label })));
+          setListStations(
+            (stFallback.data ?? []).map((x) => ({
+              id: String(x.id),
+              label: (x.name ?? "").trim() || `Station ${x.id}`,
+            }))
+          );
         }
       } catch (err) {
         console.error("Erreur chargement listes :", err);
@@ -344,153 +323,67 @@ export default function SidebarFilters({
     }));
   };
 
-  const adminToggleKeys = [
-    "adm_regions_abhs",
-    "adm_provinces_abhs",
-    "adm_cercles_abhs",
-    "adm_communes_abhs",
-    "adm_villes_abhs",
-    "adm_douars_abhs",
+  const stationToggleKeys = ["stms"];
+  const infraToggleKeys = [
+    "steps",
+    "steps_industrielles",
+    "decharges",
+    "decharges_abandonnees",
+    "rejets_brutes",
+    "rejet_abattoir",
+    "huileries",
+    "mines",
   ];
 
-  const hydroToggleKeys = ["bassin_sebou", "sous_bassin_sebou", "reseau_hydro_abhs"];
-  const infraToggleKeys = ["barrages_abhs", "stations_abhs"];
-
-  const selectedSousBassins = Object.values(localLayers.sous_bassins_list).filter(Boolean).length;
-  const selectedBarrages = Object.values(localLayers.barrages_list).filter(Boolean).length;
   const selectedStations = Object.values(localLayers.stations_list).filter(Boolean).length;
 
   return (
     <aside className="overflow-hidden rounded-[30px] border border-emerald-100/15 bg-[radial-gradient(circle_at_top_left,rgba(52,211,153,0.18),transparent_22%),radial-gradient(circle_at_bottom_right,rgba(251,191,36,0.14),transparent_28%),linear-gradient(180deg,#083344_0%,#115e59_42%,#1f2937_100%)] shadow-[0_28px_90px_-34px_rgba(8,15,30,0.96)] backdrop-blur-xl">
       <div className="max-h-[calc(100vh-140px)] space-y-4 overflow-y-auto p-4">
         <CollapsibleBlock
-          title="Geo"
-          count={hydroToggleKeys.filter((key) => localLayers.toggles[key]).length}
+          title="Stations"
+          count={stationToggleKeys.filter((key) => localLayers.toggles[key]).length}
           iconColor="bg-cyan-400"
-          open={openSections.hydro}
-          onToggle={() => toggleSection("hydro")}
+          open={openSections.stations}
+          onToggle={() => toggleSection("stations")}
         >
-          <div className="space-y-2">
-            <LayerCheckbox
-              checked={!!localLayers.toggles.bassin_sebou}
-              label={groupLabel("bassin_sebou")}
-              onChange={(checked) => {
-                toggleLayerKey("bassin_sebou", checked);
-                if (checked) onZoomLayer?.("bassin_sebou");
+          <LayerRowWithList
+            checked={!!localLayers.toggles.stms}
+            label={groupLabel("stms")}
+            listOpen={openSections.stationsList}
+            listCount={selectedStations}
+            onCheckedChange={(checked) => {
+              toggleLayerKey("stms", checked);
+              if (checked) onZoomLayer?.("stms");
+            }}
+            onToggleList={() => toggleSection("stationsList")}
+          >
+            <SearchableChecklist
+              items={listStations}
+              value={localLayers.stations_list}
+              onChange={(next) => {
+                setAndSyncLayers((prev) => ({
+                  ...prev,
+                  stations_list: next,
+                  toggles: { ...prev.toggles, stms: true },
+                }));
+                const ids = Object.keys(next).filter((id) => next[id]);
+                if (ids.length && onSelectFilter) onSelectFilter("station", ids);
               }}
+              placeholder="Rechercher une station..."
             />
-
-            <LayerRowWithList
-              checked={!!localLayers.toggles.sous_bassin_sebou}
-              label={groupLabel("sous_bassin_sebou")}
-              listOpen={openSections.sousBassins}
-              listCount={selectedSousBassins}
-              onCheckedChange={(checked) => {
-                toggleLayerKey("sous_bassin_sebou", checked);
-                if (checked) onZoomLayer?.("sous_bassin_sebou");
-              }}
-              onToggleList={() => toggleSection("sousBassins")}
-            >
-              <SearchableChecklist
-                items={listSousBassins}
-                value={localLayers.sous_bassins_list}
-                onChange={(next) => {
-                  setAndSyncLayers((prev) => ({
-                    ...prev,
-                    sous_bassins_list: next,
-                    toggles: { ...prev.toggles, sous_bassin_sebou: true },
-                  }));
-                  const ids = Object.keys(next).filter((id) => next[id]);
-                  if (ids.length && onSelectFilter) onSelectFilter("sous-bassin", ids);
-                }}
-                placeholder="Rechercher un sous-bassin..."
-              />
-            </LayerRowWithList>
-
-            <LayerCheckbox
-              checked={!!localLayers.toggles.reseau_hydro_abhs}
-              label={groupLabel("reseau_hydro_abhs")}
-              onChange={(checked) => {
-                toggleLayerKey("reseau_hydro_abhs", checked);
-                if (checked) onZoomLayer?.("reseau_hydro_abhs");
-              }}
-            />
-          </div>
+          </LayerRowWithList>
         </CollapsibleBlock>
 
         <CollapsibleBlock
-          title="Infra"
+          title="Infrastructure"
           count={infraToggleKeys.filter((key) => localLayers.toggles[key]).length}
           iconColor="bg-emerald-400"
           open={openSections.infra}
           onToggle={() => toggleSection("infra")}
         >
-          <div className="space-y-2">
-            <LayerRowWithList
-              checked={!!localLayers.toggles.barrages_abhs}
-              label={groupLabel("barrages_abhs")}
-              listOpen={openSections.barrages}
-              listCount={selectedBarrages}
-              onCheckedChange={(checked) => {
-                toggleLayerKey("barrages_abhs", checked);
-                if (checked) onZoomLayer?.("barrages_abhs");
-              }}
-              onToggleList={() => toggleSection("barrages")}
-            >
-              <SearchableChecklist
-                items={listBarrages}
-                value={localLayers.barrages_list}
-                onChange={(next) => {
-                  setAndSyncLayers((prev) => ({
-                    ...prev,
-                    barrages_list: next,
-                    toggles: { ...prev.toggles, barrages_abhs: true },
-                  }));
-                  const ids = Object.keys(next).filter((id) => next[id]);
-                  if (ids.length && onSelectFilter) onSelectFilter("barrage", ids);
-                }}
-                placeholder="Rechercher un barrage..."
-              />
-            </LayerRowWithList>
-
-            <LayerRowWithList
-              checked={!!localLayers.toggles.stations_abhs}
-              label={groupLabel("stations_abhs")}
-              listOpen={openSections.stations}
-              listCount={selectedStations}
-              onCheckedChange={(checked) => {
-                toggleLayerKey("stations_abhs", checked);
-                if (checked) onZoomLayer?.("stations_abhs");
-              }}
-              onToggleList={() => toggleSection("stations")}
-            >
-              <SearchableChecklist
-                items={listStations}
-                value={localLayers.stations_list}
-                onChange={(next) => {
-                  setAndSyncLayers((prev) => ({
-                    ...prev,
-                    stations_list: next,
-                    toggles: { ...prev.toggles, stations_abhs: true },
-                  }));
-                  const ids = Object.keys(next).filter((id) => next[id]);
-                  if (ids.length && onSelectFilter) onSelectFilter("station", ids);
-                }}
-                placeholder="Rechercher une station..."
-              />
-            </LayerRowWithList>
-          </div>
-        </CollapsibleBlock>
-
-        <CollapsibleBlock
-          title="Administratif"
-          count={adminToggleKeys.filter((key) => localLayers.toggles[key]).length}
-          iconColor="bg-amber-400"
-          open={openSections.administratif}
-          onToggle={() => toggleSection("administratif")}
-        >
           <div className="space-y-1">
-            {adminToggleKeys.map((key) => (
+            {infraToggleKeys.map((key) => (
               <LayerCheckbox
                 key={key}
                 checked={!!localLayers.toggles[key]}

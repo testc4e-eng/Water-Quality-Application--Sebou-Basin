@@ -22,6 +22,9 @@ import Dashboard2 from "./pages/Dashboard2";
 import DashboardClimate from "./pages/DashboardClimate";
 import DashboardScenarios from "./pages/DashboardScenarios";
 import DataScanPage from "./pages/admin/DataScanPage";
+import UserManagementPage from "./pages/admin/UserManagementPage";
+import PasswordResetRequestsPage from "./pages/admin/PasswordResetRequestsPage";
+import ChangePasswordPage from "./pages/ChangePasswordPage";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +43,22 @@ const router = createBrowserRouter(
         <Route path="dashboard-climate" element={<DashboardClimate />} />
         <Route path="dashboard-scenarios" element={<DashboardScenarios />} />
         <Route path="admin/data-scan" element={<DataScanPage />} />
+        <Route
+          path="admin/users"
+          element={
+            <AdminOnly>
+              <UserManagementPage />
+            </AdminOnly>
+          }
+        />
+        <Route
+          path="admin/password-resets"
+          element={
+            <AdminOnly>
+              <PasswordResetRequestsPage />
+            </AdminOnly>
+          }
+        />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route
@@ -54,6 +73,7 @@ const router = createBrowserRouter(
 
       <Route path="/login" element={<AuthPage />} />
       <Route path="/register" element={<AuthPage />} />
+      <Route path="/change-password" element={<ChangePasswordPage />} />
       <Route path="*" element={<NotFound />} />
     </>
   ),

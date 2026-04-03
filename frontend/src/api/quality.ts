@@ -45,6 +45,7 @@ function generateMockData(): Row[] {
 
 const MOCK_DATA = generateMockData();
 
+const API_BASE = "http://localhost:8000/api/v1/quality";
 
 // ===============================================
 // AGRÉGATION MENSUELLE
@@ -160,4 +161,17 @@ export const fetchQualityKPIs = async (params: any) => {
     o: mean("o"),
     p: mean("p"),
   });
+};
+
+// ----------------------------
+// INVENTORY (DB)
+// ----------------------------
+export const fetchQualityInventory = async () => {
+  try {
+    const res = await fetch(`${API_BASE}/inventory`);
+    if (!res.ok) throw new Error("Erreur inventaire");
+    return await res.json();
+  } catch {
+    return [];
+  }
 };

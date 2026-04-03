@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Bar,
   BarChart,
@@ -16,6 +16,7 @@ import QualityFilters from "@/components/quality/QualityFilters";
 import QualityKPIs from "@/components/quality/QualityKPIs";
 import QualityTable from "@/components/quality/QualityTable";
 import QualityChart from "@/components/quality/QualityChart";
+import { fetchQualityInventory } from "@/api/quality";
 
 type PollutionMode = "inventaire" | "ponctuelle" | "diffuse";
 
@@ -33,7 +34,7 @@ type InventoryRow = {
   status: "Actif" | "Surveillance" | "A verifier";
 };
 
-const inventoryRows: InventoryRow[] = [
+const fallbackInventoryRows: InventoryRow[] = [
   {
     source: "Industrie",
     sourceType: "Rejets liquides industriels",
@@ -209,30 +210,42 @@ function PollutionModeBar({
 }
 
 function InventoryMode() {
+  const [inventoryRows, setInventoryRows] = useState<InventoryRow[]>([]);
   const [source, setSource] = useState<string>("all");
   const [sourceType, setSourceType] = useState<string>("all");
   const [parameterSearch, setParameterSearch] = useState("");
   const [selectedParameter, setSelectedParameter] = useState<string>("all");
 
+  useEffect(() => {
+    fetchQualityInventory()
+      .then((rows) => {
+        if (rows && rows.length) setInventoryRows(rows);
+        else setInventoryRows(fallbackInventoryRows);
+      })
+      .catch(() => setInventoryRows(fallbackInventoryRows));
+  }, []);
+
+  const rows = inventoryRows.length ? inventoryRows : fallbackInventoryRows;
+
   const sourceOptions = useMemo(
-    () => Array.from(new Set(inventoryRows.map((row) => row.source))),
-    []
+    () => Array.from(new Set(rows.map((row) => row.source))),
+    [rows]
   );
 
   const sourceTypeOptions = useMemo(
     () =>
       Array.from(
         new Set(
-          inventoryRows
+          rows
             .filter((row) => source === "all" || row.source === source)
             .map((row) => row.sourceType)
         )
       ),
-    [source]
+    [source, rows]
   );
 
   const parameterOptions = useMemo(() => {
-    const scopedRows = inventoryRows.filter((row) => {
+    const scopedRows = rows.filter((row) => {
       const sourceMatch = source === "all" || row.source === source;
       const typeMatch = sourceType === "all" || row.sourceType === sourceType;
       return sourceMatch && typeMatch;
@@ -244,13 +257,13 @@ function InventoryMode() {
   }, [source, sourceType, parameterSearch]);
 
   const filteredRows = useMemo(() => {
-    return inventoryRows.filter((row) => {
+    return rows.filter((row) => {
       const sourceMatch = source === "all" || row.source === source;
       const typeMatch = sourceType === "all" || row.sourceType === sourceType;
       const parameterMatch = selectedParameter === "all" || row.parameter === selectedParameter;
       return sourceMatch && typeMatch && parameterMatch;
     });
-  }, [source, sourceType, selectedParameter]);
+  }, [source, sourceType, selectedParameter, rows]);
 
   const totalEntities = useMemo(
     () => filteredRows.reduce((sum, row) => sum + row.entities, 0),

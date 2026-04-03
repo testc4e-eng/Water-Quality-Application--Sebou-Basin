@@ -1,5 +1,6 @@
 # backend/app/routers/layers.py
 from typing import Dict, Optional
+import re
 from fastapi import APIRouter, HTTPException, Depends, Query
 from sqlalchemy.orm import Session
 from sqlalchemy import text
@@ -17,88 +18,86 @@ def get_db():
 LayerCfg = Dict[str, str]
 
 LAYER_MAP: Dict[str, LayerCfg] = {
-    "bassin_sebou": {
-        "table": "public.bassin_sebou",
+    "stms": {
+        "table": "public.stms",
+        "id_col": "id",
+        "name_col": "Nom",
+        "geom_col": "geom",
+    },
+    "steps": {
+        "table": "public.steps",
+        "id_col": "id",
+        "name_col": "Code_STEP",
+        "geom_col": "geom",
+    },
+    "steps_industrielles": {
+        "table": "public.steps_industrielles",
+        "id_col": "id",
+        "name_col": "Nom",
+        "geom_col": "geom",
+    },
+    "decharges": {
+        "table": "public.decharges",
         "id_col": "id",
         "name_col": "nom",
         "geom_col": "geom",
     },
-    "sous_bassin_sebou": {
-        "table": "public.sous_bassin_sebou",
+    "decharges_abandonnees": {
+        "table": "public.decharges_Abondonees",
         "id_col": "id",
-        "name_col": "nom_sous_bassin",
+        "name_col": "Nom",
         "geom_col": "geom",
     },
-    "reseau_hydro_abhs": {
-        "table": "public.reseau_hydro_abhs",
+    "rejets_brutes": {
+        "table": "public.rejets_brutes",
         "id_col": "id",
-        "name_col": "nom_oued",
+        "name_col": "Code_rejet",
         "geom_col": "geom",
     },
-    "barrages_abhs": {
-        "table": "public.barrages_abhs",
+    "rejet_abattoir": {
+        "table": "public.rejet_abattoir",
         "id_col": "id",
-        "name_col": "nom_barrage",
+        "name_col": "id",
         "geom_col": "geom",
     },
-    "stations_abhs": {
-        "table": "public.stations_abhs",
-        "id_col": "id_station",
-        "name_col": "nom_station",
-        "geom_col": "geom",
-    },
-    "adm_regions_abhs": {
-        "table": "public.adm_regions_abhs",
-        "id_col": "code_region",
-        "name_col": "region_fr",
-        "geom_col": "geom",
-    },
-    "adm_provinces_abhs": {
-        "table": "public.adm_provinces_abhs",
-        "id_col": "code_province",
-        "name_col": "province_fr",
-        "geom_col": "geom",
-    },
-    "adm_cercles_abhs": {
-        "table": "public.adm_cercles_abhs",
-        "id_col": "code_cercle",
-        "name_col": "cercle_fr",
-        "geom_col": "geom",
-    },
-    "adm_communes_abhs": {
-        "table": "public.adm_communes_abhs",
-        "id_col": "code_commune",
-        "name_col": "commune_fr",
-        "geom_col": "geom",
-    },
-    "adm_villes_abhs": {
-        "table": "public.adm_villes_abhs",
+    "huileries": {
+        "table": "public.Huileries",
         "id_col": "id",
-        "name_col": "nom_ville",
+        "name_col": "Nom",
         "geom_col": "geom",
     },
-    "adm_douars_abhs": {
-        "table": "public.adm_douars_abhs",
-        "id_col": "code_douar",
-        "name_col": "douar_fr",
+    "mines": {
+        "table": "public.mines",
+        "id_col": "id",
+        "name_col": "Nom",
         "geom_col": "geom",
     },
 }
 
 ALIASES: Dict[str, str] = {
-    "bassin": "bassin_sebou",
-    "sous-bassin": "sous_bassin_sebou",
-    "sous-bassins": "sous_bassin_sebou",
-    "reseau": "reseau_hydro_abhs",
-    "barrages": "barrages_abhs",
-    "stations": "stations_abhs",
-    "regions": "adm_regions_abhs",
-    "provinces": "adm_provinces_abhs",
-    "cercles": "adm_cercles_abhs",
-    "communes": "adm_communes_abhs",
-    "villes": "adm_villes_abhs",
-    "douars": "adm_douars_abhs",
+    "stations": "stms",
+    "step": "steps",
+    "steps": "steps",
+    "steps-industrielles": "steps_industrielles",
+    "decharges-abandonnees": "decharges_abandonnees",
+    "rejets": "rejets_brutes",
+    "abattoir": "rejet_abattoir",
+    "huileries": "huileries",
+    "mines": "mines",
 }
+
+
+def _q_ident(name: str) -> str:
+    if re.match(r"^[a-z_][a-z0-9_]*$", name):
+        return name
+    return f'"{name.replace("\"", "\"\"")}"'
+
+
+def _q_table(fullname: str) -> str:
+    if "." in fullname:
+        schema, table = fullname.split(".", 1)
+        return f"{_q_ident(schema)}.{_q_ident(table)}"
+    return _q_ident(fullname)
 
 def _resolve_key(key: str) -> str:
     key = key.strip().lower().replace("-", "_")
@@ -121,6 +120,9 @@ def get_layer(
         table = cfg["table"]
         id_col = cfg["id_col"]
         geom_col = cfg["geom_col"]
+        table_sql = _q_table(table)
+        id_sql = _q_ident(id_col)
+        geom_sql = _q_ident(geom_col)
 
         sql = f"""
         SELECT jsonb_build_object(
@@ -132,13 +134,13 @@ def get_layer(
                 'type', 'Feature',
                 'geometry',
                     CASE
-                        WHEN ST_SRID({geom_col}) = 4326 THEN ST_AsGeoJSON({geom_col})::jsonb
-                        ELSE ST_AsGeoJSON(ST_Transform({geom_col}, 4326))::jsonb
+                        WHEN ST_SRID(t.{geom_sql}) = 4326 THEN ST_AsGeoJSON(t.{geom_sql})::jsonb
+                        ELSE ST_AsGeoJSON(ST_Transform(t.{geom_sql}, 4326))::jsonb
                     END,
                 'properties', to_jsonb(t) - '{geom_col}'
             ) AS feature
-            FROM {table} AS t
-            WHERE {geom_col} IS NOT NULL
+            FROM {table_sql} AS t
+            WHERE t.{geom_sql} IS NOT NULL
         """
 
         params = {}
@@ -147,7 +149,7 @@ def get_layer(
             if id_list:
                 are_all_numeric = all(x.replace(".", "", 1).isdigit() for x in id_list)
                 placeholders = ", ".join([f":id{i}" for i in range(len(id_list))])
-                sql += f" AND {id_col} IN ({placeholders})"
+                sql += f" AND t.{id_sql} IN ({placeholders})"
                 for i, val in enumerate(id_list):
                     params[f"id{i}"] = int(val) if are_all_numeric else val
 

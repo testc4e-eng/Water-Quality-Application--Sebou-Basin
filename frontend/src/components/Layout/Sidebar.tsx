@@ -9,6 +9,7 @@ import {
   Mail,
   Search,
   Sparkles,
+  Users,
 } from "lucide-react";
 
 type NavItem = {
@@ -31,6 +32,7 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
     { to: "/dashboard-scenarios", label: "Dashboard Scenarios", icon: Sparkles, group: "main" },
     { to: "/data", label: "Gestion Données", icon: Database, group: "admin" },
     { to: "/admin/data-scan", label: "Scan de données", icon: Search, group: "admin" },
+    { to: "/admin/users", label: "Gestion utilisateurs", icon: Users, group: "admin" },
     { to: "/about", label: "A propos", icon: Info, group: "support" },
     { to: "/contact", label: "Contact", icon: Mail, group: "support" },
   ];

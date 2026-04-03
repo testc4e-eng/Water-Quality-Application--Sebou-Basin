@@ -19,8 +19,20 @@ def climate_stations(db: Session = Depends(get_climate_db)):
     log.info("GET /climate/stations")
 
     rows = db.execute(text("""
-        SELECT DISTINCT station_id, station_code, station_name
-        FROM api.v_stations_stats
+        WITH s AS (
+          SELECT
+            station_id,
+            code_station,
+            station_nom,
+            row_number() OVER (ORDER BY station_nom NULLS LAST, station_id) AS station_num
+          FROM api.v_station_dimension
+          WHERE station_nom IS NOT NULL
+        )
+        SELECT
+          station_num AS station_id,
+          code_station AS station_code,
+          station_nom AS station_name
+        FROM s
         ORDER BY station_name
     """)).mappings().all()
 
@@ -38,9 +50,28 @@ def climate_station_stats(station_id: int, db: Session = Depends(get_climate_db)
     log.info(f"GET /climate/station-stats | station_id={station_id}")
 
     rows = db.execute(text("""
-        SELECT *
-        FROM api.v_stations_stats
-        WHERE station_id = :station_id
+        WITH s AS (
+          SELECT
+            station_id,
+            row_number() OVER (ORDER BY station_nom NULLS LAST, station_id) AS station_num
+          FROM api.v_station_dimension
+          WHERE station_nom IS NOT NULL
+        )
+        SELECT
+          s.station_num AS station_id,
+          'observed' AS source_type,
+          'OBS' AS scenario_code,
+          'Observations' AS scenario_name,
+          1 AS run_id,
+          'precipitation_annuelle' AS property_name,
+          'annual' AS time_step,
+          s.station_num AS ts_id,
+          MIN(v.date_jr)::date AS dt_min,
+          MAX(v.date_jr)::date AS dt_max
+        FROM api.v_meteo_precipitation_annuelle_max v
+        JOIN s ON v.station_id = s.station_id
+        WHERE s.station_num = :station_id
+        GROUP BY s.station_num
     """), {"station_id": station_id}).mappings().all()
 
     log.info(f"→ stats rows = {len(rows)}")
@@ -59,28 +90,27 @@ def climate_timeseries(
 ):
     log.info(f"GET /climate/timeseries | ts_id={ts_id} | time_step={time_step}")
 
-    view_map = {
-        "daily": "api.v_measurements_daily",
-        "monthly": "api.v_measurements_monthly",
-        "annual": "api.v_measurements_annual",
-        "instantaneous": "api.v_measurements_latest",
-    }
+    if time_step.lower() not in {"annual", "yearly"}:
+        return []
 
-    view_name = view_map.get(time_step.lower())
-
-    if not view_name:
-        return {"error": "Invalid time_step"}
-
-    sql = f"""
-        SELECT datetime, value
-        FROM {view_name}
-        WHERE ts_id = :ts_id
-          AND (:date_start IS NULL OR datetime >= :date_start)
-          AND (:date_end IS NULL OR datetime <= :date_end)
+    rows = db.execute(text("""
+        WITH s AS (
+          SELECT
+            station_id,
+            row_number() OVER (ORDER BY station_nom NULLS LAST, station_id) AS station_num
+          FROM api.v_station_dimension
+          WHERE station_nom IS NOT NULL
+        )
+        SELECT
+          make_date(v.annee, 1, 1) AS datetime,
+          v.p_annuelle AS value
+        FROM api.v_meteo_precipitation_annuelle_max v
+        JOIN s ON v.station_id = s.station_id
+        WHERE s.station_num = :ts_id
+          AND (:date_start IS NULL OR make_date(v.annee, 1, 1) >= :date_start::date)
+          AND (:date_end IS NULL OR make_date(v.annee, 1, 1) <= :date_end::date)
         ORDER BY datetime
-    """
-
-    rows = db.execute(text(sql), {
+    """), {
         "ts_id": ts_id,
         "date_start": date_start,
         "date_end": date_end,
@@ -98,23 +128,23 @@ def climate_kpis(
     time_step: str,
     db: Session = Depends(get_climate_db),
 ):
-    view_map = {
-        "daily": "api.v_measurements_daily",
-        "monthly": "api.v_measurements_monthly",
-        "annual": "api.v_measurements_annual",
-        "instantaneous": "api.v_measurements_latest",
-    }
+    if time_step.lower() not in {"annual", "yearly"}:
+        return {"min": None, "max": None, "mean": None}
 
-    view_name = view_map.get(time_step.lower())
-
-    sql = f"""
+    row = db.execute(text("""
+        WITH s AS (
+          SELECT
+            station_id,
+            row_number() OVER (ORDER BY station_nom NULLS LAST, station_id) AS station_num
+          FROM api.v_station_dimension
+          WHERE station_nom IS NOT NULL
+        )
         SELECT
-            MIN(value) AS min,
-            MAX(value) AS max,
-            AVG(value) AS mean
-        FROM {view_name}
-        WHERE ts_id = :ts_id
-    """
-
-    row = db.execute(text(sql), {"ts_id": ts_id}).mappings().one()
+          MIN(v.p_annuelle) AS min,
+          MAX(v.p_annuelle) AS max,
+          AVG(v.p_annuelle) AS mean
+        FROM api.v_meteo_precipitation_annuelle_max v
+        JOIN s ON v.station_id = s.station_id
+        WHERE s.station_num = :ts_id
+    """), {"ts_id": ts_id}).mappings().one()
     return row
