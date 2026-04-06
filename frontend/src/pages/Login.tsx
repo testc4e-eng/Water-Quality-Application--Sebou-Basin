@@ -376,6 +376,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { 
   Eye, 
   EyeOff, 
@@ -399,6 +407,7 @@ import {
 import { NavLink, useNavigate } from "react-router-dom";
 import { postLoginForm, postRegister } from "@/api/client";
 import type { RegisterPayload } from "@/api/client";
+import { forgotPassword } from "@/services/passwordResetService";
 
 /** ---- Helpers erreur (sans dépendre de AxiosError) ---- */
 type ApiErrorBody = { message?: string; detail?: string; error?: string };
@@ -442,7 +451,9 @@ const AuthPage = () => {
   const [registerConfirmPassword, setRegisterConfirmPassword] = useState("");
   const [registerFirstName, setRegisterFirstName] = useState("");
   const [registerLastName, setRegisterLastName] = useState("");
-  const [registerRole, setRegisterRole] = useState("");
+  const [registerRole, setRegisterRole] = useState<"viewer" | "manager" | "admin">("viewer");
+  const [forgotOpen, setForgotOpen] = useState(false);
+  const [forgotEmail, setForgotEmail] = useState("");
 
   // ----- LOGIN -----
   const handleLoginSubmit = async (e: React.FormEvent) => {
@@ -453,7 +464,12 @@ const AuthPage = () => {
       localStorage.setItem("access_token", data.access_token);
       localStorage.setItem("auth_email", data.email);
       localStorage.setItem("is_superuser", String(!!data.is_superuser));
-      navigate("/dashboard-2");
+      localStorage.setItem("must_change_password", String(!!data.must_change_password));
+      if (data.must_change_password) {
+        navigate("/change-password");
+      } else {
+        navigate("/dashboard-2");
+      }
     } catch (err) {
       const message = extractApiError(err);
       setLoginError(message);
@@ -628,9 +644,42 @@ const AuthPage = () => {
                       />
                       <Label htmlFor="rememberMe" className="text-gray-600">Se souvenir de moi</Label>
                     </div>
-                    <Button type="button" variant="link" className="px-0 text-sm text-blue-600 hover:text-blue-700">
-                      Mot de passe oublié ?
-                    </Button>
+                    <Dialog open={forgotOpen} onOpenChange={setForgotOpen}>
+                      <DialogTrigger asChild>
+                        <Button type="button" variant="link" className="px-0 text-sm text-blue-600 hover:text-blue-700">
+                          Mot de passe oublié ?
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-md">
+                        <DialogHeader>
+                          <DialogTitle>Mot de passe oublié</DialogTitle>
+                        </DialogHeader>
+                        <div className="space-y-2 text-sm text-slate-600">
+                          <p>Saisis ton email ou username pour envoyer une demande.</p>
+                          <Input
+                            type="email"
+                            placeholder="email ou username"
+                            value={forgotEmail}
+                            onChange={(e) => setForgotEmail(e.target.value)}
+                          />
+                        </div>
+                        <DialogFooter>
+                          <Button variant="outline" onClick={() => setForgotOpen(false)}>
+                            Annuler
+                          </Button>
+                          <Button
+                            onClick={async () => {
+                              await forgotPassword(forgotEmail);
+                              setForgotEmail("");
+                              setForgotOpen(false);
+                              alert("Si le compte existe, la demande a été envoyée.");
+                            }}
+                          >
+                            Envoyer
+                          </Button>
+                        </DialogFooter>
+                      </DialogContent>
+                    </Dialog>
                   </div>
 
                   <Button 
@@ -750,18 +799,20 @@ const AuthPage = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="role" className="text-gray-700 font-medium">Fonction</Label>
+                    <Label htmlFor="role" className="text-gray-700 font-medium">Rôle</Label>
                     <div className="relative">
                       <Briefcase className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-                      <Input
+                      <select
                         id="role"
                         name="role"
-                        placeholder="Chercheur, Ingénieur, Analyste..."
-                        required
                         value={registerRole}
-                        onChange={(e) => setRegisterRole(e.target.value)}
-                        className="pl-10 border-2 border-gray-200 focus:border-purple-500 focus:ring-purple-500/20"
-                      />
+                        onChange={(e) => setRegisterRole(e.target.value as "viewer" | "manager" | "admin")}
+                        className="h-11 w-full rounded-md border-2 border-gray-200 bg-white pl-10 pr-3 text-sm text-gray-700 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20"
+                      >
+                        <option value="viewer">Utilisateur (viewer)</option>
+                        <option value="manager">Gestionnaire (manager)</option>
+                        <option value="admin">Administrateur (admin)</option>
+                      </select>
                     </div>
                   </div>
 
@@ -814,7 +865,7 @@ const AuthPage = () => {
                           Processus de validation
                         </h4>
                         <p className="text-xs text-purple-700">
-                          Les comptes utilisateurs ont un accès limité : Accueil, Dashboard, Dashboard Climate et Contact. Les données brutes restent réservées aux admins.
+                          Les droits d'accès dépendent du rôle choisi (utilisateur, gestionnaire ou admin).
                         </p>
                       </div>
                     </div>

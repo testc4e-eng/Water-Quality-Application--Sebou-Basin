@@ -1,5 +1,6 @@
 # backend/app/api/v1/stations.py
 import os
+import re
 from fastapi import APIRouter, HTTPException, Query
 from app.db_raw import conn
 from app.util_dbmeta import (
@@ -8,6 +9,11 @@ from app.util_dbmeta import (
 )
 
 router = APIRouter(prefix="/stations")
+
+def _q_ident(name: str) -> str:
+    if re.match(r"^[a-z_][a-z0-9_]*$", name):
+        return name
+    return f'"{name.replace("\"", "\"\"")}"'
 
 # 1) table depuis variable d'env, sinon auto-détection
 TABLE = os.getenv("STATIONS_TABLE")
@@ -38,11 +44,21 @@ def list_stations(
     river_col = pick_first_existing(TABLE, ["river","riviere","cours_eau","oued","nom_oued","bassin","sous_bassin"])
     ire_col = pick_first_existing(TABLE, ["ire_station", "legacy_code_station", "code_station"])
     geom_col = get_geom_column(TABLE)
-    if not geom_col:
+    x_col = pick_first_existing(TABLE, ["x", "X"])
+    y_col = pick_first_existing(TABLE, ["y", "Y"])
+    if not geom_col and not (x_col and y_col):
         raise HTTPException(500, f"Colonne géométrique introuvable sur {TABLE}")
 
+    id_sql = _q_ident(id_col)
+    name_sql = _q_ident(name_col)
+    river_sql = f"{_q_ident(river_col)} AS river" if river_col else "NULL AS river"
+    ire_sql = _q_ident(ire_col) if ire_col else None
+    geom_sql = _q_ident(geom_col) if geom_col else None
+    x_sql = _q_ident(x_col) if x_col else None
+    y_sql = _q_ident(y_col) if y_col else None
+
     if river_col:
-        river_sql = f"{river_col} AS river"
+        river_sql = f"{_q_ident(river_col)} AS river"
     else:
         river_sql = "NULL AS river"
 
@@ -55,27 +71,36 @@ def list_stations(
         unions = []
 
         if debit_station_col:
-            unions.append(f"SELECT DISTINCT trim({debit_station_col}::text) AS ire FROM {TBL_DEBIT}")
+            unions.append(f"SELECT DISTINCT trim({_q_ident(debit_station_col)}::text) AS ire FROM {TBL_DEBIT}")
         if temp_station_col:
-            unions.append(f"SELECT DISTINCT trim({temp_station_col}::text) AS ire FROM {TBL_TEMP}")
+            unions.append(f"SELECT DISTINCT trim({_q_ident(temp_station_col)}::text) AS ire FROM {TBL_TEMP}")
         if qual_station_col:
-            unions.append(f"SELECT DISTINCT trim({qual_station_col}::text) AS ire FROM {TBL_QUAL}")
+            unions.append(f"SELECT DISTINCT trim({_q_ident(qual_station_col)}::text) AS ire FROM {TBL_QUAL}")
 
         if unions:
             with_data_sql = "WITH station_data AS (\n" + "\nUNION\n".join(unions) + "\n)"
-            join_data_sql = f"JOIN station_data sd ON sd.ire = trim(s.{ire_col}::text)"
+            join_data_sql = f"JOIN station_data sd ON sd.ire = trim(s.{ire_sql}::text)"
+
+    if geom_col:
+        lat_sql = f"ST_Y(s.{geom_sql}::geometry)"
+        lon_sql = f"ST_X(s.{geom_sql}::geometry)"
+        where_sql = f"WHERE s.{geom_sql} IS NOT NULL"
+    else:
+        lat_sql = f"s.{y_sql}"
+        lon_sql = f"s.{x_sql}"
+        where_sql = f"WHERE s.{x_sql} IS NOT NULL AND s.{y_sql} IS NOT NULL"
 
     sql = f"""
         {with_data_sql}
         SELECT
-          {id_col} AS id,
-          {name_col} AS name,
+          s.{id_sql} AS id,
+          s.{name_sql} AS name,
           {river_sql},
-          ST_Y({geom_col}::geometry) AS lat,
-          ST_X({geom_col}::geometry) AS lon
+          {lat_sql} AS lat,
+          {lon_sql} AS lon
         FROM {TABLE} s
         {join_data_sql}
-        WHERE s.{geom_col} IS NOT NULL
+        {where_sql}
         LIMIT %s
         """
 

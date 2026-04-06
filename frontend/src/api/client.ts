@@ -15,6 +15,15 @@ export const api = axios.create({
   validateStatus: (s) => s >= 200 && s < 300,
 });
 
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("access_token");
+  if (token) {
+    config.headers = config.headers || {};
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
 // Helper simple : path relatif (ex: "/geojson/_ping")
 export async function getJSON<T>(path: string): Promise<T> {
   const { data } = await api.get<T>(path);
@@ -202,8 +211,8 @@ export async function getGeoJSON(
 export async function postLoginForm(
   username: string,
   password: string
-): Promise<{ access_token: string; token_type: string; email: string; is_superuser: boolean }> {
-  const { data } = await api.post<{ access_token: string; token_type: string; email: string; is_superuser: boolean }>(
+): Promise<{ access_token: string; token_type: string; email: string; is_superuser: boolean; must_change_password?: boolean }> {
+  const { data } = await api.post<{ access_token: string; token_type: string; email: string; is_superuser: boolean; must_change_password?: boolean }>(
     "/auth/login",
     { email: username, password }
   );
@@ -215,15 +224,24 @@ export interface RegisterPayload {
   password: string;
   firstName: string;
   lastName: string;
-  role: string;
+  role: "viewer" | "manager" | "admin";
 }
 
 export async function postRegister(
   payload: RegisterPayload
 ): Promise<{ id: string; email: string }> {
+  const username =
+    payload.email.split("@")[0] ||
+    `${payload.firstName}.${payload.lastName}`.toLowerCase();
   const { data } = await api.post<{ id: string; email: string }>(
     "/auth/register",
-    payload
+    {
+      username,
+      email: payload.email,
+      full_name: `${payload.firstName} ${payload.lastName}`.trim(),
+      password: payload.password,
+      role_code: payload.role,
+    }
   );
   return data;
 }

@@ -16,6 +16,7 @@ import Contact from "./pages/Contact";
 import DataViewer from "./pages/DataViewer";
 import AuthPage from "./pages/Login";
 import NotFound from "./pages/NotFound";
+import UserManagementPage from "./pages/admin/UserManagementPage";
 
 // Router avec flags v7
 const router = createBrowserRouter(
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route path="data" element={<DataViewer />} />
+        <Route path="admin/users" element={<UserManagementPage />} />
       </Route>
 
       <Route path="/login" element={<AuthPage />} />

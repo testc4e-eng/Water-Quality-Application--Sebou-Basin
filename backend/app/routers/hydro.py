@@ -199,6 +199,7 @@ def hydro_timeseries(
     ).mappings().all()
 
 
+
 @router.get("/kpis")
 def hydro_kpis(
     ts_id: int,

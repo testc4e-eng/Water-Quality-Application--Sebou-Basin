@@ -15,7 +15,12 @@ from app.api.v1 import swat_analysis
 from app.routers import hydro, quality, climate, entities
 
 from app.routers.layers import router as layers_router
+from app.routers.admin_data_scan import router as admin_data_scan_router
 from app.routers.names import router as names_router
+from app.routers.admin_password_resets import router as admin_password_resets_router
+from app.routers.admin_users import router as admin_users_router
+from app.security.routes_users import router as users_router
+from app.security.routes_logs import router as security_logs_router
 
 
 
@@ -43,6 +48,15 @@ api_router.include_router(entities.router, tags=["entities"])
 # =========================
 api_router.include_router(layers_router, prefix="/layers", tags=["layers"])
 api_router.include_router(names_router, prefix="/names", tags=["names"])
+api_router.include_router(users_router, tags=["users"])
+api_router.include_router(security_logs_router, tags=["security"])
+
+# =========================
+# ADMIN
+# =========================
+api_router.include_router(admin_data_scan_router, prefix="/admin", tags=["admin"])
+api_router.include_router(admin_password_resets_router, prefix="/admin", tags=["admin"])
+api_router.include_router(admin_users_router, prefix="/admin", tags=["admin"])
 
 
 # =========================

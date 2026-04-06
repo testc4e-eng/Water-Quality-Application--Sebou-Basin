@@ -1,5 +1,5 @@
-// ✅ frontend/src/layers/config.ts
-// Configuration centralisée des couches affichables sur la carte
+// frontend/src/layers/config.ts
+// Configuration centralisee des couches affichables sur la carte
 
 export const LAYERS = [
   { key: "bassin_sebou", label: "Bassin du Sebou" },
