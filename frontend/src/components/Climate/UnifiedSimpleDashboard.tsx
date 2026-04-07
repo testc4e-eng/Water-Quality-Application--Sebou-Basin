@@ -6,11 +6,20 @@ import ClimateChart from "@/components/Climate/ClimateChart";
 import ClimateTable from "@/components/Climate/ClimateTable";
 import { getParameterTimeseries } from "@/api/observatory";
 import type { HierParameter } from "@/api/observatory";
+import { getClimatMeteoSeries, getHydrologieSeries, getPollutionSeries } from "@/api/analytics";
 
 type Selection = {
+  scenario?: string;
   stationId?: string;
   parameter?: HierParameter;
   submenu?: string;
+  submenuLabel?: string;
+  variableEnabled?: boolean;
+  entityObj?: {
+    id: string;
+    name: string;
+    code?: string;
+  };
 };
 
 type TimeseriesRow = {
@@ -18,10 +27,40 @@ type TimeseriesRow = {
   value: number;
 };
 
+function isClimateTheme(theme: string): boolean {
+  const normalized = (theme || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+  return normalized === "climat_meteo" || normalized.includes("climat") || normalized.includes("meteo");
+}
+
+function isHydroTheme(theme: string): boolean {
+  const normalized = (theme || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+  return normalized === "hydrologie" || normalized.includes("hydrolog");
+}
+
+function isPollutionTheme(theme: string): boolean {
+  const normalized = (theme || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+  return normalized === "pollution" || normalized.includes("pollut");
+}
+
 export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
   const [selection, setSelection] = useState<Selection>({});
   const [series, setSeries] = useState<TimeseriesRow[]>([]);
   const [loading, setLoading] = useState(false);
+  const [seriesUnit, setSeriesUnit] = useState<string>("");
+  const [dateStart, setDateStart] = useState<string | undefined>(undefined);
+  const [dateEnd, setDateEnd] = useState<string | undefined>(undefined);
   
   const chartRef = useRef<HTMLDivElement | null>(null);
 
@@ -30,13 +69,41 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
   const max = values.length ? Math.max(...values) : null;
   const mean = values.length ? values.reduce((a, b) => a + b, 0) / values.length : null;
 
-  const unit = selection.parameter?.unite || "";
-  const varLabel = selection.parameter?.param_label || "Choisir une variable";
+  const unit = selection.parameter?.unite || seriesUnit || "";
+  const varLabel =
+    selection.parameter?.param_label ||
+    selection.submenuLabel ||
+    selection.submenu ||
+    "Choisir une variable";
   const varIcon = varLabel.toLowerCase().includes("températ") ? "🌡️" : varLabel.toLowerCase().includes("précipit") ? "☔" : "📊";
+  const hydroTheme = isHydroTheme(theme);
+
+  const applyHydroPreset = (preset: "30d" | "3m" | "1y" | "clear") => {
+    if (preset === "clear") {
+      setDateStart(undefined);
+      setDateEnd(undefined);
+      return;
+    }
+    const now = new Date();
+    const end = now.toISOString().slice(0, 10);
+    const start = new Date(now);
+    if (preset === "30d") start.setDate(start.getDate() - 30);
+    if (preset === "3m") start.setMonth(start.getMonth() - 3);
+    if (preset === "1y") start.setFullYear(start.getFullYear() - 1);
+    setDateStart(start.toISOString().slice(0, 10));
+    setDateEnd(end);
+  };
 
   useEffect(() => {
-    if (!selection.stationId || !selection.parameter || !selection.submenu) {
+    const climateTheme = isClimateTheme(theme);
+    const hydroThemeInner = isHydroTheme(theme);
+    const pollutionTheme = isPollutionTheme(theme);
+    const analyticsTheme = climateTheme || hydroThemeInner || pollutionTheme;
+    const canLoadClimate = !!selection.stationId && !!selection.submenu;
+    const canLoadGeneric = !!selection.stationId && !!selection.submenu && !!selection.parameter;
+    if ((analyticsTheme && !canLoadClimate) || (!analyticsTheme && !canLoadGeneric)) {
       setSeries([]);
+      setSeriesUnit("");
       return;
     }
 
@@ -46,12 +113,34 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
 
     const load = async () => {
       try {
-        const data = await getParameterTimeseries({
-          theme: theme,
-          sous_menu: selection.submenu!,
-          param_code: selection.parameter!.param_code,
-          entity_id: selection.stationId!,
-        });
+        let data;
+        if (analyticsTheme) {
+          const loader = climateTheme
+            ? getClimatMeteoSeries
+            : hydroThemeInner
+            ? getHydrologieSeries
+            : getPollutionSeries;
+          const res = await loader({
+            scenario: selection.scenario || "actuel",
+            submenu: selection.submenu!,
+            site: selection.stationId!,
+            variable: selection.parameter?.param_code,
+            date_start: dateStart,
+            date_end: dateEnd,
+          });
+          data = res.series;
+          if (!cancelled) setSeriesUnit(res?.metadata?.unit || "");
+        } else {
+          data = await getParameterTimeseries({
+            theme: theme,
+            sous_menu: selection.submenu!,
+            param_code: selection.parameter!.param_code,
+            entity_id: selection.stationId!,
+            date_start: dateStart,
+            date_end: dateEnd,
+          });
+          if (!cancelled) setSeriesUnit(selection.parameter?.unite || "");
+        }
         if (!cancelled) setSeries(Array.isArray(data) ? data : []);
       } catch (err) {
         if (!cancelled) {
@@ -67,7 +156,7 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
     return () => {
       cancelled = true;
     };
-  }, [theme, selection.stationId, selection.parameter, selection.submenu]);
+  }, [theme, selection.stationId, selection.parameter, selection.submenu, selection.scenario, dateStart, dateEnd]);
 
   return (
     <div className="space-y-6 animate-in fade-in duration-500">
@@ -83,6 +172,67 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
             </div>
             <div className="p-5">
               <UnifiedFilters theme={theme} onChange={setSelection} />
+              {hydroTheme && (
+                <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3">
+                  <div className="mb-2 text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                    Période (Hydrologie)
+                  </div>
+                  <div className="mb-2 flex flex-wrap gap-2">
+                    <button
+                      type="button"
+                      onClick={() => applyHydroPreset("30d")}
+                      className="rounded-md border border-slate-200 bg-white px-2 py-1 text-[11px] font-medium text-slate-700 hover:bg-slate-100"
+                    >
+                      30j
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => applyHydroPreset("3m")}
+                      className="rounded-md border border-slate-200 bg-white px-2 py-1 text-[11px] font-medium text-slate-700 hover:bg-slate-100"
+                    >
+                      3 mois
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => applyHydroPreset("1y")}
+                      className="rounded-md border border-slate-200 bg-white px-2 py-1 text-[11px] font-medium text-slate-700 hover:bg-slate-100"
+                    >
+                      1 an
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => applyHydroPreset("clear")}
+                      className="rounded-md border border-slate-200 bg-white px-2 py-1 text-[11px] font-medium text-slate-700 hover:bg-slate-100"
+                    >
+                      Tout
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-slate-500">
+                        Début
+                      </label>
+                      <input
+                        type="date"
+                        value={dateStart || ""}
+                        onChange={(e) => setDateStart(e.target.value || undefined)}
+                        className="w-full rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-xs text-slate-700 outline-none focus:border-blue-400"
+                      />
+                    </div>
+                    <div>
+                      <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-slate-500">
+                        Fin
+                      </label>
+                      <input
+                        type="date"
+                        value={dateEnd || ""}
+                        onChange={(e) => setDateEnd(e.target.value || undefined)}
+                        className="w-full rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-xs text-slate-700 outline-none focus:border-blue-400"
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -91,7 +241,20 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
         <div className="col-span-12 space-y-6 lg:col-span-9">
           {/* KPI CARDS */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <KpiCard title="STATUS" value={loading ? "Chargement..." : selection.stationId ? "Données OK" : "En attente"} bg="sky" icon="🛰️" />
+            <KpiCard
+              title="STATUS"
+              value={
+                loading
+                  ? "Chargement..."
+                  : !selection.stationId
+                  ? "En attente"
+                  : series.length > 0
+                  ? "Données OK"
+                  : "Aucune donnée"
+              }
+              bg="sky"
+              icon="🛰️"
+            />
             <KpiCard title="MINIMUM" value={`${fmt(min)} ${unit}`} bg="emerald" icon="📉" />
             <KpiCard title="MAXIMUM" value={`${fmt(max)} ${unit}`} bg="rose" icon="📈" />
             <KpiCard title="MOYENNE" value={`${fmt(mean)} ${unit}`} bg="violet" icon="📊" />

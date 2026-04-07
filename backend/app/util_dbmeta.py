@@ -133,6 +133,32 @@ def get_geojson_column(fullname: str) -> Optional[str]:
     with connection() as cx, cx.cursor() as cur:
         cur.execute(q, params)
         r = cur.fetchone()
+        if r:
+            return r[0]
+
+    # Fallback robuste via pg_catalog (inclut bien les materialized views)
+    # information_schema peut ne pas exposer certaines colonnes de matviews
+    placeholders = ",".join(["%s"] * len(candidates))
+    q_pg = f"""
+    SELECT a.attname
+    FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+    JOIN pg_catalog.pg_attribute a ON a.attrelid = c.oid
+    JOIN pg_catalog.pg_type t ON t.oid = a.atttypid
+    WHERE n.nspname = %s
+      AND c.relname = %s
+      AND c.relkind IN ('r','v','m')
+      AND a.attnum > 0
+      AND NOT a.attisdropped
+      AND lower(a.attname) IN ({placeholders})
+      AND t.typname IN ('json', 'jsonb')
+    ORDER BY array_position(ARRAY[{placeholders}]::text[], lower(a.attname))
+    LIMIT 1;
+    """
+    params_pg = [schema, table] + list(candidates) + list(candidates)
+    with connection() as cx, cx.cursor() as cur:
+        cur.execute(q_pg, params_pg)
+        r = cur.fetchone()
         return r[0] if r else None
 
 # -------------------------------
@@ -178,6 +204,29 @@ def pick_first_existing(fullname: str, candidates: Sequence[str]) -> Optional[st
     params = [schema, table] + list(candidates) + list(candidates)
     with connection() as cx, cx.cursor() as cur:
         cur.execute(q, params)
+        r = cur.fetchone()
+        if r:
+            return r[0]
+
+    # Fallback pg_catalog (fiable aussi pour materialized views)
+    placeholders = ",".join(["%s"] * len(candidates))
+    q_pg = f"""
+    SELECT a.attname
+    FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+    JOIN pg_catalog.pg_attribute a ON a.attrelid = c.oid
+    WHERE n.nspname = %s
+      AND c.relname = %s
+      AND c.relkind IN ('r','v','m')
+      AND a.attnum > 0
+      AND NOT a.attisdropped
+      AND a.attname IN ({placeholders})
+    ORDER BY array_position(ARRAY[{placeholders}]::text[], a.attname)
+    LIMIT 1;
+    """
+    params_pg = [schema, table] + list(candidates) + list(candidates)
+    with connection() as cx, cx.cursor() as cur:
+        cur.execute(q_pg, params_pg)
         r = cur.fetchone()
         return r[0] if r else None
 

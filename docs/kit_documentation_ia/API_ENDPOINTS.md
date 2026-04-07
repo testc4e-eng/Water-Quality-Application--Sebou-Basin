@@ -1,63 +1,67 @@
-# API Endpoints - SAD Sebou 2026
+# API Endpoints - SAD Sebou 2026 (mis à jour)
 
 ## Base
-- Prefixe: `/api/v1`
-- Auth: JWT bearer sur endpoints proteges
-- Docs: `/docs`
+- Préfixe: `/api/v1`
+- Santé service: `GET /health`
+- Docs OpenAPI: `/docs`
 
-## Endpoints confirmes
+## Groupes de routes actifs
 
-### Systeme
-- `GET /`
-- `GET /health`
-- `GET /ui`
-
-### Auth
-- `POST /api/v1/auth/register`
+### Auth / Security
 - `POST /api/v1/auth/login`
+- `POST /api/v1/auth/register`
+- `...` routes users/logs/security via `app/security/*`
 
-### Entites metier
-- `GET /api/v1/stations`
-- `GET /api/v1/barrages`
-- `GET /api/v1/alerts`
-
-### Couches et nomenclatures
+### Couches cartographiques
 - `GET /api/v1/layers/{layer_key}`
-- `GET /api/v1/names/{entity}`
-- `GET /api/v1/catalog/...` compatibilite legacy
+- `GET /api/v1/layers/{layer_key}/names`
+- `GET /api/v1/layers/{layer_key}/entity/{entity_id}`
 
-### Donnees brutes
-- `GET /api/v1/raw/tables`
-- `GET /api/v1/raw/{schema}/{table}/columns`
-- `GET /api/v1/raw/{schema}/{table}/rows`
-- `GET /api/v1/raw/{schema}/{table}/pk`
-- `POST /api/v1/raw/{schema}/{table}`
-- `PUT /api/v1/raw/{schema}/{table}/{row_id}`
-- `DELETE /api/v1/raw/{schema}/{table}/{row_id}`
+### Observatory (navigation métier + analytics carto)
+- `GET /api/v1/observatory/popup-rules`
+- `POST /api/v1/observatory/popup-rules/upsert`
+- `GET /api/v1/observatory/popup-rules/list`
+- `GET /api/v1/observatory/popup-rules/{layer_key}`
+- `DELETE /api/v1/observatory/popup-rules/{layer_key}`
+- `GET /api/v1/observatory/catalog/themes`
+- `GET /api/v1/observatory/catalog/parameters`
+- `GET /api/v1/observatory/catalog/entities`
+- `GET /api/v1/observatory/catalog/coverage`
+- `GET /api/v1/observatory/hierarchy/themes`
+- `GET /api/v1/observatory/hierarchy/submenus`
+- `GET /api/v1/observatory/hierarchy/parameters`
+- `GET /api/v1/observatory/hierarchy/entities-with-values`
+- `GET /api/v1/observatory/hierarchy/kpi`
+- `GET /api/v1/observatory/hierarchy/timeline`
+- `GET /api/v1/observatory/parameter/latest`
+- `GET /api/v1/observatory/parameter/timeseries`
+- `GET /api/v1/observatory/parameter/entities`
+- `POST /api/v1/observatory/cache/clear`
+- `GET /api/v1/observatory/mviews/status`
+- `POST /api/v1/observatory/mviews/refresh`
+- Endpoints métier dédiés:
+  - `GET /api/v1/observatory/temperature/stations`
+  - `GET /api/v1/observatory/temperature/timeseries`
+  - `GET /api/v1/observatory/temperature/latest`
+  - `GET /api/v1/observatory/barrage/stations`
+  - `GET /api/v1/observatory/barrage/timeseries`
+  - `GET /api/v1/observatory/barrage/latest`
+  - `GET /api/v1/observatory/precipitation/latest`
+  - `GET /api/v1/observatory/evaporation/latest`
 
-### Dashboards climat
-- `GET /api/v1/climate/stations`
-- `GET /api/v1/climate/station-stats`
-- `GET /api/v1/climate/timeseries`
-- `GET /api/v1/climate/kpis`
+### Dashboards métier
+- Climat: `/api/v1/climate/*`
+- Hydro: `/api/v1/hydro/*`
+- Qualité: `/api/v1/quality/*`
 
-### Dashboards hydro
-- `GET /api/v1/hydro/stations`
-- `GET /api/v1/hydro/stats`
-- `GET /api/v1/hydro/timeseries`
-- `GET /api/v1/hydro/kpis`
+### Data management / admin
+- `GET /api/v1/raw/*` et opérations CRUD sur tables autorisées
+- `GET/POST /api/v1/admin/*` (scan, users, password resets, ingestion)
 
-### Dashboards qualite
-- `GET /api/v1/quality/stations`
-- `GET /api/v1/quality/kpis`
-- `GET /api/v1/quality/table`
-- `GET /api/v1/quality/chart`
+### SWAT / WASP
+- Routes SWAT et analyses exposées via `app/api/v1/swat*.py` + `routers/ingestion.py`
 
-### SWAT
-- routes `swat` et `swat/analysis` actives dans le routeur principal
-
-## Manques vs cible mission 4
-- pas de versionning contractuel par domaine
-- pas d'endpoint reporting dedie
-- pas de monitoring/rate limit
-- pas de documentation fonctionnelle de chaque payload
+## Notes d’exploitation
+- Les endpoints carto et observatory lisent en priorité des vues matérialisées si elles existent.
+- Pour cohérence des réponses après ingestion/mise à jour: appeler `POST /api/v1/observatory/mviews/refresh`.
+- Pour invalider le cache in-memory observatory: `POST /api/v1/observatory/cache/clear`.

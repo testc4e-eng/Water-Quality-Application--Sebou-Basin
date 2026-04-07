@@ -6,10 +6,11 @@ import maplibregl, {
   StyleSpecification,
 } from "maplibre-gl";
 import * as turf from "@turf/turf";
-import { Layers3, PanelLeft, X } from "lucide-react";
+import { ArrowLeftRight, ArrowUpDown, Layers3, PanelLeft, X } from "lucide-react";
 
 import SidebarFilters, { LayersState } from "@/components/Filters/SidebarFilters";
 import MapLegend from "@/components/Map/MapLegend";
+import { LAYER_STYLES } from "@/config/mapStyles";
 
 import { api } from "@/api/client";
 import { DEFAULT_TOGGLES, DEFAULT_FILL_MODES } from "@/layers/config";
@@ -120,6 +121,127 @@ function isValidFeatureForMap(feature: Feature<Geometry, any>): boolean {
   return true;
 }
 
+const SWAT_BASE_PALETTE = [
+  "#3498db",
+  "#e74c3c",
+  "#27ae60",
+  "#f39c12",
+  "#8e44ad",
+  "#f1c40f",
+  "#16a085",
+  "#e67e22",
+];
+
+function hexToRgb(hex: string): { r: number; g: number; b: number } {
+  const normalized = hex.replace("#", "");
+  const full = normalized.length === 3 ? normalized.split("").map((c) => c + c).join("") : normalized;
+  const value = Number.parseInt(full, 16);
+  return { r: (value >> 16) & 255, g: (value >> 8) & 255, b: value & 255 };
+}
+
+function rgbToHex(r: number, g: number, b: number): string {
+  const toHex = (v: number) => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, "0");
+  return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+}
+
+function mixHexColors(colorA: string, colorB: string, t: number): string {
+  const a = hexToRgb(colorA);
+  const b = hexToRgb(colorB);
+  const p = Math.max(0, Math.min(1, t));
+  return rgbToHex(
+    a.r + (b.r - a.r) * p,
+    a.g + (b.g - a.g) * p,
+    a.b + (b.b - a.b) * p
+  );
+}
+
+function shadeWithinGroup(baseColor: string, position: number): string {
+  if (position <= 0.5) {
+    const lighten = (0.5 - position) * 0.8;
+    return mixHexColors(baseColor, "#ffffff", lighten);
+  }
+  const darken = (position - 0.5) * 0.7;
+  return mixHexColors(baseColor, "#000000", darken);
+}
+
+function buildSwatFeatureColors(fc: FeatureCollection): {
+  featureColorByKey: Map<string, string>;
+  nameColorByName: Map<string, string>;
+} {
+  const byName = new Map<string, number[]>();
+  const featureColorByKey = new Map<string, string>();
+  const nameColorByName = new Map<string, string>();
+
+  for (const feature of fc.features || []) {
+    const props = (feature?.properties || {}) as Record<string, unknown>;
+    const name = String(props.name ?? "Sans nom");
+    const idRaw = props.subbasin_id ?? props.id;
+    const id = Number(idRaw);
+    if (!Number.isFinite(id)) continue;
+    if (!byName.has(name)) byName.set(name, []);
+    byName.get(name)!.push(id);
+  }
+
+  const sortedNames = Array.from(byName.keys()).sort((a, b) => a.localeCompare(b, "fr"));
+  sortedNames.forEach((name, nameIndex) => {
+    const base = SWAT_BASE_PALETTE[nameIndex % SWAT_BASE_PALETTE.length];
+    nameColorByName.set(name, base);
+    const uniqueSorted = Array.from(new Set(byName.get(name) || [])).sort((a, b) => a - b);
+    const maxIdx = Math.max(1, uniqueSorted.length - 1);
+    uniqueSorted.forEach((id, idx) => {
+      const position = idx / maxIdx;
+      const color = shadeWithinGroup(base, position);
+      featureColorByKey.set(`${name}::${id}`, color);
+    });
+  });
+
+  return { featureColorByKey, nameColorByName };
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function normalizeLayerKeyFromLayerId(rawLayerId: string): string {
+  return rawLayerId
+    .replace("sel-layer-", "")
+    .replace("base-layer-", "")
+    .replace(/-(unclustered|clusters|cluster-count)$/, "");
+}
+
+function getHoverTypeCategory(layerKey: string): "station" | "hydro" | "pollution" | "other" {
+  const stationKeys = new Set(["stations_abhs", "points_eau", "sources"]);
+  const hydroKeys = new Set([
+    "bassin_sebou",
+    "sous_bassin_sebou",
+    "sous_bassins_swat",
+    "reseau_hydro_abhs",
+    "nappes",
+    "barrages_abhs",
+  ]);
+  const pollutionKeys = new Set([
+    "decharges_abhs",
+    "huileries_abhs",
+    "mines_abhs",
+    "rejets_industriels_abhs",
+    "rejets_domestiques_abhs",
+    "step_abhs",
+    "step_industrielles",
+    "stm",
+    "fosses_septiques_abhs",
+  ]);
+
+  if (stationKeys.has(layerKey)) return "station";
+  if (hydroKeys.has(layerKey)) return "hydro";
+  if (pollutionKeys.has(layerKey)) return "pollution";
+  return "other";
+}
+
 type PopupRule = {
   title: string;
   nameFields: string[];
@@ -179,10 +301,22 @@ const DEFAULT_POPUP_RULES: Record<string, PopupRule> = {
   },
   barrages_abhs: {
     title: "Barrage",
-    nameFields: ["nom_barrage", "name", "label"],
+    nameFields: ["barrage_nom", "nom_barrage", "name", "label"],
     typeFields: ["type_barrage", "categorie"],
     classFields: ["statut"],
     codeFields: ["ire", "barrage_id", "id"],
+  },
+  rejets_industriels_abhs: {
+    title: "Rejet industriel",
+    nameFields: ["nom_rejet", "name", "label"],
+    typeFields: ["type_rejet", "categorie"],
+    codeFields: ["code_rejet", "id"],
+  },
+  rejets_domestiques_abhs: {
+    title: "Rejet domestique",
+    nameFields: ["code_rejet", "name", "label"],
+    typeFields: ["type_rejet", "categorie"],
+    codeFields: ["code_rejet", "id"],
   },
   step_abhs: {
     title: "STEP",
@@ -429,6 +563,12 @@ export default function Dashboard2() {
   const [kpiLoading, setKpiLoading] = useState(false);
   const [popupMode, setPopupMode] = useState<"compact" | "expert">("compact");
   const [popupRules, setPopupRules] = useState<Record<string, PopupRule>>(DEFAULT_POPUP_RULES);
+  const [selectedLayer, setSelectedLayer] = useState<"all" | "water" | "weather">("all");
+  const [swatNameLegend, setSwatNameLegend] = useState<Array<{ name: string; color: string }>>([]);
+  const [legendDock, setLegendDock] = useState<"left" | "right">("right");
+  const [legendVerticalDock, setLegendVerticalDock] = useState<"top" | "bottom">("top");
+  const [entityDock, setEntityDock] = useState<"left" | "right">("left");
+  const [entityVerticalDock, setEntityVerticalDock] = useState<"top" | "bottom">("top");
 
   const layerMaxFeatures = useMemo(
     () => ({
@@ -449,9 +589,10 @@ export default function Dashboard2() {
   );
 
   const buildLayerUrl = useCallback(
-    (key: string, extra?: string, useBbox = true) => {
+    (key: string, extra?: string) => {
+      if (!debouncedViewportBbox) return null;
       const max = layerMaxFeatures[key] ?? 5000;
-      const bboxPart = useBbox && debouncedViewportBbox ? `&bbox=${encodeURIComponent(debouncedViewportBbox)}` : "";
+      const bboxPart = `&bbox=${encodeURIComponent(debouncedViewportBbox)}`;
       const qs = extra ? `${extra}&max_features=${max}${bboxPart}` : `?max_features=${max}${bboxPart}`;
       return `/layers/${key}${qs}`;
     },
@@ -501,11 +642,46 @@ export default function Dashboard2() {
 
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
+  const scaleControlRef = useRef<maplibregl.ScaleControl | null>(null);
   const togglesRef = useRef(layers.toggles);
+  const hoverTimerRef = useRef<number | null>(null);
+
+  const enforceRenderPriority = useCallback(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    const styleLayers = map.getStyle()?.layers || [];
+    const candidateIds = styleLayers
+      .map((l) => l.id)
+      .filter(
+        (id) =>
+          id.startsWith("base-layer-") ||
+          id.startsWith("base-stroke-") ||
+          id.startsWith("sel-layer-") ||
+          id === "business-layer"
+      );
+
+    const polygonIds = candidateIds.filter((id) => map.getLayer(id)?.type === "fill");
+    const lineIds = candidateIds.filter((id) => map.getLayer(id)?.type === "line");
+    const pointIds = candidateIds.filter((id) => {
+      const t = map.getLayer(id)?.type;
+      return t === "circle" || t === "symbol";
+    });
+
+    // Order from bottom to top: polygons -> lines -> points
+    [...polygonIds, ...lineIds, ...pointIds].forEach((id) => {
+      if (map.getLayer(id)) map.moveLayer(id);
+    });
+  }, []);
 
   useEffect(() => {
     togglesRef.current = layers.toggles;
   }, [layers.toggles]);
+
+  useEffect(() => {
+    if (!layers.toggles.sous_bassins_swat) {
+      setSwatNameLegend([]);
+    }
+  }, [layers.toggles.sous_bassins_swat]);
 
   useEffect(() => {
     if (!mapContainerRef.current || mapRef.current) return;
@@ -519,6 +695,9 @@ export default function Dashboard2() {
     });
 
     map.addControl(new maplibregl.NavigationControl(), "top-right");
+    const scaleControl = new maplibregl.ScaleControl({ maxWidth: 120, unit: "metric" });
+    map.addControl(scaleControl, "bottom-right");
+    scaleControlRef.current = scaleControl;
     const updateViewportBbox = () => {
       const b = map.getBounds();
       if (!b) return;
@@ -538,6 +717,10 @@ export default function Dashboard2() {
       try {
         map.off("load", updateViewportBbox);
         map.off("moveend", updateViewportBbox);
+        if (scaleControlRef.current) {
+          map.removeControl(scaleControlRef.current);
+          scaleControlRef.current = null;
+        }
         map.remove();
       } catch {
         /* ignore */
@@ -623,15 +806,24 @@ export default function Dashboard2() {
     if (!selectedTheme) {
       setHierSubmenus([]);
       setSelectedSubmenu("");
+      setHierParameters([]);
+      setSelectedParamCode("");
+      setSelectedParamSourceTable("");
       return;
     }
+    // Clear stale submenu/parameter options immediately when theme changes
+    setHierSubmenus([]);
+    setSelectedSubmenu("");
+    setHierParameters([]);
+    setSelectedParamCode("");
+    setSelectedParamSourceTable("");
     let alive = true;
     getHierarchySubmenus(selectedTheme)
       .then((rows) => {
         if (!alive) return;
         setHierSubmenus(rows || []);
         const first = rows?.[0]?.sous_menu || "";
-        setSelectedSubmenu((prev) => prev || first);
+        setSelectedSubmenu(first);
       })
       .catch(() => {
         if (!alive) return;
@@ -650,15 +842,19 @@ export default function Dashboard2() {
       setSelectedParamSourceTable("");
       return;
     }
+    // Clear stale parameters immediately when submenu changes
+    setHierParameters([]);
+    setSelectedParamCode("");
+    setSelectedParamSourceTable("");
     let alive = true;
     getHierarchyParameters(selectedTheme, selectedSubmenu)
       .then((rows) => {
         if (!alive) return;
         setHierParameters(rows || []);
         const first = rows?.[0]?.param_code || "";
-        setSelectedParamCode((prev) => prev || first);
+        setSelectedParamCode(first);
         const firstSource = rows?.[0]?.source_table || "";
-        setSelectedParamSourceTable((prev) => prev || firstSource);
+        setSelectedParamSourceTable(firstSource);
       })
       .catch(() => {
         if (!alive) return;
@@ -721,26 +917,29 @@ export default function Dashboard2() {
     const map = mapRef.current;
     if (!map) return;
 
-    // Styles visuels distincts par couche
+    const WATER_POINT_KEYS = new Set(["points_eau", "sources"]);
+    const WEATHER_POINT_KEYS = new Set(["stations_abhs"]);
+
+    // Styles visuels distincts par couche (synchronisés avec config centralisée)
     const LAYER_PAINT: Record<string, { type: "fill" | "line" | "circle"; paint: Record<string, unknown> }> = {
-      bassin_sebou:        { type: "fill",   paint: { "fill-color": "#22c55e", "fill-opacity": 0.15, "fill-outline-color": "#16a34a" } },
+      bassin_sebou:        { type: "fill",   paint: { "fill-color": LAYER_STYLES.basin.color, "fill-opacity": 0, "fill-outline-color": LAYER_STYLES.basin.color } },
       sous_bassin_sebou:   { type: "fill",   paint: { "fill-color": "#4ade80", "fill-opacity": 0.12, "fill-outline-color": "#22c55e" } },
-      sous_bassins_swat:   { type: "fill",   paint: { "fill-color": "#f472b6", "fill-opacity": 0.12, "fill-outline-color": "#db2777" } },
+      sous_bassins_swat:   { type: "fill",   paint: { "fill-color": LAYER_STYLES.subbasin_swat.color, "fill-opacity": 0.3, "fill-outline-color": "#000000" } },
       nappes:              { type: "fill",   paint: { "fill-color": "#3b82f6", "fill-opacity": 0.15, "fill-outline-color": "#2563eb" } },
-      reseau_hydro_abhs:   { type: "line",   paint: { "line-color": "#2563eb", "line-width": 1.4 } },
+      reseau_hydro_abhs:   { type: "line",   paint: { "line-color": LAYER_STYLES.hydro_network.color, "line-width": LAYER_STYLES.hydro_network.weight, "line-opacity": LAYER_STYLES.hydro_network.opacity } },
       barrages_abhs:       { type: "circle", paint: { "circle-radius": 7, "circle-color": "#ef4444", "circle-stroke-color": "#fff", "circle-stroke-width": 1.5 } },
-      stations_abhs:       { type: "circle", paint: { "circle-radius": 6, "circle-color": "#06b6d4", "circle-stroke-color": "#fff", "circle-stroke-width": 1.5 } },
+      stations_abhs:       { type: "circle", paint: { "circle-radius": LAYER_STYLES.station.radius, "circle-color": LAYER_STYLES.station.color, "circle-stroke-color": "#fff", "circle-stroke-width": 1.5 } },
       points_eau:          { type: "circle", paint: { "circle-radius": 5, "circle-color": "#3b82f6", "circle-stroke-color": "#fff", "circle-stroke-width": 1 } },
       sources:             { type: "circle", paint: { "circle-radius": 4, "circle-color": "#60a5fa", "circle-stroke-color": "#fff", "circle-stroke-width": 1 } },
-      decharges_abhs:      { type: "circle", paint: { "circle-radius": 5, "circle-color": "#f59e0b", "circle-stroke-color": "#fff", "circle-stroke-width": 1.2 } },
-      huileries_abhs:      { type: "circle", paint: { "circle-radius": 5, "circle-color": "#84cc16", "circle-stroke-color": "#fff", "circle-stroke-width": 1.2 } },
-      mines_abhs:          { type: "circle", paint: { "circle-radius": 5, "circle-color": "#a16207", "circle-stroke-color": "#fff", "circle-stroke-width": 1.2 } },
-      rejets_industriels_abhs:{ type: "circle", paint: { "circle-radius": 5, "circle-color": "#ef4444", "circle-stroke-color": "#fff", "circle-stroke-width": 1.2 } },
-      rejets_domestiques_abhs:{ type: "circle", paint: { "circle-radius": 5, "circle-color": "#fb7185", "circle-stroke-color": "#fff", "circle-stroke-width": 1.2 } },
-      step_abhs:           { type: "circle", paint: { "circle-radius": 6, "circle-color": "#22c55e", "circle-stroke-color": "#fff", "circle-stroke-width": 1.2 } },
-      step_industrielles:  { type: "circle", paint: { "circle-radius": 6, "circle-color": "#f97316", "circle-stroke-color": "#fff", "circle-stroke-width": 1.5 } },
-      stm:                 { type: "circle", paint: { "circle-radius": 5, "circle-color": "#a855f7", "circle-stroke-color": "#fff", "circle-stroke-width": 1 } },
-      fosses_septiques_abhs:{ type: "circle", paint: { "circle-radius": 4.5, "circle-color": "#14b8a6", "circle-stroke-color": "#fff", "circle-stroke-width": 1 } },
+      decharges_abhs:      { type: "circle", paint: { "circle-radius": LAYER_STYLES.pollution.radius, "circle-color": LAYER_STYLES.pollution.color, "circle-stroke-color": "#fff", "circle-stroke-width": 1.2 } },
+      huileries_abhs:      { type: "circle", paint: { "circle-radius": LAYER_STYLES.pollution.radius, "circle-color": LAYER_STYLES.pollution.color, "circle-stroke-color": "#fff", "circle-stroke-width": 1.2 } },
+      mines_abhs:          { type: "circle", paint: { "circle-radius": LAYER_STYLES.pollution.radius, "circle-color": LAYER_STYLES.pollution.color, "circle-stroke-color": "#fff", "circle-stroke-width": 1.2 } },
+      rejets_industriels_abhs:{ type: "circle", paint: { "circle-radius": LAYER_STYLES.pollution.radius, "circle-color": LAYER_STYLES.pollution.color, "circle-stroke-color": "#fff", "circle-stroke-width": 1.2 } },
+      rejets_domestiques_abhs:{ type: "circle", paint: { "circle-radius": LAYER_STYLES.pollution.radius, "circle-color": LAYER_STYLES.pollution.color, "circle-stroke-color": "#fff", "circle-stroke-width": 1.2 } },
+      step_abhs:           { type: "circle", paint: { "circle-radius": LAYER_STYLES.pollution.radius, "circle-color": LAYER_STYLES.pollution.color, "circle-stroke-color": "#fff", "circle-stroke-width": 1.2 } },
+      step_industrielles:  { type: "circle", paint: { "circle-radius": LAYER_STYLES.pollution.radius, "circle-color": LAYER_STYLES.pollution.color, "circle-stroke-color": "#fff", "circle-stroke-width": 1.2 } },
+      stm:                 { type: "circle", paint: { "circle-radius": LAYER_STYLES.pollution.radius, "circle-color": LAYER_STYLES.pollution.color, "circle-stroke-color": "#fff", "circle-stroke-width": 1.2 } },
+      fosses_septiques_abhs:{ type: "circle", paint: { "circle-radius": LAYER_STYLES.pollution.radius, "circle-color": LAYER_STYLES.pollution.color, "circle-stroke-color": "#fff", "circle-stroke-width": 1.2 } },
       adm_regions_abhs:    { type: "fill",   paint: { "fill-color": "#f59e0b", "fill-opacity": 0.08, "fill-outline-color": "#d97706" } },
       adm_provinces_abhs:  { type: "fill",   paint: { "fill-color": "#fbbf24", "fill-opacity": 0.07, "fill-outline-color": "#f59e0b" } },
       adm_cercles_abhs:    { type: "fill",   paint: { "fill-color": "#fcd34d", "fill-opacity": 0.06, "fill-outline-color": "#fbbf24" } },
@@ -751,14 +950,8 @@ export default function Dashboard2() {
     const CLUSTER_KEYS = new Set([
       "adm_douars_abhs",
       "adm_villes_abhs",
-      "points_eau",
-      "sources",
-      "stations_abhs",
     ]);
-    const MIN_ZOOM_BY_LAYER: Record<string, number> = {
-      adm_douars_abhs: 9,
-      adm_villes_abhs: 7,
-    };
+    const MIN_ZOOM_BY_LAYER: Record<string, number> = {};
 
     const applyLayer = async (key: string) => {
       if (!map.isStyleLoaded()) {
@@ -785,18 +978,13 @@ export default function Dashboard2() {
           return;
         }
         const url = buildLayerUrl(key);
-        let res;
-        try {
-          res = await api.get<FeatureCollection>(url);
-        } catch {
-          // Fallback safety: some sources can fail on bbox filter depending on SRID/view type.
-          res = await api.get<FeatureCollection>(buildLayerUrl(key, undefined, false));
-        }
+        if (!url) return;
+        const res = await api.get<FeatureCollection>(url);
         const data = res.data;
         if (!data || !data.features || data.features.length === 0) return;
         const validFeatures = (data.features || []).filter((f) => isValidFeatureForMap(f as any));
         if (!validFeatures.length) return;
-        const filteredData: FeatureCollection = { ...data, features: validFeatures as any };
+        let filteredData: FeatureCollection = { ...data, features: validFeatures as any };
 
         if (!togglesRef.current[key]) {
           const existingLayerId = `base-layer-${key}`;
@@ -824,7 +1012,41 @@ export default function Dashboard2() {
                 : { "circle-radius": 5, "circle-color": "#0ea5e9" },
         };
 
+        // Filtre dynamique des couches points depuis UI (all/water/weather)
+        if (selectedLayer !== "all") {
+          const isPointLayer = style.type === "circle" || CLUSTER_KEYS.has(key);
+          if (isPointLayer) {
+            if (selectedLayer === "water" && !WATER_POINT_KEYS.has(key)) return;
+            if (selectedLayer === "weather" && !WEATHER_POINT_KEYS.has(key)) return;
+          }
+        }
+
         const layerPaint = { ...style.paint };
+        if (key === "sous_bassins_swat" && style.type === "fill") {
+          const { featureColorByKey, nameColorByName } = buildSwatFeatureColors(filteredData);
+          setSwatNameLegend(
+            Array.from(nameColorByName.entries()).map(([name, color]) => ({ name, color }))
+          );
+          filteredData = {
+            ...filteredData,
+            features: (filteredData.features || []).map((feature) => {
+              const props = (feature.properties || {}) as Record<string, unknown>;
+              const name = String(props.name ?? "Sans nom");
+              const id = Number(props.subbasin_id ?? props.id);
+              const swatColor = featureColorByKey.get(`${name}::${id}`) || String(LAYER_STYLES.subbasin_swat.color);
+              return {
+                ...feature,
+                properties: {
+                  ...props,
+                  __swat_fill_color: swatColor,
+                },
+              } as any;
+            }),
+          };
+          layerPaint["fill-color"] = ["coalesce", ["get", "__swat_fill_color"], LAYER_STYLES.subbasin_swat.color];
+          layerPaint["fill-opacity"] = 0.3;
+          layerPaint["fill-outline-color"] = "#000000";
+        }
         if (style.type === "fill" && fillMode === "outline") {
           layerPaint["fill-opacity"] = 0;
         }
@@ -838,6 +1060,8 @@ export default function Dashboard2() {
             cluster: style.type === "circle" && CLUSTER_KEYS.has(key),
             clusterRadius: 40,
             clusterMaxZoom: 11,
+            // Garder une simplification modérée pour éviter la déformation visuelle.
+            tolerance: 0.375,
           } as any);
         }
 
@@ -886,6 +1110,7 @@ export default function Dashboard2() {
             filter: ["!", ["has", "point_count"]],
             paint: layerPaint as any,
           } as LayerSpecification);
+          setTimeout(enforceRenderPriority, 0);
           return;
         }
 
@@ -896,17 +1121,18 @@ export default function Dashboard2() {
           paint: layerPaint,
         } as LayerSpecification);
 
-        if (style.type === "fill") {
+        if (style.type === "fill" && (key !== "sous_bassins_swat" || fillMode === "outline")) {
           map.addLayer({
             id: strokeLayerId,
             type: "line",
             source: srcId,
             paint: {
-              "line-color": (style.paint as any)["fill-outline-color"] || "#000",
-              "line-width": fillMode === "outline" ? 2.5 : 1.5,
+              "line-color": key === "sous_bassins_swat" ? "#000000" : (style.paint as any)["fill-outline-color"] || "#000",
+              "line-width": key === "sous_bassins_swat" ? 1.2 : fillMode === "outline" ? 2.5 : 1.5,
             },
           });
         }
+        setTimeout(enforceRenderPriority, 0);
       } catch (e) {
         console.error(`Erreur chargement couche ${key}:`, e);
       }
@@ -930,7 +1156,9 @@ export default function Dashboard2() {
         if (map.getSource(srcId)) map.removeSource(srcId);
       }
     });
-  }, [visualKey, stations, layers.toggles, layers.fill_modes, styleRevision, viewportBbox, buildLayerUrl]);
+
+    setTimeout(enforceRenderPriority, 0);
+  }, [visualKey, stations, layers.toggles, layers.fill_modes, styleRevision, viewportBbox, buildLayerUrl, selectedLayer, enforceRenderPriority]);
 
   const loadLayerForFilter = useCallback(async (layerKey: string, selectedIds?: string | string[]) => {
     const map = mapRef.current;
@@ -949,12 +1177,9 @@ export default function Dashboard2() {
           : [];
 
       const query = idsArray.length > 0 ? `?ids=${encodeURIComponent(idsArray.join(","))}` : "";
-      let res;
-      try {
-        res = await api.get<FeatureCollection>(buildLayerUrl(layerKey, query));
-      } catch {
-        res = await api.get<FeatureCollection>(buildLayerUrl(layerKey, query, false));
-      }
+      const url = buildLayerUrl(layerKey, query);
+      if (!url) return;
+      const res = await api.get<FeatureCollection>(url);
       const data = res.data;
       const validFeatures = (data.features || []).filter((f) => isValidFeatureForMap(f as any));
       if (!validFeatures.length) return;
@@ -982,13 +1207,14 @@ export default function Dashboard2() {
         source: srcId,
         paint,
       } as LayerSpecification);
+      setTimeout(enforceRenderPriority, 0);
 
       const bbox = turf.bbox(filteredData) as [number, number, number, number];
       map.fitBounds(bbox, { padding: 50, duration: 900 });
     } catch (err) {
       console.error("Erreur couche filtree:", err);
     }
-  }, []);
+  }, [buildLayerUrl, enforceRenderPriority]);
 
   const clearSelectionLayers = useCallback(() => {
     const map = mapRef.current;
@@ -1022,6 +1248,7 @@ export default function Dashboard2() {
 
       try {
         const url = buildLayerUrl(layerKey);
+        if (!url) return;
         const res = await api.get<FeatureCollection>(url);
         const data = res.data;
         const validFeatures = (data?.features || []).filter((f) => isValidFeatureForMap(f as any));
@@ -1034,18 +1261,13 @@ export default function Dashboard2() {
         console.error(`Erreur zoom couche ${layerKey}:`, err);
       }
     },
-    []
+    [buildLayerUrl]
   );
 
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
 
-    const popup = new maplibregl.Popup({
-      closeButton: true,
-      closeOnClick: true,
-      maxWidth: "300px",
-    });
     const hoverPopup = new maplibregl.Popup({
       closeButton: false,
       closeOnClick: false,
@@ -1069,7 +1291,18 @@ export default function Dashboard2() {
 
       const features = map.queryRenderedFeatures(e.point, { layers: activeLayers });
       const feature = features[0];
-      if (!feature || !feature.properties) return;
+      // Always close hover tooltip on click
+      hoverPopup.remove();
+
+      if (!feature || !feature.properties) {
+        // Click outside entity closes detail panel
+        setEntityPanelOpen(false);
+        setSelectedEntityDetails(null);
+        setEntitySeriesRows([]);
+        setEntitySeriesOffset(0);
+        setEntitySeriesHasMore(false);
+        return;
+      }
 
       // ---- 1. Gérer la sélection si c'est une station
       if (feature.layer?.id.includes("stations_abhs")) {
@@ -1086,7 +1319,7 @@ export default function Dashboard2() {
 
       // ---- 2. Afficher la Popup générique avec les métadonnées
       const rawLayerId = feature.layer?.id || "";
-      const layerKey = rawLayerId.replace("sel-layer-", "").replace("base-layer-", "");
+      const layerKey = normalizeLayerKeyFromLayerId(rawLayerId);
       const props = (feature.properties || {}) as Record<string, any>;
       const rule = popupRules[layerKey] || {
         title: layerKey.replace(/_/g, " "),
@@ -1104,71 +1337,18 @@ export default function Dashboard2() {
       const valueVal = props.display_value;
       const unitVal = props.business_unit;
 
-      const layerName = (feature.layer?.id || "")
-        .replace("sel-layer-", "")
-        .replace("base-layer-", "")
-        .replace(/_/g, " ")
-        .toUpperCase();
-
-      let popupHtml = '<div class="flex flex-col gap-1.5 p-1 max-h-[300px] overflow-y-auto custom-scrollbar">';
-      popupHtml += `<div class="font-bold text-xs uppercase tracking-wider text-slate-500 border-b border-slate-100 pb-1.5 mb-1">${rule.title || layerName}</div>`;
-      popupHtml += `
-        <div class="flex flex-col text-[11px] leading-tight mb-1">
-          <span class="font-medium text-slate-400 uppercase tracking-wide text-[9px]">Nom</span>
-          <span class="font-bold text-slate-700">${nameVal}</span>
-        </div>
-      `;
-      if (popupMode === "expert" && typeVal) {
-        popupHtml += `
-          <div class="flex flex-col text-[11px] leading-tight mb-1">
-            <span class="font-medium text-slate-400 uppercase tracking-wide text-[9px]">Type</span>
-            <span class="font-bold text-slate-700">${typeVal}</span>
-          </div>
-        `;
-      }
-      if (popupMode === "expert" && classVal) {
-        popupHtml += `
-          <div class="flex flex-col text-[11px] leading-tight mb-1">
-            <span class="font-medium text-slate-400 uppercase tracking-wide text-[9px]">Classe</span>
-            <span class="font-bold text-slate-700">${classVal}</span>
-          </div>
-        `;
-      }
-      if (popupMode === "expert" && codeVal) {
-        popupHtml += `
-          <div class="flex flex-col text-[11px] leading-tight mb-1">
-            <span class="font-medium text-slate-400 uppercase tracking-wide text-[9px]">Code</span>
-            <span class="font-bold text-slate-700">${codeVal}</span>
-          </div>
-        `;
-      }
-      if (popupMode === "expert" && valueVal !== undefined && valueVal !== null && Number.isFinite(Number(valueVal))) {
-        popupHtml += `
-          <div class="flex flex-col text-[11px] leading-tight mb-1">
-            <span class="font-medium text-slate-400 uppercase tracking-wide text-[9px]">Valeur</span>
-            <span class="font-bold text-slate-700">${Number(valueVal).toFixed(3)}${unitVal ? ` ${unitVal}` : ""}</span>
-          </div>
-        `;
-      }
       const entityId =
         props?.legacy_station_id ??
         props?.station_id ??
         props?.barrage_id ??
+        props?.point_eau_id ??
+        props?.id_point_eau ??
+        props?.point_id ??
         props?.subbasin_uid ??
         props?.reseau_id ??
         props?.source_id ??
-        props?.id;
-      if (entityId != null && layerKey) {
-        popupHtml += `
-          <button id="open-entity-panel-btn" class="mt-2 rounded bg-slate-800 px-2 py-1 text-[11px] text-white">
-            🔍 Ouvrir détail
-          </button>
-        `;
-      }
-      popupHtml += '</div>';
-
-      popup.setLngLat(e.lngLat).setHTML(popupHtml).addTo(map);
-      const btn = document.getElementById("open-entity-panel-btn");
+        props?.id ??
+        (feature as any)?.id;
       if (entityId != null && layerKey) {
         const openEntityPanel = async () => {
           try {
@@ -1204,12 +1384,18 @@ export default function Dashboard2() {
             setEntitySeriesLoading(false);
           }
         };
-        if (btn) btn.onclick = openEntityPanel;
         void openEntityPanel();
       }
+      // prevent click propagation conflicts
+      const oe = (e as any)?.originalEvent;
+      if (oe && typeof oe.stopPropagation === "function") oe.stopPropagation();
     };
 
     const onMouseMove = (e: maplibregl.MapMouseEvent) => {
+      if (hoverTimerRef.current) {
+        window.clearTimeout(hoverTimerRef.current);
+        hoverTimerRef.current = null;
+      }
       const styleLayers = map.getStyle()?.layers || [];
       const activeLayers = styleLayers
         .map((l) => l.id)
@@ -1233,7 +1419,7 @@ export default function Dashboard2() {
         return;
       }
       const rawLayerId = feature.layer?.id || "";
-      const layerKey = rawLayerId.replace("sel-layer-", "").replace("base-layer-", "");
+      const layerKey = normalizeLayerKeyFromLayerId(rawLayerId);
       const rule = popupRules[layerKey] || {
         title: layerKey.replace(/_/g, " "),
         nameFields: ["name", "label", "nom", "station_nom"],
@@ -1241,31 +1427,59 @@ export default function Dashboard2() {
         codeFields: ["code", "id"],
       };
       const props = (feature.properties || {}) as Record<string, any>;
-      const layerName = rawLayerId
-        .replace("sel-layer-", "")
-        .replace("base-layer-", "")
-        .replace(/_/g, " ");
+      const forcedHoverName =
+        layerKey === "points_eau"
+          ? pickFirstProp(props, ["code_pt_eau", "code", "point_eau_id", "id_point_eau"])
+          : layerKey === "barrages_abhs"
+            ? pickFirstProp(props, ["barrage_nom", "nom_barrage", "name", "label"])
+            : layerKey === "rejets_industriels_abhs"
+              ? pickFirstProp(props, ["nom_rejet", "name", "label"])
+              : layerKey === "rejets_domestiques_abhs"
+                ? pickFirstProp(props, ["code_rejet", "name", "label"])
+                : null;
+      const pointsEauHoverCode =
+        layerKey === "points_eau"
+          ? pickFirstProp(props, ["code_pt_eau", "code", "point_eau_id", "id_point_eau"])
+          : null;
       const name =
+        forcedHoverName ||
+        pointsEauHoverCode ||
         pickFirstProp(props, rule.nameFields) ||
         pickFirstProp(props, rule.codeFields || []) ||
         "Entité";
-      hoverPopup
-        .setLngLat(e.lngLat)
-        .setHTML(
-          `<div style="font-size:11px;line-height:1.2"><b>${layerName}</b><br/>${String(name)}</div>`
-        )
-        .addTo(map);
+      const entityType = rule.title || layerKey.replace(/_/g, " ");
+      const entitySubType = pickFirstProp(props, rule.typeFields || []);
+      const typeCategory = getHoverTypeCategory(layerKey);
+      hoverTimerRef.current = window.setTimeout(() => {
+        const safeName = escapeHtml(String(name));
+        const safeType = escapeHtml(
+          entitySubType ? `${String(entityType)} • ${String(entitySubType)}` : String(entityType)
+        );
+        hoverPopup
+          .setLngLat(e.lngLat)
+          .setHTML(
+            `<div class="hover-popup-label-wrap"><span class="hover-popup-type hover-popup-type--${typeCategory}">${safeType}</span><span class="hover-popup-label">${safeName}</span></div>`
+          )
+          .addTo(map);
+      }, 120);
     };
 
     map.on("click", onClickFeature);
     map.on("mousemove", onMouseMove);
     map.on("mouseleave", () => {
       map.getCanvas().style.cursor = "";
+      if (hoverTimerRef.current) {
+        window.clearTimeout(hoverTimerRef.current);
+        hoverTimerRef.current = null;
+      }
       hoverPopup.remove();
     });
 
     return () => {
-      popup.remove();
+      if (hoverTimerRef.current) {
+        window.clearTimeout(hoverTimerRef.current);
+        hoverTimerRef.current = null;
+      }
       hoverPopup.remove();
       map.off("click", onClickFeature);
       map.off("mousemove", onMouseMove);
@@ -1641,6 +1855,7 @@ export default function Dashboard2() {
             "circle-stroke-width": 1.3,
           },
         } as LayerSpecification);
+        setTimeout(enforceRenderPriority, 0);
       })
       .catch(() => {
         setBusinessLegend([]);
@@ -1658,6 +1873,7 @@ export default function Dashboard2() {
     range.from,
     range.to,
     styleRevision,
+    enforceRenderPriority,
   ]);
 
 
@@ -1721,7 +1937,9 @@ export default function Dashboard2() {
                         value={selectedTheme}
                         onChange={(e) => {
                           setSelectedTheme(e.target.value);
+                          setHierSubmenus([]);
                           setSelectedSubmenu("");
+                          setHierParameters([]);
                           setSelectedParamCode("");
                           setSelectedParamSourceTable("");
                         }}
@@ -1738,6 +1956,7 @@ export default function Dashboard2() {
                         value={selectedSubmenu}
                         onChange={(e) => {
                           setSelectedSubmenu(e.target.value);
+                          setHierParameters([]);
                           setSelectedParamCode("");
                           setSelectedParamSourceTable("");
                         }}
@@ -1775,6 +1994,29 @@ export default function Dashboard2() {
                           Source: {selectedHierarchyParam.source_schema}.{selectedHierarchyParam.source_table} | Entite: {selectedHierarchyParam.entity_type}
                         </div>
                       )}
+                      <div className="mt-1.5 rounded border border-emerald-200/20 bg-slate-900/35 p-1.5">
+                        <div className="mb-1 text-[10px] text-emerald-100/90">Filtre points</div>
+                        <div className="flex gap-1">
+                          {([
+                            ["all", "Tous"],
+                            ["water", "Eau"],
+                            ["weather", "Météo"],
+                          ] as const).map(([k, label]) => (
+                            <button
+                              key={k}
+                              type="button"
+                              className={`rounded border px-1.5 py-0.5 text-[10px] ${
+                                selectedLayer === k
+                                  ? "border-emerald-300/40 bg-emerald-400/20 text-emerald-100"
+                                  : "border-emerald-200/20 bg-slate-900/25 text-emerald-100/80"
+                              }`}
+                              onClick={() => setSelectedLayer(k)}
+                            >
+                              {label}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
                       {!!selectedHierarchyParam && (
                         <div className="mt-1 space-y-1">
                           <div className="flex items-center gap-1">
@@ -1966,34 +2208,126 @@ export default function Dashboard2() {
                 )}
               </div>
 
+              <div
+                className={`pointer-events-auto absolute z-30 w-64 rounded-[14px] border border-emerald-200/20 bg-[linear-gradient(180deg,rgba(15,23,42,0.88),rgba(22,78,99,0.86))] p-2 text-emerald-50 shadow-[0_18px_50px_-24px_rgba(8,15,30,0.95)] backdrop-blur-md ${
+                  legendDock === "right" ? "right-4" : "left-[318px]"
+                } ${
+                  legendVerticalDock === "top" ? "top-24" : "bottom-16"
+                }`}
+              >
+                <div className="mb-1 flex items-center justify-between">
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.08em] text-emerald-100/90">
+                    Légende couches
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <button
+                      type="button"
+                      title={`Déplacer à ${legendDock === "right" ? "gauche" : "droite"}`}
+                      onClick={() => setLegendDock((d) => (d === "right" ? "left" : "right"))}
+                      className="rounded border border-emerald-200/20 bg-slate-900/35 p-1 text-emerald-100/85 transition hover:bg-white/10 hover:text-white"
+                    >
+                      <ArrowLeftRight className="h-3 w-3" />
+                    </button>
+                    <button
+                      type="button"
+                      title={`Déplacer en ${legendVerticalDock === "top" ? "bas" : "haut"}`}
+                      onClick={() => setLegendVerticalDock((d) => (d === "top" ? "bottom" : "top"))}
+                      className="rounded border border-emerald-200/20 bg-slate-900/35 p-1 text-emerald-100/85 transition hover:bg-white/10 hover:text-white"
+                    >
+                      <ArrowUpDown className="h-3 w-3" />
+                    </button>
+                  </div>
+                </div>
+                <div className="space-y-1 text-[10px] text-emerald-100/90">
+                  <div className="flex items-center gap-1.5">
+                    <span className="h-2 w-4 rounded-sm" style={{ background: String(LAYER_STYLES.basin.color) }} />
+                    <span>Bassin</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="h-2 w-4 rounded-sm" style={{ background: "#6aa6d8" }} />
+                    <span>Sous-bassins SWAT (nuances)</span>
+                  </div>
+                  {layers.toggles.sous_bassins_swat && swatNameLegend.length > 0 && (
+                    <div className="max-h-24 space-y-1 overflow-auto rounded border border-emerald-200/15 bg-slate-900/25 p-1">
+                      {swatNameLegend.slice(0, 12).map((item) => (
+                        <div key={item.name} className="flex items-center gap-1.5">
+                          <span className="h-2 w-3 rounded-sm" style={{ background: item.color }} />
+                          <span className="truncate" title={item.name}>{item.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  <div className="flex items-center gap-1.5">
+                    <span className="h-2 w-4 rounded-sm border border-black/80 bg-transparent" />
+                    <span>Contour SWAT noir</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="h-2 w-4 rounded-sm" style={{ background: String(LAYER_STYLES.hydro_network.color) }} />
+                    <span>Réseau hydro</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="h-2 w-2 rounded-full" style={{ background: String(LAYER_STYLES.station.color) }} />
+                    <span>Stations</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="h-2 w-2 rounded-full" style={{ background: String(LAYER_STYLES.pollution.color) }} />
+                    <span>Pollution</span>
+                  </div>
+                </div>
+              </div>
+
               <div ref={mapContainerRef} className="h-[calc(100vh-77px)] min-h-[calc(100vh-77px)] w-full" />
               {entityPanelOpen && selectedEntityDetails && (
-                <div className="absolute right-4 top-4 z-20 w-[340px] max-h-[80vh] overflow-auto rounded-xl border border-slate-200 bg-white/95 p-3 shadow-xl backdrop-blur">
-                  <div className="mb-2 flex items-center justify-between border-b border-slate-200 pb-2">
+                <div
+                  className={`absolute z-20 w-[300px] max-h-[68vh] overflow-auto rounded-xl border border-slate-200 bg-white/95 p-2.5 shadow-xl backdrop-blur ${
+                    entityDock === "right" ? "right-4" : "left-[318px]"
+                  } ${
+                    entityVerticalDock === "top" ? "top-4" : "bottom-4"
+                  }`}
+                >
+                  <div className="mb-2 flex items-center justify-between border-b border-slate-200 pb-1.5">
                     <div>
-                      <div className="text-xs uppercase tracking-wide text-slate-500">Entité</div>
-                      <div className="text-sm font-semibold text-slate-800">
+                      <div className="text-[10px] uppercase tracking-wide text-slate-500">Entité</div>
+                      <div className="text-xs font-semibold text-slate-800">
                         {selectedEntityDetails.layerKey} | {selectedEntityDetails.entityId}
                       </div>
                     </div>
-                    <button
-                      type="button"
-                      className="rounded border border-slate-300 px-2 py-1 text-xs text-slate-700 hover:bg-slate-100"
-                      onClick={() => {
-                        setEntityPanelOpen(false);
-                        setSelectedEntityDetails(null);
-                        setEntitySeriesRows([]);
-                        setEntitySeriesOffset(0);
-                        setEntitySeriesHasMore(false);
-                      }}
-                    >
-                      Fermer
-                    </button>
+                    <div className="flex items-center gap-1">
+                      <button
+                        type="button"
+                        title={`Déplacer à ${entityDock === "right" ? "gauche" : "droite"}`}
+                        onClick={() => setEntityDock((d) => (d === "right" ? "left" : "right"))}
+                        className="rounded border border-slate-300 p-1 text-slate-600 hover:bg-slate-100"
+                      >
+                        <ArrowLeftRight className="h-3 w-3" />
+                      </button>
+                      <button
+                        type="button"
+                        title={`Déplacer en ${entityVerticalDock === "top" ? "bas" : "haut"}`}
+                        onClick={() => setEntityVerticalDock((d) => (d === "top" ? "bottom" : "top"))}
+                        className="rounded border border-slate-300 p-1 text-slate-600 hover:bg-slate-100"
+                      >
+                        <ArrowUpDown className="h-3 w-3" />
+                      </button>
+                      <button
+                        type="button"
+                        className="rounded border border-slate-300 px-2 py-1 text-[11px] text-slate-700 hover:bg-slate-100"
+                        onClick={() => {
+                          setEntityPanelOpen(false);
+                          setSelectedEntityDetails(null);
+                          setEntitySeriesRows([]);
+                          setEntitySeriesOffset(0);
+                          setEntitySeriesHasMore(false);
+                        }}
+                      >
+                        Fermer
+                      </button>
+                    </div>
                   </div>
                   <input
                     type="text"
                     placeholder="Filtrer colonnes..."
-                    className="mb-2 w-full rounded border border-slate-300 px-2 py-1 text-xs"
+                    className="mb-2 w-full rounded border border-slate-300 px-2 py-1 text-[11px]"
                     value={entityFilterQuery}
                     onChange={(e) => setEntityFilterQuery(e.target.value)}
                   />
@@ -2005,7 +2339,7 @@ export default function Dashboard2() {
                         return k.toLowerCase().includes(q) || String(v ?? "").toLowerCase().includes(q);
                       })
                       .map(([k, v]) => (
-                      <div key={k} className="grid grid-cols-[120px_1fr] gap-2 border-b border-slate-100 py-1 text-xs">
+                      <div key={k} className="grid grid-cols-[104px_1fr] gap-1.5 border-b border-slate-100 py-0.5 text-[11px]">
                         <div className="font-semibold text-slate-500">{k}</div>
                         <div className="break-all text-slate-800">{String(v ?? "")}</div>
                       </div>
@@ -2013,7 +2347,7 @@ export default function Dashboard2() {
                   </div>
                   <div className="mt-3 border-t border-slate-200 pt-2">
                     <div className="mb-1 flex items-center justify-between">
-                      <div className="text-xs font-semibold text-slate-700">Mesures liées</div>
+                      <div className="text-[11px] font-semibold text-slate-700">Mesures liées</div>
                       <div className="flex gap-1">
                         {(["ts", "parameter", "value", "source_table"] as const).map((k) => (
                           <button
@@ -2042,7 +2376,7 @@ export default function Dashboard2() {
                       <div className="mb-2 flex items-center gap-2">
                         <button
                           type="button"
-                          className="rounded border border-slate-300 px-2 py-1 text-[10px] text-slate-700"
+                          className="rounded border border-slate-300 px-1.5 py-1 text-[10px] text-slate-700"
                           onClick={() => {
                             if (!selectedEntityDetails) return;
                             const headers = ["ts", "parameter", "value", "unit", "source_table"];
@@ -2066,7 +2400,7 @@ export default function Dashboard2() {
                         </button>
                         <button
                           type="button"
-                          className="rounded border border-slate-300 px-2 py-1 text-[10px] text-slate-700 disabled:opacity-50"
+                          className="rounded border border-slate-300 px-1.5 py-1 text-[10px] text-slate-700 disabled:opacity-50"
                           disabled={entitySeriesOffset === 0 || entitySeriesLoading || !selectedEntityDetails}
                           onClick={async () => {
                             if (!selectedEntityDetails) return;
@@ -2095,7 +2429,7 @@ export default function Dashboard2() {
                         </button>
                         <button
                           type="button"
-                          className="rounded border border-slate-300 px-2 py-1 text-[10px] text-slate-700 disabled:opacity-50"
+                          className="rounded border border-slate-300 px-1.5 py-1 text-[10px] text-slate-700 disabled:opacity-50"
                           disabled={!entitySeriesHasMore || entitySeriesLoading || !selectedEntityDetails}
                           onClick={async () => {
                             if (!selectedEntityDetails) return;
@@ -2123,7 +2457,7 @@ export default function Dashboard2() {
                           Suivant
                         </button>
                       </div>
-                      <div className="max-h-[280px] overflow-auto rounded border border-slate-200">
+                      <div className="max-h-[220px] overflow-auto rounded border border-slate-200">
                         <table className="w-full text-[11px]">
                           <thead className="sticky top-0 bg-slate-50 text-slate-600">
                             <tr>

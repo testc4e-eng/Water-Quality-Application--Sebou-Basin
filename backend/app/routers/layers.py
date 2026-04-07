@@ -68,7 +68,7 @@ LAYER_MAP: Dict[str, LayerCfg] = {
         "name_candidates": ["nom_sous_bassin", "sous_bassin", "name", "label"],
     },
     "sous_bassins_swat": {
-        "sources": ["api.mv_sous_bassin_swat_geojson", "api.v_sous_bassin_swat_geojson"],
+        "sources": ["api.mv_sous_bassin_swat_geom_4326", "api.mv_sous_bassin_swat_geojson", "api.v_sous_bassin_swat_geojson"],
         "id_candidates": ["subbasin_id", "id"],
         "name_candidates": ["name", "label"],
     },
@@ -168,9 +168,9 @@ LAYER_MAP: Dict[str, LayerCfg] = {
         "name_candidates": ["commune_fr", "name", "label"],
     },
     "adm_villes_abhs": {
-        "sources": ["admin.villes", "admin.communes"],
-        "id_candidates": ["code_ville", "code_commune", "id"],
-        "name_candidates": ["ville_fr", "commune_fr", "name", "label"],
+        "sources": ["api.mv_admin_villes_points", "admin.villes", "admin.localite", "admin.communes"],
+        "id_candidates": ["code_ville", "code_commune", "code_commu", "id"],
+        "name_candidates": ["ville_fr", "commune_fr", "douar_fr", "name", "label"],
     },
     "adm_douars_abhs": {
         "sources": ["admin.localite"],
@@ -403,6 +403,33 @@ def _apply_bbox_filter(
     return sql, params
 
 
+def _apply_bbox_filter_geojson(
+    sql: str,
+    bbox: Optional[str],
+    geojson_col: str,
+) -> Tuple[str, Dict[str, Union[str, int, float]]]:
+    """
+    BBOX filter for GeoJSON/jsonb geometry sources.
+    Parses geometry safely then applies ST_Intersects in WGS84.
+    """
+    params: Dict[str, Union[str, int, float]] = {}
+    if not bbox:
+        return sql, params
+
+    minx, miny, maxx, maxy = _parse_bbox(bbox)
+    sql += f"""
+      AND ST_Intersects(
+        ST_SetSRID(ST_GeomFromGeoJSON({geojson_col}::text), 4326),
+        ST_MakeEnvelope(:_minx, :_miny, :_maxx, :_maxy, 4326)
+      )
+    """
+    params["_minx"] = minx
+    params["_miny"] = miny
+    params["_maxx"] = maxx
+    params["_maxy"] = maxy
+    return sql, params
+
+
 @router.get("/{layer_key}/names")
 def get_layer_names(
     layer_key: str,
@@ -477,6 +504,9 @@ def get_layer(
 
         if geom_mode == "postgis":
             sql, bbox_params = _apply_bbox_filter(sql, bbox, geom_col)
+            params.update(bbox_params)
+        elif geom_mode == "geojson":
+            sql, bbox_params = _apply_bbox_filter_geojson(sql, bbox, geom_col)
             params.update(bbox_params)
 
         if geom_mode == "geojson":

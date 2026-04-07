@@ -12,7 +12,7 @@ from app.api.v1.raw import router as raw_router
 from app.api.v1 import swat
 from app.api.v1 import swat_analysis
 
-from app.routers import hydro, quality, climate, entities, observatory
+from app.routers import hydro, quality, climate, entities, observatory, analytics
 
 
 from app.routers.layers import router as layers_router
@@ -68,6 +68,7 @@ api_router.include_router(climate.router, prefix="/climate", tags=["Climate"])
 api_router.include_router(hydro.router, prefix="/hydro", tags=["hydro"])
 api_router.include_router(quality.router, prefix="/quality", tags=["Quality"])
 api_router.include_router(observatory.router)
+api_router.include_router(analytics.router, prefix="/analytics", tags=["Analytics"])
 
 # =========================
 # SWAT

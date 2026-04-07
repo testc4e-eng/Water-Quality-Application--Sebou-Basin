@@ -229,9 +229,12 @@ def get_entity_data(
 
     def _with_date(expr: str) -> str:
         return f"""
+        SELECT source_table, ts, parameter, value, unit
+        FROM (
         {expr}
-          AND (:date_start IS NULL OR ts >= :date_start::date)
-          AND (:date_end IS NULL OR ts <= :date_end::date + interval '1 day')
+        ) _q
+        WHERE (:date_start IS NULL OR _q.ts >= CAST(:date_start AS date))
+          AND (:date_end IS NULL OR _q.ts < (CAST(:date_end AS date) + interval '1 day'))
         """
 
     # Station-based
@@ -353,7 +356,7 @@ def get_entity_data(
             _with_date(
                 """
                 SELECT 'swat_output.mesure_qualite_subbasin_ts'::text AS source_table, temps AS ts,
-                       param_code::text AS parameter, valeur::double precision AS value, unite::text AS unit
+                       param_code::text AS parameter, valeur::double precision AS value, NULL::text AS unit
                 FROM swat_output.mesure_qualite_subbasin_ts
                 WHERE subbasin_uid::text = :entity_id AND valeur IS NOT NULL
                 """
