@@ -1,0 +1,14 @@
+sous_bassin_swat_bas_sebou: ['id', 'subbasin', 'area', 'slo1', 'len1', 'sll', 'csl', 'wid1', 'dep1', 'lat', 'long_', 'elev', 'elevmin', 'elevmax', 'bname', 'shape_len', 'shape_area', 'hydroid', 'outletid', 'geom', 'bassin_code', 'bassin_nom', 'source_file', 'version_geom_date']
+
+sous_bassin_swat_bassin_cotier: ['id', 'subbasin', 'area', 'slo1', 'len1', 'sll', 'csl', 'wid1', 'dep1', 'lat', 'long_', 'elev', 'elevmin', 'elevmax', 'bname', 'shape_len', 'shape_area', 'hydroid', 'outletid', 'geom', 'bassin_code', 'bassin_nom', 'source_file', 'version_geom_date']
+
+sous_bassin_swat_beht: ['id', 'polygonid', 'area', 'subbasin', 'geom', 'bassin_code', 'bassin_nom', 'source_file', 'version_geom_date']
+
+sous_bassin_swat_haut_sebou: ['id', 'polygonid', 'area', 'subbasin', 'geom', 'bassin_code', 'bassin_nom', 'source_file', 'version_geom_date']
+
+sous_bassin_swat_leben_innaouen: ['id', 'geom', 'Subbasin', 'Area', 'Slo1', 'Len1', 'Sll', 'Csl', 'Wid1', 'Dep1', 'Lat', 'Long_', 'Elev', 'ElevMin', 'ElevMax', 'Bname', 'Shape_Len', 'Shape_Area', 'HydroID', 'OutletID', 'bassin_code', 'bassin_nom', 'source_file', 'version_geom_date']
+
+sous_bassin_swat_moyen_sebou: ['id', 'polygonid', 'area', 'subbasin', 'geom', 'bassin_code', 'bassin_nom', 'source_file', 'version_geom_date']
+
+sous_bassin_swat_ouergha: ['id', 'subbasin', 'area', 'slo1', 'len1', 'sll', 'csl', 'wid1', 'dep1', 'lat', 'long_', 'elev', 'elevmin', 'elevmax', 'bname', 'shape_len', 'shape_area', 'hydroid', 'outletid', 'geom', 'bassin_code', 'bassin_nom', 'source_file', 'version_geom_date']
+

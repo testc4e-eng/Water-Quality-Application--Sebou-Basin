@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.pyc
+.env
+.venv/
+venv/
+TxtInOut/
+arborescence_sans_dossiers_generatifs.txt/
+# Excel internal documentation
+Dictionnaire_donnees_ABH_Sebou.xlsx/
+requirements.txt/
+# Node
+node_modules/
+dist/
+build/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/
+
+
+# Ignorer tout par défaut
+*
+
+# Garder ces dossiers
+!frontend/
+!frontend/**
+
+!backend/
+!backend/**
+
+# Garder fichiers utiles à la racine
+!.gitignore
+!README.md
+
+# Re-ignore Python cache artifacts under backend
+backend/**/__pycache__/
+backend/**/*.pyc
+backend/**/*.pyo
+backend/**/*.pyd
