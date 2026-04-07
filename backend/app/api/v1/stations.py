@@ -13,7 +13,8 @@ router = APIRouter(prefix="/stations")
 def _q_ident(name: str) -> str:
     if re.match(r"^[a-z_][a-z0-9_]*$", name):
         return name
-    return f'"{name.replace("\"", "\"\"")}"'
+    escaped = name.replace('"', '""')
+    return f'"{escaped}"'
 
 # 1) table depuis variable d'env, sinon auto-détection
 TABLE = os.getenv("STATIONS_TABLE")

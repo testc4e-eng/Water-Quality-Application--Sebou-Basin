@@ -20,8 +20,8 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
 
   const allNavItems: NavItem[] = [
     { to: "/", label: "Accueil" },
-    { to: "/dashboard-2", label: "Dashboard" },
-    { to: "/dashboard-climate", label: "Dashboard Climate" },
+    { to: "/dashboard-cartographique", label: "Dashboard Cartographique" },
+    { to: "/dashboard-analytique", label: "Dashboard Analytique" },
     { to: "/data", label: "Gestion Données" },
     { to: "/admin/data-scan", label: "Scan de données" },
     { to: "/about", label: "A propos" },
@@ -34,8 +34,8 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
         if (isAdmin) return true;
         return [
           "/",
-          "/dashboard-2",
-          "/dashboard-climate",
+          "/dashboard-cartographique",
+          "/dashboard-analytique",
           "/about",
           "/contact",
           "/admin/data-scan",

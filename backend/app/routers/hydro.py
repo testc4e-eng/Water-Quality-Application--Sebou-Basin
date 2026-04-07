@@ -256,3 +256,52 @@ def hydro_kpis(
             "date_end": date_end or "",
         },
     ).mappings().first()
+
+
+@router.get("/latest")
+def hydro_latest(
+    aggregation: str = "monthly",
+    date_start: str | None = "",
+    date_end: str | None = "",
+    db: Session = Depends(get_climate_db),
+):
+    if aggregation not in {"monthly", "annual"}:
+        raise HTTPException(400, "Invalid aggregation")
+
+    if aggregation == "monthly":
+        query = text(
+            """
+            select
+              legacy_station_id::text as entity_id,
+              avg(valeur_moy_m3s)::double precision as value
+            from api.v_hydro_debit_mensuel
+            where legacy_station_id is not null
+              and (:date_start = '' or bucket_month >= cast(:date_start as date))
+              and (:date_end = '' or bucket_month <= cast(:date_end as date))
+            group by legacy_station_id
+            """
+        )
+    else:
+        query = text(
+            """
+            with annual as (
+              select
+                legacy_station_id::text as entity_id,
+                date_trunc('year', bucket_month)::date as y,
+                avg(valeur_moy_m3s)::double precision as v
+              from api.v_hydro_debit_mensuel
+              where legacy_station_id is not null
+                and (:date_start = '' or bucket_month >= cast(:date_start as date))
+                and (:date_end = '' or bucket_month <= cast(:date_end as date))
+              group by legacy_station_id, date_trunc('year', bucket_month)::date
+            )
+            select entity_id, avg(v)::double precision as value
+            from annual
+            group by entity_id
+            """
+        )
+
+    return db.execute(
+        query,
+        {"date_start": date_start or "", "date_end": date_end or ""},
+    ).mappings().all()

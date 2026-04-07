@@ -24,6 +24,25 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+// Intercepteur pour gérer les erreurs 401 (Expire/Invalid)
+api.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    if (error.response?.status === 401) {
+      console.warn("Session expirée ou invalide. Redirection vers /login");
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("auth_email");
+      localStorage.removeItem("is_superuser");
+      localStorage.removeItem("must_change_password");
+      // On redirige uniquement si on n'est pas déjà sur la page de login
+      if (!window.location.pathname.includes("/login")) {
+        window.location.href = "/login?expired=true";
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
 // Helper simple : path relatif (ex: "/geojson/_ping")
 export async function getJSON<T>(path: string): Promise<T> {
   const { data } = await api.get<T>(path);

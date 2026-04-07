@@ -1,15 +1,18 @@
 import { useMemo } from "react";
 import { NavLink } from "react-router-dom";
 import {
-  BarChart3,
   Database,
-  Droplets,
+  LineChart,
   Home,
   Info,
+  Map,
   Mail,
   Search,
   Sparkles,
   Users,
+  Shield,
+  CloudUpload,
+  MessageSquare,
 } from "lucide-react";
 
 type NavItem = {
@@ -27,12 +30,15 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
   const isAdmin = localStorage.getItem("is_superuser") === "true";
   const allNavItems: NavItem[] = [
     { to: "/", label: "Accueil", icon: Home, group: "main" },
-    { to: "/dashboard-2", label: "Dashboard Cartographique", icon: BarChart3, group: "main" },
-    { to: "/dashboard-climate", label: "Dashboard Analytique", icon: Droplets, group: "main" },
+    { to: "/dashboard-cartographique", label: "Dashboard Cartographique", icon: Map, group: "main" },
+    { to: "/dashboard-analytique", label: "Dashboard Analytique", icon: LineChart, group: "main" },
     { to: "/dashboard-scenarios", label: "Dashboard Scenarios", icon: Sparkles, group: "main" },
     { to: "/data", label: "Gestion Données", icon: Database, group: "admin" },
     { to: "/admin/data-scan", label: "Scan de données", icon: Search, group: "admin" },
     { to: "/admin/users", label: "Gestion utilisateurs", icon: Users, group: "admin" },
+    { to: "/admin/ingestion", label: "Ingestion Scénarios", icon: CloudUpload, group: "admin" },
+    { to: "/admin/audit", label: "Journal d'Audit", icon: Shield, group: "admin" },
+    { to: "/admin/popup-rules", label: "Règles Popups", icon: MessageSquare, group: "admin" },
     { to: "/about", label: "A propos", icon: Info, group: "support" },
     { to: "/contact", label: "Contact", icon: Mail, group: "support" },
   ];
@@ -41,10 +47,11 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
     () =>
       allNavItems.filter((item) => {
         if (isAdmin) return true;
+        // Pour les non-admins, on filtre les pages d'administration sensibles
         return [
           "/",
-          "/dashboard-2",
-          "/dashboard-climate",
+          "/dashboard-cartographique",
+          "/dashboard-analytique",
           "/dashboard-scenarios",
           "/about",
           "/contact",

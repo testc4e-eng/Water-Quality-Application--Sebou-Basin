@@ -36,26 +36,26 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      value: "contact@hydroqual-dss.fr",
+      value: "c4e.africa@gmail.com",
       description: "Support technique et commercial"
     },
     {
       icon: Phone,
       title: "Téléphone",
-      value: "+33 (0)4 XX XX XX XX",
+      value: "+212 522229877",
       description: "Lundi à vendredi, 9h-18h"
     },
     {
       icon: MapPin,
       title: "Adresse",
-      value: "Laboratoire C4E",
-      description: "Université de Recherche, Campus Sciences"
+      value: "75 Boulevard d’Anfa",
+      description: "Casablanca, Maroc"
     },
     {
       icon: Clock,
       title: "Horaires",
       value: "Lun-Ven: 9h-18h",
-      description: "Support disponible 24/7"
+      description: "Support disponible pendant les heures d'ouverture"
     }
   ];
 
@@ -63,20 +63,20 @@ const Contact = () => {
     {
       icon: Users,
       title: "Support Technique",
-      email: "support@hydroqual-dss.fr",
+      email: "c4e.africa@gmail.com",
       description: "Assistance technique et dépannage"
     },
     {
       icon: Building,
-      title: "Partenariats",
-      email: "partenariats@hydroqual-dss.fr",
-      description: "Collaborations et projets"
+      title: "Recrutement & RH",
+      email: "rhc4eafrica@gmail.com",
+      description: "Opportunités de carrière et stages"
     },
     {
       icon: Mail,
-      title: "Administration",
-      email: "admin@hydroqual-dss.fr", 
-      description: "Validation des comptes et accès"
+      title: "Direction",
+      email: "c4e.africa@gmail.com", 
+      description: "Partenariats et gestion administrative"
     }
   ];
 
@@ -259,7 +259,7 @@ const Contact = () => {
                   <div className="text-center">
                     <MapPin className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
                     <p className="text-sm text-muted-foreground">Carte interactive</p>
-                    <p className="text-xs text-muted-foreground">Laboratoire C4E</p>
+                    <p className="text-xs text-muted-foreground">C4E Africa - Casablanca</p>
                   </div>
                 </div>
               </CardContent>

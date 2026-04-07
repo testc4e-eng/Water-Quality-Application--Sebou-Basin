@@ -63,7 +63,7 @@
 //       localStorage.setItem("access_token", data.access_token);
 //       localStorage.setItem("auth_email", data.email);
 //       localStorage.setItem("is_superuser", String(!!data.is_superuser));
-//       navigate("/dashboard-2");
+//       navigate("/dashboard-cartographique");
 //     } catch (err) {
 //       const message = extractApiError(err);
 //       setLoginError(message);
@@ -468,7 +468,7 @@ const AuthPage = () => {
       if (data.must_change_password) {
         navigate("/change-password");
       } else {
-        navigate("/dashboard-2");
+        navigate("/dashboard-cartographique");
       }
     } catch (err) {
       const message = extractApiError(err);

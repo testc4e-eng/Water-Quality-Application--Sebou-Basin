@@ -1,0 +1,27 @@
+✅ Connexion PostgreSQL OK
+INFO:     127.0.0.1:6630 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:7652 - "OPTIONS /api/v1/stations HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7654 - "OPTIONS /api/v1/observatory/hierarchy/themes HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7660 - "OPTIONS /api/v1/stations HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7661 - "OPTIONS /api/v1/observatory/hierarchy/themes HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7674 - "OPTIONS /api/v1/layers/bassin_sebou?max_features=5000 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7675 - "OPTIONS /api/v1/layers/sous_bassin_sebou?max_features=5000 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7676 - "OPTIONS /api/v1/layers/reseau_hydro_abhs?max_features=5000 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7677 - "OPTIONS /api/v1/layers/bassin_sebou?max_features=5000 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7678 - "OPTIONS /api/v1/layers/sous_bassin_sebou?max_features=5000 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7679 - "OPTIONS /api/v1/layers/reseau_hydro_abhs?max_features=5000 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7680 - "OPTIONS /api/v1/layers/bassin_sebou?max_features=5000&bbox=-9.589785%2C32.455398%2C-1.510215%2C36.007132 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7681 - "OPTIONS /api/v1/layers/sous_bassin_sebou?max_features=5000&bbox=-9.589785%2C32.455398%2C-1.510215%2C36.007132 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7682 - "OPTIONS /api/v1/layers/reseau_hydro_abhs?max_features=5000&bbox=-9.589785%2C32.455398%2C-1.510215%2C36.007132 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7683 - "OPTIONS /api/v1/layers/bassin_sebou?max_features=5000 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7684 - "OPTIONS /api/v1/layers/sous_bassin_sebou?max_features=5000 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7685 - "OPTIONS /api/v1/layers/reseau_hydro_abhs?max_features=5000 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7686 - "OPTIONS /api/v1/layers/bassin_sebou?max_features=5000 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7687 - "OPTIONS /api/v1/layers/sous_bassin_sebou?max_features=5000 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7688 - "OPTIONS /api/v1/layers/reseau_hydro_abhs?max_features=5000 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7689 - "OPTIONS /api/v1/layers/bassin_sebou?max_features=5000 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7690 - "OPTIONS /api/v1/layers/sous_bassin_sebou?max_features=5000 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7691 - "OPTIONS /api/v1/layers/reseau_hydro_abhs?max_features=5000 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7883 - "GET /api/v1/layers/reseau_hydro_abhs?max_features=5 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7884 - "GET /api/v1/layers/bassin_sebou?max_features=2 HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:7898 - "GET /api/v1/layers/bassin_sebou?max_features=2 HTTP/1.1" 500 Internal Server Error

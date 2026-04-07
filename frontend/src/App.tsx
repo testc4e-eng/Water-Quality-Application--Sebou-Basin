@@ -18,12 +18,17 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import DataViewer from "./pages/DataViewer";
 import NotFound from "./pages/NotFound";
+import Dashboard1 from "./pages/Dashboard1";
 import Dashboard2 from "./pages/Dashboard2";
-import DashboardClimate from "./pages/DashboardClimate";
+import DashboardAnalytique from "./pages/DashboardAnalytique";
+import DashboardCartographique from "./pages/DashboardCartographique";
 import DashboardScenarios from "./pages/DashboardScenarios";
 import DataScanPage from "./pages/admin/DataScanPage";
 import UserManagementPage from "./pages/admin/UserManagementPage";
 import PasswordResetRequestsPage from "./pages/admin/PasswordResetRequestsPage";
+import AuditLogsPage from "./pages/admin/AuditLogsPage";
+import IngestionPage from "./pages/admin/IngestionPage";
+import PopupRulesPage from "./pages/admin/PopupRulesPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 
 const queryClient = new QueryClient();
@@ -38,9 +43,11 @@ const router = createBrowserRouter(
     <>
       <Route path="/" element={<Layout />}>
         <Route index element={<LandingPage />} />
-        <Route path="dashboard" element={<Dashboard2 />} />
+        <Route path="dashboard" element={<Dashboard1 />} />
+        <Route path="dashboard-cartographique" element={<DashboardCartographique />} />
         <Route path="dashboard-2" element={<Dashboard2 />} />
-        <Route path="dashboard-climate" element={<DashboardClimate />} />
+        <Route path="carte" element={<Dashboard2 />} />
+        <Route path="dashboard-analytique" element={<DashboardAnalytique />} />
         <Route path="dashboard-scenarios" element={<DashboardScenarios />} />
         <Route path="admin/data-scan" element={<DataScanPage />} />
         <Route
@@ -56,6 +63,30 @@ const router = createBrowserRouter(
           element={
             <AdminOnly>
               <PasswordResetRequestsPage />
+            </AdminOnly>
+          }
+        />
+        <Route
+          path="admin/audit"
+          element={
+            <AdminOnly>
+              <AuditLogsPage />
+            </AdminOnly>
+          }
+        />
+        <Route
+          path="admin/ingestion"
+          element={
+            <AdminOnly>
+              <IngestionPage />
+            </AdminOnly>
+          }
+        />
+        <Route
+          path="admin/popup-rules"
+          element={
+            <AdminOnly>
+              <PopupRulesPage />
             </AdminOnly>
           }
         />
@@ -76,14 +107,7 @@ const router = createBrowserRouter(
       <Route path="/change-password" element={<ChangePasswordPage />} />
       <Route path="*" element={<NotFound />} />
     </>
-  ),
-  {
-    // ✅ ici c’est OK
-    future: {
-      v7_startTransition: true,
-      v7_relativeSplatPath: true,
-    },
-  }
+  )
 );
 
 const App = () => (

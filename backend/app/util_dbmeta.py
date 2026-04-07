@@ -91,12 +91,13 @@ def get_geom_column(fullname: str) -> Optional[str]:
         if r:
             return r[0]
 
-    # 3) heuristique: colonnes s'appellant geom/geometry
+    # 3) heuristique: colonnes s'appellant geom/geometry (sauf si json/jsonb)
     q3 = """
     SELECT c.column_name
     FROM   information_schema.columns c
     WHERE  c.table_schema = %s AND c.table_name = %s
       AND  lower(c.column_name) IN ('geom','geometry','the_geom')
+      AND  c.data_type NOT IN ('json', 'jsonb', 'text')
     LIMIT 1;
     """
     with connection() as cx, cx.cursor() as cur:

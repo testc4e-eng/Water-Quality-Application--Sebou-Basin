@@ -48,12 +48,20 @@ export default function InteractiveMap({ stations = [], selectedId, onSelect }) 
     let n = 0;
 
     stations.forEach((s) => {
+      const lon = Number(s?.coords?.lon);
+      const lat = Number(s?.coords?.lat);
+      const isValidCoord =
+        Number.isFinite(lon) &&
+        Number.isFinite(lat) &&
+        lon !== 0 &&
+        lat !== 0 &&
+        Math.abs(lon) <= 180 &&
+        Math.abs(lat) <= 90;
       if (
         s?.coords &&
-        typeof s.coords.lon === "number" &&
-        typeof s.coords.lat === "number"
+        isValidCoord
       ) {
-        const ll = [s.coords.lon, s.coords.lat];
+        const ll = [lon, lat];
 
         const el = document.createElement("div");
         el.style.width = "10px";

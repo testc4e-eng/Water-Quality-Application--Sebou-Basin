@@ -5,7 +5,10 @@ import { NavLink, useLocation } from "react-router-dom";
 const Footer = () => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
-  const isFullScreenDashboard = location.pathname === "/dashboard-2" || location.pathname === "/dashboard";
+  const isFullScreenDashboard =
+    location.pathname === "/dashboard-2" ||
+    location.pathname === "/dashboard" ||
+    location.pathname === "/dashboard-cartographique";
 
   if (isFullScreenDashboard) {
     return null;
@@ -46,15 +49,15 @@ const Footer = () => {
         <div className="mt-5 grid grid-cols-1 gap-4 text-sm text-primary-foreground/90 sm:grid-cols-3">
           <div className="flex flex-col items-center gap-2">
             <Mail className="h-5 w-5 text-secondary" />
-            <span>contact@hydroqual-dss.fr</span>
+            <span>c4e.africa@gmail.com</span>
           </div>
           <div className="flex flex-col items-center gap-2">
             <MapPin className="h-5 w-5 text-secondary" />
-            <span>Université de Recherche</span>
+            <span>75 Boulevard d’Anfa, Casablanca</span>
           </div>
           <div className="flex flex-col items-center gap-2">
             <Users className="h-5 w-5 text-secondary" />
-            <span>Équipe dédiée 24/7</span>
+            <span>Bureau d'étude spécialisé</span>
           </div>
         </div>
       </div>

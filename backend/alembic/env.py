@@ -29,6 +29,7 @@ from app.db.base import Base  # noqa
 # Import "à vide" pour enregistrer les modèles dans Base.metadata
 import app.models.user  # noqa
 import app.models.item  # noqa
+import app.security.models # noqa
 target_metadata = Base.metadata
 
 def run_migrations_offline():

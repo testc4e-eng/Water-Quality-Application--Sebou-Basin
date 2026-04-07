@@ -16,6 +16,7 @@ from app.security.models import (
     Role,
     RolePermission,
     SecurityUser,
+    ActivityLog,
 )
 from app.security.passwords import hash_password, verify_password, validate_password_strength
 from app.security.jwt_service import create_access_token, create_refresh_token
@@ -464,4 +465,54 @@ def update_user_role(db: Session, user: SecurityUser, role_code: str | None):
         raise SecurityError("Rôle inconnu")
     user.role_id = role.id
     user.updated_at = datetime.now(timezone.utc)
+    db.commit()
+
+
+def log_activity(
+    db: Session,
+    method: str,
+    path: str,
+    status_code: int,
+    duration_ms: int,
+    user_id: int | None = None,
+    username: str | None = None,
+    ip_address: str | None = None,
+    user_agent: str | None = None,
+    query_params: str | None = None,
+    request_payload: str | None = None,
+) -> None:
+    # Masquage des champs sensibles dans le payload
+    if request_payload and "password" in request_payload.lower():
+        import json
+        try:
+            data = json.loads(request_payload)
+            def mask_recursive(d):
+                if isinstance(d, dict):
+                    for k, v in d.items():
+                        if "password" in k.lower():
+                            d[k] = "********"
+                        else:
+                            mask_recursive(v)
+                elif isinstance(d, list):
+                    for item in d:
+                        mask_recursive(item)
+            mask_recursive(data)
+            request_payload = json.dumps(data)
+        except:
+            request_payload = "[SENSITIVE DATA MASKED]"
+
+    db.add(
+        ActivityLog(
+            user_id=user_id,
+            username=username,
+            method=method,
+            path=path,
+            status_code=status_code,
+            duration_ms=duration_ms,
+            ip_address=ip_address,
+            user_agent=user_agent,
+            query_params=query_params,
+            request_payload=request_payload,
+        )
+    )
     db.commit()

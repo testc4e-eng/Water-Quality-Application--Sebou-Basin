@@ -1,4 +1,13 @@
-const API_BASE = "http://localhost:8000/api/v1/quality";
+// frontend/src/api/quality.ts
+// ============================================================
+// Toutes les fonctions pointent sur l'API backend réelle.
+// Plus aucun mock ni données générées côté client.
+// ============================================================
+import { api } from "@/api/client";
+
+/* ─────────────────────────────────────────────
+   TYPES
+───────────────────────────────────────────── */
 
 export type PollutionInventoryRow = {
   source: string;
@@ -11,92 +20,117 @@ export type PollutionInventoryRow = {
   unit: string;
 };
 
-export const fetchPollutionInventoryRows = async (): Promise<PollutionInventoryRow[]> => {
-  const res = await fetch(`${API_BASE}/inventory/rows`);
-  if (!res.ok) throw new Error("Erreur inventaire pollution");
-  return res.json();
+export type QualityStation = {
+  station_id: string;
+  station_name: string;
+  dt_min: string | null;
+  dt_max: string | null;
+  n_mesures: number;
 };
 
-// Compat legacy exports kept temporarily for older quality widgets.
-type LegacyRow = {
-  station: string;
+export type QualityParameter = {
+  parameter: string;
+  n_mesures: number;
+};
+
+export type QualityMeasureRow = {
   date: string;
-  n: number;
-  o: number;
-  p: number;
+  no3: number | null;
+  ph: number | null;
+  dbo5: number | null;
+  dco: number | null;
+  o2: number | null;
+  mes: number | null;
 };
 
-const STATIONS = ["AIT_TAMLIL", "SEBOU_01", "SEBOU_02"];
-
-function generateMockData(): LegacyRow[] {
-  const rows: LegacyRow[] = [];
-  const start = new Date("1992-01-01");
-  const end = new Date("2020-12-31");
-
-  STATIONS.forEach((station, index) => {
-    const current = new Date(start);
-    while (current <= end) {
-      rows.push({
-        station,
-        date: current.toISOString().slice(0, 10),
-        n: +(Math.random() * 10 + 5 + index * 2).toFixed(2),
-        o: +(Math.random() * 20 + 10 + index * 3).toFixed(2),
-        p: +(Math.random() * 5 + 1 + index).toFixed(2),
-      });
-      current.setDate(current.getDate() + 1);
-    }
-  });
-
-  return rows;
-}
-
-const MOCK_DATA = generateMockData();
-
-function aggregateMonthly(rows: LegacyRow[]): LegacyRow[] {
-  const map: Record<string, LegacyRow[]> = {};
-
-  rows.forEach((row) => {
-    const monthKey = `${row.station}-${row.date.slice(0, 7)}`;
-    if (!map[monthKey]) map[monthKey] = [];
-    map[monthKey].push(row);
-  });
-
-  return Object.values(map).map((group) => {
-    const first = group[0];
-    const mean = (key: "n" | "o" | "p") => group.reduce((sum, row) => sum + row[key], 0) / group.length;
-
-    return {
-      station: first.station,
-      date: `${first.date.slice(0, 7)}-01`,
-      n: +mean("n").toFixed(2),
-      o: +mean("o").toFixed(2),
-      p: +mean("p").toFixed(2),
-    };
-  });
-}
-
-function filterLegacyData(params: any): LegacyRow[] {
-  let stations: string[] = [];
-  if (Array.isArray(params.station_code)) stations = params.station_code;
-  else if (typeof params.station_code === "string") stations = params.station_code.split(",");
-  else stations = STATIONS;
-
-  let filtered = MOCK_DATA.filter(
-    (row) => stations.includes(row.station) && row.date >= params.date_start && row.date <= params.date_end
-  );
-
-  if (params.aggregation === "M") filtered = aggregateMonthly(filtered);
-  return filtered;
-}
-
-export const fetchQualityStations = async () => Promise.resolve(STATIONS.map((station_code) => ({ station_code })));
-export const fetchQualityTable = async (params: any) => Promise.resolve(filterLegacyData(params));
-export const fetchQualityChart = async (params: any) => Promise.resolve(filterLegacyData(params));
-export const fetchQualityKPIs = async (params: any) => {
-  const filtered = filterLegacyData(params);
-  if (filtered.length === 0) return Promise.resolve({ n: 0, o: 0, p: 0 });
-
-  const mean = (key: "n" | "o" | "p") => filtered.reduce((sum, row) => sum + row[key], 0) / filtered.length;
-  return Promise.resolve({ n: mean("n"), o: mean("o"), p: mean("p") });
+export type QualityKPIs = {
+  no3: number;
+  ph: number;
+  dbo5: number;
+  dco: number;
+  o2: number;
 };
 
+/* ─────────────────────────────────────────────
+   INVENTAIRE POLLUTION (Points d'eau / STEP / STM)
+   → GET /quality/inventory/rows
+───────────────────────────────────────────── */
+export const fetchPollutionInventoryRows = async (): Promise<PollutionInventoryRow[]> => {
+  const { data } = await api.get<PollutionInventoryRow[]>("/quality/inventory/rows");
+  return Array.isArray(data) ? data : [];
+};
+
+/* ─────────────────────────────────────────────
+   STATIONS QUALITÉ RIVIÈRES
+   → GET /quality/stations
+───────────────────────────────────────────── */
+export const fetchQualityStations = async (): Promise<QualityStation[]> => {
+  const { data } = await api.get<QualityStation[]>("/quality/stations");
+  return Array.isArray(data) ? data : [];
+};
+
+/* ─────────────────────────────────────────────
+   PARAMÈTRES DISPONIBLES (optionnellement par station)
+   → GET /quality/parameters?station_id=...
+───────────────────────────────────────────── */
+export const fetchQualityParameters = async (
+  station_id?: string
+): Promise<QualityParameter[]> => {
+  const { data } = await api.get<QualityParameter[]>("/quality/parameters", {
+    params: station_id ? { station_id } : undefined,
+  });
+  return Array.isArray(data) ? data : [];
+};
+
+/* ─────────────────────────────────────────────
+   SÉRIE TEMPORELLE QUALITÉ
+   → GET /quality/timeseries?station_id=&date_start=&date_end=
+───────────────────────────────────────────── */
+export const fetchQualityTimeseries = async (params: {
+  station_id: string;
+  date_start?: string;
+  date_end?: string;
+}): Promise<QualityMeasureRow[]> => {
+  const { data } = await api.get<QualityMeasureRow[]>("/quality/timeseries", {
+    params: {
+      station_id: params.station_id,
+      date_start: params.date_start ?? undefined,
+      date_end: params.date_end ?? undefined,
+    },
+  });
+  return Array.isArray(data) ? data : [];
+};
+
+/* ─────────────────────────────────────────────
+   KPIs calculés côté client depuis la série temporelle
+───────────────────────────────────────────── */
+export const fetchQualityKPIs = async (params: {
+  station_id: string;
+  date_start?: string;
+  date_end?: string;
+}): Promise<QualityKPIs> => {
+  const rows = await fetchQualityTimeseries(params);
+
+  const mean = (key: keyof QualityMeasureRow) => {
+    const values = rows
+      .map((r) => r[key])
+      .filter((v): v is number => typeof v === "number" && !Number.isNaN(v));
+    if (!values.length) return 0;
+    return values.reduce((s, v) => s + v, 0) / values.length;
+  };
+
+  return {
+    no3: mean("no3"),
+    ph: mean("ph"),
+    dbo5: mean("dbo5"),
+    dco: mean("dco"),
+    o2: mean("o2"),
+  };
+};
+
+/* ─────────────────────────────────────────────
+   COMPAT — anciennes signatures utilisées dans d'autres composants
+   (redirigent vers les nouvelles fonctions)
+───────────────────────────────────────────── */
+export const fetchQualityTable = fetchQualityTimeseries;
+export const fetchQualityChart = fetchQualityTimeseries;

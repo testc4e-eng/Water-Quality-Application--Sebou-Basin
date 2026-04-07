@@ -180,3 +180,69 @@ def dictionary_csv(schema: str | None = Query(None), exact: bool = Query(False))
             ])
     csv_bytes = buf.getvalue().encode("utf-8")
     return Response(content=csv_bytes, media_type="text/csv")
+
+
+# ============================================================
+# Vues du schéma metadata (catalogue des vues API)
+# ============================================================
+
+_METADATA_VIEWS = {
+    "api-catalog":        "metadata.api_view_catalog",
+    "api-column-catalog": "metadata.api_view_column_catalog",
+    "api-dictionary":     "metadata.v_api_dictionary",
+}
+
+
+def _read_metadata_view(view_fqn: str, limit: int = 2000):
+    """Lit une vue du schéma metadata et renvoie les lignes sous forme de dicts."""
+    if not table_exists(view_fqn):
+        return None  # view does not exist in this environment
+    q = sql.SQL("SELECT * FROM {} LIMIT %s").format(sql.SQL(view_fqn))
+    with connection() as cx, cx.cursor(cursor_factory=RealDictCursor) as cur:
+        cur.execute(q, (limit,))
+        return cur.fetchall()
+
+
+@router.get("/api-catalog", summary="Catalogue des vues API (metadata.api_view_catalog)")
+def api_catalog(limit: int = Query(2000, ge=1, le=10000)):
+    """
+    Retourne le contenu de metadata.api_view_catalog :
+    liste des vues exposées dans le schéma api avec leur description.
+    """
+    rows = _read_metadata_view("metadata.api_view_catalog", limit)
+    if rows is None:
+        from fastapi import HTTPException
+        raise HTTPException(404, "La vue metadata.api_view_catalog n'existe pas dans cette base.")
+    return rows
+
+
+@router.get("/api-column-catalog", summary="Catalogue colonnes vues API (metadata.api_view_column_catalog)")
+def api_column_catalog(
+    view_name: str | None = Query(None, description="Filtrer par nom de vue"),
+    limit: int = Query(5000, ge=1, le=50000),
+):
+    """
+    Retourne le contenu de metadata.api_view_column_catalog :
+    colonnes de chaque vue API avec type et description.
+    """
+    rows = _read_metadata_view("metadata.api_view_column_catalog", limit)
+    if rows is None:
+        from fastapi import HTTPException
+        raise HTTPException(404, "La vue metadata.api_view_column_catalog n'existe pas dans cette base.")
+    if view_name:
+        rows = [r for r in rows if r.get("view_name") == view_name]
+    return rows
+
+
+@router.get("/api-dictionary", summary="Dictionnaire complet des vues API (metadata.v_api_dictionary)")
+def api_dictionary(limit: int = Query(5000, ge=1, le=50000)):
+    """
+    Retourne le contenu de metadata.v_api_dictionary :
+    vue agrégée schéma + colonnes + descriptions.
+    """
+    rows = _read_metadata_view("metadata.v_api_dictionary", limit)
+    if rows is None:
+        from fastapi import HTTPException
+        raise HTTPException(404, "La vue metadata.v_api_dictionary n'existe pas dans cette base.")
+    return rows
+

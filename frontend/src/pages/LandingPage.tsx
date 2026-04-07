@@ -75,7 +75,7 @@ const LandingPage = () => {
             </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <Button size="lg" variant="secondary" asChild className="shadow-elegant">
-                <NavLink to="/dashboard-2">
+                <NavLink to="/dashboard-cartographique">
                   Acceder au Dashboard
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </NavLink>

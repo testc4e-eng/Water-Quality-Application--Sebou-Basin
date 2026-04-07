@@ -22,6 +22,9 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
     payload = decode_token(token)
     if not payload:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token invalide")
+    
+    if payload.get("error") == "expired":
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Session expirée")
 
     subject = payload.get("sub")
     if not subject:

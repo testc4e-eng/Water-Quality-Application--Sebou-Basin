@@ -202,3 +202,186 @@ def get_barrage_quality_series(
 def get_alerts():
     # Branchez vos vraies alertes ici. On renvoie une liste vide pour éviter les 404.
     return []
+
+
+@router.get("/entity/{entity_id}/data", summary="Données série temporelle d'une entité")
+def get_entity_data(
+    entity_id: str,
+    layer_key: Optional[str] = Query(None),
+    date_start: Optional[str] = Query(None),
+    date_end: Optional[str] = Query(None),
+    limit: int = Query(2000, ge=1, le=20000),
+    offset: int = Query(0, ge=0),
+    db: Session = Depends(get_db),
+):
+    """
+    Endpoint générique pour alimenter le panneau droit (séries + mesures) selon le type d'entité.
+    """
+    lk = (layer_key or "").strip().lower()
+    sql_parts: List[str] = []
+    params: Dict[str, Any] = {
+        "entity_id": entity_id,
+        "date_start": date_start,
+        "date_end": date_end,
+        "limit_plus_one": limit + 1,
+        "offset": offset,
+    }
+
+    def _with_date(expr: str) -> str:
+        return f"""
+        {expr}
+          AND (:date_start IS NULL OR ts >= :date_start::date)
+          AND (:date_end IS NULL OR ts <= :date_end::date + interval '1 day')
+        """
+
+    # Station-based
+    if lk in ("", "stations_abhs"):
+        if table_exists("hydro.mesure_debit"):
+            sql_parts.append(
+                _with_date(
+                    """
+                    SELECT 'hydro.mesure_debit'::text AS source_table, temps AS ts, 'DEBIT'::text AS parameter,
+                           valeur::double precision AS value, 'm3/s'::text AS unit
+                    FROM hydro.mesure_debit
+                    WHERE station_id::text = :entity_id AND valeur IS NOT NULL
+                    """
+                )
+            )
+        if table_exists("meteo.mesure_evaporation"):
+            sql_parts.append(
+                _with_date(
+                    """
+                    SELECT 'meteo.mesure_evaporation'::text AS source_table, temps AS ts, 'EVAPO'::text AS parameter,
+                           valeur::double precision AS value, 'mm'::text AS unit
+                    FROM meteo.mesure_evaporation
+                    WHERE station_id::text = :entity_id AND valeur IS NOT NULL
+                    """
+                )
+            )
+        if table_exists("meteo.mesure_precipitation"):
+            sql_parts.append(
+                _with_date(
+                    """
+                    SELECT 'meteo.mesure_precipitation'::text AS source_table, temps AS ts, 'PRECIP'::text AS parameter,
+                           val_remplies::double precision AS value, 'mm'::text AS unit
+                    FROM meteo.mesure_precipitation
+                    WHERE station_id::text = :entity_id AND val_remplies IS NOT NULL
+                    """
+                )
+            )
+        if table_exists("meteo.mesure_temperature"):
+            sql_parts.append(
+                _with_date(
+                    """
+                    SELECT 'meteo.mesure_temperature'::text AS source_table, temps AS ts, 'TEMP_MOY'::text AS parameter,
+                           val_moy::double precision AS value, '°C'::text AS unit
+                    FROM meteo.mesure_temperature
+                    WHERE station_id::text = :entity_id AND val_moy IS NOT NULL
+                    """
+                )
+            )
+        for t in (
+            "qualite.mesure_qualite_riviere",
+            "qualite.mesure_qualite_barrage",
+            "qualite.mesure_qualite_sebou",
+            "qualite.mesure_qualite_nappe",
+        ):
+            if table_exists(t):
+                sql_parts.append(
+                    _with_date(
+                        f"""
+                        SELECT '{t}'::text AS source_table, temps AS ts, parametre_qualite::text AS parameter,
+                               valeur::double precision AS value, unite::text AS unit
+                        FROM {t}
+                        WHERE station_id::text = :entity_id AND valeur IS NOT NULL
+                        """
+                    )
+                )
+
+    # Barrage
+    if lk == "barrages_abhs" and table_exists("hydro.mesure_barrage"):
+        sql_parts.append(
+            _with_date(
+                """
+                SELECT 'hydro.mesure_barrage'::text AS source_table, temps AS ts, 'NIVEAU_BARRAGE'::text AS parameter,
+                       cote_m::double precision AS value, 'm'::text AS unit
+                FROM hydro.mesure_barrage
+                WHERE barrage_id::text = :entity_id AND cote_m IS NOT NULL
+                """
+            )
+        )
+        sql_parts.append(
+            _with_date(
+                """
+                SELECT 'hydro.mesure_barrage'::text AS source_table, temps AS ts, 'VOLUME_BARRAGE'::text AS parameter,
+                       volume_mm3::double precision AS value, 'Mm3'::text AS unit
+                FROM hydro.mesure_barrage
+                WHERE barrage_id::text = :entity_id AND volume_mm3 IS NOT NULL
+                """
+            )
+        )
+
+    # Source eau
+    if lk == "sources" and table_exists("hydro.mesure_debit_source"):
+        sql_parts.append(
+            _with_date(
+                """
+                SELECT 'hydro.mesure_debit_source'::text AS source_table, temps AS ts, 'DEBIT_SOURCE'::text AS parameter,
+                       valeur_m3s::double precision AS value, 'm3/s'::text AS unit
+                FROM hydro.mesure_debit_source
+                WHERE source_id::text = :entity_id AND valeur_m3s IS NOT NULL
+                """
+            )
+        )
+
+    # WASP segment
+    if lk == "reseau_hydro_abhs" and table_exists("wasp_output.mesure_qualite_segment_ts"):
+        sql_parts.append(
+            _with_date(
+                """
+                SELECT 'wasp_output.mesure_qualite_segment_ts'::text AS source_table, ts_utc AS ts,
+                       code_parametre::text AS parameter, valeur::double precision AS value, unite::text AS unit
+                FROM wasp_output.mesure_qualite_segment_ts
+                WHERE reseau_id::text = :entity_id AND valeur IS NOT NULL
+                """
+            )
+        )
+
+    # SWAT subbasin
+    if lk == "sous_bassins_swat" and table_exists("swat_output.mesure_qualite_subbasin_ts"):
+        sql_parts.append(
+            _with_date(
+                """
+                SELECT 'swat_output.mesure_qualite_subbasin_ts'::text AS source_table, temps AS ts,
+                       param_code::text AS parameter, valeur::double precision AS value, unite::text AS unit
+                FROM swat_output.mesure_qualite_subbasin_ts
+                WHERE subbasin_uid::text = :entity_id AND valeur IS NOT NULL
+                """
+            )
+        )
+
+    if not sql_parts:
+        return {"entity_id": entity_id, "layer_key": lk, "rows": [], "count": 0}
+
+    union_sql = "\nUNION ALL\n".join(sql_parts)
+    final_sql = text(
+        f"""
+        SELECT source_table, ts, parameter, value, unit
+        FROM ({union_sql}) q
+        ORDER BY ts DESC
+        OFFSET :offset
+        LIMIT :limit_plus_one
+        """
+    )
+    raw_rows = db.execute(final_sql, params).mappings().all()
+    has_more = len(raw_rows) > limit
+    rows = raw_rows[:limit]
+    return {
+        "entity_id": entity_id,
+        "layer_key": lk,
+        "rows": rows,
+        "count": len(rows),
+        "offset": offset,
+        "limit": limit,
+        "has_more": has_more,
+    }

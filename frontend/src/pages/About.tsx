@@ -1,6 +1,5 @@
 /* frontend/src/pages/About.tsx */
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { 
   Target, 
   Zap, 
@@ -8,12 +7,7 @@ import {
   BarChart3, 
   MapPin, 
   Activity,
-  FileText,
-  Database,
-  Cloud,
-  Cpu,
-  Globe,
-  Users
+  FileText
 } from "lucide-react";
 
 const About = () => {
@@ -52,37 +46,6 @@ const About = () => {
       description: "Création automatisée de rapports conformes aux standards APA/ISO avec export multi-formats"
     }
   ];
-
-const team = [
-  {
-    name: "Mr. Driss Ennaanay",
-    role: "Directeur Général",
-    speciality: "Gestion environnementale & leadership",
-    experience: "20+ ans",
-    description: "Directeur Général, engagé dans la protection de l’environnement et le pilotage stratégique des projets."
-  },
-  {
-    name: "Yassine",
-    role: "Chef de projet",
-    speciality: "Développement fullstack",
-    experience: "10+ ans",
-    description: "Responsable de la gestion des projets et du développement logiciel et l'intégration des solutions."
-  },
-  {
-    name: "Ilham",
-    role: "Développeur Fullstack",
-    speciality: "Architecture web & visualisation",
-    experience: "1+ ans",
-    description: "Spécialiste en conception d’architectures web modernes et en visualisation des données environnementales."
-  },
-  {
-    name: "Imane",
-    role: "Développeur Fullstack",
-    speciality: "Systèmes d'information géographique",
-    experience: "1+ ans",
-    description: "Experte en développement fullstack appliqué aux SIG et à l’analyse spatiale des données environnementales."
-  }
-];
 
   return (
     <div className="min-h-screen bg-background">
@@ -158,44 +121,6 @@ const team = [
                   </Card>
                 );
               })}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="py-16 bg-muted/30">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-roboto font-bold text-primary mb-4">
-                Notre Équipe
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Des experts passionnés par l'innovation environnementale
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {team.map((member, index) => (
-                <Card key={index} className="border-border hover:shadow-card transition-shadow">
-                  <CardContent className="p-8">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center flex-shrink-0">
-                        <Users className="h-8 w-8 text-primary-foreground" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-roboto font-semibold text-lg mb-1">{member.name}</h3>
-                        <p className="text-primary font-medium mb-2">{member.role}</p>
-                        <div className="flex flex-wrap gap-2 mb-3">
-                          <Badge variant="secondary">{member.speciality}</Badge>
-                          <Badge variant="outline">{member.experience}</Badge>
-                        </div>
-                        <p className="text-muted-foreground text-sm">{member.description}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
             </div>
           </div>
         </div>

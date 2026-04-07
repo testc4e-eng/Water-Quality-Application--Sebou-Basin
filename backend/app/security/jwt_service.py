@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta, timezone
-from jose import jwt, JWTError
+from jose import jwt, JWTError, ExpiredSignatureError
 from app.core.config import settings
 
 ALGORITHM = "HS256"
@@ -22,5 +22,8 @@ def create_refresh_token(subject: str, role: str, expires_days: int = 7) -> str:
 def decode_token(token: str) -> dict | None:
     try:
         return jwt.decode(token, settings.SECRET_KEY, algorithms=[ALGORITHM])
+    except ExpiredSignatureError:
+        # On pourrait lever une exception personnalisée ici pour être plus précis
+        return {"error": "expired"}
     except JWTError:
         return None

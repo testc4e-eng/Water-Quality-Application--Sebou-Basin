@@ -180,3 +180,28 @@ def climate_kpis(
     ).mappings().one()
 
     return row
+
+
+@router.get("/latest")
+def climate_latest(
+    metric: str = Query("p_annuelle", pattern="^(p_max|p_annuelle)$"),
+    date_start: str | None = Query(None),
+    date_end: str | None = Query(None),
+    db: Session = Depends(get_climate_db),
+):
+    query = text(
+        f"""
+        select
+          station_id::text as entity_id,
+          avg({metric})::double precision as value
+        from api.v_meteo_precipitation_annuelle_max
+        where station_id is not null
+          and {metric} is not null
+          and (:date_start is null or make_date(annee, 1, 1) >= :date_start::date)
+          and (:date_end is null or make_date(annee, 1, 1) <= :date_end::date)
+        group by station_id
+        """
+    )
+    return db.execute(
+        query, {"date_start": date_start, "date_end": date_end}
+    ).mappings().all()
