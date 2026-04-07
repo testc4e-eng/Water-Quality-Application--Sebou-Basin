@@ -1,0 +1,59 @@
+=== SCH╔MAS PR╔SENTS ===
+_timescaledb_cache, _timescaledb_catalog, _timescaledb_config, _timescaledb_internal, admin, api, geo, hydro, infra, metadata, meteo, modeles, monitoring, public, qualite, security, staging, swat_output, timescaledb_experimental, timescaledb_information, wasp_output
+
+=== VUES api.* (43) ===
+  api.ca_hydro_barrage_day
+  api.ca_hydro_debit_day
+  api.ca_meteo_temp_day
+  api.v_barrage_bathymetrie_geo
+  api.v_barrage_dimension
+  api.v_bassin_geojson
+  api.v_hydro_debit_journalier_qa
+  api.v_hydro_debit_mensuel
+  api.v_hydro_debit_sources_timeseries
+  api.v_inventaire_pollution_decharges_abandonnees_detail
+  api.v_inventaire_pollution_decharges_consolide
+  api.v_inventaire_pollution_decharges_detail
+  api.v_inventaire_pollution_huileries_detail
+  api.v_inventaire_pollution_mines_detail
+  api.v_inventaire_pollution_rejet_abattoir_detail
+  api.v_inventaire_pollution_rejets_bruts_detail
+  api.v_inventaire_pollution_sources_mesures_detail
+  api.v_inventaire_pollution_steps_detail
+  api.v_inventaire_pollution_steps_industrielles_detail
+  api.v_inventaire_pollution_stms_detail
+  api.v_meteo_evaporation_journalier_qa
+  api.v_meteo_precipitation_annuelle_max
+  api.v_meteo_precipitation_journalier_qa
+  api.v_nappes_geojson
+  api.v_points_eau
+  api.v_profils_stations
+  api.v_qualite_barrages_mesures
+  api.v_qualite_nappes_mesures
+  api.v_qualite_riviere_mesures
+  api.v_qualite_sebou_mesures
+  api.v_sources_geojson
+  api.v_sous_bassin_geojson
+  api.v_sous_bassin_swat_geojson
+  api.v_station_dimension
+  api.v_stm
+  api.v_suivi_qualite_barrage_garde_hebdo
+  api.v_swat_qualite_subbasin_consolide
+  api.v_wasp_qualite_segment_consolide
+  api.viz_carto_layers
+  api.viz_climat_timeseries
+  api.viz_hydro_timeseries
+  api.viz_pollution_timeseries
+  api.viz_qualite_timeseries
+
+=== TABLES/VUES HORS SCH╔MA api ===
+
+--- SchΘma: _timescaledb_cache (3 objets) ---
+Traceback (most recent call last):
+  File "C:\dev\WQDSS\repo_git\backend\audit_schemas.py", line 73, in <module>
+    print(f"  [{ttype_short}] {schema}.{name:50s} ~{row_str:>8} lignes  {has_api}{flag}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\micromamba\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u274c' in position 98: character maps to <undefined>

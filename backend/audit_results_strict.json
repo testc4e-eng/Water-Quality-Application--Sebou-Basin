@@ -1,0 +1,46 @@
+{
+  "overall": "OK",
+  "checks": [
+    {
+      "name": "api_required_views",
+      "status": "OK",
+      "detail": "all present"
+    },
+    {
+      "name": "metadata.popup_rules_config",
+      "status": "OK",
+      "detail": "exists, rows=11"
+    },
+    {
+      "name": "api.v_hierarchie_metier_listing",
+      "status": "OK",
+      "detail": "Climat & meteo:9; Hydrologie:6; Pollution:32; Qualite de l'eau:172"
+    },
+    {
+      "name": "core_tables_api_coverage",
+      "status": "OK",
+      "detail": "all covered"
+    },
+    {
+      "name": "backend_health",
+      "status": "OK",
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "endpoint /observatory/popup-rules",
+      "status": "OK",
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "endpoint /observatory/popup-rules/list",
+      "status": "OK",
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "endpoint /observatory/catalog/themes",
+      "status": "OK",
+      "detail": "HTTP 200"
+    }
+  ],
+  "gaps": []
+}

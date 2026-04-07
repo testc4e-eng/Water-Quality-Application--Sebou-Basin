@@ -1,0 +1,6 @@
+--- swat ---
+['id', 'subbasin', 'area', 'slo1', 'len1', 'sll', 'csl', 'wid1', 'dep1', 'lat', 'long_', 'elev', 'elevmin', 'elevmax', 'bname', 'shape_len', 'shape_area', 'hydroid', 'outletid', 'geom', 'bassin_code', 'bassin_nom', 'source_file', 'version_geom_date']
+--- nappe ---
+['id', 'nappes', 'code_nappe', 'nom_nappe', 'superficie_km2', 'geom']
+--- source ---
+['id', 'code_commune', 'code_nappe', 'ire_source', 'nom_source', 'type_source', 'coord_x', 'coord_y', 'coord_z', 'geom']
