@@ -150,7 +150,9 @@ function formatYearTick(value: string | number) {
 function selectionIsReady(selection: Selection, climateTheme: boolean): boolean {
   const baseReady = !!selection.stationId && !!selection.submenu;
   if (!baseReady) return false;
-  if (climateTheme) return true;
+  if (climateTheme) {
+    return !selection.variableEnabled || !!selection.parameter?.param_code;
+  }
   return !!selection.parameter;
 }
 

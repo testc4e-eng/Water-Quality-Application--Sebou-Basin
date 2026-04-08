@@ -101,6 +101,10 @@ export default function UnifiedFilters({ theme, onChange, compact }: Props) {
         : getPollutionOptions;
       loader()
         .then((data) => {
+          const nextScenarios =
+            data.scenarios && data.scenarios.length > 0
+              ? data.scenarios
+              : [{ code: "actuel", label: "Actuel" }];
           const subRows = (data.submenus || []).map((s) => ({
             sous_menu: s.label,
             n_items: (s.variables || []).length,
@@ -108,24 +112,32 @@ export default function UnifiedFilters({ theme, onChange, compact }: Props) {
             variable_enabled: !!s.variable_enabled,
             variables: s.variables || [],
           }));
-          setScenarios((data.scenarios && data.scenarios.length > 0) ? data.scenarios : [{ code: "actuel", label: "Actuel" }]);
+
+          setScenarios(nextScenarios);
           setSubmenus(subRows);
+          setSelectedScenario(nextScenarios[0]?.code || "actuel");
+          setSelectedSubmenu(subRows[0]?.sous_menu);
+          setSelectedParamCode(undefined);
+          setSelectedEntityId(undefined);
         })
         .catch(err => {
           console.error("Failed to fetch analytics options", err);
           setScenarios([{ code: "actuel", label: "Actuel" }]);
           setSubmenus([]);
+          setSelectedScenario("actuel");
+          setSelectedSubmenu(undefined);
+          setSelectedParamCode(undefined);
+          setSelectedEntityId(undefined);
         });
     } else {
       getHierarchySubmenus(theme).then((rows) => {
         setSubmenus((rows || []).map(r => ({ ...r, code: undefined })));
       });
+      setSelectedSubmenu(undefined);
+      setSelectedParamCode(undefined);
+      setSelectedEntityId(undefined);
+      setSelectedScenario("actuel");
     }
-    
-    setSelectedSubmenu(undefined);
-    setSelectedParamCode(undefined);
-    setSelectedEntityId(undefined);
-    setSelectedScenario("actuel");
   }, [theme, isClimate, isHydro, isPollution, useAnalyticsMenu]);
 
   // Helper function to get the code of a selected submenu
@@ -145,8 +157,7 @@ export default function UnifiedFilters({ theme, onChange, compact }: Props) {
     if (useAnalyticsMenu) {
       const sub = submenus.find((s) => s.sous_menu === selectedSubmenu);
       const vars = sub?.variables || [];
-      setParameters(
-        vars.map((v) => ({
+      const nextParams = vars.map((v) => ({
           param_code: v.code,
           param_label: v.label,
           unite: v.unit ?? null,
@@ -159,24 +170,42 @@ export default function UnifiedFilters({ theme, onChange, compact }: Props) {
             : "mv_dashboard_climat_meteo_menu",
           source_column: "value_num",
           is_modeled: false,
-        }))
-      );
+        }));
+
+      setParameters(nextParams);
+      if (sub?.variable_enabled && nextParams.length > 0) {
+        setSelectedParamCode((prev) => {
+          if (prev && nextParams.some((p) => p.param_code === prev)) return prev;
+          return nextParams[0].param_code;
+        });
+      } else {
+        setSelectedParamCode(undefined);
+      }
+      setSelectedEntityId(undefined);
     } else {
       getHierarchyParameters(theme, selectedSubmenu).then((rows) => {
         setParameters(rows || []);
       });
+      setSelectedParamCode(undefined);
+      setSelectedEntityId(undefined);
     }
-    
-    setSelectedParamCode(undefined);
-    setSelectedEntityId(undefined);
   }, [theme, selectedSubmenu, isHydro, isPollution, useAnalyticsMenu, submenus]);
 
   // 3. Charge les entités au changement de paramètre
   useEffect(() => {
     if (!theme || !selectedSubmenu) {
       setEntities([]);
+      setSelectedEntityId(undefined);
       return;
     }
+
+    const applyEntities = (next: Array<{ id: string; name: string; code?: string }>) => {
+      setEntities(next);
+      setSelectedEntityId((prev) => {
+        if (prev && next.some((e) => String(e.id) === String(prev))) return prev;
+        return next.length > 0 ? String(next[0].id) : undefined;
+      });
+    };
 
     if (useAnalyticsMenu) {
       const subCode = getSelectedSubmenuCode();
@@ -191,9 +220,9 @@ export default function UnifiedFilters({ theme, onChange, compact }: Props) {
         variable: selectedParamCode,
         scenario: selectedScenario,
       }).then((rows) => {
-        setEntities((rows || []).map(r => ({ id: r.site_id, name: r.site_name, code: r.site_code })));
+        applyEntities((rows || []).map(r => ({ id: r.site_id, name: r.site_name, code: r.site_code })));
       }).catch(() => {
-        setEntities([]);
+        applyEntities([]);
       });
     } else if (selectedParamCode) {
       getParameterEntities({
@@ -202,11 +231,11 @@ export default function UnifiedFilters({ theme, onChange, compact }: Props) {
         param_code: selectedParamCode,
       }).then((data: any) => {
         const ids = Array.isArray(data?.entity_ids) ? data.entity_ids : [];
-        setEntities(ids.map((id: string) => ({ id, name: id })));
+        applyEntities(ids.map((id: string) => ({ id, name: id })));
       });
+    } else {
+      applyEntities([]);
     }
-    
-    setSelectedEntityId(undefined);
   }, [theme, selectedSubmenu, selectedParamCode, isClimate, isHydro, isPollution, useAnalyticsMenu, selectedScenario]);
 
   // 4. Notifier le parent

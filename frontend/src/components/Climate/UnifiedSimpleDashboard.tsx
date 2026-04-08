@@ -99,7 +99,9 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
     const hydroThemeInner = isHydroTheme(theme);
     const pollutionTheme = isPollutionTheme(theme);
     const analyticsTheme = climateTheme || hydroThemeInner || pollutionTheme;
-    const canLoadClimate = !!selection.stationId && !!selection.submenu;
+    const needsVariable = !!selection.variableEnabled;
+    const hasRequiredVariable = !needsVariable || !!selection.parameter?.param_code;
+    const canLoadClimate = !!selection.stationId && !!selection.submenu && hasRequiredVariable;
     const canLoadGeneric = !!selection.stationId && !!selection.submenu && !!selection.parameter;
     if ((analyticsTheme && !canLoadClimate) || (!analyticsTheme && !canLoadGeneric)) {
       setSeries([]);
@@ -246,8 +248,12 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
               value={
                 loading
                   ? "Chargement..."
+                  : !selection.submenu
+                  ? "Choisir sous-menu"
+                  : selection.variableEnabled && !selection.parameter?.param_code
+                  ? "Choisir variable"
                   : !selection.stationId
-                  ? "En attente"
+                  ? "Choisir site"
                   : series.length > 0
                   ? "Données OK"
                   : "Aucune donnée"
