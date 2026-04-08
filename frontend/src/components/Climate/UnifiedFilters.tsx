@@ -1,5 +1,5 @@
 /* frontend/src/components/Climate/UnifiedFilters.tsx */
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   getHierarchySubmenus,
   getHierarchyParameters,
@@ -83,6 +83,7 @@ export default function UnifiedFilters({ theme, onChange, compact }: Props) {
   const [selectedSubmenu, setSelectedSubmenu] = useState<string | undefined>(undefined);
   const [selectedParamCode, setSelectedParamCode] = useState<string | undefined>(undefined);
   const [selectedEntityId, setSelectedEntityId] = useState<string | undefined>(undefined);
+  const lastEmittedSignatureRef = useRef<string>("");
 
   const isClimate = isClimateTheme(theme);
   const isHydro = isHydroTheme(theme);
@@ -246,8 +247,8 @@ export default function UnifiedFilters({ theme, onChange, compact }: Props) {
     const subCode = getSelectedSubmenuCode();
     const selectedSub = submenus.find((s) => s.sous_menu === selectedSubmenu);
     const selectedEntity = (entities || []).find((e) => String(e.id) === String(selectedEntityId));
-    
-    onChange({
+
+    const payload = {
       scenario: useAnalyticsMenu ? selectedScenario : undefined,
       submenu: useAnalyticsMenu ? subCode : selectedSubmenu,
       submenuLabel: selectedSubmenu,
@@ -255,7 +256,23 @@ export default function UnifiedFilters({ theme, onChange, compact }: Props) {
       parameter: param,
       stationId: selectedEntityId,
       entityObj: selectedEntity,
+    };
+
+    // Prevent render loops in parents that pass inline onChange callbacks.
+    const signature = JSON.stringify({
+      scenario: payload.scenario ?? null,
+      submenu: payload.submenu ?? null,
+      submenuLabel: payload.submenuLabel ?? null,
+      variableEnabled: payload.variableEnabled ?? null,
+      parameterCode: payload.parameter?.param_code ?? null,
+      stationId: payload.stationId ?? null,
+      entityId: payload.entityObj?.id ?? null,
     });
+
+    if (signature !== lastEmittedSignatureRef.current) {
+      lastEmittedSignatureRef.current = signature;
+      onChange(payload);
+    }
   }, [selectedSubmenu, selectedParamCode, selectedEntityId, parameters, entities, onChange, useAnalyticsMenu, selectedScenario, submenus]);
 
   return (
