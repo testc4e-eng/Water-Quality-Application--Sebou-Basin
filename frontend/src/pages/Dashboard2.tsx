@@ -572,18 +572,18 @@ export default function Dashboard2() {
 
   const layerMaxFeatures = useMemo(
     () => ({
-      adm_communes_abhs: 3000,
-      adm_cercles_abhs: 1200,
+      adm_communes_abhs: 1500,
+      adm_cercles_abhs: 1000,
       adm_provinces_abhs: 300,
       adm_regions_abhs: 100,
-      reseau_hydro_abhs: 5000,
-      stations_abhs: 2000,
-      points_eau: 2000,
-      sources: 2000,
+      reseau_hydro_abhs: 3000,
+      stations_abhs: 1200,
+      points_eau: 1200,
+      sources: 1200,
       adm_villes_abhs: 500,
-      adm_douars_abhs: 2000,
-      fosses_septiques_abhs: 2000,
-      sous_bassins_swat: 1500,
+      adm_douars_abhs: 1500,
+      fosses_septiques_abhs: 1200,
+      sous_bassins_swat: 900,
     } as Record<string, number>),
     []
   );
@@ -600,7 +600,7 @@ export default function Dashboard2() {
   );
 
   useEffect(() => {
-    const t = window.setTimeout(() => setDebouncedViewportBbox(viewportBbox), 250);
+    const t = window.setTimeout(() => setDebouncedViewportBbox(viewportBbox), 450);
     return () => window.clearTimeout(t);
   }, [viewportBbox]);
 
@@ -645,6 +645,41 @@ export default function Dashboard2() {
   const scaleControlRef = useRef<maplibregl.ScaleControl | null>(null);
   const togglesRef = useRef(layers.toggles);
   const hoverTimerRef = useRef<number | null>(null);
+  const layerAbortRef = useRef<Map<string, AbortController>>(new Map());
+  const layerCacheRef = useRef<Map<string, FeatureCollection>>(new Map());
+
+  const fetchLayerData = useCallback(async (layerKey: string, url: string): Promise<FeatureCollection | null> => {
+    const cached = layerCacheRef.current.get(url);
+    if (cached) return cached;
+
+    const existing = layerAbortRef.current.get(layerKey);
+    if (existing) existing.abort();
+
+    const controller = new AbortController();
+    layerAbortRef.current.set(layerKey, controller);
+
+    try {
+      const res = await api.get<FeatureCollection>(url, { signal: controller.signal });
+      const payload = res.data;
+      if (!payload || payload.type !== "FeatureCollection" || !Array.isArray(payload.features)) {
+        return null;
+      }
+      layerCacheRef.current.set(url, payload);
+      if (layerCacheRef.current.size > 32) {
+        const oldest = layerCacheRef.current.keys().next().value;
+        if (oldest) layerCacheRef.current.delete(oldest);
+      }
+      return payload;
+    } catch (err) {
+      if ((err as { code?: string; name?: string })?.code === "ERR_CANCELED") return null;
+      if ((err as { code?: string; name?: string })?.name === "CanceledError") return null;
+      throw err;
+    } finally {
+      if (layerAbortRef.current.get(layerKey) === controller) {
+        layerAbortRef.current.delete(layerKey);
+      }
+    }
+  }, []);
 
   const enforceRenderPriority = useCallback(() => {
     const map = mapRef.current;
@@ -717,6 +752,9 @@ export default function Dashboard2() {
       try {
         map.off("load", updateViewportBbox);
         map.off("moveend", updateViewportBbox);
+        layerAbortRef.current.forEach((controller) => controller.abort());
+        layerAbortRef.current.clear();
+        layerCacheRef.current.clear();
         if (scaleControlRef.current) {
           map.removeControl(scaleControlRef.current);
           scaleControlRef.current = null;
@@ -979,8 +1017,7 @@ export default function Dashboard2() {
         }
         const url = buildLayerUrl(key);
         if (!url) return;
-        const res = await api.get<FeatureCollection>(url);
-        const data = res.data;
+        const data = await fetchLayerData(key, url);
         if (!data || !data.features || data.features.length === 0) return;
         const validFeatures = (data.features || []).filter((f) => isValidFeatureForMap(f as any));
         if (!validFeatures.length) return;
@@ -1148,6 +1185,11 @@ export default function Dashboard2() {
       
       if (on) void applyLayer(key);
       else {
+        const inflight = layerAbortRef.current.get(key);
+        if (inflight) {
+          inflight.abort();
+          layerAbortRef.current.delete(key);
+        }
         if (map.getLayer(layerId)) map.removeLayer(layerId);
         if (map.getLayer(strokeLayerId)) map.removeLayer(strokeLayerId);
         if (map.getLayer(clusterLayerId)) map.removeLayer(clusterLayerId);
@@ -1158,7 +1200,7 @@ export default function Dashboard2() {
     });
 
     setTimeout(enforceRenderPriority, 0);
-  }, [visualKey, stations, layers.toggles, layers.fill_modes, styleRevision, viewportBbox, buildLayerUrl, selectedLayer, enforceRenderPriority]);
+  }, [visualKey, styleRevision, buildLayerUrl, selectedLayer, enforceRenderPriority, fetchLayerData]);
 
   const loadLayerForFilter = useCallback(async (layerKey: string, selectedIds?: string | string[]) => {
     const map = mapRef.current;
@@ -1179,8 +1221,8 @@ export default function Dashboard2() {
       const query = idsArray.length > 0 ? `?ids=${encodeURIComponent(idsArray.join(","))}` : "";
       const url = buildLayerUrl(layerKey, query);
       if (!url) return;
-      const res = await api.get<FeatureCollection>(url);
-      const data = res.data;
+      const data = await fetchLayerData(layerKey, url);
+      if (!data) return;
       const validFeatures = (data.features || []).filter((f) => isValidFeatureForMap(f as any));
       if (!validFeatures.length) return;
       const filteredData: FeatureCollection = { ...data, features: validFeatures as any };
@@ -1214,7 +1256,7 @@ export default function Dashboard2() {
     } catch (err) {
       console.error("Erreur couche filtree:", err);
     }
-  }, [buildLayerUrl, enforceRenderPriority]);
+  }, [buildLayerUrl, enforceRenderPriority, fetchLayerData]);
 
   const clearSelectionLayers = useCallback(() => {
     const map = mapRef.current;
@@ -1249,8 +1291,8 @@ export default function Dashboard2() {
       try {
         const url = buildLayerUrl(layerKey);
         if (!url) return;
-        const res = await api.get<FeatureCollection>(url);
-        const data = res.data;
+        const data = await fetchLayerData(layerKey, url);
+        if (!data) return;
         const validFeatures = (data?.features || []).filter((f) => isValidFeatureForMap(f as any));
         if (!validFeatures.length) return;
         const filteredData: FeatureCollection = { ...data, features: validFeatures as any };
@@ -1261,7 +1303,7 @@ export default function Dashboard2() {
         console.error(`Erreur zoom couche ${layerKey}:`, err);
       }
     },
-    [buildLayerUrl]
+    [buildLayerUrl, fetchLayerData]
   );
 
   useEffect(() => {

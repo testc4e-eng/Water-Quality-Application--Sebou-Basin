@@ -32,10 +32,10 @@ LayerCfg = Dict[str, Any]
 SIMPLIFY_TOLERANCE: Dict[str, float] = {
     "bassin_sebou": 0.0,
     "sous_bassin_sebou": 0.0,
-    "sous_bassins_swat": 0.0,
+    "sous_bassins_swat": 0.0015,
     "nappes": 0.0,
     "sources": 0.0,
-    "reseau_hydro_abhs": 0.0,
+    "reseau_hydro_abhs": 8.0,
     "barrages_abhs": 0.0,
     "stations_abhs": 0.0,
     "points_eau": 0.0,
@@ -48,13 +48,43 @@ SIMPLIFY_TOLERANCE: Dict[str, float] = {
     "fosses_septiques_abhs": 0.0,
     "step_industrielles": 0.0,
     "stm": 0.0,
-    "adm_regions_abhs": 50.0,
-    "adm_provinces_abhs": 25.0,
-    "adm_cercles_abhs": 10.0,
-    "adm_communes_abhs": 5.0,
+    "adm_regions_abhs": 80.0,
+    "adm_provinces_abhs": 40.0,
+    "adm_cercles_abhs": 20.0,
+    "adm_communes_abhs": 12.0,
     "adm_villes_abhs": 0.0,
     "adm_douars_abhs": 0.0,
 }
+
+LAYER_MAX_FEATURE_CAP: Dict[str, int] = {
+    "bassin_sebou": 200,
+    "sous_bassin_sebou": 800,
+    "sous_bassins_swat": 900,
+    "nappes": 1200,
+    "sources": 1200,
+    "reseau_hydro_abhs": 3500,
+    "barrages_abhs": 1200,
+    "stations_abhs": 1200,
+    "points_eau": 1200,
+    "decharges_abhs": 1200,
+    "huileries_abhs": 1200,
+    "mines_abhs": 1200,
+    "rejets_industriels_abhs": 1200,
+    "rejets_domestiques_abhs": 1200,
+    "step_abhs": 1200,
+    "fosses_septiques_abhs": 1200,
+    "step_industrielles": 1200,
+    "stm": 1200,
+    "adm_regions_abhs": 80,
+    "adm_provinces_abhs": 300,
+    "adm_cercles_abhs": 1000,
+    "adm_communes_abhs": 1500,
+    "adm_villes_abhs": 800,
+    "adm_douars_abhs": 1500,
+}
+
+GLOBAL_COORD_PRECISION = 5
+MAX_FEATURES_WITHOUT_FILTER = 900
 
 LAYER_MAP: Dict[str, LayerCfg] = {
     "bassin_sebou": {
@@ -227,7 +257,7 @@ FROM (
   SELECT jsonb_build_object(
     'type', 'Feature',
     'id', row_number() OVER (),
-    'geometry', ST_AsGeoJSON(ST_Transform({geom_expr}, 4326), 6)::jsonb,
+    'geometry', ST_AsGeoJSON(ST_Transform({geom_expr}, 4326), {GLOBAL_COORD_PRECISION})::jsonb,
     'properties', to_jsonb(t) - '{geom_col}'
   ) AS feature
   FROM {table} t
@@ -430,6 +460,19 @@ def _apply_bbox_filter_geojson(
     return sql, params
 
 
+def _resolve_effective_max_features(
+    layer_key: str,
+    requested_max: int,
+    bbox: Optional[str],
+    ids: Optional[str],
+) -> int:
+    layer_cap = LAYER_MAX_FEATURE_CAP.get(layer_key, 3000)
+    capped = min(requested_max, layer_cap)
+    if not bbox and not ids:
+        return min(capped, MAX_FEATURES_WITHOUT_FILTER)
+    return capped
+
+
 @router.get("/{layer_key}/names")
 def get_layer_names(
     layer_key: str,
@@ -512,10 +555,12 @@ def get_layer(
         if geom_mode == "geojson":
             sql += f" AND (jsonb_typeof({geom_col}::jsonb) = 'object' AND ({geom_col}::jsonb ? 'type'))"
 
-        effective_max = max_features
-        # Hard guard for full-layer requests without bbox/ids.
-        if not bbox and not ids:
-            effective_max = min(max_features, 1200)
+        effective_max = _resolve_effective_max_features(
+            layer_key=key,
+            requested_max=max_features,
+            bbox=bbox,
+            ids=ids,
+        )
         sql += " LIMIT :_max_features) AS features;"
         params["_max_features"] = effective_max
 
