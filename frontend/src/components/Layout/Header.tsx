@@ -1,6 +1,6 @@
 /* frontend/src/components/Layout/Header.tsx */
 import { NavLink, useNavigate } from "react-router-dom";
-import { Menu, PanelLeftClose, PanelLeftOpen, X } from "lucide-react";
+import { Menu, PanelLeftClose, PanelLeftOpen, User, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 
@@ -17,6 +17,62 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
 
   const isAdmin = localStorage.getItem("is_superuser") === "true";
   const isAuthenticated = !!localStorage.getItem("access_token");
+  const accessToken = localStorage.getItem("access_token");
+
+  const decodeTokenPayload = (token: string | null) => {
+    if (!token) return null;
+    const parts = token.split(".");
+    if (parts.length < 2) return null;
+    try {
+      const payload = parts[1].replace(/-/g, "+").replace(/_/g, "/");
+      const padded = payload.padEnd(payload.length + (4 - (payload.length % 4)) % 4, "=");
+      const json = atob(padded);
+      return JSON.parse(json);
+    } catch {
+      return null;
+    }
+  };
+
+  const getRoleLabel = (role?: string | null) => {
+    switch ((role ?? "").toLowerCase()) {
+      case "admin":
+        return "Admin";
+      case "manager":
+      case "gestionnaire":
+        return "Gestionnaire";
+      case "user":
+        return "Utilisateur";
+      default:
+        return "Utilisateur";
+    }
+  };
+
+  const roleLabel = useMemo(() => {
+    if (!isAuthenticated) return null;
+    if (isAdmin) return "Admin";
+    const payload = decodeTokenPayload(accessToken);
+    const role = payload?.role ?? payload?.user?.role ?? payload?.type ?? null;
+    if (!role) return "Utilisateur";
+    return getRoleLabel(String(role));
+  }, [accessToken, isAdmin, isAuthenticated]);
+
+  const roleLower = useMemo(() => {
+    if (isAdmin) return "admin";
+    const payload = decodeTokenPayload(accessToken);
+    const role = payload?.role ?? payload?.user?.role ?? payload?.type ?? null;
+    return role ? String(role).toLowerCase() : null;
+  }, [accessToken, isAdmin]);
+
+  const roleBadgeClass = useMemo(() => {
+    switch ((roleLabel ?? "").toLowerCase()) {
+      case "admin":
+        return "bg-blue-100 text-blue-700 border-blue-200";
+      case "gestionnaire":
+        return "bg-green-100 text-green-700 border-green-200";
+      default:
+        return "bg-yellow-100 text-yellow-800 border-yellow-200";
+    }
+  }, [roleLabel]);
 
   const allNavItems: NavItem[] = [
     { to: "/", label: "Accueil" },
@@ -32,16 +88,28 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
     () =>
       allNavItems.filter((item) => {
         if (isAdmin) return true;
+        if (roleLower === "manager" || roleLower === "gestionnaire") {
+          return [
+            "/",
+            "/dashboard-cartographique",
+            "/dashboard-analytique",
+            "/about",
+            "/contact",
+            "/data",
+            "/admin/data-scan",
+            "/admin/ingestion",
+            "/admin/popup-rules",
+          ].includes(item.to);
+        }
         return [
           "/",
           "/dashboard-cartographique",
           "/dashboard-analytique",
           "/about",
           "/contact",
-          "/admin/data-scan",
         ].includes(item.to);
       }),
-    [isAdmin]
+    [isAdmin, roleLower]
   );
 
   const handleLogout = () => {
@@ -88,9 +156,16 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
                 </Button>
               </>
             ) : (
-              <Button variant="outline" onClick={handleLogout}>
-                Deconnexion
-              </Button>
+              <>
+                {roleLabel && (
+                  <span className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs font-semibold ${roleBadgeClass}`}>
+                    <User className="h-3.5 w-3.5" /> {roleLabel}
+                  </span>
+                )}
+                <Button variant="outline" onClick={handleLogout}>
+                  Deconnexion
+                </Button>
+              </>
             )}
           </div>
 
@@ -136,15 +211,22 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
                     </Button>
                   </>
                 ) : (
-                  <Button
-                    variant="outline"
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                      handleLogout();
-                    }}
-                  >
-                    Deconnexion
-                  </Button>
+                  <>
+                    {roleLabel && (
+                      <div className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs font-semibold ${roleBadgeClass}`}>
+                        <User className="h-3.5 w-3.5" /> {roleLabel}
+                      </div>
+                    )}
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        setIsMenuOpen(false);
+                        handleLogout();
+                      }}
+                    >
+                      Deconnexion
+                    </Button>
+                  </>
                 )}
               </div>
             </nav>

@@ -591,6 +591,8 @@ import {
   Search,
   Filter,
   RefreshCw,
+  ChevronLeft,
+  ChevronRight,
   Pencil,
   Trash2,
   PlusCircle,
@@ -636,6 +638,10 @@ const DataViewer = () => {
   const [loading, setLoading] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [columnFilters, setColumnFilters] = useState<Record<string, string>>({});
+  const [pageSize, setPageSize] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [expandedGeomRows, setExpandedGeomRows] = useState<Set<number>>(new Set());
 
   // --- États pour les modals ---
   const [adding, setAdding] = useState(false);
@@ -704,16 +710,87 @@ const DataViewer = () => {
     fetchData();
   }, [fetchData]);
 
+  useEffect(() => {
+    setSearchTerm("");
+    setColumnFilters({});
+    setCurrentPage(1);
+  }, [selected?.schema, selected?.table]);
+
+  useEffect(() => {
+    setColumnFilters((prev) => {
+      const next: Record<string, string> = {};
+      visibleCols.forEach((col) => {
+        const val = prev[col];
+        if (val) next[col] = val;
+      });
+      return next;
+    });
+    setCurrentPage(1);
+  }, [visibleCols]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, columnFilters]);
+
   /* ===============================
      3️⃣ Recherche
   =============================== */
   const filteredData = useMemo(() => {
-    const q = searchTerm.toLowerCase();
-    if (!q) return rows;
-    return rows.filter((row) =>
-      Object.values(row).some((v) => String(v ?? "").toLowerCase().includes(q))
+    const q = searchTerm.trim().toLowerCase();
+    const activeFilters = Object.entries(columnFilters).filter(
+      ([, v]) => String(v ?? "").trim() !== ""
     );
-  }, [rows, searchTerm]);
+
+    return rows.filter((row) => {
+      if (q) {
+        const matchesGlobal = Object.values(row).some((v) =>
+          String(v ?? "").toLowerCase().includes(q)
+        );
+        if (!matchesGlobal) return false;
+      }
+
+      if (activeFilters.length > 0) {
+        const matchesAll = activeFilters.every(([col, val]) =>
+          String(row[col] ?? "")
+            .toLowerCase()
+            .includes(String(val ?? "").trim().toLowerCase())
+        );
+        if (!matchesAll) return false;
+      }
+
+      return true;
+    });
+  }, [rows, searchTerm, columnFilters]);
+
+  const totalResults = filteredData.length;
+  const totalPages = Math.max(1, Math.ceil(totalResults / pageSize));
+  const safePage = Math.min(currentPage, totalPages);
+  const startIndex = totalResults === 0 ? 0 : (safePage - 1) * pageSize;
+  const endIndex = Math.min(startIndex + pageSize, totalResults);
+  const paginatedData = filteredData.slice(startIndex, endIndex);
+
+  useEffect(() => {
+    if (currentPage !== safePage) {
+      setCurrentPage(safePage);
+    }
+  }, [currentPage, safePage]);
+
+  const pageNumbers = useMemo(() => {
+    const pages: Array<number | "..."> = [];
+    if (totalPages <= 7) {
+      for (let i = 1; i <= totalPages; i += 1) pages.push(i);
+      return pages;
+    }
+
+    pages.push(1);
+    const left = Math.max(2, safePage - 1);
+    const right = Math.min(totalPages - 1, safePage + 1);
+    if (left > 2) pages.push("...");
+    for (let i = left; i <= right; i += 1) pages.push(i);
+    if (right < totalPages - 1) pages.push("...");
+    pages.push(totalPages);
+    return pages;
+  }, [safePage, totalPages]);
 
   /* ===============================
      4️⃣ CRUD
@@ -857,6 +934,11 @@ const DataViewer = () => {
     return index % 2 === 0 ? 'bg-white' : 'bg-blue-50/30';
   };
 
+  const isGeomColumn = (col: string) => {
+    const key = col.toLowerCase();
+    return key.includes("geom") || key.includes("geometry") || key.includes("shape");
+  };
+
   /* ===============================
      7️⃣ Interface utilisateur
   =============================== */
@@ -946,13 +1028,47 @@ const DataViewer = () => {
                 </div>
               </div>
             </div>
-            <Button 
-              variant="ghost" 
-              onClick={() => setSearchTerm("")}
-              className="text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all"
-            >
-              <RefreshCw className="h-4 w-4 mr-2" /> Réinitialiser la recherche
-            </Button>
+            <div className="mt-4 rounded-lg border border-gray-100 bg-gray-50/60 p-4">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-sm font-semibold text-gray-700">
+                  Filtres par colonne
+                </span>
+                <span className="text-xs text-gray-500">Filtre partiel (ILIKE)</span>
+              </div>
+              {visibleCols.length === 0 ? (
+                <div className="text-sm text-gray-500">
+                  Sélectionnez des colonnes pour afficher les filtres dynamiques.
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {visibleCols.map((col) => (
+                    <Input
+                      key={col}
+                      placeholder={col}
+                      value={columnFilters[col] ?? ""}
+                      onChange={(e) =>
+                        setColumnFilters((prev) => ({ ...prev, [col]: e.target.value }))
+                      }
+                      className="border-2 border-gray-200 focus:border-blue-400 transition-all text-sm"
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <Button
+                variant="ghost"
+                onClick={() => {
+                  setSearchTerm("");
+                  setColumnFilters({});
+                  setCurrentPage(1);
+                  fetchData();
+                }}
+                className="text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all"
+              >
+                <RefreshCw className="h-4 w-4 mr-2" /> Réinitialiser les filtres
+              </Button>
+            </div>
           </CardContent>
         </Card>
 
@@ -1219,19 +1335,51 @@ const DataViewer = () => {
                         </TableCell>
                       </TableRow>
                     ) : (
-                      filteredData.map((row, i) => (
+                      paginatedData.map((row, i) => (
                         <TableRow 
                           key={i} 
                           className={`${getRowColor(i)} hover:bg-blue-100/50 transition-colors group`}
                         >
-                          {visibleCols.map((col) => (
-                            <TableCell 
-                              key={col} 
-                              className="py-2 px-4 border-b border-gray-100 font-mono text-sm"
-                            >
-                              {String(row[col] ?? "")}
-                            </TableCell>
-                          ))}
+                          {visibleCols.map((col) => {
+                            const cellValue = String(row[col] ?? "");
+                            if (isGeomColumn(col)) {
+                              const isExpanded = expandedGeomRows.has(i);
+                              return (
+                                <TableCell
+                                  key={col}
+                                  className="py-2 px-4 border-b border-gray-100 font-mono text-xs"
+                                >
+                                  <div
+                                    title={cellValue}
+                                    onClick={() =>
+                                      setExpandedGeomRows((prev) => {
+                                        const next = new Set(prev);
+                                        if (next.has(i)) {
+                                          next.delete(i);
+                                        } else {
+                                          next.add(i);
+                                        }
+                                        return next;
+                                      })
+                                    }
+                                    className={`max-w-[260px] cursor-pointer ${
+                                      isExpanded ? "whitespace-normal break-all" : "truncate"
+                                    }`}
+                                  >
+                                    {cellValue}
+                                  </div>
+                                </TableCell>
+                              );
+                            }
+                            return (
+                              <TableCell 
+                                key={col} 
+                                className="py-2 px-4 border-b border-gray-100 font-mono text-sm"
+                              >
+                                {cellValue}
+                              </TableCell>
+                            );
+                          })}
                           <TableCell className="py-2 px-4 border-b border-gray-100">
                             <div className="flex gap-2 opacity-70 group-hover:opacity-100 transition-opacity justify-center">
                               <Button
@@ -1262,16 +1410,67 @@ const DataViewer = () => {
                 </Table>
                 
                 {/* Indicateur de nombre de lignes */}
-                {filteredData.length > 0 && (
-                  <div className="px-4 py-3 bg-gray-50 border-t border-gray-200 text-sm text-gray-600 flex justify-between items-center">
-                    <span>
-                      Affichage de <span className="font-semibold">{filteredData.length}</span> ligne{filteredData.length > 1 ? 's' : ''}
-                    </span>
-                    <span className="text-xs text-gray-400">
-                      Double-cliquez sur une ligne pour modifier
-                    </span>
+                <div className="px-4 py-3 bg-gray-50 border-t border-gray-200 text-sm text-gray-600 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <span className="text-gray-700 font-medium">Lignes par page</span>
+                    <select
+                      value={pageSize}
+                      onChange={(e) => {
+                        setPageSize(Number(e.target.value));
+                        setCurrentPage(1);
+                      }}
+                      className="border border-gray-300 rounded-md px-2 py-1 text-sm bg-white"
+                    >
+                      <option value={10}>10</option>
+                      <option value={50}>50</option>
+                      <option value={100}>100</option>
+                    </select>
                   </div>
-                )}
+                  <div className="text-gray-700">
+                    Affichage de <span className="font-semibold">{totalResults === 0 ? 0 : startIndex + 1}</span>{" "}
+                    à <span className="font-semibold">{endIndex}</span> sur{" "}
+                    <span className="font-semibold">{totalResults}</span> résultats
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                      disabled={safePage <= 1}
+                      className="border-gray-300"
+                    >
+                      <ChevronLeft className="h-4 w-4 mr-1" /> Précédent
+                    </Button>
+                    <div className="hidden sm:flex items-center gap-1">
+                      {pageNumbers.map((p, idx) =>
+                        p === "..." ? (
+                          <span key={`dots-${idx}`} className="px-2 text-gray-400">
+                            ...
+                          </span>
+                        ) : (
+                          <Button
+                            key={p}
+                            size="sm"
+                            variant={p === safePage ? "default" : "outline"}
+                            onClick={() => setCurrentPage(p)}
+                            className={p === safePage ? "bg-blue-600 text-white" : "border-gray-300"}
+                          >
+                            {p}
+                          </Button>
+                        )
+                      )}
+                    </div>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                      disabled={safePage >= totalPages}
+                      className="border-gray-300"
+                    >
+                      Suivant <ChevronRight className="h-4 w-4 ml-1" />
+                    </Button>
+                  </div>
+                </div>
               </div>
             )}
           </CardContent>

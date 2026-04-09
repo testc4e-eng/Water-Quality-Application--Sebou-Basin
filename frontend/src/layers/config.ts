@@ -29,7 +29,7 @@ export type BusinessLayer = {
 export const GEO_LAYERS: GeoLayer[] = [
   { key: "bassin_sebou", label: "Bassin du Sebou", group: "Bassin versant", type: "polygon", defaultVisible: true, defaultFillMode: "solid" },
   { key: "sous_bassin_sebou", label: "Sous-bassins ABH", group: "Bassin versant", type: "polygon", defaultVisible: true, defaultFillMode: "solid" },
-  { key: "sous_bassins_swat", label: "Sous-bassins SWAT", group: "Bassin versant", type: "polygon", defaultVisible: false, defaultFillMode: "outline" },
+  { key: "sous_bassins_swat", label: "Sous-bassins SWAT", group: "Bassin versant", type: "polygon", defaultVisible: false, defaultFillMode: "solid" },
   { key: "reseau_hydro_abhs", label: "Reseau hydrographique", group: "Bassin versant", type: "line", defaultVisible: true },
   { key: "nappes", label: "Nappes", group: "Bassin versant", type: "polygon", defaultVisible: false, defaultFillMode: "solid" },
   { key: "sources", label: "Sources", group: "Bassin versant", type: "point", defaultVisible: false },
