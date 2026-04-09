@@ -27,10 +27,9 @@
 
 
 /* frontend/src/components/Dashboard/MapContainer.jsx */
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import InteractiveMap from "../Map/InteractiveMap.jsx";
 import { useStations } from "../../services/api.js";
-import { api } from "@/api/client";
 import {
   MapPin,
   Layers,
@@ -55,91 +54,11 @@ import {
 
 export default function MapContainer() {
   const { data: stations, isLoading, error } = useStations();
-  const [geoLayers, setGeoLayers] = useState({
-    basin: null,
-    subbasin_swat: null,
-    hydro_network: null,
-    pollution: null,
-    station: null,
-  });
   const [mapStyle, setMapStyle] = useState("streets");
   const [showControls, setShowControls] = useState(true);
   const [showLegend, setShowLegend] = useState(true);
   const [selectedLayer, setSelectedLayer] = useState("all");
   const [isFullscreen, setIsFullscreen] = useState(false);
-
-  useEffect(() => {
-    let alive = true;
-    const load = async () => {
-      try {
-        // Emprise large du Maroc/Sebou pour garantir le rendu initial
-        const bbox = encodeURIComponent("-10,27,-1,36.5");
-        const [basinRes, swatRes, hydroRes] = await Promise.all([
-          api.get(`/layers/bassin_sebou?max_features=200&bbox=${bbox}`),
-          api.get(`/layers/sous_bassins_swat?max_features=2000&bbox=${bbox}`),
-          api.get(`/layers/reseau_hydro_abhs?max_features=8000&bbox=${bbox}`),
-        ]);
-
-        if (!alive) return;
-        setGeoLayers((prev) => ({
-          ...prev,
-          basin: basinRes.data || null,
-          subbasin_swat: swatRes.data || null,
-          hydro_network: hydroRes.data || null,
-        }));
-      } catch {
-        if (!alive) return;
-        // No-op: la carte reste utilisable avec les points station.
-      }
-    };
-    void load();
-    return () => {
-      alive = false;
-    };
-  }, []);
-
-  const stationFeatures = useMemo(() => {
-    const feats = (stations || [])
-      .map((s) => {
-        const lon = Number(s?.coords?.lon);
-        const lat = Number(s?.coords?.lat);
-        if (!Number.isFinite(lon) || !Number.isFinite(lat) || lon === 0 || lat === 0) return null;
-        return {
-          type: "Feature",
-          geometry: { type: "Point", coordinates: [lon, lat] },
-          properties: {
-            id: s.id,
-            name: s.name,
-            river: s.river || null,
-          },
-        };
-      })
-      .filter(Boolean);
-
-    return { type: "FeatureCollection", features: feats };
-  }, [stations]);
-
-  const pollutionFeatures = useMemo(() => {
-    const feats = (stations || [])
-      .filter((s) => s.alert || s.status === "alert")
-      .map((s) => {
-        const lon = Number(s?.coords?.lon);
-        const lat = Number(s?.coords?.lat);
-        if (!Number.isFinite(lon) || !Number.isFinite(lat) || lon === 0 || lat === 0) return null;
-        return {
-          type: "Feature",
-          geometry: { type: "Point", coordinates: [lon, lat] },
-          properties: {
-            id: s.id,
-            name: s.name,
-            class: "alert",
-          },
-        };
-      })
-      .filter(Boolean);
-
-    return { type: "FeatureCollection", features: feats };
-  }, [stations]);
 
   // Statistiques des stations
   const stats = {
@@ -366,11 +285,6 @@ export default function MapContainer() {
         <div className={isFullscreen ? 'h-full' : 'h-[500px]'}>
           <InteractiveMap
             stations={stations || []}
-            geoLayers={{
-              ...geoLayers,
-              station: stationFeatures,
-              pollution: pollutionFeatures,
-            }}
             isLoading={false} // On gère le loading nous-mêmes
             error={null} // On gère l'erreur nous-mêmes
           />

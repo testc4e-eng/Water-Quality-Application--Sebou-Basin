@@ -28,6 +28,32 @@ type SidebarProps = {
 
 const Sidebar = ({ collapsed }: SidebarProps) => {
   const isAdmin = localStorage.getItem("is_superuser") === "true";
+  const accessToken = localStorage.getItem("access_token");
+
+  const decodeTokenPayload = (token: string | null) => {
+    if (!token) return null;
+    const parts = token.split(".");
+    if (parts.length < 2) return null;
+    try {
+      const payload = parts[1].replace(/-/g, "+").replace(/_/g, "/");
+      const padded = payload.padEnd(payload.length + (4 - (payload.length % 4)) % 4, "=");
+      const json = atob(padded);
+      return JSON.parse(json);
+    } catch {
+      return null;
+    }
+  };
+
+  const roleFromToken = (() => {
+    if (isAdmin) return "admin";
+    const payload = decodeTokenPayload(accessToken);
+    const role = payload?.role ?? payload?.user?.role ?? payload?.type ?? null;
+    return role ? String(role).toLowerCase() : null;
+  })();
+
+  const canSeeAdmin = isAdmin;
+  const isManager =
+    roleFromToken === "manager" || roleFromToken === "gestionnaire";
   const allNavItems: NavItem[] = [
     { to: "/", label: "Accueil", icon: Home, group: "main" },
     { to: "/dashboard-cartographique", label: "Dashboard Cartographique", icon: Map, group: "main" },
@@ -46,19 +72,20 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
   const primaryItems = useMemo(
     () =>
       allNavItems.filter((item) => {
-        if (isAdmin) return true;
-        // Pour les non-admins, on filtre les pages d'administration sensibles
-        return [
-          "/",
-          "/dashboard-cartographique",
-          "/dashboard-analytique",
-          "/dashboard-scenarios",
-          "/about",
-          "/contact",
-          "/admin/data-scan",
-        ].includes(item.to);
+        if (canSeeAdmin) return true;
+        if (isManager) {
+          const managerAdminAllowed = [
+            "/data",
+            "/admin/data-scan",
+            "/admin/ingestion",
+            "/admin/popup-rules",
+          ];
+          return item.group !== "admin" || managerAdminAllowed.includes(item.to);
+        }
+        // Utilisateur: pas d'accès aux sections Administration
+        return item.group !== "admin";
       }),
-    [isAdmin]
+    [canSeeAdmin, isManager]
   );
 
   const supportItems = primaryItems.filter((item) => item.group === "support");

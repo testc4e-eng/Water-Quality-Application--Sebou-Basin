@@ -119,7 +119,7 @@ export async function buildBusinessLayer(
 
   const geoLayerKey = cfg.geoLayers[0];
   const [geoRes, valRes] = await Promise.all([
-    api.get<FeatureCollection>(`/layers/${geoLayerKey}?max_features=3000`),
+    api.get<FeatureCollection>(`/layers/${geoLayerKey}?max_features=10000`),
     api.get<Array<{ entity_id: string; value: number }>>(latestEndpoint, {
       params: { ...params, date_start: range?.from, date_end: range?.to },
     }),
@@ -173,7 +173,7 @@ export async function buildHierarchyParameterLayer(
   if (!geoLayerKey) return null;
 
   const [geoRes, valRes] = await Promise.all([
-    api.get<FeatureCollection>(`/layers/${geoLayerKey}?max_features=3000`),
+    api.get<FeatureCollection>(`/layers/${geoLayerKey}?max_features=10000`),
     api.get<Array<{ entity_id: string; value: number }>>("/observatory/parameter/latest", {
       params: {
         theme: selection.theme,
