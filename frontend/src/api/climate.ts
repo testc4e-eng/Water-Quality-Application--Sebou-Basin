@@ -88,10 +88,7 @@
 
 // frontend/src/api/climate.ts
 
-const API_ROOT =
-  (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/+$/, "") ||
-  "http://127.0.0.1:8011/api/v1";
-const API_BASE = `${API_ROOT}/climate`;
+const API_BASE = "http://localhost:8000/api/v1/climate";
 
 /* =====================================================
    STATIONS
