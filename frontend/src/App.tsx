@@ -24,9 +24,8 @@ import DashboardAnalytique from "./pages/DashboardAnalytique";
 import DashboardCartographique from "./pages/DashboardCartographique";
 import DashboardScenarios from "./pages/DashboardScenarios";
 import DataScanPage from "./pages/admin/DataScanPage";
-import UserManagementPage from "./pages/admin/UserManagementPage";
 import PasswordResetRequestsPage from "./pages/admin/PasswordResetRequestsPage";
-import AuditLogsPage from "./pages/admin/AuditLogsPage";
+import UsersAuditHubPage from "./pages/admin/UsersAuditHubPage";
 import IngestionPage from "./pages/admin/IngestionPage";
 import PopupRulesPage from "./pages/admin/PopupRulesPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
@@ -51,10 +50,18 @@ const router = createBrowserRouter(
         <Route path="dashboard-scenarios" element={<DashboardScenarios />} />
         <Route path="admin/data-scan" element={<DataScanPage />} />
         <Route
+          path="admin/gestion-users"
+          element={
+            <AdminOnly>
+              <UsersAuditHubPage />
+            </AdminOnly>
+          }
+        />
+        <Route
           path="admin/users"
           element={
             <AdminOnly>
-              <UserManagementPage />
+              <Navigate to="/admin/gestion-users?mode=users" replace />
             </AdminOnly>
           }
         />
@@ -70,7 +77,7 @@ const router = createBrowserRouter(
           path="admin/audit"
           element={
             <AdminOnly>
-              <AuditLogsPage />
+              <Navigate to="/admin/gestion-users?mode=audit" replace />
             </AdminOnly>
           }
         />
