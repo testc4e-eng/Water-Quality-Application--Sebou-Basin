@@ -56,6 +56,10 @@ async def activity_log_middleware(request: Request, call_next):
         return await call_next(request)
     if request.url.path.startswith("/ui"):
         return await call_next(request)
+    if request.method.upper() == "OPTIONS":
+        return await call_next(request)
+    if request.url.path.startswith("/api/v1/security/logs"):
+        return await call_next(request)
 
     start_time = time.perf_counter()
     
