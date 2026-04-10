@@ -93,6 +93,12 @@ type PopupRulesResponse = {
       type_fields?: string[];
       class_fields?: string[];
       code_fields?: string[];
+      point_style?: Record<string, any>;
+      line_style?: Record<string, any>;
+      polygon_style?: Record<string, any>;
+      point_popup_fields?: string[];
+      line_popup_fields?: string[];
+      polygon_popup_fields?: string[];
     }
   >;
 };
@@ -126,6 +132,12 @@ type PopupRule = {
   typeFields?: string[];
   classFields?: string[];
   codeFields?: string[];
+  pointStyle?: Record<string, any>;
+  lineStyle?: Record<string, any>;
+  polygonStyle?: Record<string, any>;
+  pointPopupFields?: string[];
+  linePopupFields?: string[];
+  polygonPopupFields?: string[];
 };
 
 const DEFAULT_POPUP_RULES: Record<string, PopupRule> = {
@@ -261,6 +273,20 @@ function pickFirstProp(props: Record<string, any>, fields: string[] = []): strin
     return s;
   }
   return null;
+}
+
+function geometryTypeOfFeature(feature: Feature | undefined): "point" | "line" | "polygon" {
+  const t = String(feature?.geometry?.type || "").toLowerCase();
+  if (t.includes("point")) return "point";
+  if (t.includes("line")) return "line";
+  return "polygon";
+}
+
+function popupFieldSetForGeom(rule: PopupRule, geom: "point" | "line" | "polygon"): string[] {
+  if (geom === "point" && (rule.pointPopupFields || []).length) return rule.pointPopupFields || [];
+  if (geom === "line" && (rule.linePopupFields || []).length) return rule.linePopupFields || [];
+  if (geom === "polygon" && (rule.polygonPopupFields || []).length) return rule.polygonPopupFields || [];
+  return rule.nameFields;
 }
 
 function makeRasterStyle(
@@ -598,6 +624,12 @@ export default function Dashboard2() {
             typeFields: v.type_fields || DEFAULT_POPUP_RULES[k]?.typeFields || [],
             classFields: v.class_fields || DEFAULT_POPUP_RULES[k]?.classFields || [],
             codeFields: v.code_fields || DEFAULT_POPUP_RULES[k]?.codeFields || [],
+            pointStyle: v.point_style || DEFAULT_POPUP_RULES[k]?.pointStyle || {},
+            lineStyle: v.line_style || DEFAULT_POPUP_RULES[k]?.lineStyle || {},
+            polygonStyle: v.polygon_style || DEFAULT_POPUP_RULES[k]?.polygonStyle || {},
+            pointPopupFields: v.point_popup_fields || DEFAULT_POPUP_RULES[k]?.pointPopupFields || [],
+            linePopupFields: v.line_popup_fields || DEFAULT_POPUP_RULES[k]?.linePopupFields || [],
+            polygonPopupFields: v.polygon_popup_fields || DEFAULT_POPUP_RULES[k]?.polygonPopupFields || [],
           };
         });
         setPopupRules(merged);
@@ -828,6 +860,7 @@ export default function Dashboard2() {
         }
 
         const fillMode = layers.fill_modes?.[key] || "solid";
+        const rule = popupRules[key];
         const style = LAYER_PAINT[key] ?? {
           type: geomKind(data) === "polygon" ? "fill" : geomKind(data) === "line" ? "line" : "circle",
           paint:
@@ -839,6 +872,45 @@ export default function Dashboard2() {
         };
 
         const layerPaint = { ...style.paint };
+        if (style.type === "circle" && rule?.pointStyle) {
+          if (rule.pointStyle.color) layerPaint["circle-color"] = rule.pointStyle.color;
+          if (Number.isFinite(Number(rule.pointStyle.size))) layerPaint["circle-radius"] = Number(rule.pointStyle.size);
+        }
+        if (style.type === "line" && rule?.lineStyle) {
+          if (rule.lineStyle.color) layerPaint["line-color"] = rule.lineStyle.color;
+          if (Number.isFinite(Number(rule.lineStyle.width))) layerPaint["line-width"] = Number(rule.lineStyle.width);
+          if (rule.lineStyle.style === "dashed") layerPaint["line-dasharray"] = [2, 1.4];
+          if (rule.lineStyle.style === "gradient") {
+            layerPaint["line-gradient"] = [
+              "interpolate",
+              ["linear"],
+              ["line-progress"],
+              0,
+              rule.lineStyle.color || "#2563eb",
+              1,
+              rule.lineStyle.gradient_to || "#0ea5e9",
+            ];
+          }
+        }
+        if (style.type === "fill" && rule?.polygonStyle) {
+          if (rule.polygonStyle.color && rule.polygonStyle.gradient_to) {
+            layerPaint["fill-color"] = [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              6,
+              rule.polygonStyle.color,
+              14,
+              rule.polygonStyle.gradient_to,
+            ];
+          } else if (rule.polygonStyle.color) {
+            layerPaint["fill-color"] = rule.polygonStyle.color;
+          }
+          if (Number.isFinite(Number(rule.polygonStyle.opacity))) {
+            layerPaint["fill-opacity"] = Number(rule.polygonStyle.opacity);
+          }
+          if (rule.polygonStyle.contour_color) layerPaint["fill-outline-color"] = rule.polygonStyle.contour_color;
+        }
         if (style.type === "fill" && fillMode === "outline") {
           layerPaint["fill-opacity"] = 0;
         }
@@ -853,6 +925,7 @@ export default function Dashboard2() {
             cluster: style.type === "circle" && CLUSTER_KEYS.has(key),
             clusterRadius: 40,
             clusterMaxZoom: 11,
+            lineMetrics: style.type === "line",
           } as any);
         }
 
@@ -869,13 +942,15 @@ export default function Dashboard2() {
         if (map.getLayer(unclusteredLayerId)) map.removeLayer(unclusteredLayerId);
 
         if (style.type === "circle" && CLUSTER_KEYS.has(key)) {
+          const clusterColor =
+            ((layerPaint as any)["circle-color"] as string | undefined) || "#f59e0b";
           map.addLayer({
             id: clusterLayerId,
             type: "circle",
             source: srcId,
             filter: ["has", "point_count"],
             paint: {
-              "circle-color": "#f59e0b",
+              "circle-color": clusterColor,
               "circle-radius": ["step", ["get", "point_count"], 12, 20, 16, 50, 20, 150, 24],
               "circle-stroke-color": "#fff",
               "circle-stroke-width": 1.5,
@@ -917,8 +992,14 @@ export default function Dashboard2() {
             type: "line",
             source: srcId,
             paint: {
-              "line-color": (style.paint as any)["fill-outline-color"] || "#000",
-              "line-width": fillMode === "outline" ? 2.5 : 1.5,
+              "line-color":
+                rule?.polygonStyle?.contour_color || (style.paint as any)["fill-outline-color"] || "#000",
+              "line-width":
+                rule?.polygonStyle?.contour_mode === "gradue"
+                  ? ["interpolate", ["linear"], ["zoom"], 6, 0.8, 10, 1.8, 14, 3]
+                  : fillMode === "outline"
+                  ? 2.5
+                  : 1.5,
             },
           });
         }
@@ -945,7 +1026,7 @@ export default function Dashboard2() {
         if (safeGetSource(srcId)) map.removeSource(srcId);
       }
     });
-  }, [visualKey, stations, layers.toggles, layers.fill_modes, styleRevision, viewportBbox, buildLayerUrl]);
+  }, [visualKey, stations, layers.toggles, layers.fill_modes, styleRevision, viewportBbox, buildLayerUrl, popupRules]);
 
   const loadLayerForFilter = useCallback(async (layerKey: string, selectedIds?: string | string[]) => {
       const map = mapRef.current;
@@ -1124,8 +1205,10 @@ export default function Dashboard2() {
         typeFields: ["type", "categorie", "classe"],
         codeFields: ["code", "id"],
       };
+      const featureGeom = geometryTypeOfFeature(feature as any);
+      const nameFieldsForGeom = popupFieldSetForGeom(rule as PopupRule, featureGeom);
       const nameVal =
-        pickFirstProp(props, rule.nameFields) ||
+        pickFirstProp(props, nameFieldsForGeom) ||
         pickFirstProp(props, rule.codeFields || []) ||
         String(props.id ?? "Entité");
       const typeVal = pickFirstProp(props, rule.typeFields || []);
@@ -1271,12 +1354,14 @@ export default function Dashboard2() {
         codeFields: ["code", "id"],
       };
       const props = (feature.properties || {}) as Record<string, any>;
+      const featureGeom = geometryTypeOfFeature(feature as any);
+      const nameFieldsForGeom = popupFieldSetForGeom(rule as PopupRule, featureGeom);
       const layerName = rawLayerId
         .replace("sel-layer-", "")
         .replace("base-layer-", "")
         .replace(/_/g, " ");
       const name =
-        pickFirstProp(props, rule.nameFields) ||
+        pickFirstProp(props, nameFieldsForGeom) ||
         pickFirstProp(props, rule.codeFields || []) ||
         "Entité";
       hoverPopup
@@ -2206,3 +2291,5 @@ export default function Dashboard2() {
     </div>
   );
 }
+
+

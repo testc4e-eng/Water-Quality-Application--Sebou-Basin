@@ -38,7 +38,7 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
     { to: "/admin/users", label: "Gestion utilisateurs", icon: Users, group: "admin" },
     { to: "/admin/ingestion", label: "Ingestion Scénarios", icon: CloudUpload, group: "admin" },
     { to: "/admin/audit", label: "Journal d'Audit", icon: Shield, group: "admin" },
-    { to: "/admin/popup-rules", label: "Règles Popups", icon: MessageSquare, group: "admin" },
+    { to: "/admin/popup-rules", label: "Gestion des couches", icon: MessageSquare, group: "admin" },
     { to: "/about", label: "A propos", icon: Info, group: "support" },
     { to: "/contact", label: "Contact", icon: Mail, group: "support" },
   ];
