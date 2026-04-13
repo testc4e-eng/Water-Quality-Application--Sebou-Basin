@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, Query, Body, HTTPException
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 import time
+import json
 from typing import Any
 
 from app.db.climate_database import get_climate_db
@@ -12,6 +13,18 @@ router = APIRouter(prefix="/observatory", tags=["observatory"])
 
 CACHE_TTL_SECONDS = 45
 _OBS_CACHE: dict[str, tuple[float, Any]] = {}
+
+
+def _ensure_popup_rules_config_columns(db: Session) -> None:
+    if not table_exists("metadata.popup_rules_config"):
+        return
+    db.execute(text("ALTER TABLE metadata.popup_rules_config ADD COLUMN IF NOT EXISTS point_style JSONB NOT NULL DEFAULT '{}'::jsonb"))
+    db.execute(text("ALTER TABLE metadata.popup_rules_config ADD COLUMN IF NOT EXISTS line_style JSONB NOT NULL DEFAULT '{}'::jsonb"))
+    db.execute(text("ALTER TABLE metadata.popup_rules_config ADD COLUMN IF NOT EXISTS polygon_style JSONB NOT NULL DEFAULT '{}'::jsonb"))
+    db.execute(text("ALTER TABLE metadata.popup_rules_config ADD COLUMN IF NOT EXISTS point_popup_fields text[] NOT NULL DEFAULT '{}'"))
+    db.execute(text("ALTER TABLE metadata.popup_rules_config ADD COLUMN IF NOT EXISTS line_popup_fields text[] NOT NULL DEFAULT '{}'"))
+    db.execute(text("ALTER TABLE metadata.popup_rules_config ADD COLUMN IF NOT EXISTS polygon_popup_fields text[] NOT NULL DEFAULT '{}'"))
+    db.commit()
 
 
 def _pick_relation(preferred_mv: str, fallback_view: str) -> str:
@@ -47,12 +60,19 @@ def popup_rules(db: Session = Depends(get_climate_db)):
     Returns popup display rules.
     If metadata.popup_rules_config exists, it overrides defaults per layer_key.
     """
+    _ensure_popup_rules_config_columns(db)
     defaults = {
         "bassin_sebou": {
             "title": "Bassin versant",
             "name_fields": ["nom", "bassin", "name", "label"],
             "class_fields": ["type_bassin", "classe"],
             "code_fields": ["code_bassin", "bassin_code", "id"],
+            "point_style": {},
+            "line_style": {},
+            "polygon_style": {},
+            "point_popup_fields": [],
+            "line_popup_fields": [],
+            "polygon_popup_fields": [],
         },
         "sous_bassin_sebou": {
             "title": "Sous-bassin ABH",
@@ -140,7 +160,9 @@ def popup_rules(db: Session = Depends(get_climate_db)):
 
     query = text(
         """
-        select layer_key, title, name_fields, type_fields, class_fields, code_fields
+        select layer_key, title, name_fields, type_fields, class_fields, code_fields,
+               point_style, line_style, polygon_style,
+               point_popup_fields, line_popup_fields, polygon_popup_fields
         from metadata.popup_rules_config
         where actif is true
         """
@@ -155,6 +177,12 @@ def popup_rules(db: Session = Depends(get_climate_db)):
             "type_fields": r["type_fields"] or defaults.get(key, {}).get("type_fields", []),
             "class_fields": r["class_fields"] or defaults.get(key, {}).get("class_fields", []),
             "code_fields": r["code_fields"] or defaults.get(key, {}).get("code_fields", []),
+            "point_style": r.get("point_style") or defaults.get(key, {}).get("point_style", {}),
+            "line_style": r.get("line_style") or defaults.get(key, {}).get("line_style", {}),
+            "polygon_style": r.get("polygon_style") or defaults.get(key, {}).get("polygon_style", {}),
+            "point_popup_fields": r.get("point_popup_fields") or defaults.get(key, {}).get("point_popup_fields", []),
+            "line_popup_fields": r.get("line_popup_fields") or defaults.get(key, {}).get("line_popup_fields", []),
+            "polygon_popup_fields": r.get("polygon_popup_fields") or defaults.get(key, {}).get("polygon_popup_fields", []),
         }
     return {"rules": merged, "source": "metadata+defaults"}
 
@@ -171,6 +199,7 @@ def popup_rules_upsert(
     """
     if not table_exists("metadata.popup_rules_config"):
         raise HTTPException(status_code=404, detail="metadata.popup_rules_config not found")
+    _ensure_popup_rules_config_columns(db)
 
     layer_key = str(payload.get("layer_key", "")).strip()
     if not layer_key:
@@ -181,20 +210,42 @@ def popup_rules_upsert(
     type_fields = payload.get("type_fields") or []
     class_fields = payload.get("class_fields") or []
     code_fields = payload.get("code_fields") or []
+    point_style = payload.get("point_style") or {}
+    line_style = payload.get("line_style") or {}
+    polygon_style = payload.get("polygon_style") or {}
+    point_popup_fields = payload.get("point_popup_fields") or []
+    line_popup_fields = payload.get("line_popup_fields") or []
+    polygon_popup_fields = payload.get("polygon_popup_fields") or []
     actif = bool(payload.get("actif", True))
+
+    # Ensure JSONB parameters are safely serialized for SQL CAST(... AS jsonb)
+    point_style_json = json.dumps(point_style)
+    line_style_json = json.dumps(line_style)
+    polygon_style_json = json.dumps(polygon_style)
 
     query = text(
         """
         INSERT INTO metadata.popup_rules_config
-            (layer_key, title, name_fields, type_fields, class_fields, code_fields, actif)
+            (layer_key, title, name_fields, type_fields, class_fields, code_fields,
+             point_style, line_style, polygon_style, point_popup_fields, line_popup_fields, polygon_popup_fields,
+             actif)
         VALUES
-            (:layer_key, :title, :name_fields, :type_fields, :class_fields, :code_fields, :actif)
+            (:layer_key, :title, :name_fields, :type_fields, :class_fields, :code_fields,
+             CAST(:point_style AS jsonb), CAST(:line_style AS jsonb), CAST(:polygon_style AS jsonb),
+             :point_popup_fields, :line_popup_fields, :polygon_popup_fields,
+             :actif)
         ON CONFLICT (layer_key) DO UPDATE SET
             title = EXCLUDED.title,
             name_fields = EXCLUDED.name_fields,
             type_fields = EXCLUDED.type_fields,
             class_fields = EXCLUDED.class_fields,
             code_fields = EXCLUDED.code_fields,
+            point_style = EXCLUDED.point_style,
+            line_style = EXCLUDED.line_style,
+            polygon_style = EXCLUDED.polygon_style,
+            point_popup_fields = EXCLUDED.point_popup_fields,
+            line_popup_fields = EXCLUDED.line_popup_fields,
+            polygon_popup_fields = EXCLUDED.polygon_popup_fields,
             actif = EXCLUDED.actif,
             updated_at = now()
         """
@@ -208,6 +259,12 @@ def popup_rules_upsert(
             "type_fields": type_fields,
             "class_fields": class_fields,
             "code_fields": code_fields,
+            "point_style": point_style_json,
+            "line_style": line_style_json,
+            "polygon_style": polygon_style_json,
+            "point_popup_fields": point_popup_fields,
+            "line_popup_fields": line_popup_fields,
+            "polygon_popup_fields": polygon_popup_fields,
             "actif": actif,
         },
     )
@@ -221,6 +278,7 @@ def popup_rules_upsert(
 def popup_rules_list(db: Session = Depends(get_climate_db)):
     if not table_exists("metadata.popup_rules_config"):
         return {"rows": [], "count": 0}
+    _ensure_popup_rules_config_columns(db)
     rows = db.execute(
         text(
             """
@@ -231,6 +289,12 @@ def popup_rules_list(db: Session = Depends(get_climate_db)):
               type_fields,
               class_fields,
               code_fields,
+              point_style,
+              line_style,
+              polygon_style,
+              point_popup_fields,
+              line_popup_fields,
+              polygon_popup_fields,
               actif,
               created_at,
               updated_at
@@ -246,6 +310,7 @@ def popup_rules_list(db: Session = Depends(get_climate_db)):
 def popup_rule_get(layer_key: str, db: Session = Depends(get_climate_db)):
     if not table_exists("metadata.popup_rules_config"):
         raise HTTPException(status_code=404, detail="metadata.popup_rules_config not found")
+    _ensure_popup_rules_config_columns(db)
     row = db.execute(
         text(
             """
@@ -256,6 +321,12 @@ def popup_rule_get(layer_key: str, db: Session = Depends(get_climate_db)):
               type_fields,
               class_fields,
               code_fields,
+              point_style,
+              line_style,
+              polygon_style,
+              point_popup_fields,
+              line_popup_fields,
+              polygon_popup_fields,
               actif,
               created_at,
               updated_at

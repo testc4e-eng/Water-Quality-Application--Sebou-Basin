@@ -15,16 +15,23 @@ export default function AuditLogsPage() {
   const [error, setError] = useState<string | null>(null);
   const [limit, setLimit] = useState(100);
   const [usernameFilter, setUsernameFilter] = useState("");
+  const [methodFilter, setMethodFilter] = useState("ALL");
+  const [activityTotal, setActivityTotal] = useState(0);
+  const [activityOffset, setActivityOffset] = useState(0);
+  const [activityHasMore, setActivityHasMore] = useState(false);
 
   const refreshLogs = async () => {
     setLoading(true);
     setError(null);
     try {
       const [act, aut] = await Promise.all([
-        listActivityLogs(limit, usernameFilter),
+        listActivityLogs(limit, usernameFilter, 0, methodFilter),
         listAuthLogs(limit)
       ]);
-      setActivityLogs(act);
+      setActivityLogs(act.rows || []);
+      setActivityTotal(act.total || 0);
+      setActivityOffset((act.rows || []).length);
+      setActivityHasMore(!!act.has_more);
       setAuthLogs(aut);
     } catch (err: any) {
       setError(err?.response?.data?.detail || "Erreur lors du chargement des journaux");
@@ -36,6 +43,24 @@ export default function AuditLogsPage() {
   useEffect(() => {
     refreshLogs();
   }, []);
+
+  const loadMoreActivity = async () => {
+    if (loading || !activityHasMore) return;
+    setLoading(true);
+    setError(null);
+    try {
+      const act = await listActivityLogs(limit, usernameFilter, activityOffset, methodFilter);
+      const nextRows = act.rows || [];
+      setActivityLogs((prev) => [...prev, ...nextRows]);
+      setActivityTotal(act.total || 0);
+      setActivityOffset((prev) => prev + nextRows.length);
+      setActivityHasMore(!!act.has_more);
+    } catch (err: any) {
+      setError(err?.response?.data?.detail || "Erreur lors du chargement des journaux");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const getStatusBadge = (status: number) => {
     if (status >= 200 && status < 300) return <Badge className="bg-emerald-500 text-white">{status}</Badge>;
@@ -79,6 +104,19 @@ export default function AuditLogsPage() {
                   onKeyDown={(e) => e.key === 'Enter' && refreshLogs()}
                 />
               </div>
+              <select
+                className="h-10 rounded-md border border-slate-300 bg-white px-3 text-sm text-slate-700"
+                value={methodFilter}
+                onChange={(e) => setMethodFilter(e.target.value)}
+              >
+                <option value="ALL">Toutes méthodes</option>
+                <option value="GET">GET</option>
+                <option value="POST">POST</option>
+                <option value="PUT">PUT</option>
+                <option value="PATCH">PATCH</option>
+                <option value="DELETE">DELETE</option>
+                <option value="OPTIONS">OPTIONS</option>
+              </select>
               <Button variant="outline" onClick={refreshLogs} disabled={loading}>
                 <RefreshCw className={`mr-2 h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
                 Actualiser
@@ -108,6 +146,9 @@ export default function AuditLogsPage() {
           <TabsContent value="activity">
             <Card className="border-slate-200">
               <CardContent className="p-0">
+                <div className="border-b border-slate-100 px-4 py-2 text-xs text-slate-500">
+                  Historique API: {activityLogs.length} / {activityTotal}
+                </div>
                 <Table>
                   <TableHeader className="bg-slate-50 text-slate-500">
                     <TableRow>
@@ -152,6 +193,11 @@ export default function AuditLogsPage() {
                     )}
                   </TableBody>
                 </Table>
+                <div className="flex items-center justify-center border-t border-slate-100 p-3">
+                  <Button variant="outline" onClick={loadMoreActivity} disabled={loading || !activityHasMore}>
+                    {activityHasMore ? "Charger plus" : "Fin de l'historique"}
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           </TabsContent>

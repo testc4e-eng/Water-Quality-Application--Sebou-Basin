@@ -50,7 +50,6 @@ app.add_middleware(
 )
 app.add_middleware(GZipMiddleware, minimum_size=1024, compresslevel=6)
 
-
 def _sanitize_query_params(request: Request) -> str:
     masked_pairs = []
     for key, value in request.query_params.multi_items():
@@ -113,6 +112,10 @@ async def activity_log_middleware(request: Request, call_next):
     if request.url.path in ["/health", "/", "/docs", "/openapi.json", "/favicon.ico"]:
         return await call_next(request)
     if request.url.path.startswith("/ui"):
+        return await call_next(request)
+    if request.method.upper() == "OPTIONS":
+        return await call_next(request)
+    if request.url.path.startswith("/api/v1/security/logs"):
         return await call_next(request)
 
     start_time = time.perf_counter()

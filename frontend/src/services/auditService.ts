@@ -15,6 +15,14 @@ export interface ActivityLogItem {
   created_at: string;
 }
 
+export interface ActivityLogsResponse {
+  rows: ActivityLogItem[];
+  total: number;
+  limit: number;
+  offset: number;
+  has_more: boolean;
+}
+
 export interface AuthLogItem {
   id: number;
   user_id: number | null;
@@ -27,12 +35,19 @@ export interface AuthLogItem {
   created_at: string;
 }
 
-export async function listActivityLogs(limit: number = 200, username?: string): Promise<ActivityLogItem[]> {
+export async function listActivityLogs(
+  limit: number = 200,
+  username?: string,
+  offset: number = 0,
+  method?: string
+): Promise<ActivityLogsResponse> {
   const params = new URLSearchParams();
   params.append("limit", limit.toString());
+  params.append("offset", offset.toString());
   if (username) params.append("username", username);
+  if (method && method !== "ALL") params.append("method", method);
   
-  const { data } = await api.get<ActivityLogItem[]>(`/security/logs/activity?${params.toString()}`);
+  const { data } = await api.get<ActivityLogsResponse>(`/security/logs/activity?${params.toString()}`);
   return data;
 }
 
