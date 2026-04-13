@@ -1,0 +1,170 @@
+[
+  {
+    "indexname": "spatial_ref_sys_pkey",
+    "indexdef": "CREATE UNIQUE INDEX spatial_ref_sys_pkey ON public.spatial_ref_sys USING btree (srid)"
+  },
+  {
+    "indexname": "adm_cercles_abhs_pkey",
+    "indexdef": "CREATE UNIQUE INDEX adm_cercles_abhs_pkey ON public.adm_cercles_abhs USING btree (code_cercle)"
+  },
+  {
+    "indexname": "adm_provinces_abhs_pkey",
+    "indexdef": "CREATE UNIQUE INDEX adm_provinces_abhs_pkey ON public.adm_provinces_abhs USING btree (code_province)"
+  },
+  {
+    "indexname": "adm_regions_abhs_pkey",
+    "indexdef": "CREATE UNIQUE INDEX adm_regions_abhs_pkey ON public.adm_regions_abhs USING btree (code_region)"
+  },
+  {
+    "indexname": "adm_villes_abhs_pkey",
+    "indexdef": "CREATE UNIQUE INDEX adm_villes_abhs_pkey ON public.adm_villes_abhs USING btree (id)"
+  },
+  {
+    "indexname": "barrages_abhs_pkey",
+    "indexdef": "CREATE UNIQUE INDEX barrages_abhs_pkey ON public.barrages_abhs USING btree (id)"
+  },
+  {
+    "indexname": "bassin_sebou_pkey",
+    "indexdef": "CREATE UNIQUE INDEX bassin_sebou_pkey ON public.bassin_sebou USING btree (id)"
+  },
+  {
+    "indexname": "bathymetries_barrages_abhs_pkey",
+    "indexdef": "CREATE UNIQUE INDEX bathymetries_barrages_abhs_pkey ON public.bathymetries_barrages_abhs USING btree (id)"
+  },
+  {
+    "indexname": "capteurs_pkey",
+    "indexdef": "CREATE UNIQUE INDEX capteurs_pkey ON public.capteurs_abhs USING btree (code_capteur)"
+  },
+  {
+    "indexname": "communes_abhs_new_pkey",
+    "indexdef": "CREATE UNIQUE INDEX communes_abhs_new_pkey ON public.adm_communes_abhs USING btree (code_commune)"
+  },
+  {
+    "indexname": "decharges_abhs_pkey",
+    "indexdef": "CREATE UNIQUE INDEX decharges_abhs_pkey ON public.decharges_abhs USING btree (id)"
+  },
+  {
+    "indexname": "douars_abhs_n_pkey",
+    "indexdef": "CREATE UNIQUE INDEX douars_abhs_n_pkey ON public.adm_douars_abhs USING btree (id)"
+  },
+  {
+    "indexname": "fosses_septiques_abhs_pkey",
+    "indexdef": "CREATE UNIQUE INDEX fosses_septiques_abhs_pkey ON public.fosses_septiques_abhs USING btree (id)"
+  },
+  {
+    "indexname": "huileries_abhs_pkey",
+    "indexdef": "CREATE UNIQUE INDEX huileries_abhs_pkey ON public.huileries_abhs USING btree (id)"
+  },
+  {
+    "indexname": "laches_barrage_abhs_pkey",
+    "indexdef": "CREATE UNIQUE INDEX laches_barrage_abhs_pkey ON public.mesures_niv_eau_barrages USING btree (id)"
+  },
+  {
+    "indexname": "mesures_debit_jr_pkey",
+    "indexdef": "CREATE UNIQUE INDEX mesures_debit_jr_pkey ON public.mesures_debit_jr USING btree (code_debit)"
+  },
+  {
+    "indexname": "mesures_debit_m_pkey",
+    "indexdef": "CREATE UNIQUE INDEX mesures_debit_m_pkey ON public.mesures_debit_m USING btree (code_debit_m)"
+  },
+  {
+    "indexname": "mesures_debit_sources_pkey",
+    "indexdef": "CREATE UNIQUE INDEX mesures_debit_sources_pkey ON public.mesures_debit_sources USING btree (id)"
+  },
+  {
+    "indexname": "mesures_evaporation_jr_pkey",
+    "indexdef": "CREATE UNIQUE INDEX mesures_evaporation_jr_pkey ON public.mesures_evaporation_jr USING btree (id)"
+  },
+  {
+    "indexname": "mesures_precipitation_jr_max_pkey",
+    "indexdef": "CREATE UNIQUE INDEX mesures_precipitation_jr_max_pkey ON public.mesures_precipitations_jr_max USING btree (id)"
+  },
+  {
+    "indexname": "mesures_precipitations_jr_pkey",
+    "indexdef": "CREATE UNIQUE INDEX mesures_precipitations_jr_pkey ON public.mesures_precipitations_jr USING btree (id_precipitation_jr)"
+  },
+  {
+    "indexname": "mesures_precipitations_jr_trait_pkey",
+    "indexdef": "CREATE UNIQUE INDEX mesures_precipitations_jr_trait_pkey ON public.mesures_precipitations_jr_traitees USING btree (id)"
+  },
+  {
+    "indexname": "mesures_qualite_barrages_pkey",
+    "indexdef": "CREATE UNIQUE INDEX mesures_qualite_barrages_pkey ON public.mesures_qualite_barrages USING btree (id)"
+  },
+  {
+    "indexname": "mesures_qualite_nappes_pkey",
+    "indexdef": "CREATE UNIQUE INDEX mesures_qualite_nappes_pkey ON public.mesures_qualite_nappes USING btree (id)"
+  },
+  {
+    "indexname": "mesures_qualite_rivieres_pkey",
+    "indexdef": "CREATE UNIQUE INDEX mesures_qualite_rivieres_pkey ON public.mesures_qualite_rivieres USING btree (id)"
+  },
+  {
+    "indexname": "mesures_qualite_sebou_jr_pkey",
+    "indexdef": "CREATE UNIQUE INDEX mesures_qualite_sebou_jr_pkey ON public.suivi_qualite_sebou_jr USING btree (id)"
+  },
+  {
+    "indexname": "mesures_temperatures_jr_pkey",
+    "indexdef": "CREATE UNIQUE INDEX mesures_temperatures_jr_pkey ON public.mesures_temperatures_jr USING btree (ire_station)"
+  },
+  {
+    "indexname": "mines_abhs_pkey",
+    "indexdef": "CREATE UNIQUE INDEX mines_abhs_pkey ON public.mines_abhs USING btree (id)"
+  },
+  {
+    "indexname": "nappes_abhs_n_pkey",
+    "indexdef": "CREATE UNIQUE INDEX nappes_abhs_n_pkey ON public.nappes_abhs USING btree (id)"
+  },
+  {
+    "indexname": "points_eau_abhs_pkey",
+    "indexdef": "CREATE UNIQUE INDEX points_eau_abhs_pkey ON public.points_eau_abhs USING btree (id)"
+  },
+  {
+    "indexname": "profils_stations_pkey",
+    "indexdef": "CREATE UNIQUE INDEX profils_stations_pkey ON public.profils_stations USING btree (id)"
+  },
+  {
+    "indexname": "rejets_abattoirs_abhs_pkey",
+    "indexdef": "CREATE UNIQUE INDEX rejets_abattoirs_abhs_pkey ON public.rejets_abattoirs_abhs USING btree (id)"
+  },
+  {
+    "indexname": "rejets_domestiques_abhs_pkey",
+    "indexdef": "CREATE UNIQUE INDEX rejets_domestiques_abhs_pkey ON public.rejets_domestiques_abhs USING btree (id)"
+  },
+  {
+    "indexname": "rejets_ind_abhs_pkey",
+    "indexdef": "CREATE UNIQUE INDEX rejets_ind_abhs_pkey ON public.rejets_ind_abhs USING btree (id)"
+  },
+  {
+    "indexname": "reseau_hydro_abhs_pkey",
+    "indexdef": "CREATE UNIQUE INDEX reseau_hydro_abhs_pkey ON public.reseau_hydro_abhs USING btree (id)"
+  },
+  {
+    "indexname": "sous_bassin_sebou_n_pkey",
+    "indexdef": "CREATE UNIQUE INDEX sous_bassin_sebou_n_pkey ON public.sous_bassin_sebou USING btree (id)"
+  },
+  {
+    "indexname": "stations_abhs_pkey",
+    "indexdef": "CREATE UNIQUE INDEX stations_abhs_pkey ON public.stations_abhs USING btree (ire_station)"
+  },
+  {
+    "indexname": "step_abhs_pkey",
+    "indexdef": "CREATE UNIQUE INDEX step_abhs_pkey ON public.step_abhs USING btree (id)"
+  },
+  {
+    "indexname": "step_ind_abhs_pkey",
+    "indexdef": "CREATE UNIQUE INDEX step_ind_abhs_pkey ON public.step_ind_abhs USING btree (id)"
+  },
+  {
+    "indexname": "stm_abhs_pkey",
+    "indexdef": "CREATE UNIQUE INDEX stm_abhs_pkey ON public.stm_abhs USING btree (id)"
+  },
+  {
+    "indexname": "suivi_qualite_brg_garde_hebdo_pkey",
+    "indexdef": "CREATE UNIQUE INDEX suivi_qualite_brg_garde_hebdo_pkey ON public.suivi_qualite_brg_garde_hebdo USING btree (id)"
+  },
+  {
+    "indexname": "types_mesures_pkey",
+    "indexdef": "CREATE UNIQUE INDEX types_mesures_pkey ON public.types_mesures USING btree (id)"
+  }
+]

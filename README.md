@@ -1,39 +1,44 @@
-# SAD Sebou 2026 - État Technique (mis à jour)
+# SAD Sebou 2026
 
 ## Objectif
-Plateforme SIG décisionnelle pour le bassin du Sebou:
-- dashboard cartographique
-- dashboard analytique (climat/hydrologie/qualité/pollution)
-- API métier FastAPI sur PostgreSQL/PostGIS
 
-## État actuel (avancement)
-- Architecture backend/frontend opérationnelle.
-- Migration métier hors `public` largement réalisée (`geo`, `hydro`, `meteo`, `qualite`, `infra`, `metadata`, `api`, `staging`).
-- Couche API cartographique consolidée (`/api/v1/layers/*`, `/api/v1/observatory/*`).
-- Performances renforcées avec vues matérialisées + refresh planifié.
+Plateforme web SIG et décisionnelle pour le bassin du Sebou, structurée autour de :
 
-## Points techniques clés implémentés
-- `popup_rules` administrables depuis `/admin/popup-rules` (CRUD + clear cache).
-- Hiérarchie métier servie par `/api/v1/observatory/hierarchy/*`.
-- Appels carto avec filtre viewport `bbox` côté frontend.
-- Priorité de lecture sur materialized views côté backend.
+- un dashboard cartographique ;
+- un dashboard analytique climat, hydrologie et pollution ;
+- une API FastAPI connectée à PostgreSQL/PostGIS/TimescaleDB ;
+- une couche d’administration, d’ingestion et de traçabilité.
 
-## Base de données (état synthétique)
-- Schémas métier actifs: `geo`, `hydro`, `meteo`, `qualite`, `infra`, `metadata`, `api`, `swat_output`, `wasp_output`.
-- Vues `api.*`: 49.
-- Materialized views (`api` + `metadata`): 26.
-- Pack MV perf appliqué: [backend/sql/2026_04_mv_perf_pack.sql](backend/sql/2026_04_mv_perf_pack.sql)
-  - inclut index, tracking refresh (`metadata.mv_refresh_status`) et fonction `metadata.refresh_perf_mviews(note)`.
+## Architecture du dépôt
+
+- `frontend/` : React + Vite + TypeScript pour les dashboards, l’administration et l’authentification
+- `backend/` : FastAPI pour les routes métier, la sécurité, l’ingestion et les services analytiques
+- `docs/` : référentiel documentaire unifié, séparé entre référence projet, contractuel, mémoire IA, working runs et archives
+
+## Dernières améliorations intégrées
+
+- stabilisation des dashboards analytiques et des filtres ;
+- consolidation du dashboard cartographique avec filtrage `bbox` et garde-fous de volumétrie ;
+- intégration complète des vues admin `data-scan` et `ingestion` avec workflow QA ;
+- ajout et stabilisation des routes `analytics/*` ;
+- industrialisation du refresh des vues matérialisées.
+
+Détail de référence : [status_note_merge_dashboards_2026-04-09](docs/04_working_prompts_and_runs/runs/2026-04-09_merge_dashboards/status_note_merge_dashboards_2026-04-09.md)
 
 ## Exécution locale
 
 ### Backend
+
 ```bash
 cd backend
-uvicorn app.main:app --host 127.0.0.1 --port 8011
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn app.main:app --host 127.0.0.1 --port 8011 --reload
 ```
 
 ### Frontend
+
 ```bash
 cd frontend
 npm install
@@ -41,19 +46,36 @@ npm run dev -- --port 3001
 ```
 
 ## Variables frontend importantes
-`frontend/.env`:
+
+`frontend/.env` :
+
 - `VITE_API_BASE_URL=http://127.0.0.1:8011/api/v1`
 - `VITE_API_BASE=http://127.0.0.1:8011/api/v1`
 - `VITE_API_PROXY=http://127.0.0.1:8011`
 
 ## Refresh des materialized views
-- Manuel API: `POST /api/v1/observatory/mviews/refresh`
-- Statut: `GET /api/v1/observatory/mviews/status`
-- Script local: [backend/scripts/refresh_mviews.py](backend/scripts/refresh_mviews.py)
-- Tâche Windows 6h: `WQDSS_MV_Refresh_6h` via [backend/scripts/register_mv_refresh_task.ps1](backend/scripts/register_mv_refresh_task.ps1)
 
-## Références docs à jour
-- État projet détaillé: [docs/development_status_2026-04-07.md](docs/development_status_2026-04-07.md)
-- Endpoints API: [docs/kit_documentation_ia/API_ENDPOINTS.md](docs/kit_documentation_ia/API_ENDPOINTS.md)
-- Schéma DB: [docs/kit_documentation_ia/DATABASE_SCHEMA.md](docs/kit_documentation_ia/DATABASE_SCHEMA.md)
+- manuel API : `POST /api/v1/observatory/mviews/refresh`
+- statut : `GET /api/v1/observatory/mviews/status`
+- script local : [backend/scripts/refresh_mviews.py](backend/scripts/refresh_mviews.py)
+- planification Windows : [backend/scripts/register_mv_refresh_task.ps1](backend/scripts/register_mv_refresh_task.ps1)
 
+## Documentation détaillée
+
+- portail documentaire : [docs/README.md](docs/README.md)
+- cartographie documentaire : [docs/01_project_reference/DOCUMENT_MAP.md](docs/01_project_reference/DOCUMENT_MAP.md)
+- règles de vérité documentaire : [docs/01_project_reference/SOURCE_OF_TRUTH.md](docs/01_project_reference/SOURCE_OF_TRUTH.md)
+- architecture système : [docs/01_project_reference/architecture/system_architecture.md](docs/01_project_reference/architecture/system_architecture.md)
+- architecture base de données : [docs/01_project_reference/architecture/database_architecture.md](docs/01_project_reference/architecture/database_architecture.md)
+- contrats API : [docs/01_project_reference/backend/api_contracts.md](docs/01_project_reference/backend/api_contracts.md)
+- référence frontend : [docs/01_project_reference/frontend/frontend_reference.md](docs/01_project_reference/frontend/frontend_reference.md)
+- déploiement et exploitation : [docs/01_project_reference/deployment_operations/deployment_and_operations.md](docs/01_project_reference/deployment_operations/deployment_and_operations.md)
+- rapport Mission IV : [docs/02_contractual_and_reports/mission_iv/rapport_provisoire_mission_iv_sad.md](docs/02_contractual_and_reports/mission_iv/rapport_provisoire_mission_iv_sad.md)
+
+## Structure documentaire active
+
+- `docs/01_project_reference` : références durables du projet
+- `docs/02_contractual_and_reports` : CPS, rapports, annexes et exports
+- `docs/03_ai_knowledge_base` : mémoire projet pour agents IA
+- `docs/04_working_prompts_and_runs` : prompts, runs et notes de travail
+- `docs/99_legacy_archive` : archives et historiques

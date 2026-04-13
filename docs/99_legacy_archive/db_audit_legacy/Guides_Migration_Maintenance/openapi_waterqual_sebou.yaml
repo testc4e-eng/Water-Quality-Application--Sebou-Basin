@@ -1,0 +1,762 @@
+openapi: 3.1.0
+info:
+  title: WaterQual SEBOU API
+  version: 1.0.0
+  description: >
+    API REST pour les dashboards climat, hydrologie, qualité et cartographie
+    du projet WaterQual SEBOU.
+servers:
+  - url: https://api.waterqual-sebou.ma/api/v1
+    description: Production
+  - url: http://localhost:8080/api/v1
+    description: Local
+tags:
+  - name: Infra
+  - name: Meteo
+  - name: Hydro
+  - name: Qualite
+  - name: Map
+  - name: Raw
+paths:
+  /infra/stations:
+    get:
+      tags: [Infra]
+      summary: Liste des stations enrichies
+      parameters:
+        - $ref: '#/components/parameters/typeStation'
+        - $ref: '#/components/parameters/bassinId'
+        - $ref: '#/components/parameters/sousBassinId'
+        - $ref: '#/components/parameters/actif'
+        - $ref: '#/components/parameters/format'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
+      responses:
+        '200':
+          description: Liste paginée des stations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StationListResponse'
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/FeatureCollection'
+  /meteo/precipitations/timeseries:
+    get:
+      tags: [Meteo]
+      summary: Séries temporelles de précipitations
+      parameters:
+        - $ref: '#/components/parameters/stationIds'
+        - $ref: '#/components/parameters/from'
+        - $ref: '#/components/parameters/to'
+        - $ref: '#/components/parameters/timezone'
+        - $ref: '#/components/parameters/aggregate'
+        - $ref: '#/components/parameters/stat'
+        - $ref: '#/components/parameters/cursor'
+      responses:
+        '200':
+          description: Série brute ou agrégée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeSeriesResponse'
+        '422':
+          description: Trop de points demandés en mode brut
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /meteo/temperatures/timeseries:
+    get:
+      tags: [Meteo]
+      summary: Séries temporelles de températures
+      parameters:
+        - $ref: '#/components/parameters/stationIds'
+        - $ref: '#/components/parameters/from'
+        - $ref: '#/components/parameters/to'
+        - $ref: '#/components/parameters/timezone'
+        - $ref: '#/components/parameters/aggregate'
+        - $ref: '#/components/parameters/cursor'
+      responses:
+        '200':
+          description: Série de température
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemperatureSeriesResponse'
+  /hydro/debits/timeseries:
+    get:
+      tags: [Hydro]
+      summary: Séries temporelles de débits
+      parameters:
+        - $ref: '#/components/parameters/stationIds'
+        - $ref: '#/components/parameters/from'
+        - $ref: '#/components/parameters/to'
+        - $ref: '#/components/parameters/timezone'
+        - $ref: '#/components/parameters/aggregate'
+        - $ref: '#/components/parameters/stat'
+        - $ref: '#/components/parameters/cursor'
+      responses:
+        '200':
+          description: Série de débit
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeSeriesResponse'
+  /hydro/debits/fdc:
+    get:
+      tags: [Hydro]
+      summary: Courbe de débit classé
+      parameters:
+        - name: station_id
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: '#/components/parameters/from'
+        - $ref: '#/components/parameters/to'
+      responses:
+        '200':
+          description: Courbe de débit classé
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FdcResponse'
+  /qualite/analyses/timeseries:
+    get:
+      tags: [Qualite]
+      summary: Séries temporelles qualité
+      parameters:
+        - $ref: '#/components/parameters/stationIds'
+        - $ref: '#/components/parameters/paramCodes'
+        - $ref: '#/components/parameters/from'
+        - $ref: '#/components/parameters/to'
+        - $ref: '#/components/parameters/timezone'
+        - $ref: '#/components/parameters/aggregate'
+        - $ref: '#/components/parameters/cursor'
+      responses:
+        '200':
+          description: Mesures qualité
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QualitySeriesResponse'
+  /qualite/conformite:
+    get:
+      tags: [Qualite]
+      summary: Statut de conformité des analyses
+      parameters:
+        - $ref: '#/components/parameters/stationIds'
+        - $ref: '#/components/parameters/paramCodes'
+        - $ref: '#/components/parameters/from'
+        - $ref: '#/components/parameters/to'
+      responses:
+        '200':
+          description: Indicateurs de conformité
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConformityResponse'
+  /map/overview:
+    get:
+      tags: [Map]
+      summary: KPIs du dashboard principal
+      parameters:
+        - $ref: '#/components/parameters/bassinId'
+        - $ref: '#/components/parameters/sousBassinId'
+        - $ref: '#/components/parameters/from'
+        - $ref: '#/components/parameters/to'
+      responses:
+        '200':
+          description: Résumé cartographique
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MapOverviewResponse'
+  /map/layers/quality-status:
+    get:
+      tags: [Map]
+      summary: Couche GeoJSON des stations avec statut qualité
+      parameters:
+        - $ref: '#/components/parameters/bbox'
+        - $ref: '#/components/parameters/bassinId'
+        - $ref: '#/components/parameters/sousBassinId'
+        - $ref: '#/components/parameters/from'
+        - $ref: '#/components/parameters/to'
+      responses:
+        '200':
+          description: Couche GeoJSON
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/FeatureCollection'
+  /raw/{schema}/{table}:
+    get:
+      tags: [Raw]
+      summary: Lecture générique d'une table
+      parameters:
+        - name: schema
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: table
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
+        - name: sort
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Résultats bruts paginés
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RawTableResponse'
+    post:
+      tags: [Raw]
+      summary: Insertion générique dans une table
+      parameters:
+        - name: schema
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: table
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '201':
+          description: Ligne créée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RawMutationResponse'
+  /raw/{schema}/{table}/{id}:
+    put:
+      tags: [Raw]
+      summary: Mise à jour générique d'une ligne
+      parameters:
+        - name: schema
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: table
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            oneOf:
+              - type: string
+              - type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Ligne mise à jour
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RawMutationResponse'
+    delete:
+      tags: [Raw]
+      summary: Suppression générique d'une ligne
+      parameters:
+        - name: schema
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: table
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            oneOf:
+              - type: string
+              - type: integer
+      responses:
+        '204':
+          description: Ligne supprimée
+  /exports:
+    post:
+      tags: [Raw]
+      summary: Création d'un export asynchrone Excel ou PDF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                resource:
+                  type: string
+                  example: /qualite/analyses/timeseries
+                format:
+                  type: string
+                  enum: [xlsx, pdf, csv]
+                filters:
+                  type: object
+                  additionalProperties: true
+      responses:
+        '202':
+          description: Export accepté
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportResponse'
+components:
+  parameters:
+    from:
+      name: from
+      in: query
+      schema:
+        type: string
+        format: date-time
+    to:
+      name: to
+      in: query
+      schema:
+        type: string
+        format: date-time
+    timezone:
+      name: timezone
+      in: query
+      schema:
+        type: string
+        default: Africa/Casablanca
+    aggregate:
+      name: aggregate
+      in: query
+      schema:
+        type: string
+        enum: [raw, hour, day, week, month, year]
+        default: day
+    stat:
+      name: stat
+      in: query
+      schema:
+        type: string
+        enum: [avg, sum, min, max, count, p95]
+        default: avg
+    stationIds:
+      name: station_ids[]
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+          format: uuid
+    paramCodes:
+      name: param_codes[]
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+    bassinId:
+      name: bassin_id
+      in: query
+      schema:
+        type: integer
+    sousBassinId:
+      name: sous_bassin_id
+      in: query
+      schema:
+        type: integer
+    page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    pageSize:
+      name: page_size
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 500
+        default: 100
+    cursor:
+      name: cursor
+      in: query
+      schema:
+        type: string
+    typeStation:
+      name: type_station
+      in: query
+      schema:
+        type: string
+    actif:
+      name: actif
+      in: query
+      schema:
+        type: boolean
+    format:
+      name: format
+      in: query
+      schema:
+        type: string
+        enum: [json, geojson, csv]
+        default: json
+    bbox:
+      name: bbox
+      in: query
+      schema:
+        type: string
+        example: "-6.0,33.8,-4.6,34.8"
+  schemas:
+    Meta:
+      type: object
+      properties:
+        request_id:
+          type: string
+          format: uuid
+        page:
+          type: integer
+        page_size:
+          type: integer
+        total_items:
+          type: integer
+        total_pages:
+          type: integer
+        aggregation:
+          type: string
+        filters:
+          type: object
+          additionalProperties: true
+    ErrorItem:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        field:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        data:
+          nullable: true
+        meta:
+          $ref: '#/components/schemas/Meta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    Station:
+      type: object
+      properties:
+        station_id:
+          type: string
+          format: uuid
+        code_station:
+          type: string
+        station_nom:
+          type: string
+        type_station:
+          type: string
+        actif:
+          type: boolean
+        commune_nom:
+          type: string
+        province_nom:
+          type: string
+        region_nom:
+          type: string
+        sous_bassin_nom:
+          type: string
+        bassin_nom:
+          type: string
+        longitude:
+          type: number
+        latitude:
+          type: number
+    StationListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Station'
+        meta:
+          $ref: '#/components/schemas/Meta'
+        links:
+          type: object
+          additionalProperties: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    TimeSeriesPoint:
+      type: object
+      properties:
+        station_id:
+          type: string
+          format: uuid
+        bucket_start:
+          type: string
+          format: date-time
+        bucket_end:
+          type: string
+          format: date-time
+        value:
+          type: number
+        unit:
+          type: string
+    TimeSeriesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeSeriesPoint'
+        meta:
+          $ref: '#/components/schemas/Meta'
+        links:
+          type: object
+          additionalProperties: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    TemperaturePoint:
+      type: object
+      properties:
+        station_id:
+          type: string
+          format: uuid
+        bucket_start:
+          type: string
+          format: date-time
+        temp_min:
+          type: number
+        temp_moy:
+          type: number
+        temp_max:
+          type: number
+    TemperatureSeriesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TemperaturePoint'
+        meta:
+          $ref: '#/components/schemas/Meta'
+        links:
+          type: object
+          additionalProperties: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    QualityPoint:
+      type: object
+      properties:
+        station_id:
+          type: string
+          format: uuid
+        param_code:
+          type: string
+        bucket_start:
+          type: string
+          format: date-time
+        value:
+          type: number
+        unit:
+          type: string
+        statut_conformite:
+          type: string
+          nullable: true
+    QualitySeriesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/QualityPoint'
+        meta:
+          $ref: '#/components/schemas/Meta'
+        links:
+          type: object
+          additionalProperties: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    FdcPoint:
+      type: object
+      properties:
+        rank:
+          type: integer
+        exceedance_probability:
+          type: number
+        debit:
+          type: number
+    FdcResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FdcPoint'
+        meta:
+          $ref: '#/components/schemas/Meta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    ConformityItem:
+      type: object
+      properties:
+        station_id:
+          type: string
+          format: uuid
+        param_code:
+          type: string
+        sample_count:
+          type: integer
+        non_conforme_count:
+          type: integer
+        conformity_rate:
+          type: number
+    ConformityResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConformityItem'
+        meta:
+          $ref: '#/components/schemas/Meta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    MapOverview:
+      type: object
+      properties:
+        active_stations:
+          type: integer
+        quality_alerts:
+          type: integer
+        conformity_rate:
+          type: number
+        latest_hydro_measure_count:
+          type: integer
+    MapOverviewResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/MapOverview'
+        meta:
+          $ref: '#/components/schemas/Meta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    RawTableResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        meta:
+          $ref: '#/components/schemas/Meta'
+        links:
+          type: object
+          additionalProperties: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    RawMutationResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties: true
+        meta:
+          $ref: '#/components/schemas/Meta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    ExportResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            export_id:
+              type: string
+              format: uuid
+            status:
+              type: string
+              enum: [queued, processing, completed, failed]
+        meta:
+          $ref: '#/components/schemas/Meta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    Feature:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [Feature]
+        id:
+          oneOf:
+            - type: string
+            - type: integer
+        geometry:
+          type: object
+          additionalProperties: true
+        properties:
+          type: object
+          additionalProperties: true
+    FeatureCollection:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [FeatureCollection]
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/Feature'

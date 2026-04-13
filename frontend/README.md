@@ -1,45 +1,46 @@
-**Use your preferred IDE**
+# Frontend SAD Sebou (React + Vite)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Prérequis
+- Node.js 20+
+- npm
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+## Installation et démarrage
+```bash
+cd frontend
+npm install
+npm run dev -- --port 3001
 ```
 
-**Edit a file directly in GitHub**
+Build production :
+```bash
+npm run build
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Configuration `.env`
+Variables utilisées par le client API :
+- `VITE_API_BASE_URL` (ex: `http://127.0.0.1:8011/api/v1`)
+- `VITE_API_BASE`
+- `VITE_API_PROXY`
 
-**Use GitHub Codespaces**
+## Routes principales (définies dans `src/App.tsx`)
+- `/` : landing page
+- `/dashboard-cartographique` : dashboard cartographique
+- `/dashboard-analytique` : dashboard analytique
+- `/dashboard-scenarios` : dashboard scénarios
+- `/data` : gestion des données (admin)
+- `/admin/data-scan` : scan de disponibilité
+- `/admin/ingestion` : centre d'ingestion SWAT/WASP
+- `/admin/popup-rules` : règles popups
+- `/admin/users`, `/admin/audit`, `/admin/password-resets`
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Améliorations récentes (8-9 avril 2026)
+- Stabilisation filtres analytiques (plus de boucle `onChange`, auto-sélection robuste).
+- Intégration des APIs analytics climat/hydrologie/pollution.
+- Consolidation du dashboard cartographique avec filtres viewport `bbox`.
+- Finalisation des vues d'administration `data-scan` et `ingestion`.
+- Ajustements UX navigation/header/sidebar et simplification landing page.
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Documentation frontend associée
+- `docs/01_project_reference/frontend/frontend_reference.md`
+- `docs/01_project_reference/DOCUMENT_MAP.md`
+- `docs/01_project_reference/overview/data_governance_and_standards.md`

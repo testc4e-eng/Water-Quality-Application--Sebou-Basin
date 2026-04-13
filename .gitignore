@@ -14,6 +14,10 @@ node_modules/
 dist/
 build/
 
+# Ignorer les anciens documents
+docs/99_legacy_archive
+CPS & note method
+
 # Logs
 *.log
 
@@ -38,6 +42,8 @@ Thumbs.db
 # Garder fichiers utiles à la racine
 !.gitignore
 !README.md
+!docs/
+!docs/**
 
 # Re-ignore Python cache artifacts under backend
 backend/**/__pycache__/

@@ -1,0 +1,10 @@
+[
+  {
+    "extname": "plpgsql",
+    "extversion": "1.0"
+  },
+  {
+    "extname": "postgis",
+    "extversion": "3.5.3"
+  }
+]

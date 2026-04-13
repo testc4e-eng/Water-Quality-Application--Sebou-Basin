@@ -1,0 +1,432 @@
+[
+  {
+    "schemaname": "public",
+    "tablename": "mesures_precipitations_jr",
+    "taille_totale": "57 MB",
+    "taille_table": "43 MB",
+    "taille_index": "14 MB",
+    "taille_totale_bytes": 59686912,
+    "taille_table_bytes": 44564480,
+    "taille_index_bytes": 15122432
+  },
+  {
+    "schemaname": "public",
+    "tablename": "mesures_precipitations_jr_traitees",
+    "taille_totale": "52 MB",
+    "taille_table": "41 MB",
+    "taille_index": "12 MB",
+    "taille_totale_bytes": 54935552,
+    "taille_table_bytes": 42598400,
+    "taille_index_bytes": 12337152
+  },
+  {
+    "schemaname": "public",
+    "tablename": "mesures_debit_jr",
+    "taille_totale": "38 MB",
+    "taille_table": "26 MB",
+    "taille_index": "11 MB",
+    "taille_totale_bytes": 39436288,
+    "taille_table_bytes": 27656192,
+    "taille_index_bytes": 11780096
+  },
+  {
+    "schemaname": "public",
+    "tablename": "mesures_niv_eau_barrages",
+    "taille_totale": "8768 kB",
+    "taille_table": "6848 kB",
+    "taille_index": "1920 kB",
+    "taille_totale_bytes": 8978432,
+    "taille_table_bytes": 7012352,
+    "taille_index_bytes": 1966080
+  },
+  {
+    "schemaname": "public",
+    "tablename": "spatial_ref_sys",
+    "taille_totale": "7144 kB",
+    "taille_table": "6896 kB",
+    "taille_index": "248 kB",
+    "taille_totale_bytes": 7315456,
+    "taille_table_bytes": 7061504,
+    "taille_index_bytes": 253952
+  },
+  {
+    "schemaname": "public",
+    "tablename": "bathymetries_barrages_abhs",
+    "taille_totale": "6720 kB",
+    "taille_table": "4736 kB",
+    "taille_index": "1984 kB",
+    "taille_totale_bytes": 6881280,
+    "taille_table_bytes": 4849664,
+    "taille_index_bytes": 2031616
+  },
+  {
+    "schemaname": "public",
+    "tablename": "adm_communes_abhs",
+    "taille_totale": "5760 kB",
+    "taille_table": "1024 kB",
+    "taille_index": "4736 kB",
+    "taille_totale_bytes": 5898240,
+    "taille_table_bytes": 1048576,
+    "taille_index_bytes": 4849664
+  },
+  {
+    "schemaname": "public",
+    "tablename": "mesures_qualite_nappes",
+    "taille_totale": "5200 kB",
+    "taille_table": "3760 kB",
+    "taille_index": "1440 kB",
+    "taille_totale_bytes": 5324800,
+    "taille_table_bytes": 3850240,
+    "taille_index_bytes": 1474560
+  },
+  {
+    "schemaname": "public",
+    "tablename": "mesures_qualite_rivieres",
+    "taille_totale": "5000 kB",
+    "taille_table": "3624 kB",
+    "taille_index": "1376 kB",
+    "taille_totale_bytes": 5120000,
+    "taille_table_bytes": 3710976,
+    "taille_index_bytes": 1409024
+  },
+  {
+    "schemaname": "public",
+    "tablename": "suivi_qualite_sebou_jr",
+    "taille_totale": "4440 kB",
+    "taille_table": "3256 kB",
+    "taille_index": "1184 kB",
+    "taille_totale_bytes": 4546560,
+    "taille_table_bytes": 3334144,
+    "taille_index_bytes": 1212416
+  },
+  {
+    "schemaname": "public",
+    "tablename": "mesures_evaporation_jr",
+    "taille_totale": "3576 kB",
+    "taille_table": "2448 kB",
+    "taille_index": "1128 kB",
+    "taille_totale_bytes": 3661824,
+    "taille_table_bytes": 2506752,
+    "taille_index_bytes": 1155072
+  },
+  {
+    "schemaname": "public",
+    "tablename": "adm_cercles_abhs",
+    "taille_totale": "2952 kB",
+    "taille_table": "8192 bytes",
+    "taille_index": "2944 kB",
+    "taille_totale_bytes": 3022848,
+    "taille_table_bytes": 8192,
+    "taille_index_bytes": 3014656
+  },
+  {
+    "schemaname": "public",
+    "tablename": "adm_provinces_abhs",
+    "taille_totale": "1920 kB",
+    "taille_table": "8192 bytes",
+    "taille_index": "1912 kB",
+    "taille_totale_bytes": 1966080,
+    "taille_table_bytes": 8192,
+    "taille_index_bytes": 1957888
+  },
+  {
+    "schemaname": "public",
+    "tablename": "mesures_debit_m",
+    "taille_totale": "1680 kB",
+    "taille_table": "1200 kB",
+    "taille_index": "480 kB",
+    "taille_totale_bytes": 1720320,
+    "taille_table_bytes": 1228800,
+    "taille_index_bytes": 491520
+  },
+  {
+    "schemaname": "public",
+    "tablename": "adm_regions_abhs",
+    "taille_totale": "1248 kB",
+    "taille_table": "8192 bytes",
+    "taille_index": "1240 kB",
+    "taille_totale_bytes": 1277952,
+    "taille_table_bytes": 8192,
+    "taille_index_bytes": 1269760
+  },
+  {
+    "schemaname": "public",
+    "tablename": "sous_bassin_sebou",
+    "taille_totale": "1136 kB",
+    "taille_table": "8192 bytes",
+    "taille_index": "1128 kB",
+    "taille_totale_bytes": 1163264,
+    "taille_table_bytes": 8192,
+    "taille_index_bytes": 1155072
+  },
+  {
+    "schemaname": "public",
+    "tablename": "mesures_qualite_barrages",
+    "taille_totale": "848 kB",
+    "taille_table": "600 kB",
+    "taille_index": "248 kB",
+    "taille_totale_bytes": 868352,
+    "taille_table_bytes": 614400,
+    "taille_index_bytes": 253952
+  },
+  {
+    "schemaname": "public",
+    "tablename": "adm_douars_abhs",
+    "taille_totale": "816 kB",
+    "taille_table": "624 kB",
+    "taille_index": "192 kB",
+    "taille_totale_bytes": 835584,
+    "taille_table_bytes": 638976,
+    "taille_index_bytes": 196608
+  },
+  {
+    "schemaname": "public",
+    "tablename": "reseau_hydro_abhs",
+    "taille_totale": "712 kB",
+    "taille_table": "56 kB",
+    "taille_index": "656 kB",
+    "taille_totale_bytes": 729088,
+    "taille_table_bytes": 57344,
+    "taille_index_bytes": 671744
+  },
+  {
+    "schemaname": "public",
+    "tablename": "suivi_qualite_brg_garde_hebdo",
+    "taille_totale": "672 kB",
+    "taille_table": "456 kB",
+    "taille_index": "216 kB",
+    "taille_totale_bytes": 688128,
+    "taille_table_bytes": 466944,
+    "taille_index_bytes": 221184
+  },
+  {
+    "schemaname": "public",
+    "tablename": "profils_stations",
+    "taille_totale": "328 kB",
+    "taille_table": "224 kB",
+    "taille_index": "104 kB",
+    "taille_totale_bytes": 335872,
+    "taille_table_bytes": 229376,
+    "taille_index_bytes": 106496
+  },
+  {
+    "schemaname": "public",
+    "tablename": "mesures_precipitations_jr_max",
+    "taille_totale": "320 kB",
+    "taille_table": "216 kB",
+    "taille_index": "104 kB",
+    "taille_totale_bytes": 327680,
+    "taille_table_bytes": 221184,
+    "taille_index_bytes": 106496
+  },
+  {
+    "schemaname": "public",
+    "tablename": "mesures_debit_sources",
+    "taille_totale": "296 kB",
+    "taille_table": "176 kB",
+    "taille_index": "120 kB",
+    "taille_totale_bytes": 303104,
+    "taille_table_bytes": 180224,
+    "taille_index_bytes": 122880
+  },
+  {
+    "schemaname": "public",
+    "tablename": "nappes_abhs",
+    "taille_totale": "216 kB",
+    "taille_table": "96 kB",
+    "taille_index": "120 kB",
+    "taille_totale_bytes": 221184,
+    "taille_table_bytes": 98304,
+    "taille_index_bytes": 122880
+  },
+  {
+    "schemaname": "public",
+    "tablename": "huileries_abhs",
+    "taille_totale": "208 kB",
+    "taille_table": "144 kB",
+    "taille_index": "64 kB",
+    "taille_totale_bytes": 212992,
+    "taille_table_bytes": 147456,
+    "taille_index_bytes": 65536
+  },
+  {
+    "schemaname": "public",
+    "tablename": "stations_abhs",
+    "taille_totale": "136 kB",
+    "taille_table": "72 kB",
+    "taille_index": "64 kB",
+    "taille_totale_bytes": 139264,
+    "taille_table_bytes": 73728,
+    "taille_index_bytes": 65536
+  },
+  {
+    "schemaname": "public",
+    "tablename": "rejets_domestiques_abhs",
+    "taille_totale": "112 kB",
+    "taille_table": "64 kB",
+    "taille_index": "48 kB",
+    "taille_totale_bytes": 114688,
+    "taille_table_bytes": 65536,
+    "taille_index_bytes": 49152
+  },
+  {
+    "schemaname": "public",
+    "tablename": "decharges_abhs",
+    "taille_totale": "96 kB",
+    "taille_table": "48 kB",
+    "taille_index": "48 kB",
+    "taille_totale_bytes": 98304,
+    "taille_table_bytes": 49152,
+    "taille_index_bytes": 49152
+  },
+  {
+    "schemaname": "public",
+    "tablename": "step_abhs",
+    "taille_totale": "64 kB",
+    "taille_table": "16 kB",
+    "taille_index": "48 kB",
+    "taille_totale_bytes": 65536,
+    "taille_table_bytes": 16384,
+    "taille_index_bytes": 49152
+  },
+  {
+    "schemaname": "public",
+    "tablename": "points_eau_abhs",
+    "taille_totale": "64 kB",
+    "taille_table": "16 kB",
+    "taille_index": "48 kB",
+    "taille_totale_bytes": 65536,
+    "taille_table_bytes": 16384,
+    "taille_index_bytes": 49152
+  },
+  {
+    "schemaname": "public",
+    "tablename": "sources_abhs",
+    "taille_totale": "56 kB",
+    "taille_table": "24 kB",
+    "taille_index": "32 kB",
+    "taille_totale_bytes": 57344,
+    "taille_table_bytes": 24576,
+    "taille_index_bytes": 32768
+  },
+  {
+    "schemaname": "public",
+    "tablename": "bassin_sebou",
+    "taille_totale": "32 kB",
+    "taille_table": "8192 bytes",
+    "taille_index": "24 kB",
+    "taille_totale_bytes": 32768,
+    "taille_table_bytes": 8192,
+    "taille_index_bytes": 24576
+  },
+  {
+    "schemaname": "public",
+    "tablename": "adm_villes_abhs",
+    "taille_totale": "32 kB",
+    "taille_table": "8192 bytes",
+    "taille_index": "24 kB",
+    "taille_totale_bytes": 32768,
+    "taille_table_bytes": 8192,
+    "taille_index_bytes": 24576
+  },
+  {
+    "schemaname": "public",
+    "tablename": "mines_abhs",
+    "taille_totale": "32 kB",
+    "taille_table": "8192 bytes",
+    "taille_index": "24 kB",
+    "taille_totale_bytes": 32768,
+    "taille_table_bytes": 8192,
+    "taille_index_bytes": 24576
+  },
+  {
+    "schemaname": "public",
+    "tablename": "rejets_abattoirs_abhs",
+    "taille_totale": "32 kB",
+    "taille_table": "8192 bytes",
+    "taille_index": "24 kB",
+    "taille_totale_bytes": 32768,
+    "taille_table_bytes": 8192,
+    "taille_index_bytes": 24576
+  },
+  {
+    "schemaname": "public",
+    "tablename": "fosses_septiques_abhs",
+    "taille_totale": "32 kB",
+    "taille_table": "8192 bytes",
+    "taille_index": "24 kB",
+    "taille_totale_bytes": 32768,
+    "taille_table_bytes": 8192,
+    "taille_index_bytes": 24576
+  },
+  {
+    "schemaname": "public",
+    "tablename": "rejets_ind_abhs",
+    "taille_totale": "32 kB",
+    "taille_table": "8192 bytes",
+    "taille_index": "24 kB",
+    "taille_totale_bytes": 32768,
+    "taille_table_bytes": 8192,
+    "taille_index_bytes": 24576
+  },
+  {
+    "schemaname": "public",
+    "tablename": "step_ind_abhs",
+    "taille_totale": "32 kB",
+    "taille_table": "8192 bytes",
+    "taille_index": "24 kB",
+    "taille_totale_bytes": 32768,
+    "taille_table_bytes": 8192,
+    "taille_index_bytes": 24576
+  },
+  {
+    "schemaname": "public",
+    "tablename": "stm_abhs",
+    "taille_totale": "32 kB",
+    "taille_table": "8192 bytes",
+    "taille_index": "24 kB",
+    "taille_totale_bytes": 32768,
+    "taille_table_bytes": 8192,
+    "taille_index_bytes": 24576
+  },
+  {
+    "schemaname": "public",
+    "tablename": "types_mesures",
+    "taille_totale": "32 kB",
+    "taille_table": "8192 bytes",
+    "taille_index": "24 kB",
+    "taille_totale_bytes": 32768,
+    "taille_table_bytes": 8192,
+    "taille_index_bytes": 24576
+  },
+  {
+    "schemaname": "public",
+    "tablename": "barrages_abhs",
+    "taille_totale": "32 kB",
+    "taille_table": "8192 bytes",
+    "taille_index": "24 kB",
+    "taille_totale_bytes": 32768,
+    "taille_table_bytes": 8192,
+    "taille_index_bytes": 24576
+  },
+  {
+    "schemaname": "public",
+    "tablename": "capteurs_abhs",
+    "taille_totale": "16 kB",
+    "taille_table": "0 bytes",
+    "taille_index": "16 kB",
+    "taille_totale_bytes": 16384,
+    "taille_table_bytes": 0,
+    "taille_index_bytes": 16384
+  },
+  {
+    "schemaname": "public",
+    "tablename": "mesures_temperatures_jr",
+    "taille_totale": "16 kB",
+    "taille_table": "0 bytes",
+    "taille_index": "16 kB",
+    "taille_totale_bytes": 16384,
+    "taille_table_bytes": 0,
+    "taille_index_bytes": 16384
+  }
+]
