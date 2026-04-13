@@ -23,6 +23,7 @@ from app.routers.admin_users import router as admin_users_router
 from app.security.routes_users import router as users_router
 from app.security.routes_logs import router as security_logs_router
 from app.routers.ingestion import router as ingestion_router
+from app.routers.layer_configs import router as layer_configs_router
 
 
 
@@ -81,3 +82,5 @@ api_router.include_router(swat_analysis.router)
 # INGESTION / SAD
 # =========================
 api_router.include_router(ingestion_router, tags=["SAD Ingestion"])
+
+api_router.include_router(layer_configs_router)

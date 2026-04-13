@@ -104,6 +104,24 @@ type PopupRulesResponse = {
   >;
 };
 
+type LayerConfigsResponseRow = {
+  layer_name: string;
+  geometry_type: "point" | "line" | "polygon";
+  style_config?: {
+    point?: Record<string, any>;
+    line?: Record<string, any>;
+    polygon?: Record<string, any>;
+  };
+  popup_config?: {
+    fields?: Array<{
+      name: string;
+      alias?: string;
+      order?: number;
+      visible?: boolean;
+    }>;
+  };
+};
+
 function isValidFeatureForMap(feature: Feature<Geometry, any>): boolean {
   const g = feature?.geometry;
   if (!g) return false;
@@ -785,12 +803,13 @@ export default function Dashboard2() {
 
   useEffect(() => {
     let alive = true;
+    const merged: Record<string, PopupRule> = { ...DEFAULT_POPUP_RULES };
+
     api
       .get<PopupRulesResponse>("/observatory/popup-rules")
       .then((res) => {
         if (!alive) return;
         const payload = (res.data || {}) as PopupRulesResponse;
-        const merged: Record<string, PopupRule> = { ...DEFAULT_POPUP_RULES };
         Object.entries(payload.rules || {}).forEach(([k, v]) => {
           merged[k] = {
             title: v.title || DEFAULT_POPUP_RULES[k]?.title || k,
@@ -806,11 +825,67 @@ export default function Dashboard2() {
             polygonPopupFields: v.polygon_popup_fields || DEFAULT_POPUP_RULES[k]?.polygonPopupFields || [],
           };
         });
-        setPopupRules(merged);
       })
       .catch(() => {
-        if (alive) setPopupRules(DEFAULT_POPUP_RULES);
+        // keep defaults
+      })
+      .finally(() => {
+        api
+          .get<LayerConfigsResponseRow[]>("/layers/configs")
+          .then((res) => {
+            if (!alive) return;
+            (res.data || []).forEach((row) => {
+              const popupFields = (row.popup_config?.fields || [])
+                .filter((field) => field.visible !== false)
+                .sort((a, b) => Number(a.order || 0) - Number(b.order || 0))
+                .map((field) => field.name)
+                .filter(Boolean);
+
+              const baseRule = merged[row.layer_name] || {
+                title: row.layer_name,
+                nameFields: ["name", "label"],
+              };
+
+              merged[row.layer_name] = {
+                ...baseRule,
+                pointStyle: row.style_config?.point
+                  ? {
+                      ...baseRule.pointStyle,
+                      color: row.style_config.point.color,
+                      size: row.style_config.point.radius,
+                    }
+                  : baseRule.pointStyle,
+                lineStyle: row.style_config?.line
+                  ? {
+                      ...baseRule.lineStyle,
+                      color: row.style_config.line.color,
+                      width: row.style_config.line.width,
+                    }
+                  : baseRule.lineStyle,
+                polygonStyle: row.style_config?.polygon
+                  ? {
+                      ...baseRule.polygonStyle,
+                      color: row.style_config.polygon.fillColor,
+                      opacity: row.style_config.polygon.fillOpacity,
+                      contour_color: row.style_config.polygon.strokeColor,
+                    }
+                  : baseRule.polygonStyle,
+                pointPopupFields:
+                  row.geometry_type === "point" && popupFields.length ? popupFields : baseRule.pointPopupFields,
+                linePopupFields:
+                  row.geometry_type === "line" && popupFields.length ? popupFields : baseRule.linePopupFields,
+                polygonPopupFields:
+                  row.geometry_type === "polygon" && popupFields.length ? popupFields : baseRule.polygonPopupFields,
+              };
+            });
+            setPopupRules(merged);
+          })
+          .catch(() => {
+            if (!alive) return;
+            setPopupRules(merged);
+          });
       });
+
     return () => {
       alive = false;
     };
