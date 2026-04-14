@@ -404,7 +404,7 @@ function Select({ id, value, onChange, children, disabled, placeholder, compact 
         {children}
       </select>
       <div className="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
-        <svg className="w-4 h-4 text-gray-400 group-hover:text-blue-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24 shadow-sm">
+                      <svg className="w-4 h-4 text-gray-400 group-hover:text-blue-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
         </svg>
       </div>

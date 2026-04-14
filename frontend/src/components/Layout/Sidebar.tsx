@@ -1,5 +1,5 @@
-import { useMemo } from "react";
-import { NavLink } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import {
   Database,
   LineChart,
@@ -12,6 +12,7 @@ import {
   Users,
   CloudUpload,
   MessageSquare,
+  Shield,
 } from "lucide-react";
 
 type NavItem = {
@@ -28,6 +29,7 @@ type SidebarProps = {
 const Sidebar = ({ collapsed }: SidebarProps) => {
   const isAdmin = localStorage.getItem("is_superuser") === "true";
   const accessToken = localStorage.getItem("access_token");
+  const location = useLocation();
 
   const decodeTokenPayload = (token: string | null) => {
     if (!token) return null;
@@ -61,8 +63,9 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
     { to: "/data", label: "Gestion Données", icon: Database, group: "admin" },
     { to: "/admin/data-scan", label: "Scan de données", icon: Search, group: "admin" },
     { to: "/admin/gestion-users", label: "Gestion Users", icon: Users, group: "admin" },
+    { to: "/admin/audit", label: "Journal & Audit", icon: Shield, group: "admin" },
     { to: "/admin/ingestion", label: "Ingestion Scénarios", icon: CloudUpload, group: "admin" },
-    { to: "/admin/popup-rules", label: "Gestion des couches", icon: MessageSquare, group: "admin" },
+    { to: "/admin/popup-rules", label: "Gestion d'affichage", icon: MessageSquare, group: "admin" },
     { to: "/about", label: "A propos", icon: Info, group: "support" },
     { to: "/contact", label: "Contact", icon: Mail, group: "support" },
   ];
@@ -89,6 +92,33 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
   const supportItems = primaryItems.filter((item) => item.group === "support");
   const adminItems = primaryItems.filter((item) => item.group === "admin");
   const mainItems = primaryItems.filter((item) => item.group === "main");
+  const dbGroupRoutes = ["/data", "/admin/data-scan", "/admin/ingestion"];
+  const dbGroupItems = adminItems.filter((item) => dbGroupRoutes.includes(item.to));
+  const userGroupRoutes = ["/admin/gestion-users", "/admin/audit"];
+  const otherAdminItems = adminItems.filter(
+    (item) => !dbGroupRoutes.includes(item.to) && !userGroupRoutes.includes(item.to)
+  );
+  const isDbGroupActive = dbGroupRoutes.some((route) => location.pathname.startsWith(route));
+  const [dbGroupOpen, setDbGroupOpen] = useState(isDbGroupActive);
+  const isUserGroupActive =
+    location.pathname.startsWith("/admin/gestion-users") || location.pathname.startsWith("/admin/audit");
+  const [userGroupOpen, setUserGroupOpen] = useState(isUserGroupActive);
+  const activeUserMode = useMemo(() => {
+    const mode = new URLSearchParams(location.search).get("mode");
+    return mode === "audit" ? "audit" : "users";
+  }, [location.search]);
+
+  useEffect(() => {
+    if (isDbGroupActive) {
+      setDbGroupOpen(true);
+    }
+  }, [isDbGroupActive]);
+
+  useEffect(() => {
+    if (isUserGroupActive) {
+      setUserGroupOpen(true);
+    }
+  }, [isUserGroupActive]);
 
   return (
     <aside
@@ -153,7 +183,91 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
                   <p className="px-3 text-xs font-medium text-slate-500">Administration</p>
                 )}
                 <nav className="mt-3 space-y-1">
-                  {adminItems.map((item) => {
+                  <button
+                    type="button"
+                    onClick={() => setDbGroupOpen((value) => !value)}
+                    className={[
+                      "flex w-full items-center rounded-xl py-3 text-left text-sm font-medium transition-colors",
+                      collapsed ? "justify-center px-2" : "gap-3 px-3",
+                      isDbGroupActive
+                        ? "bg-blue-50 text-blue-700"
+                        : "text-slate-700 hover:bg-slate-50 hover:text-slate-900",
+                    ].join(" ")}
+                  >
+                    <Database className="h-4 w-4" />
+                    {!collapsed && <span>Gestion Base de Données</span>}
+                  </button>
+
+                  {!collapsed && dbGroupOpen && (
+                    <div className="ml-3 mt-2 grid gap-2">
+                      {dbGroupItems.map((item) => {
+                        const Icon = item.icon;
+                        return (
+                          <NavLink
+                            key={item.to}
+                            to={item.to}
+                            className={({ isActive }) =>
+                              [
+                                "flex items-center gap-2 rounded-lg border px-3 py-2 text-xs font-semibold transition-colors",
+                                isActive
+                                  ? "border-blue-700 bg-blue-700 text-white"
+                                  : "border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50",
+                              ].join(" ")
+                            }
+                          >
+                            <Icon className="h-3.5 w-3.5" />
+                            <span>{item.label}</span>
+                          </NavLink>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  <button
+                    type="button"
+                    onClick={() => setUserGroupOpen((value) => !value)}
+                    className={[
+                      "flex w-full items-center rounded-xl py-3 text-left text-sm font-medium transition-colors",
+                      collapsed ? "justify-center px-2" : "gap-3 px-3",
+                      isUserGroupActive
+                        ? "bg-blue-50 text-blue-700"
+                        : "text-slate-700 hover:bg-slate-50 hover:text-slate-900",
+                    ].join(" ")}
+                  >
+                    <Users className="h-4 w-4" />
+                    {!collapsed && <span>Gestion Users</span>}
+                  </button>
+
+                  {!collapsed && userGroupOpen && (
+                    <div className="ml-3 mt-2 grid gap-2">
+                      <NavLink
+                        to="/admin/gestion-users?mode=users"
+                        className={[
+                          "flex items-center gap-2 rounded-lg border px-3 py-2 text-xs font-semibold transition-colors",
+                          isUserGroupActive && activeUserMode === "users"
+                            ? "border-blue-700 bg-blue-700 text-white"
+                            : "border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50",
+                        ].join(" ")}
+                      >
+                        <Users className="h-3.5 w-3.5" />
+                        <span>Gestion des utilisateurs</span>
+                      </NavLink>
+                      <NavLink
+                        to="/admin/gestion-users?mode=audit"
+                        className={[
+                          "flex items-center gap-2 rounded-lg border px-3 py-2 text-xs font-semibold transition-colors",
+                          isUserGroupActive && activeUserMode === "audit"
+                            ? "border-blue-700 bg-blue-700 text-white"
+                            : "border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50",
+                        ].join(" ")}
+                      >
+                        <Shield className="h-3.5 w-3.5" />
+                        <span>Journal & Audit</span>
+                      </NavLink>
+                    </div>
+                  )}
+
+                  {otherAdminItems.map((item) => {
                     const Icon = item.icon;
 
                     return (

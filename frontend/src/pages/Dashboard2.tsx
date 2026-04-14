@@ -7,6 +7,7 @@ import maplibregl, {
 } from "maplibre-gl";
 import * as turf from "@turf/turf";
 import { ArrowLeftRight, ArrowUpDown, Layers3, PanelLeft, X } from "lucide-react";
+import { useLocation } from "react-router-dom";
 
 import SidebarFilters, { LayersState } from "@/components/Filters/SidebarFilters";
 import MapLegend from "@/components/Map/MapLegend";
@@ -538,6 +539,7 @@ const PARAM_TO_BUSINESS_KEY: Record<string, string> = {
 export default function Dashboard2() {
   const today = new Date();
   const todayStr = today.toISOString().slice(0, 10);
+  const location = useLocation();
 
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
@@ -607,6 +609,10 @@ export default function Dashboard2() {
   const [kpiLoading, setKpiLoading] = useState(false);
   const [popupMode, setPopupMode] = useState<"compact" | "expert">("compact");
   const [popupRules, setPopupRules] = useState<Record<string, PopupRule>>(DEFAULT_POPUP_RULES);
+  const [layerPopupFieldsByKey, setLayerPopupFieldsByKey] = useState<
+    Record<string, Array<{ name: string; alias?: string; order?: number; visible?: boolean }>>
+  >({});
+  const [configsRevision, setConfigsRevision] = useState(0);
   const [selectedLayer, setSelectedLayer] = useState<"all" | "water" | "weather">("all");
   const [swatNameLegend, setSwatNameLegend] = useState<Array<{ name: string; color: string }>>([]);
   const [legendDock, setLegendDock] = useState<"left" | "right">("right");
@@ -688,6 +694,9 @@ export default function Dashboard2() {
   const mapRef = useRef<MapLibreMap | null>(null);
   const scaleControlRef = useRef<maplibregl.ScaleControl | null>(null);
   const togglesRef = useRef(layers.toggles);
+  const inFlightLayersRef = useRef<Set<string>>(new Set());
+  const lastLayerRequestRef = useRef<Record<string, string>>({});
+  const lastLayerRequestAtRef = useRef<Record<string, number>>({});
   const hoverTimerRef = useRef<number | null>(null);
 
   const enforceRenderPriority = useCallback(() => {
@@ -801,6 +810,25 @@ export default function Dashboard2() {
     };
   }, []);
 
+  const refreshToken = useMemo(() => {
+    return new URLSearchParams(location.search).get("refresh") || "";
+  }, [location.search]);
+
+  useEffect(() => {
+    const handler = () => setConfigsRevision((v) => v + 1);
+    window.addEventListener("layer-configs-updated", handler as EventListener);
+    const onStorage = (event: StorageEvent) => {
+      if (event.key === "layer_configs_updated_at") {
+        setConfigsRevision((v) => v + 1);
+      }
+    };
+    window.addEventListener("storage", onStorage);
+    return () => {
+      window.removeEventListener("layer-configs-updated", handler as EventListener);
+      window.removeEventListener("storage", onStorage);
+    };
+  }, []);
+
   useEffect(() => {
     let alive = true;
     const merged: Record<string, PopupRule> = { ...DEFAULT_POPUP_RULES };
@@ -834,12 +862,19 @@ export default function Dashboard2() {
           .get<LayerConfigsResponseRow[]>("/layers/configs")
           .then((res) => {
             if (!alive) return;
+            const popupFieldsByKey: Record<
+              string,
+              Array<{ name: string; alias?: string; order?: number; visible?: boolean }>
+            > = {};
             (res.data || []).forEach((row) => {
-              const popupFields = (row.popup_config?.fields || [])
+              const popupFieldDefs = (row.popup_config?.fields || [])
                 .filter((field) => field.visible !== false)
                 .sort((a, b) => Number(a.order || 0) - Number(b.order || 0))
-                .map((field) => field.name)
-                .filter(Boolean);
+                .filter((field) => field.name);
+
+              popupFieldsByKey[row.layer_name] = popupFieldDefs;
+
+              const popupFields = popupFieldDefs.map((field) => field.name).filter(Boolean);
 
               const baseRule = merged[row.layer_name] || {
                 title: row.layer_name,
@@ -853,6 +888,7 @@ export default function Dashboard2() {
                       ...baseRule.pointStyle,
                       color: row.style_config.point.color,
                       size: row.style_config.point.radius,
+                      opacity: row.style_config.point.opacity,
                     }
                   : baseRule.pointStyle,
                 lineStyle: row.style_config?.line
@@ -860,6 +896,7 @@ export default function Dashboard2() {
                       ...baseRule.lineStyle,
                       color: row.style_config.line.color,
                       width: row.style_config.line.width,
+                      opacity: row.style_config.line.opacity,
                     }
                   : baseRule.lineStyle,
                 polygonStyle: row.style_config?.polygon
@@ -879,17 +916,19 @@ export default function Dashboard2() {
               };
             });
             setPopupRules(merged);
+            setLayerPopupFieldsByKey(popupFieldsByKey);
           })
           .catch(() => {
             if (!alive) return;
             setPopupRules(merged);
+            setLayerPopupFieldsByKey({});
           });
       });
 
     return () => {
       alive = false;
     };
-  }, []);
+  }, [refreshToken, configsRevision]);
 
   useEffect(() => {
     let alive = true;
@@ -1061,12 +1100,16 @@ export default function Dashboard2() {
     const MIN_ZOOM_BY_LAYER: Record<string, number> = {};
 
     const applyLayer = async (key: string) => {
+      const map = mapRef.current;
+      if (!map) return;
       if (!map.isStyleLoaded()) {
         map.once("load", () => applyLayer(key));
         return;
       }
 
       const srcId = `base-src-${key}`;
+      const inFlight = inFlightLayersRef.current;
+      if (inFlight.has(key)) return;
 
       try {
         const minZoom = MIN_ZOOM_BY_LAYER[key];
@@ -1086,7 +1129,15 @@ export default function Dashboard2() {
         }
         const url = buildLayerUrl(key);
         if (!url) return;
+        const now = Date.now();
+        const lastAt = lastLayerRequestAtRef.current[key] || 0;
+        if (now - lastAt < 1500 && map.getSource(srcId)) return;
+        if (lastLayerRequestRef.current[key] === url && map.getSource(srcId)) return;
+
+        inFlight.add(key);
+        lastLayerRequestAtRef.current[key] = now;
         const res = await api.get<FeatureCollection>(url);
+        lastLayerRequestRef.current[key] = url;
         const data = res.data;
         if (!data || !data.features || data.features.length === 0) return;
         const validFeatures = (data.features || []).filter((f) => isValidFeatureForMap(f as any));
@@ -1158,10 +1209,16 @@ export default function Dashboard2() {
         if (style.type === "circle" && rule?.pointStyle) {
           if (rule.pointStyle.color) layerPaint["circle-color"] = rule.pointStyle.color;
           if (Number.isFinite(Number(rule.pointStyle.size))) layerPaint["circle-radius"] = Number(rule.pointStyle.size);
+          if (Number.isFinite(Number(rule.pointStyle.opacity))) {
+            layerPaint["circle-opacity"] = Number(rule.pointStyle.opacity);
+          }
         }
         if (style.type === "line" && rule?.lineStyle) {
           if (rule.lineStyle.color) layerPaint["line-color"] = rule.lineStyle.color;
           if (Number.isFinite(Number(rule.lineStyle.width))) layerPaint["line-width"] = Number(rule.lineStyle.width);
+          if (Number.isFinite(Number(rule.lineStyle.opacity))) {
+            layerPaint["line-opacity"] = Number(rule.lineStyle.opacity);
+          }
           if (rule.lineStyle.style === "dashed") layerPaint["line-dasharray"] = [2, 1.4];
           if (rule.lineStyle.style === "gradient") {
             layerPaint["line-gradient"] = [
@@ -1198,10 +1255,13 @@ export default function Dashboard2() {
           layerPaint["fill-opacity"] = 0;
         }
 
-        if (map.getSource(srcId)) {
-          (map.getSource(srcId) as GeoJSONSource).setData(filteredData as any);
+        const mapInstance = mapRef.current;
+        if (!mapInstance) return;
+
+        if (mapInstance.getSource(srcId)) {
+          (mapInstance.getSource(srcId) as GeoJSONSource).setData(filteredData as any);
         } else {
-          map.addSource(srcId, {
+          mapInstance.addSource(srcId, {
             type: "geojson",
             data: filteredData as any,
             cluster: style.type === "circle" && CLUSTER_KEYS.has(key),
@@ -1219,16 +1279,16 @@ export default function Dashboard2() {
         const clusterCountLayerId = `base-layer-${key}-cluster-count`;
         const unclusteredLayerId = `base-layer-${key}-unclustered`;
 
-        if (map.getLayer(layerId)) map.removeLayer(layerId);
-        if (map.getLayer(strokeLayerId)) map.removeLayer(strokeLayerId);
-        if (map.getLayer(clusterLayerId)) map.removeLayer(clusterLayerId);
-        if (map.getLayer(clusterCountLayerId)) map.removeLayer(clusterCountLayerId);
-        if (map.getLayer(unclusteredLayerId)) map.removeLayer(unclusteredLayerId);
+        if (mapInstance.getLayer(layerId)) mapInstance.removeLayer(layerId);
+        if (mapInstance.getLayer(strokeLayerId)) mapInstance.removeLayer(strokeLayerId);
+        if (mapInstance.getLayer(clusterLayerId)) mapInstance.removeLayer(clusterLayerId);
+        if (mapInstance.getLayer(clusterCountLayerId)) mapInstance.removeLayer(clusterCountLayerId);
+        if (mapInstance.getLayer(unclusteredLayerId)) mapInstance.removeLayer(unclusteredLayerId);
 
         if (style.type === "circle" && CLUSTER_KEYS.has(key)) {
           const clusterColor =
             ((layerPaint as any)["circle-color"] as string | undefined) || "#f59e0b";
-          map.addLayer({
+          mapInstance.addLayer({
             id: clusterLayerId,
             type: "circle",
             source: srcId,
@@ -1240,7 +1300,7 @@ export default function Dashboard2() {
               "circle-stroke-width": 1.5,
             },
           } as LayerSpecification);
-          map.addLayer({
+          mapInstance.addLayer({
             id: clusterCountLayerId,
             type: "symbol",
             source: srcId,
@@ -1253,7 +1313,7 @@ export default function Dashboard2() {
               "text-color": "#111827",
             },
           } as LayerSpecification);
-          map.addLayer({
+          mapInstance.addLayer({
             id: unclusteredLayerId,
             type: "circle",
             source: srcId,
@@ -1264,7 +1324,7 @@ export default function Dashboard2() {
           return;
         }
 
-        map.addLayer({
+        mapInstance.addLayer({
           id: layerId,
           type: style.type,
           source: srcId,
@@ -1272,7 +1332,7 @@ export default function Dashboard2() {
         } as LayerSpecification);
 
         if (style.type === "fill" && (key !== "sous_bassins_swat" || fillMode === "outline")) {
-          map.addLayer({
+          mapInstance.addLayer({
             id: strokeLayerId,
             type: "line",
             source: srcId,
@@ -1295,6 +1355,8 @@ export default function Dashboard2() {
         setTimeout(enforceRenderPriority, 0);
       } catch (e) {
         console.error(`Erreur chargement couche ${key}:`, e);
+      } finally {
+        inFlight.delete(key);
       }
     };
 
@@ -2507,18 +2569,41 @@ export default function Dashboard2() {
                     onChange={(e) => setEntityFilterQuery(e.target.value)}
                   />
                   <div className="space-y-1">
-                    {Object.entries(selectedEntityDetails.properties || {})
-                      .filter(([k, v]) => {
-                        const q = entityFilterQuery.trim().toLowerCase();
-                        if (!q) return true;
-                        return k.toLowerCase().includes(q) || String(v ?? "").toLowerCase().includes(q);
-                      })
-                      .map(([k, v]) => (
-                      <div key={k} className="grid grid-cols-[104px_1fr] gap-1.5 border-b border-slate-100 py-0.5 text-[11px]">
-                        <div className="font-semibold text-slate-500">{k}</div>
-                        <div className="break-all text-slate-800">{String(v ?? "")}</div>
-                      </div>
-                    ))}
+                    {(() => {
+                      const props = (selectedEntityDetails.properties || {}) as Record<string, unknown>;
+                      const configuredFields = (layerPopupFieldsByKey[selectedEntityDetails.layerKey] || [])
+                        .filter((field) => field.visible !== false)
+                        .sort((a, b) => Number(a.order || 0) - Number(b.order || 0))
+                        .filter((field) => field.name && Object.prototype.hasOwnProperty.call(props, field.name));
+
+                      const rows = configuredFields.length
+                        ? configuredFields.map((field) => ({
+                            key: (field.alias || "").trim() || field.name,
+                            rawKey: field.name,
+                            value: props[field.name],
+                          }))
+                        : Object.entries(props).map(([k, v]) => ({ key: k, rawKey: k, value: v }));
+
+                      const q = entityFilterQuery.trim().toLowerCase();
+                      return rows
+                        .filter(({ key, rawKey, value }) => {
+                          if (!q) return true;
+                          return (
+                            key.toLowerCase().includes(q) ||
+                            rawKey.toLowerCase().includes(q) ||
+                            String(value ?? "").toLowerCase().includes(q)
+                          );
+                        })
+                        .map(({ key, rawKey, value }) => (
+                          <div
+                            key={`${rawKey}-${key}`}
+                            className="grid grid-cols-[104px_1fr] gap-1.5 border-b border-slate-100 py-0.5 text-[11px]"
+                          >
+                            <div className="font-semibold text-slate-500">{key}</div>
+                            <div className="break-all text-slate-800">{String(value ?? "")}</div>
+                          </div>
+                        ));
+                    })()}
                   </div>
                   <div className="mt-3 border-t border-slate-200 pt-2">
                     <div className="mb-1 flex items-center justify-between">

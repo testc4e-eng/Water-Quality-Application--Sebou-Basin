@@ -49,6 +49,7 @@ api_router.include_router(entities.router, tags=["entities"])
 # =========================
 # LAYERS / NAMES
 # =========================
+api_router.include_router(layer_configs_router)
 api_router.include_router(layers_router, prefix="/layers", tags=["layers"])
 api_router.include_router(names_router, prefix="/names", tags=["names"])
 api_router.include_router(users_router, tags=["users"])
@@ -82,5 +83,3 @@ api_router.include_router(swat_analysis.router)
 # INGESTION / SAD
 # =========================
 api_router.include_router(ingestion_router, tags=["SAD Ingestion"])
-
-api_router.include_router(layer_configs_router)
