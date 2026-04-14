@@ -37,6 +37,27 @@ function AdminOnly({ children }: { children: JSX.Element }) {
   return isAdmin ? children : <Navigate to="/" replace />;
 }
 
+function AdminOrManager({ children }: { children: JSX.Element }) {
+  const isAdmin = localStorage.getItem("is_superuser") === "true";
+  if (isAdmin) return children;
+  const token = localStorage.getItem("access_token");
+  if (!token) return <Navigate to="/" replace />;
+  try {
+    const parts = token.split(".");
+    if (parts.length < 2) return <Navigate to="/" replace />;
+    const payload = parts[1].replace(/-/g, "+").replace(/_/g, "/");
+    const padded = payload.padEnd(payload.length + (4 - (payload.length % 4)) % 4, "=");
+    const json = atob(padded);
+    const data = JSON.parse(json);
+    const role = data?.role ?? data?.user?.role ?? data?.type ?? null;
+    const roleValue = role ? String(role).toLowerCase() : "";
+    const isManager = roleValue === "manager" || roleValue === "gestionnaire";
+    return isManager ? children : <Navigate to="/" replace />;
+  } catch {
+    return <Navigate to="/" replace />;
+  }
+}
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -48,7 +69,14 @@ const router = createBrowserRouter(
         <Route path="carte" element={<Dashboard2 />} />
         <Route path="dashboard-analytique" element={<DashboardAnalytique />} />
         <Route path="dashboard-scenarios" element={<DashboardScenarios />} />
-        <Route path="admin/data-scan" element={<DataScanPage />} />
+        <Route
+          path="admin/data-scan"
+          element={
+            <AdminOrManager>
+              <DataScanPage />
+            </AdminOrManager>
+          }
+        />
         <Route
           path="admin/gestion-users"
           element={
@@ -84,17 +112,17 @@ const router = createBrowserRouter(
         <Route
           path="admin/ingestion"
           element={
-            <AdminOnly>
+            <AdminOrManager>
               <IngestionPage />
-            </AdminOnly>
+            </AdminOrManager>
           }
         />
         <Route
           path="admin/popup-rules"
           element={
-            <AdminOnly>
+            <AdminOrManager>
               <PopupRulesPage />
-            </AdminOnly>
+            </AdminOrManager>
           }
         />
         <Route path="about" element={<About />} />
@@ -102,9 +130,9 @@ const router = createBrowserRouter(
         <Route
           path="data"
           element={
-            <AdminOnly>
+            <AdminOrManager>
               <DataViewer />
-            </AdminOnly>
+            </AdminOrManager>
           }
         />
       </Route>
