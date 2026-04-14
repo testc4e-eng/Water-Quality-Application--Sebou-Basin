@@ -168,9 +168,6 @@
   }
 }
 
-html.rtl body {
-  direction: rtl;
-}
 
 
 /* === Popup Station (MapLibre) – style “carte verte” === */

@@ -25,10 +25,9 @@ type NavItem = {
 
 type SidebarProps = {
   collapsed: boolean;
-  isRtl: boolean;
 };
 
-const Sidebar = ({ collapsed, isRtl }: SidebarProps) => {
+const Sidebar = ({ collapsed }: SidebarProps) => {
   const { t } = useTranslation();
   const isAdmin = localStorage.getItem("is_superuser") === "true";
   const accessToken = localStorage.getItem("access_token");
@@ -58,10 +57,6 @@ const Sidebar = ({ collapsed, isRtl }: SidebarProps) => {
   const canSeeAdmin = isAdmin;
   const isManager =
     roleFromToken === "manager" || roleFromToken === "gestionnaire";
-  const rowDirectionClass = !collapsed && isRtl ? "flex-row-reverse" : "";
-  const headerAlignClass = !collapsed && isRtl ? "text-right" : "";
-  const submenuMarginClass = isRtl ? "mr-3" : "ml-3";
-  const adminButtonAlignClass = isRtl ? "text-right" : "text-left";
 
   const allNavItems: NavItem[] = [
     { to: "/", label: t("nav.accueil"), icon: Home, group: "main" },
@@ -141,8 +136,7 @@ const Sidebar = ({ collapsed, isRtl }: SidebarProps) => {
   return (
     <aside
       className={[
-        "hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:flex-col lg:bg-white",
-        isRtl ? "lg:right-0 lg:border-l lg:border-slate-200" : "lg:left-0 lg:border-r lg:border-slate-200",
+        "hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-50 lg:flex lg:flex-col lg:border-r lg:border-slate-200 lg:bg-white",
         collapsed ? "lg:w-20" : "lg:w-72",
       ].join(" ")}
     >
@@ -170,7 +164,7 @@ const Sidebar = ({ collapsed, isRtl }: SidebarProps) => {
       <div className={["flex flex-1 flex-col overflow-y-auto py-5", collapsed ? "px-2" : "px-4"].join(" ")}>
         <div className="space-y-6">
           {!collapsed && (
-            <p className={["px-3 text-xs font-medium text-slate-500", headerAlignClass].join(" ")}>
+            <p className="px-3 text-xs font-medium text-slate-500">
               {t("nav.surveillance_metiers")}
             </p>
           )}
@@ -186,7 +180,6 @@ const Sidebar = ({ collapsed, isRtl }: SidebarProps) => {
                     [
                       "flex items-center rounded-xl py-3 text-sm font-medium transition-colors",
                       collapsed ? "justify-center px-2" : "gap-3 px-3",
-                      rowDirectionClass,
                       isActive
                         ? "bg-blue-50 text-blue-700"
                         : "text-slate-700 hover:bg-slate-50 hover:text-slate-900",
@@ -204,7 +197,7 @@ const Sidebar = ({ collapsed, isRtl }: SidebarProps) => {
             {adminItems.length > 0 && (
               <>
                 {!collapsed && (
-                  <p className={["px-3 text-xs font-medium text-slate-500", headerAlignClass].join(" ")}>
+                  <p className="px-3 text-xs font-medium text-slate-500">
                     {t("nav.administration")}
                   </p>
                 )}
@@ -215,10 +208,8 @@ const Sidebar = ({ collapsed, isRtl }: SidebarProps) => {
                         type="button"
                         onClick={() => setDbGroupOpen((value) => !value)}
                         className={[
-                          "flex w-full items-center rounded-xl py-3 text-sm font-medium transition-colors",
-                          adminButtonAlignClass,
+                          "flex w-full items-center rounded-xl py-3 text-left text-sm font-medium transition-colors",
                           collapsed ? "justify-center px-2" : "gap-3 px-3",
-                          rowDirectionClass,
                           isDbGroupActive
                             ? "bg-blue-50 text-blue-700"
                             : "text-slate-700 hover:bg-slate-50 hover:text-slate-900",
@@ -229,7 +220,7 @@ const Sidebar = ({ collapsed, isRtl }: SidebarProps) => {
                       </button>
 
                       {!collapsed && dbGroupOpen && (
-                        <div className={[submenuMarginClass, "mt-2 grid gap-2"].join(" ")}>
+                        <div className="ml-3 mt-2 grid gap-2">
                           {dbGroupItems.map((item) => {
                             const Icon = item.icon;
                             return (
@@ -239,7 +230,6 @@ const Sidebar = ({ collapsed, isRtl }: SidebarProps) => {
                                 className={({ isActive }) =>
                                   [
                                     "flex items-center gap-2 rounded-lg border px-3 py-2 text-xs font-semibold transition-colors",
-                                    isRtl ? "flex-row-reverse justify-end" : "",
                                     isActive
                                       ? "border-blue-700 bg-blue-700 text-white"
                                       : "border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50",
@@ -262,10 +252,8 @@ const Sidebar = ({ collapsed, isRtl }: SidebarProps) => {
                         type="button"
                         onClick={() => setUserGroupOpen((value) => !value)}
                         className={[
-                          "flex w-full items-center rounded-xl py-3 text-sm font-medium transition-colors",
-                          adminButtonAlignClass,
+                          "flex w-full items-center rounded-xl py-3 text-left text-sm font-medium transition-colors",
                           collapsed ? "justify-center px-2" : "gap-3 px-3",
-                          rowDirectionClass,
                           isUserGroupActive
                             ? "bg-blue-50 text-blue-700"
                             : "text-slate-700 hover:bg-slate-50 hover:text-slate-900",
@@ -276,12 +264,11 @@ const Sidebar = ({ collapsed, isRtl }: SidebarProps) => {
                       </button>
 
                       {!collapsed && userGroupOpen && (
-                        <div className={[submenuMarginClass, "mt-2 grid gap-2"].join(" ")}>
+                        <div className="ml-3 mt-2 grid gap-2">
                           <NavLink
                             to="/admin/gestion-users?mode=users"
                             className={[
                               "flex items-center gap-2 rounded-lg border px-3 py-2 text-xs font-semibold transition-colors",
-                              isRtl ? "flex-row-reverse justify-end" : "",
                               isUserGroupActive && activeUserMode === "users"
                                 ? "border-blue-700 bg-blue-700 text-white"
                                 : "border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50",
@@ -294,7 +281,6 @@ const Sidebar = ({ collapsed, isRtl }: SidebarProps) => {
                             to="/admin/gestion-users?mode=audit"
                             className={[
                               "flex items-center gap-2 rounded-lg border px-3 py-2 text-xs font-semibold transition-colors",
-                              isRtl ? "flex-row-reverse justify-end" : "",
                               isUserGroupActive && activeUserMode === "audit"
                                 ? "border-blue-700 bg-blue-700 text-white"
                                 : "border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50",
@@ -319,7 +305,6 @@ const Sidebar = ({ collapsed, isRtl }: SidebarProps) => {
                           [
                             "flex items-center rounded-xl py-3 text-sm font-medium transition-colors",
                             collapsed ? "justify-center px-2" : "gap-3 px-3",
-                            rowDirectionClass,
                             isActive
                               ? "bg-blue-50 text-blue-700"
                               : "text-slate-700 hover:bg-slate-50 hover:text-slate-900",
@@ -338,7 +323,7 @@ const Sidebar = ({ collapsed, isRtl }: SidebarProps) => {
 
           <div>
             {!collapsed && (
-              <p className={["px-3 text-xs font-medium text-slate-500", headerAlignClass].join(" ")}>
+              <p className="px-3 text-xs font-medium text-slate-500">
                 {t("nav.support")}
               </p>
             )}
@@ -354,7 +339,6 @@ const Sidebar = ({ collapsed, isRtl }: SidebarProps) => {
                       [
                         "flex items-center rounded-xl py-3 text-sm font-medium transition-colors",
                         collapsed ? "justify-center px-2" : "gap-3 px-3",
-                        rowDirectionClass,
                         isActive
                           ? "bg-slate-100 text-slate-900"
                           : "text-slate-700 hover:bg-slate-50 hover:text-slate-900",

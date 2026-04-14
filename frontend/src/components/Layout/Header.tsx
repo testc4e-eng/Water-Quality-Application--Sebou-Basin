@@ -126,7 +126,6 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
   const languageOptions = [
     { code: "fr", label: t("lang.fr") },
     { code: "en", label: t("lang.en") },
-    { code: "ar", label: t("lang.ar") },
   ];
 
   const handleLanguageChange = (lng: string) => {
