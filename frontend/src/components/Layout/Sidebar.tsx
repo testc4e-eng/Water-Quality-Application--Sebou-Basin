@@ -60,11 +60,11 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
     { to: "/dashboard-cartographique", label: "Dashboard Cartographique", icon: Map, group: "main" },
     { to: "/dashboard-analytique", label: "Dashboard Analytique", icon: LineChart, group: "main" },
     { to: "/dashboard-scenarios", label: "Dashboard Scenarios", icon: Sparkles, group: "main" },
-    { to: "/data", label: "Gestion Donn\u00e9es", icon: Database, group: "admin" },
-    { to: "/admin/data-scan", label: "Scan de donn\u00e9es", icon: Search, group: "admin" },
+    { to: "/data", label: "Gestion Données", icon: Database, group: "admin" },
+    { to: "/admin/data-scan", label: "Scan de données", icon: Search, group: "admin" },
     { to: "/admin/gestion-users", label: "Gestion Users", icon: Users, group: "admin" },
     { to: "/admin/audit", label: "Journal & Audit", icon: Shield, group: "admin" },
-    { to: "/admin/ingestion", label: "Ingestion Sc\u00e9narios", icon: CloudUpload, group: "admin" },
+    { to: "/admin/ingestion", label: "Ingestion Scénarios", icon: CloudUpload, group: "admin" },
     { to: "/admin/popup-rules", label: "Gestion d'affichage", icon: MessageSquare, group: "admin" },
     { to: "/about", label: "A propos", icon: Info, group: "support" },
     { to: "/contact", label: "Contact", icon: Mail, group: "support" },
@@ -93,7 +93,7 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
       if (isManager) {
         return item.group !== "admin" || managerAdminAllowed.includes(item.to);
       }
-      // Utilisateur: pas d'acc\u00e8s aux sections Administration
+      // Utilisateur: pas d'accès aux sections Administration
       return item.group !== "admin";
     });
   }, [canSeeAdmin, isManager]);
@@ -160,7 +160,7 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
 
       <div className={["flex flex-1 flex-col overflow-y-auto py-5", collapsed ? "px-2" : "px-4"].join(" ")}>
         <div className="space-y-6">
-          {!collapsed && <p className="px-3 text-xs font-medium text-slate-500">Surveillance & M\u00e9tiers</p>}
+          {!collapsed && <p className="px-3 text-xs font-medium text-slate-500">Surveillance & Métiers</p>}
           <nav className="mt-4 space-y-1">
             {mainItems.map((item) => {
               const Icon = item.icon;
@@ -207,7 +207,7 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
                         ].join(" ")}
                       >
                         <Database className="h-4 w-4" />
-                        {!collapsed && <span>Gestion Base de Donn\u00e9es</span>}
+                        {!collapsed && <span>Gestion Base de Données</span>}
                       </button>
 
                       {!collapsed && dbGroupOpen && (
