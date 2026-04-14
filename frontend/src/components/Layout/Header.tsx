@@ -2,6 +2,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { Menu, PanelLeftClose, PanelLeftOpen, User, X } from "lucide-react";
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 
 type NavItem = { to: string; label: string };
@@ -13,6 +14,7 @@ type HeaderProps = {
 
 const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const isAdmin = localStorage.getItem("is_superuser") === "true";
@@ -36,25 +38,25 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
   const getRoleLabel = (role?: string | null) => {
     switch ((role ?? "").toLowerCase()) {
       case "admin":
-        return "Admin";
+        return t("header.role_admin");
       case "manager":
       case "gestionnaire":
-        return "Gestionnaire";
+        return t("header.role_manager");
       case "user":
-        return "Utilisateur";
+        return t("header.role_user");
       default:
-        return "Utilisateur";
+        return t("header.role_user");
     }
   };
 
   const roleLabel = useMemo(() => {
     if (!isAuthenticated) return null;
-    if (isAdmin) return "Admin";
+    if (isAdmin) return t("header.role_admin");
     const payload = decodeTokenPayload(accessToken);
     const role = payload?.role ?? payload?.user?.role ?? payload?.type ?? null;
-    if (!role) return "Utilisateur";
+    if (!role) return t("header.role_user");
     return getRoleLabel(String(role));
-  }, [accessToken, isAdmin, isAuthenticated]);
+  }, [accessToken, isAdmin, isAuthenticated, t]);
 
   const roleLower = useMemo(() => {
     if (isAdmin) return "admin";
@@ -68,6 +70,7 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
       case "admin":
         return "bg-blue-100 text-blue-700 border-blue-200";
       case "gestionnaire":
+      case "manager":
         return "bg-green-100 text-green-700 border-green-200";
       default:
         return "bg-yellow-100 text-yellow-800 border-yellow-200";
@@ -75,13 +78,13 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
   }, [roleLabel]);
 
   const allNavItems: NavItem[] = [
-    { to: "/", label: "Accueil" },
-    { to: "/dashboard-cartographique", label: "Dashboard Cartographique" },
-    { to: "/dashboard-analytique", label: "Dashboard Analytique" },
-    { to: "/data", label: "Gestion Données" },
-    { to: "/admin/data-scan", label: "Scan de données" },
-    { to: "/about", label: "A propos" },
-    { to: "/contact", label: "Contact" },
+    { to: "/", label: t("nav.accueil") },
+    { to: "/dashboard-cartographique", label: t("nav.dashboard_cartographique") },
+    { to: "/dashboard-analytique", label: t("nav.dashboard_analytique") },
+    { to: "/data", label: t("nav.gestion_donnees") },
+    { to: "/admin/data-scan", label: t("nav.scan_donnees") },
+    { to: "/about", label: t("nav.a_propos") },
+    { to: "/contact", label: t("nav.contact") },
   ];
 
   const navItems = useMemo(
@@ -109,7 +112,7 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
           "/contact",
         ].includes(item.to);
       }),
-    [isAdmin, roleLower]
+    [allNavItems, isAdmin, roleLower]
   );
 
   const handleLogout = () => {
@@ -118,6 +121,39 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
     localStorage.removeItem("is_superuser");
     navigate("/login");
   };
+
+  const currentLang = (i18n.resolvedLanguage ?? i18n.language ?? "fr").toLowerCase();
+  const languageOptions = [
+    { code: "fr", label: t("lang.fr") },
+    { code: "en", label: t("lang.en") },
+    { code: "ar", label: t("lang.ar") },
+  ];
+
+  const handleLanguageChange = (lng: string) => {
+    i18n.changeLanguage(lng);
+    localStorage.setItem("i18nextLng", lng);
+  };
+
+  const renderLanguageSwitcher = (className?: string) => (
+    <div className={["inline-flex items-center rounded-full border border-slate-200 bg-white/80 p-1", className ?? ""].join(" ")}>
+      {languageOptions.map((lang) => {
+        const isActive = currentLang === lang.code;
+        return (
+          <button
+            key={lang.code}
+            type="button"
+            onClick={() => handleLanguageChange(lang.code)}
+            className={[
+              "rounded-full px-2.5 py-1 text-xs font-semibold transition",
+              isActive ? "bg-slate-900 text-white" : "text-slate-600 hover:text-slate-900",
+            ].join(" ")}
+          >
+            {lang.label}
+          </button>
+        );
+      })}
+    </div>
+  );
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur">
@@ -130,7 +166,7 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
               size="icon"
               className="hidden lg:inline-flex"
               onClick={onToggleSidebar}
-              aria-label={sidebarCollapsed ? "Afficher la sidebar" : "Masquer la sidebar"}
+              aria-label={sidebarCollapsed ? t("header.sidebar_show") : t("header.sidebar_hide")}
             >
               {sidebarCollapsed ? <PanelLeftOpen className="h-5 w-5" /> : <PanelLeftClose className="h-5 w-5" />}
             </Button>
@@ -140,19 +176,20 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
               </div>
               <div>
                 <h1 className="font-roboto font-bold text-xl text-primary">WaterQual SEBOU</h1>
-                <p className="text-xs text-muted-foreground">Systeme d'aide a la decision</p>
+                <p className="text-xs text-muted-foreground">{t("header.system_subtitle")}</p>
               </div>
             </NavLink>
           </div>
 
           <div className="hidden lg:flex items-center space-x-3">
+            {renderLanguageSwitcher()}
             {!isAuthenticated ? (
               <>
                 <Button variant="outline" asChild>
-                  <NavLink to="/login">Connexion</NavLink>
+                  <NavLink to="/login">{t("header.login")}</NavLink>
                 </Button>
                 <Button asChild>
-                  <NavLink to="/register">Inscription</NavLink>
+                  <NavLink to="/register">{t("header.register")}</NavLink>
                 </Button>
               </>
             ) : (
@@ -163,7 +200,7 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
                   </span>
                 )}
                 <Button variant="outline" onClick={handleLogout}>
-                  Deconnexion
+                  {t("header.logout")}
                 </Button>
               </>
             )}
@@ -196,17 +233,20 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
                   {item.label}
                 </NavLink>
               ))}
+              <div className="flex items-center justify-start pt-4 border-t border-border">
+                {renderLanguageSwitcher()}
+              </div>
               <div className="flex flex-col space-y-2 pt-4 border-t border-border">
                 {!isAuthenticated ? (
                   <>
                     <Button variant="outline" asChild>
                       <NavLink to="/login" onClick={() => setIsMenuOpen(false)}>
-                        Connexion
+                        {t("header.login")}
                       </NavLink>
                     </Button>
                     <Button asChild>
                       <NavLink to="/register" onClick={() => setIsMenuOpen(false)}>
-                        Inscription
+                        {t("header.register")}
                       </NavLink>
                     </Button>
                   </>
@@ -224,7 +264,7 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
                         handleLogout();
                       }}
                     >
-                      Deconnexion
+                      {t("header.logout")}
                     </Button>
                   </>
                 )}

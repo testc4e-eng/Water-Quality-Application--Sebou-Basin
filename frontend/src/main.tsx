@@ -4,6 +4,7 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
 import "maplibre-gl/dist/maplibre-gl.css";
+import "./i18n";
 
 
 createRoot(document.getElementById("root")!).render(

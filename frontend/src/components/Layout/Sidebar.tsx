@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   Database,
   LineChart,
@@ -24,9 +25,11 @@ type NavItem = {
 
 type SidebarProps = {
   collapsed: boolean;
+  isRtl: boolean;
 };
 
-const Sidebar = ({ collapsed }: SidebarProps) => {
+const Sidebar = ({ collapsed, isRtl }: SidebarProps) => {
+  const { t } = useTranslation();
   const isAdmin = localStorage.getItem("is_superuser") === "true";
   const accessToken = localStorage.getItem("access_token");
   const location = useLocation();
@@ -55,19 +58,24 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
   const canSeeAdmin = isAdmin;
   const isManager =
     roleFromToken === "manager" || roleFromToken === "gestionnaire";
+  const rowDirectionClass = !collapsed && isRtl ? "flex-row-reverse" : "";
+  const headerAlignClass = !collapsed && isRtl ? "text-right" : "";
+  const submenuMarginClass = isRtl ? "mr-3" : "ml-3";
+  const adminButtonAlignClass = isRtl ? "text-right" : "text-left";
+
   const allNavItems: NavItem[] = [
-    { to: "/", label: "Accueil", icon: Home, group: "main" },
-    { to: "/dashboard-cartographique", label: "Dashboard Cartographique", icon: Map, group: "main" },
-    { to: "/dashboard-analytique", label: "Dashboard Analytique", icon: LineChart, group: "main" },
-    { to: "/dashboard-scenarios", label: "Dashboard Scenarios", icon: Sparkles, group: "main" },
-    { to: "/data", label: "Gestion Données", icon: Database, group: "admin" },
-    { to: "/admin/data-scan", label: "Scan de données", icon: Search, group: "admin" },
-    { to: "/admin/gestion-users", label: "Gestion Users", icon: Users, group: "admin" },
-    { to: "/admin/audit", label: "Journal & Audit", icon: Shield, group: "admin" },
-    { to: "/admin/ingestion", label: "Ingestion Scénarios", icon: CloudUpload, group: "admin" },
-    { to: "/admin/popup-rules", label: "Gestion d'affichage", icon: MessageSquare, group: "admin" },
-    { to: "/about", label: "A propos", icon: Info, group: "support" },
-    { to: "/contact", label: "Contact", icon: Mail, group: "support" },
+    { to: "/", label: t("nav.accueil"), icon: Home, group: "main" },
+    { to: "/dashboard-cartographique", label: t("nav.dashboard_cartographique"), icon: Map, group: "main" },
+    { to: "/dashboard-analytique", label: t("nav.dashboard_analytique"), icon: LineChart, group: "main" },
+    { to: "/dashboard-scenarios", label: t("nav.dashboard_scenarios"), icon: Sparkles, group: "main" },
+    { to: "/data", label: t("nav.gestion_donnees"), icon: Database, group: "admin" },
+    { to: "/admin/data-scan", label: t("nav.scan_donnees"), icon: Search, group: "admin" },
+    { to: "/admin/gestion-users", label: t("nav.gestion_users"), icon: Users, group: "admin" },
+    { to: "/admin/audit", label: t("nav.journal_audit"), icon: Shield, group: "admin" },
+    { to: "/admin/ingestion", label: t("nav.ingestion_scenarios"), icon: CloudUpload, group: "admin" },
+    { to: "/admin/popup-rules", label: t("nav.gestion_affichage"), icon: MessageSquare, group: "admin" },
+    { to: "/about", label: t("nav.a_propos"), icon: Info, group: "support" },
+    { to: "/contact", label: t("nav.contact"), icon: Mail, group: "support" },
   ];
 
   const primaryItems = useMemo(() => {
@@ -93,10 +101,10 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
       if (isManager) {
         return item.group !== "admin" || managerAdminAllowed.includes(item.to);
       }
-      // Utilisateur: pas d'accès aux sections Administration
+      // Utilisateur: pas d'acc�s aux sections Administration
       return item.group !== "admin";
     });
-  }, [canSeeAdmin, isManager]);
+  }, [allNavItems, canSeeAdmin, isManager]);
 
   const supportItems = primaryItems.filter((item) => item.group === "support");
   const adminItems = primaryItems.filter((item) => item.group === "admin");
@@ -133,7 +141,8 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
   return (
     <aside
       className={[
-        "hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-50 lg:flex lg:flex-col lg:border-r lg:border-slate-200 lg:bg-white",
+        "hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:flex-col lg:bg-white",
+        isRtl ? "lg:right-0 lg:border-l lg:border-slate-200" : "lg:left-0 lg:border-r lg:border-slate-200",
         collapsed ? "lg:w-20" : "lg:w-72",
       ].join(" ")}
     >
@@ -160,7 +169,11 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
 
       <div className={["flex flex-1 flex-col overflow-y-auto py-5", collapsed ? "px-2" : "px-4"].join(" ")}>
         <div className="space-y-6">
-          {!collapsed && <p className="px-3 text-xs font-medium text-slate-500">Surveillance & Métiers</p>}
+          {!collapsed && (
+            <p className={["px-3 text-xs font-medium text-slate-500", headerAlignClass].join(" ")}>
+              {t("nav.surveillance_metiers")}
+            </p>
+          )}
           <nav className="mt-4 space-y-1">
             {mainItems.map((item) => {
               const Icon = item.icon;
@@ -173,6 +186,7 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
                     [
                       "flex items-center rounded-xl py-3 text-sm font-medium transition-colors",
                       collapsed ? "justify-center px-2" : "gap-3 px-3",
+                      rowDirectionClass,
                       isActive
                         ? "bg-blue-50 text-blue-700"
                         : "text-slate-700 hover:bg-slate-50 hover:text-slate-900",
@@ -190,7 +204,9 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
             {adminItems.length > 0 && (
               <>
                 {!collapsed && (
-                  <p className="px-3 text-xs font-medium text-slate-500">Administration</p>
+                  <p className={["px-3 text-xs font-medium text-slate-500", headerAlignClass].join(" ")}>
+                    {t("nav.administration")}
+                  </p>
                 )}
                 <nav className="mt-3 space-y-1">
                   {dbGroupItems.length > 0 && (
@@ -199,19 +215,21 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
                         type="button"
                         onClick={() => setDbGroupOpen((value) => !value)}
                         className={[
-                          "flex w-full items-center rounded-xl py-3 text-left text-sm font-medium transition-colors",
+                          "flex w-full items-center rounded-xl py-3 text-sm font-medium transition-colors",
+                          adminButtonAlignClass,
                           collapsed ? "justify-center px-2" : "gap-3 px-3",
+                          rowDirectionClass,
                           isDbGroupActive
                             ? "bg-blue-50 text-blue-700"
                             : "text-slate-700 hover:bg-slate-50 hover:text-slate-900",
                         ].join(" ")}
                       >
                         <Database className="h-4 w-4" />
-                        {!collapsed && <span>Gestion Base de Données</span>}
+                        {!collapsed && <span>{t("nav.gestion_base_donnees")}</span>}
                       </button>
 
                       {!collapsed && dbGroupOpen && (
-                        <div className="ml-3 mt-2 grid gap-2">
+                        <div className={[submenuMarginClass, "mt-2 grid gap-2"].join(" ")}>
                           {dbGroupItems.map((item) => {
                             const Icon = item.icon;
                             return (
@@ -221,6 +239,7 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
                                 className={({ isActive }) =>
                                   [
                                     "flex items-center gap-2 rounded-lg border px-3 py-2 text-xs font-semibold transition-colors",
+                                    isRtl ? "flex-row-reverse justify-end" : "",
                                     isActive
                                       ? "border-blue-700 bg-blue-700 text-white"
                                       : "border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50",
@@ -243,42 +262,46 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
                         type="button"
                         onClick={() => setUserGroupOpen((value) => !value)}
                         className={[
-                          "flex w-full items-center rounded-xl py-3 text-left text-sm font-medium transition-colors",
+                          "flex w-full items-center rounded-xl py-3 text-sm font-medium transition-colors",
+                          adminButtonAlignClass,
                           collapsed ? "justify-center px-2" : "gap-3 px-3",
+                          rowDirectionClass,
                           isUserGroupActive
                             ? "bg-blue-50 text-blue-700"
                             : "text-slate-700 hover:bg-slate-50 hover:text-slate-900",
                         ].join(" ")}
                       >
                         <Users className="h-4 w-4" />
-                        {!collapsed && <span>Gestion Users</span>}
+                        {!collapsed && <span>{t("nav.gestion_users")}</span>}
                       </button>
 
                       {!collapsed && userGroupOpen && (
-                        <div className="ml-3 mt-2 grid gap-2">
+                        <div className={[submenuMarginClass, "mt-2 grid gap-2"].join(" ")}>
                           <NavLink
                             to="/admin/gestion-users?mode=users"
                             className={[
                               "flex items-center gap-2 rounded-lg border px-3 py-2 text-xs font-semibold transition-colors",
+                              isRtl ? "flex-row-reverse justify-end" : "",
                               isUserGroupActive && activeUserMode === "users"
                                 ? "border-blue-700 bg-blue-700 text-white"
                                 : "border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50",
                             ].join(" ")}
                           >
                             <Users className="h-3.5 w-3.5" />
-                            <span>Gestion des utilisateurs</span>
+                            <span>{t("nav.gestion_des_utilisateurs")}</span>
                           </NavLink>
                           <NavLink
                             to="/admin/gestion-users?mode=audit"
                             className={[
                               "flex items-center gap-2 rounded-lg border px-3 py-2 text-xs font-semibold transition-colors",
+                              isRtl ? "flex-row-reverse justify-end" : "",
                               isUserGroupActive && activeUserMode === "audit"
                                 ? "border-blue-700 bg-blue-700 text-white"
                                 : "border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50",
                             ].join(" ")}
                           >
                             <Shield className="h-3.5 w-3.5" />
-                            <span>Journal & Audit</span>
+                            <span>{t("nav.journal_audit")}</span>
                           </NavLink>
                         </div>
                       )}
@@ -296,6 +319,7 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
                           [
                             "flex items-center rounded-xl py-3 text-sm font-medium transition-colors",
                             collapsed ? "justify-center px-2" : "gap-3 px-3",
+                            rowDirectionClass,
                             isActive
                               ? "bg-blue-50 text-blue-700"
                               : "text-slate-700 hover:bg-slate-50 hover:text-slate-900",
@@ -313,7 +337,11 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
           </div>
 
           <div>
-            {!collapsed && <p className="px-3 text-xs font-medium text-slate-500">Support</p>}
+            {!collapsed && (
+              <p className={["px-3 text-xs font-medium text-slate-500", headerAlignClass].join(" ")}>
+                {t("nav.support")}
+              </p>
+            )}
             <nav className="mt-3 space-y-1">
               {supportItems.map((item) => {
                 const Icon = item.icon;
@@ -326,6 +354,7 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
                       [
                         "flex items-center rounded-xl py-3 text-sm font-medium transition-colors",
                         collapsed ? "justify-center px-2" : "gap-3 px-3",
+                        rowDirectionClass,
                         isActive
                           ? "bg-slate-100 text-slate-900"
                           : "text-slate-700 hover:bg-slate-50 hover:text-slate-900",
@@ -347,4 +376,3 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
 };
 
 export default Sidebar;
-

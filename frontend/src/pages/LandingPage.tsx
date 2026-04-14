@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   BarChart3,
   Shield,
@@ -15,44 +16,46 @@ import {
 } from "lucide-react";
 
 const LandingPage = () => {
+  const { t } = useTranslation();
+
   const features = [
     {
       icon: Activity,
-      title: "Monitoring Temps Reel",
-      description: "Surveillance continue de la qualite de l'eau avec des capteurs IoT de pointe",
+      title: t("landing.feature_monitoring_title"),
+      description: t("landing.feature_monitoring_desc"),
     },
     {
       icon: BarChart3,
-      title: "Analyse Predictive",
-      description: "Algorithmes d'IA pour anticiper les risques et optimiser la gestion",
+      title: t("landing.feature_prediction_title"),
+      description: t("landing.feature_prediction_desc"),
     },
     {
       icon: Globe,
-      title: "Cartographie Interactive",
-      description: "Visualisation geospatiale des bassins hydrographiques en temps reel",
+      title: t("landing.feature_map_title"),
+      description: t("landing.feature_map_desc"),
     },
     {
       icon: TrendingUp,
-      title: "Rapports Automatises",
-      description: "Generation de rapports conformes aux standards APA/ISO",
+      title: t("landing.feature_reports_title"),
+      description: t("landing.feature_reports_desc"),
     },
   ];
 
   const values = [
     {
       icon: Shield,
-      title: "Fiabilite",
-      description: "Donnees precises et methodologies scientifiques rigoureuses",
+      title: t("landing.value_reliability_title"),
+      description: t("landing.value_reliability_desc"),
     },
     {
       icon: Zap,
-      title: "Innovation",
-      description: "Technologies de pointe pour une surveillance efficace",
+      title: t("landing.value_innovation_title"),
+      description: t("landing.value_innovation_desc"),
     },
     {
       icon: Users,
-      title: "Collaboration",
-      description: "Partenariat avec les acteurs publics et prives",
+      title: t("landing.value_collaboration_title"),
+      description: t("landing.value_collaboration_desc"),
     },
   ];
 
@@ -65,18 +68,17 @@ const LandingPage = () => {
             <div className="mb-6 flex justify-center">
               <img src="/logo.jpg" alt="Logo" className="h-24 w-auto" />
             </div>
-            <h1 className="mb-6 text-5xl font-roboto font-bold md:text-6xl">WaterQual SEBOU</h1>
+            <h1 className="mb-6 text-5xl font-roboto font-bold md:text-6xl">{t("landing.hero_title")}</h1>
             <p className="mb-4 text-xl opacity-90 md:text-2xl">
-              Systeme d'Aide a la Decision pour la Qualite de l'Eau
+              {t("landing.hero_subtitle")}
             </p>
             <p className="mx-auto mb-8 max-w-2xl text-lg opacity-80">
-              WaterQual SEBOU : Plateforme Web Securisee pour le Monitoring et l'Analyse de la
-              Qualite de l'Eau
+              {t("landing.hero_description")}
             </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <Button size="lg" variant="secondary" asChild className="shadow-elegant">
                 <NavLink to="/dashboard-cartographique">
-                  Acceder au Dashboard
+                  {t("landing.cta_dashboard")}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </NavLink>
               </Button>
@@ -85,7 +87,7 @@ const LandingPage = () => {
                 variant="outline"
                 className="border-white/30 bg-white/10 text-white hover:bg-white/20"
               >
-                En savoir plus
+                {t("landing.cta_more")}
               </Button>
             </div>
           </div>
@@ -96,10 +98,10 @@ const LandingPage = () => {
         <div className="container mx-auto px-6">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-roboto font-bold text-primary md:text-4xl">
-              Fonctionnalites Avancees
+              {t("landing.features_title")}
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-              Une plateforme complete pour le monitoring et l'analyse de la qualite de l'eau
+              {t("landing.features_subtitle")}
             </p>
           </div>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -126,39 +128,34 @@ const LandingPage = () => {
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div>
               <h2 className="mb-6 text-3xl font-roboto font-bold text-primary md:text-4xl">
-                A propos de C4E
+                {t("landing.about_title")}
               </h2>
               <p className="mb-6 text-lg text-muted-foreground">
-                C4E AFRICA est une entreprise a taille humaine qui propose des solutions
-                scientifiques et techniques pour repondre aux defis du developpement durable a
-                l'echelle internationale.
+                {t("landing.about_p1")}
               </p>
               <p className="mb-6 text-lg text-muted-foreground">
-                Le Centre for Environment & Sustainability (C4E) est un laboratoire de recherche
-                de premier plan specialise dans les solutions environnementales innovantes.
+                {t("landing.about_p2")}
               </p>
               <p className="mb-6 text-lg text-muted-foreground">
-                Nous intervenons dans les domaines de l'eau, de l'energie, de l'environnement et
-                de l'education, en appliquant des outils bases sur la recherche et en developpant
-                des services et des applications innovantes.
+                {t("landing.about_p3")}
               </p>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="mt-1 h-5 w-5 flex-shrink-0 text-secondary" />
                   <p className="text-muted-foreground">
-                    Plus de 10 ans d'expertise en monitoring environnemental
+                    {t("landing.about_bullet_1")}
                   </p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="mt-1 h-5 w-5 flex-shrink-0 text-secondary" />
                   <p className="text-muted-foreground">
-                    Collaborations avec institutions publiques et entreprises privees
+                    {t("landing.about_bullet_2")}
                   </p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="mt-1 h-5 w-5 flex-shrink-0 text-secondary" />
                   <p className="text-muted-foreground">
-                    Publications scientifiques reconnues internationalement
+                    {t("landing.about_bullet_3")}
                   </p>
                 </div>
               </div>
