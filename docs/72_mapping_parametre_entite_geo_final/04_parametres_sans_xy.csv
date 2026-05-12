@@ -1,0 +1,3 @@
+﻿domaine,table_source,table_cible,parametre_source,parametre_canonique,unite,type_metier,entite_geo_type,entite_geo_id,entite_geo_code,entite_geo_nom,champ_rattachement,x,y,geom_present,statut_geo,commentaire,action_recommandee,volume_total,volume_geo_ok,volume_no_ref,volume_no_xy,volume_ambigu,volume_referentiel_manquant
+idp,staging.raw_idp_2024_mesures_qualite_globale,,DCO,DCO,,idp_2024,point_prelevement,,,,coord_x/coord_y,,,false,GEO_NO_XY,volume=80 | xy=57,EXCLURE_TEMPORAIREMENT,80,0,0,80,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,(parametre_manquant),(parametre_manquant),,idp_2024,point_pollution,,,,coord_x/coord_y,,,false,GEO_NO_XY,volume=54 | xy=18,EXCLURE_TEMPORAIREMENT,54,0,0,54,0,0

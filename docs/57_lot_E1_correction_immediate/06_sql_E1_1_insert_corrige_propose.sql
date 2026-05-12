@@ -1,0 +1,51 @@
+-- ATTENTION : SCRIPT PROPOSE, NON EXECUTE
+-- E1.1 corrige - anti-doublon metier
+
+-- Principe general :
+-- 1. regenerer un scope source avec une cle stable `source_row_hash`
+-- 2. filtrer les lignes deja presentes sur la cle metier cible
+-- 3. inserer uniquement les lignes nouvelles
+-- 4. auditer avec `target_business_key_hash`, `tableoid`, `ctid`, `source_row_hash`
+
+-- Exemple qualite.mesure_qualite_sebou :
+-- WITH source_rows AS (
+--   SELECT
+--     r.date_prelevement::timestamp AT TIME ZONE 'UTC' AS temps,
+--     ms.station_id,
+--     r.parametre_qualite,
+--     mps.parametre_ref_id,
+--     r.val_qual_sebou_jr AS valeur,
+--     r.observation,
+--     r.id AS source_row_id,
+--     md5(concat_ws('|',
+--       'raw_suivi_qualite_sebou_jr',
+--       r.id::text,
+--       r.date_prelevement::text,
+--       r.parametre_qualite,
+--       coalesce(r.val_qual_sebou_jr::text, 'NULL')
+--     )) AS source_row_hash
+--   FROM staging.raw_suivi_qualite_sebou_jr r
+--   JOIN metadata.mapping_station ms ON ms.legacy_code_station = r.ire_station
+--   LEFT JOIN metadata.mapping_parametre_source mps
+--     ON mps.source_table = 'mesure_qualite_sebou'
+--    AND mps.source_value = r.parametre_qualite
+-- ),
+-- deduped AS (
+--   SELECT s.*
+--   FROM source_rows s
+--   WHERE NOT EXISTS (
+--     SELECT 1
+--     FROM qualite.mesure_qualite_sebou q
+--     WHERE q.temps = s.temps
+--       AND q.station_id = s.station_id
+--       AND q.parametre_qualite = s.parametre_qualite
+--   )
+-- )
+-- INSERT INTO qualite.mesure_qualite_sebou (...)
+-- SELECT ...
+-- FROM deduped;
+
+-- Exemple branches a cle source instable :
+-- raw_mesures_debit_jr, raw_mesures_debit_m, raw_mesures_precipitations_jr
+-- => ne jamais reutiliser `source_row_id` issu de `ctid`
+-- => recalculer une cle stable depuis l'identifiant metier natif (`code_debit`, `code_debit_m`, `id_precipitation_jr`)

@@ -1,0 +1,84 @@
+-- ATTENTION : SCRIPT PROPOSE, NON EXECUTE
+-- E1 - creation et alimentation de la quarantaine geographique
+-- run_id E0 de reference : f0f2a858-1c90-4b15-a6af-cc172bece071
+
+-- CREATE TABLE IF NOT EXISTS qa_dry_run.e1_quarantaine_geo (
+--   run_id uuid,
+--   source_table text,
+--   source_row_id text,
+--   domaine text,
+--   code_source text,
+--   nom_source text,
+--   x_source double precision,
+--   y_source double precision,
+--   motif_quarantaine_geo text,
+--   statut_geo text,
+--   candidats_geo text,
+--   distance_min_m double precision,
+--   decision_attendue text,
+--   created_at timestamptz DEFAULT now()
+-- );
+
+-- 1. Lignes sans X/Y
+-- INSERT INTO qa_dry_run.e1_quarantaine_geo (...)
+-- SELECT
+--   'f0f2a858-1c90-4b15-a6af-cc172bece071'::uuid,
+--   table_source,
+--   id_ligne,
+--   CASE WHEN table_source LIKE '%mesures_qualite%' THEN 'qualite' ELSE 'IDP 2024' END,
+--   ire,
+--   nom_source,
+--   NULLIF(coord_x, '')::double precision,
+--   NULLIF(coord_y, '')::double precision,
+--   'GEO_NO_XY',
+--   'GEO_NO_XY',
+--   NULL,
+--   NULL,
+--   'completer les coordonnees avant migration finale'
+-- FROM <source_csv_or_staging_view_of_02_idp_orphelins_apres_buffer_2m>;
+
+-- 2. Lignes IDP ambiguës
+-- INSERT INTO qa_dry_run.e1_quarantaine_geo (...)
+-- SELECT
+--   'f0f2a858-1c90-4b15-a6af-cc172bece071'::uuid,
+--   table_source,
+--   id_ligne,
+--   CASE WHEN table_source LIKE '%mesures_qualite%' THEN 'qualite' ELSE 'IDP 2024' END,
+--   ire,
+--   nom_source,
+--   NULLIF(coord_x, '')::double precision,
+--   NULLIF(coord_y, '')::double precision,
+--   'GEO_AMBIGUOUS_XY_2M',
+--   geo_status,
+--   candidates,
+--   NULLIF(distance_m, '')::double precision,
+--   'arbitrage metier du bon candidat geo'
+-- FROM <source_csv_or_staging_view_of_03_idp_ambigus_apres_buffer_2m>;
+
+-- 3. Lignes IDP orphelines avec X/Y
+-- INSERT INTO qa_dry_run.e1_quarantaine_geo (...)
+-- SELECT
+--   'f0f2a858-1c90-4b15-a6af-cc172bece071'::uuid,
+--   table_source,
+--   id_ligne,
+--   CASE WHEN table_source LIKE '%mesures_qualite%' THEN 'qualite' ELSE 'IDP 2024' END,
+--   ire,
+--   nom_source,
+--   NULLIF(coord_x, '')::double precision,
+--   NULLIF(coord_y, '')::double precision,
+--   'GEO_ORPHAN_XY_2M',
+--   'GEO_ORPHAN_XY_2M',
+--   NULL,
+--   NULL,
+--   'rattachement geo manquant a traiter avant migration finale'
+-- FROM <source_csv_or_staging_view_of_02_idp_orphelins_apres_buffer_2m>
+-- WHERE NULLIF(coord_x, '') IS NOT NULL
+--   AND NULLIF(coord_y, '') IS NOT NULL;
+
+-- 4. Tables de support geo sans mapping mesure
+-- INSERT INTO qa_dry_run.e1_quarantaine_geo (...)
+-- VALUES
+--   ('f0f2a858-1c90-4b15-a6af-cc172bece071'::uuid, 'staging.raw_stations_abhs', NULL, 'support_geo', NULL, 'support table', NULL, NULL, 'GEO_SUPPORT_TABLE_NOT_MEASURE', 'GEO_SUPPORT_TABLE_NOT_MEASURE', NULL, NULL, 'hors lot E1 mesure'),
+--   ('f0f2a858-1c90-4b15-a6af-cc172bece071'::uuid, 'staging.raw_sources_abhs', NULL, 'support_geo', NULL, 'support table', NULL, NULL, 'GEO_SUPPORT_TABLE_NOT_MEASURE', 'GEO_SUPPORT_TABLE_NOT_MEASURE', NULL, NULL, 'hors lot E1 mesure'),
+--   ('f0f2a858-1c90-4b15-a6af-cc172bece071'::uuid, 'staging.raw_huileries_abhs', NULL, 'support_geo', NULL, 'support table', NULL, NULL, 'GEO_SUPPORT_TABLE_NOT_MEASURE', 'GEO_SUPPORT_TABLE_NOT_MEASURE', NULL, NULL, 'hors lot E1 mesure'),
+--   ('f0f2a858-1c90-4b15-a6af-cc172bece071'::uuid, 'staging.raw_profils_stations', NULL, 'support_geo', NULL, 'support table', NULL, NULL, 'GEO_SUPPORT_TABLE_NOT_MEASURE', 'GEO_SUPPORT_TABLE_NOT_MEASURE', NULL, NULL, 'hors lot E1 mesure');

@@ -1,0 +1,132 @@
+-- ATTENTION : SCRIPT PROPOSÉ, NON EXÉCUTÉ
+-- EXÉCUTION INTERDITE SANS VALIDATION HUMAINE
+-- Les TRUNCATE ci-dessous sont commentés volontairement.
+-- Exécuter uniquement après backup, validation humaine et ordre de dépendances confirmé.
+
+-- BEGIN;
+-- TRUNCATE TABLE "hydro"."barrage_bathymetrie" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "hydro"."mesure_barrage" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "hydro"."mesure_debit" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "hydro"."mesure_debit_mensuel" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "hydro"."mesure_debit_source" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "hydro"."regle_qualite_debit_source" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "hydro"."regle_qualite_debit_station" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "infra"."decharge" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis validation référentiel pollution
+-- TRUNCATE TABLE "infra"."decharge_inventaire_pollution" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis validation référentiel pollution
+-- TRUNCATE TABLE "infra"."decharge_inventaire_pollution_general" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis validation référentiel pollution
+-- TRUNCATE TABLE "infra"."huilerie" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis validation référentiel pollution
+-- TRUNCATE TABLE "infra"."huilerie_inventaire_pollution" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis validation référentiel pollution
+-- TRUNCATE TABLE "infra"."mine" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis validation référentiel pollution
+-- TRUNCATE TABLE "infra"."mine_inventaire_pollution" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis validation référentiel pollution
+-- TRUNCATE TABLE "infra"."rejet_abattoir" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis validation référentiel pollution
+-- TRUNCATE TABLE "infra"."rejet_abattoir_inventaire_pollution" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis validation référentiel pollution
+-- TRUNCATE TABLE "infra"."rejet_domestique" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis validation référentiel pollution
+-- TRUNCATE TABLE "infra"."rejet_industriel" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis validation référentiel pollution
+-- TRUNCATE TABLE "infra"."rejet_inventaire_pollution" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis validation référentiel pollution
+-- TRUNCATE TABLE "infra"."step" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis validation référentiel pollution
+-- TRUNCATE TABLE "infra"."step_industrielle" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis validation référentiel pollution
+-- TRUNCATE TABLE "infra"."step_inventaire_pollution" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis validation référentiel pollution
+-- TRUNCATE TABLE "metadata"."mapping_abreviation_colonne_inventaire" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_abreviation_unresolved_sources" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_barrage" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_barrage_unresolved_suivi_qualite_brg_garde_hebdo" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_nappe_unresolved_qualite_nappes" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_parametre_source" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_parametre_source_orphans_audit" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_parametre_unresolved_legacy_qualite_riviere" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_parametre_unresolved_suivi_qualite_sebou" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_point_eau" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_point_eau_unresolved_nappe" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_point_eau_unresolved_station" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_profil_station" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_profil_unresolved_nappe" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_profil_unresolved_station" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_source" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_station" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_station_unresolved_precip_ann_max" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_station_unresolved_qualite_barrages" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_station_unresolved_qualite_nappes" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_station_unresolved_suivi_qualite_brg_garde_hebdo" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_station_unresolved_suivi_qualite_brg_garde_hebdo_null_i" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_step_ind" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_step_ind_unresolved_commune" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_stm" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."mapping_stm_unresolved_commune" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."obs_parametre_coverage" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."obs_parametre_entite_compat" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."obs_referentiel_parametre" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."referentiel_abreviation_inventaire" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "metadata"."referentiel_parametre" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis réinitialisation après validation
+-- TRUNCATE TABLE "meteo"."mesure_evaporation" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "meteo"."mesure_precipitation" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "meteo"."mesure_precipitation_annuelle_max" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "meteo"."mesure_temperature" RESTART IDENTITY CASCADE; -- À conserver structure mais vider données / Conserver structure, vérifier vide
+-- TRUNCATE TABLE "meteo"."regle_qualite_evaporation_station" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "modeles"."resultat_swat" RESTART IDENTITY CASCADE; -- À conserver structure mais vider données / Conserver structure
+-- TRUNCATE TABLE "modeles"."resultat_wasp" RESTART IDENTITY CASCADE; -- À conserver structure mais vider données / Conserver structure
+-- TRUNCATE TABLE "modeles"."scenario_simulation" RESTART IDENTITY CASCADE; -- À conserver structure mais vider données / Conserver structure
+-- TRUNCATE TABLE "qa"."variable_thresholds" RESTART IDENTITY CASCADE; -- À conserver structure mais vider données / Conserver structure, vérifier vide
+-- TRUNCATE TABLE "qualite"."mesure_qualite_barrage" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "qualite"."mesure_qualite_nappe" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "qualite"."mesure_qualite_riviere" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "qualite"."mesure_qualite_sebou" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "qualite"."source_pollution_mesure_param" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "qualite"."source_pollution_prelevement" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "qualite"."source_pollution_prelevement_lien" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "qualite"."suivi_qualite_barrage_garde_hebdo" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."_legacy_qualite_riviere" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."decharges" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."decharges_Abondonees" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."huileries" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."mesure_precipitation_old_model" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."mesures_debit_jr" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."mesures_debit_m" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."mesures_debit_sources" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."mesures_evaporation_jr" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."mesures_niv_eau_barrages" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."mesures_precip" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."mesures_precipitations_jr_max" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."mesures_precipitations_jr_traitees" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."mesures_qualite_barrages" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."mesures_qualite_nappes" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."mines" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."points_eau_abhs" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."profils_stations" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."rejet_abattoir" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."rejets_brutes" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."sources_polution_mesure" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."sous_bassin_swat_bas_sebou_new" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."sous_bassin_swat_bassin_cotier_new" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."sous_bassin_swat_beht_new" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."sous_bassin_swat_haut_sebou_new" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."sous_bassin_swat_leben_innaouen_new" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."sous_bassin_swat_moyen_sebou_new" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."sous_bassin_swat_ouergha_new" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."step_ind_abhs" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."steps" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."steps_industrielles" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."stm_abhs" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."stms" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."suivi_qualite_brg_garde_hebdo" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "staging"."suivi_qualite_sebou" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation
+-- TRUNCATE TABLE "swat_output"."mesure_qualite_subbasin_ts" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation modèle
+-- TRUNCATE TABLE "swat_output"."ref_bassin" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation modèle
+-- TRUNCATE TABLE "swat_output"."ref_parametre_qualite" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation modèle
+-- TRUNCATE TABLE "swat_output"."ref_run_modele" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation modèle
+-- TRUNCATE TABLE "swat_output"."ref_scenario" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation modèle
+-- TRUNCATE TABLE "swat_output"."ref_subbasin" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation modèle
+-- TRUNCATE TABLE "swat_output"."stg_swat_qualite_long" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation modèle
+-- TRUNCATE TABLE "swat_output"."stg_swat_qualite_meta" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation modèle
+-- TRUNCATE TABLE "swat_sebou"."swat_models" RESTART IDENTITY CASCADE; -- À conserver structure mais vider données / Conserver structure
+-- TRUNCATE TABLE "swat_sebou"."swat_reach_results" RESTART IDENTITY CASCADE; -- À conserver structure mais vider données / Conserver structure
+-- TRUNCATE TABLE "swat_sebou"."swat_scenarios" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation modèle
+-- TRUNCATE TABLE "swat_sebou"."swat_subbasin_results" RESTART IDENTITY CASCADE; -- À conserver structure mais vider données / Conserver structure
+-- TRUNCATE TABLE "wasp_output"."mesure_qualite_segment_ts" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation modèle
+-- TRUNCATE TABLE "wasp_output"."ref_parametre_qualite" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation modèle
+-- TRUNCATE TABLE "wasp_output"."ref_run_modele" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation modèle
+-- TRUNCATE TABLE "wasp_output"."ref_segment_modele" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation modèle
+-- TRUNCATE TABLE "wasp_output"."stg_wasp_qualite_long" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation modèle
+-- TRUNCATE TABLE "wasp_sebou"."wasp_results" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation modèle
+-- TRUNCATE TABLE "wasp_sebou"."wasp_scenarios" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation modèle
+-- TRUNCATE TABLE "wasp_sebou"."wasp_variables" RESTART IDENTITY CASCADE; -- À archiver avant vidage / Backup puis vidage après validation modèle
+-- COMMIT;

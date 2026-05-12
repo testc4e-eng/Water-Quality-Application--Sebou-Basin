@@ -1,0 +1,280 @@
+﻿parametre,unites_detectees,source_unite,volume_total,statut
+Ag,à confirmer,types_mesures / libellé / nom de colonne,55,unité absente
+Al,à confirmer,types_mesures / libellé / nom de colonne,104,unité absente
+Aluminium(mg/l),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+Ammonium,à confirmer,types_mesures / libellé / nom de colonne,4572,unité absente
+Arsenic,à confirmer,types_mesures / libellé / nom de colonne,8,unité absente
+Arsenic(mg/l),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+As,à confirmer,types_mesures / libellé / nom de colonne,289,unité absente
+Azote_Org,mg/L,types_mesures / libellé / nom de colonne,5,unité détectée
+Azote_Total,mg/L,types_mesures / libellé / nom de colonne,370,unité détectée
+Azote_tot_kjeld,mg/L,types_mesures / libellé / nom de colonne,2,unité détectée
+Azote_tot_kjeldhal,mg/L,types_mesures / libellé / nom de colonne,1934,unité détectée
+Ba,à confirmer,types_mesures / libellé / nom de colonne,64,unité absente
+Be,à confirmer,types_mesures / libellé / nom de colonne,45,unité absente
+Beryllium(mg/l),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+Bilan_Ionique,à confirmer,types_mesures / libellé / nom de colonne,117,unité absente
+Bore(mg/l),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+CF,UFC/100mL,types_mesures / libellé / nom de colonne,5009,unité détectée
+CF(UFC/100mL),UFC/100mL,types_mesures / libellé / nom de colonne,182,unité détectée
+CN,à confirmer,types_mesures / libellé / nom de colonne,127,unité absente
+CN(mg/l),mg/l,types_mesures / libellé / nom de colonne,179,unité détectée
+CO2_libre,à confirmer,types_mesures / libellé / nom de colonne,2,unité absente
+CO3,mg/L,types_mesures / libellé / nom de colonne,4509,unité détectée
+CO32,à confirmer,types_mesures / libellé / nom de colonne,1,unité absente
+CT,mg/L,types_mesures / libellé / nom de colonne,4725,unité détectée
+Ca,mg/L,types_mesures / libellé / nom de colonne,4418,unité détectée
+Ca++,à confirmer,types_mesures / libellé / nom de colonne,278,unité absente
+Cadmium,à confirmer,types_mesures / libellé / nom de colonne,8,unité absente
+Cadmium(mg/l),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+Carbone_org,à confirmer,types_mesures / libellé / nom de colonne,2,unité absente
+Cd,à confirmer,types_mesures / libellé / nom de colonne,325,unité absente
+Chl,à confirmer,types_mesures / libellé / nom de colonne,2,unité absente
+Chl a,à confirmer,types_mesures / libellé / nom de colonne,38,unité absente
+Chl.A(µg/l),µg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+Chla,µg/L,types_mesures / libellé / nom de colonne,605,unité détectée
+Chrome,à confirmer,types_mesures / libellé / nom de colonne,8,unité absente
+Chrome(mg/l),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+Cl,mg/L,types_mesures / libellé / nom de colonne,4667,unité détectée
+Cl-,à confirmer,types_mesures / libellé / nom de colonne,189,unité absente
+Cl-(mg/l),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+Cl-_IC,à confirmer,types_mesures / libellé / nom de colonne,127,unité absente
+Cl2_res,à confirmer,types_mesures / libellé / nom de colonne,2,unité absente
+Clostri_sul_redu,à confirmer,types_mesures / libellé / nom de colonne,2,unité absente
+Co,à confirmer,types_mesures / libellé / nom de colonne,158,unité absente
+Cobalt,à confirmer,types_mesures / libellé / nom de colonne,8,unité absente
+Cobalt(mg/l)),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+"Cond
+25°C",°C,types_mesures / libellé / nom de colonne,13,unité détectée
+"Cond 25°C *0,9*0,01",°C,types_mesures / libellé / nom de colonne,13,unité détectée
+"Cond 25°C *1,1*0,01",°C,types_mesures / libellé / nom de colonne,13,unité détectée
+Conductivite,µS/cm,types_mesures / libellé / nom de colonne,5072,unité détectée
+Conductivité,à confirmer,types_mesures / libellé / nom de colonne,4572,unité absente
+Conductivitéà20°C(µs/cm),µs/cm,types_mesures / libellé / nom de colonne,182,unité détectée
+Couleur,UCV,types_mesures / libellé / nom de colonne,5,unité détectée
+Cr,à confirmer,types_mesures / libellé / nom de colonne,57,unité absente
+CrT,à confirmer,types_mesures / libellé / nom de colonne,437,unité absente
+Cu,à confirmer,types_mesures / libellé / nom de colonne,323,unité absente
+Cuivre,à confirmer,types_mesures / libellé / nom de colonne,8,unité absente
+Cuivre(mg/l),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+DBO5,mg O2/L,types_mesures / libellé / nom de colonne,6884,unité détectée
+DBO5_dec2h,à confirmer,types_mesures / libellé / nom de colonne,24,unité absente
+DCO,mg O2/L,types_mesures / libellé / nom de colonne,7028,unité détectée
+"DCO 
+2h décant.",à confirmer,types_mesures / libellé / nom de colonne,4,unité absente
+"DCO  D 
+ 2h",à confirmer,types_mesures / libellé / nom de colonne,2,unité absente
+DCO_dec2h,mg O2/L,types_mesures / libellé / nom de colonne,59,unité détectée
+Debit,m³/s,types_mesures / libellé / nom de colonne,176,unité détectée
+Detergent,mg/L,types_mesures / libellé / nom de colonne,192,unité détectée
+Detergent_non_ionique,à confirmer,types_mesures / libellé / nom de colonne,2,unité absente
+Disque_secchi,m,types_mesures / libellé / nom de colonne,368,unité détectée
+DisquedeSecchi(m),à confirmer,types_mesures / libellé / nom de colonne,182,unité absente
+Eh,mV,types_mesures / libellé / nom de colonne,96,unité détectée
+F,à confirmer,types_mesures / libellé / nom de colonne,61,unité absente
+F-(mg/l),mg/l,types_mesures / libellé / nom de colonne,181,unité détectée
+FM,à confirmer,types_mesures / libellé / nom de colonne,5,unité absente
+F_M_mes,mg/L,types_mesures / libellé / nom de colonne,12,unité détectée
+Fe,mg/L,types_mesures / libellé / nom de colonne,1351,unité détectée
+Fe2+,à confirmer,types_mesures / libellé / nom de colonne,44,unité absente
+FeT,mg/L,types_mesures / libellé / nom de colonne,2072,unité détectée
+Fer,à confirmer,types_mesures / libellé / nom de colonne,8,unité absente
+Fer(mg/l),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+Ferdissous(mg/l),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+Germe_tt_22,à confirmer,types_mesures / libellé / nom de colonne,4,unité absente
+Germe_tt_37,à confirmer,types_mesures / libellé / nom de colonne,2,unité absente
+H2S,à confirmer,types_mesures / libellé / nom de colonne,4,unité absente
+HCO,à confirmer,types_mesures / libellé / nom de colonne,3,unité absente
+HCO3,à confirmer,types_mesures / libellé / nom de colonne,121,unité absente
+HCO3-,mg/L,types_mesures / libellé / nom de colonne,4564,unité détectée
+HCT,à confirmer,types_mesures / libellé / nom de colonne,492,unité absente
+H_G,à confirmer,types_mesures / libellé / nom de colonne,4726,unité absente
+Hg,à confirmer,types_mesures / libellé / nom de colonne,261,unité absente
+"Huiles
+Graisses",à confirmer,types_mesures / libellé / nom de colonne,72,unité absente
+"Huiles
+Graisses (H G T)",à confirmer,types_mesures / libellé / nom de colonne,27,unité absente
+IBD,Indice,types_mesures / libellé / nom de colonne,142,unité détectée
+IBGN,Indice,types_mesures / libellé / nom de colonne,47,unité détectée
+IP,à confirmer,types_mesures / libellé / nom de colonne,75,unité absente
+IP(mgO2/l),mgO2/l,types_mesures / libellé / nom de colonne,182,unité détectée
+Indicedephénol(mg/l),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+K,mg/L,types_mesures / libellé / nom de colonne,4556,unité détectée
+K+,à confirmer,types_mesures / libellé / nom de colonne,261,unité absente
+K+4,à confirmer,types_mesures / libellé / nom de colonne,89,unité absente
+Largeur,m,types_mesures / libellé / nom de colonne,197,unité détectée
+Li,à confirmer,types_mesures / libellé / nom de colonne,50,unité absente
+Litium(mg/l),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+MD,à confirmer,types_mesures / libellé / nom de colonne,2,unité absente
+MES,mg/L,types_mesures / libellé / nom de colonne,2564,unité détectée
+MEST Filtr,à confirmer,types_mesures / libellé / nom de colonne,77,unité absente
+MEST(mg/l),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+MO,mg/L,types_mesures / libellé / nom de colonne,2658,unité détectée
+Manganèse(mg/l),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+Mercure,à confirmer,types_mesures / libellé / nom de colonne,8,unité absente
+Mercure(mg/l),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+Mg,mg/L,types_mesures / libellé / nom de colonne,4533,unité détectée
+Mg++,à confirmer,types_mesures / libellé / nom de colonne,278,unité absente
+Mn,mg/L,types_mesures / libellé / nom de colonne,2701,unité détectée
+Mn5,à confirmer,types_mesures / libellé / nom de colonne,88,unité absente
+Mo,à confirmer,types_mesures / libellé / nom de colonne,46,unité absente
+Molybdène(mg/l),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+NA,à confirmer,types_mesures / libellé / nom de colonne,4556,unité absente
+NH4,mg/L,types_mesures / libellé / nom de colonne,4776,unité détectée
+NH4+,à confirmer,types_mesures / libellé / nom de colonne,315,unité absente
+NH4+  Titri,à confirmer,types_mesures / libellé / nom de colonne,2,unité absente
+NH4+ 2,à confirmer,types_mesures / libellé / nom de colonne,17,unité absente
+NH4+ Spect,à confirmer,types_mesures / libellé / nom de colonne,127,unité absente
+NH4+(mgNH4+/l),mgNH4+/l,types_mesures / libellé / nom de colonne,182,unité détectée
+NO2-,mg/L,types_mesures / libellé / nom de colonne,4724,unité détectée
+NO2- _Spectro.,à confirmer,types_mesures / libellé / nom de colonne,89,unité absente
+NO3-,mg/L,types_mesures / libellé / nom de colonne,5348,unité détectée
+NO3-(mg/l),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+NO3-_Réduction Cd,à confirmer,types_mesures / libellé / nom de colonne,4,unité absente
+NO3-_Spectro,à confirmer,types_mesures / libellé / nom de colonne,127,unité absente
+NTK,à confirmer,types_mesures / libellé / nom de colonne,4735,unité absente
+NTK Spectr,à confirmer,types_mesures / libellé / nom de colonne,39,unité absente
+NTK Titri,à confirmer,types_mesures / libellé / nom de colonne,21,unité absente
+Na+,à confirmer,types_mesures / libellé / nom de colonne,261,unité absente
+Na+3,à confirmer,types_mesures / libellé / nom de colonne,89,unité absente
+Ni,à confirmer,types_mesures / libellé / nom de colonne,317,unité absente
+Nickel,à confirmer,types_mesures / libellé / nom de colonne,8,unité absente
+Nickel(mg)/l,mg,types_mesures / libellé / nom de colonne,182,unité détectée
+Nitrates,à confirmer,types_mesures / libellé / nom de colonne,4572,unité absente
+Numerotation_GT,à confirmer,types_mesures / libellé / nom de colonne,1,unité absente
+O2_diss,mg O2/L,types_mesures / libellé / nom de colonne,2812,unité détectée
+O2_dissous,à confirmer,types_mesures / libellé / nom de colonne,4572,unité absente
+O2dissous(mgd'O2/l),mgd'O2/l,types_mesures / libellé / nom de colonne,182,unité détectée
+OH,mg/L,types_mesures / libellé / nom de colonne,2,unité détectée
+OH-,à confirmer,types_mesures / libellé / nom de colonne,89,unité absente
+Odeur,à confirmer,types_mesures / libellé / nom de colonne,1,unité absente
+PO3,à confirmer,types_mesures / libellé / nom de colonne,1,unité absente
+PO4 3-,mg/L,types_mesures / libellé / nom de colonne,2321,unité détectée
+PO43-,à confirmer,types_mesures / libellé / nom de colonne,240,unité absente
+PO43-(mgP/l),mgP/l,types_mesures / libellé / nom de colonne,182,unité détectée
+PT,à confirmer,types_mesures / libellé / nom de colonne,240,unité absente
+"PT
+ décant. 2h",à confirmer,types_mesures / libellé / nom de colonne,4,unité absente
+PT DECANTE,à confirmer,types_mesures / libellé / nom de colonne,4,unité absente
+PT(mgP/l),mgP/l,types_mesures / libellé / nom de colonne,182,unité détectée
+PTD,mg/L,types_mesures / libellé / nom de colonne,137,unité détectée
+PTP,mg/L,types_mesures / libellé / nom de colonne,137,unité détectée
+Pb,à confirmer,types_mesures / libellé / nom de colonne,488,unité absente
+Phenol,à confirmer,types_mesures / libellé / nom de colonne,4572,unité absente
+Pheopigment,µg/L,types_mesures / libellé / nom de colonne,55,unité détectée
+Phosphore total,à confirmer,types_mesures / libellé / nom de colonne,1972,unité absente
+Phosphore_Total,mg/L,types_mesures / libellé / nom de colonne,631,unité détectée
+Phénol,mg/L,types_mesures / libellé / nom de colonne,73,unité détectée
+Ph�nol,pH,types_mesures / libellé / nom de colonne,687,unité détectée
+Plomb,à confirmer,types_mesures / libellé / nom de colonne,8,unité absente
+Plomb(mg/l),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+Profondeur,m,types_mesures / libellé / nom de colonne,124,unité détectée
+Pseudo_aer,à confirmer,types_mesures / libellé / nom de colonne,2,unité absente
+"RS 
+mesuré",à confirmer,types_mesures / libellé / nom de colonne,24,unité absente
+"RS 
+mesuré_à 105 °C",°C,types_mesures / libellé / nom de colonne,50,unité détectée
+RS105,à confirmer,types_mesures / libellé / nom de colonne,2244,unité absente
+RS185,à confirmer,types_mesures / libellé / nom de colonne,9,unité absente
+S,mg/L,types_mesures / libellé / nom de colonne,10,unité détectée
+S2,mg/L,types_mesures / libellé / nom de colonne,21,unité détectée
+SF,g/L,types_mesures / libellé / nom de colonne,4927,unité détectée
+SO3,à confirmer,types_mesures / libellé / nom de colonne,3,unité absente
+SO4,mg/L,types_mesures / libellé / nom de colonne,4794,unité détectée
+SO4(mg/l),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+SO4--,à confirmer,types_mesures / libellé / nom de colonne,189,unité absente
+SO42-_IC,à confirmer,types_mesures / libellé / nom de colonne,127,unité absente
+Saveur,à confirmer,types_mesures / libellé / nom de colonne,1,unité absente
+Sb,à confirmer,types_mesures / libellé / nom de colonne,49,unité absente
+Se,à confirmer,types_mesures / libellé / nom de colonne,485,unité absente
+SiO2(mg/l),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+SiO3,mg/L,types_mesures / libellé / nom de colonne,191,unité détectée
+Sn,à confirmer,types_mesures / libellé / nom de colonne,42,unité absente
+"Somme
+cations_meq/l",à confirmer,types_mesures / libellé / nom de colonne,89,unité absente
+"Somme
+cations_mg/l",mg/L,types_mesures / libellé / nom de colonne,89,unité détectée
+Sr,à confirmer,types_mesures / libellé / nom de colonne,5,unité absente
+Sélénium,à confirmer,types_mesures / libellé / nom de colonne,8,unité absente
+Sélénium(mg/l),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+TA,°F,types_mesures / libellé / nom de colonne,3198,unité détectée
+TA/Tas_meq/l,à confirmer,types_mesures / libellé / nom de colonne,89,unité absente
+TA/Tas_°F,à confirmer,types_mesures / libellé / nom de colonne,89,unité absente
+TAC,mg/L CaCO₃,types_mesures / libellé / nom de colonne,3202,unité détectée
+TAC/TACs_meq/l,à confirmer,types_mesures / libellé / nom de colonne,89,unité absente
+TAC/TACs_°F,à confirmer,types_mesures / libellé / nom de colonne,89,unité absente
+TAC_meq/l,à confirmer,types_mesures / libellé / nom de colonne,32,unité absente
+TAC_°F,à confirmer,types_mesures / libellé / nom de colonne,32,unité absente
+TA_meq/l,à confirmer,types_mesures / libellé / nom de colonne,32,unité absente
+TA_°F,à confirmer,types_mesures / libellé / nom de colonne,32,unité absente
+TH,°F,types_mesures / libellé / nom de colonne,2743,unité détectée
+T_Air,°C,types_mesures / libellé / nom de colonne,5033,unité détectée
+T_air,à confirmer,types_mesures / libellé / nom de colonne,4754,unité absente
+T_eau,°C,types_mesures / libellé / nom de colonne,9828,unité détectée
+Temperature_Ambiante,à confirmer,types_mesures / libellé / nom de colonne,1,unité absente
+Tl,à confirmer,types_mesures / libellé / nom de colonne,14,unité absente
+Turbidite,NTU,types_mesures / libellé / nom de colonne,1997,unité détectée
+Turbidité,à confirmer,types_mesures / libellé / nom de colonne,4572,unité absente
+V,à confirmer,types_mesures / libellé / nom de colonne,42,unité absente
+Vanadium(mg/l),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+Vibrion_Cholerique,à confirmer,types_mesures / libellé / nom de colonne,1,unité absente
+Zinc,à confirmer,types_mesures / libellé / nom de colonne,8,unité absente
+Zinc(mg/l),mg/l,types_mesures / libellé / nom de colonne,182,unité détectée
+Zn,à confirmer,types_mesures / libellé / nom de colonne,280,unité absente
+apports_hm,à confirmer,types_mesures / libellé / nom de colonne,34,unité absente
+apports_mm3,Mm3,types_mesures / libellé / nom de colonne,85166,unité détectée
+cap_equiv_hab,à confirmer,types_mesures / libellé / nom de colonne,41,unité absente
+cond_20_c,à confirmer,types_mesures / libellé / nom de colonne,391,unité absente
+debit,à confirmer,types_mesures / libellé / nom de colonne,2816,unité absente
+debit_jr,à confirmer,types_mesures / libellé / nom de colonne,521433,unité absente
+debit_l_s,L/s,types_mesures / libellé / nom de colonne,362,unité détectée
+debit_m,m,types_mesures / libellé / nom de colonne,19316,unité détectée
+dimension,à confirmer,types_mesures / libellé / nom de colonne,362,unité absente
+disqu_secchi,à confirmer,types_mesures / libellé / nom de colonne,391,unité absente
+dist_pt_eau_foyer_pollut_m,m,types_mesures / libellé / nom de colonne,46,unité détectée
+eau_ss_terr_niv_statique_m_sol,à confirmer,types_mesures / libellé / nom de colonne,243,unité absente
+hauteur,à confirmer,types_mesures / libellé / nom de colonne,34,unité absente
+hauteur_m,m,types_mesures / libellé / nom de colonne,62359,unité détectée
+indice de phénol M:A,Indice,types_mesures / libellé / nom de colonne,27,unité détectée
+longueur_km,km,types_mesures / libellé / nom de colonne,28,unité détectée
+montant_md,à confirmer,types_mesures / libellé / nom de colonne,34,unité absente
+niv_piezometrique_m,m,types_mesures / libellé / nom de colonne,46,unité détectée
+niveau_eau_m_ngm,à confirmer,types_mesures / libellé / nom de colonne,85166,unité absente
+o2_dissous,à confirmer,types_mesures / libellé / nom de colonne,391,unité absente
+pH,pH,types_mesures / libellé / nom de colonne,4754,unité détectée
+pH au laboratoire,pH,types_mesures / libellé / nom de colonne,7,unité détectée
+p_annuelle,à confirmer,types_mesures / libellé / nom de colonne,2085,unité absente
+p_max,à confirmer,types_mesures / libellé / nom de colonne,2085,unité absente
+perimetre,à confirmer,types_mesures / libellé / nom de colonne,1,unité absente
+ph,pH,types_mesures / libellé / nom de colonne,5457,unité détectée
+phenol,à confirmer,types_mesures / libellé / nom de colonne,2,unité absente
+precipitation_jr,à confirmer,types_mesures / libellé / nom de colonne,669880,unité absente
+profond_tot_m,m,types_mesures / libellé / nom de colonne,46,unité détectée
+quantite_t_j,à confirmer,types_mesures / libellé / nom de colonne,233,unité absente
+restitutions_mm3,Mm3,types_mesures / libellé / nom de colonne,85166,unité détectée
+sat,%,types_mesures / libellé / nom de colonne,1221,unité détectée
+"somme
+anions_meq/l",à confirmer,types_mesures / libellé / nom de colonne,89,unité absente
+"somme
+anions_meq/l3",à confirmer,types_mesures / libellé / nom de colonne,28,unité absente
+"somme
+anions_mg/l",mg/L,types_mesures / libellé / nom de colonne,89,unité détectée
+"somme
+anions_mg/l4",mg/L,types_mesures / libellé / nom de colonne,28,unité détectée
+sup_occupee_ha,ha,types_mesures / libellé / nom de colonne,233,unité détectée
+sup_tot_ha,ha,types_mesures / libellé / nom de colonne,233,unité détectée
+superficie_ha,ha,types_mesures / libellé / nom de colonne,41,unité détectée
+superficie_km2,km2,types_mesures / libellé / nom de colonne,18,unité détectée
+surface_km2,km2,types_mesures / libellé / nom de colonne,62359,unité détectée
+t_air,à confirmer,types_mesures / libellé / nom de colonne,391,unité absente
+t_eau,à confirmer,types_mesures / libellé / nom de colonne,391,unité absente
+transfert_mm3,Mm3,types_mesures / libellé / nom de colonne,85166,unité détectée
+turbidite,à confirmer,types_mesures / libellé / nom de colonne,391,unité absente
+val_evaporation,à confirmer,types_mesures / libellé / nom de colonne,48900,unité absente
+val_observees,à confirmer,types_mesures / libellé / nom de colonne,546007,unité absente
+val_power_nasa,à confirmer,types_mesures / libellé / nom de colonne,546007,unité absente
+val_remplies,à confirmer,types_mesures / libellé / nom de colonne,546007,unité absente
+vol_eaux_us_trait_m3_an,m3/an,types_mesures / libellé / nom de colonne,41,unité détectée
+vol_preleve_m3_an,m3/an,types_mesures / libellé / nom de colonne,46,unité détectée
+volume_mm3,Mm3,types_mesures / libellé / nom de colonne,147525,unité détectée
+vrn_hm3,Hm3,types_mesures / libellé / nom de colonne,34,unité détectée

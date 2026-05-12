@@ -6,7 +6,7 @@ import type { FeatureCollection, Geometry, GeoJsonProperties } from "geojson";
    ================================ */
 
 export const BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000/api/v1";
+  import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8011/api/v1";
 
 export const api = axios.create({
   baseURL: BASE_URL, // <- pointe déjà sur /api/v1
@@ -441,9 +441,13 @@ export async function getSWATSubbasinTimeseries(
 // ==============================
 // 🔬 SWAT Analysis API
 // ==============================
-export async function compareSWATvsObserved(reachId: number, scenarioId: number) {
+export async function compareSWATvsObserved(
+  segmentId: number,
+  scenarioId: number,
+  stationId: string
+) {
   const { data } = await api.get("/swat/analysis/compare", {
-    params: { reach_id: reachId, scenario_id: scenarioId },
+    params: { segment_id: segmentId, scenario_id: scenarioId, station_id: stationId },
   });
   return data;
 }

@@ -1,0 +1,69 @@
+-- ATTENTION : SCRIPT PROPOSE, NON EXECUTE
+-- EXECUTION INTERDITE SANS VALIDATION HUMAINE EXPLICITE
+-- Lot E0 : peuplement des tables temporaires de résultat.
+
+-- Étape 1 : insérer le périmètre de mapping déjà validé pour dry-run
+-- INSERT INTO qa_dry_run.e0_mapping_scope
+-- SELECT *
+-- FROM metadata.mapping_parametre_source_new
+-- WHERE scope_migration = 'MESURE'
+--   AND action_migration IN ('MIGRER', 'MIGRER_AVEC_FLAG');
+
+-- Étape 2 : exemple de préparation des mesures
+-- INSERT INTO qa_dry_run.e0_mesures_preparees (...)
+-- SELECT
+--   :id_run AS id_run,
+--   s.source_schema,
+--   s.source_table,
+--   s.source_column_parametre,
+--   s.source_column_valeur,
+--   s.parametre_source,
+--   s.code_parametre_canonique,
+--   s.parametre_standard_metier,
+--   s.unite_source,
+--   s.unite_source_resolue,
+--   s.unite_standard,
+--   s.conversion_regle,
+--   raw.valeur_brute,
+--   CASE
+--     WHEN raw.valeur_brute ~ '^\s*<' THEN regexp_replace(raw.valeur_brute, '[^0-9,.-]', '', 'g')::numeric
+--     WHEN raw.valeur_brute ~ '^\s*>' THEN regexp_replace(raw.valeur_brute, '[^0-9,.-]', '', 'g')::numeric
+--     ELSE REPLACE(trim(raw.valeur_brute), ',', '.')::numeric
+--   END AS valeur_preparee,
+--   CASE
+--     WHEN raw.valeur_brute IS NULL OR trim(raw.valeur_brute) = '' THEN 'FLAG_MISSING'
+--     WHEN raw.valeur_brute ~ '^\s*<' THEN 'FLAG_INFERIEUR'
+--     WHEN raw.valeur_brute ~ '^\s*>' THEN 'FLAG_SUPERIEUR'
+--     ELSE 'VALID'
+--   END AS statut_valeur,
+--   s.qa_flags,
+--   s.action_migration,
+--   raw.temps_source,
+--   raw.identifiant_source,
+--   s.commentaire_preparation
+-- FROM qa_dry_run.e0_mapping_scope s
+-- JOIN qa_dry_run.vue_source_normalisee raw
+--   ON raw.source_table = s.source_table
+--  AND raw.parametre_source = s.parametre_source;
+
+-- Étape 3 : routage quarantaine
+-- INSERT INTO qa_dry_run.e0_mesures_quarantaine (...)
+-- SELECT
+--   :id_run,
+--   p.source_schema,
+--   p.source_table,
+--   p.parametre_source,
+--   p.code_parametre_canonique,
+--   p.valeur_brute,
+--   CASE
+--     WHEN p.valeur_preparee IS NULL THEN 'NON_PARSEABLE_OR_MISSING'
+--     WHEN p.valeur_preparee < 0 THEN 'NEGATIVE_VALUE'
+--     WHEN p.action_migration = 'QUARANTAINE' THEN 'RULE_BASED_QUARANTINE'
+--     ELSE 'TO_REVIEW'
+--   END,
+--   p.qa_flags,
+--   p.commentaire_preparation
+-- FROM qa_dry_run.e0_mesures_preparees p
+-- WHERE p.valeur_preparee IS NULL
+--    OR p.valeur_preparee < 0
+--    OR p.action_migration = 'QUARANTAINE';

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import type { HydroIdentifier } from "@/api/hydro";
 
 type Props = {
   stations: any[];
@@ -7,7 +8,7 @@ type Props = {
   selectedRow: any | null;
   dateStart: string;
   dateEnd: string;
-  onStationChange: (id: number | null) => void;
+  onStationChange: (id: HydroIdentifier | null) => void;
   onRowChange: (row: any | null) => void;
   onDateStartChange: (v: string) => void;
   onDateEndChange: (v: string) => void;
@@ -34,7 +35,7 @@ export default function HydroFiltersSimple({
   onDateStartChange,
   onDateEndChange,
 }: Props) {
-  const [stationId, setStationId] = useState<number | undefined>(undefined);
+  const [stationId, setStationId] = useState<HydroIdentifier | undefined>(undefined);
   const [sourceType, setSourceType] = useState<"observed" | "simulated" | undefined>(undefined);
   const [aggChoice, setAggChoice] = useState<Agg | "">("");
 
@@ -89,7 +90,7 @@ export default function HydroFiltersSimple({
           value={stationId ?? ""}
           onChange={(e) => {
             const value = e.target.value;
-            const id = value ? Number(value) : undefined;
+            const id = value || undefined;
             setStationId(id);
             setSourceType(undefined);
             setAggChoice("");

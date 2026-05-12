@@ -1,0 +1,15 @@
+source_schema,source_table,source_value,canonical_code,canonical_name,unit_target,geo_target,action,status,commentaire
+metadata,referentiel_parametre,DEBIT,DEBIT,Debit,m3/s,station|source,FUSION_DUPLICATE,BLOQUANT,Deux definitions actives existent deja
+metadata,referentiel_parametre,VOLUME_BARRAGE,VOLUME,Volume,Mm3,barrage,MERGE_ALIAS,BACKLOG,Conserver VOLUME_BARRAGE comme alias legacy
+staging,raw_mesures_niv_eau_barrages,niveau_eau_m_ngm,NIVEAU_EAU,Niveau eau,m,barrage,KEEP,OK,Unite cible standardisee
+staging,raw_mesures_niv_eau_barrages,volume_mm3,VOLUME,Volume,Mm3,barrage,KEEP,OK,Aligner dashboards sur VOLUME
+staging,raw_mesures_niv_eau_barrages,restitutions_mm3,LACHER,Lacher,Mm3/j,barrage,RECLASSIFY,OK,Volume journalier barrage; alias source RESTITUTION
+staging,raw_mesures_niv_eau_barrages,apports_mm3,APPORTS_HM3,Apports barrage,Mm3/j,barrage,CREATE,OK,Nouveau canonique volume journalier
+staging,raw_mesures_niv_eau_barrages,transfert_mm3,TRANSFERT,Transfert barrage,Mm3/j,barrage,CREATE,OK,Nouveau canonique volume journalier
+qualite,mesure_qualite_riviere,COND,CONDUCTIVITE,Conductivite,uS/cm,station,MAP,BACKLOG,Fort volume sans parametre_ref_id
+qualite,mesure_qualite_riviere,O2_DISSOUS,O2_DISS,Oxygene dissous,mg/L,station,MAP,BACKLOG,Normaliser casse et ponctuation
+qualite,mesure_qualite_riviere,PT,PHOSPHORE_TOTAL,Phosphore total,mg/L,station,MAP,BACKLOG,Alias historique a fixer
+qualite,mesure_qualite_riviere,NO3,NO3-,Nitrates,mg/L,station,MAP,BACKLOG,Alias historique a fixer
+qualite,mesure_qualite_sebou,Conductivité,CONDUCTIVITE,Conductivite,uS/cm,station,MAP,BACKLOG,Accent et variante a absorber
+swat_output,ref_parametre_qualite,FLOW,DEBIT,Debit,m3/s,subbasin,MAP,OK,Modele SWAT
+wasp_output,ref_parametre_qualite,DO,O2_DISS,Oxygene dissous,mg/L,segment,MAP,OK,Modele WASP

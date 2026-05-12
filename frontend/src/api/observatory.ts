@@ -32,7 +32,7 @@ export async function getBarrageStations() {
 
 export async function getBarrageTimeseries(
   barrageId: string,
-  metric: "cote_m" | "volume_mm3" | "lacher_m3s" = "cote_m",
+  metric: "niveau_barrage" | "volume_barrage" | "lacher_barrage" | "apport" | "apports_hm3" | "transfert" = "niveau_barrage",
   dateStart?: string,
   dateEnd?: string
 ) {

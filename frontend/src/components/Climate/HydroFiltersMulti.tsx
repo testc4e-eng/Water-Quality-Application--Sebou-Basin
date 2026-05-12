@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchHydroStations } from "@/api/hydro";
+import { fetchHydroStations, type HydroIdentifier } from "@/api/hydro";
 
 export default function HydroFiltersMulti({
   rowsStats,
@@ -14,7 +14,7 @@ export default function HydroFiltersMulti({
 }: any) {
 
   const [stations, setStations] = useState<any[]>([]);
-  const [stationId, setStationId] = useState<number>();
+  const [stationId, setStationId] = useState<HydroIdentifier>();
   const [aggregation, setAggregation] = useState("daily");
 
   useEffect(() => {
@@ -68,7 +68,7 @@ const realTimeStepLabel =
           className="w-full border border-gray-200 rounded-lg px-3 py-2.5 bg-gray-50"
           value={stationId ?? ""}
           onChange={(e) => {
-            const id = Number(e.target.value);
+            const id = e.target.value || undefined;
             setStationId(id);
             onStationChange(id);
           }}

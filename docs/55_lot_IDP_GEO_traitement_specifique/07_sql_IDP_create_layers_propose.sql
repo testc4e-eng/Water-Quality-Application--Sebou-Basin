@@ -1,0 +1,32 @@
+-- ATTENTION : SCRIPT PROPOSE, NON EXECUTE
+-- EXÉCUTION INTERDITE SANS VALIDATION HUMAINE
+
+-- Exemple de couche : idp_qualite_globale_points
+-- CREATE TABLE qa_dry_run.idp_qualite_globale_points AS
+-- SELECT
+--   id_pts,
+--   id_table,
+--   date_jr_prelevement,
+--   heure_prelevement,
+--   pts_prelevement,
+--   ire,
+--   commune,
+--   code_commune,
+--   coord_x,
+--   coord_y,
+--   parametre_qualite,
+--   val_qual,
+--   observation,
+--   ST_SetSRID(ST_MakePoint(coord_x, coord_y), 26191) AS geom
+-- FROM staging.raw_idp_2024_mesures_qualite_globale
+-- WHERE coord_x IS NOT NULL
+--   AND coord_y IS NOT NULL;
+
+-- Repliquer la meme logique pour :
+-- qa_dry_run.idp_qualite_marche_cadre_points
+-- qa_dry_run.idp_src_pollution_globale_points
+-- qa_dry_run.idp_src_pollution_marche_cadre_points
+
+-- Controle post-creation :
+-- SELECT COUNT(*) FROM qa_dry_run.idp_qualite_globale_points;
+-- SELECT DISTINCT ST_SRID(geom) FROM qa_dry_run.idp_qualite_globale_points;

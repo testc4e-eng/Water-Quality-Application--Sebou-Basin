@@ -10,6 +10,7 @@ import { ArrowLeftRight, ArrowUpDown, Layers3, PanelLeft, X } from "lucide-react
 
 import SidebarFilters, { LayersState } from "@/components/Filters/SidebarFilters";
 import MapLegend from "@/components/Map/MapLegend";
+import { QaBadge } from "@/components/ui/qa-badge";
 import { LAYER_STYLES } from "@/config/mapStyles";
 
 import { api } from "@/api/client";
@@ -2102,12 +2103,17 @@ export default function Dashboard2() {
                   )}
                 </div>
 
-                <div className="ml-1 mt-1 w-60 overflow-hidden rounded-[18px] border border-emerald-200/20 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.12),transparent_25%),linear-gradient(180deg,#0f172a_0%,#164e63_100%)] text-emerald-50 shadow-[0_18px_55px_-22px_rgba(8,15,30,0.9)] backdrop-blur-xl">
+                <div className="ml-1 mt-1 w-64 overflow-hidden rounded-[18px] border border-emerald-200/20 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.12),transparent_25%),linear-gradient(180deg,#0f172a_0%,#164e63_100%)] text-emerald-50 shadow-[0_18px_55px_-22px_rgba(8,15,30,0.9)] backdrop-blur-xl">
                   <div className="border-b border-emerald-100/10 px-2.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-emerald-50/90">
-                    Variable metier
+                    Parcours métier guidé
                   </div>
                   <div className="space-y-1 p-2">
-                    <div className="space-y-1.5">
+                    <div className="space-y-2">
+                      <div className="rounded-lg border border-emerald-200/20 bg-slate-950/25 p-1.5">
+                        <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide text-emerald-100/90">
+                          <span className="rounded bg-emerald-400/20 px-1.5 py-0.5 text-emerald-100">1</span>
+                          Thème
+                        </div>
                       <select
                         value={selectedTheme}
                         onChange={(e) => {
@@ -2127,6 +2133,12 @@ export default function Dashboard2() {
                           </option>
                         ))}
                       </select>
+                      </div>
+                      <div className="rounded-lg border border-sky-200/20 bg-slate-950/25 p-1.5">
+                        <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide text-sky-100/90">
+                          <span className="rounded bg-sky-400/20 px-1.5 py-0.5 text-sky-100">2</span>
+                          Paramètre
+                        </div>
                       <select
                         value={selectedSubmenu}
                         onChange={(e) => {
@@ -2144,6 +2156,7 @@ export default function Dashboard2() {
                           </option>
                         ))}
                       </select>
+                      <div className="mt-1" />
                       <select
                         value={selectedParamCode}
                         onChange={(e) => {
@@ -2164,6 +2177,7 @@ export default function Dashboard2() {
                           </option>
                         ))}
                       </select>
+                      </div>
                       {!!selectedParamCode && !selectedBusinessKey && selectedHierarchyParam && (
                         <div className="text-[10px] text-emerald-100/90">
                           Source: {selectedHierarchyParam.source_schema}.{selectedHierarchyParam.source_table} | Entite: {selectedHierarchyParam.entity_type}
@@ -2194,40 +2208,9 @@ export default function Dashboard2() {
                       </div>
                       {!!selectedHierarchyParam && (
                         <div className="mt-1 space-y-1">
-                          <div className="flex items-center gap-1">
-                            <span className="text-[10px] text-emerald-100/90">Popup:</span>
-                            {(["compact", "expert"] as const).map((mode) => (
-                              <button
-                                key={mode}
-                                type="button"
-                                className={`rounded border px-1.5 py-0.5 text-[10px] ${
-                                  popupMode === mode
-                                    ? "border-emerald-300/40 bg-emerald-400/20 text-emerald-100"
-                                    : "border-emerald-200/20 bg-slate-900/25 text-emerald-100/80"
-                                }`}
-                                onClick={() => setPopupMode(mode)}
-                              >
-                                {mode}
-                              </button>
-                            ))}
-                          </div>
-                          <label className="flex cursor-pointer items-center gap-2 text-[10px] text-emerald-100/90">
-                            <input
-                              type="checkbox"
-                              checked={onlyEntitiesWithValues}
-                              onChange={(e) => setOnlyEntitiesWithValues(e.target.checked)}
-                              className="h-3 w-3 accent-emerald-400"
-                            />
-                            Afficher uniquement les entités avec valeurs
-                          </label>
-                          {onlyEntitiesWithValues && (
-                            <div className="inline-flex items-center gap-1 rounded border border-emerald-200/20 bg-emerald-400/10 px-1.5 py-0.5 text-[10px] text-emerald-100">
-                              {coverageLoading ? "Calcul couverture..." : `Entités avec valeurs: ${coverageCount ?? 0}`}
-                            </div>
-                          )}
                           <div className="rounded border border-emerald-200/20 bg-slate-900/35 p-1.5">
-                            <div className="mb-1 flex items-center justify-between text-[10px] text-emerald-100/90">
-                              <span>Time-bar</span>
+                            <div className="mb-1 flex items-center justify-between text-[10px] font-semibold uppercase tracking-wide text-emerald-100/90">
+                              <span><span className="mr-1 rounded bg-emerald-400/20 px-1.5 py-0.5">3</span>Période</span>
                               <span>
                                 {timelineLoading
                                   ? "chargement..."
@@ -2303,6 +2286,49 @@ export default function Dashboard2() {
                               </button>
                             </div>
                           </div>
+                          <div className="rounded border border-amber-200/20 bg-slate-900/35 p-1.5">
+                            <div className="mb-1 flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide text-amber-100/90">
+                              <span className="rounded bg-amber-400/20 px-1.5 py-0.5">4</span>
+                              Qualité & lecture
+                            </div>
+                            <div className="mb-1 flex items-center gap-1">
+                              <span className="text-[10px] text-amber-100/90">Popup:</span>
+                              {(["compact", "expert"] as const).map((mode) => (
+                                <button
+                                  key={mode}
+                                  type="button"
+                                  className={`rounded border px-1.5 py-0.5 text-[10px] ${
+                                    popupMode === mode
+                                      ? "border-amber-300/40 bg-amber-400/20 text-amber-100"
+                                      : "border-amber-200/20 bg-slate-900/25 text-amber-100/80"
+                                  }`}
+                                  onClick={() => setPopupMode(mode)}
+                                >
+                                  {mode}
+                                </button>
+                              ))}
+                            </div>
+                            <label className="flex cursor-pointer items-center gap-2 text-[10px] text-amber-100/90">
+                              <input
+                                type="checkbox"
+                                checked={onlyEntitiesWithValues}
+                                onChange={(e) => setOnlyEntitiesWithValues(e.target.checked)}
+                                className="h-3 w-3 accent-amber-400"
+                              />
+                              Entités avec valeurs uniquement
+                            </label>
+                            {onlyEntitiesWithValues && (
+                              <div className="mt-1 inline-flex items-center gap-1 rounded border border-amber-200/20 bg-amber-400/10 px-1.5 py-0.5 text-[10px] text-amber-100">
+                                {coverageLoading ? "Calcul couverture..." : `Entités avec valeurs: ${coverageCount ?? 0}`}
+                              </div>
+                            )}
+                            <div className="mt-2 flex flex-wrap gap-1">
+                              <QaBadge status="VALID" />
+                              <QaBadge status="FLAGGED" />
+                              <QaBadge status="OUTLIER" />
+                              <QaBadge status="MISSING" />
+                            </div>
+                          </div>
                         </div>
                       )}
                     </div>
@@ -2317,6 +2343,18 @@ export default function Dashboard2() {
                           min={(businessLegend[0]?.min ?? null) as any}
                           max={(businessLegend[businessLegend.length - 1]?.max ?? null) as any}
                           unit={businessUnit}
+                          dataSource={
+                            selectedHierarchyParam
+                              ? `${selectedHierarchyParam.source_schema}.${selectedHierarchyParam.source_table}`
+                              : "Couche métier"
+                          }
+                          dateLabel={
+                            timelineDates.length
+                              ? timelineDates[Math.max(0, Math.min(timelineIndex, timelineDates.length - 1))]
+                              : range.from || range.to
+                                ? `${range.from || "début"} → ${range.to || "fin"}`
+                                : "Toutes périodes"
+                          }
                         />
                         {kpiLoading && !businessStats && (
                           <div className="mt-2 text-[10px] text-emerald-100/80">Calcul KPI...</div>

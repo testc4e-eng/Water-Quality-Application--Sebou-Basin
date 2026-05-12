@@ -20,13 +20,13 @@ def get_db():
 def get_stations(db: Session = Depends(get_db)):
     sql = text("""
     SELECT
-        id_station::text AS id,
-        COALESCE(nom_station,'') AS name,
+        COALESCE(station_id::text, legacy_station_id::text, code_station)::text AS id,
+        COALESCE(NULLIF(TRIM(station_nom), ''), NULLIF(TRIM(code_station), ''), NULLIF(TRIM(legacy_code_station), '')) AS name,
         NULL::text AS river,
-        ST_Y(geom)::float8 AS lat,
-        ST_X(geom)::float8 AS lon
-    FROM public.stations_abhs
-    WHERE geom IS NOT NULL
+        COALESCE(latitude, ST_Y(geom::geometry))::float8 AS lat,
+        COALESCE(longitude, ST_X(geom::geometry))::float8 AS lon
+    FROM api.v_station_dimension
+    WHERE geom IS NOT NULL OR (longitude IS NOT NULL AND latitude IS NOT NULL)
 """)
 
     try:
@@ -48,40 +48,22 @@ def get_stations(db: Session = Depends(get_db)):
 # ------- Barrages -------
 @router.get("/barrages", summary="Barrages (format simple)")
 def get_barrages(db: Session = Depends(get_db)):
-    if table_exists("api.v_barrage_dimension"):
-        sql = text("""
-            SELECT
-                COALESCE(barrage_id, id)::int AS id,
-                ire::text AS ire,
-                COALESCE(nom_barrage,'') AS nom_barrage,
-                nom_oued::text,
-                statut::text,
-                type_barrage::text,
-                vrn_hm3::float8,
-                hauteur::float8,
-                apports_hm::float8,
-                mise_en_se::text,
-                longitude::float8 AS coord_x,
-                latitude::float8 AS coord_y
-            FROM api.v_barrage_dimension
-        """)
-    else:
-        sql = text("""
-            SELECT
-                id::int AS id,
-                ire::text AS ire,
-                COALESCE(nom_barrage,'') AS nom_barrage,
-                nom_oued::text,
-                statut::text,
-                type_barrage::text,
-                vrn_hm3::float8,
-                hauteur::float8,
-                apports_hm::float8,
-                mise_en_se::text,
-                coord_x::float8,
-                coord_y::float8
-            FROM public.barrages_abhs
-        """)
+    sql = text("""
+        SELECT
+            id::int AS id,
+            ire::text AS ire,
+            COALESCE(nom_barrage,'') AS nom_barrage,
+            nom_oued::text,
+            statut::text,
+            type_barrage::text,
+            vrn_hm3::float8,
+            hauteur::float8,
+            apports_hm::float8,
+            mise_en_se::text,
+            coord_x::float8,
+            coord_y::float8
+        FROM infra.barrages
+    """)
     try:
         rows = db.execute(sql).fetchall()
     except Exception as e:
@@ -107,27 +89,49 @@ def get_barrages(db: Session = Depends(get_db)):
 
 
 @router.get("/barrages/{barrage_id}/quality-parameters", summary="Parametres qualite barrage")
-def get_barrage_quality_parameters(barrage_id: int, db: Session = Depends(get_db)):
+def get_barrage_quality_parameters(
+    barrage_id: int,
+    include_invalid: bool = Query(False),
+    include_flagged: bool = Query(False),
+    db: Session = Depends(get_db),
+):
     query = text("""
         WITH barrage AS (
             SELECT NULLIF(TRIM(ire), '') AS ire
-            FROM public.barrages_abhs
+            FROM infra.barrages
             WHERE id = :barrage_id
         )
         SELECT
             mqb.parametre_qualite::text AS parameter,
-            MIN(mqb.date_prelevement)::date AS date_min,
-            MAX(mqb.date_prelevement)::date AS date_max
-        FROM public.mesures_qualite_barrages mqb
+            MIN(mqb.temps)::date AS date_min,
+            MAX(mqb.temps)::date AS date_max
+        FROM qualite.mesure_qualite_barrage mqb
         INNER JOIN barrage b
             ON b.ire IS NOT NULL
            AND mqb.ire_station = b.ire
         WHERE NULLIF(TRIM(mqb.parametre_qualite), '') IS NOT NULL
+          AND (:include_invalid = true OR COALESCE(mqb.est_valide, true) = true)
+          AND (
+                :include_flagged = true
+                OR (
+                    COALESCE(mqb.qa_flag_null_value, false) = false
+                    AND COALESCE(mqb.qa_flag_negative, false) = false
+                    AND COALESCE(mqb.qa_flag_param_missing, false) = false
+                    AND COALESCE(mqb.qa_flag_station_unmapped, false) = false
+                )
+          )
         GROUP BY mqb.parametre_qualite
         ORDER BY mqb.parametre_qualite
     """)
     try:
-        rows = db.execute(query, {"barrage_id": barrage_id}).mappings().all()
+        rows = db.execute(
+            query,
+            {
+                "barrage_id": barrage_id,
+                "include_invalid": include_invalid,
+                "include_flagged": include_flagged,
+            },
+        ).mappings().all()
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"DB error: {e}")
     return rows
@@ -141,39 +145,51 @@ def get_barrage_quality_series(
     date_end: str = Query(""),
     parameter: str = Query(...),
     parameter_secondary: Optional[str] = Query(None),
+    include_invalid: bool = Query(False),
+    include_flagged: bool = Query(False),
     db: Session = Depends(get_db),
 ):
     if aggregation not in {"raw", "monthly", "annual"}:
         raise HTTPException(status_code=400, detail="Aggregation invalide")
 
     if aggregation == "monthly":
-        datetime_expr = "date_trunc('month', mqb.date_prelevement)::date"
-        group_expr = "date_trunc('month', mqb.date_prelevement)::date, mqb.parametre_qualite"
+        datetime_expr = "date_trunc('month', mqb.temps)::date"
+        group_expr = "date_trunc('month', mqb.temps)::date, mqb.parametre_qualite"
     elif aggregation == "annual":
-        datetime_expr = "date_trunc('year', mqb.date_prelevement)::date"
-        group_expr = "date_trunc('year', mqb.date_prelevement)::date, mqb.parametre_qualite"
+        datetime_expr = "date_trunc('year', mqb.temps)::date"
+        group_expr = "date_trunc('year', mqb.temps)::date, mqb.parametre_qualite"
     else:
-        datetime_expr = "mqb.date_prelevement::date"
-        group_expr = "mqb.date_prelevement::date, mqb.parametre_qualite"
+        datetime_expr = "mqb.temps::date"
+        group_expr = "mqb.temps::date, mqb.parametre_qualite"
 
     query = text(f"""
         WITH barrage AS (
             SELECT NULLIF(TRIM(ire), '') AS ire
-            FROM public.barrages_abhs
+            FROM infra.barrages
             WHERE id = :barrage_id
         )
         SELECT
             {datetime_expr} AS datetime,
             mqb.parametre_qualite::text AS parameter,
-            AVG(mqb.val_qual_barr)::float8 AS value
-        FROM public.mesures_qualite_barrages mqb
+            AVG(mqb.valeur)::float8 AS value
+        FROM qualite.mesure_qualite_barrage mqb
         INNER JOIN barrage b
             ON b.ire IS NOT NULL
            AND mqb.ire_station = b.ire
-        WHERE mqb.val_qual_barr IS NOT NULL
+        WHERE mqb.valeur IS NOT NULL
           AND mqb.parametre_qualite = ANY(:parameters)
-          AND (:date_start = '' OR mqb.date_prelevement >= CAST(:date_start AS date))
-          AND (:date_end = '' OR mqb.date_prelevement <= CAST(:date_end AS date))
+          AND (:date_start = '' OR mqb.temps >= CAST(:date_start AS date))
+          AND (:date_end = '' OR mqb.temps <= CAST(:date_end AS date))
+          AND (:include_invalid = true OR COALESCE(mqb.est_valide, true) = true)
+          AND (
+                :include_flagged = true
+                OR (
+                    COALESCE(mqb.qa_flag_null_value, false) = false
+                    AND COALESCE(mqb.qa_flag_negative, false) = false
+                    AND COALESCE(mqb.qa_flag_param_missing, false) = false
+                    AND COALESCE(mqb.qa_flag_station_unmapped, false) = false
+                )
+          )
         GROUP BY {group_expr}
         ORDER BY datetime, mqb.parametre_qualite
     """)
@@ -190,6 +206,8 @@ def get_barrage_quality_series(
                 "parameters": parameters,
                 "date_start": date_start or "",
                 "date_end": date_end or "",
+                "include_invalid": include_invalid,
+                "include_flagged": include_flagged,
             },
         ).mappings().all()
     except Exception as e:
@@ -238,7 +256,7 @@ def get_entity_data(
         """
 
     # Station-based
-    if lk in ("", "stations_abhs"):
+    if lk in ("", "stations_abhs", "stations"):
         if table_exists("hydro.mesure_debit"):
             sql_parts.append(
                 _with_date(
@@ -294,7 +312,7 @@ def get_entity_data(
                     _with_date(
                         f"""
                         SELECT '{t}'::text AS source_table, temps AS ts, parametre_qualite::text AS parameter,
-                               valeur::double precision AS value, unite::text AS unit
+                               valeur::double precision AS value, NULL::text AS unit
                         FROM {t}
                         WHERE station_id::text = :entity_id AND valeur IS NOT NULL
                         """
@@ -302,24 +320,17 @@ def get_entity_data(
                 )
 
     # Barrage
-    if lk == "barrages_abhs" and table_exists("hydro.mesure_barrage"):
+    if lk in ("barrages_abhs", "barrages") and table_exists("hydro.mesure_barrage_param"):
         sql_parts.append(
             _with_date(
                 """
-                SELECT 'hydro.mesure_barrage'::text AS source_table, temps AS ts, 'NIVEAU_BARRAGE'::text AS parameter,
-                       cote_m::double precision AS value, 'm'::text AS unit
-                FROM hydro.mesure_barrage
-                WHERE barrage_id::text = :entity_id AND cote_m IS NOT NULL
-                """
-            )
-        )
-        sql_parts.append(
-            _with_date(
-                """
-                SELECT 'hydro.mesure_barrage'::text AS source_table, temps AS ts, 'VOLUME_BARRAGE'::text AS parameter,
-                       volume_mm3::double precision AS value, 'Mm3'::text AS unit
-                FROM hydro.mesure_barrage
-                WHERE barrage_id::text = :entity_id AND volume_mm3 IS NOT NULL
+                SELECT 'hydro.mesure_barrage_param'::text AS source_table,
+                       temps AS ts,
+                       parametre_code::text AS parameter,
+                       valeur::double precision AS value,
+                       unite::text AS unit
+                FROM hydro.mesure_barrage_param
+                WHERE barrage_id::text = :entity_id AND valeur IS NOT NULL
                 """
             )
         )

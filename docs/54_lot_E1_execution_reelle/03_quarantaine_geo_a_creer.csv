@@ -1,0 +1,11 @@
+source_table,volume,motif,action_attendue
+staging.raw_idp_2024_mesures_qualite_globale,275,GEO_NO_XY,completer les coordonnees ou confirmer une exclusion metier
+staging.raw_idp_2024_src_pollution_globale,36,GEO_NO_XY,completer les coordonnees ou confirmer une exclusion metier
+staging.raw_idp_2024_mesures_qualite_globale,1877,GEO_AMBIGUOUS_XY_2M,arbitrage metier sur le candidat geo retenu
+staging.raw_idp_2024_mesures_qualite_marche_cadre,1748,GEO_AMBIGUOUS_XY_2M,arbitrage metier sur le candidat geo retenu
+staging.raw_idp_2024_src_pollution_globale,97,GEO_AMBIGUOUS_XY_2M,arbitrage metier sur le candidat geo retenu
+staging.raw_idp_2024_src_pollution_marche_cadre,68,GEO_AMBIGUOUS_XY_2M,arbitrage metier sur le candidat geo retenu
+staging.raw_idp_2024_mesures_qualite_globale,1966,GEO_ORPHAN_XY_2M,rattachement geo manuel ou maintien en backlog
+staging.raw_idp_2024_mesures_qualite_marche_cadre,1866,GEO_ORPHAN_XY_2M,rattachement geo manuel ou maintien en backlog
+staging.raw_idp_2024_src_pollution_globale,70,GEO_ORPHAN_XY_2M,rattachement geo manuel ou maintien en backlog
+staging.raw_idp_2024_src_pollution_marche_cadre,80,GEO_ORPHAN_XY_2M,rattachement geo manuel ou maintien en backlog

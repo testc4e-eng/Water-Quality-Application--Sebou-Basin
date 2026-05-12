@@ -1,0 +1,1478 @@
+{
+  "date_audit": "2026-04-15T12:08:02.718819",
+  "tables_audit": {
+    "mesures_bathymetries_barrages_abhs": {
+      "name": "mesures_bathymetries_barrages_abhs",
+      "famille": "mesures",
+      "total_rows": 62359,
+      "columns_count": 5,
+      "roles": {
+        "id": "id",
+        "station": "ire_barrage",
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": null
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "ire_barrage": "0.0%"
+      },
+      "distinct_stations": 10,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 62349,
+      "sample_distincts": {
+        "stations_sample": [
+          "2820/15",
+          "898/16",
+          "1182/9",
+          "1847/15",
+          "1699/9"
+        ]
+      },
+      "action_reco": "🔴 Doublons massifs (>10%) - Nettoyage Urgent",
+      "statut": "Semi-traitée (Sale)"
+    },
+    "mesures_debit_jr": {
+      "name": "mesures_debit_jr",
+      "famille": "mesures",
+      "total_rows": 521433,
+      "columns_count": 4,
+      "roles": {
+        "id": null,
+        "station": "ire_station",
+        "date": "date_jr",
+        "parametre": null,
+        "valeur": "code_debit",
+        "unite": null,
+        "geom": null
+      },
+      "null_rates": {
+        "ire_station": "0.0%",
+        "date_jr": "0.0%",
+        "code_debit": "0.0%"
+      },
+      "distinct_stations": 38,
+      "distinct_params": 0,
+      "date_min": "1956-09-01",
+      "date_max": "2025-08-31",
+      "doublons_metier": 0,
+      "sample_distincts": {
+        "stations_sample": [
+          "1000/23",
+          "1215/9",
+          "1216/9",
+          "1217/9",
+          "1359/8"
+        ]
+      },
+      "action_reco": "🟡 Probablement Brute (Legacy à fusionner)",
+      "statut": "Brute"
+    },
+    "mesures_debit_m": {
+      "name": "mesures_debit_m",
+      "famille": "mesures",
+      "total_rows": 19316,
+      "columns_count": 5,
+      "roles": {
+        "id": null,
+        "station": "ire_station",
+        "date": "mois",
+        "parametre": null,
+        "valeur": "code_debit_m",
+        "unite": null,
+        "geom": null
+      },
+      "null_rates": {
+        "ire_station": "0.0%",
+        "mois": "0.0%",
+        "code_debit_m": "0.0%"
+      },
+      "distinct_stations": 40,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 18836,
+      "sample_distincts": {
+        "stations_sample": [
+          "581/22",
+          "1508/9",
+          "1359/8",
+          "1217/9",
+          "1215/9"
+        ]
+      },
+      "action_reco": "🔴 Doublons massifs (>10%) - Nettoyage Urgent",
+      "statut": "Semi-traitée (Sale)"
+    },
+    "mesures_debit_sources": {
+      "name": "mesures_debit_sources",
+      "famille": "mesures",
+      "total_rows": 2816,
+      "columns_count": 4,
+      "roles": {
+        "id": "id",
+        "station": "ire_source",
+        "date": "moment",
+        "parametre": null,
+        "valeur": "debit",
+        "unite": null,
+        "geom": null
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "ire_source": "0.0%",
+        "moment": "0.0%",
+        "debit": "0.0%"
+      },
+      "distinct_stations": 19,
+      "distinct_params": 0,
+      "date_min": "2000-01-05 11:18:00",
+      "date_max": "2025-07-30 13:15:00",
+      "doublons_metier": 0,
+      "sample_distincts": {
+        "stations_sample": [
+          "853/22Pi",
+          "615/22",
+          "131/22",
+          "1336/16",
+          "630/22"
+        ]
+      },
+      "action_reco": "🟡 Probablement Brute (Legacy à fusionner)",
+      "statut": "Brute"
+    },
+    "mesures_evaporation_jr": {
+      "name": "mesures_evaporation_jr",
+      "famille": "mesures",
+      "total_rows": 48900,
+      "columns_count": 6,
+      "roles": {
+        "id": "id",
+        "station": "ire_station",
+        "date": "date_mesure",
+        "parametre": null,
+        "valeur": "val_evaporation",
+        "unite": null,
+        "geom": "geom"
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "ire_station": "0.0%",
+        "date_mesure": "0.0%",
+        "val_evaporation": "21.08%",
+        "geom": "100.0% (Geom Null)"
+      },
+      "distinct_stations": 12,
+      "distinct_params": 0,
+      "date_min": "2013-07-06",
+      "date_max": "2024-08-31",
+      "doublons_metier": 0,
+      "sample_distincts": {
+        "stations_sample": [
+          "1710/9",
+          "3264/15",
+          "3265/15",
+          "3546/8",
+          "1709/9"
+        ]
+      },
+      "action_reco": "🟡 Probablement Brute (Legacy à fusionner)",
+      "statut": "Brute"
+    },
+    "mesures_idp_2024_qualite_globale": {
+      "name": "mesures_idp_2024_qualite_globale",
+      "famille": "mesures",
+      "total_rows": 4894,
+      "columns_count": 16,
+      "roles": {
+        "id": null,
+        "station": null,
+        "date": "date_jr_prelevement",
+        "parametre": "parametre_qualite",
+        "valeur": null,
+        "unite": null,
+        "geom": "coord_x"
+      },
+      "null_rates": {
+        "date_jr_prelevement": "0.0%",
+        "parametre_qualite": "0.0%",
+        "coord_x": "5.6% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 57,
+      "date_min": "2024-09-12",
+      "date_max": "2025-12-14",
+      "doublons_metier": 3067,
+      "sample_distincts": {
+        "params_sample": [
+          "Fe2+",
+          "TAC_meq/l",
+          "NTK",
+          "Fe",
+          "Se"
+        ]
+      },
+      "action_reco": "🔴 Doublons massifs (>10%) - Nettoyage Urgent",
+      "statut": "Semi-traitée (Sale)"
+    },
+    "mesures_idp_2024_qualite_marche_cadre": {
+      "name": "mesures_idp_2024_qualite_marche_cadre",
+      "famille": "mesures",
+      "total_rows": 3614,
+      "columns_count": 16,
+      "roles": {
+        "id": null,
+        "station": null,
+        "date": "date_jr_prelevement",
+        "parametre": "parametre_qualite",
+        "valeur": null,
+        "unite": null,
+        "geom": "coord_x"
+      },
+      "null_rates": {
+        "date_jr_prelevement": "0.0%",
+        "parametre_qualite": "0.0%",
+        "coord_x": "0.0% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 65,
+      "date_min": "2025-10-06",
+      "date_max": "2025-12-01",
+      "doublons_metier": 2297,
+      "sample_distincts": {
+        "params_sample": [
+          "pH au laboratoire",
+          "Fe2+",
+          "MEST Filtr",
+          "Na+3",
+          "DCO \n2h décant."
+        ]
+      },
+      "action_reco": "🔴 Doublons massifs (>10%) - Nettoyage Urgent",
+      "statut": "Semi-traitée (Sale)"
+    },
+    "mesures_idp_2024_src_pollution_globale": {
+      "name": "mesures_idp_2024_src_pollution_globale",
+      "famille": "mesures",
+      "total_rows": 243,
+      "columns_count": 43,
+      "roles": {
+        "id": null,
+        "station": null,
+        "date": "date_jr_prelevement",
+        "parametre": "parametre",
+        "valeur": null,
+        "unite": null,
+        "geom": "coord_x"
+      },
+      "null_rates": {
+        "date_jr_prelevement": "0.0%",
+        "parametre": "45.68%",
+        "coord_x": "14.8% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 8,
+      "date_min": "2024-09-12",
+      "date_max": "2025-12-15",
+      "doublons_metier": 139,
+      "sample_distincts": {
+        "params_sample": [
+          "Oued",
+          "Forage",
+          "A-B-C-D-H-E",
+          "A-B-C-D",
+          "Puits"
+        ]
+      },
+      "action_reco": "🔴 Doublons massifs (>10%) - Nettoyage Urgent",
+      "statut": "Semi-traitée (Sale)"
+    },
+    "mesures_idp_2024_src_pollution_marche_cadre": {
+      "name": "mesures_idp_2024_src_pollution_marche_cadre",
+      "famille": "mesures",
+      "total_rows": 148,
+      "columns_count": 43,
+      "roles": {
+        "id": null,
+        "station": null,
+        "date": "date_jr_prelevement",
+        "parametre": "parametre",
+        "valeur": null,
+        "unite": null,
+        "geom": "coord_x"
+      },
+      "null_rates": {
+        "date_jr_prelevement": "0.0%",
+        "parametre": "100.0%",
+        "coord_x": "0.0% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 0,
+      "date_min": "2025-10-06",
+      "date_max": "2025-12-01",
+      "doublons_metier": 115,
+      "sample_distincts": {},
+      "action_reco": "🔴 Doublons massifs (>10%) - Nettoyage Urgent",
+      "statut": "Semi-traitée (Sale)"
+    },
+    "mesures_niv_eau_barrages": {
+      "name": "mesures_niv_eau_barrages",
+      "famille": "mesures",
+      "total_rows": 85166,
+      "columns_count": 9,
+      "roles": {
+        "id": "id",
+        "station": "ire_barrage",
+        "date": "date_jr",
+        "parametre": null,
+        "valeur": "niveau_eau_m_ngm",
+        "unite": null,
+        "geom": null
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "ire_barrage": "0.0%",
+        "date_jr": "0.11%",
+        "niveau_eau_m_ngm": "0.0%"
+      },
+      "distinct_stations": 10,
+      "distinct_params": 0,
+      "date_min": "1996-12-01",
+      "date_max": "2025-09-01",
+      "doublons_metier": 334,
+      "sample_distincts": {
+        "stations_sample": [
+          "2820/15",
+          "898/16",
+          "1847/15",
+          "1182/9",
+          "296/10"
+        ]
+      },
+      "action_reco": "🟢 Table Métier potentiellement valide. A confirmer via mapping.",
+      "statut": "Normalisée (?)"
+    },
+    "mesures_precipitations_jr": {
+      "name": "mesures_precipitations_jr",
+      "famille": "mesures",
+      "total_rows": 669880,
+      "columns_count": 5,
+      "roles": {
+        "id": null,
+        "station": "ire_station",
+        "date": "date_jr",
+        "parametre": null,
+        "valeur": "id_precipitation_jr",
+        "unite": null,
+        "geom": null
+      },
+      "null_rates": {
+        "ire_station": "0.0%",
+        "date_jr": "0.0%",
+        "id_precipitation_jr": "0.0%"
+      },
+      "distinct_stations": 47,
+      "distinct_params": 0,
+      "date_min": "1985-09-01",
+      "date_max": "2025-08-31",
+      "doublons_metier": 0,
+      "sample_distincts": {
+        "stations_sample": [
+          "1000/23",
+          "1213/22",
+          "1215/9",
+          "1216/9",
+          "1217/9"
+        ]
+      },
+      "action_reco": "🟡 Probablement Brute (Legacy à fusionner)",
+      "statut": "Brute"
+    },
+    "mesures_precipitations_jr_max": {
+      "name": "mesures_precipitations_jr_max",
+      "famille": "mesures",
+      "total_rows": 2085,
+      "columns_count": 12,
+      "roles": {
+        "id": "id",
+        "station": "ire_station",
+        "date": "annee",
+        "parametre": null,
+        "valeur": "nbr_val_jr_mqt",
+        "unite": null,
+        "geom": "p_max"
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "ire_station": "0.0%",
+        "annee": "0.0%",
+        "nbr_val_jr_mqt": "62.21%",
+        "p_max": "8.2% (Geom Null)"
+      },
+      "distinct_stations": 45,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 0,
+      "sample_distincts": {
+        "stations_sample": [
+          "1359/8",
+          "1215/9",
+          "1217/9",
+          "2551/15",
+          "198/30"
+        ]
+      },
+      "action_reco": "🟡 Probablement Brute (Legacy à fusionner)",
+      "statut": "Brute"
+    },
+    "mesures_precipitations_jr_traitees": {
+      "name": "mesures_precipitations_jr_traitees",
+      "famille": "mesures",
+      "total_rows": 546007,
+      "columns_count": 7,
+      "roles": {
+        "id": "id",
+        "station": "ire_station",
+        "date": "date_jr",
+        "parametre": null,
+        "valeur": "val_observees",
+        "unite": null,
+        "geom": null
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "ire_station": "0.0%",
+        "date_jr": "0.0%",
+        "val_observees": "8.37%"
+      },
+      "distinct_stations": 47,
+      "distinct_params": 0,
+      "date_min": "1985-09-01",
+      "date_max": "2024-08-31",
+      "doublons_metier": 0,
+      "sample_distincts": {
+        "stations_sample": [
+          "1000/23",
+          "1213/22",
+          "1215/9",
+          "1216/9",
+          "1217/9"
+        ]
+      },
+      "action_reco": "🟡 Probablement Brute (Legacy à fusionner)",
+      "statut": "Brute"
+    },
+    "mesures_qualite_barrages": {
+      "name": "mesures_qualite_barrages",
+      "famille": "mesures",
+      "total_rows": 8714,
+      "columns_count": 6,
+      "roles": {
+        "id": "id",
+        "station": "ire_station",
+        "date": "date_prelevement",
+        "parametre": "parametre_qualite",
+        "valeur": "val_qual_barr",
+        "unite": null,
+        "geom": null
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "ire_station": "0.0%",
+        "date_prelevement": "0.0%",
+        "parametre_qualite": "0.0%",
+        "val_qual_barr": "0.0%"
+      },
+      "distinct_stations": 14,
+      "distinct_params": 60,
+      "date_min": "1988-10-14",
+      "date_max": "2024-11-29",
+      "doublons_metier": 884,
+      "sample_distincts": {
+        "stations_sample": [
+          "1255/22",
+          "3323/8",
+          "3265/15",
+          "3546/8",
+          "3264/15"
+        ],
+        "params_sample": [
+          "Ca",
+          "Fe",
+          "Mg",
+          "T_eau",
+          "OH"
+        ]
+      },
+      "action_reco": "🔴 Doublons massifs (>10%) - Nettoyage Urgent",
+      "statut": "Semi-traitée (Sale)"
+    },
+    "mesures_qualite_nappes": {
+      "name": "mesures_qualite_nappes",
+      "famille": "mesures",
+      "total_rows": 63088,
+      "columns_count": 5,
+      "roles": {
+        "id": "id",
+        "station": "ire_station",
+        "date": "date_prelevement",
+        "parametre": "parametre_qualite",
+        "valeur": "val_qual_nap",
+        "unite": null,
+        "geom": null
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "ire_station": "0.0%",
+        "date_prelevement": "0.0%",
+        "parametre_qualite": "0.0%",
+        "val_qual_nap": "0.0%"
+      },
+      "distinct_stations": 292,
+      "distinct_params": 71,
+      "date_min": "1988-10-03",
+      "date_max": "2024-11-29",
+      "doublons_metier": 5,
+      "sample_distincts": {
+        "stations_sample": [
+          "690/22",
+          "3921/14",
+          "1757/14",
+          "R823/15",
+          "1336/16"
+        ],
+        "params_sample": [
+          "Ca",
+          "Fe",
+          "CO32",
+          "Temperature_Ambiante",
+          "As"
+        ]
+      },
+      "action_reco": "🟢 Table Métier potentiellement valide. A confirmer via mapping.",
+      "statut": "Normalisée (?)"
+    },
+    "mesures_qualite_rivieres": {
+      "name": "mesures_qualite_rivieres",
+      "famille": "mesures",
+      "total_rows": 60097,
+      "columns_count": 5,
+      "roles": {
+        "id": "id",
+        "station": "ire_station",
+        "date": "date_prelevement",
+        "parametre": "parametre_qualite",
+        "valeur": "val_qual_riv",
+        "unite": null,
+        "geom": null
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "ire_station": "0.0%",
+        "date_prelevement": "0.0%",
+        "parametre_qualite": "0.0%",
+        "val_qual_riv": "0.0%"
+      },
+      "distinct_stations": 56,
+      "distinct_params": 96,
+      "date_min": "1988-09-20",
+      "date_max": "2024-11-28",
+      "doublons_metier": 22,
+      "sample_distincts": {
+        "stations_sample": [
+          "581/22",
+          "1508/9",
+          "1359/8",
+          "756/16",
+          "2396/14"
+        ],
+        "params_sample": [
+          "Ca",
+          "Fe",
+          "As",
+          "Se",
+          "Mg"
+        ]
+      },
+      "action_reco": "🟢 Table Métier potentiellement valide. A confirmer via mapping.",
+      "statut": "Normalisée (?)"
+    },
+    "mesures_suivi_qualite_brg_garde_hebdo": {
+      "name": "mesures_suivi_qualite_brg_garde_hebdo",
+      "famille": "mesures",
+      "total_rows": 7094,
+      "columns_count": 7,
+      "roles": {
+        "id": "id",
+        "station": "ire_station",
+        "date": "date_prelevement",
+        "parametre": "parametre_qualite",
+        "valeur": "val_qual_brg_garde_hebdo",
+        "unite": null,
+        "geom": null
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "ire_station": "100.0%",
+        "date_prelevement": "0.0%",
+        "parametre_qualite": "0.0%",
+        "val_qual_brg_garde_hebdo": "50.45%"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 39,
+      "date_min": "2023-01-03",
+      "date_max": "2025-09-22",
+      "doublons_metier": 3467,
+      "sample_distincts": {
+        "params_sample": [
+          "PO43-(mgP/l)",
+          "MEST(mg/l)",
+          "Chl.A(µg/l)",
+          "Indicedephénol(mg/l)",
+          "PT(mgP/l)"
+        ]
+      },
+      "action_reco": "🔴 Doublons massifs (>10%) - Nettoyage Urgent",
+      "statut": "Semi-traitée (Sale)"
+    },
+    "mesures_suivi_qualite_sebou_jr_6stations": {
+      "name": "mesures_suivi_qualite_sebou_jr_6stations",
+      "famille": "mesures",
+      "total_rows": 59436,
+      "columns_count": 6,
+      "roles": {
+        "id": "id",
+        "station": "ire_station",
+        "date": "date_prelevement",
+        "parametre": "parametre_qualite",
+        "valeur": "val_qual_sebou_jr",
+        "unite": null,
+        "geom": null
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "ire_station": "0.0%",
+        "date_prelevement": "0.0%",
+        "parametre_qualite": "0.0%",
+        "val_qual_sebou_jr": "0.0%"
+      },
+      "distinct_stations": 6,
+      "distinct_params": 13,
+      "date_min": "2023-12-07",
+      "date_max": "2026-01-06",
+      "doublons_metier": 0,
+      "sample_distincts": {
+        "stations_sample": [
+          "3695/8",
+          "1355/8",
+          "1540/15",
+          "1541/15",
+          "3738/8"
+        ],
+        "params_sample": [
+          "Conductivité",
+          "Nitrates",
+          "Turbidité",
+          "pH",
+          "NTK"
+        ]
+      },
+      "action_reco": "🟡 Probablement Brute (Legacy à fusionner)",
+      "statut": "Brute"
+    },
+    "inv_decharges_abhs": {
+      "name": "inv_decharges_abhs",
+      "famille": "inventaire",
+      "total_rows": 233,
+      "columns_count": 16,
+      "roles": {
+        "id": "id",
+        "station": "station_traitement_lixiviat",
+        "date": "date_mise_service",
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "type_decharge"
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "station_traitement_lixiviat": "25.32%",
+        "date_mise_service": "57.94%",
+        "type_decharge": "31.3% (Geom Null)"
+      },
+      "distinct_stations": 5,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 196,
+      "sample_distincts": {
+        "stations_sample": [
+          "Bioréacteurs à membrane",
+          "Non",
+          "En cours d'exécution",
+          " ",
+          "Oui"
+        ]
+      },
+      "action_reco": "🔴 Doublons massifs (>10%) - Nettoyage Urgent",
+      "statut": "Semi-traitée (Sale)"
+    },
+    "inv_fosses_septiques_abhs": {
+      "name": "inv_fosses_septiques_abhs",
+      "famille": "inventaire",
+      "total_rows": 20,
+      "columns_count": 6,
+      "roles": {
+        "id": "id",
+        "station": null,
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "coord_x"
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "coord_x": "0.0% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 0,
+      "sample_distincts": {},
+      "action_reco": "🟢 Référentiel/Inventaire actif",
+      "statut": "Sain"
+    },
+    "inv_huileries_abhs": {
+      "name": "inv_huileries_abhs",
+      "famille": "inventaire",
+      "total_rows": 612,
+      "columns_count": 13,
+      "roles": {
+        "id": "id",
+        "station": null,
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "type_huilerie"
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "type_huilerie": "0.0% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 0,
+      "sample_distincts": {},
+      "action_reco": "🟢 Référentiel/Inventaire actif",
+      "statut": "Sain"
+    },
+    "inv_mines_abhs": {
+      "name": "inv_mines_abhs",
+      "famille": "inventaire",
+      "total_rows": 42,
+      "columns_count": 9,
+      "roles": {
+        "id": "id",
+        "station": null,
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "num_licence_exploit"
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "num_licence_exploit": "11.9% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 0,
+      "sample_distincts": {},
+      "action_reco": "🟢 Référentiel/Inventaire actif",
+      "statut": "Sain"
+    },
+    "inv_rejets_abattoirs_abhs": {
+      "name": "inv_rejets_abattoirs_abhs",
+      "famille": "inventaire",
+      "total_rows": 61,
+      "columns_count": 6,
+      "roles": {
+        "id": "id",
+        "station": null,
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "coord_x"
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "coord_x": "0.0% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 0,
+      "sample_distincts": {},
+      "action_reco": "🟢 Référentiel/Inventaire actif",
+      "statut": "Sain"
+    },
+    "inv_rejets_domestiques_abhs": {
+      "name": "inv_rejets_domestiques_abhs",
+      "famille": "inventaire",
+      "total_rows": 362,
+      "columns_count": 12,
+      "roles": {
+        "id": "id",
+        "station": null,
+        "date": null,
+        "parametre": null,
+        "valeur": "debit_l_s",
+        "unite": null,
+        "geom": "coord_x"
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "debit_l_s": "42.82%",
+        "coord_x": "21.5% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 0,
+      "sample_distincts": {},
+      "action_reco": "🟢 Référentiel/Inventaire actif",
+      "statut": "Sain"
+    },
+    "inv_rejets_ind_abhs": {
+      "name": "inv_rejets_ind_abhs",
+      "famille": "inventaire",
+      "total_rows": 11,
+      "columns_count": 8,
+      "roles": {
+        "id": "id",
+        "station": null,
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "coord_x"
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "coord_x": "0.0% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 0,
+      "sample_distincts": {},
+      "action_reco": "🟢 Référentiel/Inventaire actif",
+      "statut": "Sain"
+    },
+    "inv_step_abhs": {
+      "name": "inv_step_abhs",
+      "famille": "inventaire",
+      "total_rows": 41,
+      "columns_count": 15,
+      "roles": {
+        "id": "id",
+        "station": "type_station",
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "type_station"
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "type_station": "24.4% (Geom Null)"
+      },
+      "distinct_stations": 19,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 21,
+      "sample_distincts": {
+        "stations_sample": [
+          "lagunage aéré",
+          "Lagunage Aeré",
+          "lagunage naturel",
+          "Lagunage anaérobie",
+          "Lit bactérien"
+        ]
+      },
+      "action_reco": "🔴 Doublons massifs (>10%) - Nettoyage Urgent",
+      "statut": "Semi-traitée (Sale)"
+    },
+    "inv_step_ind_abhs": {
+      "name": "inv_step_ind_abhs",
+      "famille": "inventaire",
+      "total_rows": 15,
+      "columns_count": 8,
+      "roles": {
+        "id": "id",
+        "station": null,
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "coord_x"
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "coord_x": "0.0% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 0,
+      "sample_distincts": {},
+      "action_reco": "🟢 Référentiel/Inventaire actif",
+      "statut": "Sain"
+    },
+    "inv_stm_abhs": {
+      "name": "inv_stm_abhs",
+      "famille": "inventaire",
+      "total_rows": 18,
+      "columns_count": 8,
+      "roles": {
+        "id": "id",
+        "station": null,
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "coord_x"
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "coord_x": "0.0% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 0,
+      "sample_distincts": {},
+      "action_reco": "🟢 Référentiel/Inventaire actif",
+      "statut": "Sain"
+    },
+    "infra_barrages_abhs": {
+      "name": "infra_barrages_abhs",
+      "famille": "infrastructure",
+      "total_rows": 34,
+      "columns_count": 17,
+      "roles": {
+        "id": "id",
+        "station": "nom_barrage",
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "type_barrage"
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "nom_barrage": "2.94%",
+        "type_barrage": "35.3% (Geom Null)"
+      },
+      "distinct_stations": 32,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 1,
+      "sample_distincts": {
+        "stations_sample": [
+          "kodiat borna",
+          "gharbia",
+          "el kansera",
+          "aggay",
+          "sidi abbou"
+        ]
+      },
+      "action_reco": "🟢 Référentiel/Inventaire actif",
+      "statut": "Sain"
+    },
+    "infra_profils_stations": {
+      "name": "infra_profils_stations",
+      "famille": "infrastructure",
+      "total_rows": 1980,
+      "columns_count": 8,
+      "roles": {
+        "id": "id",
+        "station": "ire_station",
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "type_profil"
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "ire_station": "0.0%",
+        "type_profil": "0.0% (Geom Null)"
+      },
+      "distinct_stations": 37,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 1943,
+      "sample_distincts": {
+        "stations_sample": [
+          "581/22",
+          "1359/8",
+          "1508/9",
+          "1215/9",
+          "1217/9"
+        ]
+      },
+      "action_reco": "🔴 Doublons massifs (>10%) - Nettoyage Urgent",
+      "statut": "Semi-traitée (Sale)"
+    },
+    "infra_stations_abhs": {
+      "name": "infra_stations_abhs",
+      "famille": "infrastructure",
+      "total_rows": 390,
+      "columns_count": 15,
+      "roles": {
+        "id": null,
+        "station": "id_station",
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "type_station"
+      },
+      "null_rates": {
+        "id_station": "0.0%",
+        "type_station": "31.0% (Geom Null)"
+      },
+      "distinct_stations": 390,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 0,
+      "sample_distincts": {
+        "stations_sample": [
+          "262",
+          "90",
+          "330",
+          "16",
+          "257"
+        ]
+      },
+      "action_reco": "🟢 Référentiel/Inventaire actif",
+      "statut": "Sain"
+    },
+    "geo_bassin_sebou": {
+      "name": "geo_bassin_sebou",
+      "famille": "geo",
+      "total_rows": 1,
+      "columns_count": 5,
+      "roles": {
+        "id": "id",
+        "station": null,
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "geom"
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "geom": "0.0% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 0,
+      "sample_distincts": {},
+      "action_reco": "🟢 Référentiel/Inventaire actif",
+      "statut": "Sain"
+    },
+    "geo_nappes_abhs": {
+      "name": "geo_nappes_abhs",
+      "famille": "geo",
+      "total_rows": 17,
+      "columns_count": 6,
+      "roles": {
+        "id": "id",
+        "station": null,
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "geom"
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "geom": "0.0% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 0,
+      "sample_distincts": {},
+      "action_reco": "🟢 Référentiel/Inventaire actif",
+      "statut": "Sain"
+    },
+    "geo_points_eau_abhs": {
+      "name": "geo_points_eau_abhs",
+      "famille": "geo",
+      "total_rows": 46,
+      "columns_count": 18,
+      "roles": {
+        "id": "id",
+        "station": null,
+        "date": "date_realisation",
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "dist_pt_eau_foyer_pollut_m"
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "date_realisation": "60.87%",
+        "dist_pt_eau_foyer_pollut_m": "39.1% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 0,
+      "date_min": "1940-01-01",
+      "date_max": "2024-01-01",
+      "doublons_metier": 28,
+      "sample_distincts": {},
+      "action_reco": "🔴 Doublons massifs (>10%) - Nettoyage Urgent",
+      "statut": "Semi-traitée (Sale)"
+    },
+    "geo_reseau_hydro_abhs": {
+      "name": "geo_reseau_hydro_abhs",
+      "famille": "geo",
+      "total_rows": 28,
+      "columns_count": 5,
+      "roles": {
+        "id": "id",
+        "station": null,
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "longueur_km"
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "longueur_km": "0.0% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 0,
+      "sample_distincts": {},
+      "action_reco": "🟢 Référentiel/Inventaire actif",
+      "statut": "Sain"
+    },
+    "geo_sources_abhs": {
+      "name": "geo_sources_abhs",
+      "famille": "geo",
+      "total_rows": 135,
+      "columns_count": 10,
+      "roles": {
+        "id": "id",
+        "station": "ire_source",
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "type_source"
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "ire_source": "0.0%",
+        "type_source": "2.2% (Geom Null)"
+      },
+      "distinct_stations": 135,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 0,
+      "sample_distincts": {
+        "stations_sample": [
+          "1427/22",
+          "51/23",
+          "1336/16",
+          "1422/8",
+          "174/22"
+        ]
+      },
+      "action_reco": "🟢 Référentiel/Inventaire actif",
+      "statut": "Sain"
+    },
+    "geo_sous_bassin_sebou": {
+      "name": "geo_sous_bassin_sebou",
+      "famille": "geo",
+      "total_rows": 15,
+      "columns_count": 6,
+      "roles": {
+        "id": "id",
+        "station": null,
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "geom"
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "geom": "0.0% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 0,
+      "sample_distincts": {},
+      "action_reco": "🟢 Référentiel/Inventaire actif",
+      "statut": "Sain"
+    },
+    "spatial_ref_sys": {
+      "name": "spatial_ref_sys",
+      "famille": "geo",
+      "total_rows": 8500,
+      "columns_count": 5,
+      "roles": {
+        "id": null,
+        "station": null,
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "srtext"
+      },
+      "null_rates": {
+        "srtext": "0.0% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 0,
+      "sample_distincts": {},
+      "action_reco": "🟢 Référentiel/Inventaire actif",
+      "statut": "Sain"
+    },
+    "adm_cercles_abhs": {
+      "name": "adm_cercles_abhs",
+      "famille": "administratif",
+      "total_rows": 61,
+      "columns_count": 5,
+      "roles": {
+        "id": null,
+        "station": null,
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "geom"
+      },
+      "null_rates": {
+        "geom": "0.0% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 0,
+      "sample_distincts": {},
+      "action_reco": "🟢 Référentiel/Inventaire actif",
+      "statut": "Sain"
+    },
+    "adm_communes_abhs": {
+      "name": "adm_communes_abhs",
+      "famille": "administratif",
+      "total_rows": 346,
+      "columns_count": 14,
+      "roles": {
+        "id": null,
+        "station": null,
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "geom"
+      },
+      "null_rates": {
+        "geom": "0.0% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 0,
+      "sample_distincts": {},
+      "action_reco": "🟢 Référentiel/Inventaire actif",
+      "statut": "Sain"
+    },
+    "adm_douars_abhs": {
+      "name": "adm_douars_abhs",
+      "famille": "administratif",
+      "total_rows": 6013,
+      "columns_count": 8,
+      "roles": {
+        "id": "id",
+        "station": null,
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "coord_x"
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "coord_x": "0.0% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 0,
+      "sample_distincts": {},
+      "action_reco": "🟢 Référentiel/Inventaire actif",
+      "statut": "Sain"
+    },
+    "adm_provinces_abhs": {
+      "name": "adm_provinces_abhs",
+      "famille": "administratif",
+      "total_rows": 21,
+      "columns_count": 4,
+      "roles": {
+        "id": null,
+        "station": null,
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "geom"
+      },
+      "null_rates": {
+        "geom": "0.0% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 0,
+      "sample_distincts": {},
+      "action_reco": "🟢 Référentiel/Inventaire actif",
+      "statut": "Sain"
+    },
+    "adm_regions_abhs": {
+      "name": "adm_regions_abhs",
+      "famille": "administratif",
+      "total_rows": 6,
+      "columns_count": 4,
+      "roles": {
+        "id": null,
+        "station": null,
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "geom"
+      },
+      "null_rates": {
+        "geom": "0.0% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 0,
+      "sample_distincts": {},
+      "action_reco": "🟢 Référentiel/Inventaire actif",
+      "statut": "Sain"
+    },
+    "adm_villes_abhs": {
+      "name": "adm_villes_abhs",
+      "famille": "administratif",
+      "total_rows": 33,
+      "columns_count": 6,
+      "roles": {
+        "id": "id",
+        "station": null,
+        "date": null,
+        "parametre": null,
+        "valeur": null,
+        "unite": null,
+        "geom": "coord_x"
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "coord_x": "0.0% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 0,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 0,
+      "sample_distincts": {},
+      "action_reco": "🟢 Référentiel/Inventaire actif",
+      "statut": "Sain"
+    },
+    "ref_types_mesures": {
+      "name": "ref_types_mesures",
+      "famille": "referentiel",
+      "total_rows": 64,
+      "columns_count": 5,
+      "roles": {
+        "id": "id",
+        "station": null,
+        "date": null,
+        "parametre": "parametre_qualite",
+        "valeur": null,
+        "unite": "unite",
+        "geom": "type_mesure"
+      },
+      "null_rates": {
+        "id": "0.0%",
+        "parametre_qualite": "6.25%",
+        "unite": "7.81%",
+        "type_mesure": "0.0% (Geom Null)"
+      },
+      "distinct_stations": 0,
+      "distinct_params": 60,
+      "date_min": null,
+      "date_max": null,
+      "doublons_metier": 3,
+      "sample_distincts": {
+        "params_sample": [
+          "Ca",
+          "Fe",
+          "Mg",
+          "T_eau",
+          "OH"
+        ]
+      },
+      "action_reco": "🟢 Référentiel/Inventaire actif",
+      "statut": "Sain"
+    }
+  }
+}

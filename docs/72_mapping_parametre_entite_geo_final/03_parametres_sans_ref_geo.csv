@@ -1,0 +1,164 @@
+﻿domaine,table_source,table_cible,parametre_source,parametre_canonique,unite,type_metier,entite_geo_type,entite_geo_id,entite_geo_code,entite_geo_nom,champ_rattachement,x,y,geom_present,statut_geo,commentaire,action_recommandee,volume_total,volume_geo_ok,volume_no_ref,volume_no_xy,volume_ambigu,volume_referentiel_manquant
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Ag,Ag,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Al,Al,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,As,As,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Ba,Ba,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Be,Be,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Bilan_Ionique,Bilan_Ionique,,idp_2024,point_prelevement,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=13 | xy=13,BACKLOG_GEO,13,0,13,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,CF,CF,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=77 | xy=65,BACKLOG_GEO,77,0,77,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,CO3,CO3,,idp_2024,point_prelevement,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=12 | xy=12,BACKLOG_GEO,12,0,12,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,CT,CT,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=77 | xy=65,BACKLOG_GEO,77,0,77,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Ca++,Ca++,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=77 | xy=65,BACKLOG_GEO,77,0,77,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Cd,Cd,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Cl-,Cl-,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=77 | xy=65,BACKLOG_GEO,77,0,77,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Co,Co,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,CrT,CrT,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Cu,Cu,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,DBO5,DBO5,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=71 | xy=59,BACKLOG_GEO,71,0,71,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,"DCO  D 
+ 2h","DCO  D 
+ 2h",,idp_2024,point_prelevement,,,,coord_x/coord_y,600202.0,406183.0,false,GEO_NO_REF,volume=2 | xy=2,BACKLOG_GEO,2,0,2,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Fe,Fe,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=53 | xy=41,BACKLOG_GEO,53,0,53,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Fe2+,Fe2+,,idp_2024,point_prelevement,,,,coord_x/coord_y,453061.0,434317.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,HCO3,HCO3,,idp_2024,point_prelevement,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=12 | xy=12,BACKLOG_GEO,12,0,12,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Hg,Hg,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=16 | xy=16,BACKLOG_GEO,16,0,16,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,"Huiles
+Graisses","Huiles
+Graisses",,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=48 | xy=36,BACKLOG_GEO,48,0,48,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,IP,IP,,idp_2024,point_prelevement,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=6 | xy=6,BACKLOG_GEO,6,0,6,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,K+,K+,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=70 | xy=58,BACKLOG_GEO,70,0,70,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Li,Li,,idp_2024,point_prelevement,,,,coord_x/coord_y,555797.0,377237.0,false,GEO_NO_REF,volume=21 | xy=21,BACKLOG_GEO,21,0,21,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,MES,MES,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=71 | xy=59,BACKLOG_GEO,71,0,71,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Mg++,Mg++,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=77 | xy=65,BACKLOG_GEO,77,0,77,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Mn,Mn,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=34 | xy=34,BACKLOG_GEO,34,0,34,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Mo,Mo,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,NH4+ ,NH4+ ,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=77 | xy=65,BACKLOG_GEO,77,0,77,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,NO2-,NO2-,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=77 | xy=65,BACKLOG_GEO,77,0,77,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,NO3-,NO3-,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=77 | xy=65,BACKLOG_GEO,77,0,77,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,NTK,NTK,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=71 | xy=59,BACKLOG_GEO,71,0,71,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Na+,Na+,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=70 | xy=58,BACKLOG_GEO,70,0,70,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Ni,Ni,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,PO43-,PO43-,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=71 | xy=59,BACKLOG_GEO,71,0,71,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,PT,PT,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=71 | xy=59,BACKLOG_GEO,71,0,71,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Pb,Pb,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Phénol,Phénol,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=48 | xy=36,BACKLOG_GEO,48,0,48,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,"RS 
+mesuré","RS 
+mesuré",,idp_2024,point_prelevement,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=6 | xy=6,BACKLOG_GEO,6,0,6,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,SF,SF,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=77 | xy=65,BACKLOG_GEO,77,0,77,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,SO4--,SO4--,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=77 | xy=65,BACKLOG_GEO,77,0,77,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Sb,Sb,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Se,Se,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Sn,Sn,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Sr,Sr,,idp_2024,point_prelevement,,,,coord_x/coord_y,603267.0,399513.0,false,GEO_NO_REF,volume=2 | xy=2,BACKLOG_GEO,2,0,2,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,TAC_meq/l,TAC_meq/l,,idp_2024,point_prelevement,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=12 | xy=12,BACKLOG_GEO,12,0,12,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,TAC_°F,TAC_°F,,idp_2024,point_prelevement,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=12 | xy=12,BACKLOG_GEO,12,0,12,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,TA_meq/l,TA_meq/l,,idp_2024,point_prelevement,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=12 | xy=12,BACKLOG_GEO,12,0,12,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,TA_°F,TA_°F,,idp_2024,point_prelevement,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=12 | xy=12,BACKLOG_GEO,12,0,12,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,TH,TH,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=77 | xy=65,BACKLOG_GEO,77,0,77,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Tl,Tl,,idp_2024,point_prelevement,,,,coord_x/coord_y,451926.0,365389.0,false,GEO_NO_REF,volume=9 | xy=9,BACKLOG_GEO,9,0,9,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,V,V,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Zn,Zn,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,"somme
+anions_meq/l3","somme
+anions_meq/l3",,idp_2024,point_prelevement,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=13 | xy=13,BACKLOG_GEO,13,0,13,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,"somme
+anions_mg/l4","somme
+anions_mg/l4",,idp_2024,point_prelevement,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=13 | xy=13,BACKLOG_GEO,13,0,13,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Arsenic,Arsenic,,idp_2024,point_prelevement,,,,coord_x/coord_y,448223.0,440951.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Bilan_Ionique,Bilan_Ionique,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,CF,CF,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,CO3,CO3,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,CT,CT,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Ca++,Ca++,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Cadmium,Cadmium,,idp_2024,point_prelevement,,,,coord_x/coord_y,448223.0,440951.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Chl a,Chl a,,idp_2024,point_prelevement,,,,coord_x/coord_y,393481.0,408618.0,false,GEO_NO_REF,volume=30 | xy=30,BACKLOG_GEO,30,0,30,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Chrome,Chrome,,idp_2024,point_prelevement,,,,coord_x/coord_y,448223.0,440951.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Cl-_IC,Cl-_IC,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=71 | xy=71,BACKLOG_GEO,71,0,71,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Cobalt,Cobalt,,idp_2024,point_prelevement,,,,coord_x/coord_y,448223.0,440951.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"Cond
+25°C","Cond
+25°C",,idp_2024,point_prelevement,,,,coord_x/coord_y,448173.0,410920.0,false,GEO_NO_REF,volume=7 | xy=7,BACKLOG_GEO,7,0,7,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"Cond 25°C *0,9*0,01
+","Cond 25°C *0,9*0,01
+",,idp_2024,point_prelevement,,,,coord_x/coord_y,448173.0,410920.0,false,GEO_NO_REF,volume=7 | xy=7,BACKLOG_GEO,7,0,7,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"Cond 25°C *1,1*0,01
+","Cond 25°C *1,1*0,01
+",,idp_2024,point_prelevement,,,,coord_x/coord_y,448173.0,410920.0,false,GEO_NO_REF,volume=7 | xy=7,BACKLOG_GEO,7,0,7,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Cuivre,Cuivre,,idp_2024,point_prelevement,,,,coord_x/coord_y,448223.0,440951.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,DBO5,DBO5,,idp_2024,point_prelevement,,,,coord_x/coord_y,448173.0,410920.0,false,GEO_NO_REF,volume=26 | xy=26,BACKLOG_GEO,26,0,26,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,DCO,DCO,,idp_2024,point_prelevement,,,,coord_x/coord_y,448173.0,410920.0,false,GEO_NO_REF,volume=22 | xy=22,BACKLOG_GEO,22,0,22,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"DCO 
+2h décant.","DCO 
+2h décant.",,idp_2024,point_prelevement,,,,coord_x/coord_y,452534.0,441554.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Fe,Fe,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=36 | xy=36,BACKLOG_GEO,36,0,36,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Fe2+,Fe2+,,idp_2024,point_prelevement,,,,coord_x/coord_y,393481.0,408618.0,false,GEO_NO_REF,volume=30 | xy=30,BACKLOG_GEO,30,0,30,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Fer,Fer,,idp_2024,point_prelevement,,,,coord_x/coord_y,448223.0,440951.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,HCO3,HCO3,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"Huiles
+Graisses (H G T)","Huiles
+Graisses (H G T)",,idp_2024,point_prelevement,,,,coord_x/coord_y,452534.0,441554.0,false,GEO_NO_REF,volume=20 | xy=20,BACKLOG_GEO,20,0,20,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,IP,IP,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=15 | xy=15,BACKLOG_GEO,15,0,15,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,K+,K+,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,K+4,K+4,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,MEST Filtr,MEST Filtr,,idp_2024,point_prelevement,,,,coord_x/coord_y,393481.0,408618.0,false,GEO_NO_REF,volume=56 | xy=56,BACKLOG_GEO,56,0,56,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Mercure,Mercure,,idp_2024,point_prelevement,,,,coord_x/coord_y,448223.0,440951.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Mg++,Mg++,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Mn,Mn,,idp_2024,point_prelevement,,,,coord_x/coord_y,393481.0,408618.0,false,GEO_NO_REF,volume=2 | xy=2,BACKLOG_GEO,2,0,2,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Mn5,Mn5,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=45 | xy=45,BACKLOG_GEO,45,0,45,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NH4+ ,NH4+ ,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=71 | xy=71,BACKLOG_GEO,71,0,71,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NH4+  Titri,NH4+  Titri,,idp_2024,point_prelevement,,,,coord_x/coord_y,393481.0,408618.0,false,GEO_NO_REF,volume=1 | xy=1,BACKLOG_GEO,1,0,1,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NH4+ 2,NH4+ 2,,idp_2024,point_prelevement,,,,coord_x/coord_y,416810.0,416679.0,false,GEO_NO_REF,volume=11 | xy=11,BACKLOG_GEO,11,0,11,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NH4+ Spect,NH4+ Spect,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=71 | xy=71,BACKLOG_GEO,71,0,71,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NO2- _Spectro.,NO2- _Spectro.,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NO3-_Réduction Cd,NO3-_Réduction Cd,,idp_2024,point_prelevement,,,,coord_x/coord_y,383102.0,406392.0,false,GEO_NO_REF,volume=3 | xy=3,BACKLOG_GEO,3,0,3,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NO3-_Spectro,NO3-_Spectro,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=71 | xy=71,BACKLOG_GEO,71,0,71,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NTK Spectr,NTK Spectr,,idp_2024,point_prelevement,,,,coord_x/coord_y,448173.0,410920.0,false,GEO_NO_REF,volume=26 | xy=26,BACKLOG_GEO,26,0,26,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NTK Titri,NTK Titri,,idp_2024,point_prelevement,,,,coord_x/coord_y,448173.0,410920.0,false,GEO_NO_REF,volume=15 | xy=15,BACKLOG_GEO,15,0,15,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Na+,Na+,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Na+3,Na+3,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Nickel,Nickel,,idp_2024,point_prelevement,,,,coord_x/coord_y,448223.0,440951.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,OH-,OH-,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,PO43-,PO43-,,idp_2024,point_prelevement,,,,coord_x/coord_y,393481.0,408618.0,false,GEO_NO_REF,volume=56 | xy=56,BACKLOG_GEO,56,0,56,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,PT,PT,,idp_2024,point_prelevement,,,,coord_x/coord_y,393481.0,408618.0,false,GEO_NO_REF,volume=56 | xy=56,BACKLOG_GEO,56,0,56,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"PT
+ décant. 2h","PT
+ décant. 2h",,idp_2024,point_prelevement,,,,coord_x/coord_y,452534.0,441554.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,PT DECANTE,PT DECANTE,,idp_2024,point_prelevement,,,,coord_x/coord_y,452534.0,441554.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Plomb,Plomb,,idp_2024,point_prelevement,,,,coord_x/coord_y,448223.0,440951.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"RS 
+mesuré_à 105 °C","RS 
+mesuré_à 105 °C",,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=15 | xy=15,BACKLOG_GEO,15,0,15,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,SF,SF,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,SO42-_IC,SO42-_IC,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=71 | xy=71,BACKLOG_GEO,71,0,71,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"Somme
+cations_meq/l","Somme
+cations_meq/l",,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"Somme
+cations_mg/l","Somme
+cations_mg/l",,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Sélénium,Sélénium,,idp_2024,point_prelevement,,,,coord_x/coord_y,448223.0,440951.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,TA/Tas_meq/l,TA/Tas_meq/l,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,TA/Tas_°F,TA/Tas_°F,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,TAC/TACs_meq/l,TAC/TACs_meq/l,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,TAC/TACs_°F,TAC/TACs_°F,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,TH,TH,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Zinc,Zinc,,idp_2024,point_prelevement,,,,coord_x/coord_y,448223.0,440951.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"indice de phénol M:A
+","indice de phénol M:A
+",,idp_2024,point_prelevement,,,,coord_x/coord_y,452534.0,441554.0,false,GEO_NO_REF,volume=20 | xy=20,BACKLOG_GEO,20,0,20,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,pH au laboratoire,pH au laboratoire,,idp_2024,point_prelevement,,,,coord_x/coord_y,393481.0,408618.0,false,GEO_NO_REF,volume=6 | xy=6,BACKLOG_GEO,6,0,6,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"somme
+anions_meq/l","somme
+anions_meq/l",,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"somme
+anions_mg/l","somme
+anions_mg/l",,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,A-B-C-D,A-B-C-D,,idp_2024,point_pollution,,,,coord_x/coord_y,439837.0,360098.0,false,GEO_NO_REF,volume=8 | xy=8,BACKLOG_GEO,8,0,8,0,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,A-B-C-D-H-E,A-B-C-D-H-E,,idp_2024,point_pollution,,,,coord_x/coord_y,603267.0,399513.0,false,GEO_NO_REF,volume=7 | xy=7,BACKLOG_GEO,7,0,7,0,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,F-G-D,F-G-D,,idp_2024,point_pollution,,,,coord_x/coord_y,514760.0,421189.0,false,GEO_NO_REF,volume=2 | xy=2,BACKLOG_GEO,2,0,2,0,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,Forage,Forage,,idp_2024,point_pollution,,,,coord_x/coord_y,518542.0,364386.0,false,GEO_NO_REF,volume=1 | xy=1,BACKLOG_GEO,1,0,1,0,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,Oued,Oued,,idp_2024,point_pollution,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=31 | xy=31,BACKLOG_GEO,31,0,31,0,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,Puits,Puits,,idp_2024,point_pollution,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=2 | xy=2,BACKLOG_GEO,2,0,2,0,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,Source,Source,,idp_2024,point_pollution,,,,coord_x/coord_y,548010.0,363937.0,false,GEO_NO_REF,volume=1 | xy=1,BACKLOG_GEO,1,0,1,0,0,0
+idp,staging.raw_idp_2024_src_pollution_marche_cadre,,(parametre_manquant),(parametre_manquant),,idp_2024,point_pollution,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=80 | xy=80,BACKLOG_GEO,80,0,80,0,0,0

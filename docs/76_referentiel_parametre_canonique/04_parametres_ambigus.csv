@@ -1,0 +1,10 @@
+classification,source,parametre,volume,probleme,recommandation
+BLOQUANT,metadata.referentiel_parametre,DEBIT,2 definitions,Collision canonique active,Fusionner en une seule ligne canonique
+BLOQUANT,hydro legacy,VOLUME_BARRAGE,1 definition legacy,Collision de nommage avec VOLUME,Passer VOLUME_BARRAGE en alias
+INFO,staging.raw_mesures_niv_eau_barrages,RESTITUTION -> LACHER,84831,Alias source valide,Unite de reference verrouillee a Mm3/j
+BACKLOG,qualite.mesure_qualite_riviere,COND,1992,Parametre actif sans parametre_ref_id,Mappage vers CONDUCTIVITE
+BACKLOG,qualite.mesure_qualite_riviere,O2_DISSOUS,1970,Parametre actif sans parametre_ref_id,Mappage vers O2_DISS
+BACKLOG,qualite.mesure_qualite_riviere,PT,1964,Abreviation non canonique,Mappage vers PHOSPHORE_TOTAL
+BACKLOG,qualite.mesure_qualite_riviere,NO3,1930,Abreviation non canonique,Mappage vers NO3-
+BACKLOG,qualite.mesure_qualite_sebou,Conductivité,4553,Variante accentuee non mappee,Mappage vers CONDUCTIVITE
+BACKLOG,qualite.suivi_qualite_barrage_garde_hebdo,UNREC_BORE_MG_L,11,Parametre inconnu,Arbitrage metier

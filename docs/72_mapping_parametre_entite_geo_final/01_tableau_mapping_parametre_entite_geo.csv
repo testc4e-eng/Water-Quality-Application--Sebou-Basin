@@ -1,0 +1,679 @@
+﻿domaine,table_source,table_cible,parametre_source,parametre_canonique,unite,type_metier,entite_geo_type,entite_geo_id,entite_geo_code,entite_geo_nom,champ_rattachement,x,y,geom_present,statut_geo,commentaire,action_recommandee,volume_total,volume_geo_ok,volume_no_ref,volume_no_xy,volume_ambigu,volume_referentiel_manquant
+hydro,hydro.barrage_bathymetrie,hydro.barrage_bathymetrie,Hauteur_barrage,Hauteur_barrage,m,barrage,barrage,MULTIPLE,MULTIPLE,MULTIPLE,barrage_id / ire_barrage,,,true,GEO_OK,volume=62359 | geo_ok=62359,MIGRER,62359,62359,0,0,0,0
+hydro,hydro.barrage_bathymetrie,hydro.barrage_bathymetrie,Surface_barrage,Surface_barrage,km2,barrage,barrage,MULTIPLE,MULTIPLE,MULTIPLE,barrage_id / ire_barrage,,,true,GEO_OK,volume=62359 | geo_ok=62359,MIGRER,62359,62359,0,0,0,0
+hydro,hydro.barrage_bathymetrie,hydro.barrage_bathymetrie,Volume_barrage,Volume_barrage,Mm3,barrage,barrage,MULTIPLE,MULTIPLE,MULTIPLE,barrage_id / ire_barrage,,,true,GEO_OK,volume=62359 | geo_ok=62359,MIGRER,62359,62359,0,0,0,0
+hydro,hydro.mesure_barrage,hydro.mesure_barrage,Niveau_eau_barrage,Niveau_eau_barrage,m,barrage,barrage,MULTIPLE,MULTIPLE,MULTIPLE,barrage_id / ire_barrage,,,true,GEO_OK,volume=84831 | geo_ok=84831 | reference_altitude attendue = NGM,MIGRER,84831,84831,0,0,0,0
+hydro,hydro.mesure_barrage,hydro.mesure_barrage,Volume_barrage,Volume_barrage,Mm3,barrage,barrage,6cf24a99-082d-4405-9915-31c8ee7a91db,1182/9,al wahda,barrage_id / ire_barrage,,,true,GEO_OK,volume=10136 | geo_ok=10136,MIGRER,10136,10136,0,0,0,0
+hydro,hydro.mesure_debit,hydro.mesure_debit,Debit,Debit,m3/s,hydrologie,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=652446 | geo_ok=652446,MIGRER,652446,652446,0,0,0,0
+hydro,hydro.mesure_debit_mensuel,hydro.mesure_debit_mensuel,Debit_mensuel,Debit_mensuel,m3/s,hydrologie,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=19316 | geo_ok=19316,MIGRER,19316,19316,0,0,0,0
+hydro,hydro.mesure_debit_source,hydro.mesure_debit_source,Debit_source,Debit_source,m3/s,hydrologie,source,MULTIPLE,MULTIPLE,MULTIPLE,source_id,,,true,GEO_AMBIGU,volume=3978 | geo_ok=3552 | geo_ambigu=426 | rattachement via geo.source; doublons de source a arbitrer,RATTACHER_MANUELLEMENT,3978,3552,0,0,426,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Ag,Ag,,idp_2024,point_prelevement,,,,coord_x/coord_y,491643.0,351675.0,false,GEO_AMBIGU,volume=15 | xy=15,RATTACHER_MANUELLEMENT,15,0,0,0,15,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Ag,Ag,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Ag,Ag,,idp_2024,point_pollution,b57c0c10-c128-4389-983e-81325767bcb9,,AVAL REJET INDUSTRIEL MERJA,coord_x/coord_y,392616.0,408748.0,true,GEO_XY_OK,volume=4 | xy=4,MIGRER_AVEC_FLAG,4,4,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Al,Al,,idp_2024,point_prelevement,,,,coord_x/coord_y,491643.0,351675.0,false,GEO_AMBIGU,volume=15 | xy=15,RATTACHER_MANUELLEMENT,15,0,0,0,15,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Al,Al,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Al,Al,,idp_2024,point_pollution,b57c0c10-c128-4389-983e-81325767bcb9,,AVAL REJET INDUSTRIEL MERJA,coord_x/coord_y,392616.0,408748.0,true,GEO_XY_OK,volume=4 | xy=4,MIGRER_AVEC_FLAG,4,4,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,As,As,,idp_2024,point_prelevement,,,,coord_x/coord_y,491643.0,351675.0,false,GEO_AMBIGU,volume=15 | xy=15,RATTACHER_MANUELLEMENT,15,0,0,0,15,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,As,As,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,As,As,,idp_2024,point_pollution,b57c0c10-c128-4389-983e-81325767bcb9,,AVAL REJET INDUSTRIEL MERJA,coord_x/coord_y,392616.0,408748.0,true,GEO_XY_OK,volume=4 | xy=4,MIGRER_AVEC_FLAG,4,4,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Ba,Ba,,idp_2024,point_prelevement,,,,coord_x/coord_y,491643.0,351675.0,false,GEO_AMBIGU,volume=15 | xy=15,RATTACHER_MANUELLEMENT,15,0,0,0,15,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Ba,Ba,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Ba,Ba,,idp_2024,point_pollution,b57c0c10-c128-4389-983e-81325767bcb9,,AVAL REJET INDUSTRIEL MERJA,coord_x/coord_y,392616.0,408748.0,true,GEO_XY_OK,volume=4 | xy=4,MIGRER_AVEC_FLAG,4,4,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Be,Be,,idp_2024,point_prelevement,,,,coord_x/coord_y,491643.0,351675.0,false,GEO_AMBIGU,volume=15 | xy=15,RATTACHER_MANUELLEMENT,15,0,0,0,15,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Be,Be,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Be,Be,,idp_2024,point_pollution,b844a5f2-373d-401b-b40d-590d19a7ac5a,,Rejet Industriel (SMK),coord_x/coord_y,493126.0,361075.0,true,GEO_XY_OK,volume=3 | xy=3,MIGRER_AVEC_FLAG,3,3,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Bilan_Ionique,Bilan_Ionique,,idp_2024,point_prelevement,,,,coord_x/coord_y,507600.0,311800.0,false,GEO_AMBIGU,volume=3 | xy=3,RATTACHER_MANUELLEMENT,3,0,0,0,3,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Bilan_Ionique,Bilan_Ionique,,idp_2024,point_prelevement,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=13 | xy=13,BACKLOG_GEO,13,0,13,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Bilan_Ionique,Bilan_Ionique,,idp_2024,point_eau,cf39300f-90fa-4e2a-bf9f-4b1fc6ecb297,,Forage belaje,coord_x/coord_y,453410.0,442673.0,true,GEO_XY_OK,volume=12 | xy=12,MIGRER_AVEC_FLAG,12,12,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,CF,CF,,idp_2024,point_prelevement,,,,coord_x/coord_y,405084.0,424294.0,false,GEO_AMBIGU,volume=77 | xy=77,RATTACHER_MANUELLEMENT,77,0,0,0,77,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,CF,CF,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=77 | xy=65,BACKLOG_GEO,77,0,77,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,CF,CF,,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=30 | xy=30,MIGRER_AVEC_FLAG,30,30,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,CO3,CO3,,idp_2024,point_prelevement,,,,coord_x/coord_y,507600.0,311800.0,false,GEO_AMBIGU,volume=2 | xy=2,RATTACHER_MANUELLEMENT,2,0,0,0,2,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,CO3,CO3,,idp_2024,point_prelevement,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=12 | xy=12,BACKLOG_GEO,12,0,12,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,CO3,CO3,,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=18 | xy=18,MIGRER_AVEC_FLAG,18,18,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,CT,CT,,idp_2024,point_prelevement,,,,coord_x/coord_y,405084.0,424294.0,false,GEO_AMBIGU,volume=77 | xy=77,RATTACHER_MANUELLEMENT,77,0,0,0,77,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,CT,CT,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=77 | xy=65,BACKLOG_GEO,77,0,77,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,CT,CT,,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=30 | xy=30,MIGRER_AVEC_FLAG,30,30,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Ca++,Ca++,,idp_2024,point_prelevement,,,,coord_x/coord_y,405084.0,424294.0,false,GEO_AMBIGU,volume=81 | xy=81,RATTACHER_MANUELLEMENT,81,0,0,0,81,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Ca++,Ca++,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=77 | xy=65,BACKLOG_GEO,77,0,77,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Ca++,Ca++,,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=31 | xy=31,MIGRER_AVEC_FLAG,31,31,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Cd,Cd,,idp_2024,point_prelevement,,,,coord_x/coord_y,491643.0,351675.0,false,GEO_AMBIGU,volume=15 | xy=15,RATTACHER_MANUELLEMENT,15,0,0,0,15,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Cd,Cd,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Cd,Cd,,idp_2024,point_pollution,b57c0c10-c128-4389-983e-81325767bcb9,,AVAL REJET INDUSTRIEL MERJA,coord_x/coord_y,392616.0,408748.0,true,GEO_XY_OK,volume=4 | xy=4,MIGRER_AVEC_FLAG,4,4,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Cl-,Cl-,,idp_2024,point_prelevement,,,,coord_x/coord_y,405084.0,424294.0,false,GEO_AMBIGU,volume=81 | xy=81,RATTACHER_MANUELLEMENT,81,0,0,0,81,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Cl-,Cl-,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=77 | xy=65,BACKLOG_GEO,77,0,77,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Cl-,Cl-,,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=31 | xy=31,MIGRER_AVEC_FLAG,31,31,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Co,Co,,idp_2024,point_prelevement,,,,coord_x/coord_y,491643.0,351675.0,false,GEO_AMBIGU,volume=15 | xy=15,RATTACHER_MANUELLEMENT,15,0,0,0,15,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Co,Co,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Co,Co,,idp_2024,point_pollution,b57c0c10-c128-4389-983e-81325767bcb9,,AVAL REJET INDUSTRIEL MERJA,coord_x/coord_y,392616.0,408748.0,true,GEO_XY_OK,volume=4 | xy=4,MIGRER_AVEC_FLAG,4,4,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,CrT,CrT,,idp_2024,point_prelevement,,,,coord_x/coord_y,491643.0,351675.0,false,GEO_AMBIGU,volume=15 | xy=15,RATTACHER_MANUELLEMENT,15,0,0,0,15,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,CrT,CrT,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,CrT,CrT,,idp_2024,point_pollution,b57c0c10-c128-4389-983e-81325767bcb9,,AVAL REJET INDUSTRIEL MERJA,coord_x/coord_y,392616.0,408748.0,true,GEO_XY_OK,volume=4 | xy=4,MIGRER_AVEC_FLAG,4,4,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Cu,Cu,,idp_2024,point_prelevement,,,,coord_x/coord_y,491643.0,351675.0,false,GEO_AMBIGU,volume=15 | xy=15,RATTACHER_MANUELLEMENT,15,0,0,0,15,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Cu,Cu,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Cu,Cu,,idp_2024,point_pollution,b57c0c10-c128-4389-983e-81325767bcb9,,AVAL REJET INDUSTRIEL MERJA,coord_x/coord_y,392616.0,408748.0,true,GEO_XY_OK,volume=4 | xy=4,MIGRER_AVEC_FLAG,4,4,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,DBO5,DBO5,,idp_2024,point_prelevement,,,,coord_x/coord_y,405084.0,424294.0,false,GEO_AMBIGU,volume=80 | xy=80,RATTACHER_MANUELLEMENT,80,0,0,0,80,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,DBO5,DBO5,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=71 | xy=59,BACKLOG_GEO,71,0,71,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,DBO5,DBO5,,idp_2024,point_pollution,7c4f5497-77f7-4d0c-abc2-a8d151da4d5b,,TRL_DOM_R2,coord_x/coord_y,510740.0,452252.0,true,GEO_XY_OK,volume=12 | xy=12,MIGRER_AVEC_FLAG,12,12,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,DCO,DCO,,idp_2024,point_prelevement,,,,coord_x/coord_y,405084.0,424294.0,false,GEO_AMBIGU,volume=80 | xy=80,RATTACHER_MANUELLEMENT,80,0,0,0,80,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,DCO,DCO,,idp_2024,point_prelevement,,,,coord_x/coord_y,,,false,GEO_NO_XY,volume=80 | xy=57,EXCLURE_TEMPORAIREMENT,80,0,0,80,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,DCO,DCO,,idp_2024,point_pollution,7c4f5497-77f7-4d0c-abc2-a8d151da4d5b,,TRL_DOM_R2,coord_x/coord_y,510740.0,452252.0,true,GEO_XY_OK,volume=12 | xy=12,MIGRER_AVEC_FLAG,12,12,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,"DCO  D 
+ 2h","DCO  D 
+ 2h",,idp_2024,point_prelevement,,,,coord_x/coord_y,600202.0,406183.0,false,GEO_NO_REF,volume=2 | xy=2,BACKLOG_GEO,2,0,2,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Fe,Fe,,idp_2024,point_prelevement,,,,coord_x/coord_y,446982.0,441695.0,false,GEO_AMBIGU,volume=22 | xy=22,RATTACHER_MANUELLEMENT,22,0,0,0,22,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Fe,Fe,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=53 | xy=41,BACKLOG_GEO,53,0,53,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Fe,Fe,,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=22 | xy=22,MIGRER_AVEC_FLAG,22,22,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Fe2+,Fe2+,,idp_2024,point_prelevement,,,,coord_x/coord_y,475284.0,347419.0,false,GEO_AMBIGU,volume=1 | xy=1,RATTACHER_MANUELLEMENT,1,0,0,0,1,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Fe2+,Fe2+,,idp_2024,point_prelevement,,,,coord_x/coord_y,453061.0,434317.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Fe2+,Fe2+,,idp_2024,point_eau,5106d462-a56f-4e2f-8b90-089e7976c816,,Ain LABAROUAL,coord_x/coord_y,452194.0,478711.0,true,GEO_XY_OK,volume=1 | xy=1,MIGRER_AVEC_FLAG,1,1,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,HCO3,HCO3,,idp_2024,point_prelevement,,,,coord_x/coord_y,507600.0,311800.0,false,GEO_AMBIGU,volume=2 | xy=2,RATTACHER_MANUELLEMENT,2,0,0,0,2,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,HCO3,HCO3,,idp_2024,point_prelevement,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=12 | xy=12,BACKLOG_GEO,12,0,12,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,HCO3,HCO3,,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=18 | xy=18,MIGRER_AVEC_FLAG,18,18,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Hg,Hg,,idp_2024,point_prelevement,,,,coord_x/coord_y,491643.0,351675.0,false,GEO_AMBIGU,volume=12 | xy=12,RATTACHER_MANUELLEMENT,12,0,0,0,12,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Hg,Hg,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=16 | xy=16,BACKLOG_GEO,16,0,16,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Hg,Hg,,idp_2024,point_pollution,b57c0c10-c128-4389-983e-81325767bcb9,,AVAL REJET INDUSTRIEL MERJA,coord_x/coord_y,392616.0,408748.0,true,GEO_XY_OK,volume=3 | xy=3,MIGRER_AVEC_FLAG,3,3,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,"Huiles
+Graisses","Huiles
+Graisses",,idp_2024,point_prelevement,,,,coord_x/coord_y,446982.0,441695.0,false,GEO_AMBIGU,volume=20 | xy=20,RATTACHER_MANUELLEMENT,20,0,0,0,20,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,"Huiles
+Graisses","Huiles
+Graisses",,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=48 | xy=36,BACKLOG_GEO,48,0,48,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,"Huiles
+Graisses","Huiles
+Graisses",,idp_2024,point_pollution,b57c0c10-c128-4389-983e-81325767bcb9,,AVAL REJET INDUSTRIEL MERJA,coord_x/coord_y,392616.0,408748.0,true,GEO_XY_OK,volume=4 | xy=4,MIGRER_AVEC_FLAG,4,4,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,IP,IP,,idp_2024,point_prelevement,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=6 | xy=6,BACKLOG_GEO,6,0,6,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,IP,IP,,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=19 | xy=19,MIGRER_AVEC_FLAG,19,19,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,K+,K+,,idp_2024,point_prelevement,,,,coord_x/coord_y,405084.0,424294.0,false,GEO_AMBIGU,volume=74 | xy=74,RATTACHER_MANUELLEMENT,74,0,0,0,74,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,K+,K+,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=70 | xy=58,BACKLOG_GEO,70,0,70,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,K+,K+,,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=28 | xy=28,MIGRER_AVEC_FLAG,28,28,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Li,Li,,idp_2024,point_prelevement,,,,coord_x/coord_y,491643.0,351675.0,false,GEO_AMBIGU,volume=11 | xy=11,RATTACHER_MANUELLEMENT,11,0,0,0,11,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Li,Li,,idp_2024,point_prelevement,,,,coord_x/coord_y,555797.0,377237.0,false,GEO_NO_REF,volume=21 | xy=21,BACKLOG_GEO,21,0,21,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Li,Li,,idp_2024,point_pollution,b844a5f2-373d-401b-b40d-590d19a7ac5a,,Rejet Industriel (SMK),coord_x/coord_y,493126.0,361075.0,true,GEO_XY_OK,volume=2 | xy=2,MIGRER_AVEC_FLAG,2,2,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,MES,MES,,idp_2024,point_prelevement,,,,coord_x/coord_y,405084.0,424294.0,false,GEO_AMBIGU,volume=80 | xy=80,RATTACHER_MANUELLEMENT,80,0,0,0,80,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,MES,MES,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=71 | xy=59,BACKLOG_GEO,71,0,71,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,MES,MES,,idp_2024,point_pollution,7c4f5497-77f7-4d0c-abc2-a8d151da4d5b,,TRL_DOM_R2,coord_x/coord_y,510740.0,452252.0,true,GEO_XY_OK,volume=12 | xy=12,MIGRER_AVEC_FLAG,12,12,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Mg++,Mg++,,idp_2024,point_prelevement,,,,coord_x/coord_y,405084.0,424294.0,false,GEO_AMBIGU,volume=81 | xy=81,RATTACHER_MANUELLEMENT,81,0,0,0,81,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Mg++,Mg++,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=77 | xy=65,BACKLOG_GEO,77,0,77,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Mg++,Mg++,,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=31 | xy=31,MIGRER_AVEC_FLAG,31,31,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Mn,Mn,,idp_2024,point_prelevement,,,,coord_x/coord_y,491643.0,351675.0,false,GEO_AMBIGU,volume=16 | xy=16,RATTACHER_MANUELLEMENT,16,0,0,0,16,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Mn,Mn,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=34 | xy=34,BACKLOG_GEO,34,0,34,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Mn,Mn,,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=23 | xy=23,MIGRER_AVEC_FLAG,23,23,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Mo,Mo,,idp_2024,point_prelevement,,,,coord_x/coord_y,491643.0,351675.0,false,GEO_AMBIGU,volume=15 | xy=15,RATTACHER_MANUELLEMENT,15,0,0,0,15,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Mo,Mo,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Mo,Mo,,idp_2024,point_pollution,b57c0c10-c128-4389-983e-81325767bcb9,,AVAL REJET INDUSTRIEL MERJA,coord_x/coord_y,392616.0,408748.0,true,GEO_XY_OK,volume=4 | xy=4,MIGRER_AVEC_FLAG,4,4,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,NH4+ ,NH4+ ,,idp_2024,point_prelevement,,,,coord_x/coord_y,405084.0,424294.0,false,GEO_AMBIGU,volume=80 | xy=80,RATTACHER_MANUELLEMENT,80,0,0,0,80,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,NH4+ ,NH4+ ,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=77 | xy=65,BACKLOG_GEO,77,0,77,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,NH4+ ,NH4+ ,,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=31 | xy=31,MIGRER_AVEC_FLAG,31,31,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,NO2-,NO2-,,idp_2024,point_prelevement,,,,coord_x/coord_y,405084.0,424294.0,false,GEO_AMBIGU,volume=81 | xy=81,RATTACHER_MANUELLEMENT,81,0,0,0,81,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,NO2-,NO2-,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=77 | xy=65,BACKLOG_GEO,77,0,77,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,NO2-,NO2-,,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=31 | xy=31,MIGRER_AVEC_FLAG,31,31,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,NO3-,NO3-,,idp_2024,point_prelevement,,,,coord_x/coord_y,405084.0,424294.0,false,GEO_AMBIGU,volume=81 | xy=81,RATTACHER_MANUELLEMENT,81,0,0,0,81,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,NO3-,NO3-,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=77 | xy=65,BACKLOG_GEO,77,0,77,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,NO3-,NO3-,,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=31 | xy=31,MIGRER_AVEC_FLAG,31,31,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,NTK,NTK,,idp_2024,point_prelevement,,,,coord_x/coord_y,405084.0,424294.0,false,GEO_AMBIGU,volume=80 | xy=80,RATTACHER_MANUELLEMENT,80,0,0,0,80,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,NTK,NTK,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=71 | xy=59,BACKLOG_GEO,71,0,71,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,NTK,NTK,,idp_2024,point_pollution,7c4f5497-77f7-4d0c-abc2-a8d151da4d5b,,TRL_DOM_R2,coord_x/coord_y,510740.0,452252.0,true,GEO_XY_OK,volume=12 | xy=12,MIGRER_AVEC_FLAG,12,12,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Na+,Na+,,idp_2024,point_prelevement,,,,coord_x/coord_y,405084.0,424294.0,false,GEO_AMBIGU,volume=74 | xy=74,RATTACHER_MANUELLEMENT,74,0,0,0,74,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Na+,Na+,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=70 | xy=58,BACKLOG_GEO,70,0,70,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Na+,Na+,,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=28 | xy=28,MIGRER_AVEC_FLAG,28,28,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Ni,Ni,,idp_2024,point_prelevement,,,,coord_x/coord_y,491643.0,351675.0,false,GEO_AMBIGU,volume=15 | xy=15,RATTACHER_MANUELLEMENT,15,0,0,0,15,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Ni,Ni,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Ni,Ni,,idp_2024,point_pollution,b57c0c10-c128-4389-983e-81325767bcb9,,AVAL REJET INDUSTRIEL MERJA,coord_x/coord_y,392616.0,408748.0,true,GEO_XY_OK,volume=4 | xy=4,MIGRER_AVEC_FLAG,4,4,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,PO43-,PO43-,,idp_2024,point_prelevement,,,,coord_x/coord_y,405084.0,424294.0,false,GEO_AMBIGU,volume=80 | xy=80,RATTACHER_MANUELLEMENT,80,0,0,0,80,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,PO43-,PO43-,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=71 | xy=59,BACKLOG_GEO,71,0,71,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,PO43-,PO43-,,idp_2024,point_pollution,7c4f5497-77f7-4d0c-abc2-a8d151da4d5b,,TRL_DOM_R2,coord_x/coord_y,510740.0,452252.0,true,GEO_XY_OK,volume=12 | xy=12,MIGRER_AVEC_FLAG,12,12,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,PT,PT,,idp_2024,point_prelevement,,,,coord_x/coord_y,405084.0,424294.0,false,GEO_AMBIGU,volume=80 | xy=80,RATTACHER_MANUELLEMENT,80,0,0,0,80,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,PT,PT,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=71 | xy=59,BACKLOG_GEO,71,0,71,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,PT,PT,,idp_2024,point_pollution,7c4f5497-77f7-4d0c-abc2-a8d151da4d5b,,TRL_DOM_R2,coord_x/coord_y,510740.0,452252.0,true,GEO_XY_OK,volume=12 | xy=12,MIGRER_AVEC_FLAG,12,12,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Pb,Pb,,idp_2024,point_prelevement,,,,coord_x/coord_y,491643.0,351675.0,false,GEO_AMBIGU,volume=15 | xy=15,RATTACHER_MANUELLEMENT,15,0,0,0,15,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Pb,Pb,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Pb,Pb,,idp_2024,point_pollution,b57c0c10-c128-4389-983e-81325767bcb9,,AVAL REJET INDUSTRIEL MERJA,coord_x/coord_y,392616.0,408748.0,true,GEO_XY_OK,volume=4 | xy=4,MIGRER_AVEC_FLAG,4,4,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Phénol,Phénol,,idp_2024,point_prelevement,,,,coord_x/coord_y,446982.0,441695.0,false,GEO_AMBIGU,volume=20 | xy=20,RATTACHER_MANUELLEMENT,20,0,0,0,20,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Phénol,Phénol,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=48 | xy=36,BACKLOG_GEO,48,0,48,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Phénol,Phénol,,idp_2024,point_pollution,b57c0c10-c128-4389-983e-81325767bcb9,,AVAL REJET INDUSTRIEL MERJA,coord_x/coord_y,392616.0,408748.0,true,GEO_XY_OK,volume=4 | xy=4,MIGRER_AVEC_FLAG,4,4,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,"RS 
+mesuré","RS 
+mesuré",,idp_2024,point_prelevement,,,,coord_x/coord_y,548059.0,363432.0,false,GEO_AMBIGU,volume=1 | xy=1,RATTACHER_MANUELLEMENT,1,0,0,0,1,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,"RS 
+mesuré","RS 
+mesuré",,idp_2024,point_prelevement,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=6 | xy=6,BACKLOG_GEO,6,0,6,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,"RS 
+mesuré","RS 
+mesuré",,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=17 | xy=17,MIGRER_AVEC_FLAG,17,17,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,SF,SF,,idp_2024,point_prelevement,,,,coord_x/coord_y,405084.0,424294.0,false,GEO_AMBIGU,volume=77 | xy=77,RATTACHER_MANUELLEMENT,77,0,0,0,77,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,SF,SF,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=77 | xy=65,BACKLOG_GEO,77,0,77,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,SF,SF,,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=30 | xy=30,MIGRER_AVEC_FLAG,30,30,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,SO4--,SO4--,,idp_2024,point_prelevement,,,,coord_x/coord_y,405084.0,424294.0,false,GEO_AMBIGU,volume=81 | xy=81,RATTACHER_MANUELLEMENT,81,0,0,0,81,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,SO4--,SO4--,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=77 | xy=65,BACKLOG_GEO,77,0,77,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,SO4--,SO4--,,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=31 | xy=31,MIGRER_AVEC_FLAG,31,31,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Sb,Sb,,idp_2024,point_prelevement,,,,coord_x/coord_y,491643.0,351675.0,false,GEO_AMBIGU,volume=15 | xy=15,RATTACHER_MANUELLEMENT,15,0,0,0,15,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Sb,Sb,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Sb,Sb,,idp_2024,point_pollution,b57c0c10-c128-4389-983e-81325767bcb9,,AVAL REJET INDUSTRIEL MERJA,coord_x/coord_y,392616.0,408748.0,true,GEO_XY_OK,volume=4 | xy=4,MIGRER_AVEC_FLAG,4,4,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Se,Se,,idp_2024,point_prelevement,,,,coord_x/coord_y,491643.0,351675.0,false,GEO_AMBIGU,volume=15 | xy=15,RATTACHER_MANUELLEMENT,15,0,0,0,15,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Se,Se,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Se,Se,,idp_2024,point_pollution,b57c0c10-c128-4389-983e-81325767bcb9,,AVAL REJET INDUSTRIEL MERJA,coord_x/coord_y,392616.0,408748.0,true,GEO_XY_OK,volume=4 | xy=4,MIGRER_AVEC_FLAG,4,4,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Sn,Sn,,idp_2024,point_prelevement,,,,coord_x/coord_y,491643.0,351675.0,false,GEO_AMBIGU,volume=11 | xy=11,RATTACHER_MANUELLEMENT,11,0,0,0,11,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Sn,Sn,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Sn,Sn,,idp_2024,point_pollution,b57c0c10-c128-4389-983e-81325767bcb9,,AVAL REJET INDUSTRIEL MERJA,coord_x/coord_y,392616.0,408748.0,true,GEO_XY_OK,volume=4 | xy=4,MIGRER_AVEC_FLAG,4,4,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Sr,Sr,,idp_2024,point_prelevement,,,,coord_x/coord_y,519827.0,322725.0,false,GEO_AMBIGU,volume=2 | xy=2,RATTACHER_MANUELLEMENT,2,0,0,0,2,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Sr,Sr,,idp_2024,point_prelevement,,,,coord_x/coord_y,603267.0,399513.0,false,GEO_NO_REF,volume=2 | xy=2,BACKLOG_GEO,2,0,2,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Sr,Sr,,idp_2024,point_pollution,c64059f6-a07a-466b-961d-59f6eaf997f5,,TAZ_PDOM_R5 (E.M),coord_x/coord_y,627835.0,404673.0,true,GEO_XY_OK,volume=1 | xy=1,MIGRER_AVEC_FLAG,1,1,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,TAC_meq/l,TAC_meq/l,,idp_2024,point_prelevement,,,,coord_x/coord_y,507600.0,311800.0,false,GEO_AMBIGU,volume=2 | xy=2,RATTACHER_MANUELLEMENT,2,0,0,0,2,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,TAC_meq/l,TAC_meq/l,,idp_2024,point_prelevement,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=12 | xy=12,BACKLOG_GEO,12,0,12,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,TAC_meq/l,TAC_meq/l,,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=18 | xy=18,MIGRER_AVEC_FLAG,18,18,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,TAC_°F,TAC_°F,,idp_2024,point_prelevement,,,,coord_x/coord_y,507600.0,311800.0,false,GEO_AMBIGU,volume=2 | xy=2,RATTACHER_MANUELLEMENT,2,0,0,0,2,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,TAC_°F,TAC_°F,,idp_2024,point_prelevement,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=12 | xy=12,BACKLOG_GEO,12,0,12,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,TAC_°F,TAC_°F,,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=18 | xy=18,MIGRER_AVEC_FLAG,18,18,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,TA_meq/l,TA_meq/l,,idp_2024,point_prelevement,,,,coord_x/coord_y,507600.0,311800.0,false,GEO_AMBIGU,volume=2 | xy=2,RATTACHER_MANUELLEMENT,2,0,0,0,2,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,TA_meq/l,TA_meq/l,,idp_2024,point_prelevement,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=12 | xy=12,BACKLOG_GEO,12,0,12,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,TA_meq/l,TA_meq/l,,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=18 | xy=18,MIGRER_AVEC_FLAG,18,18,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,TA_°F,TA_°F,,idp_2024,point_prelevement,,,,coord_x/coord_y,507600.0,311800.0,false,GEO_AMBIGU,volume=2 | xy=2,RATTACHER_MANUELLEMENT,2,0,0,0,2,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,TA_°F,TA_°F,,idp_2024,point_prelevement,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=12 | xy=12,BACKLOG_GEO,12,0,12,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,TA_°F,TA_°F,,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=18 | xy=18,MIGRER_AVEC_FLAG,18,18,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,TH,TH,,idp_2024,point_prelevement,,,,coord_x/coord_y,405084.0,424294.0,false,GEO_AMBIGU,volume=81 | xy=81,RATTACHER_MANUELLEMENT,81,0,0,0,81,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,TH,TH,,idp_2024,point_prelevement,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=77 | xy=65,BACKLOG_GEO,77,0,77,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,TH,TH,,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=31 | xy=31,MIGRER_AVEC_FLAG,31,31,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Tl,Tl,,idp_2024,point_prelevement,,,,coord_x/coord_y,491643.0,351675.0,false,GEO_AMBIGU,volume=2 | xy=2,RATTACHER_MANUELLEMENT,2,0,0,0,2,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Tl,Tl,,idp_2024,point_prelevement,,,,coord_x/coord_y,451926.0,365389.0,false,GEO_NO_REF,volume=9 | xy=9,BACKLOG_GEO,9,0,9,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Tl,Tl,,idp_2024,point_pollution,b57c0c10-c128-4389-983e-81325767bcb9,,AVAL REJET INDUSTRIEL MERJA,coord_x/coord_y,392616.0,408748.0,true,GEO_XY_OK,volume=3 | xy=3,MIGRER_AVEC_FLAG,3,3,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,V,V,,idp_2024,point_prelevement,,,,coord_x/coord_y,491643.0,351675.0,false,GEO_AMBIGU,volume=11 | xy=11,RATTACHER_MANUELLEMENT,11,0,0,0,11,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,V,V,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,V,V,,idp_2024,point_pollution,b57c0c10-c128-4389-983e-81325767bcb9,,AVAL REJET INDUSTRIEL MERJA,coord_x/coord_y,392616.0,408748.0,true,GEO_XY_OK,volume=4 | xy=4,MIGRER_AVEC_FLAG,4,4,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Zn,Zn,,idp_2024,point_prelevement,,,,coord_x/coord_y,491643.0,351675.0,false,GEO_AMBIGU,volume=11 | xy=11,RATTACHER_MANUELLEMENT,11,0,0,0,11,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Zn,Zn,,idp_2024,point_prelevement,,,,coord_x/coord_y,415869.0,434092.0,false,GEO_NO_REF,volume=27 | xy=27,BACKLOG_GEO,27,0,27,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,Zn,Zn,,idp_2024,point_pollution,b57c0c10-c128-4389-983e-81325767bcb9,,AVAL REJET INDUSTRIEL MERJA,coord_x/coord_y,392616.0,408748.0,true,GEO_XY_OK,volume=4 | xy=4,MIGRER_AVEC_FLAG,4,4,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,"somme
+anions_meq/l3","somme
+anions_meq/l3",,idp_2024,point_prelevement,,,,coord_x/coord_y,507600.0,311800.0,false,GEO_AMBIGU,volume=3 | xy=3,RATTACHER_MANUELLEMENT,3,0,0,0,3,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,"somme
+anions_meq/l3","somme
+anions_meq/l3",,idp_2024,point_prelevement,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=13 | xy=13,BACKLOG_GEO,13,0,13,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,"somme
+anions_meq/l3","somme
+anions_meq/l3",,idp_2024,point_eau,cf39300f-90fa-4e2a-bf9f-4b1fc6ecb297,,Forage belaje,coord_x/coord_y,453410.0,442673.0,true,GEO_XY_OK,volume=12 | xy=12,MIGRER_AVEC_FLAG,12,12,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,"somme
+anions_mg/l4","somme
+anions_mg/l4",,idp_2024,point_prelevement,,,,coord_x/coord_y,507600.0,311800.0,false,GEO_AMBIGU,volume=3 | xy=3,RATTACHER_MANUELLEMENT,3,0,0,0,3,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,"somme
+anions_mg/l4","somme
+anions_mg/l4",,idp_2024,point_prelevement,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=13 | xy=13,BACKLOG_GEO,13,0,13,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_globale,,"somme
+anions_mg/l4","somme
+anions_mg/l4",,idp_2024,point_eau,cf39300f-90fa-4e2a-bf9f-4b1fc6ecb297,,Forage belaje,coord_x/coord_y,453410.0,442673.0,true,GEO_XY_OK,volume=12 | xy=12,MIGRER_AVEC_FLAG,12,12,0,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Arsenic,Arsenic,,idp_2024,point_prelevement,,,,coord_x/coord_y,392500.0,409172.0,false,GEO_AMBIGU,volume=4 | xy=4,RATTACHER_MANUELLEMENT,4,0,0,0,4,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Arsenic,Arsenic,,idp_2024,point_prelevement,,,,coord_x/coord_y,448223.0,440951.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Bilan_Ionique,Bilan_Ionique,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=48 | xy=48,RATTACHER_MANUELLEMENT,48,0,0,0,48,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Bilan_Ionique,Bilan_Ionique,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,CF,CF,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=48 | xy=48,RATTACHER_MANUELLEMENT,48,0,0,0,48,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,CF,CF,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,CO3,CO3,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=48 | xy=48,RATTACHER_MANUELLEMENT,48,0,0,0,48,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,CO3,CO3,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,CT,CT,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=48 | xy=48,RATTACHER_MANUELLEMENT,48,0,0,0,48,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,CT,CT,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Ca++,Ca++,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=48 | xy=48,RATTACHER_MANUELLEMENT,48,0,0,0,48,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Ca++,Ca++,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Cadmium,Cadmium,,idp_2024,point_prelevement,,,,coord_x/coord_y,392500.0,409172.0,false,GEO_AMBIGU,volume=4 | xy=4,RATTACHER_MANUELLEMENT,4,0,0,0,4,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Cadmium,Cadmium,,idp_2024,point_prelevement,,,,coord_x/coord_y,448223.0,440951.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Chl a,Chl a,,idp_2024,point_prelevement,,,,coord_x/coord_y,406835.0,432501.0,false,GEO_AMBIGU,volume=8 | xy=8,RATTACHER_MANUELLEMENT,8,0,0,0,8,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Chl a,Chl a,,idp_2024,point_prelevement,,,,coord_x/coord_y,393481.0,408618.0,false,GEO_NO_REF,volume=30 | xy=30,BACKLOG_GEO,30,0,30,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Chrome,Chrome,,idp_2024,point_prelevement,,,,coord_x/coord_y,392500.0,409172.0,false,GEO_AMBIGU,volume=4 | xy=4,RATTACHER_MANUELLEMENT,4,0,0,0,4,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Chrome,Chrome,,idp_2024,point_prelevement,,,,coord_x/coord_y,448223.0,440951.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Cl-_IC,Cl-_IC,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=56 | xy=56,RATTACHER_MANUELLEMENT,56,0,0,0,56,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Cl-_IC,Cl-_IC,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=71 | xy=71,BACKLOG_GEO,71,0,71,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Cobalt,Cobalt,,idp_2024,point_prelevement,,,,coord_x/coord_y,392500.0,409172.0,false,GEO_AMBIGU,volume=4 | xy=4,RATTACHER_MANUELLEMENT,4,0,0,0,4,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Cobalt,Cobalt,,idp_2024,point_prelevement,,,,coord_x/coord_y,448223.0,440951.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"Cond
+25°C","Cond
+25°C",,idp_2024,point_prelevement,,,,coord_x/coord_y,426080.0,491230.0,false,GEO_AMBIGU,volume=6 | xy=6,RATTACHER_MANUELLEMENT,6,0,0,0,6,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"Cond
+25°C","Cond
+25°C",,idp_2024,point_prelevement,,,,coord_x/coord_y,448173.0,410920.0,false,GEO_NO_REF,volume=7 | xy=7,BACKLOG_GEO,7,0,7,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"Cond 25°C *0,9*0,01
+","Cond 25°C *0,9*0,01
+",,idp_2024,point_prelevement,,,,coord_x/coord_y,426080.0,491230.0,false,GEO_AMBIGU,volume=6 | xy=6,RATTACHER_MANUELLEMENT,6,0,0,0,6,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"Cond 25°C *0,9*0,01
+","Cond 25°C *0,9*0,01
+",,idp_2024,point_prelevement,,,,coord_x/coord_y,448173.0,410920.0,false,GEO_NO_REF,volume=7 | xy=7,BACKLOG_GEO,7,0,7,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"Cond 25°C *1,1*0,01
+","Cond 25°C *1,1*0,01
+",,idp_2024,point_prelevement,,,,coord_x/coord_y,426080.0,491230.0,false,GEO_AMBIGU,volume=6 | xy=6,RATTACHER_MANUELLEMENT,6,0,0,0,6,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"Cond 25°C *1,1*0,01
+","Cond 25°C *1,1*0,01
+",,idp_2024,point_prelevement,,,,coord_x/coord_y,448173.0,410920.0,false,GEO_NO_REF,volume=7 | xy=7,BACKLOG_GEO,7,0,7,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Cuivre,Cuivre,,idp_2024,point_prelevement,,,,coord_x/coord_y,392500.0,409172.0,false,GEO_AMBIGU,volume=4 | xy=4,RATTACHER_MANUELLEMENT,4,0,0,0,4,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Cuivre,Cuivre,,idp_2024,point_prelevement,,,,coord_x/coord_y,448223.0,440951.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,DBO5,DBO5,,idp_2024,point_prelevement,,,,coord_x/coord_y,392500.0,409172.0,false,GEO_AMBIGU,volume=13 | xy=13,RATTACHER_MANUELLEMENT,13,0,0,0,13,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,DBO5,DBO5,,idp_2024,point_prelevement,,,,coord_x/coord_y,448173.0,410920.0,false,GEO_NO_REF,volume=26 | xy=26,BACKLOG_GEO,26,0,26,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,DCO,DCO,,idp_2024,point_prelevement,,,,coord_x/coord_y,392500.0,409172.0,false,GEO_AMBIGU,volume=13 | xy=13,RATTACHER_MANUELLEMENT,13,0,0,0,13,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,DCO,DCO,,idp_2024,point_prelevement,,,,coord_x/coord_y,448173.0,410920.0,false,GEO_NO_REF,volume=22 | xy=22,BACKLOG_GEO,22,0,22,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"DCO 
+2h décant.","DCO 
+2h décant.",,idp_2024,point_prelevement,,,,coord_x/coord_y,452534.0,441554.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Fe,Fe,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=42 | xy=42,RATTACHER_MANUELLEMENT,42,0,0,0,42,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Fe,Fe,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=36 | xy=36,BACKLOG_GEO,36,0,36,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Fe2+,Fe2+,,idp_2024,point_prelevement,,,,coord_x/coord_y,406835.0,432501.0,false,GEO_AMBIGU,volume=8 | xy=8,RATTACHER_MANUELLEMENT,8,0,0,0,8,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Fe2+,Fe2+,,idp_2024,point_prelevement,,,,coord_x/coord_y,393481.0,408618.0,false,GEO_NO_REF,volume=30 | xy=30,BACKLOG_GEO,30,0,30,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Fer,Fer,,idp_2024,point_prelevement,,,,coord_x/coord_y,392500.0,409172.0,false,GEO_AMBIGU,volume=4 | xy=4,RATTACHER_MANUELLEMENT,4,0,0,0,4,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Fer,Fer,,idp_2024,point_prelevement,,,,coord_x/coord_y,448223.0,440951.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,HCO3,HCO3,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=48 | xy=48,RATTACHER_MANUELLEMENT,48,0,0,0,48,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,HCO3,HCO3,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"Huiles
+Graisses (H G T)","Huiles
+Graisses (H G T)",,idp_2024,point_prelevement,,,,coord_x/coord_y,392500.0,409172.0,false,GEO_AMBIGU,volume=7 | xy=7,RATTACHER_MANUELLEMENT,7,0,0,0,7,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"Huiles
+Graisses (H G T)","Huiles
+Graisses (H G T)",,idp_2024,point_prelevement,,,,coord_x/coord_y,452534.0,441554.0,false,GEO_NO_REF,volume=20 | xy=20,BACKLOG_GEO,20,0,20,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,IP,IP,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=35 | xy=35,RATTACHER_MANUELLEMENT,35,0,0,0,35,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,IP,IP,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=15 | xy=15,BACKLOG_GEO,15,0,15,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,K+,K+,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=48 | xy=48,RATTACHER_MANUELLEMENT,48,0,0,0,48,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,K+,K+,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,K+4,K+4,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=48 | xy=48,RATTACHER_MANUELLEMENT,48,0,0,0,48,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,K+4,K+4,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,MEST Filtr,MEST Filtr,,idp_2024,point_prelevement,,,,coord_x/coord_y,392500.0,409172.0,false,GEO_AMBIGU,volume=21 | xy=21,RATTACHER_MANUELLEMENT,21,0,0,0,21,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,MEST Filtr,MEST Filtr,,idp_2024,point_prelevement,,,,coord_x/coord_y,393481.0,408618.0,false,GEO_NO_REF,volume=56 | xy=56,BACKLOG_GEO,56,0,56,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Mercure,Mercure,,idp_2024,point_prelevement,,,,coord_x/coord_y,392500.0,409172.0,false,GEO_AMBIGU,volume=4 | xy=4,RATTACHER_MANUELLEMENT,4,0,0,0,4,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Mercure,Mercure,,idp_2024,point_prelevement,,,,coord_x/coord_y,448223.0,440951.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Mg++,Mg++,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=48 | xy=48,RATTACHER_MANUELLEMENT,48,0,0,0,48,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Mg++,Mg++,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Mn,Mn,,idp_2024,point_prelevement,,,,coord_x/coord_y,393481.0,408618.0,false,GEO_NO_REF,volume=2 | xy=2,BACKLOG_GEO,2,0,2,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Mn5,Mn5,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=43 | xy=43,RATTACHER_MANUELLEMENT,43,0,0,0,43,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Mn5,Mn5,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=45 | xy=45,BACKLOG_GEO,45,0,45,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NH4+ ,NH4+ ,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=56 | xy=56,RATTACHER_MANUELLEMENT,56,0,0,0,56,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NH4+ ,NH4+ ,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=71 | xy=71,BACKLOG_GEO,71,0,71,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NH4+  Titri,NH4+  Titri,,idp_2024,point_prelevement,,,,coord_x/coord_y,548059.0,363432.0,false,GEO_AMBIGU,volume=1 | xy=1,RATTACHER_MANUELLEMENT,1,0,0,0,1,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NH4+  Titri,NH4+  Titri,,idp_2024,point_prelevement,,,,coord_x/coord_y,393481.0,408618.0,false,GEO_NO_REF,volume=1 | xy=1,BACKLOG_GEO,1,0,1,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NH4+ 2,NH4+ 2,,idp_2024,point_prelevement,,,,coord_x/coord_y,543300.0,399700.0,false,GEO_AMBIGU,volume=6 | xy=6,RATTACHER_MANUELLEMENT,6,0,0,0,6,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NH4+ 2,NH4+ 2,,idp_2024,point_prelevement,,,,coord_x/coord_y,416810.0,416679.0,false,GEO_NO_REF,volume=11 | xy=11,BACKLOG_GEO,11,0,11,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NH4+ Spect,NH4+ Spect,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=56 | xy=56,RATTACHER_MANUELLEMENT,56,0,0,0,56,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NH4+ Spect,NH4+ Spect,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=71 | xy=71,BACKLOG_GEO,71,0,71,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NO2- _Spectro.,NO2- _Spectro.,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=48 | xy=48,RATTACHER_MANUELLEMENT,48,0,0,0,48,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NO2- _Spectro.,NO2- _Spectro.,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NO3-_Réduction Cd,NO3-_Réduction Cd,,idp_2024,point_prelevement,,,,coord_x/coord_y,392500.0,409172.0,false,GEO_AMBIGU,volume=1 | xy=1,RATTACHER_MANUELLEMENT,1,0,0,0,1,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NO3-_Réduction Cd,NO3-_Réduction Cd,,idp_2024,point_prelevement,,,,coord_x/coord_y,383102.0,406392.0,false,GEO_NO_REF,volume=3 | xy=3,BACKLOG_GEO,3,0,3,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NO3-_Spectro,NO3-_Spectro,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=56 | xy=56,RATTACHER_MANUELLEMENT,56,0,0,0,56,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NO3-_Spectro,NO3-_Spectro,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=71 | xy=71,BACKLOG_GEO,71,0,71,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NTK Spectr,NTK Spectr,,idp_2024,point_prelevement,,,,coord_x/coord_y,392500.0,409172.0,false,GEO_AMBIGU,volume=13 | xy=13,RATTACHER_MANUELLEMENT,13,0,0,0,13,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NTK Spectr,NTK Spectr,,idp_2024,point_prelevement,,,,coord_x/coord_y,448173.0,410920.0,false,GEO_NO_REF,volume=26 | xy=26,BACKLOG_GEO,26,0,26,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NTK Titri,NTK Titri,,idp_2024,point_prelevement,,,,coord_x/coord_y,543300.0,399700.0,false,GEO_AMBIGU,volume=6 | xy=6,RATTACHER_MANUELLEMENT,6,0,0,0,6,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,NTK Titri,NTK Titri,,idp_2024,point_prelevement,,,,coord_x/coord_y,448173.0,410920.0,false,GEO_NO_REF,volume=15 | xy=15,BACKLOG_GEO,15,0,15,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Na+,Na+,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=48 | xy=48,RATTACHER_MANUELLEMENT,48,0,0,0,48,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Na+,Na+,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Na+3,Na+3,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=48 | xy=48,RATTACHER_MANUELLEMENT,48,0,0,0,48,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Na+3,Na+3,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Nickel,Nickel,,idp_2024,point_prelevement,,,,coord_x/coord_y,392500.0,409172.0,false,GEO_AMBIGU,volume=4 | xy=4,RATTACHER_MANUELLEMENT,4,0,0,0,4,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Nickel,Nickel,,idp_2024,point_prelevement,,,,coord_x/coord_y,448223.0,440951.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,OH-,OH-,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=48 | xy=48,RATTACHER_MANUELLEMENT,48,0,0,0,48,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,OH-,OH-,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,PO43-,PO43-,,idp_2024,point_prelevement,,,,coord_x/coord_y,392500.0,409172.0,false,GEO_AMBIGU,volume=21 | xy=21,RATTACHER_MANUELLEMENT,21,0,0,0,21,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,PO43-,PO43-,,idp_2024,point_prelevement,,,,coord_x/coord_y,393481.0,408618.0,false,GEO_NO_REF,volume=56 | xy=56,BACKLOG_GEO,56,0,56,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,PT,PT,,idp_2024,point_prelevement,,,,coord_x/coord_y,392500.0,409172.0,false,GEO_AMBIGU,volume=21 | xy=21,RATTACHER_MANUELLEMENT,21,0,0,0,21,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,PT,PT,,idp_2024,point_prelevement,,,,coord_x/coord_y,393481.0,408618.0,false,GEO_NO_REF,volume=56 | xy=56,BACKLOG_GEO,56,0,56,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"PT
+ décant. 2h","PT
+ décant. 2h",,idp_2024,point_prelevement,,,,coord_x/coord_y,452534.0,441554.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,PT DECANTE,PT DECANTE,,idp_2024,point_prelevement,,,,coord_x/coord_y,452534.0,441554.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Plomb,Plomb,,idp_2024,point_prelevement,,,,coord_x/coord_y,392500.0,409172.0,false,GEO_AMBIGU,volume=4 | xy=4,RATTACHER_MANUELLEMENT,4,0,0,0,4,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Plomb,Plomb,,idp_2024,point_prelevement,,,,coord_x/coord_y,448223.0,440951.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"RS 
+mesuré_à 105 °C","RS 
+mesuré_à 105 °C",,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=35 | xy=35,RATTACHER_MANUELLEMENT,35,0,0,0,35,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"RS 
+mesuré_à 105 °C","RS 
+mesuré_à 105 °C",,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=15 | xy=15,BACKLOG_GEO,15,0,15,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,SF,SF,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=48 | xy=48,RATTACHER_MANUELLEMENT,48,0,0,0,48,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,SF,SF,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,SO42-_IC,SO42-_IC,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=56 | xy=56,RATTACHER_MANUELLEMENT,56,0,0,0,56,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,SO42-_IC,SO42-_IC,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=71 | xy=71,BACKLOG_GEO,71,0,71,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"Somme
+cations_meq/l","Somme
+cations_meq/l",,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=48 | xy=48,RATTACHER_MANUELLEMENT,48,0,0,0,48,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"Somme
+cations_meq/l","Somme
+cations_meq/l",,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"Somme
+cations_mg/l","Somme
+cations_mg/l",,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=48 | xy=48,RATTACHER_MANUELLEMENT,48,0,0,0,48,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"Somme
+cations_mg/l","Somme
+cations_mg/l",,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Sélénium,Sélénium,,idp_2024,point_prelevement,,,,coord_x/coord_y,392500.0,409172.0,false,GEO_AMBIGU,volume=4 | xy=4,RATTACHER_MANUELLEMENT,4,0,0,0,4,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Sélénium,Sélénium,,idp_2024,point_prelevement,,,,coord_x/coord_y,448223.0,440951.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,TA/Tas_meq/l,TA/Tas_meq/l,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=48 | xy=48,RATTACHER_MANUELLEMENT,48,0,0,0,48,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,TA/Tas_meq/l,TA/Tas_meq/l,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,TA/Tas_°F,TA/Tas_°F,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=48 | xy=48,RATTACHER_MANUELLEMENT,48,0,0,0,48,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,TA/Tas_°F,TA/Tas_°F,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,TAC/TACs_meq/l,TAC/TACs_meq/l,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=48 | xy=48,RATTACHER_MANUELLEMENT,48,0,0,0,48,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,TAC/TACs_meq/l,TAC/TACs_meq/l,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,TAC/TACs_°F,TAC/TACs_°F,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=48 | xy=48,RATTACHER_MANUELLEMENT,48,0,0,0,48,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,TAC/TACs_°F,TAC/TACs_°F,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,TH,TH,,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=48 | xy=48,RATTACHER_MANUELLEMENT,48,0,0,0,48,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,TH,TH,,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Zinc,Zinc,,idp_2024,point_prelevement,,,,coord_x/coord_y,392500.0,409172.0,false,GEO_AMBIGU,volume=4 | xy=4,RATTACHER_MANUELLEMENT,4,0,0,0,4,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,Zinc,Zinc,,idp_2024,point_prelevement,,,,coord_x/coord_y,448223.0,440951.0,false,GEO_NO_REF,volume=4 | xy=4,BACKLOG_GEO,4,0,4,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"indice de phénol M:A
+","indice de phénol M:A
+",,idp_2024,point_prelevement,,,,coord_x/coord_y,392500.0,409172.0,false,GEO_AMBIGU,volume=7 | xy=7,RATTACHER_MANUELLEMENT,7,0,0,0,7,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"indice de phénol M:A
+","indice de phénol M:A
+",,idp_2024,point_prelevement,,,,coord_x/coord_y,452534.0,441554.0,false,GEO_NO_REF,volume=20 | xy=20,BACKLOG_GEO,20,0,20,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,pH au laboratoire,pH au laboratoire,,idp_2024,point_prelevement,,,,coord_x/coord_y,392500.0,409172.0,false,GEO_AMBIGU,volume=1 | xy=1,RATTACHER_MANUELLEMENT,1,0,0,0,1,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,pH au laboratoire,pH au laboratoire,,idp_2024,point_prelevement,,,,coord_x/coord_y,393481.0,408618.0,false,GEO_NO_REF,volume=6 | xy=6,BACKLOG_GEO,6,0,6,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"somme
+anions_meq/l","somme
+anions_meq/l",,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=48 | xy=48,RATTACHER_MANUELLEMENT,48,0,0,0,48,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"somme
+anions_meq/l","somme
+anions_meq/l",,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"somme
+anions_mg/l","somme
+anions_mg/l",,idp_2024,point_prelevement,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=48 | xy=48,RATTACHER_MANUELLEMENT,48,0,0,0,48,0
+idp,staging.raw_idp_2024_mesures_qualite_marche_cadre,,"somme
+anions_mg/l","somme
+anions_mg/l",,idp_2024,point_prelevement,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=41 | xy=41,BACKLOG_GEO,41,0,41,0,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,(parametre_manquant),(parametre_manquant),,idp_2024,point_pollution,,,,coord_x/coord_y,450862.0,365355.0,false,GEO_AMBIGU,volume=42 | xy=42,RATTACHER_MANUELLEMENT,42,0,0,0,42,0
+idp,staging.raw_idp_2024_src_pollution_globale,,(parametre_manquant),(parametre_manquant),,idp_2024,point_pollution,,,,coord_x/coord_y,,,false,GEO_NO_XY,volume=54 | xy=18,EXCLURE_TEMPORAIREMENT,54,0,0,54,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,(parametre_manquant),(parametre_manquant),,idp_2024,point_pollution,0c2c12f5-1ccd-4b4c-b4f1-c9ddece041b4,,REJET MERJA FOUARATE AIN SEBAA,coord_x/coord_y,395597.0,404609.0,true,GEO_XY_OK,volume=15 | xy=15,MIGRER_AVEC_FLAG,15,15,0,0,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,A-B-C-D,A-B-C-D,,idp_2024,point_pollution,,,,coord_x/coord_y,602102.0,451169.0,false,GEO_AMBIGU,volume=9 | xy=9,RATTACHER_MANUELLEMENT,9,0,0,0,9,0
+idp,staging.raw_idp_2024_src_pollution_globale,,A-B-C-D,A-B-C-D,,idp_2024,point_pollution,,,,coord_x/coord_y,439837.0,360098.0,false,GEO_NO_REF,volume=8 | xy=8,BACKLOG_GEO,8,0,8,0,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,A-B-C-D,A-B-C-D,,idp_2024,point_pollution,bd8e1d22-59d0-492d-9ee0-d406974fc385,,RAT_DOM_R1,coord_x/coord_y,563169.0,378121.0,true,GEO_XY_OK,volume=4 | xy=4,MIGRER_AVEC_FLAG,4,4,0,0,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,A-B-C-D-H-E,A-B-C-D-H-E,,idp_2024,point_pollution,,,,coord_x/coord_y,553656.0,359235.0,false,GEO_AMBIGU,volume=10 | xy=10,RATTACHER_MANUELLEMENT,10,0,0,0,10,0
+idp,staging.raw_idp_2024_src_pollution_globale,,A-B-C-D-H-E,A-B-C-D-H-E,,idp_2024,point_pollution,,,,coord_x/coord_y,603267.0,399513.0,false,GEO_NO_REF,volume=7 | xy=7,BACKLOG_GEO,7,0,7,0,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,A-B-C-D-H-E,A-B-C-D-H-E,,idp_2024,point_pollution,c64059f6-a07a-466b-961d-59f6eaf997f5,,TAZ_PDOM_R5 (E.M),coord_x/coord_y,627835.0,404673.0,true,GEO_XY_OK,volume=2 | xy=2,MIGRER_AVEC_FLAG,2,2,0,0,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,F-G-D,F-G-D,,idp_2024,point_pollution,,,,coord_x/coord_y,514760.0,421189.0,false,GEO_NO_REF,volume=2 | xy=2,BACKLOG_GEO,2,0,2,0,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,F-G-D,F-G-D,,idp_2024,point_eau,99289d5c-c6f6-43fa-88f3-97b32e24214e,,TAIBI HASSAN,coord_x/coord_y,562904.0,377873.0,true,GEO_XY_OK,volume=11 | xy=11,MIGRER_AVEC_FLAG,11,11,0,0,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,Forage,Forage,,idp_2024,point_pollution,,,,coord_x/coord_y,518542.0,364386.0,false,GEO_NO_REF,volume=1 | xy=1,BACKLOG_GEO,1,0,1,0,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,Forage,Forage,,idp_2024,point_eau,bceda482-06c9-4271-978a-76bd70c7cede,,Forage CHELIK Arbi,coord_x/coord_y,410379.0,436981.0,true,GEO_XY_OK,volume=4 | xy=4,MIGRER_AVEC_FLAG,4,4,0,0,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,Oued,Oued,,idp_2024,point_pollution,,,,coord_x/coord_y,558250.0,405950.0,false,GEO_AMBIGU,volume=1 | xy=1,RATTACHER_MANUELLEMENT,1,0,0,0,1,0
+idp,staging.raw_idp_2024_src_pollution_globale,,Oued,Oued,,idp_2024,point_pollution,,,,coord_x/coord_y,404650.0,423453.0,false,GEO_NO_REF,volume=31 | xy=31,BACKLOG_GEO,31,0,31,0,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,Puits,Puits,,idp_2024,point_pollution,,,,coord_x/coord_y,514759.0,421189.0,false,GEO_NO_REF,volume=2 | xy=2,BACKLOG_GEO,2,0,2,0,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,Puits,Puits,,idp_2024,point_eau,06cbb5be-2939-4f0c-9237-cb95f9004b09,,Puits youness CHOUA,coord_x/coord_y,414586.0,437824.0,true,GEO_XY_OK,volume=1 | xy=1,MIGRER_AVEC_FLAG,1,1,0,0,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,Rejet,Rejet,,idp_2024,point_pollution,,,,coord_x/coord_y,405084.0,424294.0,false,GEO_AMBIGU,volume=34 | xy=34,RATTACHER_MANUELLEMENT,34,0,0,0,34,0
+idp,staging.raw_idp_2024_src_pollution_globale,,Rejet,Rejet,,idp_2024,point_pollution,7c4f5497-77f7-4d0c-abc2-a8d151da4d5b,,TRL_DOM_R2,coord_x/coord_y,510740.0,452252.0,true,GEO_XY_OK,volume=1 | xy=1,MIGRER_AVEC_FLAG,1,1,0,0,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,Source,Source,,idp_2024,point_pollution,,,,coord_x/coord_y,548059.0,363432.0,false,GEO_AMBIGU,volume=1 | xy=1,RATTACHER_MANUELLEMENT,1,0,0,0,1,0
+idp,staging.raw_idp_2024_src_pollution_globale,,Source,Source,,idp_2024,point_pollution,,,,coord_x/coord_y,548010.0,363937.0,false,GEO_NO_REF,volume=1 | xy=1,BACKLOG_GEO,1,0,1,0,0,0
+idp,staging.raw_idp_2024_src_pollution_globale,,Source,Source,,idp_2024,point_eau,7a20e0b7-e6d8-4d06-bae2-6969b28a8456,,Source skhinate (Nakhla),coord_x/coord_y,549634.0,382024.0,true,GEO_XY_OK,volume=2 | xy=2,MIGRER_AVEC_FLAG,2,2,0,0,0,0
+idp,staging.raw_idp_2024_src_pollution_marche_cadre,,(parametre_manquant),(parametre_manquant),,idp_2024,point_pollution,,,,coord_x/coord_y,377613.0,394130.0,false,GEO_AMBIGU,volume=68 | xy=68,RATTACHER_MANUELLEMENT,68,0,0,0,68,0
+idp,staging.raw_idp_2024_src_pollution_marche_cadre,,(parametre_manquant),(parametre_manquant),,idp_2024,point_pollution,,,,coord_x/coord_y,381040.0,389473.0,false,GEO_NO_REF,volume=80 | xy=80,BACKLOG_GEO,80,0,80,0,0,0
+meteo,meteo.mesure_evaporation,meteo.mesure_evaporation,Evaporation,Evaporation,mm,meteo,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=38592 | geo_ok=38592,MIGRER,38592,38592,0,0,0,0
+meteo,meteo.mesure_precipitation,meteo.mesure_precipitation,Precipitation,Precipitation,mm,meteo,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=546007 | geo_ok=546007 | DASHBOARD_VALUE = val_remplies,MIGRER,546007,546007,0,0,0,0
+meteo,meteo.mesure_precipitation_annuelle_max,meteo.mesure_precipitation_annuelle_max,Precipitation_annuelle,Precipitation_annuelle,mm/an,meteo,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1915 | geo_ok=1915,MIGRER,1915,1915,0,0,0,0
+meteo,meteo.mesure_precipitation_annuelle_max,meteo.mesure_precipitation_annuelle_max,Precipitation_max,Precipitation_max,mm,meteo,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1915 | geo_ok=1915,MIGRER,1915,1915,0,0,0,0
+modeles,swat_output.mesure_qualite_subbasin_ts,swat_output.mesure_qualite_subbasin_ts,NSURQ,NSURQ,,modele_swat,modele_swat,MULTIPLE,MULTIPLE,MULTIPLE,subbasin_uid,,,true,GEO_OK,volume=149022 | geo_ok=149022,MIGRER,149022,149022,0,0,0,0
+modeles,swat_output.mesure_qualite_subbasin_ts,swat_output.mesure_qualite_subbasin_ts,ORGN,ORGN,,modele_swat,modele_swat,MULTIPLE,MULTIPLE,MULTIPLE,subbasin_uid,,,true,GEO_OK,volume=149022 | geo_ok=149022,MIGRER,149022,149022,0,0,0,0
+modeles,swat_output.mesure_qualite_subbasin_ts,swat_output.mesure_qualite_subbasin_ts,ORGP,ORGP,,modele_swat,modele_swat,MULTIPLE,MULTIPLE,MULTIPLE,subbasin_uid,,,true,GEO_OK,volume=149022 | geo_ok=149022,MIGRER,149022,149022,0,0,0,0
+modeles,swat_output.mesure_qualite_subbasin_ts,swat_output.mesure_qualite_subbasin_ts,SEDP,SEDP,,modele_swat,modele_swat,MULTIPLE,MULTIPLE,MULTIPLE,subbasin_uid,,,true,GEO_OK,volume=149022 | geo_ok=149022,MIGRER,149022,149022,0,0,0,0
+modeles,swat_output.mesure_qualite_subbasin_ts,swat_output.mesure_qualite_subbasin_ts,SOLP,SOLP,,modele_swat,modele_swat,MULTIPLE,MULTIPLE,MULTIPLE,subbasin_uid,,,true,GEO_OK,volume=149022 | geo_ok=149022,MIGRER,149022,149022,0,0,0,0
+modeles,wasp_output.mesure_qualite_segment_ts,wasp_output.mesure_qualite_segment_ts,CBOD_U,CBOD_U,,modele_wasp,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=76734 | geo_ok=76734,MIGRER,76734,76734,0,0,0,0
+modeles,wasp_output.mesure_qualite_segment_ts,wasp_output.mesure_qualite_segment_ts,DO,DO,,modele_wasp,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=80388 | geo_ok=80388,MIGRER,80388,80388,0,0,0,0
+modeles,wasp_output.mesure_qualite_segment_ts,wasp_output.mesure_qualite_segment_ts,FLOW_OUT,FLOW_OUT,,modele_wasp,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=76734 | geo_ok=76734,MIGRER,76734,76734,0,0,0,0
+modeles,wasp_output.mesure_qualite_segment_ts,wasp_output.mesure_qualite_segment_ts,NH4_N,NH4_N,,modele_wasp,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=76734 | geo_ok=76734,MIGRER,76734,76734,0,0,0,0
+modeles,wasp_output.mesure_qualite_segment_ts,wasp_output.mesure_qualite_segment_ts,NO3_N,NO3_N,,modele_wasp,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=76734 | geo_ok=76734,MIGRER,76734,76734,0,0,0,0
+modeles,wasp_output.mesure_qualite_segment_ts,wasp_output.mesure_qualite_segment_ts,PH,PH,,modele_wasp,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=76734 | geo_ok=76734,MIGRER,76734,76734,0,0,0,0
+modeles,wasp_output.mesure_qualite_segment_ts,wasp_output.mesure_qualite_segment_ts,SOLIDS,SOLIDS,,modele_wasp,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=76734 | geo_ok=76734,MIGRER,76734,76734,0,0,0,0
+modeles,wasp_output.mesure_qualite_segment_ts,wasp_output.mesure_qualite_segment_ts,TCBOD,TCBOD,,modele_wasp,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=80388 | geo_ok=80388,MIGRER,80388,80388,0,0,0,0
+modeles,wasp_output.mesure_qualite_segment_ts,wasp_output.mesure_qualite_segment_ts,TKN,TKN,,modele_wasp,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=76734 | geo_ok=76734,MIGRER,76734,76734,0,0,0,0
+modeles,wasp_output.mesure_qualite_segment_ts,wasp_output.mesure_qualite_segment_ts,TN,TN,,modele_wasp,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=80388 | geo_ok=80388,MIGRER,80388,80388,0,0,0,0
+modeles,wasp_output.mesure_qualite_segment_ts,wasp_output.mesure_qualite_segment_ts,WATER_AGE,WATER_AGE,,modele_wasp,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=76734 | geo_ok=76734,MIGRER,76734,76734,0,0,0,0
+modeles,wasp_output.mesure_qualite_segment_ts,wasp_output.mesure_qualite_segment_ts,WATER_TEMP,WATER_TEMP,,modele_wasp,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=76734 | geo_ok=76734,MIGRER,76734,76734,0,0,0,0
+modeles,wasp_sebou.wasp_results,wasp_sebou.wasp_results,variable_id:1,variable_id:1,,modele_wasp_legacy,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=76734 | geo_ok=76734 | backlog_referentiel=76734 | ancien scenario WASP a traiter a part,BACKLOG_REFERENTIEL,76734,76734,0,0,0,76734
+modeles,wasp_sebou.wasp_results,wasp_sebou.wasp_results,variable_id:10,variable_id:10,,modele_wasp_legacy,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=76734 | geo_ok=76734 | backlog_referentiel=76734 | ancien scenario WASP a traiter a part,BACKLOG_REFERENTIEL,76734,76734,0,0,0,76734
+modeles,wasp_sebou.wasp_results,wasp_sebou.wasp_results,variable_id:11,variable_id:11,,modele_wasp_legacy,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=76734 | geo_ok=76734 | backlog_referentiel=76734 | ancien scenario WASP a traiter a part,BACKLOG_REFERENTIEL,76734,76734,0,0,0,76734
+modeles,wasp_sebou.wasp_results,wasp_sebou.wasp_results,variable_id:12,variable_id:12,,modele_wasp_legacy,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=76734 | geo_ok=76734 | backlog_referentiel=76734 | ancien scenario WASP a traiter a part,BACKLOG_REFERENTIEL,76734,76734,0,0,0,76734
+modeles,wasp_sebou.wasp_results,wasp_sebou.wasp_results,variable_id:2,variable_id:2,,modele_wasp_legacy,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=76734 | geo_ok=76734 | backlog_referentiel=76734 | ancien scenario WASP a traiter a part,BACKLOG_REFERENTIEL,76734,76734,0,0,0,76734
+modeles,wasp_sebou.wasp_results,wasp_sebou.wasp_results,variable_id:3,variable_id:3,,modele_wasp_legacy,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=80388 | geo_ok=80388 | backlog_referentiel=80388 | ancien scenario WASP a traiter a part,BACKLOG_REFERENTIEL,80388,80388,0,0,0,80388
+modeles,wasp_sebou.wasp_results,wasp_sebou.wasp_results,variable_id:4,variable_id:4,,modele_wasp_legacy,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=76734 | geo_ok=76734 | backlog_referentiel=76734 | ancien scenario WASP a traiter a part,BACKLOG_REFERENTIEL,76734,76734,0,0,0,76734
+modeles,wasp_sebou.wasp_results,wasp_sebou.wasp_results,variable_id:5,variable_id:5,,modele_wasp_legacy,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=76734 | geo_ok=76734 | backlog_referentiel=76734 | ancien scenario WASP a traiter a part,BACKLOG_REFERENTIEL,76734,76734,0,0,0,76734
+modeles,wasp_sebou.wasp_results,wasp_sebou.wasp_results,variable_id:6,variable_id:6,,modele_wasp_legacy,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=76734 | geo_ok=76734 | backlog_referentiel=76734 | ancien scenario WASP a traiter a part,BACKLOG_REFERENTIEL,76734,76734,0,0,0,76734
+modeles,wasp_sebou.wasp_results,wasp_sebou.wasp_results,variable_id:7,variable_id:7,,modele_wasp_legacy,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=80388 | geo_ok=80388 | backlog_referentiel=80388 | ancien scenario WASP a traiter a part,BACKLOG_REFERENTIEL,80388,80388,0,0,0,80388
+modeles,wasp_sebou.wasp_results,wasp_sebou.wasp_results,variable_id:8,variable_id:8,,modele_wasp_legacy,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=76734 | geo_ok=76734 | backlog_referentiel=76734 | ancien scenario WASP a traiter a part,BACKLOG_REFERENTIEL,76734,76734,0,0,0,76734
+modeles,wasp_sebou.wasp_results,wasp_sebou.wasp_results,variable_id:9,variable_id:9,,modele_wasp_legacy,modele_wasp,MULTIPLE,MULTIPLE,MULTIPLE,segment_local_id,,,false,GEO_OK,volume=80388 | geo_ok=80388 | backlog_referentiel=80388 | ancien scenario WASP a traiter a part,BACKLOG_REFERENTIEL,80388,80388,0,0,0,80388
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,CA,CA,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=126 | geo_ok=126,MIGRER,126,126,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,CF,CF,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=139 | geo_ok=139,MIGRER,139,139,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,CHLA,CHLA,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=286 | geo_ok=286,MIGRER,286,286,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,CL,CL,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=153 | geo_ok=153,MIGRER,153,153,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,CO3,CO3,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=120 | geo_ok=120,MIGRER,120,120,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,COND,COND,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=420 | geo_ok=420,MIGRER,420,420,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,COULEUR,COULEUR,,qualite_eau,station,5607a627-86f5-496f-aca9-0728a8fd01e9,1709/9,brg el wahda,station_id,,,true,GEO_OK,volume=1 | geo_ok=1,MIGRER,1,1,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,CT,CT,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=135 | geo_ok=135,MIGRER,135,135,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,DBO5,DBO5,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=138 | geo_ok=138,MIGRER,138,138,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,DCO_DEC2H,DCO_DEC2H,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=138 | geo_ok=138,MIGRER,138,138,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,DEBIT,DEBIT,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=8 | geo_ok=8,MIGRER,8,8,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,DETERGENT,DETERGENT,,qualite_eau,station,d9fadde8-d0b9-45b8-8d33-bebe8fdea7e2,788/21,brg ouljet soltane,station_id,,,true,GEO_OK,volume=1 | geo_ok=1,MIGRER,1,1,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,DISQUE_SECCHI,DISQUE_SECCHI,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=279 | geo_ok=279,MIGRER,279,279,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,EH,EH,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=6 | geo_ok=6,MIGRER,6,6,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,FE,FE,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=278 | geo_ok=278,MIGRER,278,278,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,HCO3,HCO3,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=129 | geo_ok=129,MIGRER,129,129,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,IBD,IBD,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=13 | geo_ok=13,MIGRER,13,13,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,IBGN,IBGN,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=3 | geo_ok=3,MIGRER,3,3,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,K,K,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=129 | geo_ok=129,MIGRER,129,129,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,LARGEUR,LARGEUR,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=5 | geo_ok=5,MIGRER,5,5,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,MES,MES,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=414 | geo_ok=414,MIGRER,414,414,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,MG,MG,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=130 | geo_ok=130,MIGRER,130,130,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,MN,MN,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=290 | geo_ok=290,MIGRER,290,290,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,MO,MO,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=6 | geo_ok=6,MIGRER,6,6,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,NA,NA,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=128 | geo_ok=128,MIGRER,128,128,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,NH4,NH4,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=231 | geo_ok=231,MIGRER,231,231,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,NO2,NO2,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=134 | geo_ok=134,MIGRER,134,134,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,NO3,NO3,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=399 | geo_ok=399,MIGRER,399,399,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,NTK,NTK,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=147 | geo_ok=147,MIGRER,147,147,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,N_ORG,N_ORG,,qualite_eau,station,84c21eb2-6604-4bf9-8073-1e5fb86a925b,1710/9,brg sahla,station_id,,,true,GEO_OK,volume=1 | geo_ok=1,MIGRER,1,1,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,N_TOT,N_TOT,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=11 | geo_ok=11,MIGRER,11,11,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,O2_DISSOUS,O2_DISSOUS,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=418 | geo_ok=418,MIGRER,418,418,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,OH,OH,,qualite_eau,station,d9fadde8-d0b9-45b8-8d33-bebe8fdea7e2,788/21,brg ouljet soltane,station_id,,,true,GEO_OK,volume=1 | geo_ok=1,MIGRER,1,1,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,PH,PH,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=420 | geo_ok=420,MIGRER,420,420,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,PHENOL,PHENOL,,qualite_eau,station,5533ab49-e2ed-4580-862d-32146588bbf5,3546/8,brg garde du sebou,station_id,,,true,GEO_OK,volume=2 | geo_ok=2,MIGRER,2,2,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,PHEOPIGMENT,PHEOPIGMENT,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=36 | geo_ok=36,MIGRER,36,36,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,PO4,PO4,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=250 | geo_ok=250,MIGRER,250,250,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,PROFONDEUR,PROFONDEUR,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=13 | geo_ok=13,MIGRER,13,13,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,PT,PT,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=389 | geo_ok=389,MIGRER,389,389,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,PTD,PTD,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=15 | geo_ok=15,MIGRER,15,15,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,PTP,PTP,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=15 | geo_ok=15,MIGRER,15,15,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,RESIDUS_SECS,RESIDUS_SECS,,qualite_eau,station,d9fadde8-d0b9-45b8-8d33-bebe8fdea7e2,788/21,brg ouljet soltane,station_id,,,true,GEO_OK,volume=1 | geo_ok=1,MIGRER,1,1,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,S2,S2,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2 | geo_ok=2,MIGRER,2,2,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,SATURATION_OXYGENE,SATURATION_OXYGENE,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=128 | geo_ok=128,MIGRER,128,128,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,SF,SF,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=134 | geo_ok=134,MIGRER,134,134,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,SIO3,SIO3,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=37 | geo_ok=37,MIGRER,37,37,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,SO4,SO4,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=387 | geo_ok=387,MIGRER,387,387,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,TA,TA,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=70 | geo_ok=70,MIGRER,70,70,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,TAC,TAC,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=71 | geo_ok=71,MIGRER,71,71,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,TH,TH,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=50 | geo_ok=50,MIGRER,50,50,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,TURBIDITE,TURBIDITE,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=143 | geo_ok=143,MIGRER,143,143,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,T_AIR,T_AIR,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=420 | geo_ok=420,MIGRER,420,420,0,0,0,0
+qualite,qualite.mesure_qualite_barrage,qualite.mesure_qualite_barrage,T_EAU,T_EAU,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=420 | geo_ok=420,MIGRER,420,420,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,AL,AL,mg/L,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=4 | geo_ok=4,MIGRER,4,4,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,AS,AS,mg/L,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=3 | geo_ok=3,MIGRER,3,3,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,CA,CA,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2550 | geo_ok=2550,MIGRER,2550,2550,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,CD,CD,mg/L,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=5 | geo_ok=5,MIGRER,5,5,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,CF,CF,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2643 | geo_ok=2643,MIGRER,2643,2643,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,CHLA,CHLA,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=7 | geo_ok=7,MIGRER,7,7,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,CL,CL,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2623 | geo_ok=2623,MIGRER,2623,2623,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,CN,CN,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=3 | geo_ok=3 | backlog_referentiel=3,MIGRER,3,3,0,0,0,3
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,CO,CO,mg/L,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2 | geo_ok=2,MIGRER,2,2,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,CO3,CO3,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2553 | geo_ok=2553,MIGRER,2553,2553,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,COND,COND,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2658 | geo_ok=2658 | backlog_referentiel=2658,MIGRER,2658,2658,0,0,0,2658
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,COULEUR,COULEUR,,qualite_eau,station,03ced66b-ddcb-48e2-9e30-485281ada64d,1149/15,puits Ã  captage cuvelÃ©,station_id,,,true,GEO_OK,volume=1 | geo_ok=1,MIGRER,1,1,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,CR,CR,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=5 | geo_ok=5 | backlog_referentiel=5,MIGRER,5,5,0,0,0,5
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,CT,CT,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2560 | geo_ok=2560,MIGRER,2560,2560,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,CU,CU,mg/L,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=5 | geo_ok=5,MIGRER,5,5,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,DBO5,DBO5,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=10 | geo_ok=10,MIGRER,10,10,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,DCO_DEC2H,DCO_DEC2H,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=179 | geo_ok=179,MIGRER,179,179,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,DEBIT,DEBIT,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=4 | geo_ok=4,MIGRER,4,4,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,DEBIT,DEBIT,m3/s,qualite_eau,station,ae23f4ac-e24e-4d88-9508-00ba141618a4,788/22,ain ben smim,station_id,,,true,GEO_OK,volume=1 | geo_ok=1,MIGRER,1,1,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,DETERGENT,DETERGENT,,qualite_eau,station,90e5ab53-b75b-48fe-babb-8edc4ba00aa0,897/16,puit station bab marzouka,station_id,,,true,GEO_OK,volume=1 | geo_ok=1,MIGRER,1,1,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,DISQUE_SECCHI,DISQUE_SECCHI,,qualite_eau,station,ae23f4ac-e24e-4d88-9508-00ba141618a4,788/22,ain ben smim,station_id,,,true,GEO_OK,volume=1 | geo_ok=1,MIGRER,1,1,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,EH,EH,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=3 | geo_ok=3,MIGRER,3,3,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,F,F,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=5 | geo_ok=5 | backlog_referentiel=5,MIGRER,5,5,0,0,0,5
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,FE,FE,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2226 | geo_ok=2226,MIGRER,2226,2226,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,H2S,H2S,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2 | geo_ok=2 | backlog_referentiel=2,MIGRER,2,2,0,0,0,2
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,HCO3,HCO3,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2636 | geo_ok=2636 | backlog_referentiel=2636,MIGRER,2636,2636,0,0,0,2636
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,HG,HG,mg/L,qualite_eau,station,a96471f3-959d-418e-a049-11b4821749a3,2881/15,my yaacoub,station_id,,,true,GEO_OK,volume=1 | geo_ok=1,MIGRER,1,1,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,HG_MERCURE,HG_MERCURE,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=3 | geo_ok=3 | backlog_referentiel=3,MIGRER,3,3,0,0,0,3
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,K,K,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2637 | geo_ok=2637,MIGRER,2637,2637,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,MES,MES,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=25 | geo_ok=25,MIGRER,25,25,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,MG,MG,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2619 | geo_ok=2619,MIGRER,2619,2619,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,MN,MN,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2198 | geo_ok=2198,MIGRER,2198,2198,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,MO,MO,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2624 | geo_ok=2624,MIGRER,2624,2624,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,NA,NA,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2637 | geo_ok=2637,MIGRER,2637,2637,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,NH4,NH4,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2586 | geo_ok=2586,MIGRER,2586,2586,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,NI,NI,mg/L,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2 | geo_ok=2,MIGRER,2,2,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,NO2,NO2,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2609 | geo_ok=2609 | backlog_referentiel=2609,MIGRER,2609,2609,0,0,0,2609
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,NO3,NO3,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2631 | geo_ok=2631 | backlog_referentiel=2631,MIGRER,2631,2631,0,0,0,2631
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,NTK,NTK,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=206 | geo_ok=206 | backlog_referentiel=206,MIGRER,206,206,0,0,0,206
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,NUMEROTATION,NUMEROTATION,,qualite_eau,station,a96471f3-959d-418e-a049-11b4821749a3,2881/15,my yaacoub,station_id,,,true,GEO_OK,volume=1 | geo_ok=1 | backlog_referentiel=1,MIGRER,1,1,0,0,0,1
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,N_ORG,N_ORG,,qualite_eau,station,912ce29b-3e36-434a-8a4d-c5079a2efb61,1102/13,forage base aerienne bouknadel,station_id,,,true,GEO_OK,volume=1 | geo_ok=1 | backlog_referentiel=1,MIGRER,1,1,0,0,0,1
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,O2_DISSOUS,O2_DISSOUS,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=207 | geo_ok=207 | backlog_referentiel=207,MIGRER,207,207,0,0,0,207
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,PB,PB,mg/L,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=6 | geo_ok=6,MIGRER,6,6,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,PH,PH,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2651 | geo_ok=2651,MIGRER,2651,2651,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,PHENOL,PHENOL,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=5 | geo_ok=5,MIGRER,5,5,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,PO4,PO4,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=40 | geo_ok=40 | backlog_referentiel=40,MIGRER,40,40,0,0,0,40
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,PROFONDEUR,PROFONDEUR,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2 | geo_ok=2,MIGRER,2,2,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,PT,PT,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=39 | geo_ok=39 | backlog_referentiel=39,MIGRER,39,39,0,0,0,39
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,PTD,PTD,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=73 | geo_ok=73,MIGRER,73,73,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,PTP,PTP,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=73 | geo_ok=73,MIGRER,73,73,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,RESIDUS_SECS,RESIDUS_SECS,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2206 | geo_ok=2206 | backlog_referentiel=2206,MIGRER,2206,2206,0,0,0,2206
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,S2,S2,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=20 | geo_ok=20,MIGRER,20,20,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,SATURATION_OXYGENE,SATURATION_OXYGENE,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=18 | geo_ok=18 | backlog_referentiel=18,MIGRER,18,18,0,0,0,18
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,SE,SE,mg/L,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=5 | geo_ok=5,MIGRER,5,5,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,SF,SF,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2640 | geo_ok=2640,MIGRER,2640,2640,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,SIO3,SIO3,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=3 | geo_ok=3,MIGRER,3,3,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,SO4,SO4,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2618 | geo_ok=2618,MIGRER,2618,2618,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,TA,TA,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2027 | geo_ok=2027,MIGRER,2027,2027,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,TAC,TAC,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2027 | geo_ok=2027,MIGRER,2027,2027,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,TH,TH,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1606 | geo_ok=1606,MIGRER,1606,1606,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,TURBIDITE,TURBIDITE,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=31 | geo_ok=31,MIGRER,31,31,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,T_AIR,T_AIR,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2617 | geo_ok=2617,MIGRER,2617,2617,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,T_EAU,T_EAU,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2658 | geo_ok=2658,MIGRER,2658,2658,0,0,0,0
+qualite,qualite.mesure_qualite_nappe,qualite.mesure_qualite_nappe,ZN,ZN,mg/L,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=5 | geo_ok=5,MIGRER,5,5,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,AG,AG,mg/L,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=9 | geo_ok=9,MIGRER,9,9,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,AL,AL,mg/L,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=54 | geo_ok=54,MIGRER,54,54,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,AS,AS,mg/L,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=240 | geo_ok=240,MIGRER,240,240,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,BA,BA,mg/L,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=18 | geo_ok=18,MIGRER,18,18,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,CA,CA,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1741 | geo_ok=1741,MIGRER,1741,1741,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,CD,CD,mg/L,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=274 | geo_ok=274,MIGRER,274,274,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,CF,CF,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1950 | geo_ok=1950,MIGRER,1950,1950,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,CHLA,CHLA,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=182 | geo_ok=182,MIGRER,182,182,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,CL,CL,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1889 | geo_ok=1889,MIGRER,1889,1889,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,CL2_RES,CL2_RES,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2 | geo_ok=2 | backlog_referentiel=2,MIGRER,2,2,0,0,0,2
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,CLOSTRI,CLOSTRI,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2 | geo_ok=2 | backlog_referentiel=2,MIGRER,2,2,0,0,0,2
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,CN,CN,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=124 | geo_ok=124 | backlog_referentiel=124,MIGRER,124,124,0,0,0,124
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,CO,CO,mg/L,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=110 | geo_ok=110,MIGRER,110,110,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,CO2_LIBRE,CO2_LIBRE,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2 | geo_ok=2 | backlog_referentiel=2,MIGRER,2,2,0,0,0,2
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,CO3,CO3,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1715 | geo_ok=1715,MIGRER,1715,1715,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,COND,COND,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1992 | geo_ok=1992 | backlog_referentiel=1992,MIGRER,1992,1992,0,0,0,1992
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,COULEUR,COULEUR,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2 | geo_ok=2,MIGRER,2,2,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,CR,CR,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=441 | geo_ok=441 | backlog_referentiel=441,MIGRER,441,441,0,0,0,441
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,CT,CT,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1756 | geo_ok=1756,MIGRER,1756,1756,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,CU,CU,mg/L,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=270 | geo_ok=270,MIGRER,270,270,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,DBO5,DBO5,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1961 | geo_ok=1961,MIGRER,1961,1961,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,DBO5_DEC2H,DBO5_DEC2H,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=24 | geo_ok=24 | backlog_referentiel=24,MIGRER,24,24,0,0,0,24
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,DCO_DEC2H,DCO_DEC2H,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1973 | geo_ok=1973,MIGRER,1973,1973,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,DEBIT,DEBIT,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=162 | geo_ok=162,MIGRER,162,162,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,DETERGENT,DETERGENT,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=189 | geo_ok=189,MIGRER,189,189,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,DISQUE_SECCHI,DISQUE_SECCHI,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=87 | geo_ok=87,MIGRER,87,87,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,EH,EH,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=86 | geo_ok=86,MIGRER,86,86,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,F,F,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=56 | geo_ok=56 | backlog_referentiel=56,MIGRER,56,56,0,0,0,56
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,FE,FE,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=712 | geo_ok=712,MIGRER,712,712,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,GERME_22,GERME_22,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=4 | geo_ok=4 | backlog_referentiel=4,MIGRER,4,4,0,0,0,4
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,GERME_37,GERME_37,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2 | geo_ok=2 | backlog_referentiel=2,MIGRER,2,2,0,0,0,2
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,H2S,H2S,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2 | geo_ok=2 | backlog_referentiel=2,MIGRER,2,2,0,0,0,2
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,HCO3,HCO3,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1801 | geo_ok=1801 | backlog_referentiel=1801,MIGRER,1801,1801,0,0,0,1801
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,HG,HG,mg/L,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=153 | geo_ok=153,MIGRER,153,153,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,HG_MERCURE,HG_MERCURE,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=227 | geo_ok=227 | backlog_referentiel=227,MIGRER,227,227,0,0,0,227
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,IBD,IBD,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=128 | geo_ok=128,MIGRER,128,128,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,IBGN,IBGN,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=43 | geo_ok=43,MIGRER,43,43,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,K,K,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1788 | geo_ok=1788,MIGRER,1788,1788,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,LARGEUR,LARGEUR,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=191 | geo_ok=191,MIGRER,191,191,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,LI,LI,mg/L,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=16 | geo_ok=16,MIGRER,16,16,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,MES,MES,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1961 | geo_ok=1961,MIGRER,1961,1961,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,MG,MG,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1783 | geo_ok=1783,MIGRER,1783,1783,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,MN,MN,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=132 | geo_ok=132,MIGRER,132,132,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,MO,MO,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=26 | geo_ok=26,MIGRER,26,26,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,NA,NA,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1790 | geo_ok=1790,MIGRER,1790,1790,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,NH4,NH4,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1941 | geo_ok=1941,MIGRER,1941,1941,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,NI,NI,mg/L,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=269 | geo_ok=269,MIGRER,269,269,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,NO2,NO2,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1791 | geo_ok=1791 | backlog_referentiel=1791,MIGRER,1791,1791,0,0,0,1791
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,NO3,NO3,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1930 | geo_ok=1930 | backlog_referentiel=1930,MIGRER,1930,1930,0,0,0,1930
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,NTK,NTK,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1580 | geo_ok=1580 | backlog_referentiel=1580,MIGRER,1580,1580,0,0,0,1580
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,N_ORG,N_ORG,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2 | geo_ok=2 | backlog_referentiel=2,MIGRER,2,2,0,0,0,2
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,N_TOT,N_TOT,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=358 | geo_ok=358 | backlog_referentiel=358,MIGRER,358,358,0,0,0,358
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,O2_DISSOUS,O2_DISSOUS,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1970 | geo_ok=1970 | backlog_referentiel=1970,MIGRER,1970,1970,0,0,0,1970
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,ODEUR,ODEUR,,qualite_eau,station,46a1c170-95ea-470e-bd3f-87847ff98890,2496/15,pont portugais,station_id,,,true,GEO_OK,volume=1 | geo_ok=1 | backlog_referentiel=1,MIGRER,1,1,0,0,0,1
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,PB,PB,mg/L,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=436 | geo_ok=436,MIGRER,436,436,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,PH,PH,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1994 | geo_ok=1994,MIGRER,1994,1994,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,PHENOL,PHENOL,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=682 | geo_ok=682,MIGRER,682,682,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,PHEOPIGMENT,PHEOPIGMENT,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=17 | geo_ok=17,MIGRER,17,17,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,PO4,PO4,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1892 | geo_ok=1892 | backlog_referentiel=1892,MIGRER,1892,1892,0,0,0,1892
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,PROFONDEUR,PROFONDEUR,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=108 | geo_ok=108,MIGRER,108,108,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,PSEUDO_AER,PSEUDO_AER,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=2 | geo_ok=2 | backlog_referentiel=2,MIGRER,2,2,0,0,0,2
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,PT,PT,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1964 | geo_ok=1964 | backlog_referentiel=1964,MIGRER,1964,1964,0,0,0,1964
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,PTD,PTD,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=48 | geo_ok=48,MIGRER,48,48,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,PTP,PTP,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=48 | geo_ok=48,MIGRER,48,48,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,RESIDUS_SECS,RESIDUS_SECS,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=39 | geo_ok=39 | backlog_referentiel=39,MIGRER,39,39,0,0,0,39
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,S2,S2,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=6 | geo_ok=6,MIGRER,6,6,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,SATURATION_OXYGENE,SATURATION_OXYGENE,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1074 | geo_ok=1074 | backlog_referentiel=1074,MIGRER,1074,1074,0,0,0,1074
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,SAVEUR,SAVEUR,,qualite_eau,station,46a1c170-95ea-470e-bd3f-87847ff98890,2496/15,pont portugais,station_id,,,true,GEO_OK,volume=1 | geo_ok=1 | backlog_referentiel=1,MIGRER,1,1,0,0,0,1
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,SB,SB,mg/L,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=3 | geo_ok=3,MIGRER,3,3,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,SE,SE,mg/L,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=433 | geo_ok=433,MIGRER,433,433,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,SF,SF,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1879 | geo_ok=1879,MIGRER,1879,1879,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,SIO3,SIO3,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=150 | geo_ok=150,MIGRER,150,150,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,SO3,SO3,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=3 | geo_ok=3 | backlog_referentiel=3,MIGRER,3,3,0,0,0,3
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,SO4,SO4,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1788 | geo_ok=1788,MIGRER,1788,1788,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,TA,TA,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1100 | geo_ok=1100,MIGRER,1100,1100,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,TAC,TAC,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1103 | geo_ok=1103,MIGRER,1103,1103,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,TH,TH,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=806 | geo_ok=806,MIGRER,806,806,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,TURBIDITE,TURBIDITE,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1822 | geo_ok=1822,MIGRER,1822,1822,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,T_AIR,T_AIR,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1995 | geo_ok=1995,MIGRER,1995,1995,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,T_EAU,T_EAU,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=1995 | geo_ok=1995,MIGRER,1995,1995,0,0,0,0
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,VIBRIO,VIBRIO,,qualite_eau,station,b647955a-e26d-4564-8509-25cb40ef1404,1540/15,azib soltane,station_id,,,true,GEO_OK,volume=1 | geo_ok=1 | backlog_referentiel=1,MIGRER,1,1,0,0,0,1
+qualite,qualite.mesure_qualite_riviere,qualite.mesure_qualite_riviere,ZN,ZN,mg/L,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=233 | geo_ok=233,MIGRER,233,233,0,0,0,0
+qualite,qualite.mesure_qualite_sebou,qualite.mesure_qualite_sebou,Ammonium,Ammonium,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=4534 | geo_ok=4534 | backlog_referentiel=4534,MIGRER,4534,4534,0,0,0,4534
+qualite,qualite.mesure_qualite_sebou,qualite.mesure_qualite_sebou,ConductivitÃ©,ConductivitÃ©,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=4553 | geo_ok=4553 | backlog_referentiel=4553,MIGRER,4553,4553,0,0,0,4553
+qualite,qualite.mesure_qualite_sebou,qualite.mesure_qualite_sebou,DBO5,DBO5,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=772 | geo_ok=772,MIGRER,772,772,0,0,0,0
+qualite,qualite.mesure_qualite_sebou,qualite.mesure_qualite_sebou,DCO,DCO,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=816 | geo_ok=816,MIGRER,816,816,0,0,0,0
+qualite,qualite.mesure_qualite_sebou,qualite.mesure_qualite_sebou,H_G,H_G,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=4536 | geo_ok=4536 | backlog_referentiel=4536,MIGRER,4536,4536,0,0,0,4536
+qualite,qualite.mesure_qualite_sebou,qualite.mesure_qualite_sebou,NTK,NTK,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=4519 | geo_ok=4519 | backlog_referentiel=4519,MIGRER,4519,4519,0,0,0,4519
+qualite,qualite.mesure_qualite_sebou,qualite.mesure_qualite_sebou,Nitrates,Nitrates,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=4537 | geo_ok=4537 | backlog_referentiel=4537,MIGRER,4537,4537,0,0,0,4537
+qualite,qualite.mesure_qualite_sebou,qualite.mesure_qualite_sebou,O2_dissous,O2_dissous,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=4553 | geo_ok=4553 | backlog_referentiel=4553,MIGRER,4553,4553,0,0,0,4553
+qualite,qualite.mesure_qualite_sebou,qualite.mesure_qualite_sebou,Phenol,PHENOL,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=4543 | geo_ok=4543,MIGRER,4543,4543,0,0,0,0
+qualite,qualite.mesure_qualite_sebou,qualite.mesure_qualite_sebou,T_air,T_AIR,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=3440 | geo_ok=3440,MIGRER,3440,3440,0,0,0,0
+qualite,qualite.mesure_qualite_sebou,qualite.mesure_qualite_sebou,T_eau,T_EAU,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=4553 | geo_ok=4553,MIGRER,4553,4553,0,0,0,0
+qualite,qualite.mesure_qualite_sebou,qualite.mesure_qualite_sebou,TurbiditÃ©,TurbiditÃ©,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=4045 | geo_ok=4045 | backlog_referentiel=4045,MIGRER,4045,4045,0,0,0,4045
+qualite,qualite.mesure_qualite_sebou,qualite.mesure_qualite_sebou,pH,PH,,qualite_eau,station,MULTIPLE,MULTIPLE,MULTIPLE,station_id,,,true,GEO_OK,volume=4553 | geo_ok=4553,MIGRER,4553,4553,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,AL,AL,mg/L,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=11 | geo_ok=11 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,11,11,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,AS,AS,mg/L,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=11 | geo_ok=11 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,11,11,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,BE,BE,mg/L,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=11 | geo_ok=11 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,11,11,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,CD,CD,mg/L,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=11 | geo_ok=11 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,11,11,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,CF,CF,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=44 | geo_ok=44 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,44,44,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,CHLA,CHLA,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=92 | geo_ok=92 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,92,92,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,CL,CL,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=48 | geo_ok=48 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,48,48,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,CN,CN,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=11 | geo_ok=11 | backlog_referentiel=11 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,11,11,0,0,0,11
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,CO,CO,mg/L,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=11 | geo_ok=11 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,11,11,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,COND,COND,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=93 | geo_ok=93 | backlog_referentiel=93 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,93,93,0,0,0,93
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,CR,CR,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=11 | geo_ok=11 | backlog_referentiel=11 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,11,11,0,0,0,11
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,CU,CU,mg/L,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=11 | geo_ok=11 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,11,11,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,DISQUE_SECCHI,DISQUE_SECCHI,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=91 | geo_ok=91 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,91,91,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,F,F,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=11 | geo_ok=11 | backlog_referentiel=11 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,11,11,0,0,0,11
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,FE,FE,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=92 | geo_ok=92 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,92,92,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,HG_MERCURE,HG_MERCURE,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=11 | geo_ok=11 | backlog_referentiel=11 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,11,11,0,0,0,11
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,LI,LI,mg/L,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=11 | geo_ok=11 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,11,11,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,MES,MES,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=93 | geo_ok=93 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,93,93,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,MN,MN,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=92 | geo_ok=92 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,92,92,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,MO_METAL,MO_METAL,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=11 | geo_ok=11 | backlog_referentiel=11 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,11,11,0,0,0,11
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,NH4,NH4,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=93 | geo_ok=93 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,93,93,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,NI,NI,mg/L,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=11 | geo_ok=11 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,11,11,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,NO3,NO3,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=92 | geo_ok=92 | backlog_referentiel=92 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,92,92,0,0,0,92
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,O2_DISSOUS,O2_DISSOUS,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=93 | geo_ok=93 | backlog_referentiel=93 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,93,93,0,0,0,93
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,PB,PB,mg/L,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=11 | geo_ok=11 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,11,11,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,PH,PH,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=93 | geo_ok=93 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,93,93,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,PHENOL,PHENOL,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=93 | geo_ok=93 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,93,93,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,PO4,PO4,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=93 | geo_ok=93 | backlog_referentiel=93 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,93,93,0,0,0,93
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,PT,PT,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=91 | geo_ok=91 | backlog_referentiel=91 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,91,91,0,0,0,91
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,SE,SE,mg/L,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=11 | geo_ok=11 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,11,11,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,SIO2,SIO2,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=11 | geo_ok=11 | backlog_referentiel=11 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,11,11,0,0,0,11
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,SO4,SO4,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=92 | geo_ok=92 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,92,92,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,T_AIR,T_AIR,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=93 | geo_ok=93 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,93,93,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,T_EAU,T_EAU,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=93 | geo_ok=93 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,93,93,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,UNREC_BORE_MG_L,UNREC_BORE_MG_L,,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=11 | geo_ok=11 | backlog_referentiel=11 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,11,11,0,0,0,11
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,V,V,mg/L,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=11 | geo_ok=11 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,11,11,0,0,0,0
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,qualite.suivi_qualite_barrage_garde_hebdo,ZN,ZN,mg/L,qualite_eau,barrage,4179b4bb-277c-4b29-80fa-300fd49eb9c2,3323/8,garde du sebou,barrage_id / ire_barrage,,,true,GEO_FORCED_MAPPING_METIER,volume=11 | geo_ok=11 | rattachement force valide a Garde Sebou,MIGRER_AVEC_FLAG,11,11,0,0,0,0

@@ -1,0 +1,20 @@
+{
+  "backup_created": true,
+  "backup_path": "C:\\dev\\WQDSS\\repo_git\\backups\\e1_1_garde_hebdo_20260505_154344\\qualite_suivi_qualite_barrage_garde_hebdo_before_reset.csv",
+  "backup_rows": 7094,
+  "truncated_rows": 7094,
+  "source_prepared_rows": 3511,
+  "source_quarantine_rows": 3583,
+  "source_candidates": 1780,
+  "source_discarded_duplicates": 1731,
+  "inserted_rows": 1780,
+  "audit_rows": 1780,
+  "duplicates_after": 0,
+  "station_null_after": 0,
+  "param_null_after": 0,
+  "value_null_after": 0,
+  "barrage_null_after": 0,
+  "param_ref_null_after": 539,
+  "other_table_modifications": 0,
+  "decision": "QUALITE_GARDE_HEBDO_OK"
+}

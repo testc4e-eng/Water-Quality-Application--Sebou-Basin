@@ -9,42 +9,89 @@ from app.util_dbmeta import pick_first_existing, table_exists
 
 router = APIRouter(prefix="/stations")
 
-# Tables mesures configurables via .env
-TBL_DEBIT = os.getenv("TBL_DEBIT", "mesures_debit_jr")
-TBL_TEMP = os.getenv("TBL_TEMP", "mesures_temperatures_jr")
-TBL_QUAL = os.getenv("TBL_QUAL", "mesures_qualite_rivieres")
-STATIONS_TABLE = os.getenv("STATIONS_TABLE", "public.stations_abhs")
+TBL_DEBIT = os.getenv("TBL_DEBIT", "hydro.mesure_debit")
+TBL_TEMP = os.getenv("TBL_TEMP", "meteo.mesure_temperature")
+TBL_QUAL = os.getenv("TBL_QUAL", "qualite.mesure_qualite_riviere")
+STATIONS_TABLE = os.getenv("STATIONS_TABLE", "api.v_station_dimension")
 
-DATE_COL_CANDIDATES = ["date_utc", "date_jr", "date_prelevement", "date", "ts", "timestamp"]
-STATION_COL_CANDIDATES = ["station_id", "id_station", "ire_station", "station_code", "code_station"]
-DEBIT_COL_CANDIDATES = ["debit_m3s", "debit_jr", "debit", "flow", "q"]
-TEMP_COL_CANDIDATES = ["temp_c", "temperature_jr", "temperature", "temp", "t_eau"]
+DATE_COL_CANDIDATES = ["temps", "date_utc", "date_jr", "date_prelevement", "date", "ts", "timestamp"]
+STATION_COL_CANDIDATES = ["station_id", "ire_station", "id_station", "station_code", "code_station"]
+DEBIT_COL_CANDIDATES = ["valeur", "debit_m3s", "debit_jr", "debit", "flow", "q"]
+TEMP_COL_CANDIDATES = ["val_moy", "temp_c", "temperature_jr", "temperature", "temp", "t_eau"]
+QUAL_PARAM_COL_CANDIDATES = ["parametre_qualite", "parametre", "parameter"]
+QUAL_VALUE_COL_CANDIDATES = ["valeur", "val_qual_riv", "value", "measure"]
+QA_FLAG_CANDIDATES = [
+    "qa_flag_negative",
+    "qa_flag_outlier",
+    "qa_flag_method_missing",
+    "qa_flag_null_value",
+    "qa_flag_param_missing",
+    "qa_flag_station_unmapped",
+]
 
 
-def _station_tokens(station_id: int) -> list[str]:
-    # Toujours garder l'ID numérique comme fallback texte
+def _existing_cols(table_name: str, candidates: list[str]) -> list[str]:
+    return [col for col in candidates if pick_first_existing(table_name, [col]) == col]
+
+
+def _station_tokens(station_id: str) -> list[str]:
     tokens = [str(station_id)]
     if not table_exists(STATIONS_TABLE):
-        return tokens
+        return list(dict.fromkeys(tokens))
 
-    id_col = pick_first_existing(STATIONS_TABLE, ["id_station", "id"])
-    ire_col = pick_first_existing(STATIONS_TABLE, ["ire_station", "code_station"])
-    if not id_col or not ire_col:
-        return tokens
+    token_cols = _existing_cols(
+        STATIONS_TABLE,
+        ["station_id", "legacy_station_id", "code_station", "legacy_code_station", "ire_station", "id_station", "id"],
+    )
+    if not token_cols:
+        return list(dict.fromkeys(tokens))
 
-    sql = f"SELECT {ire_col} FROM {STATIONS_TABLE} WHERE {id_col} = %s LIMIT 1"
+    select_sql = ", ".join(f"{col}::text" for col in token_cols)
+    where_sql = " OR ".join(f"{col}::text = %s" for col in token_cols)
+    query_params = [station_id] * len(token_cols)
+
     with connection() as cx, cx.cursor() as cur:
-        cur.execute(sql, (station_id,))
+        cur.execute(f"SELECT {select_sql} FROM {STATIONS_TABLE} WHERE {where_sql} LIMIT 1", query_params)
         row = cur.fetchone()
-        if row and row[0]:
-            tokens.append(str(row[0]))
+        if row:
+            tokens.extend(str(value) for value in row if value not in (None, ""))
+
     return list(dict.fromkeys(tokens))
 
 
-def _build_base_part(table_name: str, value_col: str, out_col: str) -> str:
+def _station_filter(table_name: str, alias: str = "") -> str:
+    station_cols = _existing_cols(table_name, STATION_COL_CANDIDATES)
+    if not station_cols:
+        return ""
+    prefix = f"{alias}." if alias else ""
+    comparisons = " OR ".join(f"token.station_ref = {prefix}{col}::text" for col in station_cols)
+    return f"EXISTS (SELECT 1 FROM unnest(%s::text[]) AS token(station_ref) WHERE {comparisons})"
+
+
+def _qa_conditions(table_name: str, alias: str, include_invalid: bool, include_flagged: bool) -> list[str]:
+    conditions: list[str] = []
+    prefix = f"{alias}." if alias else ""
+
+    if not include_invalid and pick_first_existing(table_name, ["est_valide"]) == "est_valide":
+        conditions.append(f"COALESCE({prefix}est_valide, true) = true")
+
+    if not include_flagged:
+        for flag_col in _existing_cols(table_name, QA_FLAG_CANDIDATES):
+            conditions.append(f"COALESCE({prefix}{flag_col}, false) = false")
+
+    return conditions
+
+
+def _build_base_part(
+    table_name: str,
+    value_col: str,
+    out_col: str,
+    include_invalid: bool,
+    include_flagged: bool,
+) -> str:
     date_col = pick_first_existing(table_name, DATE_COL_CANDIDATES)
-    station_col = pick_first_existing(table_name, STATION_COL_CANDIDATES)
-    if not date_col or not station_col:
+    station_filter = _station_filter(table_name)
+    if not date_col or not station_filter:
         return ""
 
     select_cols = {
@@ -55,6 +102,12 @@ def _build_base_part(table_name: str, value_col: str, out_col: str) -> str:
     }
     select_cols[out_col] = f"{value_col}::numeric AS {out_col}"
 
+    conditions = [
+        station_filter,
+        f"{date_col} BETWEEN %s AND %s",
+        * _qa_conditions(table_name, "", include_invalid, include_flagged),
+    ]
+
     return f"""
       SELECT {date_col}::timestamp AS ts,
              {select_cols["debit_m3s"]},
@@ -62,17 +115,18 @@ def _build_base_part(table_name: str, value_col: str, out_col: str) -> str:
              {select_cols["p_mgl"]},
              {select_cols["temp_c"]}
       FROM {table_name}
-      WHERE {station_col}::text = ANY(%s)
-        AND {date_col} BETWEEN %s AND %s
+      WHERE {" AND ".join(conditions)}
     """
 
 
 @router.get("/{station_id}/measurements")
 def measurements(
-    station_id: int,
+    station_id: str,
     from_: date | None = Query(None, alias="from"),
     to: date | None = Query(None, alias="to"),
     days: int | None = 30,
+    include_invalid: bool = Query(False, description="Inclut les mesures avec est_valide = false"),
+    include_flagged: bool = Query(False, description="Inclut les mesures portant des QA flags"),
 ):
     if not from_ or not to:
         to = to or date.today()
@@ -85,7 +139,7 @@ def measurements(
     if table_exists(TBL_DEBIT):
         debit_col = pick_first_existing(TBL_DEBIT, DEBIT_COL_CANDIDATES)
         if debit_col:
-            part = _build_base_part(TBL_DEBIT, debit_col, "debit_m3s")
+            part = _build_base_part(TBL_DEBIT, debit_col, "debit_m3s", include_invalid, include_flagged)
             if part:
                 parts.append(part)
                 params.extend([station_tokens, from_, to])
@@ -93,39 +147,45 @@ def measurements(
     if table_exists(TBL_TEMP):
         temp_col = pick_first_existing(TBL_TEMP, TEMP_COL_CANDIDATES)
         if temp_col:
-            part = _build_base_part(TBL_TEMP, temp_col, "temp_c")
+            part = _build_base_part(TBL_TEMP, temp_col, "temp_c", include_invalid, include_flagged)
             if part:
                 parts.append(part)
                 params.extend([station_tokens, from_, to])
 
     if table_exists(TBL_QUAL):
         qual_date_col = pick_first_existing(TBL_QUAL, DATE_COL_CANDIDATES)
-        qual_station_col = pick_first_existing(TBL_QUAL, STATION_COL_CANDIDATES)
-        qual_param_col = pick_first_existing(TBL_QUAL, ["parametre_qualite", "parametre", "parameter"])
-        qual_value_col = pick_first_existing(TBL_QUAL, ["val_qual_riv", "valeur", "value", "measure"])
-        if qual_date_col and qual_station_col and qual_param_col and qual_value_col:
-            parts.append(f"""
+        qual_param_col = pick_first_existing(TBL_QUAL, QUAL_PARAM_COL_CANDIDATES)
+        qual_value_col = pick_first_existing(TBL_QUAL, QUAL_VALUE_COL_CANDIDATES)
+        qual_station_filter = _station_filter(TBL_QUAL)
+        if qual_date_col and qual_param_col and qual_value_col and qual_station_filter:
+            qual_conditions = [
+                qual_station_filter,
+                f"{qual_date_col} BETWEEN %s AND %s",
+                * _qa_conditions(TBL_QUAL, "", include_invalid, include_flagged),
+            ]
+            parts.append(
+                f"""
               SELECT {qual_date_col}::timestamp AS ts,
                      NULL::numeric AS debit_m3s,
                      CASE
-                       WHEN lower(trim({qual_param_col})) IN ('no3-', 'no3', 'nitrates', 'nitrate')
+                       WHEN lower(trim({qual_param_col}::text)) IN ('no3-', 'no3', 'nitrates', 'nitrate')
                        THEN {qual_value_col}::numeric
                        ELSE NULL::numeric
                      END AS no3_mgl,
                      CASE
-                       WHEN lower(trim({qual_param_col})) IN ('phosphore total', 'po4 3-', 'po4', 'phosphore', 'p_total')
+                       WHEN lower(trim({qual_param_col}::text)) IN ('phosphore total', 'po4 3-', 'po4', 'phosphore', 'p_total')
                        THEN {qual_value_col}::numeric
                        ELSE NULL::numeric
                      END AS p_mgl,
                      CASE
-                       WHEN lower(trim({qual_param_col})) IN ('t_eau', 'temp', 'temperature', 'temp_c')
+                       WHEN lower(trim({qual_param_col}::text)) IN ('t_eau', 'temp', 'temperature', 'temp_c')
                        THEN {qual_value_col}::numeric
                        ELSE NULL::numeric
                      END AS temp_c
               FROM {TBL_QUAL}
-              WHERE {qual_station_col}::text = ANY(%s)
-                AND {qual_date_col} BETWEEN %s AND %s
-            """)
+              WHERE {" AND ".join(qual_conditions)}
+            """
+            )
             params.extend([station_tokens, from_, to])
 
     if not parts:

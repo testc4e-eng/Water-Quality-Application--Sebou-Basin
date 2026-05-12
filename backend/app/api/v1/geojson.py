@@ -10,7 +10,7 @@ router = APIRouter(prefix="/geojson")
 ENV_TABLES = {
     "bassin_sebou":      os.getenv("BASSIN_TABLE", "api.v_bassin_geojson"),
     "sous_bassin_sebou": os.getenv("SOUSBASSIN_TABLE", "api.v_sous_bassin_geojson"),
-    "reseau_hydro_abhs":      os.getenv("RESEAU_TABLE"),
+    "reseau_hydro_abhs": os.getenv("RESEAU_TABLE", "geo.reseau_hydrographique"),
     "stations_abh":    os.getenv("STATIONS_TABLE", "api.v_station_dimension"),
     "barrages":    os.getenv("BARRAGES_TABLE", "api.v_barrage_dimension"),
     "points_eau":  os.getenv("POINTSEAU_TABLE", "api.v_points_eau"),
@@ -21,9 +21,9 @@ ENV_TABLES = {
 FALLBACK_LIKE = {
     "bassin":      ["%.bassin_sebou%", "%.bassin%", "%watershed%", "%bassin%sebou%"],
     "sous_bassin": ["%.sous_bassin_sebou%", "%sub_basin%", "%sousbassin%"],
-    "reseau":      ["%.reseau_hydro_abhs%", "%.network%", "%.hydro%"],
-    "stations":    ["%.stations_abh%", "%.station%", "%.points%mesure%"],
-    "barrages":    ["%.barrages_abhs%", "%.barrages%"],
+    "reseau":      ["%.reseau_hydrographique%", "%hydrographique%", "%.network%"],
+    "stations":    ["%.v_station_dimension%", "%.stations_mesure%", "%.station%"],
+    "barrages":    ["%.v_barrage_dimension%", "%.infra.barrages%", "%.barrages%"],
     "points_eau":  ["%.points_eau%", "%.point_eau%", "%.sources%", "%.puits%"],
     "mines":       ["%.mine%", "%.mines%"],
     "capteurs":    ["%.capteur%", "%.capteurs%", "%.iot%"],

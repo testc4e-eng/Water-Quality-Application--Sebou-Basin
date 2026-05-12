@@ -1,0 +1,21 @@
+-- ATTENTION : SCRIPT PROPOSE, NON EXECUTE
+-- Rollback E1.1 corrige
+
+-- Ne pas utiliser `ctid` seul.
+-- Stocker et utiliser au minimum :
+-- - `target_table`
+-- - `target_business_key_hash`
+-- - `target_tableoid`
+-- - `target_ctid`
+-- - `run_id`
+
+-- Exemple :
+-- DELETE FROM qualite.mesure_qualite_sebou q
+-- USING qa_dry_run.e1_1_insert_audit a
+-- WHERE a.run_id = '<RUN_ID_E1_1>'
+--   AND a.target_table = 'qualite.mesure_qualite_sebou'
+--   AND a.target_business_key_hash = md5(concat_ws('|',
+--         q.temps::text,
+--         q.station_id::text,
+--         q.parametre_qualite
+--       ));

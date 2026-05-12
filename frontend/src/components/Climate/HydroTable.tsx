@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { fetchHydroTimeseries } from "@/api/hydro";
+import { fetchHydroTimeseries, type HydroIdentifier } from "@/api/hydro";
 import { Card } from "@/components/ui/card";
 
 type Props = {
-  ts_id: number;
+  ts_id: HydroIdentifier;
   aggregation: string;
   date_start: string;
   date_end: string;

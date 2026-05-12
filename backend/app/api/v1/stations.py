@@ -23,9 +23,9 @@ if TABLE is None:
         if candidate and table_exists(candidate):
             TABLE = candidate
             break
-TBL_DEBIT = os.getenv("TBL_DEBIT", "public.mesures_debit_jr")
-TBL_TEMP = os.getenv("TBL_TEMP", "public.mesures_temperatures_jr")
-TBL_QUAL = os.getenv("TBL_QUAL", "public.mesures_qualite_rivieres")
+TBL_DEBIT = os.getenv("TBL_DEBIT", "hydro.mesure_debit")
+TBL_TEMP = os.getenv("TBL_TEMP", "meteo.mesure_temperature")
+TBL_QUAL = os.getenv("TBL_QUAL", "qualite.mesure_qualite_riviere")
 STATION_COL_CANDIDATES = ["ire_station", "station_id", "id_station", "station_code", "code_station"]
 
 @router.get("")
@@ -37,13 +37,16 @@ def list_stations(
         raise HTTPException(500, "Table des stations introuvable. Définis STATIONS_TABLE ou renomme la table.")
 
     pk = get_primary_key(TABLE) or "id"
-    id_col = pick_first_existing(TABLE, ["legacy_station_id", "station_id", "id_station", "id"]) or pk
+    id_col = pick_first_existing(TABLE, ["station_id", "legacy_station_id", "id_station", "id"]) or pk
     name_col = pick_first_existing(
         TABLE,
         ["station_nom", "nom_station", "name", "nom", "libelle", "libelle_station", "station", "label"],
     ) or id_col
     river_col = pick_first_existing(TABLE, ["river","riviere","cours_eau","oued","nom_oued","bassin","sous_bassin"])
-    ire_col = pick_first_existing(TABLE, ["ire_station", "legacy_code_station", "code_station"])
+    station_token_cols = [
+        col for col in ("station_id", "legacy_station_id", "legacy_code_station", "code_station", "ire_station")
+        if pick_first_existing(TABLE, [col]) == col
+    ]
     geom_col = get_geom_column(TABLE)
     x_col = pick_first_existing(TABLE, ["x", "X"])
     y_col = pick_first_existing(TABLE, ["y", "Y"])
@@ -53,7 +56,6 @@ def list_stations(
     id_sql = _q_ident(id_col)
     name_sql = _q_ident(name_col)
     river_sql = f"{_q_ident(river_col)} AS river" if river_col else "NULL AS river"
-    ire_sql = _q_ident(ire_col) if ire_col else None
     geom_sql = _q_ident(geom_col) if geom_col else None
     x_sql = _q_ident(x_col) if x_col else None
     y_sql = _q_ident(y_col) if y_col else None
@@ -65,22 +67,25 @@ def list_stations(
 
     with_data_sql = ""
     join_data_sql = ""
-    if with_data and ire_col:
-        debit_station_col = pick_first_existing(TBL_DEBIT, STATION_COL_CANDIDATES) if table_exists(TBL_DEBIT) else None
-        temp_station_col = pick_first_existing(TBL_TEMP, STATION_COL_CANDIDATES) if table_exists(TBL_TEMP) else None
-        qual_station_col = pick_first_existing(TBL_QUAL, STATION_COL_CANDIDATES) if table_exists(TBL_QUAL) else None
+    if with_data and station_token_cols:
         unions = []
-
-        if debit_station_col:
-            unions.append(f"SELECT DISTINCT trim({_q_ident(debit_station_col)}::text) AS ire FROM {TBL_DEBIT}")
-        if temp_station_col:
-            unions.append(f"SELECT DISTINCT trim({_q_ident(temp_station_col)}::text) AS ire FROM {TBL_TEMP}")
-        if qual_station_col:
-            unions.append(f"SELECT DISTINCT trim({_q_ident(qual_station_col)}::text) AS ire FROM {TBL_QUAL}")
+        for table_name in (TBL_DEBIT, TBL_TEMP, TBL_QUAL):
+            if not table_exists(table_name):
+                continue
+            for station_col in STATION_COL_CANDIDATES:
+                if pick_first_existing(table_name, [station_col]) != station_col:
+                    continue
+                unions.append(
+                    f"SELECT DISTINCT trim({_q_ident(station_col)}::text) AS station_ref "
+                    f"FROM {table_name} WHERE {_q_ident(station_col)} IS NOT NULL"
+                )
 
         if unions:
+            station_join = " OR ".join(
+                f"sd.station_ref = trim(s.{_q_ident(col)}::text)" for col in station_token_cols
+            )
             with_data_sql = "WITH station_data AS (\n" + "\nUNION\n".join(unions) + "\n)"
-            join_data_sql = f"JOIN station_data sd ON sd.ire = trim(s.{ire_sql}::text)"
+            join_data_sql = f"JOIN station_data sd ON {station_join}"
 
     if geom_col:
         lat_sql = f"ST_Y(s.{geom_sql}::geometry)"
@@ -93,7 +98,7 @@ def list_stations(
 
     sql = f"""
         {with_data_sql}
-        SELECT
+        SELECT DISTINCT
           s.{id_sql} AS id,
           s.{name_sql} AS name,
           {river_sql},

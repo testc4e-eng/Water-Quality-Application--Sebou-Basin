@@ -1,0 +1,65 @@
+{
+  "source_run_id": "f0f2a858-1c90-4b15-a6af-cc172bece071",
+  "migration_run_id": "QUALITE_SEBOU_RESET_20260505T131415Z",
+  "backup": {
+    "csv_path": "C:\\dev\\WQDSS\\repo_git\\backups\\qualite_sebou_reset_20260505_141415\\qualite_mesure_qualite_sebou_before_reset.csv",
+    "row_count": 10955,
+    "size_bytes": 2266269
+  },
+  "pre_stats": {
+    "target_current": 10955
+  },
+  "source_stats": {
+    "prepared_rows": 49954
+  },
+  "candidate_stats": {
+    "total_ranked": 49954,
+    "deduped_rows": 49954,
+    "duplicate_rows_discarded": 0,
+    "station_null_rows": 0,
+    "param_null_rows": 0,
+    "value_null_rows": 0
+  },
+  "post_stats": {
+    "target_after": 49954,
+    "duplicates_after": 0,
+    "station_null_after": 0,
+    "param_null_after": 0,
+    "value_null_after": 0,
+    "idp_after": 0,
+    "hydro_debit_source_after": 3978,
+    "other_qualite_tables": [
+      {
+        "table_name": "mesure_qualite_barrage",
+        "estimated_rows": 0
+      },
+      {
+        "table_name": "mesure_qualite_nappe",
+        "estimated_rows": 0
+      },
+      {
+        "table_name": "mesure_qualite_riviere",
+        "estimated_rows": 0
+      },
+      {
+        "table_name": "source_pollution_mesure_param",
+        "estimated_rows": 7191
+      },
+      {
+        "table_name": "source_pollution_prelevement",
+        "estimated_rows": 141
+      },
+      {
+        "table_name": "source_pollution_prelevement_lien",
+        "estimated_rows": 116
+      },
+      {
+        "table_name": "suivi_qualite_barrage_garde_hebdo",
+        "estimated_rows": 0
+      }
+    ]
+  },
+  "inserted_rows": 49954,
+  "audit_rows": 49954,
+  "discarded_rows": 0
+}

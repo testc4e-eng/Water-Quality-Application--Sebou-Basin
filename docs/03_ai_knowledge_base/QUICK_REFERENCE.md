@@ -7,17 +7,18 @@
 | Périmètre | accès rapide pour agents IA et intervenants techniques |
 | Source de vérité | Oui sur le périmètre IA |
 | Documents liés | [MEMORY_CORE](./MEMORY_CORE.md), [project_structure_for_agents](./project_structure_for_agents.md) |
-| Dernière mise à jour | 2026-04-10 |
+| Dernière mise à jour | 2026-04-17 |
 
 ## 1. Fichiers à ouvrir en premier selon le besoin
 
 | Besoin | Fichier |
 |---|---|
-| comprendre la structure documentaire | `docs/01_project_reference/DOCUMENT_MAP.md` |
+| comprendre la structure documentaire | `docs/00_SOURCE_OF_TRUTH_MASTER.md` puis `docs/01_project_reference/DOCUMENT_MAP.md` |
 | connaître la source de vérité d’un sujet | `docs/01_project_reference/SOURCE_OF_TRUTH.md` |
 | comprendre l’architecture système | `docs/01_project_reference/architecture/system_architecture.md` |
 | comprendre la base de données | `docs/01_project_reference/architecture/database_architecture.md` |
-| comprendre les endpoints | `docs/01_project_reference/backend/api_contracts.md` |
+| comprendre les endpoints réellement montés | `docs/01_project_reference/backend/backend_overview.md` puis `docs/03_ai_knowledge_base/api_for_agents.md` |
+| comprendre la cible contractuelle des endpoints | `docs/01_project_reference/backend/api_contracts.md` |
 | comprendre les écrans et routes UI | `docs/01_project_reference/frontend/frontend_reference.md` |
 | préparer un livrable Mission IV | `docs/02_contractual_and_reports/cps/CPS_MAPPING_PROJECT.md` et `rapport_provisoire_mission_iv_sad.md` |
 

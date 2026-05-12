@@ -1,0 +1,114 @@
+[
+  {
+    "target_table": "hydro.mesure_debit",
+    "source_table": "raw_mesures_debit_jr",
+    "candidate_count": 0,
+    "inserted_count": 0,
+    "target_before": 521433,
+    "target_after": 521433
+  },
+  {
+    "target_table": "hydro.mesure_debit_mensuel",
+    "source_table": "raw_mesures_debit_m",
+    "candidate_count": 0,
+    "inserted_count": 0,
+    "target_before": 19316,
+    "target_after": 19316
+  },
+  {
+    "target_table": "hydro.mesure_debit_source",
+    "source_table": "raw_mesures_debit_sources",
+    "candidate_count": 2816,
+    "inserted_count": 1162,
+    "target_before": 2816,
+    "target_after": 3978
+  },
+  {
+    "target_table": "hydro.mesure_barrage",
+    "source_table": "raw_mesures_niv_eau_barrages",
+    "candidate_count": 85074,
+    "inserted_count": 0,
+    "target_before": 84831,
+    "target_after": 84831
+  },
+  {
+    "target_table": "hydro.barrage_bathymetrie",
+    "source_table": "raw_bathymetries_barrages_abhs",
+    "candidate_count": 62359,
+    "inserted_count": 0,
+    "target_before": 62359,
+    "target_after": 62359
+  },
+  {
+    "target_table": "meteo.mesure_precipitation",
+    "source_table": "raw_mesures_precipitations_jr_traitees",
+    "candidate_count": 546007,
+    "inserted_count": 0,
+    "target_before": 546007,
+    "target_after": 546007
+  },
+  {
+    "target_table": "meteo.mesure_precipitation",
+    "source_table": "raw_mesures_precipitations_jr",
+    "candidate_count": 0,
+    "inserted_count": 0,
+    "target_before": 546007,
+    "target_after": 546007
+  },
+  {
+    "target_table": "meteo.mesure_precipitation_annuelle_max",
+    "source_table": "raw_mesures_precipitations_jr_max",
+    "candidate_count": 1915,
+    "inserted_count": 0,
+    "target_before": 2085,
+    "target_after": 2085
+  },
+  {
+    "target_table": "meteo.mesure_evaporation",
+    "source_table": "raw_mesures_evaporation_jr",
+    "candidate_count": 38592,
+    "inserted_count": 0,
+    "target_before": 48900,
+    "target_after": 48900
+  },
+  {
+    "target_table": "qualite.mesure_qualite_barrage",
+    "source_table": "raw_mesures_qualite_barrages",
+    "candidate_count": 8708,
+    "inserted_count": 0,
+    "target_before": 15808,
+    "target_after": 15808
+  },
+  {
+    "target_table": "qualite.mesure_qualite_nappe",
+    "source_table": "raw_mesures_qualite_nappes",
+    "candidate_count": 63076,
+    "inserted_count": 0,
+    "target_before": 63088,
+    "target_after": 63088
+  },
+  {
+    "target_table": "qualite.mesure_qualite_riviere",
+    "source_table": "raw_mesures_qualite_rivieres",
+    "candidate_count": 60074,
+    "inserted_count": 0,
+    "target_before": 60097,
+    "target_after": 60097
+  },
+  {
+    "target_table": "qualite.mesure_qualite_sebou",
+    "source_table": "raw_suivi_qualite_sebou_jr",
+    "candidate_count": 49954,
+    "inserted_count": 49954,
+    "target_before": 51402,
+    "target_after": 101356
+  },
+  {
+    "target_table": "qualite.suivi_qualite_barrage_garde_hebdo",
+    "source_table": "raw_suivi_qualite_brg_garde_hebdo",
+    "candidate_count": 3511,
+    "inserted_count": 0,
+    "target_before": 7094,
+    "target_after": 7094
+  }
+]

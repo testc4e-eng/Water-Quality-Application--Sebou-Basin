@@ -1,0 +1,731 @@
+table_source,pts_prelevement_original,pts_prelevement_normalise,occurrence,exemples
+staging.raw_idp_2024_mesures_qualite_globale,SJH_DOM1_R1 (EM),sjh dom1 r1 em,44,SJH_DOM1_R1 (EM)
+staging.raw_idp_2024_mesures_qualite_globale,AVAL AIN KARMA,aval ain karma,43,AVAL AIN KARMA
+staging.raw_idp_2024_mesures_qualite_globale,AVAL REJET BOUFEKRANE,aval rejet boufekrane,43,AVAL REJET BOUFEKRANE
+staging.raw_idp_2024_mesures_qualite_globale,AVAL REJET MOULAY DRISS ZARHOUN,aval rejet moulay driss zarhoun,43,AVAL REJET MOULAY DRISS ZARHOUN
+staging.raw_idp_2024_mesures_qualite_globale,AVAL REJET MOULAY YAACOUB,aval rejet moulay yaacoub,43,AVAL REJET MOULAY YAACOUB
+staging.raw_idp_2024_mesures_qualite_globale,Aval STEP (Aval Conf. Chaaba avec Oued Tiflet),aval step aval conf chaaba avec oued tiflet,43,Aval STEP (Aval Conf. Chaaba avec Oued Tiflet)
+staging.raw_idp_2024_mesures_qualite_globale,AVAL STEP OUED AMLIL,aval step oued amlil,43,AVAL STEP OUED AMLIL
+staging.raw_idp_2024_mesures_qualite_globale,AVAL VILLAGE AIT SIBERNE,aval village ait siberne,43,AVAL VILLAGE AIT SIBERNE
+staging.raw_idp_2024_mesures_qualite_globale,BFK_PDOM1_R1 (EM),bfk pdom1 r1 em,43,BFK_PDOM1_R1 (EM)
+staging.raw_idp_2024_mesures_qualite_globale,BSM_PDOM1_R2 (EM),bsm pdom1 r2 em,43,BSM_PDOM1_R2 (EM)
+staging.raw_idp_2024_mesures_qualite_globale,MERJA FOUARATE,merja fouarate,43,MERJA FOUARATE
+staging.raw_idp_2024_mesures_qualite_globale,PT. O. BEHT AVAL BIORISINE,pt o beht aval biorisine,43,PT. O. BEHT AVAL BIORISINE
+staging.raw_idp_2024_mesures_qualite_globale,Rejet Industriel (SMK),rejet industriel smk,43,Rejet Industriel (SMK)
+staging.raw_idp_2024_mesures_qualite_globale,SBA_DOM1_R1 (EM),sba dom1 r1 em,43,SBA_DOM1_R1 (EM)
+staging.raw_idp_2024_mesures_qualite_globale,TAZ_PDOM_R5 (E.M),taz pdom r5 e m,43,TAZ_PDOM_R5 (E.M)
+staging.raw_idp_2024_mesures_qualite_globale,AVAL BOULEMANE,aval boulemane,42,AVAL BOULEMANE
+staging.raw_idp_2024_mesures_qualite_globale,REJET ABATTOIR AGOURAI,rejet abattoir agourai,42,REJET ABATTOIR AGOURAI
+staging.raw_idp_2024_mesures_qualite_globale,REJET ABATTOIR OUED AMLIL ,rejet abattoir oued amlil,42,REJET ABATTOIR OUED AMLIL 
+staging.raw_idp_2024_mesures_qualite_globale,REJET BOULEMANE (EM),rejet boulemane em,42,REJET BOULEMANE (EM)
+staging.raw_idp_2024_mesures_qualite_globale,S14 (Aval_Conf_Rejet_HFT (Al Haouafate),s14 aval conf rejet hft al haouafate,42,S14 (Aval_Conf_Rejet_HFT (Al Haouafate)
+staging.raw_idp_2024_mesures_qualite_globale,S15 (Aval_Conf_Sebou_ Ouagha (Dour El Kbara),s15 aval conf sebou ouagha dour el kbara,42,S15 (Aval_Conf_Sebou_ Ouagha (Dour El Kbara)
+staging.raw_idp_2024_mesures_qualite_globale,S16 (Aval_Conf_Rejet_KHN (Khnichet),s16 aval conf rejet khn khnichet,42,S16 (Aval_Conf_Rejet_KHN (Khnichet)
+staging.raw_idp_2024_mesures_qualite_globale,S28 (Aval_Conf_Rejet_ORG (Ouartzagh),s28 aval conf rejet org ouartzagh,42,S28 (Aval_Conf_Rejet_ORG (Ouartzagh)
+staging.raw_idp_2024_mesures_qualite_globale,S29 (Aval_Conf_Rejet_Douar Ouled Jrir,s29 aval conf rejet douar ouled jrir,42,S29 (Aval_Conf_Rejet_Douar Ouled Jrir
+staging.raw_idp_2024_mesures_qualite_globale,S30 (Aval_Conf_Rejet_SHZ (Sidi Harazem),s30 aval conf rejet shz sidi harazem,42,S30 (Aval_Conf_Rejet_SHZ (Sidi Harazem)
+staging.raw_idp_2024_mesures_qualite_globale,AVAL REJET INDUSTRIEL MERJA,aval rejet industriel merja,41,AVAL REJET INDUSTRIEL MERJA
+staging.raw_idp_2024_mesures_qualite_globale,S18 (Aval Sidi Daoud),s18 aval sidi daoud,41,S18 (Aval Sidi Daoud)
+staging.raw_idp_2024_mesures_qualite_globale,S20 (Aval STEP Fes),s20 aval step fes,41,S20 (Aval STEP Fes)
+staging.raw_idp_2024_mesures_qualite_globale,S21 (Aval_conf_Leban_ Inaoun,s21 aval conf leban inaoun,41,S21 (Aval_conf_Leban_ Inaoun
+staging.raw_idp_2024_mesures_qualite_globale,S23 (Aval_Conf_Rejet_JEM (Jorf el MALHA ),s23 aval conf rejet jem jorf el malha,41,S23 (Aval_Conf_Rejet_JEM (Jorf el MALHA )
+staging.raw_idp_2024_mesures_qualite_globale,S27 (Aval_Conf_Rejet_LOD (Louadaine),s27 aval conf rejet lod louadaine,41,S27 (Aval_Conf_Rejet_LOD (Louadaine)
+staging.raw_idp_2024_mesures_qualite_globale,S8 (Aval Ferme Agricole sidi kamel),s8 aval ferme agricole sidi kamel,41,S8 (Aval Ferme Agricole sidi kamel)
+staging.raw_idp_2024_mesures_qualite_globale,AVAL AIN LEUH,aval ain leuh,39,AVAL AIN LEUH
+staging.raw_idp_2024_mesures_qualite_globale,AVAL REJET AIN CHEGGAG,aval rejet ain cheggag,39,AVAL REJET AIN CHEGGAG
+staging.raw_idp_2024_mesures_qualite_globale,AVAL REJET EL MENZEL,aval rejet el menzel,39,AVAL REJET EL MENZEL
+staging.raw_idp_2024_mesures_qualite_globale,AVAL REJET SEFROU,aval rejet sefrou,39,AVAL REJET SEFROU
+staging.raw_idp_2024_mesures_qualite_globale,AVAL VILLAGE BNI AMMART,aval village bni ammart,39,AVAL VILLAGE BNI AMMART
+staging.raw_idp_2024_mesures_qualite_globale,REJET ABATTOIR TAHLA,rejet abattoir tahla,39,REJET ABATTOIR TAHLA
+staging.raw_idp_2024_mesures_qualite_globale,REJET ABATTOIR GUIGOU,rejet abattoir guigou,38,REJET ABATTOIR GUIGOU
+staging.raw_idp_2024_mesures_qualite_globale,REJET ABATTOIR MOULAY DRISS ZRHOUN ,rejet abattoir moulay driss zrhoun,38,REJET ABATTOIR MOULAY DRISS ZRHOUN 
+staging.raw_idp_2024_mesures_qualite_globale,REJET ABATTOIR OULED ZBAIR,rejet abattoir ouled zbair,38,REJET ABATTOIR OULED ZBAIR
+staging.raw_idp_2024_mesures_qualite_globale,ALH_PDOM1_R4 (E.M),alh pdom1 r4 e m,36,ALH_PDOM1_R4 (E.M)
+staging.raw_idp_2024_mesures_qualite_globale,BBR_PDS_R4  (E.M),bbr pds r4 e m,36,BBR_PDS_R4  (E.M)
+staging.raw_idp_2024_mesures_qualite_globale,BBT_PDS_R3 (E.M),bbt pds r3 e m,36,BBT_PDS_R3 (E.M)
+staging.raw_idp_2024_mesures_qualite_globale,MNZ_DOM_R10  (E.M),mnz dom r10 e m,36,MNZ_DOM_R10  (E.M)
+staging.raw_idp_2024_mesures_qualite_globale,SEF_PDOM_R3 (E.M),sef pdom r3 e m,36,SEF_PDOM_R3 (E.M)
+staging.raw_idp_2024_mesures_qualite_globale,Amont STEP Taounate,amont step taounate,32,Amont STEP Taounate
+staging.raw_idp_2024_mesures_qualite_globale,Aval STEP Taounate,aval step taounate,32,Aval STEP Taounate
+staging.raw_idp_2024_mesures_qualite_globale,Amont STEP Khémisset ,amont step khemisset,31,Amont STEP Khémisset 
+staging.raw_idp_2024_mesures_qualite_globale,Aval STEP Khémisset ,aval step khemisset,31,Aval STEP Khémisset 
+staging.raw_idp_2024_mesures_qualite_globale,AVAL STEP AZROU,aval step azrou,29,AVAL STEP AZROU
+staging.raw_idp_2024_mesures_qualite_globale,AVAL STEP EL HAJEB,aval step el hajeb,29,AVAL STEP EL HAJEB
+staging.raw_idp_2024_mesures_qualite_globale,AVAL STEP IFRANE,aval step ifrane,29,AVAL STEP IFRANE
+staging.raw_idp_2024_mesures_qualite_globale,PA SIDI MOKHFI,pa sidi mokhfi,29,PA SIDI MOKHFI
+staging.raw_idp_2024_mesures_qualite_globale,Station Hajria,station hajria,28,Station Hajria
+staging.raw_idp_2024_mesures_qualite_globale,ARB_DECH1_PE1 (AIN LABROUAL),arb dech1 pe1 ain labroual,26,ARB_DECH1_PE1 (AIN LABROUAL)
+staging.raw_idp_2024_mesures_qualite_globale,CHG_DEC_PE1 (EL HOUD),chg dec pe1 el houd,26,CHG_DEC_PE1 (EL HOUD)
+staging.raw_idp_2024_mesures_qualite_globale,GHF_PDE_P1,ghf pde p1,26,GHF_PDE_P1
+staging.raw_idp_2024_mesures_qualite_globale,GHF_PDE_P1 (PUITS MRIZIEK),ghf pde p1 puits mriziek,26,GHF_PDE_P1 (PUITS MRIZIEK)
+staging.raw_idp_2024_mesures_qualite_globale,IMM_DECH_PE1 (FORAGE ONEE-BO),imm dech pe1 forage onee bo,26,IMM_DECH_PE1 (FORAGE ONEE-BO)
+staging.raw_idp_2024_mesures_qualite_globale,M_DECH_PE1 (FORAGE IRE 2153/15),m dech pe1 forage ire 2153 15,26,M_DECH_PE1 (FORAGE IRE 2153/15)
+staging.raw_idp_2024_mesures_qualite_globale,MBK_DEC_PE1 (Forage Ferme ZIANI Bel Arbi),mbk dec pe1 forage ferme ziani bel arbi,26,MBK_DEC_PE1 (Forage Ferme ZIANI Bel Arbi)
+staging.raw_idp_2024_mesures_qualite_globale,MBK_DOM_PE1 (Forage Belaje),mbk dom pe1 forage belaje,26,MBK_DOM_PE1 (Forage Belaje)
+staging.raw_idp_2024_mesures_qualite_globale,MDZ_PDOM1_PE1 ,mdz pdom1 pe1,26,MDZ_PDOM1_PE1 
+staging.raw_idp_2024_mesures_qualite_globale,R-KRB_PDE_P2,r krb pde p2,26,R-KRB_PDE_P2
+staging.raw_idp_2024_mesures_qualite_globale,RZI_DEC_PE1 (Puits Fouad ELBRINI),rzi dec pe1 puits fouad elbrini,26,RZI_DEC_PE1 (Puits Fouad ELBRINI)
+staging.raw_idp_2024_mesures_qualite_globale,Z_DECH_PE1 (FORAGE IRE 898/16 AIN BOUCHIBA),z dech pe1 forage ire 898 16 ain bouchiba,26,Z_DECH_PE1 (FORAGE IRE 898/16 AIN BOUCHIBA)
+staging.raw_idp_2024_mesures_qualite_globale,Z_DECH_PE2 (FORAGE IRE 12/517 AIN BOUCHIBA),z dech pe2 forage ire 12 517 ain bouchiba,26,Z_DECH_PE2 (FORAGE IRE 12/517 AIN BOUCHIBA)
+staging.raw_idp_2024_mesures_qualite_globale,ACH_PDE(PUITS CARRIERE),ach pde puits carriere,25,ACH_PDE(PUITS CARRIERE)
+staging.raw_idp_2024_mesures_qualite_globale,IMK_DEC_PE1 (AMHAOUCHE ISMAIL),imk dec pe1 amhaouche ismail,25,IMK_DEC_PE1 (AMHAOUCHE ISMAIL)
+staging.raw_idp_2024_mesures_qualite_globale,ATJ_DECH_PE1 ,atj dech pe1,24,ATJ_DECH_PE1 
+staging.raw_idp_2024_mesures_qualite_globale,SOURCE AMMES DECHQUONDA (BHL_PDOM_PE1),source ammes dechquonda bhl pdom pe1,24,SOURCE AMMES DECHQUONDA (BHL_PDOM_PE1)
+staging.raw_idp_2024_mesures_qualite_globale,ALH_PDOM1_PE1 (LAHCEN BIZIZI),alh pdom1 pe1 lahcen bizizi,23,ALH_PDOM1_PE1 (LAHCEN BIZIZI)
+staging.raw_idp_2024_mesures_qualite_globale,BMR_DOM_PE1 (Forage CHELIK Arbi),bmr dom pe1 forage chelik arbi,23,BMR_DOM_PE1 (Forage CHELIK Arbi)
+staging.raw_idp_2024_mesures_qualite_globale,RAT_DOM_PE1 (TAIBI HASSAN),rat dom pe1 taibi hassan,23,RAT_DOM_PE1 (TAIBI HASSAN)
+staging.raw_idp_2024_mesures_qualite_globale,SAT_DEC_PE1 (Puits youness CHOUA),sat dec pe1 puits youness choua,23,SAT_DEC_PE1 (Puits youness CHOUA)
+staging.raw_idp_2024_mesures_qualite_globale,SHZ_DOM2_PE1 (Source Skhinate (Nakhla),shz dom2 pe1 source skhinate nakhla,23,SHZ_DOM2_PE1 (Source Skhinate (Nakhla)
+staging.raw_idp_2024_mesures_qualite_globale,SHZ_DOM2_PE2 (Source Barda),shz dom2 pe2 source barda,23,SHZ_DOM2_PE2 (Source Barda)
+staging.raw_idp_2024_mesures_qualite_globale,LMJ_DOM_R2,lmj dom r2,22,LMJ_DOM_R2
+staging.raw_idp_2024_mesures_qualite_globale,LOJ_DOM_R1,loj dom r1,22,LOJ_DOM_R1
+staging.raw_idp_2024_mesures_qualite_globale,MBK_DOM_R4,mbk dom r4,22,MBK_DOM_R4
+staging.raw_idp_2024_mesures_qualite_globale,MKS_DOM_R2,mks dom r2,22,MKS_DOM_R2
+staging.raw_idp_2024_mesures_qualite_globale,OMN_DOM_R2,omn dom r2,22,OMN_DOM_R2
+staging.raw_idp_2024_mesures_qualite_globale,PONT RS 302,pont rs 302,22,PONT RS 302
+staging.raw_idp_2024_mesures_qualite_globale,S12 (Aval_Conf_Rejet_MBK_R4 (Mechraa Bel Ksiri),s12 aval conf rejet mbk r4 mechraa bel ksiri,22,S12 (Aval_Conf_Rejet_MBK_R4 (Mechraa Bel Ksiri)
+staging.raw_idp_2024_mesures_qualite_globale,S26 (Aval_Conf_Rejet_MKS (Mkansa),s26 aval conf rejet mks mkansa,22,S26 (Aval_Conf_Rejet_MKS (Mkansa)
+staging.raw_idp_2024_mesures_qualite_globale,STATION BAB MARZOUKA,station bab marzouka,22,STATION BAB MARZOUKA
+staging.raw_idp_2024_mesures_qualite_globale,S22 (Aval_conf_Sebou_ Inaoun),s22 aval conf sebou inaoun,21,S22 (Aval_conf_Sebou_ Inaoun)
+staging.raw_idp_2024_mesures_qualite_globale,S25 (Aval_Conf_Rejet_LMJ (Lamjaara),s25 aval conf rejet lmj lamjaara,21,S25 (Aval_Conf_Rejet_LMJ (Lamjaara)
+staging.raw_idp_2024_mesures_qualite_globale,S31 (Aval_Conf_Rejet_LOJ (Loulja),s31 aval conf rejet loj loulja,21,S31 (Aval_Conf_Rejet_LOJ (Loulja)
+staging.raw_idp_2024_mesures_qualite_globale, REJET R10 EM (R10: KNH-DOM-R1),rejet r10 em r10 knh dom r1,19, REJET R10 EM (R10: KNH-DOM-R1)
+staging.raw_idp_2024_mesures_qualite_globale, REJET R12 EM (R12: MBK-DOM-R2),rejet r12 em r12 mbk dom r2,19, REJET R12 EM (R12: MBK-DOM-R2)
+staging.raw_idp_2024_mesures_qualite_globale,ACH_PDS_R1,ach pds r1,19,ACH_PDS_R1
+staging.raw_idp_2024_mesures_qualite_globale,AID_DOM1_R4,aid dom1 r4,19,AID_DOM1_R4
+staging.raw_idp_2024_mesures_qualite_globale,AID_DOM1_R4 (AIN DFALI),aid dom1 r4 ain dfali,19,AID_DOM1_R4 (AIN DFALI)
+staging.raw_idp_2024_mesures_qualite_globale,AKA_DOM_R1,aka dom r1,19,AKA_DOM_R1
+staging.raw_idp_2024_mesures_qualite_globale,AKA_PDOM1_R1,aka pdom1 r1,19,AKA_PDOM1_R1
+staging.raw_idp_2024_mesures_qualite_globale,AMONT SOUK ELAHAD CHEBANATE,amont souk elahad chebanate,19,AMONT SOUK ELAHAD CHEBANATE
+staging.raw_idp_2024_mesures_qualite_globale,AMONT STEP OUED AMLIL,amont step oued amlil,19,AMONT STEP OUED AMLIL
+staging.raw_idp_2024_mesures_qualite_globale,AZR_PDOM1_R1,azr pdom1 r1,19,AZR_PDOM1_R1
+staging.raw_idp_2024_mesures_qualite_globale,CHQ_DOM_R1,chq dom r1,19,CHQ_DOM_R1
+staging.raw_idp_2024_mesures_qualite_globale,CHQ_DOM_R2,chq dom r2,19,CHQ_DOM_R2
+staging.raw_idp_2024_mesures_qualite_globale,DBA_DOM1_R1,dba dom1 r1,19,DBA_DOM1_R1
+staging.raw_idp_2024_mesures_qualite_globale,DDZ_PDOM1_R1,ddz pdom1 r1,19,DDZ_PDOM1_R1
+staging.raw_idp_2024_mesures_qualite_globale,HFT_DOM_R2,hft dom r2,19,HFT_DOM_R2
+staging.raw_idp_2024_mesures_qualite_globale,HFT_DOM_R3,hft dom r3,19,HFT_DOM_R3
+staging.raw_idp_2024_mesures_qualite_globale,IMK_DOM_R3,imk dom r3,19,IMK_DOM_R3
+staging.raw_idp_2024_mesures_qualite_globale,JEM_DOM_R1,jem dom r1,19,JEM_DOM_R1
+staging.raw_idp_2024_mesures_qualite_globale,JEM_DOM_R3,jem dom r3,19,JEM_DOM_R3
+staging.raw_idp_2024_mesures_qualite_globale,KSN_DOM_R1,ksn dom r1,19,KSN_DOM_R1
+staging.raw_idp_2024_mesures_qualite_globale,LOD_DOM_R1,lod dom r1,19,LOD_DOM_R1
+staging.raw_idp_2024_mesures_qualite_globale,M_DOM_R1,m dom r1,19,M_DOM_R1
+staging.raw_idp_2024_mesures_qualite_globale,MBC_DOM_R1,mbc dom r1,19,MBC_DOM_R1
+staging.raw_idp_2024_mesures_qualite_globale,MBK_DOM_R3,mbk dom r3,19,MBK_DOM_R3
+staging.raw_idp_2024_mesures_qualite_globale,MBK_DOM_R5,mbk dom r5,19,MBK_DOM_R5
+staging.raw_idp_2024_mesures_qualite_globale,MBK_DOM_R6,mbk dom r6,19,MBK_DOM_R6
+staging.raw_idp_2024_mesures_qualite_globale,MKS_DOM_R1,mks dom r1,19,MKS_DOM_R1
+staging.raw_idp_2024_mesures_qualite_globale,MOG_DOM_R1,mog dom r1,19,MOG_DOM_R1
+staging.raw_idp_2024_mesures_qualite_globale,MOKR_PDOM_R1,mokr pdom r1,19,MOKR_PDOM_R1
+staging.raw_idp_2024_mesures_qualite_globale,MSA_DOM1,msa dom1,19,MSA_DOM1
+staging.raw_idp_2024_mesures_qualite_globale,NBA_PDOM1_R1,nba pdom1 r1,19,NBA_PDOM1_R1
+staging.raw_idp_2024_mesures_qualite_globale,OA_DOM_R3,oa dom r3,19,OA_DOM_R3
+staging.raw_idp_2024_mesures_qualite_globale,OHN_DOM_R1,ohn dom r1,19,OHN_DOM_R1
+staging.raw_idp_2024_mesures_qualite_globale,ORG_DOM_R2,org dom r2,19,ORG_DOM_R2
+staging.raw_idp_2024_mesures_qualite_globale,OZ_DECH_R1,oz dech r1,19,OZ_DECH_R1
+staging.raw_idp_2024_mesures_qualite_globale,PA AVAL STEP MHAYA,pa aval step mhaya,19,PA AVAL STEP MHAYA
+staging.raw_idp_2024_mesures_qualite_globale,PA Aval Village Tigrigra,pa aval village tigrigra,19,PA Aval Village Tigrigra
+staging.raw_idp_2024_mesures_qualite_globale,REJET ABATTOIR BAB MARZOUKA ,rejet abattoir bab marzouka,19,REJET ABATTOIR BAB MARZOUKA 
+staging.raw_idp_2024_mesures_qualite_globale,REJET ABATTOIR BNI FTAH,rejet abattoir bni ftah,19,REJET ABATTOIR BNI FTAH
+staging.raw_idp_2024_mesures_qualite_globale,REJET ABATTOIR GALDMANE,rejet abattoir galdmane,19,REJET ABATTOIR GALDMANE
+staging.raw_idp_2024_mesures_qualite_globale,REJET ABATTOIR MASMOUDA,rejet abattoir masmouda,19,REJET ABATTOIR MASMOUDA
+staging.raw_idp_2024_mesures_qualite_globale,REJET ABATTOIR MATMATA,rejet abattoir matmata,19,REJET ABATTOIR MATMATA
+staging.raw_idp_2024_mesures_qualite_globale,REJET ABATTOIR MOQRISSET ,rejet abattoir moqrisset,19,REJET ABATTOIR MOQRISSET 
+staging.raw_idp_2024_mesures_qualite_globale,REJET ABATTOIR SIDI BOUSBER,rejet abattoir sidi bousber,19,REJET ABATTOIR SIDI BOUSBER
+staging.raw_idp_2024_mesures_qualite_globale,REJET ABATTOIR SIDI REDOUANE,rejet abattoir sidi redouane,19,REJET ABATTOIR SIDI REDOUANE
+staging.raw_idp_2024_mesures_qualite_globale,REJET ABATTOIR SKOURA MDAZ,rejet abattoir skoura mdaz,19,REJET ABATTOIR SKOURA MDAZ
+staging.raw_idp_2024_mesures_qualite_globale,REJET ABATTOIR ZOUMI ,rejet abattoir zoumi,19,REJET ABATTOIR ZOUMI 
+staging.raw_idp_2024_mesures_qualite_globale,REJET MERJA FOUARATE AIN SEBAA,rejet merja fouarate ain sebaa,19,REJET MERJA FOUARATE AIN SEBAA
+staging.raw_idp_2024_mesures_qualite_globale,REJET R1 EM (R1: SHZ-DOM2-R1),rejet r1 em r1 shz dom2 r1,19,REJET R1 EM (R1: SHZ-DOM2-R1)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R11 EM (R11: NTR-DOM-R1),rejet r11 em r11 ntr dom r1,19,REJET R11 EM (R11: NTR-DOM-R1)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R2 EM  (R2: SHZ-DOM2-R2),rejet r2 em r2 shz dom2 r2,19,REJET R2 EM  (R2: SHZ-DOM2-R2)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R3 EM  (R3: SHZ-DOM1-R1),rejet r3 em r3 shz dom1 r1,19,REJET R3 EM  (R3: SHZ-DOM1-R1)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R4 EM (R4: SHZ-DOM3-R2),rejet r4 em r4 shz dom3 r2,19,REJET R4 EM (R4: SHZ-DOM3-R2)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R5 EM (R5: LOD-DOM-R2),rejet r5 em r5 lod dom r2,19,REJET R5 EM (R5: LOD-DOM-R2)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R6 EM  (R6: ORG-DOM-R3),rejet r6 em r6 org dom r3,19,REJET R6 EM  (R6: ORG-DOM-R3)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R7 EM  (R7: JEM-DOM-R2),rejet r7 em r7 jem dom r2,19,REJET R7 EM  (R7: JEM-DOM-R2)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R8 EM (R8: LMJ-DOM-R1),rejet r8 em r8 lmj dom r1,19,REJET R8 EM (R8: LMJ-DOM-R1)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R9 EM (R9: TRL-DOM-R1),rejet r9 em r9 trl dom r1,19,REJET R9 EM (R9: TRL-DOM-R1)
+staging.raw_idp_2024_mesures_qualite_globale,REJET STEP TIFLET,rejet step tiflet,19,REJET STEP TIFLET
+staging.raw_idp_2024_mesures_qualite_globale,RG_AIS_1,rg ais 1,19,RG_AIS_1
+staging.raw_idp_2024_mesures_qualite_globale,RG_TFL_1,rg tfl 1,19,RG_TFL_1
+staging.raw_idp_2024_mesures_qualite_globale,S1 (Aval_conf_Rejet_MOG (Mograne),s1 aval conf rejet mog mograne,19,S1 (Aval_conf_Rejet_MOG (Mograne)
+staging.raw_idp_2024_mesures_qualite_globale,S10 (Aval douar Zehair (sidi kamel),s10 aval douar zehair sidi kamel,19,S10 (Aval douar Zehair (sidi kamel)
+staging.raw_idp_2024_mesures_qualite_globale,S11 (Amont Fermes Agricole sidi kamel,s11 amont fermes agricole sidi kamel,19,S11 (Amont Fermes Agricole sidi kamel
+staging.raw_idp_2024_mesures_qualite_globale,S13 (Aval_Conf_Rejet_MBK (Mechraa Bel Ksiri),s13 aval conf rejet mbk mechraa bel ksiri,19,S13 (Aval_Conf_Rejet_MBK (Mechraa Bel Ksiri)
+staging.raw_idp_2024_mesures_qualite_globale,S2 (Barrage de garde),s2 barrage de garde,19,S2 (Barrage de garde)
+staging.raw_idp_2024_mesures_qualite_globale,S24 (Douar Chorf laghouazi),s24 douar chorf laghouazi,19,S24 (Douar Chorf laghouazi)
+staging.raw_idp_2024_mesures_qualite_globale,S3 (Station Pompage Ferme (Amont Bge de garde),s3 station pompage ferme amont bge de garde,19,S3 (Station Pompage Ferme (Amont Bge de garde)
+staging.raw_idp_2024_mesures_qualite_globale,S4 (Amont station pompage ferme),s4 amont station pompage ferme,19,S4 (Amont station pompage ferme)
+staging.raw_idp_2024_mesures_qualite_globale,S5 (Aval ancien rejet sotrameg),s5 aval ancien rejet sotrameg,19,S5 (Aval ancien rejet sotrameg)
+staging.raw_idp_2024_mesures_qualite_globale,S6 (Amont ancien rejet sotrameg),s6 amont ancien rejet sotrameg,19,S6 (Amont ancien rejet sotrameg)
+staging.raw_idp_2024_mesures_qualite_globale,S7 (Aval_Conf_Rejet_SAT (Sidi Allal Tazi),s7 aval conf rejet sat sidi allal tazi,19,S7 (Aval_Conf_Rejet_SAT (Sidi Allal Tazi)
+staging.raw_idp_2024_mesures_qualite_globale,S9 (Aval douar el fokra (sidi kamel),s9 aval douar el fokra sidi kamel,19,S9 (Aval douar el fokra (sidi kamel)
+staging.raw_idp_2024_mesures_qualite_globale,SAH_DOM1_R1,sah dom1 r1,19,SAH_DOM1_R1
+staging.raw_idp_2024_mesures_qualite_globale,SAT_DOM_R2,sat dom r2,19,SAT_DOM_R2
+staging.raw_idp_2024_mesures_qualite_globale,SAZ_DOM_R1,saz dom r1,19,SAZ_DOM_R1
+staging.raw_idp_2024_mesures_qualite_globale,SAZ_DOM_R2,saz dom r2,19,SAZ_DOM_R2
+staging.raw_idp_2024_mesures_qualite_globale,SDK_DOM1_R2,sdk dom1 r2,19,SDK_DOM1_R2
+staging.raw_idp_2024_mesures_qualite_globale,SDR_PDOM_R1,sdr pdom r1,19,SDR_PDOM_R1
+staging.raw_idp_2024_mesures_qualite_globale,SHZ_DOM2_R3,shz dom2 r3,19,SHZ_DOM2_R3
+staging.raw_idp_2024_mesures_qualite_globale,SHZ_DOM2_R4,shz dom2 r4,19,SHZ_DOM2_R4
+staging.raw_idp_2024_mesures_qualite_globale,SHZ_DOM2_R5,shz dom2 r5,19,SHZ_DOM2_R5
+staging.raw_idp_2024_mesures_qualite_globale,SHZ_DOM3_R1,shz dom3 r1,19,SHZ_DOM3_R1
+staging.raw_idp_2024_mesures_qualite_globale,SHZ_DOM5_R1,shz dom5 r1,19,SHZ_DOM5_R1
+staging.raw_idp_2024_mesures_qualite_globale,SMK_PDOM1_R2,smk pdom1 r2,19,SMK_PDOM1_R2
+staging.raw_idp_2024_mesures_qualite_globale,TAZ_PDOM_R9,taz pdom r9,19,TAZ_PDOM_R9
+staging.raw_idp_2024_mesures_qualite_globale,TRL_DOM_R2,trl dom r2,19,TRL_DOM_R2
+staging.raw_idp_2024_mesures_qualite_globale,ZDA_PDOM_R1,zda pdom r1,19,ZDA_PDOM_R1
+staging.raw_idp_2024_mesures_qualite_globale,ZOM_PDOM_R1,zom pdom r1,19,ZOM_PDOM_R1
+staging.raw_idp_2024_mesures_qualite_globale,AMONT SEFROU,amont sefrou,17,AMONT SEFROU
+staging.raw_idp_2024_mesures_qualite_globale,AVAL OUED IFRANE,aval oued ifrane,17,AVAL OUED IFRANE
+staging.raw_idp_2024_mesures_qualite_globale,BA_DOM_R1,ba dom r1,17,BA_DOM_R1
+staging.raw_idp_2024_mesures_qualite_globale,BHD_PDS_R2,bhd pds r2,17,BHD_PDS_R2
+staging.raw_idp_2024_mesures_qualite_globale,BHL_DOM_PE1 (PUITS),bhl dom pe1 puits,17,BHL_DOM_PE1 (PUITS)
+staging.raw_idp_2024_mesures_qualite_globale,RAT_DOM_R1,rat dom r1,17,RAT_DOM_R1
+staging.raw_idp_2024_mesures_qualite_globale,TAHLA_DECH_PE1 (FORAGE IRE 1/509),tahla dech pe1 forage ire 1 509,17,TAHLA_DECH_PE1 (FORAGE IRE 1/509)
+staging.raw_idp_2024_mesures_qualite_globale,TAM_PDS_R1,tam pds r1,17,TAM_PDS_R1
+staging.raw_idp_2024_mesures_qualite_globale,THS_PDS_R1,ths pds r1,17,THS_PDS_R1
+staging.raw_idp_2024_mesures_qualite_globale,TIS_DEC_PE1 (MEHDI OUAZZANI),tis dec pe1 mehdi ouazzani,17,TIS_DEC_PE1 (MEHDI OUAZZANI)
+staging.raw_idp_2024_mesures_qualite_globale, REJET R10 EP (R10: KNH-DOM-R1),rejet r10 ep r10 knh dom r1,3, REJET R10 EP (R10: KNH-DOM-R1)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R1 EP (R1: SHZ-DOM2-R1),rejet r1 ep r1 shz dom2 r1,3,REJET R1 EP (R1: SHZ-DOM2-R1)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R11 EP (R11: NTR-DOM-R1),rejet r11 ep r11 ntr dom r1,3,REJET R11 EP (R11: NTR-DOM-R1)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R12 EP (R12: MBK-DOM-R2),rejet r12 ep r12 mbk dom r2,3,REJET R12 EP (R12: MBK-DOM-R2)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R2 EP  (R2: SHZ-DOM2-R2),rejet r2 ep r2 shz dom2 r2,3,REJET R2 EP  (R2: SHZ-DOM2-R2)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R3 EP  (R3: SHZ-DOM1-R1),rejet r3 ep r3 shz dom1 r1,3,REJET R3 EP  (R3: SHZ-DOM1-R1)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R4 EP (R4: SHZ-DOM3-R2),rejet r4 ep r4 shz dom3 r2,3,REJET R4 EP (R4: SHZ-DOM3-R2)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R5 EP (R5: LOD-DOM-R2),rejet r5 ep r5 lod dom r2,3,REJET R5 EP (R5: LOD-DOM-R2)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R6 EP  (R6: ORG-DOM-R3),rejet r6 ep r6 org dom r3,3,REJET R6 EP  (R6: ORG-DOM-R3)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R7 EP  (R7: JEM-DOM-R2),rejet r7 ep r7 jem dom r2,3,REJET R7 EP  (R7: JEM-DOM-R2)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R8 EP (R8: LMJ-DOM-R1),rejet r8 ep r8 lmj dom r1,3,REJET R8 EP (R8: LMJ-DOM-R1)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R9 EP (R9: TRL-DOM-R1),rejet r9 ep r9 trl dom r1,3,REJET R9 EP (R9: TRL-DOM-R1)
+staging.raw_idp_2024_mesures_qualite_globale, REJET R10 (R10: KNH-DOM-R1),rejet r10 r10 knh dom r1,1, REJET R10 (R10: KNH-DOM-R1)
+staging.raw_idp_2024_mesures_qualite_globale, REJET R11 (R11: NTR-DOM-R1),rejet r11 r11 ntr dom r1,1, REJET R11 (R11: NTR-DOM-R1)
+staging.raw_idp_2024_mesures_qualite_globale, REJET R12 (R12: MBK-DOM-R2),rejet r12 r12 mbk dom r2,1, REJET R12 (R12: MBK-DOM-R2)
+staging.raw_idp_2024_mesures_qualite_globale, REJET R4  (R4: SHZ-DOM3-R2),rejet r4 r4 shz dom3 r2,1, REJET R4  (R4: SHZ-DOM3-R2)
+staging.raw_idp_2024_mesures_qualite_globale, REJET R6 (R6: ORG-DOM-R3),rejet r6 r6 org dom r3,1, REJET R6 (R6: ORG-DOM-R3)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R1 (R1: SHZ-DOM2-R1),rejet r1 r1 shz dom2 r1,1,REJET R1 (R1: SHZ-DOM2-R1)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R2 (R2: SHZ-DOM2-R2),rejet r2 r2 shz dom2 r2,1,REJET R2 (R2: SHZ-DOM2-R2)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R3  (R3: SHZ-DOM1-R1),rejet r3 r3 shz dom1 r1,1,REJET R3  (R3: SHZ-DOM1-R1)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R5 (R5: LOD-DOM-R2),rejet r5 r5 lod dom r2,1,REJET R5 (R5: LOD-DOM-R2)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R7 (R7: JEM-DOM-R2),rejet r7 r7 jem dom r2,1,REJET R7 (R7: JEM-DOM-R2)
+staging.raw_idp_2024_mesures_qualite_globale,REJET R9 (R9: TRL-DOM-R1),rejet r9 r9 trl dom r1,1,REJET R9 (R9: TRL-DOM-R1)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PONT KHENICHET,pont khenichet,52,PONT KHENICHET
+staging.raw_idp_2024_mesures_qualite_marche_cadre,AMONT KENITRA,amont kenitra,50,AMONT KENITRA
+staging.raw_idp_2024_mesures_qualite_marche_cadre,AVAL REJET MEKNES,aval rejet meknes,50,AVAL REJET MEKNES
+staging.raw_idp_2024_mesures_qualite_marche_cadre,POINT RP1 AVAL TAZA,point rp1 aval taza,50,POINT RP1 AVAL TAZA
+staging.raw_idp_2024_mesures_qualite_marche_cadre,STATION DAR EL ARSA,station dar el arsa,50,STATION DAR EL ARSA
+staging.raw_idp_2024_mesures_qualite_marche_cadre,STATION AZIB SOLTANE,station azib soltane,48,STATION AZIB SOLTANE
+staging.raw_idp_2024_mesures_qualite_marche_cadre,STATION PONT MECHRAA BEL KSIRI,station pont mechraa bel ksiri,48,STATION PONT MECHRAA BEL KSIRI
+staging.raw_idp_2024_mesures_qualite_marche_cadre,AMONT BARRAGE DE GARDE,amont barrage de garde,46,AMONT BARRAGE DE GARDE
+staging.raw_idp_2024_mesures_qualite_marche_cadre,AVAL STEP EL HAJEB,aval step el hajeb,42,AVAL STEP EL HAJEB
+staging.raw_idp_2024_mesures_qualite_marche_cadre,AVAL STEP IMOUZZER MARMOUCHA,aval step imouzzer marmoucha,42,AVAL STEP IMOUZZER MARMOUCHA
+staging.raw_idp_2024_mesures_qualite_marche_cadre,STATION BAB MARZOUKA,station bab marzouka,40,STATION BAB MARZOUKA
+staging.raw_idp_2024_mesures_qualite_marche_cadre,AMONT STEP KENITRA,amont step kenitra,39,AMONT STEP KENITRA
+staging.raw_idp_2024_mesures_qualite_marche_cadre,AMONT STEP KHEMISSET ,amont step khemisset,39,AMONT STEP KHEMISSET 
+staging.raw_idp_2024_mesures_qualite_marche_cadre,AMONT STEP MECHRAA BEL KSIRI,amont step mechraa bel ksiri,39,AMONT STEP MECHRAA BEL KSIRI
+staging.raw_idp_2024_mesures_qualite_marche_cadre,AVAL REJET TIFELT,aval rejet tifelt,39,AVAL REJET TIFELT
+staging.raw_idp_2024_mesures_qualite_marche_cadre,AVAL STEP AZROU,aval step azrou,39,AVAL STEP AZROU
+staging.raw_idp_2024_mesures_qualite_marche_cadre,AVAL STEP FES,aval step fes,39,AVAL STEP FES
+staging.raw_idp_2024_mesures_qualite_marche_cadre,AVAL STEP IFRANE,aval step ifrane,39,AVAL STEP IFRANE
+staging.raw_idp_2024_mesures_qualite_marche_cadre,AVAL STEP KARIAT BA MOHAMED,aval step kariat ba mohamed,39,AVAL STEP KARIAT BA MOHAMED
+staging.raw_idp_2024_mesures_qualite_marche_cadre,AVAL STEP KHEMISSET ,aval step khemisset,39,AVAL STEP KHEMISSET 
+staging.raw_idp_2024_mesures_qualite_marche_cadre,AVAL STEP MECHRAA BEL KSIRI,aval step mechraa bel ksiri,39,AVAL STEP MECHRAA BEL KSIRI
+staging.raw_idp_2024_mesures_qualite_marche_cadre,AVAL STEP SIDI KACEM,aval step sidi kacem,39,AVAL STEP SIDI KACEM
+staging.raw_idp_2024_mesures_qualite_marche_cadre,AVAL STEP SIDI YAHYA EL GHARB,aval step sidi yahya el gharb,39,AVAL STEP SIDI YAHYA EL GHARB
+staging.raw_idp_2024_mesures_qualite_marche_cadre,AVAL STEP TAHLA,aval step tahla,39,AVAL STEP TAHLA
+staging.raw_idp_2024_mesures_qualite_marche_cadre,AVAL STEP TAOUNATE,aval step taounate,39,AVAL STEP TAOUNATE
+staging.raw_idp_2024_mesures_qualite_marche_cadre,STATION AVAL GHAFSAI,station aval ghafsai,39,STATION AVAL GHAFSAI
+staging.raw_idp_2024_mesures_qualite_marche_cadre,AVAL STEP SIDI SLIMANE,aval step sidi slimane,38,AVAL STEP SIDI SLIMANE
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PT RP 21 (OUED BOUFEKRANE),pt rp 21 oued boufekrane,38,PT RP 21 (OUED BOUFEKRANE)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,AMONT STEP TAOUNATE,amont step taounate,37,AMONT STEP TAOUNATE
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PONT RS 302,pont rs 302,37,PONT RS 302
+staging.raw_idp_2024_mesures_qualite_marche_cadre,SIDI MOKHFI,sidi mokhfi,37,SIDI MOKHFI
+staging.raw_idp_2024_mesures_qualite_marche_cadre,AVAL CONFLUENCE SEBOU-RDAT,aval confluence sebou rdat,36,AVAL CONFLUENCE SEBOU-RDAT
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PONT KROUMAN,pont krouman,36,PONT KROUMAN
+staging.raw_idp_2024_mesures_qualite_marche_cadre,FORAGE DOMAINE JAWHARA,forage domaine jawhara,35,FORAGE DOMAINE JAWHARA
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS BEN SMIME,puits ben smime,35,PUITS BEN SMIME
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS FERME BENNANI,puits ferme bennani,35,PUITS FERME BENNANI
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS KHLIFI RAMOU,puits khlifi ramou,35,PUITS KHLIFI RAMOU
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS MOHAMED CHEHYMA,puits mohamed chehyma,35,PUITS MOHAMED CHEHYMA
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS SOUK EL HAD (GHAFSAI),puits souk el had ghafsai,35,PUITS SOUK EL HAD (GHAFSAI)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,SOURCE ABATTOIR,source abattoir,35,SOURCE ABATTOIR
+staging.raw_idp_2024_mesures_qualite_marche_cadre,FOUM KHNEG,foum khneg,34,FOUM KHNEG
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PONT PORTUGAIS,pont portugais,34,PONT PORTUGAIS
+staging.raw_idp_2024_mesures_qualite_marche_cadre,SOURCE AMMES DECHQUONDA ,source ammes dechquonda,34,SOURCE AMMES DECHQUONDA 
+staging.raw_idp_2024_mesures_qualite_marche_cadre,STATION BAB OUENDER,station bab ouender,34,STATION BAB OUENDER
+staging.raw_idp_2024_mesures_qualite_marche_cadre,STATION HAJRIA,station hajria,34,STATION HAJRIA
+staging.raw_idp_2024_mesures_qualite_marche_cadre,STATION HAMMAM,station hammam,34,STATION HAMMAM
+staging.raw_idp_2024_mesures_qualite_marche_cadre,STATION RP 26,station rp 26,34,STATION RP 26
+staging.raw_idp_2024_mesures_qualite_marche_cadre,FORAGE ABD NBI BOUTABEQ,forage abd nbi boutabeq,32,FORAGE ABD NBI BOUTABEQ
+staging.raw_idp_2024_mesures_qualite_marche_cadre,FORAGE AFAQFAQ,forage afaqfaq,32,FORAGE AFAQFAQ
+staging.raw_idp_2024_mesures_qualite_marche_cadre,FORAGE AHMED GHARAS,forage ahmed gharas,32,FORAGE AHMED GHARAS
+staging.raw_idp_2024_mesures_qualite_marche_cadre,FORAGE ATTO MILOUD,forage atto miloud,32,FORAGE ATTO MILOUD
+staging.raw_idp_2024_mesures_qualite_marche_cadre,FORAGE BARRAGE DE GARDE,forage barrage de garde,32,FORAGE BARRAGE DE GARDE
+staging.raw_idp_2024_mesures_qualite_marche_cadre,FORAGE FERME HADDADI ,forage ferme haddadi,32,FORAGE FERME HADDADI 
+staging.raw_idp_2024_mesures_qualite_marche_cadre,FORAGE FERME HAJ MOUHCINE ,forage ferme haj mouhcine,32,FORAGE FERME HAJ MOUHCINE 
+staging.raw_idp_2024_mesures_qualite_marche_cadre,FORAGE FERME ZNAIBER,forage ferme znaiber,32,FORAGE FERME ZNAIBER
+staging.raw_idp_2024_mesures_qualite_marche_cadre,FORAGE HUILERIE TALAA,forage huilerie talaa,32,FORAGE HUILERIE TALAA
+staging.raw_idp_2024_mesures_qualite_marche_cadre,FORAGE ONEP BEN AOUDA,forage onep ben aouda,32,FORAGE ONEP BEN AOUDA
+staging.raw_idp_2024_mesures_qualite_marche_cadre,FORAGE ONEP KSAIBIA,forage onep ksaibia,32,FORAGE ONEP KSAIBIA
+staging.raw_idp_2024_mesures_qualite_marche_cadre,FORAGE SOCHATOUR,forage sochatour,32,FORAGE SOCHATOUR
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS AHMED JIRRARI,puits ahmed jirrari,32,PUITS AHMED JIRRARI
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS AIN ASSOU,puits ain assou,32,PUITS AIN ASSOU
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS AIT YADINE,puits ait yadine,32,PUITS AIT YADINE
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS AVAL BOULEMANE,puits aval boulemane,32,PUITS AVAL BOULEMANE
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS BACHEKAR HASSAN,puits bachekar hassan,32,PUITS BACHEKAR HASSAN
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS BADIA SAHLI,puits badia sahli,32,PUITS BADIA SAHLI
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS BRIQUETERIE,puits briqueterie,32,PUITS BRIQUETERIE
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS DAR BEL GHAZI,puits dar bel ghazi,32,PUITS DAR BEL GHAZI
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS DOUAR BEL KOURA,puits douar bel koura,32,PUITS DOUAR BEL KOURA
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS DOUAR OUERSEFAN,puits douar ouersefan,32,PUITS DOUAR OUERSEFAN
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS FERME BEN ALI (NOUVEAU) ,puits ferme ben ali nouveau,32,PUITS FERME BEN ALI (NOUVEAU) 
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS FERME ZNIBER SADEK,puits ferme zniber sadek,32,PUITS FERME ZNIBER SADEK
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS FOURRIERE,puits fourriere,32,PUITS FOURRIERE
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS GHOUAZI OUAZZAA,puits ghouazi ouazzaa,32,PUITS GHOUAZI OUAZZAA
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS HABRI HADOU ,puits habri hadou,32,PUITS HABRI HADOU 
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS HRICHMANE,puits hrichmane,32,PUITS HRICHMANE
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS KBIR BOUTARTA,puits kbir boutarta,32,PUITS KBIR BOUTARTA
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS LABYAR (AIN DORRIJ),puits labyar ain dorrij,32,PUITS LABYAR (AIN DORRIJ)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS LAZZOU ABD WAHD,puits lazzou abd wahd,32,PUITS LAZZOU ABD WAHD
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS LHAMMANI BRAHIM,puits lhammani brahim,32,PUITS LHAMMANI BRAHIM
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS LOUTFI BENKAMLEH,puits loutfi benkamleh,32,PUITS LOUTFI BENKAMLEH
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS MANSOUR CHERINI,puits mansour cherini,32,PUITS MANSOUR CHERINI
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS MOHAMED HASSANI,puits mohamed hassani,32,PUITS MOHAMED HASSANI
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS ONEP AIN AICHA,puits onep ain aicha,32,PUITS ONEP AIN AICHA
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS ONEP GUIGUO,puits onep guiguo,32,PUITS ONEP GUIGUO
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS RAS TABOUDA,puits ras tabouda,32,PUITS RAS TABOUDA
+staging.raw_idp_2024_mesures_qualite_marche_cadre,PUITS STATION DAR SALEM,puits station dar salem,32,PUITS STATION DAR SALEM
+staging.raw_idp_2024_mesures_qualite_marche_cadre,SOURCE AKBOUB ,source akboub,32,SOURCE AKBOUB 
+staging.raw_idp_2024_mesures_qualite_marche_cadre,SOURCE MASSEGAL,source massegal,32,SOURCE MASSEGAL
+staging.raw_idp_2024_mesures_qualite_marche_cadre,SOURCE RAS EL AIN,source ras el ain,32,SOURCE RAS EL AIN
+staging.raw_idp_2024_mesures_qualite_marche_cadre,DAYAT FOUARATE,dayat fouarate,14,DAYAT FOUARATE
+staging.raw_idp_2024_mesures_qualite_marche_cadre,DAYAT SIDI BOUGHABA,dayat sidi boughaba,14,DAYAT SIDI BOUGHABA
+staging.raw_idp_2024_mesures_qualite_marche_cadre,LAGUNE MERJA ZARGA (SURFACE),lagune merja zarga surface,12,LAGUNE MERJA ZARGA (SURFACE)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE ALLAL EL FASSI (FOND),barrage allal el fassi fond,11,BARRAGE ALLAL EL FASSI (FOND)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE ALLAL EL FASSI (MILIEU),barrage allal el fassi milieu,11,BARRAGE ALLAL EL FASSI (MILIEU)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE ALLAL EL FASSI (SURFACE),barrage allal el fassi surface,11,BARRAGE ALLAL EL FASSI (SURFACE)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE ASFALOU (FOND),barrage asfalou fond,11,BARRAGE ASFALOU (FOND)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE ASFALOU (MILIEU),barrage asfalou milieu,11,BARRAGE ASFALOU (MILIEU)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE ASFALOU (SURFACE),barrage asfalou surface,11,BARRAGE ASFALOU (SURFACE)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE BAB LOUTA (FOND),barrage bab louta fond,11,BARRAGE BAB LOUTA (FOND)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE BAB LOUTA (MILIEU),barrage bab louta milieu,11,BARRAGE BAB LOUTA (MILIEU)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE BAB LOUTA (SURFACE),barrage bab louta surface,11,BARRAGE BAB LOUTA (SURFACE)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE BOUHOUDA (FOND),barrage bouhouda fond,11,BARRAGE BOUHOUDA (FOND)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE BOUHOUDA (MILIEU),barrage bouhouda milieu,11,BARRAGE BOUHOUDA (MILIEU)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE BOUHOUDA (SURFACE),barrage bouhouda surface,11,BARRAGE BOUHOUDA (SURFACE)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE DE GARDE  (FOND),barrage de garde fond,11,BARRAGE DE GARDE  (FOND)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE DE GARDE  (SURFACE),barrage de garde surface,11,BARRAGE DE GARDE  (SURFACE)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE EL KANSRA (FOND),barrage el kansra fond,11,BARRAGE EL KANSRA (FOND)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE EL KANSRA (MILIEU),barrage el kansra milieu,11,BARRAGE EL KANSRA (MILIEU)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE EL KANSRA (SURFACE),barrage el kansra surface,11,BARRAGE EL KANSRA (SURFACE)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE EL WAHDA (FOND),barrage el wahda fond,11,BARRAGE EL WAHDA (FOND)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE EL WAHDA (MILIEU),barrage el wahda milieu,11,BARRAGE EL WAHDA (MILIEU)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE EL WAHDA (SURFACE),barrage el wahda surface,11,BARRAGE EL WAHDA (SURFACE)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE IDRISS 1ER (FOND),barrage idriss 1er fond,11,BARRAGE IDRISS 1ER (FOND)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE IDRISS 1ER (MILIEU),barrage idriss 1er milieu,11,BARRAGE IDRISS 1ER (MILIEU)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE IDRISS 1ER (SURFACE),barrage idriss 1er surface,11,BARRAGE IDRISS 1ER (SURFACE)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE M'DEZ (FOND),barrage m dez fond,11,BARRAGE M'DEZ (FOND)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE M'DEZ (MILIEU),barrage m dez milieu,11,BARRAGE M'DEZ (MILIEU)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE M'DEZ (SURFACE),barrage m dez surface,11,BARRAGE M'DEZ (SURFACE)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE OULJET SOLTANE (FOND),barrage ouljet soltane fond,11,BARRAGE OULJET SOLTANE (FOND)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE OULJET SOLTANE (MILIEU),barrage ouljet soltane milieu,11,BARRAGE OULJET SOLTANE (MILIEU)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE OULJET SOLTANE (SURFACE),barrage ouljet soltane surface,11,BARRAGE OULJET SOLTANE (SURFACE)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE SAHLA (FOND),barrage sahla fond,11,BARRAGE SAHLA (FOND)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE SAHLA (MILIEU),barrage sahla milieu,11,BARRAGE SAHLA (MILIEU)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE SAHLA (SURFACE),barrage sahla surface,11,BARRAGE SAHLA (SURFACE)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE SIDI ECHAHED (FOND),barrage sidi echahed fond,11,BARRAGE SIDI ECHAHED (FOND)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE SIDI ECHAHED (MILIEU),barrage sidi echahed milieu,11,BARRAGE SIDI ECHAHED (MILIEU)
+staging.raw_idp_2024_mesures_qualite_marche_cadre,BARRAGE SIDI ECHAHED (SURFACE),barrage sidi echahed surface,11,BARRAGE SIDI ECHAHED (SURFACE)
+staging.raw_idp_2024_src_pollution_globale, REJET R1 (R1: SHZ-DOM2-R1),rejet r1 r1 shz dom2 r1,1, REJET R1 (R1: SHZ-DOM2-R1)
+staging.raw_idp_2024_src_pollution_globale, REJET R10 (R10: KNH-DOM-R1),rejet r10 r10 knh dom r1,1, REJET R10 (R10: KNH-DOM-R1)
+staging.raw_idp_2024_src_pollution_globale, REJET R10 EM (R10: KNH-DOM-R1),rejet r10 em r10 knh dom r1,1, REJET R10 EM (R10: KNH-DOM-R1)
+staging.raw_idp_2024_src_pollution_globale, REJET R10 EP (R10: KNH-DOM-R1),rejet r10 ep r10 knh dom r1,1, REJET R10 EP (R10: KNH-DOM-R1)
+staging.raw_idp_2024_src_pollution_globale, REJET R11 (R11: NTR-DOM-R1),rejet r11 r11 ntr dom r1,1, REJET R11 (R11: NTR-DOM-R1)
+staging.raw_idp_2024_src_pollution_globale, REJET R12 (R12: MBK-DOM-R2),rejet r12 r12 mbk dom r2,1, REJET R12 (R12: MBK-DOM-R2)
+staging.raw_idp_2024_src_pollution_globale, REJET R12 EM (R12: MBK-DOM-R2),rejet r12 em r12 mbk dom r2,1, REJET R12 EM (R12: MBK-DOM-R2)
+staging.raw_idp_2024_src_pollution_globale, REJET R12 EP (R12: MBK-DOM-R2),rejet r12 ep r12 mbk dom r2,1, REJET R12 EP (R12: MBK-DOM-R2)
+staging.raw_idp_2024_src_pollution_globale, REJET R4  (R4: SHZ-DOM3-R2),rejet r4 r4 shz dom3 r2,1, REJET R4  (R4: SHZ-DOM3-R2)
+staging.raw_idp_2024_src_pollution_globale, REJET R6 (R6: ORG-DOM-R3),rejet r6 r6 org dom r3,1, REJET R6 (R6: ORG-DOM-R3)
+staging.raw_idp_2024_src_pollution_globale, REJET R8  (R8: LMJ-DOM-R1),rejet r8 r8 lmj dom r1,1, REJET R8  (R8: LMJ-DOM-R1)
+staging.raw_idp_2024_src_pollution_globale, REJET R9 (R9: TRL-DOM-R1),rejet r9 r9 trl dom r1,1, REJET R9 (R9: TRL-DOM-R1)
+staging.raw_idp_2024_src_pollution_globale,AAZ_DOM1_R1,aaz dom1 r1,1,AAZ_DOM1_R1
+staging.raw_idp_2024_src_pollution_globale,ACH_PDE(PUITS CARRIERE),ach pde puits carriere,1,ACH_PDE(PUITS CARRIERE)
+staging.raw_idp_2024_src_pollution_globale,ACH_PDS_R1,ach pds r1,1,ACH_PDS_R1
+staging.raw_idp_2024_src_pollution_globale,ACH_PDS_R5,ach pds r5,1,ACH_PDS_R5
+staging.raw_idp_2024_src_pollution_globale,AGR_DECH_PE (AIN FERDI),agr dech pe ain ferdi,1,AGR_DECH_PE (AIN FERDI)
+staging.raw_idp_2024_src_pollution_globale,AID_DOM1_R4,aid dom1 r4,1,AID_DOM1_R4
+staging.raw_idp_2024_src_pollution_globale,AID_DOM1_R4 (AIN DFALI),aid dom1 r4 ain dfali,1,AID_DOM1_R4 (AIN DFALI)
+staging.raw_idp_2024_src_pollution_globale,AKA_DOM_R1,aka dom r1,1,AKA_DOM_R1
+staging.raw_idp_2024_src_pollution_globale,AKA_PDOM1_R1,aka pdom1 r1,1,AKA_PDOM1_R1
+staging.raw_idp_2024_src_pollution_globale,ALH_PDOM1_PE1 (LAHCEN BIZIZI),alh pdom1 pe1 lahcen bizizi,1,ALH_PDOM1_PE1 (LAHCEN BIZIZI)
+staging.raw_idp_2024_src_pollution_globale,ALH_PDOM1_R4 (E.M),alh pdom1 r4 e m,1,ALH_PDOM1_R4 (E.M)
+staging.raw_idp_2024_src_pollution_globale,AMONT SEFROU,amont sefrou,1,AMONT SEFROU
+staging.raw_idp_2024_src_pollution_globale,AMONT SOUK ELAHAD CHEBANATE,amont souk elahad chebanate,1,AMONT SOUK ELAHAD CHEBANATE
+staging.raw_idp_2024_src_pollution_globale,AMONT STEP El Hajeb,amont step el hajeb,1,AMONT STEP El Hajeb
+staging.raw_idp_2024_src_pollution_globale,Amont STEP Khémisset ,amont step khemisset,1,Amont STEP Khémisset 
+staging.raw_idp_2024_src_pollution_globale,AMONT STEP OUED AMLIL,amont step oued amlil,1,AMONT STEP OUED AMLIL
+staging.raw_idp_2024_src_pollution_globale,Amont STEP Taounate,amont step taounate,1,Amont STEP Taounate
+staging.raw_idp_2024_src_pollution_globale,ARB_DECH1_PE1 (AIN LABROUAL),arb dech1 pe1 ain labroual,1,ARB_DECH1_PE1 (AIN LABROUAL)
+staging.raw_idp_2024_src_pollution_globale,ATJ_DECH_PE1 ,atj dech pe1,1,ATJ_DECH_PE1 
+staging.raw_idp_2024_src_pollution_globale,AVAL AIN DFALI,aval ain dfali,1,AVAL AIN DFALI
+staging.raw_idp_2024_src_pollution_globale,AVAL AIN KARMA,aval ain karma,1,AVAL AIN KARMA
+staging.raw_idp_2024_src_pollution_globale,AVAL AIN LEUH,aval ain leuh,1,AVAL AIN LEUH
+staging.raw_idp_2024_src_pollution_globale,AVAL BOULEMANE,aval boulemane,1,AVAL BOULEMANE
+staging.raw_idp_2024_src_pollution_globale,AVAL OUED IFRANE,aval oued ifrane,1,AVAL OUED IFRANE
+staging.raw_idp_2024_src_pollution_globale,AVAL REJET AIN CHEGGAG,aval rejet ain cheggag,1,AVAL REJET AIN CHEGGAG
+staging.raw_idp_2024_src_pollution_globale,AVAL REJET BOUFEKRANE,aval rejet boufekrane,1,AVAL REJET BOUFEKRANE
+staging.raw_idp_2024_src_pollution_globale,AVAL REJET EL MENZEL,aval rejet el menzel,1,AVAL REJET EL MENZEL
+staging.raw_idp_2024_src_pollution_globale,AVAL REJET INDUSTRIEL MERJA,aval rejet industriel merja,1,AVAL REJET INDUSTRIEL MERJA
+staging.raw_idp_2024_src_pollution_globale,AVAL REJET MOULAY DRISS ZARHOUN,aval rejet moulay driss zarhoun,1,AVAL REJET MOULAY DRISS ZARHOUN
+staging.raw_idp_2024_src_pollution_globale,AVAL REJET MOULAY YAACOUB,aval rejet moulay yaacoub,1,AVAL REJET MOULAY YAACOUB
+staging.raw_idp_2024_src_pollution_globale,AVAL REJET SEFROU,aval rejet sefrou,1,AVAL REJET SEFROU
+staging.raw_idp_2024_src_pollution_globale,AVAL SIDI SLIMANE,aval sidi slimane,1,AVAL SIDI SLIMANE
+staging.raw_idp_2024_src_pollution_globale,AVAL SOUK ELAHAD CHEBANATE,aval souk elahad chebanate,1,AVAL SOUK ELAHAD CHEBANATE
+staging.raw_idp_2024_src_pollution_globale,Aval STEP (Aval Conf. Chaaba avec Oued Tiflet),aval step aval conf chaaba avec oued tiflet,1,Aval STEP (Aval Conf. Chaaba avec Oued Tiflet)
+staging.raw_idp_2024_src_pollution_globale,AVAL STEP AZROU,aval step azrou,1,AVAL STEP AZROU
+staging.raw_idp_2024_src_pollution_globale,AVAL STEP EL HAJEB,aval step el hajeb,1,AVAL STEP EL HAJEB
+staging.raw_idp_2024_src_pollution_globale,AVAL STEP IFRANE,aval step ifrane,1,AVAL STEP IFRANE
+staging.raw_idp_2024_src_pollution_globale,Aval STEP Khémisset ,aval step khemisset,1,Aval STEP Khémisset 
+staging.raw_idp_2024_src_pollution_globale,AVAL STEP OUED AMLIL,aval step oued amlil,1,AVAL STEP OUED AMLIL
+staging.raw_idp_2024_src_pollution_globale,Aval STEP Taounate,aval step taounate,1,Aval STEP Taounate
+staging.raw_idp_2024_src_pollution_globale,AVAL VILLAGE AIT SIBERNE,aval village ait siberne,1,AVAL VILLAGE AIT SIBERNE
+staging.raw_idp_2024_src_pollution_globale,AVAL VILLAGE BNI AMMART,aval village bni ammart,1,AVAL VILLAGE BNI AMMART
+staging.raw_idp_2024_src_pollution_globale,Aval Village Galaz,aval village galaz,1,Aval Village Galaz
+staging.raw_idp_2024_src_pollution_globale,AZR_PDOM1_R1,azr pdom1 r1,1,AZR_PDOM1_R1
+staging.raw_idp_2024_src_pollution_globale,AZZABA,azzaba,1,AZZABA
+staging.raw_idp_2024_src_pollution_globale,BA_DOM_R1,ba dom r1,1,BA_DOM_R1
+staging.raw_idp_2024_src_pollution_globale,BBR_PDS_R4  (E.M),bbr pds r4 e m,1,BBR_PDS_R4  (E.M)
+staging.raw_idp_2024_src_pollution_globale,BBT_PDS_R3 (E.M),bbt pds r3 e m,1,BBT_PDS_R3 (E.M)
+staging.raw_idp_2024_src_pollution_globale,BF_DOM_R1,bf dom r1,1,BF_DOM_R1
+staging.raw_idp_2024_src_pollution_globale,BFK_PDOM1_R1 (EM),bfk pdom1 r1 em,1,BFK_PDOM1_R1 (EM)
+staging.raw_idp_2024_src_pollution_globale,BHD_PDS_R2,bhd pds r2,1,BHD_PDS_R2
+staging.raw_idp_2024_src_pollution_globale,BHL_DOM_PE1 (PUITS),bhl dom pe1 puits,1,BHL_DOM_PE1 (PUITS)
+staging.raw_idp_2024_src_pollution_globale,BMR_DOM_PE1 (Forage CHELIK Arbi),bmr dom pe1 forage chelik arbi,1,BMR_DOM_PE1 (Forage CHELIK Arbi)
+staging.raw_idp_2024_src_pollution_globale,BSM_PDOM1_R2 (EM),bsm pdom1 r2 em,1,BSM_PDOM1_R2 (EM)
+staging.raw_idp_2024_src_pollution_globale,CHG_DEC_PE1 (EL HOUD),chg dec pe1 el houd,1,CHG_DEC_PE1 (EL HOUD)
+staging.raw_idp_2024_src_pollution_globale,CHQ_DOM_R1,chq dom r1,1,CHQ_DOM_R1
+staging.raw_idp_2024_src_pollution_globale,CHQ_DOM_R2,chq dom r2,1,CHQ_DOM_R2
+staging.raw_idp_2024_src_pollution_globale,DBA_DOM1_R1,dba dom1 r1,1,DBA_DOM1_R1
+staging.raw_idp_2024_src_pollution_globale,DDZ_PDOM1_R1,ddz pdom1 r1,1,DDZ_PDOM1_R1
+staging.raw_idp_2024_src_pollution_globale,GHF_PDE_P1,ghf pde p1,1,GHF_PDE_P1
+staging.raw_idp_2024_src_pollution_globale,GHF_PDE_P1 (PUITS MRIZIEK),ghf pde p1 puits mriziek,1,GHF_PDE_P1 (PUITS MRIZIEK)
+staging.raw_idp_2024_src_pollution_globale,GIG_DECH_PE1 (Puits LOUPARIS),gig dech pe1 puits louparis,1,GIG_DECH_PE1 (Puits LOUPARIS)
+staging.raw_idp_2024_src_pollution_globale,HFT_DOM_R2,hft dom r2,1,HFT_DOM_R2
+staging.raw_idp_2024_src_pollution_globale,HFT_DOM_R3,hft dom r3,1,HFT_DOM_R3
+staging.raw_idp_2024_src_pollution_globale,HJB_DECH_PE1 (COOPERATIVE SIDI EL ALI),hjb dech pe1 cooperative sidi el ali,1,HJB_DECH_PE1 (COOPERATIVE SIDI EL ALI)
+staging.raw_idp_2024_src_pollution_globale,HJB_DECH_PE2 (COOPERATIVE ANNAKHLA),hjb dech pe2 cooperative annakhla,1,HJB_DECH_PE2 (COOPERATIVE ANNAKHLA)
+staging.raw_idp_2024_src_pollution_globale,HJB_PDOM1_PE1 (COOPERATIVE AIT NAAMANE),hjb pdom1 pe1 cooperative ait naamane,1,HJB_PDOM1_PE1 (COOPERATIVE AIT NAAMANE)
+staging.raw_idp_2024_src_pollution_globale,IMK_DEC_PE1 (AMHAOUCHE ISMAIL),imk dec pe1 amhaouche ismail,1,IMK_DEC_PE1 (AMHAOUCHE ISMAIL)
+staging.raw_idp_2024_src_pollution_globale,IMK_DOM_R3,imk dom r3,1,IMK_DOM_R3
+staging.raw_idp_2024_src_pollution_globale,IMM_DECH_PE1 (FORAGE ONEE-BO),imm dech pe1 forage onee bo,1,IMM_DECH_PE1 (FORAGE ONEE-BO)
+staging.raw_idp_2024_src_pollution_globale,JEM_DOM_R1,jem dom r1,1,JEM_DOM_R1
+staging.raw_idp_2024_src_pollution_globale,JEM_DOM_R3,jem dom r3,1,JEM_DOM_R3
+staging.raw_idp_2024_src_pollution_globale,KRB_PDE_P1,krb pde p1,1,KRB_PDE_P1
+staging.raw_idp_2024_src_pollution_globale,KSN_DOM_R1,ksn dom r1,1,KSN_DOM_R1
+staging.raw_idp_2024_src_pollution_globale,LMJ_DOM_R2,lmj dom r2,1,LMJ_DOM_R2
+staging.raw_idp_2024_src_pollution_globale,LOD_DOM_R1,lod dom r1,1,LOD_DOM_R1
+staging.raw_idp_2024_src_pollution_globale,LOJ_DOM_R1,loj dom r1,1,LOJ_DOM_R1
+staging.raw_idp_2024_src_pollution_globale,M_DECH_PE1 (FORAGE IRE 2153/15),m dech pe1 forage ire 2153 15,1,M_DECH_PE1 (FORAGE IRE 2153/15)
+staging.raw_idp_2024_src_pollution_globale,M_DECH_PE3 (Forage IRE 3224/15),m dech pe3 forage ire 3224 15,1,M_DECH_PE3 (Forage IRE 3224/15)
+staging.raw_idp_2024_src_pollution_globale,M_DOM_R1,m dom r1,1,M_DOM_R1
+staging.raw_idp_2024_src_pollution_globale,MBC_DOM_R1,mbc dom r1,1,MBC_DOM_R1
+staging.raw_idp_2024_src_pollution_globale,MBK_DEC_PE1 (Forage Ferme ZIANI Bel Arbi),mbk dec pe1 forage ferme ziani bel arbi,1,MBK_DEC_PE1 (Forage Ferme ZIANI Bel Arbi)
+staging.raw_idp_2024_src_pollution_globale,MBK_DOM_PE1 (Forage Belaje),mbk dom pe1 forage belaje,1,MBK_DOM_PE1 (Forage Belaje)
+staging.raw_idp_2024_src_pollution_globale,MBK_DOM_R3,mbk dom r3,1,MBK_DOM_R3
+staging.raw_idp_2024_src_pollution_globale,MBK_DOM_R4,mbk dom r4,1,MBK_DOM_R4
+staging.raw_idp_2024_src_pollution_globale,MBK_DOM_R5,mbk dom r5,1,MBK_DOM_R5
+staging.raw_idp_2024_src_pollution_globale,MBK_DOM_R6,mbk dom r6,1,MBK_DOM_R6
+staging.raw_idp_2024_src_pollution_globale,MDZ_PDOM1_PE1 ,mdz pdom1 pe1,1,MDZ_PDOM1_PE1 
+staging.raw_idp_2024_src_pollution_globale,MERJA FOUARATE,merja fouarate,1,MERJA FOUARATE
+staging.raw_idp_2024_src_pollution_globale,MGH_PDOM1_R1,mgh pdom1 r1,1,MGH_PDOM1_R1
+staging.raw_idp_2024_src_pollution_globale,MHA_PDOM1_R2,mha pdom1 r2,1,MHA_PDOM1_R2
+staging.raw_idp_2024_src_pollution_globale,MHD_DOM1_BILADI_R1,mhd dom1 biladi r1,1,MHD_DOM1_BILADI_R1
+staging.raw_idp_2024_src_pollution_globale,MKS_DOM_R1,mks dom r1,1,MKS_DOM_R1
+staging.raw_idp_2024_src_pollution_globale,MKS_DOM_R2,mks dom r2,1,MKS_DOM_R2
+staging.raw_idp_2024_src_pollution_globale,MNZ_DOM_R10  (E.M),mnz dom r10 e m,1,MNZ_DOM_R10  (E.M)
+staging.raw_idp_2024_src_pollution_globale,MOG_DOM_R1,mog dom r1,1,MOG_DOM_R1
+staging.raw_idp_2024_src_pollution_globale,MOKR_PDOM_R1,mokr pdom r1,1,MOKR_PDOM_R1
+staging.raw_idp_2024_src_pollution_globale,MSA_DOM1,msa dom1,1,MSA_DOM1
+staging.raw_idp_2024_src_pollution_globale,MTA_PDOM_R4,mta pdom r4,1,MTA_PDOM_R4
+staging.raw_idp_2024_src_pollution_globale,NBA_PDOM1_R1,nba pdom1 r1,1,NBA_PDOM1_R1
+staging.raw_idp_2024_src_pollution_globale,OA_DOM_R3,oa dom r3,1,OA_DOM_R3
+staging.raw_idp_2024_src_pollution_globale,OHN_DOM_R1,ohn dom r1,1,OHN_DOM_R1
+staging.raw_idp_2024_src_pollution_globale,OMN_DOM_R2,omn dom r2,1,OMN_DOM_R2
+staging.raw_idp_2024_src_pollution_globale,ORG_DOM_R2,org dom r2,1,ORG_DOM_R2
+staging.raw_idp_2024_src_pollution_globale,OZ_DECH_R1,oz dech r1,1,OZ_DECH_R1
+staging.raw_idp_2024_src_pollution_globale,PA AVAL STEP MHAYA,pa aval step mhaya,1,PA AVAL STEP MHAYA
+staging.raw_idp_2024_src_pollution_globale,PA Aval Village Tigrigra,pa aval village tigrigra,1,PA Aval Village Tigrigra
+staging.raw_idp_2024_src_pollution_globale,PA SIDI MOKHFI,pa sidi mokhfi,1,PA SIDI MOKHFI
+staging.raw_idp_2024_src_pollution_globale,PONT RS 302,pont rs 302,1,PONT RS 302
+staging.raw_idp_2024_src_pollution_globale,PT. O. BEHT AVAL BIORISINE,pt o beht aval biorisine,1,PT. O. BEHT AVAL BIORISINE
+staging.raw_idp_2024_src_pollution_globale,R-KRB_PDE_P2,r krb pde p2,1,R-KRB_PDE_P2
+staging.raw_idp_2024_src_pollution_globale,RAT_DOM_PE1 (TAIBI HASSAN),rat dom pe1 taibi hassan,1,RAT_DOM_PE1 (TAIBI HASSAN)
+staging.raw_idp_2024_src_pollution_globale,RAT_DOM_R1,rat dom r1,1,RAT_DOM_R1
+staging.raw_idp_2024_src_pollution_globale,REJET ABATTOIR AGOURAI,rejet abattoir agourai,1,REJET ABATTOIR AGOURAI
+staging.raw_idp_2024_src_pollution_globale,REJET ABATTOIR BAB MARZOUKA ,rejet abattoir bab marzouka,1,REJET ABATTOIR BAB MARZOUKA 
+staging.raw_idp_2024_src_pollution_globale,REJET ABATTOIR BNI FTAH,rejet abattoir bni ftah,1,REJET ABATTOIR BNI FTAH
+staging.raw_idp_2024_src_pollution_globale,REJET ABATTOIR GALDMANE,rejet abattoir galdmane,1,REJET ABATTOIR GALDMANE
+staging.raw_idp_2024_src_pollution_globale,REJET ABATTOIR GUIGOU,rejet abattoir guigou,1,REJET ABATTOIR GUIGOU
+staging.raw_idp_2024_src_pollution_globale,REJET ABATTOIR MASMOUDA,rejet abattoir masmouda,1,REJET ABATTOIR MASMOUDA
+staging.raw_idp_2024_src_pollution_globale,REJET ABATTOIR MATMATA,rejet abattoir matmata,1,REJET ABATTOIR MATMATA
+staging.raw_idp_2024_src_pollution_globale,REJET ABATTOIR MOQRISSET ,rejet abattoir moqrisset,1,REJET ABATTOIR MOQRISSET 
+staging.raw_idp_2024_src_pollution_globale,REJET ABATTOIR MOULAY DRISS ZRHOUN ,rejet abattoir moulay driss zrhoun,1,REJET ABATTOIR MOULAY DRISS ZRHOUN 
+staging.raw_idp_2024_src_pollution_globale,REJET ABATTOIR OUED AMLIL ,rejet abattoir oued amlil,1,REJET ABATTOIR OUED AMLIL 
+staging.raw_idp_2024_src_pollution_globale,REJET ABATTOIR OULED ZBAIR,rejet abattoir ouled zbair,1,REJET ABATTOIR OULED ZBAIR
+staging.raw_idp_2024_src_pollution_globale,REJET ABATTOIR SIDI BOUSBER,rejet abattoir sidi bousber,1,REJET ABATTOIR SIDI BOUSBER
+staging.raw_idp_2024_src_pollution_globale,REJET ABATTOIR SIDI REDOUANE,rejet abattoir sidi redouane,1,REJET ABATTOIR SIDI REDOUANE
+staging.raw_idp_2024_src_pollution_globale,REJET ABATTOIR SIDI SIDI BOUKNADEL,rejet abattoir sidi sidi bouknadel,1,REJET ABATTOIR SIDI SIDI BOUKNADEL
+staging.raw_idp_2024_src_pollution_globale,REJET ABATTOIR SKOURA MDAZ,rejet abattoir skoura mdaz,1,REJET ABATTOIR SKOURA MDAZ
+staging.raw_idp_2024_src_pollution_globale,REJET ABATTOIR TAHLA,rejet abattoir tahla,1,REJET ABATTOIR TAHLA
+staging.raw_idp_2024_src_pollution_globale,REJET ABATTOIR TAOUNATE,rejet abattoir taounate,1,REJET ABATTOIR TAOUNATE
+staging.raw_idp_2024_src_pollution_globale,REJET ABATTOIR ZOUMI ,rejet abattoir zoumi,1,REJET ABATTOIR ZOUMI 
+staging.raw_idp_2024_src_pollution_globale,REJET BOULEMANE (EM),rejet boulemane em,1,REJET BOULEMANE (EM)
+staging.raw_idp_2024_src_pollution_globale,Rejet Industriel (SMK),rejet industriel smk,1,Rejet Industriel (SMK)
+staging.raw_idp_2024_src_pollution_globale,REJET MERJA FOUARATE AIN SEBAA,rejet merja fouarate ain sebaa,1,REJET MERJA FOUARATE AIN SEBAA
+staging.raw_idp_2024_src_pollution_globale,REJET R1 EM (R1: SHZ-DOM2-R1),rejet r1 em r1 shz dom2 r1,1,REJET R1 EM (R1: SHZ-DOM2-R1)
+staging.raw_idp_2024_src_pollution_globale,REJET R1 EP (R1: SHZ-DOM2-R1),rejet r1 ep r1 shz dom2 r1,1,REJET R1 EP (R1: SHZ-DOM2-R1)
+staging.raw_idp_2024_src_pollution_globale,REJET R11 EM (R11: NTR-DOM-R1),rejet r11 em r11 ntr dom r1,1,REJET R11 EM (R11: NTR-DOM-R1)
+staging.raw_idp_2024_src_pollution_globale,REJET R11 EP (R11: NTR-DOM-R1),rejet r11 ep r11 ntr dom r1,1,REJET R11 EP (R11: NTR-DOM-R1)
+staging.raw_idp_2024_src_pollution_globale,REJET R2 (R2: SHZ-DOM2-R2),rejet r2 r2 shz dom2 r2,1,REJET R2 (R2: SHZ-DOM2-R2)
+staging.raw_idp_2024_src_pollution_globale,REJET R2 EM  (R2: SHZ-DOM2-R2),rejet r2 em r2 shz dom2 r2,1,REJET R2 EM  (R2: SHZ-DOM2-R2)
+staging.raw_idp_2024_src_pollution_globale,REJET R2 EP  (R2: SHZ-DOM2-R2),rejet r2 ep r2 shz dom2 r2,1,REJET R2 EP  (R2: SHZ-DOM2-R2)
+staging.raw_idp_2024_src_pollution_globale,REJET R3  (R3: SHZ-DOM1-R1),rejet r3 r3 shz dom1 r1,1,REJET R3  (R3: SHZ-DOM1-R1)
+staging.raw_idp_2024_src_pollution_globale,REJET R3 EM  (R3: SHZ-DOM1-R1),rejet r3 em r3 shz dom1 r1,1,REJET R3 EM  (R3: SHZ-DOM1-R1)
+staging.raw_idp_2024_src_pollution_globale,REJET R3 EP  (R3: SHZ-DOM1-R1),rejet r3 ep r3 shz dom1 r1,1,REJET R3 EP  (R3: SHZ-DOM1-R1)
+staging.raw_idp_2024_src_pollution_globale,REJET R4 EM (R4: SHZ-DOM3-R2),rejet r4 em r4 shz dom3 r2,1,REJET R4 EM (R4: SHZ-DOM3-R2)
+staging.raw_idp_2024_src_pollution_globale,REJET R4 EP (R4: SHZ-DOM3-R2),rejet r4 ep r4 shz dom3 r2,1,REJET R4 EP (R4: SHZ-DOM3-R2)
+staging.raw_idp_2024_src_pollution_globale,REJET R5 (R5: LOD-DOM-R2),rejet r5 r5 lod dom r2,1,REJET R5 (R5: LOD-DOM-R2)
+staging.raw_idp_2024_src_pollution_globale,REJET R5 EM (R5: LOD-DOM-R2),rejet r5 em r5 lod dom r2,1,REJET R5 EM (R5: LOD-DOM-R2)
+staging.raw_idp_2024_src_pollution_globale,REJET R5 EP (R5: LOD-DOM-R2),rejet r5 ep r5 lod dom r2,1,REJET R5 EP (R5: LOD-DOM-R2)
+staging.raw_idp_2024_src_pollution_globale,REJET R6 EM  (R6: ORG-DOM-R3),rejet r6 em r6 org dom r3,1,REJET R6 EM  (R6: ORG-DOM-R3)
+staging.raw_idp_2024_src_pollution_globale,REJET R6 EP  (R6: ORG-DOM-R3),rejet r6 ep r6 org dom r3,1,REJET R6 EP  (R6: ORG-DOM-R3)
+staging.raw_idp_2024_src_pollution_globale,REJET R7 (R7: JEM-DOM-R2),rejet r7 r7 jem dom r2,1,REJET R7 (R7: JEM-DOM-R2)
+staging.raw_idp_2024_src_pollution_globale,REJET R7 EM  (R7: JEM-DOM-R2),rejet r7 em r7 jem dom r2,1,REJET R7 EM  (R7: JEM-DOM-R2)
+staging.raw_idp_2024_src_pollution_globale,REJET R7 EP  (R7: JEM-DOM-R2),rejet r7 ep r7 jem dom r2,1,REJET R7 EP  (R7: JEM-DOM-R2)
+staging.raw_idp_2024_src_pollution_globale,REJET R8 EM (R8: LMJ-DOM-R1),rejet r8 em r8 lmj dom r1,1,REJET R8 EM (R8: LMJ-DOM-R1)
+staging.raw_idp_2024_src_pollution_globale,REJET R8 EP (R8: LMJ-DOM-R1),rejet r8 ep r8 lmj dom r1,1,REJET R8 EP (R8: LMJ-DOM-R1)
+staging.raw_idp_2024_src_pollution_globale,REJET R9 EM (R9: TRL-DOM-R1),rejet r9 em r9 trl dom r1,1,REJET R9 EM (R9: TRL-DOM-R1)
+staging.raw_idp_2024_src_pollution_globale,REJET R9 EP (R9: TRL-DOM-R1),rejet r9 ep r9 trl dom r1,1,REJET R9 EP (R9: TRL-DOM-R1)
+staging.raw_idp_2024_src_pollution_globale,REJET STEP TIFLET,rejet step tiflet,1,REJET STEP TIFLET
+staging.raw_idp_2024_src_pollution_globale,RG_AIS_1,rg ais 1,1,RG_AIS_1
+staging.raw_idp_2024_src_pollution_globale,RG_TFL_1,rg tfl 1,1,RG_TFL_1
+staging.raw_idp_2024_src_pollution_globale,RZI_DEC_PE1 (Puits Fouad ELBRINI),rzi dec pe1 puits fouad elbrini,1,RZI_DEC_PE1 (Puits Fouad ELBRINI)
+staging.raw_idp_2024_src_pollution_globale,S1 (Aval_conf_Rejet_MOG (Mograne),s1 aval conf rejet mog mograne,1,S1 (Aval_conf_Rejet_MOG (Mograne)
+staging.raw_idp_2024_src_pollution_globale,S10 (Aval douar Zehair (sidi kamel),s10 aval douar zehair sidi kamel,1,S10 (Aval douar Zehair (sidi kamel)
+staging.raw_idp_2024_src_pollution_globale,S11 (Amont Fermes Agricole sidi kamel,s11 amont fermes agricole sidi kamel,1,S11 (Amont Fermes Agricole sidi kamel
+staging.raw_idp_2024_src_pollution_globale,S12 (Aval_Conf_Rejet_MBK_R4 (Mechraa Bel Ksiri),s12 aval conf rejet mbk r4 mechraa bel ksiri,1,S12 (Aval_Conf_Rejet_MBK_R4 (Mechraa Bel Ksiri)
+staging.raw_idp_2024_src_pollution_globale,S13 (Aval_Conf_Rejet_MBK (Mechraa Bel Ksiri),s13 aval conf rejet mbk mechraa bel ksiri,1,S13 (Aval_Conf_Rejet_MBK (Mechraa Bel Ksiri)
+staging.raw_idp_2024_src_pollution_globale,S14 (Aval_Conf_Rejet_HFT (Al Haouafate),s14 aval conf rejet hft al haouafate,1,S14 (Aval_Conf_Rejet_HFT (Al Haouafate)
+staging.raw_idp_2024_src_pollution_globale,S15 (Aval_Conf_Sebou_ Ouagha (Dour El Kbara),s15 aval conf sebou ouagha dour el kbara,1,S15 (Aval_Conf_Sebou_ Ouagha (Dour El Kbara)
+staging.raw_idp_2024_src_pollution_globale,S16 (Aval_Conf_Rejet_KHN (Khnichet),s16 aval conf rejet khn khnichet,1,S16 (Aval_Conf_Rejet_KHN (Khnichet)
+staging.raw_idp_2024_src_pollution_globale,S18 (Aval Sidi Daoud),s18 aval sidi daoud,1,S18 (Aval Sidi Daoud)
+staging.raw_idp_2024_src_pollution_globale,S2 (Barrage de garde),s2 barrage de garde,1,S2 (Barrage de garde)
+staging.raw_idp_2024_src_pollution_globale,S20 (Aval STEP Fes),s20 aval step fes,1,S20 (Aval STEP Fes)
+staging.raw_idp_2024_src_pollution_globale,S21 (Aval_conf_Leban_ Inaoun,s21 aval conf leban inaoun,1,S21 (Aval_conf_Leban_ Inaoun
+staging.raw_idp_2024_src_pollution_globale,S22 (Aval_conf_Sebou_ Inaoun),s22 aval conf sebou inaoun,1,S22 (Aval_conf_Sebou_ Inaoun)
+staging.raw_idp_2024_src_pollution_globale,S23 (Aval_Conf_Rejet_JEM (Jorf el MALHA ),s23 aval conf rejet jem jorf el malha,1,S23 (Aval_Conf_Rejet_JEM (Jorf el MALHA )
+staging.raw_idp_2024_src_pollution_globale,S24 (Douar Chorf laghouazi),s24 douar chorf laghouazi,1,S24 (Douar Chorf laghouazi)
+staging.raw_idp_2024_src_pollution_globale,S25 (Aval_Conf_Rejet_LMJ (Lamjaara),s25 aval conf rejet lmj lamjaara,1,S25 (Aval_Conf_Rejet_LMJ (Lamjaara)
+staging.raw_idp_2024_src_pollution_globale,S26 (Aval_Conf_Rejet_MKS (Mkansa),s26 aval conf rejet mks mkansa,1,S26 (Aval_Conf_Rejet_MKS (Mkansa)
+staging.raw_idp_2024_src_pollution_globale,S27 (Aval_Conf_Rejet_LOD (Louadaine),s27 aval conf rejet lod louadaine,1,S27 (Aval_Conf_Rejet_LOD (Louadaine)
+staging.raw_idp_2024_src_pollution_globale,S28 (Aval_Conf_Rejet_ORG (Ouartzagh),s28 aval conf rejet org ouartzagh,1,S28 (Aval_Conf_Rejet_ORG (Ouartzagh)
+staging.raw_idp_2024_src_pollution_globale,S29 (Aval_Conf_Rejet_Douar Ouled Jrir,s29 aval conf rejet douar ouled jrir,1,S29 (Aval_Conf_Rejet_Douar Ouled Jrir
+staging.raw_idp_2024_src_pollution_globale,S3 (Station Pompage Ferme (Amont Bge de garde),s3 station pompage ferme amont bge de garde,1,S3 (Station Pompage Ferme (Amont Bge de garde)
+staging.raw_idp_2024_src_pollution_globale,S30 (Aval_Conf_Rejet_SHZ (Sidi Harazem),s30 aval conf rejet shz sidi harazem,1,S30 (Aval_Conf_Rejet_SHZ (Sidi Harazem)
+staging.raw_idp_2024_src_pollution_globale,S31 (Aval_Conf_Rejet_LOJ (Loulja),s31 aval conf rejet loj loulja,1,S31 (Aval_Conf_Rejet_LOJ (Loulja)
+staging.raw_idp_2024_src_pollution_globale,S4 (Amont station pompage ferme),s4 amont station pompage ferme,1,S4 (Amont station pompage ferme)
+staging.raw_idp_2024_src_pollution_globale,S5 (Aval ancien rejet sotrameg),s5 aval ancien rejet sotrameg,1,S5 (Aval ancien rejet sotrameg)
+staging.raw_idp_2024_src_pollution_globale,S6 (Amont ancien rejet sotrameg),s6 amont ancien rejet sotrameg,1,S6 (Amont ancien rejet sotrameg)
+staging.raw_idp_2024_src_pollution_globale,S7 (Aval_Conf_Rejet_SAT (Sidi Allal Tazi),s7 aval conf rejet sat sidi allal tazi,1,S7 (Aval_Conf_Rejet_SAT (Sidi Allal Tazi)
+staging.raw_idp_2024_src_pollution_globale,S8 (Aval Ferme Agricole sidi kamel),s8 aval ferme agricole sidi kamel,1,S8 (Aval Ferme Agricole sidi kamel)
+staging.raw_idp_2024_src_pollution_globale,S9 (Aval douar el fokra (sidi kamel),s9 aval douar el fokra sidi kamel,1,S9 (Aval douar el fokra (sidi kamel)
+staging.raw_idp_2024_src_pollution_globale,SAH_DOM1_R1,sah dom1 r1,1,SAH_DOM1_R1
+staging.raw_idp_2024_src_pollution_globale,SAT_DEC_PE1 (Puits youness CHOUA),sat dec pe1 puits youness choua,1,SAT_DEC_PE1 (Puits youness CHOUA)
+staging.raw_idp_2024_src_pollution_globale,SAT_DOM_R2,sat dom r2,1,SAT_DOM_R2
+staging.raw_idp_2024_src_pollution_globale,SAZ_DOM_R1,saz dom r1,1,SAZ_DOM_R1
+staging.raw_idp_2024_src_pollution_globale,SAZ_DOM_R2,saz dom r2,1,SAZ_DOM_R2
+staging.raw_idp_2024_src_pollution_globale,SBA_DOM1_R1 (EM),sba dom1 r1 em,1,SBA_DOM1_R1 (EM)
+staging.raw_idp_2024_src_pollution_globale,SDK_DOM1_R2,sdk dom1 r2,1,SDK_DOM1_R2
+staging.raw_idp_2024_src_pollution_globale,SDR_PDOM_R1,sdr pdom r1,1,SDR_PDOM_R1
+staging.raw_idp_2024_src_pollution_globale,SDS_DOM1_R11,sds dom1 r11,1,SDS_DOM1_R11
+staging.raw_idp_2024_src_pollution_globale,SDS_DOM1_R3,sds dom1 r3,1,SDS_DOM1_R3
+staging.raw_idp_2024_src_pollution_globale,SEF_PDOM_R3 (E.M),sef pdom r3 e m,1,SEF_PDOM_R3 (E.M)
+staging.raw_idp_2024_src_pollution_globale,SHZ_DOM2_PE1 (Source Skhinate (Nakhla),shz dom2 pe1 source skhinate nakhla,1,SHZ_DOM2_PE1 (Source Skhinate (Nakhla)
+staging.raw_idp_2024_src_pollution_globale,SHZ_DOM2_PE2 (Source Barda),shz dom2 pe2 source barda,1,SHZ_DOM2_PE2 (Source Barda)
+staging.raw_idp_2024_src_pollution_globale,SHZ_DOM2_R3,shz dom2 r3,1,SHZ_DOM2_R3
+staging.raw_idp_2024_src_pollution_globale,SHZ_DOM2_R4,shz dom2 r4,1,SHZ_DOM2_R4
+staging.raw_idp_2024_src_pollution_globale,SHZ_DOM2_R5,shz dom2 r5,1,SHZ_DOM2_R5
+staging.raw_idp_2024_src_pollution_globale,SHZ_DOM3_R1,shz dom3 r1,1,SHZ_DOM3_R1
+staging.raw_idp_2024_src_pollution_globale,SHZ_DOM5_R1,shz dom5 r1,1,SHZ_DOM5_R1
+staging.raw_idp_2024_src_pollution_globale,SJH_DOM1_R1 (EM),sjh dom1 r1 em,1,SJH_DOM1_R1 (EM)
+staging.raw_idp_2024_src_pollution_globale,SMK_PDOM1_R2,smk pdom1 r2,1,SMK_PDOM1_R2
+staging.raw_idp_2024_src_pollution_globale,SOURCE AMMES DECHQUONDA (BHL_PDOM_PE1),source ammes dechquonda bhl pdom pe1,1,SOURCE AMMES DECHQUONDA (BHL_PDOM_PE1)
+staging.raw_idp_2024_src_pollution_globale,STATION BAB MARZOUKA,station bab marzouka,1,STATION BAB MARZOUKA
+staging.raw_idp_2024_src_pollution_globale,Station EL kouchet,station el kouchet,1,Station EL kouchet
+staging.raw_idp_2024_src_pollution_globale,Station Hajria,station hajria,1,Station Hajria
+staging.raw_idp_2024_src_pollution_globale,TAHLA_DECH_PE1 (FORAGE IRE 1/509),tahla dech pe1 forage ire 1 509,1,TAHLA_DECH_PE1 (FORAGE IRE 1/509)
+staging.raw_idp_2024_src_pollution_globale,TAM_PDS_R1,tam pds r1,1,TAM_PDS_R1
+staging.raw_idp_2024_src_pollution_globale,TAZ_PDOM_R1,taz pdom r1,1,TAZ_PDOM_R1
+staging.raw_idp_2024_src_pollution_globale,TAZ_PDOM_R5 (E.M),taz pdom r5 e m,1,TAZ_PDOM_R5 (E.M)
+staging.raw_idp_2024_src_pollution_globale,TAZ_PDOM_R6,taz pdom r6,1,TAZ_PDOM_R6
+staging.raw_idp_2024_src_pollution_globale,TAZ_PDOM_R9,taz pdom r9,1,TAZ_PDOM_R9
+staging.raw_idp_2024_src_pollution_globale,THS_PDS_R1,ths pds r1,1,THS_PDS_R1
+staging.raw_idp_2024_src_pollution_globale,TIS_DEC_PE1 (MEHDI OUAZZANI),tis dec pe1 mehdi ouazzani,1,TIS_DEC_PE1 (MEHDI OUAZZANI)
+staging.raw_idp_2024_src_pollution_globale,TMH_PDOM1_R1,tmh pdom1 r1,1,TMH_PDOM1_R1
+staging.raw_idp_2024_src_pollution_globale,TNT_PDS_R6,tnt pds r6,1,TNT_PDS_R6
+staging.raw_idp_2024_src_pollution_globale,TRL_DOM_R2,trl dom r2,1,TRL_DOM_R2
+staging.raw_idp_2024_src_pollution_globale,Z_DECH_PE1 (FORAGE IRE 898/16 AIN BOUCHIBA),z dech pe1 forage ire 898 16 ain bouchiba,1,Z_DECH_PE1 (FORAGE IRE 898/16 AIN BOUCHIBA)
+staging.raw_idp_2024_src_pollution_globale,Z_DECH_PE2 (FORAGE IRE 12/517 AIN BOUCHIBA),z dech pe2 forage ire 12 517 ain bouchiba,1,Z_DECH_PE2 (FORAGE IRE 12/517 AIN BOUCHIBA)
+staging.raw_idp_2024_src_pollution_globale,Zaouiat Sidi Abdeslam,zaouiat sidi abdeslam,1,Zaouiat Sidi Abdeslam
+staging.raw_idp_2024_src_pollution_globale,ZDA_PDOM_R1,zda pdom r1,1,ZDA_PDOM_R1
+staging.raw_idp_2024_src_pollution_globale,ZOM_PDOM_R1,zom pdom r1,1,ZOM_PDOM_R1
+staging.raw_idp_2024_src_pollution_marche_cadre,AMONT BARRAGE DE GARDE,amont barrage de garde,1,AMONT BARRAGE DE GARDE
+staging.raw_idp_2024_src_pollution_marche_cadre,AMONT KENITRA,amont kenitra,1,AMONT KENITRA
+staging.raw_idp_2024_src_pollution_marche_cadre,AMONT STEP GHAFSAI,amont step ghafsai,1,AMONT STEP GHAFSAI
+staging.raw_idp_2024_src_pollution_marche_cadre,AMONT STEP KENITRA,amont step kenitra,1,AMONT STEP KENITRA
+staging.raw_idp_2024_src_pollution_marche_cadre,AMONT STEP KHEMISSET ,amont step khemisset,1,AMONT STEP KHEMISSET 
+staging.raw_idp_2024_src_pollution_marche_cadre,AMONT STEP MECHRAA BEL KSIRI,amont step mechraa bel ksiri,1,AMONT STEP MECHRAA BEL KSIRI
+staging.raw_idp_2024_src_pollution_marche_cadre,AMONT STEP TAOUNATE,amont step taounate,1,AMONT STEP TAOUNATE
+staging.raw_idp_2024_src_pollution_marche_cadre,AVAL CONFLUENCE SEBOU-RDAT,aval confluence sebou rdat,1,AVAL CONFLUENCE SEBOU-RDAT
+staging.raw_idp_2024_src_pollution_marche_cadre,AVAL DAR GUEDDARI,aval dar gueddari,1,AVAL DAR GUEDDARI
+staging.raw_idp_2024_src_pollution_marche_cadre,AVAL REJET MEKNES,aval rejet meknes,1,AVAL REJET MEKNES
+staging.raw_idp_2024_src_pollution_marche_cadre,AVAL REJET TIFELT,aval rejet tifelt,1,AVAL REJET TIFELT
+staging.raw_idp_2024_src_pollution_marche_cadre,AVAL STEP AZROU,aval step azrou,1,AVAL STEP AZROU
+staging.raw_idp_2024_src_pollution_marche_cadre,AVAL STEP DAR GUEDDARI,aval step dar gueddari,1,AVAL STEP DAR GUEDDARI
+staging.raw_idp_2024_src_pollution_marche_cadre,AVAL STEP EL HAJEB,aval step el hajeb,1,AVAL STEP EL HAJEB
+staging.raw_idp_2024_src_pollution_marche_cadre,AVAL STEP FES,aval step fes,1,AVAL STEP FES
+staging.raw_idp_2024_src_pollution_marche_cadre,AVAL STEP IFRANE,aval step ifrane,1,AVAL STEP IFRANE
+staging.raw_idp_2024_src_pollution_marche_cadre,AVAL STEP IMOUZZER MARMOUCHA,aval step imouzzer marmoucha,1,AVAL STEP IMOUZZER MARMOUCHA
+staging.raw_idp_2024_src_pollution_marche_cadre,AVAL STEP KARIAT BA MOHAMED,aval step kariat ba mohamed,1,AVAL STEP KARIAT BA MOHAMED
+staging.raw_idp_2024_src_pollution_marche_cadre,AVAL STEP KHEMISSET ,aval step khemisset,1,AVAL STEP KHEMISSET 
+staging.raw_idp_2024_src_pollution_marche_cadre,AVAL STEP MECHRAA BEL KSIRI,aval step mechraa bel ksiri,1,AVAL STEP MECHRAA BEL KSIRI
+staging.raw_idp_2024_src_pollution_marche_cadre,AVAL STEP SIDI KACEM,aval step sidi kacem,1,AVAL STEP SIDI KACEM
+staging.raw_idp_2024_src_pollution_marche_cadre,AVAL STEP SIDI SLIMANE,aval step sidi slimane,1,AVAL STEP SIDI SLIMANE
+staging.raw_idp_2024_src_pollution_marche_cadre,AVAL STEP SIDI YAHYA EL GHARB,aval step sidi yahya el gharb,1,AVAL STEP SIDI YAHYA EL GHARB
+staging.raw_idp_2024_src_pollution_marche_cadre,AVAL STEP TAHLA,aval step tahla,1,AVAL STEP TAHLA
+staging.raw_idp_2024_src_pollution_marche_cadre,AVAL STEP TAOUNATE,aval step taounate,1,AVAL STEP TAOUNATE
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE ALLAL EL FASSI (FOND),barrage allal el fassi fond,1,BARRAGE ALLAL EL FASSI (FOND)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE ALLAL EL FASSI (MILIEU),barrage allal el fassi milieu,1,BARRAGE ALLAL EL FASSI (MILIEU)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE ALLAL EL FASSI (SURFACE),barrage allal el fassi surface,1,BARRAGE ALLAL EL FASSI (SURFACE)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE ASFALOU (FOND),barrage asfalou fond,1,BARRAGE ASFALOU (FOND)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE ASFALOU (MILIEU),barrage asfalou milieu,1,BARRAGE ASFALOU (MILIEU)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE ASFALOU (SURFACE),barrage asfalou surface,1,BARRAGE ASFALOU (SURFACE)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE BAB LOUTA (FOND),barrage bab louta fond,1,BARRAGE BAB LOUTA (FOND)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE BAB LOUTA (MILIEU),barrage bab louta milieu,1,BARRAGE BAB LOUTA (MILIEU)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE BAB LOUTA (SURFACE),barrage bab louta surface,1,BARRAGE BAB LOUTA (SURFACE)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE BOUHOUDA (FOND),barrage bouhouda fond,1,BARRAGE BOUHOUDA (FOND)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE BOUHOUDA (MILIEU),barrage bouhouda milieu,1,BARRAGE BOUHOUDA (MILIEU)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE BOUHOUDA (SURFACE),barrage bouhouda surface,1,BARRAGE BOUHOUDA (SURFACE)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE DE GARDE  (FOND),barrage de garde fond,1,BARRAGE DE GARDE  (FOND)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE DE GARDE  (SURFACE),barrage de garde surface,1,BARRAGE DE GARDE  (SURFACE)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE EL KANSRA (FOND),barrage el kansra fond,1,BARRAGE EL KANSRA (FOND)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE EL KANSRA (MILIEU),barrage el kansra milieu,1,BARRAGE EL KANSRA (MILIEU)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE EL KANSRA (SURFACE),barrage el kansra surface,1,BARRAGE EL KANSRA (SURFACE)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE EL WAHDA (FOND),barrage el wahda fond,1,BARRAGE EL WAHDA (FOND)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE EL WAHDA (MILIEU),barrage el wahda milieu,1,BARRAGE EL WAHDA (MILIEU)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE EL WAHDA (SURFACE),barrage el wahda surface,1,BARRAGE EL WAHDA (SURFACE)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE IDRISS 1ER (FOND),barrage idriss 1er fond,1,BARRAGE IDRISS 1ER (FOND)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE IDRISS 1ER (MILIEU),barrage idriss 1er milieu,1,BARRAGE IDRISS 1ER (MILIEU)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE IDRISS 1ER (SURFACE),barrage idriss 1er surface,1,BARRAGE IDRISS 1ER (SURFACE)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE M'DEZ (FOND),barrage m dez fond,1,BARRAGE M'DEZ (FOND)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE M'DEZ (MILIEU),barrage m dez milieu,1,BARRAGE M'DEZ (MILIEU)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE M'DEZ (SURFACE),barrage m dez surface,1,BARRAGE M'DEZ (SURFACE)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE OULJET SOLTANE (FOND),barrage ouljet soltane fond,1,BARRAGE OULJET SOLTANE (FOND)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE OULJET SOLTANE (MILIEU),barrage ouljet soltane milieu,1,BARRAGE OULJET SOLTANE (MILIEU)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE OULJET SOLTANE (SURFACE),barrage ouljet soltane surface,1,BARRAGE OULJET SOLTANE (SURFACE)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE SAHLA (FOND),barrage sahla fond,1,BARRAGE SAHLA (FOND)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE SAHLA (MILIEU),barrage sahla milieu,1,BARRAGE SAHLA (MILIEU)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE SAHLA (SURFACE),barrage sahla surface,1,BARRAGE SAHLA (SURFACE)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE SIDI ECHAHED (FOND),barrage sidi echahed fond,1,BARRAGE SIDI ECHAHED (FOND)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE SIDI ECHAHED (MILIEU),barrage sidi echahed milieu,1,BARRAGE SIDI ECHAHED (MILIEU)
+staging.raw_idp_2024_src_pollution_marche_cadre,BARRAGE SIDI ECHAHED (SURFACE),barrage sidi echahed surface,1,BARRAGE SIDI ECHAHED (SURFACE)
+staging.raw_idp_2024_src_pollution_marche_cadre,DAYAT AOUA (SURFACE),dayat aoua surface,1,DAYAT AOUA (SURFACE)
+staging.raw_idp_2024_src_pollution_marche_cadre,DAYAT FOUARATE,dayat fouarate,1,DAYAT FOUARATE
+staging.raw_idp_2024_src_pollution_marche_cadre,DAYAT SIDI BOUGHABA,dayat sidi boughaba,1,DAYAT SIDI BOUGHABA
+staging.raw_idp_2024_src_pollution_marche_cadre,FORAGE ABD NBI BOUTABEQ,forage abd nbi boutabeq,1,FORAGE ABD NBI BOUTABEQ
+staging.raw_idp_2024_src_pollution_marche_cadre,FORAGE AFAQFAQ,forage afaqfaq,1,FORAGE AFAQFAQ
+staging.raw_idp_2024_src_pollution_marche_cadre,FORAGE AHMED GHARAS,forage ahmed gharas,1,FORAGE AHMED GHARAS
+staging.raw_idp_2024_src_pollution_marche_cadre,FORAGE ATTO MILOUD,forage atto miloud,1,FORAGE ATTO MILOUD
+staging.raw_idp_2024_src_pollution_marche_cadre,FORAGE BARRAGE DE GARDE,forage barrage de garde,1,FORAGE BARRAGE DE GARDE
+staging.raw_idp_2024_src_pollution_marche_cadre,FORAGE COLONEL ALLAM,forage colonel allam,1,FORAGE COLONEL ALLAM
+staging.raw_idp_2024_src_pollution_marche_cadre,FORAGE DOMAINE JAWHARA,forage domaine jawhara,1,FORAGE DOMAINE JAWHARA
+staging.raw_idp_2024_src_pollution_marche_cadre,FORAGE DRISS NAISSA (CDA 224 BEL KSIRI),forage driss naissa cda 224 bel ksiri,1,FORAGE DRISS NAISSA (CDA 224 BEL KSIRI)
+staging.raw_idp_2024_src_pollution_marche_cadre,FORAGE FERME HADDADI ,forage ferme haddadi,1,FORAGE FERME HADDADI 
+staging.raw_idp_2024_src_pollution_marche_cadre,FORAGE FERME HAJ MOUHCINE ,forage ferme haj mouhcine,1,FORAGE FERME HAJ MOUHCINE 
+staging.raw_idp_2024_src_pollution_marche_cadre,FORAGE FERME HERATI,forage ferme herati,1,FORAGE FERME HERATI
+staging.raw_idp_2024_src_pollution_marche_cadre,FORAGE FERME MED SQALI,forage ferme med sqali,1,FORAGE FERME MED SQALI
+staging.raw_idp_2024_src_pollution_marche_cadre,FORAGE FERME ZNAIBER,forage ferme znaiber,1,FORAGE FERME ZNAIBER
+staging.raw_idp_2024_src_pollution_marche_cadre,FORAGE HUILERIE TALAA,forage huilerie talaa,1,FORAGE HUILERIE TALAA
+staging.raw_idp_2024_src_pollution_marche_cadre,FORAGE ONE Z.I KENITRA,forage one z i kenitra,1,FORAGE ONE Z.I KENITRA
+staging.raw_idp_2024_src_pollution_marche_cadre,FORAGE ONEP BEN AOUDA,forage onep ben aouda,1,FORAGE ONEP BEN AOUDA
+staging.raw_idp_2024_src_pollution_marche_cadre,FORAGE ONEP KSAIBIA,forage onep ksaibia,1,FORAGE ONEP KSAIBIA
+staging.raw_idp_2024_src_pollution_marche_cadre,FORAGE SOCHATOUR,forage sochatour,1,FORAGE SOCHATOUR
+staging.raw_idp_2024_src_pollution_marche_cadre,FOUM KHNEG,foum khneg,1,FOUM KHNEG
+staging.raw_idp_2024_src_pollution_marche_cadre,LAGUNE MERJA ZARGA (SURFACE),lagune merja zarga surface,1,LAGUNE MERJA ZARGA (SURFACE)
+staging.raw_idp_2024_src_pollution_marche_cadre,POINT RP1 AVAL TAZA,point rp1 aval taza,1,POINT RP1 AVAL TAZA
+staging.raw_idp_2024_src_pollution_marche_cadre,PONT KHENICHET,pont khenichet,1,PONT KHENICHET
+staging.raw_idp_2024_src_pollution_marche_cadre,PONT KROUMAN,pont krouman,1,PONT KROUMAN
+staging.raw_idp_2024_src_pollution_marche_cadre,PONT PORTUGAIS,pont portugais,1,PONT PORTUGAIS
+staging.raw_idp_2024_src_pollution_marche_cadre,PONT RS 302,pont rs 302,1,PONT RS 302
+staging.raw_idp_2024_src_pollution_marche_cadre,PT RP 21 (OUED BOUFEKRANE),pt rp 21 oued boufekrane,1,PT RP 21 (OUED BOUFEKRANE)
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS ABD KADER BALLALA,puits abd kader ballala,1,PUITS ABD KADER BALLALA
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS AHMED JIRRARI,puits ahmed jirrari,1,PUITS AHMED JIRRARI
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS AIN ASSOU,puits ain assou,1,PUITS AIN ASSOU
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS AIN SKHOUNE,puits ain skhoune,1,PUITS AIN SKHOUNE
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS AIT YADINE,puits ait yadine,1,PUITS AIT YADINE
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS ALLAL ZOUHRI,puits allal zouhri,1,PUITS ALLAL ZOUHRI
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS AVAL BOULEMANE,puits aval boulemane,1,PUITS AVAL BOULEMANE
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS BACHEKAR HASSAN,puits bachekar hassan,1,PUITS BACHEKAR HASSAN
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS BADIA SAHLI,puits badia sahli,1,PUITS BADIA SAHLI
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS BEN SMIME,puits ben smime,1,PUITS BEN SMIME
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS BRIQUETERIE,puits briqueterie,1,PUITS BRIQUETERIE
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS DAR BEL GHAZI,puits dar bel ghazi,1,PUITS DAR BEL GHAZI
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS DOUAR AIT BOUTAIB,puits douar ait boutaib,1,PUITS DOUAR AIT BOUTAIB
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS DOUAR BEL KOURA,puits douar bel koura,1,PUITS DOUAR BEL KOURA
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS DOUAR OUERSEFAN,puits douar ouersefan,1,PUITS DOUAR OUERSEFAN
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS DOUAR TOUIZA,puits douar touiza,1,PUITS DOUAR TOUIZA
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS FERME BEN ALI (NOUVEAU) ,puits ferme ben ali nouveau,1,PUITS FERME BEN ALI (NOUVEAU) 
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS FERME BENNANI,puits ferme bennani,1,PUITS FERME BENNANI
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS FERME ZNIBER SADEK,puits ferme zniber sadek,1,PUITS FERME ZNIBER SADEK
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS FOURRIERE,puits fourriere,1,PUITS FOURRIERE
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS GHOUAZI OUAZZAA,puits ghouazi ouazzaa,1,PUITS GHOUAZI OUAZZAA
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS HABRI HADOU ,puits habri hadou,1,PUITS HABRI HADOU 
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS HRICHMANE,puits hrichmane,1,PUITS HRICHMANE
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS KBIR BOUTARTA,puits kbir boutarta,1,PUITS KBIR BOUTARTA
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS KHLIFI RAMOU,puits khlifi ramou,1,PUITS KHLIFI RAMOU
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS LABYAR (AIN DORRIJ),puits labyar ain dorrij,1,PUITS LABYAR (AIN DORRIJ)
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS LAMSARA,puits lamsara,1,PUITS LAMSARA
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS LAZZOU ABD WAHD,puits lazzou abd wahd,1,PUITS LAZZOU ABD WAHD
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS LHAMMANI BRAHIM,puits lhammani brahim,1,PUITS LHAMMANI BRAHIM
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS LOUTFI BENKAMLEH,puits loutfi benkamleh,1,PUITS LOUTFI BENKAMLEH
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS MANSOUR CHERINI,puits mansour cherini,1,PUITS MANSOUR CHERINI
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS MOHAMED CHEHYMA,puits mohamed chehyma,1,PUITS MOHAMED CHEHYMA
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS MOHAMED HASSANI,puits mohamed hassani,1,PUITS MOHAMED HASSANI
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS ONEP AIN AICHA,puits onep ain aicha,1,PUITS ONEP AIN AICHA
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS ONEP GUIGUO,puits onep guiguo,1,PUITS ONEP GUIGUO
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS RAS TABOUDA,puits ras tabouda,1,PUITS RAS TABOUDA
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS SOUK EL HAD (GHAFSAI),puits souk el had ghafsai,1,PUITS SOUK EL HAD (GHAFSAI)
+staging.raw_idp_2024_src_pollution_marche_cadre,PUITS STATION DAR SALEM,puits station dar salem,1,PUITS STATION DAR SALEM
+staging.raw_idp_2024_src_pollution_marche_cadre,SIDI MOKHFI,sidi mokhfi,1,SIDI MOKHFI
+staging.raw_idp_2024_src_pollution_marche_cadre,SOURCE ABATTOIR,source abattoir,1,SOURCE ABATTOIR
+staging.raw_idp_2024_src_pollution_marche_cadre,SOURCE AKBOUB ,source akboub,1,SOURCE AKBOUB 
+staging.raw_idp_2024_src_pollution_marche_cadre,SOURCE AMMES DECHQUONDA ,source ammes dechquonda,1,SOURCE AMMES DECHQUONDA 
+staging.raw_idp_2024_src_pollution_marche_cadre,SOURCE MASSEGAL,source massegal,1,SOURCE MASSEGAL
+staging.raw_idp_2024_src_pollution_marche_cadre,SOURCE RAS EL AIN,source ras el ain,1,SOURCE RAS EL AIN
+staging.raw_idp_2024_src_pollution_marche_cadre,STATION AIN OUALI,station ain ouali,1,STATION AIN OUALI
+staging.raw_idp_2024_src_pollution_marche_cadre,STATION AVAL GHAFSAI,station aval ghafsai,1,STATION AVAL GHAFSAI
+staging.raw_idp_2024_src_pollution_marche_cadre,STATION AZIB SOLTANE,station azib soltane,1,STATION AZIB SOLTANE
+staging.raw_idp_2024_src_pollution_marche_cadre,STATION BAB MARZOUKA,station bab marzouka,1,STATION BAB MARZOUKA
+staging.raw_idp_2024_src_pollution_marche_cadre,STATION BAB OUENDER,station bab ouender,1,STATION BAB OUENDER
+staging.raw_idp_2024_src_pollution_marche_cadre,STATION BENI HAITEM,station beni haitem,1,STATION BENI HAITEM
+staging.raw_idp_2024_src_pollution_marche_cadre,STATION DAR EL ARSA,station dar el arsa,1,STATION DAR EL ARSA
+staging.raw_idp_2024_src_pollution_marche_cadre,STATION EL KOUCHET,station el kouchet,1,STATION EL KOUCHET
+staging.raw_idp_2024_src_pollution_marche_cadre,STATION HAD KOURT,station had kourt,1,STATION HAD KOURT
+staging.raw_idp_2024_src_pollution_marche_cadre,STATION HAJRIA,station hajria,1,STATION HAJRIA
+staging.raw_idp_2024_src_pollution_marche_cadre,STATION HAMMAM,station hammam,1,STATION HAMMAM
+staging.raw_idp_2024_src_pollution_marche_cadre,STATION PONT MECHRAA BEL KSIRI,station pont mechraa bel ksiri,1,STATION PONT MECHRAA BEL KSIRI
+staging.raw_idp_2024_src_pollution_marche_cadre,STATION RP 26,station rp 26,1,STATION RP 26
+staging.raw_idp_2024_src_pollution_marche_cadre,STATION TABOUDA,station tabouda,1,STATION TABOUDA
+staging.raw_idp_2024_src_pollution_marche_cadre,ZAOUIAT SIDI ABDESLAM,zaouiat sidi abdeslam,1,ZAOUIAT SIDI ABDESLAM

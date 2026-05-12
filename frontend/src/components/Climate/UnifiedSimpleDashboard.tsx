@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import UnifiedFilters from "@/components/Climate/UnifiedFilters";
 import ClimateChart from "@/components/Climate/ClimateChart";
 import ClimateTable from "@/components/Climate/ClimateTable";
+import { QaBadge, type QaStatus } from "@/components/ui/qa-badge";
 import { getParameterTimeseries } from "@/api/observatory";
 import type { HierParameter } from "@/api/observatory";
 import { getClimatMeteoSeries, getHydrologieSeries, getPollutionSeries } from "@/api/analytics";
@@ -77,6 +78,22 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
     "Choisir une variable";
   const varIcon = varLabel.toLowerCase().includes("températ") ? "🌡️" : varLabel.toLowerCase().includes("précipit") ? "☔" : "📊";
   const hydroTheme = isHydroTheme(theme);
+  const sourceLabel = selection.parameter
+    ? `${selection.parameter.source_schema}.${selection.parameter.source_table}`
+    : selection.scenario
+    ? `analytics:${selection.scenario}`
+    : "Source non sélectionnée";
+  const periodLabel =
+    dateStart || dateEnd
+      ? `${dateStart || "début"} → ${dateEnd || "fin"}`
+      : "Toutes les périodes disponibles";
+  const contextQaStatus: QaStatus = loading
+    ? "FLAGGED"
+    : series.length > 0
+    ? "VALID"
+    : selection.stationId
+    ? "MISSING"
+    : "FLAGGED";
 
   const applyHydroPreset = (preset: "30d" | "3m" | "1y" | "clear") => {
     if (preset === "clear") {
@@ -241,6 +258,43 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
 
         {/* CONTENT */}
         <div className="col-span-12 space-y-6 lg:col-span-9">
+          <div className="rounded-2xl border border-slate-200 bg-white/90 px-5 py-4 shadow-sm">
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">
+                  Contexte décisionnel
+                </p>
+                <h2 className="mt-1 text-lg font-bold text-slate-900">
+                  {theme} · {selection.entityObj?.name || selection.entityObj?.code || "Site non sélectionné"}
+                </h2>
+              </div>
+              <span className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700">
+                {loading ? "Chargement" : series.length ? `${series.length} points` : "En attente"}
+              </span>
+              <QaBadge status={contextQaStatus} />
+            </div>
+            <div className="grid grid-cols-1 gap-3 text-xs md:grid-cols-4">
+              <div className="rounded-xl bg-slate-50 px-3 py-2">
+                <div className="font-semibold uppercase tracking-wide text-slate-400">Thème</div>
+                <div className="mt-1 font-semibold text-slate-800">{theme}</div>
+              </div>
+              <div className="rounded-xl bg-slate-50 px-3 py-2">
+                <div className="font-semibold uppercase tracking-wide text-slate-400">Paramètre</div>
+                <div className="mt-1 font-semibold text-slate-800">{varLabel}</div>
+              </div>
+              <div className="rounded-xl bg-slate-50 px-3 py-2">
+                <div className="font-semibold uppercase tracking-wide text-slate-400">Période</div>
+                <div className="mt-1 font-semibold text-slate-800">{periodLabel}</div>
+              </div>
+              <div className="rounded-xl bg-slate-50 px-3 py-2">
+                <div className="font-semibold uppercase tracking-wide text-slate-400">Source</div>
+                <div className="mt-1 truncate font-semibold text-slate-800" title={sourceLabel}>
+                  {sourceLabel}
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* KPI CARDS */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <KpiCard

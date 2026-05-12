@@ -1,0 +1,19 @@
+{
+  "backup_created": true,
+  "backup_path": "C:\\dev\\WQDSS\\repo_git\\backups\\e1_1_qualite_nappe_20260505_145624\\qualite_mesure_qualite_nappe_before_reset.csv",
+  "backup_rows": 63088,
+  "truncated_rows": 63088,
+  "source_prepared_rows": 63076,
+  "source_quarantine_rows": 11,
+  "source_candidates": 63047,
+  "source_discarded_duplicates": 34,
+  "inserted_rows": 63047,
+  "audit_rows": 63047,
+  "duplicates_after": 0,
+  "station_null_after": 0,
+  "param_null_after": 0,
+  "value_null_after": 0,
+  "param_ref_null_after": 13270,
+  "other_table_modifications": 0,
+  "decision": "QUALITE_NAPPE_OK"
+}

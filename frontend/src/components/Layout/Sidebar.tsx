@@ -18,7 +18,7 @@ type NavItem = {
   to: string;
   label: string;
   icon: typeof Home;
-  group?: "main" | "admin" | "support";
+  group?: "observation" | "analyse" | "modeles" | "administration" | "support";
 };
 
 type SidebarProps = {
@@ -54,15 +54,15 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
   const isManager =
     roleFromToken === "manager" || roleFromToken === "gestionnaire";
   const allNavItems: NavItem[] = [
-    { to: "/", label: "Accueil", icon: Home, group: "main" },
-    { to: "/dashboard-cartographique", label: "Dashboard Cartographique", icon: Map, group: "main" },
-    { to: "/dashboard-analytique", label: "Dashboard Analytique", icon: LineChart, group: "main" },
-    { to: "/dashboard-scenarios", label: "Dashboard Scenarios", icon: Sparkles, group: "main" },
-    { to: "/data", label: "Gestion Données", icon: Database, group: "admin" },
-    { to: "/admin/data-scan", label: "Scan de données", icon: Search, group: "admin" },
-    { to: "/admin/gestion-users", label: "Gestion Users", icon: Users, group: "admin" },
-    { to: "/admin/ingestion", label: "Ingestion Scénarios", icon: CloudUpload, group: "admin" },
-    { to: "/admin/popup-rules", label: "Gestion des couches", icon: MessageSquare, group: "admin" },
+    { to: "/", label: "Accueil", icon: Home, group: "observation" },
+    { to: "/dashboard-cartographique", label: "Carte métier du bassin", icon: Map, group: "observation" },
+    { to: "/dashboard-analytique", label: "Analyses temporelles", icon: LineChart, group: "analyse" },
+    { to: "/dashboard-scenarios", label: "Scénarios SWAT / WASP", icon: Sparkles, group: "modeles" },
+    { to: "/data", label: "Données & référentiels", icon: Database, group: "administration" },
+    { to: "/admin/data-scan", label: "Couverture & qualité data", icon: Search, group: "administration" },
+    { to: "/admin/gestion-users", label: "Utilisateurs & audit", icon: Users, group: "administration" },
+    { to: "/admin/ingestion", label: "Ingestion modèles", icon: CloudUpload, group: "administration" },
+    { to: "/admin/popup-rules", label: "Popups & symbologie", icon: MessageSquare, group: "administration" },
     { to: "/about", label: "A propos", icon: Info, group: "support" },
     { to: "/contact", label: "Contact", icon: Mail, group: "support" },
   ];
@@ -78,17 +78,21 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
             "/admin/ingestion",
             "/admin/popup-rules",
           ];
-          return item.group !== "admin" || managerAdminAllowed.includes(item.to);
+          return item.group !== "administration" || managerAdminAllowed.includes(item.to);
         }
         // Utilisateur: pas d'accès aux sections Administration
-        return item.group !== "admin";
+        return item.group !== "administration";
       }),
     [canSeeAdmin, isManager]
   );
 
   const supportItems = primaryItems.filter((item) => item.group === "support");
-  const adminItems = primaryItems.filter((item) => item.group === "admin");
-  const mainItems = primaryItems.filter((item) => item.group === "main");
+  const navigationSections = [
+    { title: "Observation", items: primaryItems.filter((item) => item.group === "observation") },
+    { title: "Analyse", items: primaryItems.filter((item) => item.group === "analyse") },
+    { title: "Modèles", items: primaryItems.filter((item) => item.group === "modeles") },
+    { title: "Administration", items: primaryItems.filter((item) => item.group === "administration") },
+  ].filter((section) => section.items.length > 0);
 
   return (
     <aside
@@ -120,65 +124,35 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
 
       <div className={["flex flex-1 flex-col overflow-y-auto py-5", collapsed ? "px-2" : "px-4"].join(" ")}>
         <div className="space-y-6">
-          {!collapsed && <p className="px-3 text-xs font-medium text-slate-500">Surveillance & Métiers</p>}
-          <nav className="mt-4 space-y-1">
-            {mainItems.map((item) => {
-              const Icon = item.icon;
+          {navigationSections.map((section) => (
+            <div key={section.title}>
+              {!collapsed && <p className="px-3 text-xs font-medium text-slate-500">{section.title}</p>}
+              <nav className="mt-3 space-y-1">
+                {section.items.map((item) => {
+                  const Icon = item.icon;
 
-              return (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  className={({ isActive }) =>
-                    [
-                      "flex items-center rounded-xl py-3 text-sm font-medium transition-colors",
-                      collapsed ? "justify-center px-2" : "gap-3 px-3",
-                      isActive
-                        ? "bg-blue-50 text-blue-700"
-                        : "text-slate-700 hover:bg-slate-50 hover:text-slate-900",
-                    ].join(" ")
-                  }
-                >
-                  <Icon className="h-4 w-4" />
-                  {!collapsed && <span>{item.label}</span>}
-                </NavLink>
-              );
-            })}
-          </nav>
-
-          <div>
-            {adminItems.length > 0 && (
-              <>
-                {!collapsed && (
-                  <p className="px-3 text-xs font-medium text-slate-500">Administration</p>
-                )}
-                <nav className="mt-3 space-y-1">
-                  {adminItems.map((item) => {
-                    const Icon = item.icon;
-
-                    return (
-                      <NavLink
-                        key={item.to}
-                        to={item.to}
-                        className={({ isActive }) =>
-                          [
-                            "flex items-center rounded-xl py-3 text-sm font-medium transition-colors",
-                            collapsed ? "justify-center px-2" : "gap-3 px-3",
-                            isActive
-                              ? "bg-blue-50 text-blue-700"
-                              : "text-slate-700 hover:bg-slate-50 hover:text-slate-900",
-                          ].join(" ")
-                        }
-                      >
-                        <Icon className="h-4 w-4" />
-                        {!collapsed && <span>{item.label}</span>}
-                      </NavLink>
-                    );
-                  })}
-                </nav>
-              </>
-            )}
-          </div>
+                  return (
+                    <NavLink
+                      key={item.to}
+                      to={item.to}
+                      className={({ isActive }) =>
+                        [
+                          "flex items-center rounded-xl py-3 text-sm font-medium transition-colors",
+                          collapsed ? "justify-center px-2" : "gap-3 px-3",
+                          isActive
+                            ? "bg-blue-50 text-blue-700"
+                            : "text-slate-700 hover:bg-slate-50 hover:text-slate-900",
+                        ].join(" ")
+                      }
+                    >
+                      <Icon className="h-4 w-4" />
+                      {!collapsed && <span>{item.label}</span>}
+                    </NavLink>
+                  );
+                })}
+              </nav>
+            </div>
+          ))}
 
           <div>
             {!collapsed && <p className="px-3 text-xs font-medium text-slate-500">Support</p>}

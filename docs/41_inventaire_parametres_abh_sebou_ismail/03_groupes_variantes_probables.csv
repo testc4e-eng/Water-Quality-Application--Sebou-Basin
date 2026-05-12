@@ -1,0 +1,46 @@
+﻿groupe_propose,variantes_detectees,tables_concernees,volumes_cumules,confiance_auto,decision_metier_attendue
+arsenic,Arsenic | Arsenic(mg/l),idp_2024_mesures_qualite_marche_cadre | suivi_qualite_brg_garde_hebdo,190,forte,valider fusion / séparation
+ca,Ca | Ca++,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,4696,forte,valider fusion / séparation
+cadmium,Cadmium | Cadmium(mg/l),idp_2024_mesures_qualite_marche_cadre | suivi_qualite_brg_garde_hebdo,190,forte,valider fusion / séparation
+cf,CF | CF(UFC/100mL),idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | suivi_qualite_brg_garde_hebdo | types_mesures,5191,forte,valider fusion / séparation
+chla,Chl a | Chl.A(µg/l) | Chla,idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | suivi_qualite_brg_garde_hebdo | types_mesures,825,forte,valider fusion / séparation
+chrome,Chrome | Chrome(mg/l),idp_2024_mesures_qualite_marche_cadre | suivi_qualite_brg_garde_hebdo,190,forte,valider fusion / séparation
+cl,Cl | Cl- | Cl-(mg/l),idp_2024_mesures_qualite_globale | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | suivi_qualite_brg_garde_hebdo | types_mesures,5038,forte,valider fusion / séparation
+cn,CN | CN(mg/l),mesures_qualite_nappes | mesures_qualite_rivieres | suivi_qualite_brg_garde_hebdo,306,forte,valider fusion / séparation
+cobalt,Cobalt | Cobalt(mg/l)),idp_2024_mesures_qualite_marche_cadre | suivi_qualite_brg_garde_hebdo,190,forte,valider fusion / séparation
+conductivite,Conductivite | Conductivité | Conductivitéà20°C(µs/cm) | Indicedephénol(mg/l) | cond_20_c | indice de phénol M:A | surface_km2,bathymetries_barrages_abhs | idp_2024_mesures_qualite_marche_cadre | idp_2024_src_pollution_globale | idp_2024_src_pollution_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | suivi_qualite_brg_garde_hebdo,72785,moyenne,valider fusion / séparation
+ct,CT | HCT | NO2- _Spectro. | NTK Spectr | TAC/TACs_meq/l | TAC/TACs_°F,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,5523,moyenne,valider fusion / séparation
+cuivre,Cuivre | Cuivre(mg/l),idp_2024_mesures_qualite_marche_cadre | suivi_qualite_brg_garde_hebdo,190,forte,valider fusion / séparation
+dbo5,DBO5 | DBO5_dec2h,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | suivi_qualite_sebou_jr | types_mesures,6908,forte,valider fusion / séparation
+dco,"DCO | DCO 
+2h décant. | DCO  D 
+ 2h | DCO_dec2h",idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | suivi_qualite_sebou_jr | types_mesures,7093,faible,valider fusion / séparation
+debit,Debit | debit | debit_jr | debit_l_s | debit_m,mesures_debit_jr | mesures_debit_m | mesures_debit_sources | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | rejets_domestiques_abhs | types_mesures,544103,moyenne,valider fusion / séparation
+f,F | F-(mg/l),mesures_qualite_nappes | mesures_qualite_rivieres | suivi_qualite_brg_garde_hebdo,242,forte,valider fusion / séparation
+fer,Fer | Fer(mg/l),idp_2024_mesures_qualite_marche_cadre | suivi_qualite_brg_garde_hebdo,190,forte,valider fusion / séparation
+h_g,"H_G | Hg | Huiles
+Graisses | Huiles
+Graisses (H G T)",idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | mesures_qualite_nappes | mesures_qualite_rivieres | suivi_qualite_sebou_jr,5086,faible,valider fusion / séparation
+hco3,HCO3 | HCO3-,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,4685,forte,valider fusion / séparation
+ip,IP | IP(mgO2/l),idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | suivi_qualite_brg_garde_hebdo,257,forte,valider fusion / séparation
+k,K | K+,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,4817,forte,valider fusion / séparation
+mercure,Mercure | Mercure(mg/l),idp_2024_mesures_qualite_marche_cadre | suivi_qualite_brg_garde_hebdo,190,forte,valider fusion / séparation
+mg,Mg | Mg++,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,4811,forte,valider fusion / séparation
+mo,MO | Mo,idp_2024_mesures_qualite_globale | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,2704,forte,valider fusion / séparation
+na,NA | Na+,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,4817,forte,valider fusion / séparation
+nh4,Ammonium | NH4 | NH4+ | NH4+  Titri | NH4+ 2 | NH4+ Spect | NH4+(mgNH4+/l),idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | suivi_qualite_brg_garde_hebdo | suivi_qualite_sebou_jr | types_mesures,9991,faible,valider fusion / séparation
+no3,NO3- | NO3-(mg/l) | NO3-_Réduction Cd | NO3-_Spectro | Nitrates,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | suivi_qualite_brg_garde_hebdo | suivi_qualite_sebou_jr | types_mesures,10233,moyenne,valider fusion / séparation
+ntk,Azote_tot_kjeld | Azote_tot_kjeldhal | NTK | NTK Titri,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | suivi_qualite_sebou_jr | types_mesures,6692,moyenne,valider fusion / séparation
+o2_dissous,O2_diss | O2_dissous | O2dissous(mgd'O2/l) | o2_dissous,idp_2024_src_pollution_globale | idp_2024_src_pollution_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | suivi_qualite_brg_garde_hebdo | suivi_qualite_sebou_jr | types_mesures,7957,moyenne,valider fusion / séparation
+oh,OH | OH-,idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | types_mesures,91,forte,valider fusion / séparation
+ph,Phenol | Pheopigment | Phénol | Ph�nol | pH | pH au laboratoire | ph | phenol,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | idp_2024_src_pollution_globale | idp_2024_src_pollution_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | suivi_qualite_brg_garde_hebdo,15607,moyenne,valider fusion / séparation
+plomb,Plomb | Plomb(mg/l),idp_2024_mesures_qualite_marche_cadre | suivi_qualite_brg_garde_hebdo,190,forte,valider fusion / séparation
+po4,PO4 3- | PO43- | PO43-(mgP/l),idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | suivi_qualite_brg_garde_hebdo | types_mesures,2743,forte,valider fusion / séparation
+pt_famille,"PT | PT
+ décant. 2h | PT DECANTE | PT(mgP/l) | PTD | PTP | Phosphore total | Phosphore_Total | dist_pt_eau_foyer_pollut_m | sup_tot_ha",decharges_abhs | idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | points_eau_abhs | suivi_qualite_brg_garde_hebdo,3586,faible,valider fusion / séparation
+selenium,Sélénium | Sélénium(mg/l),idp_2024_mesures_qualite_marche_cadre | suivi_qualite_brg_garde_hebdo,190,forte,valider fusion / séparation
+so4,SO4 | SO4(mg/l) | SO4--,idp_2024_mesures_qualite_globale | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | suivi_qualite_brg_garde_hebdo | types_mesures,5165,forte,valider fusion / séparation
+t_air,T_Air | T_air | t_air,idp_2024_src_pollution_globale | idp_2024_src_pollution_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | suivi_qualite_brg_garde_hebdo | suivi_qualite_sebou_jr | types_mesures,10178,forte,valider fusion / séparation
+t_eau,T_eau | t_eau,idp_2024_src_pollution_globale | idp_2024_src_pollution_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | suivi_qualite_brg_garde_hebdo | suivi_qualite_sebou_jr | types_mesures,10219,forte,valider fusion / séparation
+turbidite,Turbidite | Turbidité | turbidite,idp_2024_src_pollution_globale | idp_2024_src_pollution_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | suivi_qualite_sebou_jr | types_mesures,6960,forte,valider fusion / séparation
+zinc,Zinc | Zinc(mg/l),idp_2024_mesures_qualite_marche_cadre | suivi_qualite_brg_garde_hebdo,190,forte,valider fusion / séparation

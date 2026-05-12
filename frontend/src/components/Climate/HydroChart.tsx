@@ -209,7 +209,7 @@
 
 
 import { useEffect, useRef, useState, useMemo } from "react";
-import { fetchHydroTimeseries } from "@/api/hydro";
+import { fetchHydroTimeseries, type HydroIdentifier } from "@/api/hydro";
 import {
   ResponsiveContainer,
   LineChart,
@@ -223,7 +223,7 @@ import {
 } from "recharts";
 
 type Props = {
-  ts_id?: number;
+  ts_id?: HydroIdentifier;
   aggregation?: string;
   date_start?: string;
   date_end?: string;

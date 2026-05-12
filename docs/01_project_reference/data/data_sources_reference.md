@@ -6,8 +6,8 @@
 | Type | reference |
 | Périmètre | familles de données alimentant le SAD |
 | Source de vérité | Oui |
-| Documents liés | [data_dictionary](./data_dictionary.md), [database_architecture](../architecture/database_architecture.md) |
-| Dernière mise à jour | 2026-04-10 |
+| Documents liés | [DATABASE_SCHEMA](./DATABASE_SCHEMA.md), [database_architecture](../architecture/database_architecture.md) |
+| Dernière mise à jour | 2026-04-17 |
 
 ## 1. Familles de données couvertes
 

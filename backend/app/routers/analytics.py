@@ -36,6 +36,9 @@ HYDRO_VARIABLE_ORDER = {
     "niveau_barrage": 1,
     "volume_barrage": 2,
     "lacher_barrage": 3,
+    "apport": 4,
+    "apports_hm3": 4,
+    "transfert": 5,
 }
 
 

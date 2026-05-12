@@ -1,4 +1,15 @@
-# 🔎 Catalogue Détaillé des Endpoints
+# Catalogue Detaille des Endpoints
+
+| Champ | Valeur |
+|---|---|
+| Statut | Actif |
+| Type | specification |
+| Perimetre | cible API, contrats attendus et conventions d'exposition |
+| Source de verite | Non pour le deployee, Oui pour la cible contractuelle |
+| Documents lies | [backend_overview](./backend_overview.md), [../../00_SOURCE_OF_TRUTH_MASTER.md](../../00_SOURCE_OF_TRUTH_MASTER.md), [../../03_ai_knowledge_base/api_for_agents.md](../../03_ai_knowledge_base/api_for_agents.md) |
+| Derniere mise a jour | 2026-04-17 |
+
+> Note de gouvernance documentaire : ce document decrit la cible contractuelle et les contrats attendus. La verite du backend reellement monte doit etre lue dans `backend_overview.md` et `00_SOURCE_OF_TRUTH_MASTER.md`.
 
 ## 1. `GET /api/v1/infra/stations`
 

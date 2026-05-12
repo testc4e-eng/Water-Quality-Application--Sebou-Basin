@@ -43,3 +43,6 @@ PostgreSQL + PostGIS + TimescaleDB
 - préserver les contrats API déjà consommés par le frontend
 - limiter les contournements SQL hors couche `api` quand une vue d’exposition existe
 - encadrer strictement les opérations CRUD génériques du module `raw`
+- utiliser `metadata.referentiel_parametre_canonique` comme dictionnaire cible unique des paramètres métier dès qu’il est disponible
+- traiter `hydro.mesure_barrage_param` comme la couche cible de production pour les flux barrage journaliers (`LACHER`, `APPORT`, `TRANSFERT`) en `Mm3/j`
+- exposer les donnees barrage via les vues `api.v_hydro_barrage_param_journalier`, `api.v_hydro_barrage_param_compat_wide` et la MV `analytics.mv_dashboard_hydrologie_menu`

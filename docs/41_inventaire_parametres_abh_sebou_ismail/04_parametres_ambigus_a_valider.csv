@@ -1,0 +1,207 @@
+﻿parametre,ambiguite,tables,volume,exemples_valeurs,question_metier,priorite
+Ag,abréviation non explicitée,idp_2024_mesures_qualite_globale | mesures_qualite_rivieres,55,"<0,0067 | 0.01",quel libellé officiel et quelle unité retenir ?,Élevée
+Al,abréviation non explicitée,idp_2024_mesures_qualite_globale | mesures_qualite_nappes | mesures_qualite_rivieres,104,"<0,010 | 0.02 | 0.0034",quel libellé officiel et quelle unité retenir ?,Élevée
+Aluminium(mg/l),libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.0406,quel libellé officiel et quelle unité retenir ?,Élevée
+Ammonium,plusieurs variantes probables,suivi_qualite_sebou_jr,4572,40.4,quel libellé officiel et quelle unité retenir ?,Élevée
+Arsenic,plusieurs variantes probables,idp_2024_mesures_qualite_marche_cadre,8,"<0,005",quel libellé officiel et quelle unité retenir ?,Élevée
+Arsenic(mg/l),plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.005,quel libellé officiel et quelle unité retenir ?,Élevée
+As,abréviation non explicitée,idp_2024_mesures_qualite_globale | mesures_qualite_nappes | mesures_qualite_rivieres,289,"<0,005 | 0.01 | 0",quel libellé officiel et quelle unité retenir ?,Élevée
+Azote_tot_kjeld,plusieurs variantes probables,mesures_qualite_barrages | types_mesures,2,0.371,quel libellé officiel et quelle unité retenir ?,Élevée
+Azote_tot_kjeldhal,plusieurs variantes probables,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,1934,0.06 | 0.01 | 0.346,quel libellé officiel et quelle unité retenir ?,Élevée
+Ba,abréviation non explicitée,idp_2024_mesures_qualite_globale | mesures_qualite_rivieres,64,"<0,010 | 0",quel libellé officiel et quelle unité retenir ?,Élevée
+Be,abréviation non explicitée,idp_2024_mesures_qualite_globale,45,"<0,005",quel libellé officiel et quelle unité retenir ?,Élevée
+Beryllium(mg/l),libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.005,quel libellé officiel et quelle unité retenir ?,Élevée
+Bore(mg/l),libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.06,quel libellé officiel et quelle unité retenir ?,Élevée
+CF,plusieurs variantes probables,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,5009,"1,0x103 | 7,5.104 | 340",quel libellé officiel et quelle unité retenir ?,Élevée
+CF(UFC/100mL),plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,8,quel libellé officiel et quelle unité retenir ?,Élevée
+CN,plusieurs variantes probables; abréviation non explicitée,mesures_qualite_nappes | mesures_qualite_rivieres,127,0.003 | 0,quel libellé officiel et quelle unité retenir ?,Élevée
+CN(mg/l),plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,179,0.02,quel libellé officiel et quelle unité retenir ?,Élevée
+CT,plusieurs variantes probables,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,4725,"3,4x102 | 1,9.106 | 2349",quel libellé officiel et quelle unité retenir ?,Élevée
+Ca,plusieurs variantes probables; abréviation non explicitée,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,4418,49.7 | 59.1 | 59.1,quel libellé officiel et quelle unité retenir ?,Élevée
+Ca++,plusieurs variantes probables; abréviation non explicitée,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre,278,"138,3 | 30,1",quel libellé officiel et quelle unité retenir ?,Élevée
+Cadmium,plusieurs variantes probables,idp_2024_mesures_qualite_marche_cadre,8,"<0,0005",quel libellé officiel et quelle unité retenir ?,Élevée
+Cadmium(mg/l),plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.0005,quel libellé officiel et quelle unité retenir ?,Élevée
+Cd,abréviation non explicitée,idp_2024_mesures_qualite_globale | mesures_qualite_nappes | mesures_qualite_rivieres,325,"<0,0005 | 0 | 0",quel libellé officiel et quelle unité retenir ?,Élevée
+Chl,abréviation non explicitée,mesures_qualite_rivieres,2,0,quel libellé officiel et quelle unité retenir ?,Élevée
+Chl a,plusieurs variantes probables,idp_2024_mesures_qualite_marche_cadre,38,"<0,1",quel libellé officiel et quelle unité retenir ?,Élevée
+Chl.A(µg/l),plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,29.7,quel libellé officiel et quelle unité retenir ?,Élevée
+Chla,plusieurs variantes probables; abréviation non explicitée,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,605,1.6 | 0 | 0,quel libellé officiel et quelle unité retenir ?,Élevée
+Chrome,plusieurs variantes probables,idp_2024_mesures_qualite_marche_cadre,8,"<0,005",quel libellé officiel et quelle unité retenir ?,Élevée
+Chrome(mg/l),plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.005,quel libellé officiel et quelle unité retenir ?,Élevée
+Cl,plusieurs variantes probables; abréviation non explicitée,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,4667,512.17 | 89.5 | 537,quel libellé officiel et quelle unité retenir ?,Élevée
+Cl-,plusieurs variantes probables; abréviation non explicitée,idp_2024_mesures_qualite_globale,189,497,quel libellé officiel et quelle unité retenir ?,Élevée
+Cl-(mg/l),plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,133,quel libellé officiel et quelle unité retenir ?,Élevée
+Co,abréviation non explicitée,idp_2024_mesures_qualite_globale | mesures_qualite_nappes | mesures_qualite_rivieres,158,"<0,005 | 19 | 0",quel libellé officiel et quelle unité retenir ?,Élevée
+Cobalt,plusieurs variantes probables,idp_2024_mesures_qualite_marche_cadre,8,"<0,005",quel libellé officiel et quelle unité retenir ?,Élevée
+Cobalt(mg/l)),plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.005,quel libellé officiel et quelle unité retenir ?,Élevée
+"Cond
+25°C",libellé composé ou unité intégrée,idp_2024_mesures_qualite_marche_cadre,13,"1113,768",quel libellé officiel et quelle unité retenir ?,Élevée
+"Cond 25°C *0,9*0,01",libellé composé ou unité intégrée,idp_2024_mesures_qualite_marche_cadre,13,,quel libellé officiel et quelle unité retenir ?,Élevée
+"Cond 25°C *1,1*0,01",libellé composé ou unité intégrée,idp_2024_mesures_qualite_marche_cadre,13,,quel libellé officiel et quelle unité retenir ?,Élevée
+Conductivite,plusieurs variantes probables,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,5072,1868 | 877 | 1318,quel libellé officiel et quelle unité retenir ?,Élevée
+Conductivité,plusieurs variantes probables,suivi_qualite_sebou_jr,4572,1593,quel libellé officiel et quelle unité retenir ?,Élevée
+Conductivitéà20°C(µs/cm),plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,877,quel libellé officiel et quelle unité retenir ?,Élevée
+Cr,abréviation non explicitée,mesures_qualite_nappes | mesures_qualite_rivieres,57,0.013 | 0,quel libellé officiel et quelle unité retenir ?,Élevée
+CrT,abréviation non explicitée,idp_2024_mesures_qualite_globale | mesures_qualite_nappes | mesures_qualite_rivieres,437,"<0,005 | 0.02 | 0.011",quel libellé officiel et quelle unité retenir ?,Élevée
+Cu,abréviation non explicitée,idp_2024_mesures_qualite_globale | mesures_qualite_nappes | mesures_qualite_rivieres,323,"<0,005 | 0.02 | 0",quel libellé officiel et quelle unité retenir ?,Élevée
+Cuivre,plusieurs variantes probables,idp_2024_mesures_qualite_marche_cadre,8,"<0,005",quel libellé officiel et quelle unité retenir ?,Élevée
+Cuivre(mg/l),plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.0052,quel libellé officiel et quelle unité retenir ?,Élevée
+DBO5,plusieurs variantes probables,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | suivi_qualite_sebou_jr | types_mesures,6884,"2,132 | <0,2 | 1.6",quel libellé officiel et quelle unité retenir ?,Élevée
+DBO5_dec2h,plusieurs variantes probables,mesures_qualite_rivieres,24,0,quel libellé officiel et quelle unité retenir ?,Élevée
+DCO,plusieurs variantes probables,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | suivi_qualite_sebou_jr | types_mesures,7028,"1585 | <8,10 | 13.4",quel libellé officiel et quelle unité retenir ?,Élevée
+"DCO 
+2h décant.",plusieurs variantes probables; libellé composé ou unité intégrée,idp_2024_mesures_qualite_marche_cadre,4,"15,4",quel libellé officiel et quelle unité retenir ?,Élevée
+"DCO  D 
+ 2h",plusieurs variantes probables; libellé composé ou unité intégrée,idp_2024_mesures_qualite_globale,2,"53,76",quel libellé officiel et quelle unité retenir ?,Élevée
+DCO_dec2h,plusieurs variantes probables,mesures_qualite_barrages | mesures_qualite_rivieres | types_mesures,59,34.27 | 0,quel libellé officiel et quelle unité retenir ?,Élevée
+Debit,plusieurs variantes probables,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,176,0.047 | 10 | 0.046,quel libellé officiel et quelle unité retenir ?,Élevée
+DisquedeSecchi(m),libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.6,quel libellé officiel et quelle unité retenir ?,Élevée
+Eh,abréviation non explicitée,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,96,129 | -330 | 0,quel libellé officiel et quelle unité retenir ?,Élevée
+F,plusieurs variantes probables; abréviation non explicitée,mesures_qualite_nappes | mesures_qualite_rivieres,61,1.06 | 0,quel libellé officiel et quelle unité retenir ?,Élevée
+F-(mg/l),plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,181,0.347,quel libellé officiel et quelle unité retenir ?,Élevée
+FM,code court ou famille à valider; abréviation non explicitée,mesures_qualite_barrages | mesures_qualite_rivieres | types_mesures,5,38.4 | 12.4,quel libellé officiel et quelle unité retenir ?,Élevée
+F_M_mes,code court ou famille à valider,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,12,0.059 | 0.161 | 0,quel libellé officiel et quelle unité retenir ?,Élevée
+Fe,abréviation non explicitée,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,1351,"5,24 | 0,101 | 0.06",quel libellé officiel et quelle unité retenir ?,Élevée
+FeT,abréviation non explicitée,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,2072,0.227 | 0.3 | 2.53,quel libellé officiel et quelle unité retenir ?,Élevée
+Fer,plusieurs variantes probables; abréviation non explicitée,idp_2024_mesures_qualite_marche_cadre,8,"0,0204",quel libellé officiel et quelle unité retenir ?,Élevée
+Fer(mg/l),plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.166,quel libellé officiel et quelle unité retenir ?,Élevée
+Ferdissous(mg/l),libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.214,quel libellé officiel et quelle unité retenir ?,Élevée
+HCO,abréviation non explicitée,mesures_qualite_nappes | mesures_qualite_rivieres,3,259.3 | 195,quel libellé officiel et quelle unité retenir ?,Élevée
+HCO3,plusieurs variantes probables,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre,121,133 | 198,quel libellé officiel et quelle unité retenir ?,Élevée
+HCO3-,plusieurs variantes probables,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,4564,247 | 247 | 575.8,quel libellé officiel et quelle unité retenir ?,Élevée
+HCT,plusieurs variantes probables; abréviation non explicitée,mesures_qualite_barrages | mesures_qualite_rivieres | types_mesures,492,9.55 | 0.43,quel libellé officiel et quelle unité retenir ?,Élevée
+H_G,code court ou famille à valider; plusieurs variantes probables; abréviation non explicitée,mesures_qualite_nappes | mesures_qualite_rivieres | suivi_qualite_sebou_jr,4726,0.0008 | 0 | 0.5882352941162762,quel libellé officiel et quelle unité retenir ?,Critique
+Hg,code court ou famille à valider; plusieurs variantes probables; abréviation non explicitée,idp_2024_mesures_qualite_globale | mesures_qualite_nappes | mesures_qualite_rivieres,261,"<0,00025 | 0.0005 | 0",quel libellé officiel et quelle unité retenir ?,Critique
+"Huiles
+Graisses",code court ou famille à valider; plusieurs variantes probables; libellé composé ou unité intégrée,idp_2024_mesures_qualite_globale,72,"7,58",quel libellé officiel et quelle unité retenir ?,Critique
+"Huiles
+Graisses (H G T)",code court ou famille à valider; plusieurs variantes probables; libellé composé ou unité intégrée,idp_2024_mesures_qualite_marche_cadre,27,"<0,377",quel libellé officiel et quelle unité retenir ?,Critique
+IBD,abréviation non explicitée,mesures_qualite_barrages | mesures_qualite_rivieres | types_mesures,142,0 | 0,quel libellé officiel et quelle unité retenir ?,Élevée
+IBGN,abréviation non explicitée,mesures_qualite_barrages | mesures_qualite_rivieres | types_mesures,47,13 | 1,quel libellé officiel et quelle unité retenir ?,Élevée
+IP,plusieurs variantes probables; abréviation non explicitée,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre,75,"<0,45 | 0,8",quel libellé officiel et quelle unité retenir ?,Élevée
+IP(mgO2/l),plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,2.22,quel libellé officiel et quelle unité retenir ?,Élevée
+Indicedephénol(mg/l),plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.011,quel libellé officiel et quelle unité retenir ?,Élevée
+K,plusieurs variantes probables; abréviation non explicitée,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,4556,3.82 | 59.1 | 16.22,quel libellé officiel et quelle unité retenir ?,Élevée
+K+,plusieurs variantes probables; abréviation non explicitée,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre,261,"1,86 | 17,7",quel libellé officiel et quelle unité retenir ?,Élevée
+Li,abréviation non explicitée,idp_2024_mesures_qualite_globale | mesures_qualite_rivieres,50,"<0,020 | 0.01",quel libellé officiel et quelle unité retenir ?,Élevée
+Litium(mg/l),libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.032,quel libellé officiel et quelle unité retenir ?,Élevée
+MD,abréviation non explicitée,mesures_qualite_rivieres,2,0,quel libellé officiel et quelle unité retenir ?,Élevée
+MES,abréviation non explicitée,idp_2024_mesures_qualite_globale | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,2564,"11,5 | 16.4 | 0",quel libellé officiel et quelle unité retenir ?,Élevée
+MEST(mg/l),libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,8.9,quel libellé officiel et quelle unité retenir ?,Élevée
+MO,plusieurs variantes probables; abréviation non explicitée,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,2658,0 | 1.81377 | 0,quel libellé officiel et quelle unité retenir ?,Élevée
+Manganèse(mg/l),libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.064,quel libellé officiel et quelle unité retenir ?,Élevée
+Mercure,plusieurs variantes probables,idp_2024_mesures_qualite_marche_cadre,8,"<0,00025",quel libellé officiel et quelle unité retenir ?,Élevée
+Mercure(mg/l),plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.00025,quel libellé officiel et quelle unité retenir ?,Élevée
+Mg,plusieurs variantes probables; abréviation non explicitée,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,4533,96 | 40.4 | 59.1,quel libellé officiel et quelle unité retenir ?,Élevée
+Mg++,plusieurs variantes probables; abréviation non explicitée,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre,278,"63,2 | 47,2",quel libellé officiel et quelle unité retenir ?,Élevée
+Mn,abréviation non explicitée,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,2701,"0,072 | <0,050 | 0.138",quel libellé officiel et quelle unité retenir ?,Élevée
+Mo,plusieurs variantes probables; abréviation non explicitée,idp_2024_mesures_qualite_globale,46,"<0,010",quel libellé officiel et quelle unité retenir ?,Élevée
+Molybdène(mg/l),libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.01,quel libellé officiel et quelle unité retenir ?,Élevée
+NA,plusieurs variantes probables; abréviation non explicitée,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,4556,75 | 59.1 | 98.8,quel libellé officiel et quelle unité retenir ?,Élevée
+NH4,plusieurs variantes probables,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,4776,0.214 | 0.18257 | 40.4,quel libellé officiel et quelle unité retenir ?,Élevée
+NH4+,plusieurs variantes probables,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre,315,,quel libellé officiel et quelle unité retenir ?,Élevée
+NH4+  Titri,plusieurs variantes probables; libellé composé ou unité intégrée,idp_2024_mesures_qualite_marche_cadre,2,"21,84",quel libellé officiel et quelle unité retenir ?,Élevée
+NH4+ 2,plusieurs variantes probables,idp_2024_mesures_qualite_marche_cadre,17,154,quel libellé officiel et quelle unité retenir ?,Élevée
+NH4+ Spect,plusieurs variantes probables,idp_2024_mesures_qualite_marche_cadre,127,"58,8",quel libellé officiel et quelle unité retenir ?,Élevée
+NH4+(mgNH4+/l),plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.041,quel libellé officiel et quelle unité retenir ?,Élevée
+NO2- _Spectro.,plusieurs variantes probables,idp_2024_mesures_qualite_marche_cadre,89,"<0,010",quel libellé officiel et quelle unité retenir ?,Élevée
+NO3-,plusieurs variantes probables,idp_2024_mesures_qualite_globale | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,5348,"27,2 | 0.647 | 30.6",quel libellé officiel et quelle unité retenir ?,Élevée
+NO3-(mg/l),plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,3.42,quel libellé officiel et quelle unité retenir ?,Élevée
+NO3-_Réduction Cd,plusieurs variantes probables,idp_2024_mesures_qualite_marche_cadre,4,"0,057",quel libellé officiel et quelle unité retenir ?,Élevée
+NO3-_Spectro,plusieurs variantes probables,idp_2024_mesures_qualite_marche_cadre,127,"65,7",quel libellé officiel et quelle unité retenir ?,Élevée
+NTK,plusieurs variantes probables; abréviation non explicitée,idp_2024_mesures_qualite_globale | suivi_qualite_sebou_jr,4735,"537,6 | 0.647",quel libellé officiel et quelle unité retenir ?,Élevée
+NTK Spectr,plusieurs variantes probables,idp_2024_mesures_qualite_marche_cadre,39,"0,266",quel libellé officiel et quelle unité retenir ?,Élevée
+NTK Titri,plusieurs variantes probables,idp_2024_mesures_qualite_marche_cadre,21,"117,6",quel libellé officiel et quelle unité retenir ?,Élevée
+Na+,plusieurs variantes probables; abréviation non explicitée,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre,261,"173 | 96,5",quel libellé officiel et quelle unité retenir ?,Élevée
+Ni,abréviation non explicitée,idp_2024_mesures_qualite_globale | mesures_qualite_nappes | mesures_qualite_rivieres,317,"<0,010 | 0.01 | 0",quel libellé officiel et quelle unité retenir ?,Élevée
+Nickel(mg)/l,libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.01,quel libellé officiel et quelle unité retenir ?,Élevée
+Nitrates,plusieurs variantes probables,suivi_qualite_sebou_jr,4572,59.1,quel libellé officiel et quelle unité retenir ?,Élevée
+O2_diss,plusieurs variantes probables,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,2812,10.2 | 0 | 8.22,quel libellé officiel et quelle unité retenir ?,Élevée
+O2_dissous,plusieurs variantes probables,suivi_qualite_sebou_jr,4572,8.22,quel libellé officiel et quelle unité retenir ?,Élevée
+O2dissous(mgd'O2/l),plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,7.56,quel libellé officiel et quelle unité retenir ?,Élevée
+OH,plusieurs variantes probables; abréviation non explicitée,mesures_qualite_barrages | types_mesures,2,7.65,quel libellé officiel et quelle unité retenir ?,Élevée
+OH-,plusieurs variantes probables; abréviation non explicitée,idp_2024_mesures_qualite_marche_cadre,89,0,quel libellé officiel et quelle unité retenir ?,Élevée
+PO4 3-,plusieurs variantes probables,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,2321,0.071 | 0 | 0.647,quel libellé officiel et quelle unité retenir ?,Élevée
+PO43-,plusieurs variantes probables,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre,240,"8,547 | 2,58",quel libellé officiel et quelle unité retenir ?,Élevée
+PO43-(mgP/l),plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.022,quel libellé officiel et quelle unité retenir ?,Élevée
+PT,code court ou famille à valider; plusieurs variantes probables; abréviation non explicitée,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre,240,"1,25 | 2,96",quel libellé officiel et quelle unité retenir ?,Critique
+"PT
+ décant. 2h",code court ou famille à valider; plusieurs variantes probables; libellé composé ou unité intégrée,idp_2024_mesures_qualite_marche_cadre,4,"0,292",quel libellé officiel et quelle unité retenir ?,Critique
+PT DECANTE,code court ou famille à valider; plusieurs variantes probables,idp_2024_mesures_qualite_marche_cadre,4,,quel libellé officiel et quelle unité retenir ?,Critique
+PT(mgP/l),code court ou famille à valider; plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.166,quel libellé officiel et quelle unité retenir ?,Critique
+PTD,code court ou famille à valider; plusieurs variantes probables; abréviation non explicitée,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,137,0.08 | 10 | 13,quel libellé officiel et quelle unité retenir ?,Critique
+PTP,code court ou famille à valider; plusieurs variantes probables; abréviation non explicitée,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,137,0.03 | 10 | 13,quel libellé officiel et quelle unité retenir ?,Critique
+Pb,abréviation non explicitée,idp_2024_mesures_qualite_globale | mesures_qualite_nappes | mesures_qualite_rivieres,488,"<0,005 | 0.011 | 0.071",quel libellé officiel et quelle unité retenir ?,Élevée
+Phenol,plusieurs variantes probables,suivi_qualite_sebou_jr,4572,0.011,quel libellé officiel et quelle unité retenir ?,Élevée
+Pheopigment,plusieurs variantes probables,mesures_qualite_barrages | mesures_qualite_rivieres | types_mesures,55,0.0001 | 0,quel libellé officiel et quelle unité retenir ?,Élevée
+Phosphore total,code court ou famille à valider; plusieurs variantes probables,mesures_qualite_rivieres,1972,0.338,quel libellé officiel et quelle unité retenir ?,Critique
+Phosphore_Total,code court ou famille à valider; plusieurs variantes probables,mesures_qualite_barrages | mesures_qualite_nappes | types_mesures,631,0.138 | 0.02,quel libellé officiel et quelle unité retenir ?,Critique
+Phénol,plusieurs variantes probables,idp_2024_mesures_qualite_globale | types_mesures,73,"0,122",quel libellé officiel et quelle unité retenir ?,Élevée
+Ph�nol,plusieurs variantes probables,mesures_qualite_nappes | mesures_qualite_rivieres,687,0 | 0.084,quel libellé officiel et quelle unité retenir ?,Élevée
+Plomb,plusieurs variantes probables,idp_2024_mesures_qualite_marche_cadre,8,"<0,005",quel libellé officiel et quelle unité retenir ?,Élevée
+Plomb(mg/l),plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.005,quel libellé officiel et quelle unité retenir ?,Élevée
+"RS 
+mesuré",libellé composé ou unité intégrée,idp_2024_mesures_qualite_globale,24,1004,quel libellé officiel et quelle unité retenir ?,Élevée
+"RS 
+mesuré_à 105 °C",libellé composé ou unité intégrée,idp_2024_mesures_qualite_marche_cadre,50,339,quel libellé officiel et quelle unité retenir ?,Élevée
+S,abréviation non explicitée,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,10,0.026 | 20.8 | 0,quel libellé officiel et quelle unité retenir ?,Élevée
+SF,code court ou famille à valider; abréviation non explicitée,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,4927,"3,7x105 | 1,5.102 | 96",quel libellé officiel et quelle unité retenir ?,Élevée
+SO4,plusieurs variantes probables,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,4794,123 | 8.92 | 12.4,quel libellé officiel et quelle unité retenir ?,Élevée
+SO4(mg/l),plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,79.2,quel libellé officiel et quelle unité retenir ?,Élevée
+SO4--,plusieurs variantes probables,idp_2024_mesures_qualite_globale,189,75,quel libellé officiel et quelle unité retenir ?,Élevée
+Sb,abréviation non explicitée,idp_2024_mesures_qualite_globale | mesures_qualite_rivieres,49,"<0,010 | 0",quel libellé officiel et quelle unité retenir ?,Élevée
+Se,abréviation non explicitée,idp_2024_mesures_qualite_globale | mesures_qualite_nappes | mesures_qualite_rivieres,485,"<0,005 | 0.007 | 0.011",quel libellé officiel et quelle unité retenir ?,Élevée
+SiO2(mg/l),libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,4.24,quel libellé officiel et quelle unité retenir ?,Élevée
+Sn,abréviation non explicitée,idp_2024_mesures_qualite_globale,42,"<0,010",quel libellé officiel et quelle unité retenir ?,Élevée
+"Somme
+cations_meq/l",libellé composé ou unité intégrée,idp_2024_mesures_qualite_marche_cadre,89,"11,27128406",quel libellé officiel et quelle unité retenir ?,Élevée
+"Somme
+cations_mg/l",libellé composé ou unité intégrée,idp_2024_mesures_qualite_marche_cadre,89,"202,97",quel libellé officiel et quelle unité retenir ?,Élevée
+Sr,abréviation non explicitée,idp_2024_mesures_qualite_globale,5,"0,1099",quel libellé officiel et quelle unité retenir ?,Élevée
+Sélénium,plusieurs variantes probables,idp_2024_mesures_qualite_marche_cadre,8,"<0,005",quel libellé officiel et quelle unité retenir ?,Élevée
+Sélénium(mg/l),plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.005,quel libellé officiel et quelle unité retenir ?,Élevée
+TA,code court ou famille à valider; abréviation non explicitée,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,3198,0.3 | 1.8 | 0.3,quel libellé officiel et quelle unité retenir ?,Élevée
+TA/Tas_°F,libellé composé ou unité intégrée,idp_2024_mesures_qualite_marche_cadre,89,0,quel libellé officiel et quelle unité retenir ?,Élevée
+TAC,code court ou famille à valider; abréviation non explicitée,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,3202,19.5 | 24.59 | 40.4,quel libellé officiel et quelle unité retenir ?,Élevée
+TAC/TACs_meq/l,plusieurs variantes probables,idp_2024_mesures_qualite_marche_cadre,89,"10,2",quel libellé officiel et quelle unité retenir ?,Élevée
+TAC/TACs_°F,plusieurs variantes probables; libellé composé ou unité intégrée,idp_2024_mesures_qualite_marche_cadre,89,"<2,0",quel libellé officiel et quelle unité retenir ?,Élevée
+TAC_°F,libellé composé ou unité intégrée,idp_2024_mesures_qualite_globale,32,"10,9",quel libellé officiel et quelle unité retenir ?,Élevée
+TA_°F,libellé composé ou unité intégrée,idp_2024_mesures_qualite_globale,32,0,quel libellé officiel et quelle unité retenir ?,Élevée
+TH,code court ou famille à valider; abréviation non explicitée,idp_2024_mesures_qualite_globale | idp_2024_mesures_qualite_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,2743,"47,49500998 | 22,5 | 0",quel libellé officiel et quelle unité retenir ?,Élevée
+T_Air,plusieurs variantes probables,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,5033,30.6 | 8.22 | 37,quel libellé officiel et quelle unité retenir ?,Élevée
+T_air,plusieurs variantes probables,suivi_qualite_brg_garde_hebdo | suivi_qualite_sebou_jr,4754,13 | 28,quel libellé officiel et quelle unité retenir ?,Élevée
+T_eau,plusieurs variantes probables,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | suivi_qualite_brg_garde_hebdo | suivi_qualite_sebou_jr | types_mesures,9828,16 | 10.9 | 33.9,quel libellé officiel et quelle unité retenir ?,Élevée
+Tl,abréviation non explicitée,idp_2024_mesures_qualite_globale,14,"<0,010",quel libellé officiel et quelle unité retenir ?,Élevée
+Turbidite,plusieurs variantes probables,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,1997,8 | 0 | 40.4,quel libellé officiel et quelle unité retenir ?,Élevée
+Turbidité,plusieurs variantes probables,suivi_qualite_sebou_jr,4572,247,quel libellé officiel et quelle unité retenir ?,Élevée
+V,abréviation non explicitée,idp_2024_mesures_qualite_globale,42,"<0,005",quel libellé officiel et quelle unité retenir ?,Élevée
+Vanadium(mg/l),libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.01,quel libellé officiel et quelle unité retenir ?,Élevée
+Zinc,plusieurs variantes probables; abréviation non explicitée,idp_2024_mesures_qualite_marche_cadre,8,"<0,010",quel libellé officiel et quelle unité retenir ?,Élevée
+Zinc(mg/l),plusieurs variantes probables; libellé composé ou unité intégrée,suivi_qualite_brg_garde_hebdo,182,0.0167,quel libellé officiel et quelle unité retenir ?,Élevée
+Zn,abréviation non explicitée,idp_2024_mesures_qualite_globale | mesures_qualite_nappes | mesures_qualite_rivieres,280,"<0,00025 | 0.01 | 0",quel libellé officiel et quelle unité retenir ?,Élevée
+cond_20_c,plusieurs variantes probables,idp_2024_src_pollution_globale | idp_2024_src_pollution_marche_cadre,391,34000 | 1070,quel libellé officiel et quelle unité retenir ?,Élevée
+debit,plusieurs variantes probables,mesures_debit_sources,2816,537,quel libellé officiel et quelle unité retenir ?,Élevée
+debit_jr,plusieurs variantes probables,mesures_debit_jr,521433,-1,quel libellé officiel et quelle unité retenir ?,Élevée
+debit_l_s,plusieurs variantes probables,rejets_domestiques_abhs,362,12,quel libellé officiel et quelle unité retenir ?,Élevée
+debit_m,plusieurs variantes probables,mesures_debit_m,19316,1.267579233,quel libellé officiel et quelle unité retenir ?,Élevée
+dist_pt_eau_foyer_pollut_m,code court ou famille à valider; plusieurs variantes probables,points_eau_abhs,46,340,quel libellé officiel et quelle unité retenir ?,Critique
+indice de phénol M:A,plusieurs variantes probables,idp_2024_mesures_qualite_marche_cadre,27,,quel libellé officiel et quelle unité retenir ?,Élevée
+o2_dissous,plusieurs variantes probables,idp_2024_src_pollution_globale | idp_2024_src_pollution_marche_cadre,391,10.04 | 5.81,quel libellé officiel et quelle unité retenir ?,Élevée
+pH,plusieurs variantes probables,suivi_qualite_brg_garde_hebdo | suivi_qualite_sebou_jr,4754,8.32 | 7.81,quel libellé officiel et quelle unité retenir ?,Élevée
+pH au laboratoire,plusieurs variantes probables,idp_2024_mesures_qualite_marche_cadre,7,(*) Interférence probable des ions chlorures sur l'analyse de la DCO.,quel libellé officiel et quelle unité retenir ?,Élevée
+ph,plusieurs variantes probables,idp_2024_src_pollution_globale | idp_2024_src_pollution_marche_cadre | mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,5457,7.7 | 8 | 8.22,quel libellé officiel et quelle unité retenir ?,Élevée
+phenol,plusieurs variantes probables,mesures_qualite_barrages,2,0.02,quel libellé officiel et quelle unité retenir ?,Élevée
+sat,code court ou famille à valider; abréviation non explicitée,mesures_qualite_barrages | mesures_qualite_nappes | mesures_qualite_rivieres | types_mesures,1221,98.8 | 0 | 89.5,quel libellé officiel et quelle unité retenir ?,Critique
+"somme
+anions_meq/l",libellé composé ou unité intégrée,idp_2024_mesures_qualite_marche_cadre,89,"42,49323835",quel libellé officiel et quelle unité retenir ?,Élevée
+"somme
+anions_meq/l3",libellé composé ou unité intégrée,idp_2024_mesures_qualite_globale,28,"11,79167542",quel libellé officiel et quelle unité retenir ?,Élevée
+"somme
+anions_mg/l",libellé composé ou unité intégrée,idp_2024_mesures_qualite_marche_cadre,89,"242,982",quel libellé officiel et quelle unité retenir ?,Élevée
+"somme
+anions_mg/l4",libellé composé ou unité intégrée,idp_2024_mesures_qualite_globale,28,"101,95",quel libellé officiel et quelle unité retenir ?,Élevée
+sup_tot_ha,code court ou famille à valider; plusieurs variantes probables,decharges_abhs,233,0.06,quel libellé officiel et quelle unité retenir ?,Critique
+surface_km2,plusieurs variantes probables,bathymetries_barrages_abhs,62359,5.083,quel libellé officiel et quelle unité retenir ?,Élevée
+t_air,plusieurs variantes probables,idp_2024_src_pollution_globale | idp_2024_src_pollution_marche_cadre,391,12 | 10,quel libellé officiel et quelle unité retenir ?,Élevée
+t_eau,plusieurs variantes probables,idp_2024_src_pollution_globale | idp_2024_src_pollution_marche_cadre,391,23.6 | 19.5,quel libellé officiel et quelle unité retenir ?,Élevée
+turbidite,plusieurs variantes probables,idp_2024_src_pollution_globale | idp_2024_src_pollution_marche_cadre,391,176 | 155,quel libellé officiel et quelle unité retenir ?,Élevée

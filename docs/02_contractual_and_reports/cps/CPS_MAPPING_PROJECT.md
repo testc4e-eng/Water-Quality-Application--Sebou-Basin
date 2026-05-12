@@ -7,7 +7,7 @@
 | Périmètre | mapping des exigences Mission IV vers les composants projet |
 | Source de vérité | Oui |
 | Documents liés | [cps_requirements_summary](./cps_requirements_summary.md), [rapport_provisoire_mission_iv_sad](../mission_iv/rapport_provisoire_mission_iv_sad.md) |
-| Dernière mise à jour | 2026-04-10 |
+| Dernière mise à jour | 2026-04-17 |
 
 ## 1. Objet
 
@@ -31,7 +31,7 @@ Ce document relie les exigences majeures de la Mission IV aux modules effectivem
 | Habilitations et droits nominatifs | `security.users`, `roles`, `permissions`, écrans admin utilisateurs | `database_architecture.md`, `backend_overview.md`, `frontend_reference.md` | Couvert |
 | Traçabilité des opérations | `security.activity_logs`, `auth_logs`, `audit.ingestion_audit_logs` | `traceability_matrix.md`, `EVIDENCE_REGISTER.md` | Couvert en finalisation |
 | Extraction multi-formats | PDF, CSV, XLSX, PNG/exports écran selon modules | rapport Mission IV, `frontend_reference.md` | Couvert en finalisation |
-| Base de données intégrée | Base `abh_sad` sectorisée en schémas métier et vues d’exposition | `database_architecture.md`, `data_dictionary.md` | Couvert |
+| Base de données intégrée | Base `abh_sad` sectorisée en schémas métier et vues d’exposition | `database_architecture.md`, `DATABASE_SCHEMA.md`, `DATABASE_SCHEMA_SUMMARY.md` | Couvert |
 | Tests de fonctionnement | workflows ciblés, tests de run et validation fonctionnelle en consolidation | `04_working_prompts_and_runs/*`, rapport Mission IV | Couvert en finalisation |
 | Maintenance | guide d’exploitation et maintenance, scripts de refresh et procédures d’ops | `deployment_and_operations.md` | Couvert au titre du dispositif préparatoire |
 

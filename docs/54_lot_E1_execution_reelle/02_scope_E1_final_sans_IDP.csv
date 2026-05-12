@@ -1,0 +1,31 @@
+source_table,domaine,volume_prepare_E0,volume_exclu_geo,volume_exclu_quarantaine,volume_eligible_E1,destination_prevue,statut
+staging.raw_mesures_debit_jr,hydro,515978,0,5455,515978,hydro.mesure_debit,E1_ELIGIBLE_SANS_IDP
+staging.raw_mesures_debit_m,hydro,18993,0,323,18993,hydro.mesure_debit_mensuel,E1_ELIGIBLE_SANS_IDP
+staging.raw_mesures_debit_sources,hydro,2816,0,0,2816,hydro.mesure_debit_source,E1_ELIGIBLE_SANS_IDP
+staging.raw_mesures_evaporation_jr,meteo,38592,0,10308,38592,meteo.mesure_evaporation,E1_ELIGIBLE_SANS_IDP
+staging.raw_mesures_precipitations_jr,meteo,507930,0,161950,507930,meteo.mesure_precipitation,E1_ELIGIBLE_SANS_IDP
+staging.raw_mesures_precipitations_jr_max,meteo,3830,0,340,3830,meteo.mesure_precipitation_annuelle_max,E1_ELIGIBLE_SANS_IDP
+staging.raw_mesures_precipitations_jr_traitees,meteo,1591627,0,46394,1591627,meteo.mesure_precipitation,E1_ELIGIBLE_SANS_IDP
+staging.raw_mesures_temperatures_jr,meteo,0,0,0,0,a_preciser,E1_ELIGIBLE_SANS_IDP
+staging.raw_mesures_niv_eau_barrages,hydro,264723,0,161107,264723,hydro.mesure_barrage,E1_ELIGIBLE_SANS_IDP
+staging.raw_mesures_qualite_barrages,hydro,8708,0,2,8708,qualite.mesure_qualite_barrage,E1_ELIGIBLE_SANS_IDP
+staging.raw_mesures_qualite_nappes,qualite,63076,0,11,63076,qualite.mesure_qualite_nappe,E1_ELIGIBLE_SANS_IDP
+staging.raw_mesures_qualite_rivieres,qualite,60074,0,11,60074,qualite.mesure_qualite_riviere,E1_ELIGIBLE_SANS_IDP
+staging.raw_suivi_qualite_brg_garde_hebdo,qualite,3511,0,3583,3511,qualite.suivi_qualite_barrage_garde_hebdo,E1_ELIGIBLE_SANS_IDP
+staging.raw_suivi_qualite_sebou_jr,qualite,49954,0,9482,49954,qualite.mesure_qualite_sebou,E1_ELIGIBLE_SANS_IDP
+staging.raw_barrages_abhs,hydro,48,22,0,48,hydro.mesure_barrage,E1_ELIGIBLE_SANS_IDP
+staging.raw_bathymetries_barrages_abhs,hydro,186797,0,280,186797,hydro.barrage_bathymetrie,E1_ELIGIBLE_SANS_IDP
+staging.raw_stations_abhs,inventaire/pollution,0,0,0,0,a_preciser,E1_ELIGIBLE_SANS_IDP
+staging.raw_points_eau_abhs,inventaire/pollution,86,5,78,86,infra.point_eau (si lot referentiel active),E1_ELIGIBLE_SANS_IDP
+staging.raw_sources_abhs,inventaire/pollution,0,0,0,0,a_preciser,E1_ELIGIBLE_SANS_IDP
+staging.raw_rejets_domestiques_abhs,inventaire/pollution,393,84,163,393,infra.rejet_domestique (si lot referentiel active),E1_ELIGIBLE_SANS_IDP
+staging.raw_rejets_ind_abhs,inventaire/pollution,0,11,0,0,a_preciser,E1_ELIGIBLE_SANS_IDP
+staging.raw_rejets_abattoirs_abhs,inventaire/pollution,0,61,0,0,a_preciser,E1_ELIGIBLE_SANS_IDP
+staging.raw_step_abhs,inventaire/pollution,50,10,43,50,infra.step (si lot referentiel active),E1_ELIGIBLE_SANS_IDP
+staging.raw_step_ind_abhs,inventaire/pollution,0,15,0,0,a_preciser,E1_ELIGIBLE_SANS_IDP
+staging.raw_decharges_abhs,inventaire/pollution,337,55,197,337,infra.decharge (si lot referentiel active),E1_ELIGIBLE_SANS_IDP
+staging.raw_huileries_abhs,inventaire/pollution,0,293,0,0,infra.huilerie (si lot referentiel active),E1_ELIGIBLE_SANS_IDP
+staging.raw_mines_abhs,inventaire/pollution,0,42,0,0,a_preciser,E1_ELIGIBLE_SANS_IDP
+staging.raw_stm_abhs,inventaire/pollution,0,18,0,0,a_preciser,E1_ELIGIBLE_SANS_IDP
+staging.raw_nappes_abhs,inventaire/pollution,17,0,0,17,geo.nappe / infra.point_eau selon table cible,E1_ELIGIBLE_SANS_IDP
+staging.raw_profils_stations,inventaire/pollution,0,0,0,0,a_preciser,E1_ELIGIBLE_SANS_IDP

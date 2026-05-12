@@ -6,20 +6,27 @@
 | Type | reference |
 | Périmètre | cartographie documentaire projet |
 | Source de vérité | Oui |
-| Documents liés | [SOURCE_OF_TRUTH](./SOURCE_OF_TRUTH.md), [LIVRABLES_MATRIX](./LIVRABLES_MATRIX.md), [EVIDENCE_REGISTER](./EVIDENCE_REGISTER.md) |
-| Dernière mise à jour | 2026-04-10 |
+| Documents liés | [../00_SOURCE_OF_TRUTH_MASTER.md](../00_SOURCE_OF_TRUTH_MASTER.md), [SOURCE_OF_TRUTH](./SOURCE_OF_TRUTH.md), [LIVRABLES_MATRIX](./LIVRABLES_MATRIX.md), [EVIDENCE_REGISTER](./EVIDENCE_REGISTER.md) |
+| Dernière mise à jour | 2026-04-17 |
 
 ## 1. Organisation cible en production
 
 | Zone | Usage principal | Niveau d’autorité | Utilisation par agents IA |
 |---|---|---|---|
-| `docs/01_project_reference` | Documentation de référence durable | Maître | Oui, lecture prioritaire |
+| `docs/00_SOURCE_OF_TRUTH_MASTER.md` | photographie transversale vérifiée DB + backend + frontend + lots | Maître transverse | Oui, lecture prioritaire |
+| `docs/01_project_reference` | documentation de référence durable par domaine | Maître | Oui, lecture prioritaire |
 | `docs/02_contractual_and_reports` | CPS, rapports, annexes et exports | Maître sur le volet contractuel | Oui, pour rédaction et conformité |
-| `docs/03_ai_knowledge_base` | Mémoire courte, rappels et règles agents | Dérivé contrôlé | Oui, lecture rapide |
-| `docs/04_working_prompts_and_runs` | Prompts, runs, notes de travail, workflows ciblés | Non maître | Oui, en contexte de fabrication uniquement |
-| `docs/99_legacy_archive` | Historique, snapshots, anciens doublons | Archive | Non, sauf besoin explicite de traçabilité |
+| `docs/03_ai_knowledge_base` | mémoire courte, rappels et règles agents | Dérivé contrôlé | Oui, lecture rapide |
+| `docs/04_working_prompts_and_runs` | prompts, runs, notes de travail, workflows ciblés | Non maître | Oui, en contexte de fabrication uniquement |
+| `docs/99_legacy_archive` | historique, snapshots, anciens doublons | Archive | Non, sauf besoin explicite de traçabilité |
 
 ## 2. Navigation par besoin
+
+### Démarrage vérité terrain
+
+- [Source of Truth Master](../00_SOURCE_OF_TRUTH_MASTER.md)
+- [SOURCE_OF_TRUTH](./SOURCE_OF_TRUTH.md)
+- [README projet de référence](./README.md)
 
 ### Architecture projet
 
@@ -31,9 +38,11 @@
 ### Référence applicative
 
 - [Backend overview](./backend/backend_overview.md)
+- [Frontend reference](./frontend/frontend_reference.md)
 - [API contracts](./backend/api_contracts.md)
 - [Traceability matrix](./backend/traceability_matrix.md)
-- [Frontend reference](./frontend/frontend_reference.md)
+
+Note documentaire : `api_contracts.md` reste une spécification cible et un support de backlog contractuel. La vérité de l’API réellement observée est portée par `00_SOURCE_OF_TRUTH_MASTER.md`, `backend_overview.md` et `api_for_agents.md`.
 
 ### Référence data
 
@@ -63,6 +72,8 @@
 - [MEMORY_CORE](../03_ai_knowledge_base/MEMORY_CORE.md)
 - [QUICK_REFERENCE](../03_ai_knowledge_base/QUICK_REFERENCE.md)
 - [AGENT_RULES](../03_ai_knowledge_base/AGENT_RULES.md)
+- [DATABASE_SCHEMA_SUMMARY](../03_ai_knowledge_base/DATABASE_SCHEMA_SUMMARY.md)
+- [api_for_agents](../03_ai_knowledge_base/api_for_agents.md)
 
 ## 3. Règles d’usage
 
@@ -70,6 +81,7 @@
 - Un sujet technique ne doit pas être traité dans plusieurs documents maîtres concurrents.
 - Les historiques de run, prompts et notes de fusion restent hors des zones maîtres.
 - Les exports bureautiques sont conservés dans `generated_exports/` sans devenir des références maîtres.
+- Un document de spécification cible ne doit jamais être présenté comme photographie du système déployé s’il existe des écarts vérifiés avec le code ou la base.
 
 ## 4. Format d’en-tête standard Markdown
 

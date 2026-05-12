@@ -1,0 +1,11 @@
+﻿categorie,valeur
+Base analysée,abh_sebou_ismail
+Schéma métier analysé,public
+Tables métier inspectées,46
+Tables techniques / vues exclues,15
+Paramètres métier retenus,265
+Occurrences inventaire brut,514
+Groupes de variantes probables,40
+Paramètres ambigus à valider,192
+Paramètres sans unité confirmée,144
+Faux paramètres exclus,8

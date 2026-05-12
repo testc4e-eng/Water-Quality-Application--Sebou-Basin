@@ -1,54 +1,197 @@
 # backend/app/api/v1/swat_analysis.py
-from fastapi import APIRouter, Query
+# Comparaison simulations SWAT/WASP vs mesures observées.
+#
+# Corrections 2026-04-14 :
+#   - swat_sebou.swat_reach_results : table VIDE (0 lignes), ETL non exécuté.
+#     → Route /compare réécrite pour utiliser WASP (wasp_sebou.wasp_results) + hydro observé.
+#   - public.mesures_debit_jr : table inexistante dans le schéma public.
+#     → Remplacée par hydro.mesure_debit (521 433 lignes) + infra.stations_mesure pour le mapping.
+#
+# Note d'architecture : quand l'ETL swat_output sera exécuté, cette route pourra être
+# mise à jour pour utiliser swat_output.mesure_qualite_subbasin_ts (Option B différée).
+
+from fastapi import APIRouter, Query, HTTPException
 from sqlalchemy import text
 from app.db.database import engine
-
-
 import numpy as np
 
-router = APIRouter(prefix="/api/v1/swat/analysis", tags=["SWAT-Analysis"])
+router = APIRouter(prefix="/swat/analysis", tags=["SWAT-Analysis"])
 
-def calc_nse(obs, sim):
-    return 1 - np.sum((sim - obs) ** 2) / np.sum((obs - np.mean(obs)) ** 2)
 
-def calc_r2(obs, sim):
+def _calc_nse(obs: np.ndarray, sim: np.ndarray) -> float:
+    denom = np.sum((obs - np.mean(obs)) ** 2)
+    if denom == 0:
+        return float("nan")
+    return float(1 - np.sum((sim - obs) ** 2) / denom)
+
+
+def _calc_r2(obs: np.ndarray, sim: np.ndarray) -> float:
+    if len(obs) < 2:
+        return float("nan")
     corr = np.corrcoef(obs, sim)[0, 1]
-    return corr ** 2
+    return float(corr ** 2)
 
-def calc_pbias(obs, sim):
-    return 100 * np.sum(sim - obs) / np.sum(obs)
 
+def _calc_pbias(obs: np.ndarray, sim: np.ndarray) -> float:
+    denom = np.sum(obs)
+    if denom == 0:
+        return float("nan")
+    return float(100 * np.sum(sim - obs) / denom)
+
+
+# ---------------------------------------------------------------------------
+# Comparaison WASP simulé vs débit observé (hydro.mesure_debit)
+# ---------------------------------------------------------------------------
 @router.get("/compare")
-def compare_swat_observed(
-    reach_id: int = Query(..., description="ID du reach SWAT"),
-    scenario_id: int = Query(..., description="ID du scénario SWAT"),
+def compare_wasp_observed(
+    segment_id: int = Query(..., description="ID du segment WASP (wasp_sebou.wasp_results.segment_id)"),
+    scenario_id: int = Query(..., description="ID du scénario WASP (wasp_sebou.wasp_scenarios.id)"),
+    station_id: str = Query(
+        ...,
+        description="UUID de la station hydrologique (infra.stations_mesure.id) pour les mesures observées",
+    ),
+    variable_code: str = Query(
+        "FLOW",
+        description="Code variable WASP à comparer (ex: FLOW, DO, BOD). Défaut : FLOW",
+    ),
+    date_start: str = Query("", description="Date début ISO (YYYY-MM-DD), optionnel"),
+    date_end: str = Query("", description="Date fin ISO (YYYY-MM-DD), optionnel"),
 ):
     """
-    Compare les débits simulés SWAT et observés, calcule les indicateurs.
+    Compare les valeurs simulées WASP et les débits/mesures observés pour un segment et une station.
+
+    Sources :
+    - Simulé  : wasp_sebou.wasp_results + wasp_sebou.wasp_variables (931 770 lignes actives)
+    - Observé : hydro.mesure_debit (521 433 lignes) via infra.stations_mesure
+
+    Retourne les séries appariées par date et les indicateurs statistiques NSE, R², PBIAS.
+    Si les deux séries n'ont pas de dates en commun, retourne un message explicatif.
     """
     sql = """
-        SELECT s.date, s.flow_out AS simulated, m.debit_jr AS observed
-        FROM swat_sebou.swat_reach_results s
-        JOIN public.mesures_debit_jr m
-        ON s.date = m.date_jr
-        WHERE s.reach = :reach_id AND s.scenario_id = :scenario_id
-        AND m.debit_jr IS NOT NULL
-        ORDER BY s.date
+        WITH simule AS (
+            SELECT
+                r.date                          AS dt,
+                r.value                         AS val_sim
+            FROM wasp_sebou.wasp_results r
+            JOIN wasp_sebou.wasp_variables v
+                ON v.id = r.variable_id AND v.code = :variable_code
+            WHERE r.scenario_id = :scenario_id
+              AND r.segment_id  = :segment_id
+              AND (:date_start = '' OR r.date >= :date_start::date)
+              AND (:date_end   = '' OR r.date <= :date_end::date)
+        ),
+        observe AS (
+            SELECT
+                m.temps::date                   AS dt,
+                m.valeur                        AS val_obs
+            FROM hydro.mesure_debit m
+            WHERE m.station_id = :station_id::uuid
+              AND m.est_valide  = true
+              AND (:date_start = '' OR m.temps::date >= :date_start::date)
+              AND (:date_end   = '' OR m.temps::date <= :date_end::date)
+        )
+        SELECT
+            s.dt    AS date,
+            s.val_sim AS simulated,
+            o.val_obs AS observed
+        FROM simule s
+        JOIN observe o ON o.dt = s.dt
+        ORDER BY s.dt;
     """
+
+    params = {
+        "scenario_id":   scenario_id,
+        "segment_id":    segment_id,
+        "station_id":    station_id,
+        "variable_code": variable_code,
+        "date_start":    date_start or "",
+        "date_end":      date_end or "",
+    }
+
     with engine.connect() as conn:
-        rows = conn.execute(text(sql), {"reach_id": reach_id, "scenario_id": scenario_id}).mappings().all()
+        rows = conn.execute(text(sql), params).mappings().all()
         data = [dict(r) for r in rows]
 
     if not data:
-        return {"message": "Aucune donnée à comparer"}
+        # Fournir un message diagnostic utile
+        return {
+            "status": "no_overlap",
+            "message": (
+                "Aucune date commune entre la simulation WASP et les mesures observées. "
+                "Vérifiez que le segment WASP et la station hydrologique couvrent la même période "
+                "et que station_id est un UUID valide présent dans infra.stations_mesure."
+            ),
+            "params": {
+                "segment_id":    segment_id,
+                "scenario_id":   scenario_id,
+                "station_id":    station_id,
+                "variable_code": variable_code,
+            },
+            "metrics": None,
+            "data":    [],
+        }
 
-    obs = np.array([d["observed"] for d in data])
-    sim = np.array([d["simulated"] for d in data])
+    obs = np.array([d["observed"] for d in data], dtype=float)
+    sim = np.array([d["simulated"] for d in data], dtype=float)
 
     metrics = {
-        "NSE": round(calc_nse(obs, sim), 3),
-        "R2": round(calc_r2(obs, sim), 3),
-        "PBIAS": round(calc_pbias(obs, sim), 2),
+        "NSE":   round(_calc_nse(obs, sim), 4),
+        "R2":    round(_calc_r2(obs, sim), 4),
+        "PBIAS": round(_calc_pbias(obs, sim), 2),
+        "n_points": len(data),
+        "date_min": str(data[0]["date"]),
+        "date_max": str(data[-1]["date"]),
     }
 
-    return {"metrics": metrics, "data": data}
+    return {
+        "status":  "ok",
+        "metrics": metrics,
+        "data":    data,
+    }
+
+
+# ---------------------------------------------------------------------------
+# Statut de disponibilité SWAT (diagnostic rapide)
+# ---------------------------------------------------------------------------
+@router.get("/status")
+def swat_status():
+    """
+    Retourne l'état de disponibilité des données SWAT/WASP.
+    Utile pour le frontend pour savoir quelles sources sont actives.
+    """
+    sql = """
+        SELECT
+            (SELECT COUNT(*) FROM wasp_sebou.wasp_results)              AS wasp_results_count,
+            (SELECT COUNT(*) FROM wasp_sebou.wasp_scenarios)            AS wasp_scenarios_count,
+            (SELECT COUNT(*) FROM wasp_sebou.wasp_variables)            AS wasp_variables_count,
+            (SELECT COUNT(*) FROM swat_sebou.swat_reach_results)        AS swat_reach_count,
+            (SELECT COUNT(*) FROM swat_sebou.swat_subbasin_results)     AS swat_subbasin_count,
+            (SELECT COUNT(*) FROM swat_output.stg_swat_qualite_long)    AS swat_stg_long_count,
+            (SELECT COUNT(*) FROM hydro.mesure_debit)                   AS hydro_debit_count;
+    """
+    with engine.connect() as conn:
+        row = dict(conn.execute(text(sql)).mappings().first())
+
+    return {
+        "sources": {
+            "wasp_actif": {
+                "wasp_results":   row["wasp_results_count"],
+                "wasp_scenarios": row["wasp_scenarios_count"],
+                "wasp_variables": row["wasp_variables_count"],
+                "statut": "actif" if row["wasp_results_count"] > 0 else "vide",
+            },
+            "swat_legacy": {
+                "swat_reach_results":    row["swat_reach_count"],
+                "swat_subbasin_results": row["swat_subbasin_count"],
+                "statut": "vide — ETL non exécuté",
+            },
+            "swat_staging": {
+                "stg_swat_qualite_long": row["swat_stg_long_count"],
+                "statut": "staging brut — ETL différé (Option B)",
+            },
+            "hydro_observe": {
+                "mesure_debit": row["hydro_debit_count"],
+                "statut": "actif" if row["hydro_debit_count"] > 0 else "vide",
+            },
+        }
+    }

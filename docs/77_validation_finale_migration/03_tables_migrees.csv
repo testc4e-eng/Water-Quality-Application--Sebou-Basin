@@ -1,0 +1,7 @@
+domaine,table,statut,volume,backlog,qualite
+hydro,hydro.mesure_debit,MIGRE_OK,652446,0,Exploitable
+hydro,hydro.mesure_debit_mensuel,MIGRE_OK,19316,0,Exploitable
+hydro,hydro.mesure_debit_source,MIGRE_OK,3978,0,Exploitable
+meteo,meteo.mesure_precipitation,MIGRE_OK,546007,0,Exploitable
+modeles,swat_output.mesure_qualite_subbasin_ts,MIGRE_OK,745110,0,Exploitable IA
+modeles,wasp_output.mesure_qualite_segment_ts,MIGRE_OK,931770,0,Exploitable IA

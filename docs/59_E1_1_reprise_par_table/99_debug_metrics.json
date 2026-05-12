@@ -1,0 +1,200 @@
+{
+  "hydro.mesure_debit": {
+    "target_current": 521433,
+    "source_prepared": 515978,
+    "source_quarantine": 5455,
+    "source_stats": {
+      "source_business_rows": 515978,
+      "source_distinct_rows": 515978,
+      "geo_ref_null_rows": 515978,
+      "param_null_rows": 515978,
+      "value_null_rows": 0
+    },
+    "target_duplicates": "0",
+    "source_duplicates": "0",
+    "already_present": 384965,
+    "potentially_insertable": 131013,
+    "ctid_like_rows": 515978,
+    "strategy": "BLOQUE"
+  },
+  "hydro.mesure_debit_mensuel": {
+    "target_current": 19316,
+    "source_prepared": 18993,
+    "source_quarantine": 323,
+    "source_stats": {
+      "source_business_rows": 18993,
+      "source_distinct_rows": 18993,
+      "geo_ref_null_rows": 18993,
+      "param_null_rows": 18993,
+      "value_null_rows": 0
+    },
+    "target_duplicates": "0",
+    "source_duplicates": "0",
+    "already_present": 18993,
+    "potentially_insertable": 0,
+    "ctid_like_rows": 18993,
+    "strategy": "NE_RIEN_FAIRE"
+  },
+  "meteo.mesure_precipitation": {
+    "target_current": 546007,
+    "source_prepared": 2099557,
+    "source_quarantine": 208344,
+    "source_stats": {
+      "source_business_rows": 2099557,
+      "source_distinct_rows": 1053937,
+      "geo_ref_null_rows": 2099557,
+      "param_null_rows": 0,
+      "value_null_rows": 0
+    },
+    "target_duplicates": "0",
+    "source_duplicates": "1553185",
+    "already_present": 2099192,
+    "potentially_insertable": 365,
+    "ctid_like_rows": 507930,
+    "strategy": "BLOQUE"
+  },
+  "hydro.mesure_barrage": {
+    "target_current": 84831,
+    "source_prepared": 264723,
+    "source_quarantine": 161107,
+    "source_stats": {
+      "source_business_rows": 264447,
+      "source_distinct_rows": 85074,
+      "geo_ref_null_rows": 264447,
+      "param_null_rows": 0,
+      "value_null_rows": 0
+    },
+    "target_duplicates": "0",
+    "source_duplicates": "972",
+    "already_present": 264447,
+    "potentially_insertable": 0,
+    "ctid_like_rows": 0,
+    "strategy": "BLOQUE"
+  },
+  "hydro.barrage_bathymetrie": {
+    "target_current": 62359,
+    "source_prepared": 186797,
+    "source_quarantine": 280,
+    "source_stats": {
+      "source_business_rows": 186797,
+      "source_distinct_rows": 62359,
+      "geo_ref_null_rows": 186797,
+      "param_null_rows": 0,
+      "value_null_rows": 0
+    },
+    "target_duplicates": "0",
+    "source_duplicates": "124438",
+    "already_present": 0,
+    "potentially_insertable": 0,
+    "ctid_like_rows": 0,
+    "strategy": "NE_RIEN_FAIRE"
+  },
+  "meteo.mesure_evaporation": {
+    "target_current": 48900,
+    "source_prepared": 38592,
+    "source_quarantine": 10308,
+    "source_stats": {
+      "source_business_rows": 38592,
+      "source_distinct_rows": 38592,
+      "geo_ref_null_rows": 38592,
+      "param_null_rows": 0,
+      "value_null_rows": 0
+    },
+    "target_duplicates": "0",
+    "source_duplicates": "0",
+    "already_present": 38592,
+    "potentially_insertable": 0,
+    "ctid_like_rows": 0,
+    "strategy": "NE_RIEN_FAIRE"
+  },
+  "meteo.mesure_precipitation_annuelle_max": {
+    "target_current": 2085,
+    "source_prepared": 3830,
+    "source_quarantine": 340,
+    "source_stats": {
+      "source_business_rows": 3830,
+      "source_distinct_rows": 1915,
+      "geo_ref_null_rows": 3830,
+      "param_null_rows": 0,
+      "value_null_rows": 0
+    },
+    "target_duplicates": "0",
+    "source_duplicates": "1915",
+    "already_present": 3830,
+    "potentially_insertable": 0,
+    "ctid_like_rows": 0,
+    "strategy": "NE_RIEN_FAIRE"
+  },
+  "qualite.mesure_qualite_barrage": {
+    "target_current": 15808,
+    "source_prepared": 8708,
+    "source_quarantine": 2,
+    "source_stats": {
+      "source_business_rows": 8708,
+      "source_distinct_rows": 8708,
+      "geo_ref_null_rows": 8708,
+      "param_null_rows": 0,
+      "value_null_rows": 0
+    },
+    "target_duplicates": "4353",
+    "source_duplicates": "884",
+    "already_present": 11310,
+    "potentially_insertable": 0,
+    "ctid_like_rows": 0,
+    "strategy": "RESET_AND_RELOAD"
+  },
+  "qualite.mesure_qualite_nappe": {
+    "target_current": 63088,
+    "source_prepared": 63076,
+    "source_quarantine": 11,
+    "source_stats": {
+      "source_business_rows": 63076,
+      "source_distinct_rows": 63076,
+      "geo_ref_null_rows": 63076,
+      "param_null_rows": 0,
+      "value_null_rows": 0
+    },
+    "target_duplicates": "5",
+    "source_duplicates": "5",
+    "already_present": 63086,
+    "potentially_insertable": 0,
+    "ctid_like_rows": 0,
+    "strategy": "RESET_AND_RELOAD"
+  },
+  "qualite.mesure_qualite_riviere": {
+    "target_current": 60097,
+    "source_prepared": 60074,
+    "source_quarantine": 11,
+    "source_stats": {
+      "source_business_rows": 60074,
+      "source_distinct_rows": 60074,
+      "geo_ref_null_rows": 60074,
+      "param_null_rows": 0,
+      "value_null_rows": 0
+    },
+    "target_duplicates": "22",
+    "source_duplicates": "22",
+    "already_present": 60118,
+    "potentially_insertable": 0,
+    "ctid_like_rows": 0,
+    "strategy": "RESET_AND_RELOAD"
+  },
+  "qualite.suivi_qualite_barrage_garde_hebdo": {
+    "target_current": 7094,
+    "source_prepared": 3511,
+    "source_quarantine": 3583,
+    "source_stats": {
+      "source_business_rows": 3511,
+      "source_distinct_rows": 3511,
+      "geo_ref_null_rows": 0,
+      "param_null_rows": 0,
+      "value_null_rows": 0
+    },
+    "target_duplicates": "3467",
+    "source_duplicates": "1676",
+    "already_present": 6956,
+    "potentially_insertable": 0,
+    "ctid_like_rows": 0,
+    "strategy": "RESET_AND_RELOAD"
+  }
+}

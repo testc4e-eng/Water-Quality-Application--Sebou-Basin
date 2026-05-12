@@ -1,0 +1,10 @@
+canonical_code,alias_source,source_schema,source_table,source_column,type_alias,decision
+VOLUME,VOLUME_BARRAGE,metadata,referentiel_parametre,code_canonique,legacy_canonical,Conserver en alias seulement
+LACHER,RESTITUTION,staging,raw_mesures_niv_eau_barrages,restitutions_mm3,legacy_business,Rattachement officiel demande
+CONDUCTIVITE,COND,qualite,mesure_qualite_riviere,parametre_qualite,legacy_token,A mapper
+CONDUCTIVITE,Conductivité,qualite,mesure_qualite_sebou,parametre_qualite,accented_variant,A mapper
+O2_DISS,O2_DISSOUS,qualite,mesure_qualite_riviere,parametre_qualite,legacy_token,A mapper
+O2_DISS,O2_dissous,qualite,mesure_qualite_sebou,parametre_qualite,casing_variant,A mapper
+PHOSPHORE_TOTAL,PT,qualite,mesure_qualite_riviere,parametre_qualite,abbreviation,A mapper
+NO3-,NO3,qualite,mesure_qualite_riviere,parametre_qualite,abbreviation,A mapper
+PO4_3-,PO4,qualite,mesure_qualite_riviere,parametre_qualite,abbreviation,A mapper

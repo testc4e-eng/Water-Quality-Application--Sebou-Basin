@@ -1,0 +1,26 @@
+-- Cas : CAS-008
+-- Statut : PENDING - NE PAS EXECUTER SANS VALIDATION HUMAINE EXPLICITE
+-- Paramètre observé : Debit
+-- Nom standard proposé : Debit_m / Debit_jr
+-- Type de cas : AMBIGUOUS_PARAMETER
+-- Action proposée : STAGING_ONLY
+
+-- Source : abh_sebou_ismail.public.mesures_qualite_barrages
+-- Cas : AMBIGUOUS_PARAMETER / Debit
+SELECT COUNT(*) AS volume_cas FROM public.mesures_qualite_barrages WHERE parametre_qualite = 'Debit';
+SELECT parametre_qualite, val_qual_barr FROM public.mesures_qualite_barrages WHERE parametre_qualite = 'Debit' LIMIT 20;
+
+-- Source : abh_sebou_ismail.public.mesures_qualite_nappes
+-- Cas : AMBIGUOUS_PARAMETER / Debit
+SELECT COUNT(*) AS volume_cas FROM public.mesures_qualite_nappes WHERE parametre_qualite = 'Debit';
+SELECT parametre_qualite, val_qual_nap FROM public.mesures_qualite_nappes WHERE parametre_qualite = 'Debit' LIMIT 20;
+
+-- Source : abh_sebou_ismail.public.mesures_qualite_rivieres
+-- Cas : AMBIGUOUS_PARAMETER / Debit
+SELECT COUNT(*) AS volume_cas FROM public.mesures_qualite_rivieres WHERE parametre_qualite = 'Debit';
+SELECT parametre_qualite, val_qual_riv FROM public.mesures_qualite_rivieres WHERE parametre_qualite = 'Debit' LIMIT 20;
+
+-- Source : abh_sebou_ismail.public.types_mesures
+-- Cas : AMBIGUOUS_PARAMETER / Debit
+SELECT COUNT(*) AS volume_cas FROM public.types_mesures WHERE parametre_qualite = 'Debit';
+SELECT parametre_qualite, valeur FROM public.types_mesures WHERE parametre_qualite = 'Debit' LIMIT 20;

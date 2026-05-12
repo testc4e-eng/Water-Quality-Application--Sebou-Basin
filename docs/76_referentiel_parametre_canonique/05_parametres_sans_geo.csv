@@ -1,0 +1,3 @@
+classification,parametre,source,probleme,recommandation
+INFO,Aucun bloquant detecte sur les parametres modeles majeurs,swat_output|wasp_output,Les sorties portent deja un support geo de type subbasin ou segment,Maintenir le mapping geo par couche modele
+BACKLOG,REFERENTIEL_A_COMPLETER,qualite.source_pollution_mesure_param,Le rattachement geo passe par prelevement puis rejet et non par le parametre lui-meme,Documenter explicitement la chaine geo compatible

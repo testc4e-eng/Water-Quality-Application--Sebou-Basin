@@ -1,0 +1,7 @@
+classification,code_canonique,domaine,probleme,recommandation
+BACKLOG,DEBIT,qualite,Definition canonique qualite sans unite,Conserver une seule definition DEBIT avec unite de reference explicite
+BACKLOG,CONDUCTIVITE,qualite,Des variantes sources actives sont encore sans unite consolidee,Completer le mapping unite source -> unite canonique
+BACKLOG,O2_DISS,qualite,Des variantes sources actives sont encore sans unite consolidee,Completer le mapping unite source -> unite canonique
+BACKLOG,PHOSPHORE_TOTAL,qualite,Des variantes sources actives sont encore sans unite consolidee,Completer le mapping unite source -> unite canonique
+BACKLOG,NO3-,qualite,Des variantes sources actives sont encore sans unite consolidee,Completer le mapping unite source -> unite canonique
+INFO,LACHER,hydro,Unite canonique verrouillee a Mm3/j dans le patch barrage,Mettre a jour les consommateurs legacy

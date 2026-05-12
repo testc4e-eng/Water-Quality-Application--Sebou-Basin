@@ -1,0 +1,35 @@
+table_source,domaine,volume_e0_fiable,volume_backlog,mode_rattachement,detail,statut_e0
+staging.raw_mesures_debit_jr,hydro,521433,0,RATTACHEMENT_OK,colonne ire_station -> station,IN_SCOPE_E0
+staging.raw_mesures_debit_m,hydro,19316,0,RATTACHEMENT_OK,colonne ire_station -> station,IN_SCOPE_E0
+staging.raw_mesures_debit_sources,hydro,2816,0,RATTACHEMENT_OK,colonne ire_source -> source,IN_SCOPE_E0
+staging.raw_mesures_evaporation_jr,meteo,48900,0,RATTACHEMENT_OK,colonne ire_station -> station meteo,IN_SCOPE_E0
+staging.raw_mesures_precipitations_jr,meteo,669880,0,RATTACHEMENT_OK,colonne ire_precipitation / ire_station -> station meteo,IN_SCOPE_E0
+staging.raw_mesures_precipitations_jr_max,meteo,2085,0,RATTACHEMENT_OK,colonne ire_precipitation / ire_station -> station meteo,IN_SCOPE_E0
+staging.raw_mesures_precipitations_jr_traitees,meteo,546007,0,RATTACHEMENT_OK,colonne ire_precipitation / ire_station -> station meteo,IN_SCOPE_E0
+staging.raw_mesures_temperatures_jr,meteo,0,0,RATTACHEMENT_OK,colonne ire_station -> station meteo,IN_SCOPE_E0
+staging.raw_mesures_niv_eau_barrages,hydro,85166,0,RATTACHEMENT_OK,colonne ire_barrage -> barrage,IN_SCOPE_E0
+staging.raw_mesures_qualite_barrages,hydro,8714,0,RATTACHEMENT_OK,colonne ire_station -> station,IN_SCOPE_E0
+staging.raw_mesures_qualite_nappes,qualite,63088,0,RATTACHEMENT_OK,colonne ire_station -> station,IN_SCOPE_E0
+staging.raw_mesures_qualite_rivieres,qualite,60097,0,RATTACHEMENT_OK,colonne ire_station -> station,IN_SCOPE_E0
+staging.raw_suivi_qualite_brg_garde_hebdo,qualite,7094,0,GEO_FORCED_MAPPING_METIER,infra.stations:3323/8:brg de garde / sebou,IN_SCOPE_E0
+staging.raw_suivi_qualite_sebou_jr,qualite,59436,0,RATTACHEMENT_OK,colonne ire_station -> station,IN_SCOPE_E0
+staging.raw_idp_2024_mesures_qualite_globale,qualite,776,4118,GEO_MATCH_XY_2M,seules les lignes a candidat unique <= 2 m entrent dans le scope E0,PARTIAL_SCOPE_E0
+staging.raw_idp_2024_mesures_qualite_marche_cadre,qualite,0,3614,GEO_MATCH_XY_2M,seules les lignes a candidat unique <= 2 m entrent dans le scope E0,EXCLUDED_E0
+staging.raw_idp_2024_src_pollution_globale,IDP 2024,40,203,GEO_MATCH_XY_2M,seules les lignes a candidat unique <= 2 m entrent dans le scope E0,PARTIAL_SCOPE_E0
+staging.raw_idp_2024_src_pollution_marche_cadre,IDP 2024,0,148,GEO_MATCH_XY_2M,seules les lignes a candidat unique <= 2 m entrent dans le scope E0,EXCLUDED_E0
+staging.raw_barrages_abhs,hydro,12,22,RATTACHEMENT_PARTIEL,subset geo-fiable conserve ; backlog a traiter ; statut 49 = ORPHELINS,PARTIAL_SCOPE_E0
+staging.raw_bathymetries_barrages_abhs,hydro,62359,0,RATTACHEMENT_OK,colonne ire_barrage -> barrage,IN_SCOPE_E0
+staging.raw_stations_abhs,inventaire/pollution,390,0,RATTACHEMENT_OK,colonne ire_station -> station,IN_SCOPE_E0
+staging.raw_points_eau_abhs,inventaire/pollution,41,5,RATTACHEMENT_PARTIEL,subset geo-fiable conserve ; backlog a traiter ; statut 49 = ORPHELINS,PARTIAL_SCOPE_E0
+staging.raw_sources_abhs,inventaire/pollution,135,0,RATTACHEMENT_OK,colonne ire_source -> source,IN_SCOPE_E0
+staging.raw_rejets_domestiques_abhs,inventaire/pollution,278,84,RATTACHEMENT_PARTIEL,subset geo-fiable conserve ; backlog a traiter ; statut 49 = ORPHELINS,PARTIAL_SCOPE_E0
+staging.raw_rejets_ind_abhs,inventaire/pollution,0,11,RATTACHEMENT_PARTIEL,subset geo-fiable conserve ; backlog a traiter ; statut 49 = ORPHELINS,EXCLUDED_E0
+staging.raw_rejets_abattoirs_abhs,inventaire/pollution,0,61,RATTACHEMENT_PARTIEL,subset geo-fiable conserve ; backlog a traiter ; statut 49 = ORPHELINS,EXCLUDED_E0
+staging.raw_step_abhs,inventaire/pollution,31,10,RATTACHEMENT_PARTIEL,subset geo-fiable conserve ; backlog a traiter ; statut 49 = ORPHELINS,PARTIAL_SCOPE_E0
+staging.raw_step_ind_abhs,inventaire/pollution,0,15,RATTACHEMENT_PARTIEL,subset geo-fiable conserve ; backlog a traiter ; statut 49 = ORPHELINS,EXCLUDED_E0
+staging.raw_decharges_abhs,inventaire/pollution,178,55,RATTACHEMENT_PARTIEL,subset geo-fiable conserve ; backlog a traiter ; statut 49 = ORPHELINS,PARTIAL_SCOPE_E0
+staging.raw_huileries_abhs,inventaire/pollution,319,293,RATTACHEMENT_PARTIEL,subset geo-fiable conserve ; backlog a traiter ; statut 49 = ORPHELINS,PARTIAL_SCOPE_E0
+staging.raw_mines_abhs,inventaire/pollution,0,42,RATTACHEMENT_PARTIEL,subset geo-fiable conserve ; backlog a traiter ; statut 49 = ORPHELINS,EXCLUDED_E0
+staging.raw_stm_abhs,inventaire/pollution,0,18,RATTACHEMENT_PARTIEL,subset geo-fiable conserve ; backlog a traiter ; statut 49 = ORPHELINS,EXCLUDED_E0
+staging.raw_nappes_abhs,inventaire/pollution,17,0,RATTACHEMENT_OK,colonne code_nappe -> nappe,IN_SCOPE_E0
+staging.raw_profils_stations,inventaire/pollution,1980,0,RATTACHEMENT_OK,colonne ire_station -> station,IN_SCOPE_E0

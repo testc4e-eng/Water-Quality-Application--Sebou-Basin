@@ -1,0 +1,38 @@
+# CAS-077 o2_dissous
+
+## Identification
+- parametre_observe : `o2_dissous`
+- nom_standard : `O2_dissous`
+- type_cas : `UNIT_VALIDATION`
+- unité source : `à confirmer`
+- criticité : `Élevée`
+
+## Données
+- tables sources : `idp_2024_src_pollution_globale, idp_2024_src_pollution_marche_cadre`
+- volumes : `391` lignes, `240` non nulles, `151` nulles
+- exemples : `10.04 | 0.92 | 0.43 | 5.81 | 8.22 | 8.98`
+
+## Problème
+Le paramètre `o2_dissous` est rattaché à `O2_dissous`, mais l'unité source n'est pas suffisamment stabilisée pour migrer sans validation humaine.
+
+## Analyse
+Mapping observé : `O2_dissous`. Unité source observée : `à confirmer` ; unité métier dominante : `mg/L`. Volume agrégé du cas : `391` lignes, dont `240` non nulles, `151` nulles, `0` non numériques et `0` suspectes. Plage observée dans les audits existants : min `0` / max `10.85`. Référence externe déjà associée dans l'audit précédent : `référence bibliographique non confirmée`.
+
+## Proposition
+- action : `STAGING_ONLY`
+- règles : `valider l’unité de référence avant toute migration`
+- flags : `UNIT_MISSING`
+- SQL proposé (non exécuté) : `06_sql_en_attente/CAS_077_o2_dissous.sql`
+
+## Validation
+- statut : `PENDING`
+- validateur :
+- date :
+
+## Exécution
+- script utilisé : aucun
+- volume impacté : `0`
+
+## Résultat
+- succès / échec : non exécuté
+- anomalies restantes : cas non traité tant que la validation humaine n’est pas fournie

@@ -1,0 +1,19 @@
+{
+  "backup_created": true,
+  "backup_path": "C:\\dev\\WQDSS\\repo_git\\backups\\e1_1_qualite_riviere_20260505_151043\\qualite_mesure_qualite_riviere_before_reset.csv",
+  "backup_rows": 60097,
+  "truncated_rows": 60097,
+  "source_prepared_rows": 60074,
+  "source_quarantine_rows": 11,
+  "source_candidates": 59534,
+  "source_discarded_duplicates": 540,
+  "inserted_rows": 59534,
+  "audit_rows": 59534,
+  "duplicates_after": 0,
+  "station_null_after": 0,
+  "param_null_after": 0,
+  "value_null_after": 0,
+  "param_ref_null_after": 17287,
+  "other_table_modifications": 0,
+  "decision": "QUALITE_RIVIERE_OK"
+}

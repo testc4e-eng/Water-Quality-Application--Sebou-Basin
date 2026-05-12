@@ -6,8 +6,8 @@
 | Type | reference |
 | Périmètre | gouvernance documentaire et sources de vérité |
 | Source de vérité | Oui |
-| Documents liés | [DOCUMENT_MAP](./DOCUMENT_MAP.md), [README](./README.md) |
-| Dernière mise à jour | 2026-04-10 |
+| Documents liés | [../00_SOURCE_OF_TRUTH_MASTER.md](../00_SOURCE_OF_TRUTH_MASTER.md), [DOCUMENT_MAP](./DOCUMENT_MAP.md), [README](./README.md) |
+| Dernière mise à jour | 2026-04-17 |
 
 ## 1. Règles générales
 
@@ -15,22 +15,37 @@
 - Un document dérivé peut résumer un document maître, mais ne doit pas le concurrencer.
 - Un document placé en archive n’est plus un support de décision courant.
 - Un export bureautique n’est jamais la référence primaire si une version Markdown existe.
+- Si code, DB et documentation divergent, la vérité opérationnelle vérifiée prévaut et la documentation doit être corrigée.
 
-## 2. Matrice des sujets maîtres
+## 2. Rôle du master transverse
+
+Le document [00_SOURCE_OF_TRUTH_MASTER](../00_SOURCE_OF_TRUTH_MASTER.md) est la photographie transverse vérifiée du système réel :
+
+- architecture réellement observée ;
+- base réellement observée ;
+- API réellement montée ;
+- frontend réellement routé ;
+- statut réel des lots et blocages.
+
+Il prime sur tout résumé ou toute spécification cible lorsqu’un écart est démontré.
+
+## 3. Matrice des sujets maîtres
 
 | Sujet | Document maître | Documents dérivés / d’appui | Documents archivés ou non maîtres |
 |---|---|---|---|
+| Photographie transverse du système réel | [00_SOURCE_OF_TRUTH_MASTER](../00_SOURCE_OF_TRUTH_MASTER.md) | [DOCUMENT_MAP](./DOCUMENT_MAP.md), [MEMORY_CORE](../03_ai_knowledge_base/MEMORY_CORE.md) | anciens états globaux dispersés |
 | Cartographie documentaire | [DOCUMENT_MAP](./DOCUMENT_MAP.md) | `docs/README.md` | anciens index dispersés |
 | Gouvernance documentaire | [SOURCE_OF_TRUTH](./SOURCE_OF_TRUTH.md) | [MEMORY_CORE](../03_ai_knowledge_base/MEMORY_CORE.md) | notes de restructuration historiques |
 | Vision projet | [project_vision](./overview/project_vision.md) | [MEMORY_CORE](../03_ai_knowledge_base/MEMORY_CORE.md) | anciens overview dispersés |
 | Standards et gouvernance data | [data_governance_and_standards](./overview/data_governance_and_standards.md) | [GLOSSARY](./GLOSSARY.md) | notes transverses anciennes |
 | Architecture système | [system_architecture](./architecture/system_architecture.md) | [architecture_for_agents](../03_ai_knowledge_base/architecture_for_agents.md) | anciens récits d’architecture |
-| Architecture base de données | [database_architecture](./architecture/database_architecture.md) | [DATABASE_SCHEMA](./data/DATABASE_SCHEMA.md), [database_for_agents](../03_ai_knowledge_base/database_for_agents.md) | anciens récits BD concurrents |
-| Référence backend | [backend_overview](./backend/backend_overview.md) | [api_for_agents](../03_ai_knowledge_base/api_for_agents.md) | anciennes notes backend dispersées |
-| Contrats API | [api_contracts](./backend/api_contracts.md) | [api_for_agents](../03_ai_knowledge_base/api_for_agents.md) | anciens snapshots OpenAPI / notes concurrentes |
+| Architecture base de données | [database_architecture](./architecture/database_architecture.md) | [DATABASE_SCHEMA](./data/DATABASE_SCHEMA.md), [DATABASE_SCHEMA_SUMMARY](../03_ai_knowledge_base/DATABASE_SCHEMA_SUMMARY.md) | anciens récits BD concurrents |
+| Réalité backend déployée | [backend_overview](./backend/backend_overview.md) | [api_for_agents](../03_ai_knowledge_base/api_for_agents.md), [00_SOURCE_OF_TRUTH_MASTER](../00_SOURCE_OF_TRUTH_MASTER.md) | anciennes notes backend dispersées |
+| API réellement observée | [backend_overview](./backend/backend_overview.md) | [api_for_agents](../03_ai_knowledge_base/api_for_agents.md), [00_SOURCE_OF_TRUTH_MASTER](../00_SOURCE_OF_TRUTH_MASTER.md) | snapshots non vérifiés |
+| API cible / spécification | [api_contracts](./backend/api_contracts.md) | [traceability_matrix](./backend/traceability_matrix.md) | anciens snapshots OpenAPI / notes concurrentes |
 | Traçabilité backend | [traceability_matrix](./backend/traceability_matrix.md) | [EVIDENCE_REGISTER](./EVIDENCE_REGISTER.md) | anciennes notes isolées |
-| Référence frontend | [frontend_reference](./frontend/frontend_reference.md) | [QUICK_REFERENCE](../03_ai_knowledge_base/QUICK_REFERENCE.md) | anciennes docs frontend concurrentes |
-| Dictionnaire de données détaillé | [DATABASE_SCHEMA](./data/DATABASE_SCHEMA.md) | [DATABASE_SCHEMA_SUMMARY](../03_ai_knowledge_base/DATABASE_SCHEMA_SUMMARY.md), [database_for_agents](../03_ai_knowledge_base/database_for_agents.md) | anciens dictionnaires et exports bruts |
+| Référence frontend | [frontend_reference](./frontend/frontend_reference.md) | [QUICK_REFERENCE](../03_ai_knowledge_base/QUICK_REFERENCE.md), [00_SOURCE_OF_TRUTH_MASTER](../00_SOURCE_OF_TRUTH_MASTER.md) | anciennes docs frontend concurrentes |
+| Dictionnaire de données détaillé | [DATABASE_SCHEMA](./data/DATABASE_SCHEMA.md) | [DATABASE_SCHEMA_SUMMARY](../03_ai_knowledge_base/DATABASE_SCHEMA_SUMMARY.md) | anciens dictionnaires et exports bruts |
 | Modèle logique des données | [DATA_MODELS](./data/DATA_MODELS.md) | [DATABASE_SCHEMA_SUMMARY](../03_ai_knowledge_base/DATABASE_SCHEMA_SUMMARY.md) | anciennes notes BD dispersées |
 | Flux de données | [DATA_FLOW](./data/DATA_FLOW.md) | [database_for_agents](../03_ai_knowledge_base/database_for_agents.md) | anciennes notes de flux dispersées |
 | Qualité et gouvernance des données | [DATA_QUALITY](./data/DATA_QUALITY.md) | [EVIDENCE_REGISTER](./EVIDENCE_REGISTER.md) | anciennes notes QA dispersées |
@@ -43,17 +58,19 @@
 | Rapport Mission IV | [rapport_provisoire_mission_iv_sad](../02_contractual_and_reports/mission_iv/rapport_provisoire_mission_iv_sad.md) | export `.docx` généré | ancien rapport à l’emplacement racine |
 | Mémoire agent | [MEMORY_CORE](../03_ai_knowledge_base/MEMORY_CORE.md) | [QUICK_REFERENCE](../03_ai_knowledge_base/QUICK_REFERENCE.md), [AGENT_RULES](../03_ai_knowledge_base/AGENT_RULES.md) | anciens kits concurrents |
 
-## 3. Ce qui n’est pas une source de vérité
+## 4. Ce qui n’est pas une source de vérité
 
 - `docs/04_working_prompts_and_runs/*`
 - `docs/99_legacy_archive/*`
 - `docs/02_contractual_and_reports/mission_iv/generated_exports/*`
 - les documents historiques de merge, de prompt ou de migration détaillée conservés pour traçabilité
+- tout document de spécification non vérifié par le code ou la base
 
-## 4. Règle de maintenance
+## 5. Règle de maintenance
 
 Lorsqu’un sujet évolue :
 
 1. mettre à jour le document maître ;
 2. ajuster, si nécessaire, les documents dérivés ;
-3. ne pas créer un nouveau document maître concurrent pour le même sujet.
+3. ne pas créer un nouveau document maître concurrent pour le même sujet ;
+4. si la vérité opérationnelle diffère d’une spécification cible, documenter explicitement l’écart au lieu de masquer la divergence.

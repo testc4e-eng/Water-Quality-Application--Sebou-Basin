@@ -1,0 +1,28 @@
+{
+  "run_id": "f0f2a858-1c90-4b15-a6af-cc172bece071",
+  "expected_delete": 49954,
+  "actual_deleted": 90401,
+  "sebou_after_total": 10955,
+  "sebou_after_dups": 0,
+  "hydro_debit_source_total": 3978,
+  "ctid_tables": [
+    {
+      "source_table": "raw_mesures_debit_jr",
+      "total_rows": 515978,
+      "ctid_like_rows": 515978,
+      "distinct_source_row_id": 515978
+    },
+    {
+      "source_table": "raw_mesures_debit_m",
+      "total_rows": 18993,
+      "ctid_like_rows": 18993,
+      "distinct_source_row_id": 18993
+    },
+    {
+      "source_table": "raw_mesures_precipitations_jr",
+      "total_rows": 507930,
+      "ctid_like_rows": 507930,
+      "distinct_source_row_id": 507930
+    }
+  ]
+}

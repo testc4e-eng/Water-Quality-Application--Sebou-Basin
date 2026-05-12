@@ -1,0 +1,16 @@
+{
+  "backup_created": true,
+  "backup_path": "C:\\dev\\WQDSS\\repo_git\\backups\\e1_1_qualite_barrage_20260505_143442\\qualite_mesure_qualite_barrage_before_reset.csv",
+  "backup_rows": 15808,
+  "truncated_rows": 15808,
+  "source_candidates": 7820,
+  "source_discarded_duplicates": 888,
+  "inserted_rows": 7820,
+  "audit_rows": 7820,
+  "duplicates_after": 0,
+  "station_null_after": 0,
+  "param_null_after": 0,
+  "value_null_after": 0,
+  "other_table_modifications": 0,
+  "decision": "QUALITE_BARRAGE_OK"
+}

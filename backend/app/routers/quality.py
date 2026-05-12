@@ -7,57 +7,91 @@ from app.db.climate_database import get_climate_db
 router = APIRouter()
 
 
+QUALITY_QA_FILTER = """
+      AND (:include_invalid = true OR COALESCE(mqr.est_valide, true) = true)
+      AND (
+            :include_flagged = true
+            OR (
+                COALESCE(mqr.qa_flag_null_value, false) = false
+                AND COALESCE(mqr.qa_flag_negative, false) = false
+                AND COALESCE(mqr.qa_flag_param_missing, false) = false
+                AND COALESCE(mqr.qa_flag_station_unmapped, false) = false
+            )
+      )
+"""
+
+
 @router.get("/stations")
-def get_quality_stations(db: Session = Depends(get_climate_db)):
+def get_quality_stations(
+    include_invalid: bool = Query(False),
+    include_flagged: bool = Query(False),
+    db: Session = Depends(get_climate_db),
+):
     """
     Retourne la liste des stations ayant des mesures dans mesures_qualite_rivieres.
     """
     query = text(
         """
         SELECT DISTINCT
-            mqr.ire_station                             AS station_id,
+            COALESCE(mqr.station_id::text, mqr.ire_station) AS station_id,
             coalesce(
                 nullif(trim(sd.station_nom), ''),
                 nullif(trim(sd.code_station), ''),
-                mqr.ire_station
+                COALESCE(mqr.station_id::text, mqr.ire_station)
             )                                           AS station_name,
-            min(mqr.date_prelevement)::date             AS dt_min,
-            max(mqr.date_prelevement)::date             AS dt_max,
+            min(mqr.temps)::date                        AS dt_min,
+            max(mqr.temps)::date                        AS dt_max,
             count(*)::int                               AS n_mesures
-        FROM public.mesures_qualite_rivieres mqr
+        FROM qualite.mesure_qualite_riviere mqr
         LEFT JOIN api.v_station_dimension sd
-            ON sd.legacy_code_station = mqr.ire_station
-            OR sd.code_station        = mqr.ire_station
-        WHERE mqr.ire_station IS NOT NULL
-          AND trim(mqr.ire_station) <> ''
-        GROUP BY mqr.ire_station, sd.station_nom, sd.code_station
+            ON sd.station_id::text      = mqr.station_id::text
+            OR sd.legacy_code_station   = mqr.ire_station
+            OR sd.code_station          = mqr.ire_station
+        WHERE COALESCE(mqr.ire_station, mqr.station_id::text) IS NOT NULL
+          AND trim(COALESCE(mqr.ire_station, mqr.station_id::text)) <> ''
+          {QUALITY_QA_FILTER}
+        GROUP BY COALESCE(mqr.station_id::text, mqr.ire_station), sd.station_nom, sd.code_station
         ORDER BY station_name
         """
     )
-    return db.execute(query).mappings().all()
+    return db.execute(
+        query,
+        {"include_invalid": include_invalid, "include_flagged": include_flagged},
+    ).mappings().all()
 
 
 @router.get("/parameters")
 def get_quality_parameters(
     station_id: str | None = Query(None),
+    include_invalid: bool = Query(False),
+    include_flagged: bool = Query(False),
     db: Session = Depends(get_climate_db),
 ):
     """
     Retourne la liste des paramètres qualité disponibles (optionnellement filtrés par station).
     """
-    where = "WHERE mqr.ire_station = :station_id" if station_id else ""
+    where = """
+        WHERE (:station_id IS NULL
+               OR mqr.station_id::text = :station_id
+               OR mqr.ire_station = :station_id)
+    """
     query = text(
         f"""
         SELECT DISTINCT
             trim(parametre_qualite) AS parameter,
             count(*)::int           AS n_mesures
-        FROM public.mesures_qualite_rivieres mqr
+        FROM qualite.mesure_qualite_riviere mqr
         {where}
+        {QUALITY_QA_FILTER}
         GROUP BY trim(parametre_qualite)
         ORDER BY parameter
         """
     )
-    params = {"station_id": station_id} if station_id else {}
+    params = {
+        "station_id": station_id,
+        "include_invalid": include_invalid,
+        "include_flagged": include_flagged,
+    }
     return db.execute(query, params).mappings().all()
 
 
@@ -66,6 +100,8 @@ def get_quality_timeseries(
     station_id: str,
     date_start: str | None = Query(None),
     date_end: str | None = Query(None),
+    include_invalid: bool = Query(False),
+    include_flagged: bool = Query(False),
     db: Session = Depends(get_climate_db),
 ):
     """
@@ -75,18 +111,19 @@ def get_quality_timeseries(
     query = text(
         """
         SELECT
-            date_prelevement::date                                                         AS date,
-            max(CASE WHEN parametre_qualite ILIKE 'NO3%'  THEN val_qual_riv END)           AS no3,
-            max(CASE WHEN parametre_qualite ILIKE 'ph%'   THEN val_qual_riv END)           AS ph,
-            max(CASE WHEN parametre_qualite ILIKE 'DBO%'  THEN val_qual_riv END)           AS dbo5,
-            max(CASE WHEN parametre_qualite ILIKE 'DCO%'  THEN val_qual_riv END)           AS dco,
-            max(CASE WHEN parametre_qualite ILIKE 'O2%'   THEN val_qual_riv END)           AS o2,
-            max(CASE WHEN parametre_qualite ILIKE 'MES%'  THEN val_qual_riv END)           AS mes
-        FROM public.mesures_qualite_rivieres
-        WHERE ire_station = :station_id
-          AND (:date_start IS NULL OR date_prelevement >= :date_start::date)
-          AND (:date_end   IS NULL OR date_prelevement <= :date_end::date)
-        GROUP BY date_prelevement::date
+            temps::date                                                          AS date,
+            max(CASE WHEN parametre_qualite ILIKE 'NO3%'  THEN valeur END)       AS no3,
+            max(CASE WHEN parametre_qualite ILIKE 'ph%'   THEN valeur END)       AS ph,
+            max(CASE WHEN parametre_qualite ILIKE 'DBO%'  THEN valeur END)       AS dbo5,
+            max(CASE WHEN parametre_qualite ILIKE 'DCO%'  THEN valeur END)       AS dco,
+            max(CASE WHEN parametre_qualite ILIKE 'O2%'   THEN valeur END)       AS o2,
+            max(CASE WHEN parametre_qualite ILIKE 'MES%'  THEN valeur END)       AS mes
+        FROM qualite.mesure_qualite_riviere mqr
+        WHERE (mqr.station_id::text = :station_id OR mqr.ire_station = :station_id)
+          AND (:date_start IS NULL OR mqr.temps >= :date_start::date)
+          AND (:date_end   IS NULL OR mqr.temps <= :date_end::date)
+          {QUALITY_QA_FILTER}
+        GROUP BY temps::date
         ORDER BY date
         """
     )
@@ -96,6 +133,8 @@ def get_quality_timeseries(
             "station_id": station_id,
             "date_start": date_start or None,
             "date_end": date_end or None,
+            "include_invalid": include_invalid,
+            "include_flagged": include_flagged,
         },
     ).mappings().all()
 
@@ -235,6 +274,8 @@ def get_quality_latest(
     parameter: str = Query("ph", pattern="^(no3|ph|dbo5|dco|o2|mes)$"),
     date_start: str | None = Query(None),
     date_end: str | None = Query(None),
+    include_invalid: bool = Query(False),
+    include_flagged: bool = Query(False),
     db: Session = Depends(get_climate_db),
 ):
     # Mapping robuste des libellés source vers paramètre logique
@@ -251,18 +292,28 @@ def get_quality_latest(
         f"""
         select
             coalesce(sd.station_id::text, sd.legacy_station_id::text, mqr.ire_station)::text as entity_id,
-            avg(mqr.val_qual_riv)::double precision as value
-        from public.mesures_qualite_rivieres mqr
+            avg(mqr.valeur)::double precision as value
+        from qualite.mesure_qualite_riviere mqr
         left join api.v_station_dimension sd
-          on sd.legacy_code_station = mqr.ire_station
+          on sd.station_id::text = mqr.station_id::text
+          or sd.legacy_code_station = mqr.ire_station
           or sd.code_station = mqr.ire_station
-        where mqr.ire_station is not null
-          and trim(mqr.ire_station) <> ''
+        where COALESCE(mqr.station_id::text, mqr.ire_station) is not null
+          and trim(COALESCE(mqr.station_id::text, mqr.ire_station)) <> ''
           and {where_param}
-          and mqr.val_qual_riv is not null
-          and (:date_start is null or mqr.date_prelevement >= :date_start::date)
-          and (:date_end is null or mqr.date_prelevement <= :date_end::date)
+          and mqr.valeur is not null
+          and (:date_start is null or mqr.temps >= :date_start::date)
+          and (:date_end is null or mqr.temps <= :date_end::date)
+          {QUALITY_QA_FILTER}
         group by coalesce(sd.station_id::text, sd.legacy_station_id::text, mqr.ire_station)::text
         """
     )
-    return db.execute(query, {"date_start": date_start, "date_end": date_end}).mappings().all()
+    return db.execute(
+        query,
+        {
+            "date_start": date_start,
+            "date_end": date_end,
+            "include_invalid": include_invalid,
+            "include_flagged": include_flagged,
+        },
+    ).mappings().all()

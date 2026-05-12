@@ -1,0 +1,35 @@
+table_source,domaine,volume_total,colonne_rattachement,entite_cible,lignes_rattachees,lignes_orphelines,taux_rattachement,statut
+staging.raw_mesures_debit_jr,hydro,521433,ire_station,station,521433,0,100.0,OK
+staging.raw_mesures_debit_m,hydro,19316,ire_station,station,19316,0,100.0,OK
+staging.raw_mesures_debit_sources,hydro,2816,ire_source,source,2816,0,100.0,OK
+staging.raw_mesures_evaporation_jr,meteo,48900,ire_station,station meteo,48900,0,100.0,OK
+staging.raw_mesures_precipitations_jr,meteo,669880,ire_precipitation / ire_station,station meteo,669880,0,100.0,OK
+staging.raw_mesures_precipitations_jr_max,meteo,2085,ire_precipitation / ire_station,station meteo,2085,0,100.0,OK
+staging.raw_mesures_precipitations_jr_traitees,meteo,546007,ire_precipitation / ire_station,station meteo,546007,0,100.0,OK
+staging.raw_mesures_temperatures_jr,meteo,0,ire_station,station meteo,0,0,0.0,OK
+staging.raw_mesures_niv_eau_barrages,hydro,85166,ire_barrage,barrage,85166,0,100.0,OK
+staging.raw_mesures_qualite_barrages,hydro,8714,ire_station,station,8714,0,100.0,OK
+staging.raw_mesures_qualite_nappes,qualite,63088,ire_station,station,63088,0,100.0,OK
+staging.raw_mesures_qualite_rivieres,qualite,60097,ire_station,station,60097,0,100.0,OK
+staging.raw_suivi_qualite_brg_garde_hebdo,qualite,7094,ire_station,station,0,7094,0.0,ORPHELINS
+staging.raw_suivi_qualite_sebou_jr,qualite,59436,ire_station,station,59436,0,100.0,OK
+staging.raw_idp_2024_mesures_qualite_globale,qualite,4894,ire,station/barrage/source,0,4894,0.0,ORPHELINS
+staging.raw_idp_2024_mesures_qualite_marche_cadre,qualite,3614,ire,station/barrage/source,0,3614,0.0,ORPHELINS
+staging.raw_idp_2024_src_pollution_globale,IDP 2024,243,ire,station/barrage/source,0,243,0.0,ORPHELINS
+staging.raw_idp_2024_src_pollution_marche_cadre,IDP 2024,148,ire,station/barrage/source,0,148,0.0,ORPHELINS
+staging.raw_barrages_abhs,hydro,34,ire,barrage,12,22,35.29,ORPHELINS
+staging.raw_bathymetries_barrages_abhs,hydro,62359,ire_barrage,barrage,62359,0,100.0,OK
+staging.raw_stations_abhs,inventaire/pollution,390,ire_station,station,390,0,100.0,OK
+staging.raw_points_eau_abhs,inventaire/pollution,46,code_pt_eau,point d'eau,41,5,89.13,ORPHELINS
+staging.raw_sources_abhs,inventaire/pollution,135,ire_source,source,135,0,100.0,OK
+staging.raw_rejets_domestiques_abhs,inventaire/pollution,362,code_rejet,rejet,278,84,76.8,ORPHELINS
+staging.raw_rejets_ind_abhs,inventaire/pollution,11,code_rejet,rejet,0,11,0.0,ORPHELINS
+staging.raw_rejets_abattoirs_abhs,inventaire/pollution,61,code_abattoir,abattoir,0,61,0.0,ORPHELINS
+staging.raw_step_abhs,inventaire/pollution,41,code_step,STEP,31,10,75.61,ORPHELINS
+staging.raw_step_ind_abhs,inventaire/pollution,15,code_step,STEP,0,15,0.0,ORPHELINS
+staging.raw_decharges_abhs,inventaire/pollution,233,code_decharge,decharge,178,55,76.39,ORPHELINS
+staging.raw_huileries_abhs,inventaire/pollution,612,code_huilerie,huilerie,319,293,52.12,ORPHELINS
+staging.raw_mines_abhs,inventaire/pollution,42,code_mine,mine,0,42,0.0,ORPHELINS
+staging.raw_stm_abhs,inventaire/pollution,18,code_stm,STM,0,18,0.0,ORPHELINS
+staging.raw_nappes_abhs,inventaire/pollution,17,code_nappe,nappe,17,0,100.0,OK
+staging.raw_profils_stations,inventaire/pollution,1980,ire_station,station,1980,0,100.0,OK

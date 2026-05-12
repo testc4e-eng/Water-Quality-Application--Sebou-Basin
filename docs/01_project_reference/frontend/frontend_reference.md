@@ -4,115 +4,130 @@
 |---|---|
 | Statut | Actif |
 | Type | reference |
-| Périmètre | frontend React, routes UI, dashboards et intégration API |
+| Périmètre | frontend React, routes UI, modules principaux et dépendances API |
 | Source de vérité | Oui |
-| Documents liés | [backend_overview](../backend/backend_overview.md), [api_contracts](../backend/api_contracts.md) |
-| Dernière mise à jour | 2026-04-10 |
+| Documents liés | [../../00_SOURCE_OF_TRUTH_MASTER.md](../../00_SOURCE_OF_TRUTH_MASTER.md), [../backend/backend_overview.md](../backend/backend_overview.md), [../../03_ai_knowledge_base/api_for_agents.md](../../03_ai_knowledge_base/api_for_agents.md) |
+| Dernière mise à jour | 2026-04-17 |
 
 ## 1. Socle technique
 
-Le frontend du projet repose sur :
+Le frontend repose sur :
 
 - React 18 ;
 - Vite ;
 - TypeScript ;
-- `@tanstack/react-query` pour l’orchestration des appels de données ;
-- TailwindCSS et composants UI pour la couche de présentation ;
-- bibliothèques graphiques et cartographiques spécialisées selon les écrans.
+- `@tanstack/react-query` pour l’orchestration des appels ;
+- TailwindCSS et composants UI ;
+- bibliothèques dédiées à la cartographie et aux graphiques selon les écrans.
 
-Ce frontend assure quatre fonctions principales :
+La photographie réelle doit être lue dans `frontend/src/App.tsx`, `frontend/src/pages/**` et `frontend/src/api/**`.
 
-- exposition des dashboards métier ;
-- exploitation cartographique et analytique ;
-- administration et gouvernance des données ;
-- sécurisation des parcours utilisateurs via authentification et rôles.
+## 2. Routes UI réellement déclarées
 
-## 2. Routes applicatives actives
+Les routes effectivement présentes dans `frontend/src/App.tsx` sont :
 
-Les routes déclarées dans `frontend/src/App.tsx` structurent les usages suivants :
+| Route | Rôle | État |
+|---|---|---|
+| `/` | accueil institutionnel | Actif |
+| `/dashboard` | dashboard historique | Actif |
+| `/dashboard-cartographique` | dashboard cartographique principal | Actif |
+| `/dashboard-2` | variante dashboard / zone de test métier conservée | Actif |
+| `/carte` | accès cartographique dédié | Actif |
+| `/dashboard-analytique` | dashboard analytique | Actif |
+| `/dashboard-scenarios` | scénarios et modèles | Actif |
+| `/admin/data-scan` | diagnostic de disponibilité des données | Actif |
+| `/admin/gestion-users` | hub réel d’administration utilisateurs et audit | Actif |
+| `/admin/users` | redirection vers `/admin/gestion-users?mode=users` | Redirect |
+| `/admin/password-resets` | gestion des demandes de réinitialisation | Actif |
+| `/admin/audit` | redirection vers `/admin/gestion-users?mode=audit` | Redirect |
+| `/admin/ingestion` | centre d’ingestion et QA scénarios | Actif |
+| `/admin/popup-rules` | configuration des popups cartographiques | Actif |
+| `/about` | page institutionnelle | Actif |
+| `/contact` | page de contact | Actif |
+| `/data` | exploration des données brutes | Actif |
+| `/login` | authentification | Actif |
+| `/register` | création de compte | Actif |
+| `/change-password` | changement de mot de passe | Actif |
 
-| Route | Rôle |
-|---|---|
-| `/` | page d’accueil et point d’entrée institutionnel |
-| `/dashboard` | dashboard historique de premier niveau |
-| `/dashboard-cartographique` | dashboard cartographique principal |
-| `/dashboard-analytique` | dashboard analytique principal |
-| `/dashboard-scenarios` | restitution dédiée aux scénarios et résultats modèles |
-| `/data` | explorateur et gestion des données brutes, réservé aux profils administrateurs |
-| `/admin/data-scan` | diagnostic de disponibilité et de couverture des données |
-| `/admin/users` | gestion des comptes utilisateurs |
-| `/admin/password-resets` | gestion des demandes de réinitialisation |
-| `/admin/audit` | consultation des journaux d’activité |
-| `/admin/ingestion` | centre d’ingestion SWAT/WASP et contrôles QA |
-| `/admin/popup-rules` | paramétrage métier des popups cartographiques |
-| `/login`, `/register`, `/change-password` | parcours d’authentification et gestion de mot de passe |
+## 3. Modules frontend principaux
 
-## 3. Domaines fonctionnels couverts
+### Dashboards et visualisation
 
-### Dashboards métier
-
-- climat et météo ;
-- hydrologie ;
-- qualité des eaux et pollution ;
-- restitution comparative multi-séries ;
-- lecture par scénario sur les volets de modélisation.
-
-### Cartographie
-
-- couches observatoire ;
-- couches administratives et hydrauliques ;
-- stations, barrages, points d’eau, nappes, sous-bassins et réseau hydrographique ;
-- filtres dynamiques, popups et légendes.
+- `Dashboard`
+- `DashboardCartographique`
+- `DashboardAnalytique`
+- `DashboardScenarios`
+- composants climat / hydro / qualité / observatoire dans `src/components/**`
 
 ### Administration
 
-- data scan ;
-- ingestion et validation ;
-- journal d’audit ;
-- gestion des utilisateurs ;
-- règles d’affichage cartographique.
+- `DataScanPage`
+- `UsersAuditHubPage`
+- `UserManagementPage`
+- `PasswordResetRequestsPage`
+- `IngestionPage`
+- `PopupRulesPage`
 
-## 4. Structure de composants
+### Data access
 
-À l’échelle du dépôt, la structure frontend suit la logique suivante :
+- `DataViewer`
+- clients API dans `src/api/`
 
-- `src/pages/` pour les écrans complets ;
-- `src/pages/admin/` pour les écrans d’administration ;
-- `src/components/` pour la composition UI, la cartographie, les tableaux et les graphiques ;
-- `src/api/` pour la communication avec le backend ;
-- `src/lib/` pour les utilitaires transverses.
+## 4. Correspondance UI -> API
 
-## 5. Intégration API côté frontend
+| Module UI | API consommée | Observations |
+|---|---|---|
+| `DataScanPage` | `/api/v1/admin/data-availability/*` | Aligné avec le backend |
+| `UsersAuditHubPage`, `UserManagementPage` | `/api/v1/users/*`, `/api/v1/security/logs/*` | Aligné |
+| `PasswordResetRequestsPage` | `/api/v1/admin/password-reset-requests/*` | Aligné |
+| `IngestionPage` | `/api/v1/ingestion/*` | Aligné |
+| `PopupRulesPage` | `/api/v1/layers/configs/*` | Aligné |
+| `DataViewer` | `/api/v1/raw/*` | Aligné |
+| dashboards analytiques / observatoire | `/api/v1/analytics/*`, `/api/v1/observatory/*`, `/api/v1/climate/*`, `/api/v1/hydro/*`, `/api/v1/quality/*` | Partiellement aligné selon le domaine |
+| scénarios SWAT | `/api/v1/swat/*`, usage attendu de `/api/v1/swat/analysis/*` | Risque sur le préfixe réel |
 
-Les pratiques à maintenir sont les suivantes :
+## 5. Écarts et risques documentés
 
-- centraliser les appels vers le backend dans la couche `src/api/` ;
-- privilégier `react-query` pour le cache, le refetch et la gestion d’erreurs ;
-- conserver des filtres bornés pour éviter les requêtes trop volumineuses ;
-- déléguer autant que possible les enrichissements métiers aux vues `api.*` et aux endpoints backend plutôt qu’à des jointures locales côté navigateur.
+### 5.1 Références de routes obsolètes dans la documentation
 
-## 6. Patterns d’usage recommandés
+Les documents antérieurs omettaient plusieurs routes réellement présentes :
 
-### Gestion des filtres
+- `/dashboard-2`
+- `/carte`
+- `/about`
+- `/contact`
+- `/admin/gestion-users`
 
-- debounce sur les filtres texte ou multi-sélection ;
-- remise à zéro de la pagination ou des curseurs lorsque le contexte change ;
-- sélection par défaut des variables métier obligatoires dans les dashboards analytiques.
+Ils présentaient aussi `/admin/users` et `/admin/audit` comme des pages autonomes alors qu’il s’agit de redirections.
 
-### Gestion des erreurs
+### 5.2 Dette de configuration backend URL
 
-- message utilisateur explicite en cas d’erreur de validation ;
-- distinction entre erreur métier, erreur d’authentification et erreur serveur ;
-- blocage des requêtes trop volumineuses en mode brut lorsque des agrégats sont disponibles.
+La normalisation documentaire du projet pointe le backend local vers `http://127.0.0.1:8011/api/v1`, mais certains clients frontend restent configurés ou codés avec le port `8000`, notamment :
 
-### Restitution
+- `frontend/src/api/client.ts`
+- `frontend/src/api/climate.ts`
 
-- cartes : consommation de couches JSON/GeoJSON déjà enrichies ;
-- graphiques : consommation de séries déjà structurées par l’API ;
-- exports : déclenchement local à partir des jeux affichés ou des endpoints dédiés.
+Cette incohérence doit être considérée comme une dette technique tant qu’elle n’est pas corrigée dans le code.
 
-## 7. Points d’attention
+### 5.3 Dépendances backend legacy
 
-- les parcours `/data`, `/admin/users`, `/admin/password-resets`, `/admin/audit`, `/admin/ingestion` et `/admin/popup-rules` sont conditionnés par un contrôle admin dans la couche UI ;
-- le frontend reste dépendant de contrats d’API stables, en particulier sur les modules analytics, observatory, raw, ingestion et security ;
-- les ajustements restants portent principalement sur l’ergonomie, l’organisation des menus et le raffinement de certaines restitutions.
+Le frontend consomme encore des domaines backend dont la stabilité dépend de modules reliés à des objets SQL legacy ou absents :
+
+- `/api/v1/quality/*`
+- une partie des endpoints station-centric
+- certains accès measurements/entities
+
+Ces zones ne doivent pas être présentées comme pleinement stabilisées tant que les références `public.*` n’ont pas été purgées côté backend.
+
+### 5.4 Incohérence SWAT analysis
+
+Le frontend attend un usage de type `/swat/analysis/*`, alors que le routeur backend observé est susceptible d’être monté sous un préfixe doublé `/api/v1/api/v1/swat/analysis/*`.
+
+## 6. Règle documentaire
+
+Pour toute évolution frontend :
+
+1. vérifier `frontend/src/App.tsx` pour la vérité des routes ;
+2. vérifier `frontend/src/api/**` pour la vérité des intégrations backend ;
+3. mettre à jour ce document ;
+4. répercuter uniquement ensuite dans les résumés IA ou les guides dérivés.

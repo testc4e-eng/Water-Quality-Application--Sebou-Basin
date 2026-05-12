@@ -1,0 +1,11 @@
+domaine,table,statut,volume,backlog,qualite
+hydro,hydro.mesure_barrage,BLOQUE,84831,Modele cible incompatible,Non finalisable
+qualite,qualite.mesure_qualite_riviere,MIGRE_AVEC_BACKLOG,59534,parametre_ref_id manquants + doublons,Partiellement exploitable
+qualite,qualite.mesure_qualite_nappe,MIGRE_AVEC_BACKLOG,63047,parametre_ref_id manquants + doublons,Partiellement exploitable
+qualite,qualite.mesure_qualite_barrage,MIGRE_AVEC_BACKLOG,7820,couverture referentielle indirecte,Partiellement exploitable
+qualite,qualite.mesure_qualite_sebou,MIGRE_AVEC_BACKLOG,49954,parametre_ref_id manquants + doublons,Partiellement exploitable
+qualite,qualite.suivi_qualite_barrage_garde_hebdo,MIGRE_AVEC_BACKLOG,1780,parametre_ref_id manquants + doublons,Partiellement exploitable
+qualite,qualite.source_pollution_mesure_param,MIGRE_AVEC_BACKLOG,7191,valeur_num nulls,Partiellement exploitable
+meteo,meteo.mesure_evaporation,MIGRE_AVEC_BACKLOG,48900,valeurs nulles critiques,Partiellement exploitable
+meteo,meteo.mesure_temperature,LEGACY_IGNORE,0,table vide,Non exploitable
+metadata,metadata.referentiel_parametre,BLOQUE,91,collision DEBIT + gaps hydro,Non final

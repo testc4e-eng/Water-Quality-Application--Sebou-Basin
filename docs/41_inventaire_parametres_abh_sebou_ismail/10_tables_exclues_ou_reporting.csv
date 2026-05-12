@@ -1,0 +1,24 @@
+﻿base,schema,table,motif_exclusion,type_table
+abh_sebou_ismail,public,spatial_ref_sys,table système PostGIS,technique
+abh_sebou_ismail,public,geography_columns,vue de reporting exclue de l'inventaire principal,vue
+abh_sebou_ismail,public,geometry_columns,vue de reporting exclue de l'inventaire principal,vue
+abh_sebou_ismail,public,view_debit_jr,vue de reporting exclue de l'inventaire principal,vue
+abh_sebou_ismail,public,view_m_q_brg_fond,vue de reporting exclue de l'inventaire principal,vue
+abh_sebou_ismail,public,view_m_q_brg_milieu,vue de reporting exclue de l'inventaire principal,vue
+abh_sebou_ismail,public,view_m_q_brg_surface,vue de reporting exclue de l'inventaire principal,vue
+abh_sebou_ismail,public,view_m_q_riv,vue de reporting exclue de l'inventaire principal,vue
+abh_sebou_ismail,public,view_nbr_m_d_saison,vue de reporting exclue de l'inventaire principal,vue
+abh_sebou_ismail,public,view_nbr_m_p_saison,vue de reporting exclue de l'inventaire principal,vue
+abh_sebou_ismail,public,view_precipitations_jr,vue de reporting exclue de l'inventaire principal,vue
+abh_sebou_ismail,public,view_precipitations_jr_traitees,vue de reporting exclue de l'inventaire principal,vue
+abh_sebou_ismail,public,view_precipitations_saison,vue de reporting exclue de l'inventaire principal,vue
+abh_sebou_ismail,public,view_suivi_brg_garde,vue de reporting exclue de l'inventaire principal,vue
+abh_sebou_ismail,public,view_suivi_qualite_sebou_jr,vue de reporting exclue de l'inventaire principal,vue
+abh_sebou_ismail,public,idp_2024_src_pollution_globale,"colonne parametre contenant un type de point ou de source, pas un paramètre métier",faux_parametre
+abh_sebou_ismail,public,idp_2024_src_pollution_globale,"colonne parametre contenant un type de point ou de source, pas un paramètre métier",faux_parametre
+abh_sebou_ismail,public,idp_2024_src_pollution_globale,"colonne parametre contenant un type de point ou de source, pas un paramètre métier",faux_parametre
+abh_sebou_ismail,public,idp_2024_src_pollution_globale,"colonne parametre contenant un type de point ou de source, pas un paramètre métier",faux_parametre
+abh_sebou_ismail,public,idp_2024_src_pollution_globale,"colonne parametre contenant un type de point ou de source, pas un paramètre métier",faux_parametre
+abh_sebou_ismail,public,idp_2024_src_pollution_globale,"colonne parametre contenant un type de point ou de source, pas un paramètre métier",faux_parametre
+abh_sebou_ismail,public,idp_2024_src_pollution_globale,"colonne parametre contenant un type de point ou de source, pas un paramètre métier",faux_parametre
+abh_sebou_ismail,public,idp_2024_src_pollution_globale,"colonne parametre contenant un type de point ou de source, pas un paramètre métier",faux_parametre

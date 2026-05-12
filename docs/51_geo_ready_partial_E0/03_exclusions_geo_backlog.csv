@@ -1,0 +1,16 @@
+table_source,domaine,volume_exclu,motif,detail,priorite
+staging.raw_idp_2024_mesures_qualite_globale,qualite,4118,IDP unresolved after 2 m rule,776 match ; 1877 ambigu ; 2241 orphelin,CRITIQUE
+staging.raw_idp_2024_mesures_qualite_marche_cadre,qualite,3614,IDP unresolved after 2 m rule,0 match ; 1748 ambigu ; 1866 orphelin,CRITIQUE
+staging.raw_idp_2024_src_pollution_globale,IDP 2024,203,IDP unresolved after 2 m rule,40 match ; 97 ambigu ; 106 orphelin,CRITIQUE
+staging.raw_idp_2024_src_pollution_marche_cadre,IDP 2024,148,IDP unresolved after 2 m rule,0 match ; 68 ambigu ; 80 orphelin,CRITIQUE
+staging.raw_barrages_abhs,hydro,22,Geo backlog outside initial E0 scope,statut 49 = ORPHELINS,MOYENNE
+staging.raw_points_eau_abhs,inventaire/pollution,5,Geo backlog outside initial E0 scope,statut 49 = ORPHELINS,MOYENNE
+staging.raw_rejets_domestiques_abhs,inventaire/pollution,84,Geo backlog outside initial E0 scope,statut 49 = ORPHELINS,MOYENNE
+staging.raw_rejets_ind_abhs,inventaire/pollution,11,Geo backlog outside initial E0 scope,statut 49 = ORPHELINS,MOYENNE
+staging.raw_rejets_abattoirs_abhs,inventaire/pollution,61,Geo backlog outside initial E0 scope,statut 49 = ORPHELINS,MOYENNE
+staging.raw_step_abhs,inventaire/pollution,10,Geo backlog outside initial E0 scope,statut 49 = ORPHELINS,MOYENNE
+staging.raw_step_ind_abhs,inventaire/pollution,15,Geo backlog outside initial E0 scope,statut 49 = ORPHELINS,MOYENNE
+staging.raw_decharges_abhs,inventaire/pollution,55,Geo backlog outside initial E0 scope,statut 49 = ORPHELINS,MOYENNE
+staging.raw_huileries_abhs,inventaire/pollution,293,Geo backlog outside initial E0 scope,statut 49 = ORPHELINS,MOYENNE
+staging.raw_mines_abhs,inventaire/pollution,42,Geo backlog outside initial E0 scope,statut 49 = ORPHELINS,MOYENNE
+staging.raw_stm_abhs,inventaire/pollution,18,Geo backlog outside initial E0 scope,statut 49 = ORPHELINS,MOYENNE

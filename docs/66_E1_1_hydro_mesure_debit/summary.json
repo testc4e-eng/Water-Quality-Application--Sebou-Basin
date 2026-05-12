@@ -1,0 +1,17 @@
+{
+  "backup_created": true,
+  "backup_path": "C:\\dev\\WQDSS\\repo_git\\backups\\e1_1_hydro_debit_20260506_093804\\hydro_mesure_debit_before_insert_only_missing.csv",
+  "backup_rows": 521433,
+  "source_total": 521433,
+  "source_ready_insert": 131013,
+  "source_already_ok": 384965,
+  "source_conflicts_excluded": 1553,
+  "source_backlog_excluded": 5455,
+  "inserted_rows": 131013,
+  "audit_rows": 131013,
+  "duplicates_after": 0,
+  "station_null_after": 0,
+  "value_null_after": 0,
+  "other_table_modifications": 0,
+  "decision": "HYDRO_DEBIT_OK"
+}

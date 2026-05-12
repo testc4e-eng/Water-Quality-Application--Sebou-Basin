@@ -1,0 +1,179 @@
+-- ATTENTION : SCRIPT PROPOSÉ, NON EXÉCUTÉ
+-- EXÉCUTION INTERDITE SANS VALIDATION HUMAINE
+-- Lot D - Phase D1 : structure proposée du référentiel paramètres.
+-- Toutes les lignes SQL sont commentées volontairement.
+-- Objectif : validation de structure avant création/modification metadata.
+
+-- ============================================================
+-- 1. Référentiel unités
+-- ============================================================
+
+-- CREATE TABLE metadata.unites (
+--   id_unite uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+--   code_unite text NOT NULL UNIQUE,
+--   libelle_unite text NOT NULL,
+--   dimension_unite text NOT NULL,
+--   unite_standard boolean NOT NULL DEFAULT false,
+--   facteur_conversion numeric,
+--   offset_conversion numeric,
+--   expression_conversion text,
+--   statut_validation text NOT NULL DEFAULT 'A_VALIDER',
+--   source_validation text,
+--   commentaire text,
+--   created_at timestamptz NOT NULL DEFAULT now(),
+--   updated_at timestamptz NOT NULL DEFAULT now(),
+--   CONSTRAINT ck_unites_statut_validation
+--     CHECK (statut_validation IN ('A_VALIDER','VALIDEE','REJETEE','QUARANTAINE'))
+-- );
+
+-- CREATE UNIQUE INDEX ux_unites_standard_par_dimension
+--   ON metadata.unites (dimension_unite)
+--   WHERE unite_standard = true AND statut_validation = 'VALIDEE';
+
+-- ============================================================
+-- 2. Paramètre canonique
+-- ============================================================
+
+-- CREATE TABLE metadata.parametre_master (
+--   id_parametre uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+--   code_parametre text NOT NULL UNIQUE,
+--   nom_canonique text,
+--   symbole text,
+--   libelle_long text,
+--   domaine text,
+--   type_metier text,
+--   theme text,
+--   sous_theme text,
+--   specificite text,
+--   id_unite_standard uuid REFERENCES metadata.unites(id_unite),
+--   unite_standard text,
+--   regle_parsing text,
+--   variantes_associees text[] NOT NULL DEFAULT '{}',
+--   statut_validation text NOT NULL DEFAULT 'A_VALIDER',
+--   flag text NOT NULL DEFAULT 'PARAMETRE_A_VALIDER',
+--   niveau_confiance text NOT NULL DEFAULT 'faible',
+--   source_decision text,
+--   commentaire_metier text,
+--   created_at timestamptz NOT NULL DEFAULT now(),
+--   updated_at timestamptz NOT NULL DEFAULT now(),
+--   CONSTRAINT ck_parametre_master_statut
+--     CHECK (statut_validation IN ('OK','AMBIGU','NON_RECONNU','QUARANTAINE','A_VALIDER')),
+--   CONSTRAINT ck_parametre_master_flag
+--     CHECK (flag IN ('VALID','PARAMETRE_A_VALIDER','UNITE_A_VALIDER','PARAMETRE_AMBIGU','NON_RECONNU')),
+--   CONSTRAINT ck_parametre_master_confiance
+--     CHECK (niveau_confiance IN ('élevé','moyen','faible')),
+--   CONSTRAINT ck_parametre_master_quarantaine_si_incomplet
+--     CHECK (
+--       (
+--         nom_canonique IS NOT NULL
+--         AND symbole IS NOT NULL
+--         AND unite_standard IS NOT NULL
+--         AND type_metier IS NOT NULL
+--         AND regle_parsing IS NOT NULL
+--       )
+--       OR (
+--         statut_validation = 'QUARANTAINE'
+--         AND flag = 'PARAMETRE_A_VALIDER'
+--       )
+--     )
+-- );
+
+-- CREATE INDEX ix_parametre_master_symbole ON metadata.parametre_master (symbole);
+-- CREATE INDEX ix_parametre_master_type_metier ON metadata.parametre_master (type_metier);
+-- CREATE INDEX ix_parametre_master_statut ON metadata.parametre_master (statut_validation);
+-- CREATE INDEX ix_parametre_master_variantes ON metadata.parametre_master USING gin (variantes_associees);
+
+-- ============================================================
+-- 3. Mapping source vers paramètre canonique
+-- ============================================================
+
+-- CREATE TABLE metadata.mapping_parametre_source_new (
+--   id_mapping uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+--   source_base text NOT NULL,
+--   source_schema text NOT NULL,
+--   source_table text NOT NULL,
+--   source_column_parametre text,
+--   source_column_valeur text,
+--   parametre_source text NOT NULL,
+--   parametre_source_normalise text,
+--   id_parametre uuid REFERENCES metadata.parametre_master(id_parametre),
+--   id_unite_source uuid REFERENCES metadata.unites(id_unite),
+--   unite_source_libelle text,
+--   mapping_status text NOT NULL DEFAULT 'UNMAPPED',
+--   mapping_confidence numeric,
+--   regle_parsing_appliquee text,
+--   qa_flags text[] NOT NULL DEFAULT '{}',
+--   volume_total bigint,
+--   nb_non_numerique bigint,
+--   exemples_valeurs jsonb,
+--   source_document text,
+--   decision_metier text,
+--   commentaire text,
+--   created_at timestamptz NOT NULL DEFAULT now(),
+--   updated_at timestamptz NOT NULL DEFAULT now(),
+--   CONSTRAINT ck_mapping_parametre_source_status
+--     CHECK (mapping_status IN ('MAPPED','AMBIGUOUS','UNMAPPED','QUARANTINE')),
+--   CONSTRAINT ck_mapping_parametre_source_confidence
+--     CHECK (mapping_confidence IS NULL OR (mapping_confidence >= 0 AND mapping_confidence <= 1))
+-- );
+
+-- CREATE UNIQUE INDEX ux_mapping_parametre_source_new
+--   ON metadata.mapping_parametre_source_new (
+--     source_base,
+--     source_schema,
+--     source_table,
+--     COALESCE(source_column_parametre, ''),
+--     COALESCE(source_column_valeur, ''),
+--     parametre_source
+--   );
+
+-- CREATE INDEX ix_mapping_parametre_source_new_parametre
+--   ON metadata.mapping_parametre_source_new (id_parametre);
+
+-- CREATE INDEX ix_mapping_parametre_source_new_status
+--   ON metadata.mapping_parametre_source_new (mapping_status);
+
+-- ============================================================
+-- 4. Seuils et normes
+-- ============================================================
+
+-- CREATE TABLE metadata.seuils (
+--   id_seuil uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+--   id_parametre uuid NOT NULL REFERENCES metadata.parametre_master(id_parametre),
+--   type_eau text NOT NULL,
+--   source_norme text NOT NULL,
+--   page_norme text,
+--   classe_qualite text NOT NULL,
+--   seuil_min numeric,
+--   seuil_max numeric,
+--   id_unite uuid REFERENCES metadata.unites(id_unite),
+--   unite_libelle text,
+--   sens_interpretation text,
+--   statut_validation text NOT NULL DEFAULT 'A_VALIDER',
+--   commentaire text,
+--   created_at timestamptz NOT NULL DEFAULT now(),
+--   updated_at timestamptz NOT NULL DEFAULT now(),
+--   CONSTRAINT ck_seuils_classe
+--     CHECK (classe_qualite IN ('excellente','bonne','moyenne','mauvaise','très mauvaise','autre')),
+--   CONSTRAINT ck_seuils_statut_validation
+--     CHECK (statut_validation IN ('A_VALIDER','VALIDEE','REJETEE')),
+--   CONSTRAINT ck_seuils_sens
+--     CHECK (sens_interpretation IS NULL OR sens_interpretation IN ('plus petit = meilleur','plus grand = meilleur','intervalle optimal','à confirmer'))
+-- );
+
+-- CREATE INDEX ix_seuils_parametre ON metadata.seuils (id_parametre);
+-- CREATE INDEX ix_seuils_type_eau ON metadata.seuils (type_eau);
+-- CREATE INDEX ix_seuils_statut ON metadata.seuils (statut_validation);
+
+-- ============================================================
+-- 5. Option de bascule après validation finale DBA/métier
+-- ============================================================
+
+-- Après validation, soit :
+-- 1) renommer metadata.mapping_parametre_source en metadata.mapping_parametre_source_legacy_YYYYMMDD ;
+-- 2) renommer metadata.mapping_parametre_source_new en metadata.mapping_parametre_source ;
+-- 3) conserver une vue de compatibilité si l'application dépend de l'ancien nom.
+
+-- Aucune bascule n'est proposée en D1/D2/D3.
+-- Le travail de reconstruction utilise metadata.mapping_parametre_source_new
+-- jusqu'à validation finale explicite du référentiel.

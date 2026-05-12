@@ -6,6 +6,7 @@ from app.db.session import SessionLocal
 from app.util_dbmeta import get_primary_key, pick_first_existing, table_exists
 
 router = APIRouter()
+legacy_router = APIRouter()
 
 
 def get_db():
@@ -18,61 +19,63 @@ def get_db():
 
 NAMES_MAP = {
     "sous-bassins": {
-        "sources": ["public.sous_bassin_sebou"],
+        "sources": ["geo.sous_bassin_abh"],
         "id_candidates": ["id"],
-        "label_candidates": ["nom_sous_bassin", "label", "name"],
+        "label_candidates": ["nom", "nom_sous_bassin", "label", "name"],
     },
     "barrages": {
         "sources": ["api.v_barrage_dimension"],
-        "id_candidates": ["barrage_id", "id"],
-        "label_candidates": ["nom_barrage", "label", "name"],
+        "id_candidates": ["barrage_id", "legacy_barrage_id", "id"],
+        "label_candidates": ["barrage_nom", "nom_barrage", "label", "name"],
     },
     "stations": {
         "sources": ["api.v_station_dimension", "api.v_profils_stations"],
-        "id_candidates": ["legacy_station_id", "station_id", "id_station", "id"],
+        "id_candidates": ["station_id", "legacy_station_id", "id_station", "id"],
         "label_candidates": ["station_nom", "nom_station", "label", "name"],
     },
     "regions": {
-        "sources": ["public.adm_regions_abhs"],
+        "sources": ["admin.regions"],
         "id_candidates": ["code_region", "id"],
         "label_candidates": ["region_fr", "label", "name"],
     },
     "provinces": {
-        "sources": ["public.adm_provinces_abhs"],
+        "sources": ["admin.provinces"],
         "id_candidates": ["code_province", "id"],
         "label_candidates": ["province_fr", "label", "name"],
     },
     "cercles": {
-        "sources": ["public.adm_cercles_abhs"],
+        "sources": ["admin.cercle"],
         "id_candidates": ["code_cercle", "id"],
         "label_candidates": ["cercle_fr", "label", "name"],
     },
     "communes": {
-        "sources": ["public.adm_communes_abhs"],
+        "sources": ["admin.communes"],
         "id_candidates": ["code_commune", "id"],
         "label_candidates": ["commune_fr", "label", "name"],
     },
     "villes": {
-        "sources": ["public.adm_villes_abhs"],
+        "sources": [],
         "id_candidates": ["id"],
         "label_candidates": ["nom_ville", "label", "name"],
     },
     "douars": {
-        "sources": ["public.adm_douars_abhs"],
+        "sources": [],
         "id_candidates": ["code_douar", "id"],
         "label_candidates": ["douar_fr", "label", "name"],
     },
 }
 
 
-def _resolve_source(cfg: dict) -> tuple[str, str, str]:
+def _resolve_source(cfg: dict) -> tuple[str, str, str] | None:
+    if not cfg["sources"]:
+        return None
     for source in cfg["sources"]:
         if not table_exists(source):
             continue
         id_col = pick_first_existing(source, cfg["id_candidates"]) or get_primary_key(source) or "id"
         label_col = pick_first_existing(source, cfg["label_candidates"]) or id_col
         return source, id_col, label_col
-    raise HTTPException(status_code=404, detail="Source de nomenclature introuvable")
+    return None
 
 
 @router.get("/{entity}")
@@ -82,7 +85,10 @@ def get_names(entity: str, db: Session = Depends(get_db)):
     if key not in NAMES_MAP:
         raise HTTPException(status_code=404, detail=f"Type inconnu : {entity}")
 
-    table, id_col, name_col = _resolve_source(NAMES_MAP[key])
+    resolved = _resolve_source(NAMES_MAP[key])
+    if not resolved:
+        return []
+    table, id_col, name_col = resolved
 
     try:
         sql = text(
@@ -99,3 +105,30 @@ def get_names(entity: str, db: Session = Depends(get_db)):
 
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc))
+
+
+@legacy_router.get("/sous-bassins")
+def legacy_catalog_sous_bassins(db: Session = Depends(get_db)):
+    return get_names("sous-bassins", db)
+
+
+@legacy_router.get("/barrages")
+def legacy_catalog_barrages(db: Session = Depends(get_db)):
+    return get_names("barrages", db)
+
+
+@legacy_router.get("/stations")
+def legacy_catalog_stations(db: Session = Depends(get_db)):
+    return get_names("stations", db)
+
+
+@legacy_router.get("/zones-admin")
+def legacy_catalog_zones_admin(db: Session = Depends(get_db)):
+    return {
+        "regions": get_names("regions", db),
+        "provinces": get_names("provinces", db),
+        "cercles": get_names("cercles", db),
+        "communes": get_names("communes", db),
+        "villes": get_names("villes", db),
+        "douars": get_names("douars", db),
+    }

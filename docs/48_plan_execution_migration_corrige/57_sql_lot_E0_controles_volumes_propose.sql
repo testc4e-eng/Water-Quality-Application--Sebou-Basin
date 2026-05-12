@@ -1,0 +1,55 @@
+-- ATTENTION : SCRIPT PROPOSE, NON EXECUTE
+-- EXECUTION INTERDITE SANS VALIDATION HUMAINE EXPLICITE
+-- Lot E0 : contrôles de volumes et de cohérence dry-run.
+
+-- Contrôle 1 : volumes attendus depuis le mapping
+-- SELECT
+--   source_table,
+--   COUNT(*) AS nb_lignes_mapping,
+--   SUM(volume_total::bigint) AS volume_mapping
+-- FROM metadata.mapping_parametre_source_new
+-- WHERE scope_migration = 'MESURE'
+--   AND action_migration IN ('MIGRER', 'MIGRER_AVEC_FLAG')
+-- GROUP BY source_table
+-- ORDER BY source_table;
+
+-- Contrôle 2 : volumes préparés
+-- SELECT
+--   source_table,
+--   COUNT(*) AS nb_lignes_preparees,
+--   COUNT(valeur_preparee) AS nb_valeurs_preparees
+-- FROM qa_dry_run.e0_mesures_preparees
+-- GROUP BY source_table
+-- ORDER BY source_table;
+
+-- Contrôle 3 : volumes en quarantaine
+-- SELECT
+--   source_table,
+--   COUNT(*) AS nb_lignes_quarantaine
+-- FROM qa_dry_run.e0_mesures_quarantaine
+-- GROUP BY source_table
+-- ORDER BY source_table;
+
+-- Contrôle 4 : table synthèse des deltas
+-- INSERT INTO qa_dry_run.e0_controle_volumes (...)
+-- SELECT
+--   :id_run,
+--   m.source_table,
+--   m.volume_mapping,
+--   COALESCE(p.nb_valeurs_preparees, 0) AS volume_prepare,
+--   COALESCE(q.nb_lignes_quarantaine, 0) AS volume_quarantaine,
+--   m.volume_mapping - COALESCE(p.nb_valeurs_preparees, 0) - COALESCE(q.nb_lignes_quarantaine, 0) AS delta,
+--   CASE
+--     WHEN m.volume_mapping - COALESCE(p.nb_valeurs_preparees, 0) - COALESCE(q.nb_lignes_quarantaine, 0) = 0 THEN 'OK'
+--     ELSE 'BLOQUANT'
+--   END,
+--   'Comparaison dry-run avant Lot E'
+-- FROM qa_dry_run.vue_volume_mapping m
+-- LEFT JOIN qa_dry_run.vue_volume_prepare p ON p.source_table = m.source_table
+-- LEFT JOIN qa_dry_run.vue_volume_quarantaine q ON q.source_table = m.source_table;
+
+-- Contrôle 5 : blocage automatique si delta non nul
+-- SELECT *
+-- FROM qa_dry_run.e0_controle_volumes
+-- WHERE delta <> 0
+-- ORDER BY source_table;

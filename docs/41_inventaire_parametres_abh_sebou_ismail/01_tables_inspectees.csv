@@ -1,0 +1,47 @@
+﻿base,schema,table,nombre_lignes,colonnes_parametre_detectees,colonnes_valeur_detectees,type_table,statut
+abh_sebou_ismail,public,adm_cercles_abhs,61,,,autre_métier,inspectée
+abh_sebou_ismail,public,adm_communes_abhs,346,,,autre_métier,inspectée
+abh_sebou_ismail,public,adm_douars_abhs,6013,,,autre_métier,inspectée
+abh_sebou_ismail,public,adm_provinces_abhs,21,,,autre_métier,inspectée
+abh_sebou_ismail,public,adm_regions_abhs,6,,,autre_métier,inspectée
+abh_sebou_ismail,public,adm_villes_abhs,33,,,autre_métier,inspectée
+abh_sebou_ismail,public,barrages_abhs,34,,"apports_hm, hauteur, montant_md, vrn_hm3",référentiel,inspectée
+abh_sebou_ismail,public,bassin_sebou,1,,"perimetre, superficie_km2",autre_métier,inspectée
+abh_sebou_ismail,public,bathymetries_barrages_abhs,62359,,"hauteur_m, surface_km2, volume_mm3",hydrologie,inspectée
+abh_sebou_ismail,public,capteurs_abhs,0,,,référentiel,inspectée
+abh_sebou_ismail,public,decharges_abhs,233,,"quantite_t_j, sup_occupee_ha, sup_tot_ha",pollution,inspectée
+abh_sebou_ismail,public,fosses_septiques_abhs,20,,,pollution,inspectée
+abh_sebou_ismail,public,huileries_abhs,612,,,pollution,inspectée
+abh_sebou_ismail,public,idp_2024_mesures_qualite_globale,4894,parametre_qualite,val_qual,qualité,inspectée
+abh_sebou_ismail,public,idp_2024_mesures_qualite_marche_cadre,3614,parametre_qualite,val_qual,qualité,inspectée
+abh_sebou_ismail,public,idp_2024_src_pollution_globale,243,parametre,"cond_20_c, disqu_secchi, eau_ss_terr_niv_statique_m_sol, eh_mv, o2_dissous, ph, sat_prc, t_air, t_eau, turbidite",pollution,inspectée
+abh_sebou_ismail,public,idp_2024_src_pollution_marche_cadre,148,parametre,"cond_20_c, disqu_secchi, eh_mv, o2_dissous, ph, sat_prc, t_air, t_eau, turbidite",pollution,inspectée
+abh_sebou_ismail,public,mesures_debit_jr,521433,,debit_jr,hydrologie,inspectée
+abh_sebou_ismail,public,mesures_debit_m,19316,,debit_m,hydrologie,inspectée
+abh_sebou_ismail,public,mesures_debit_sources,2816,,debit,hydrologie,inspectée
+abh_sebou_ismail,public,mesures_evaporation_jr,48900,,val_evaporation,météo,inspectée
+abh_sebou_ismail,public,mesures_niv_eau_barrages,85166,,"apports_mm3, niveau_eau_m_ngm, restitutions_mm3, transfert_mm3, volume_mm3",hydrologie,inspectée
+abh_sebou_ismail,public,mesures_precipitations_jr,669880,,precipitation_jr,météo,inspectée
+abh_sebou_ismail,public,mesures_precipitations_jr_max,2085,,"p_annuelle, p_max",météo,inspectée
+abh_sebou_ismail,public,mesures_precipitations_jr_traitees,546007,,"val_observees, val_power_nasa, val_remplies",météo,inspectée
+abh_sebou_ismail,public,mesures_qualite_barrages,8714,parametre_qualite,val_qual_barr,qualité,inspectée
+abh_sebou_ismail,public,mesures_qualite_nappes,63088,parametre_qualite,val_qual_nap,qualité,inspectée
+abh_sebou_ismail,public,mesures_qualite_rivieres,60097,parametre_qualite,val_qual_riv,qualité,inspectée
+abh_sebou_ismail,public,mesures_temperatures_jr,0,,temperature_jr,météo,inspectée
+abh_sebou_ismail,public,mines_abhs,42,,,pollution,inspectée
+abh_sebou_ismail,public,nappes_abhs,17,,superficie_km2,référentiel,inspectée
+abh_sebou_ismail,public,points_eau_abhs,46,,"dist_pt_eau_foyer_pollut_m, niv_piezometrique_m, profond_tot_m, vol_preleve_m3_an",référentiel,inspectée
+abh_sebou_ismail,public,profils_stations,1980,,,référentiel,inspectée
+abh_sebou_ismail,public,rejets_abattoirs_abhs,61,,,pollution,inspectée
+abh_sebou_ismail,public,rejets_domestiques_abhs,362,,"debit_l_s, dimension",pollution,inspectée
+abh_sebou_ismail,public,rejets_ind_abhs,11,,,pollution,inspectée
+abh_sebou_ismail,public,reseau_hydro_abhs,28,,longueur_km,hydrologie,inspectée
+abh_sebou_ismail,public,sources_abhs,135,,,référentiel,inspectée
+abh_sebou_ismail,public,sous_bassin_sebou,15,,superficie_km2,autre_métier,inspectée
+abh_sebou_ismail,public,stations_abhs,390,,,référentiel,inspectée
+abh_sebou_ismail,public,step_abhs,41,,"cap_equiv_hab, superficie_ha, vol_eaux_us_trait_m3_an",pollution,inspectée
+abh_sebou_ismail,public,step_ind_abhs,15,,,pollution,inspectée
+abh_sebou_ismail,public,stm_abhs,18,,,pollution,inspectée
+abh_sebou_ismail,public,suivi_qualite_brg_garde_hebdo,7094,parametre_qualite,val_qual_brg_garde_hebdo,qualité,inspectée
+abh_sebou_ismail,public,suivi_qualite_sebou_jr,59436,parametre_qualite,val_qual_sebou_jr,qualité,inspectée
+abh_sebou_ismail,public,types_mesures,64,parametre_qualite,,qualité,inspectée

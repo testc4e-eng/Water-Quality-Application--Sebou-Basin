@@ -133,45 +133,37 @@ debit_source_daily AS (
 ),
 barrage_rows AS (
     SELECT
-        'actuel'::text AS scenario_code,
-        'Actuel'::text AS scenario_label,
+        lower(coalesce(m.scenario, 'ACTUEL'))::text AS scenario_code,
+        initcap(lower(coalesce(m.scenario, 'ACTUEL')))::text AS scenario_label,
         'hydrologie'::text AS theme_code,
         'Hydrologie'::text AS theme_label,
         'barrage'::text AS submenu_code,
         'Barrage'::text AS submenu_label,
-        'niveau_barrage'::text AS variable_code,
-        'Niveau barrage'::text AS variable_label,
+        CASE m.parametre_code
+            WHEN 'NIVEAU_EAU' THEN 'niveau_barrage'
+            WHEN 'VOLUME' THEN 'volume_barrage'
+            WHEN 'LACHER' THEN 'lacher_barrage'
+            WHEN 'APPORT' THEN 'apport'
+            WHEN 'TRANSFERT' THEN 'transfert'
+        END::text AS variable_code,
+        CASE m.parametre_code
+            WHEN 'NIVEAU_EAU' THEN 'Niveau barrage'
+            WHEN 'VOLUME' THEN 'Volume barrage'
+            WHEN 'LACHER' THEN 'Lacher barrage'
+            WHEN 'APPORT' THEN 'Apport barrage'
+            WHEN 'TRANSFERT' THEN 'Transfert barrage'
+        END::text AS variable_label,
         TRUE AS variable_enabled,
         m.barrage_id::uuid AS site_id,
         (m.temps AT TIME ZONE 'UTC')::date AS date_obs,
-        m.cote_m::double precision AS value_num,
-        'm'::text AS unit,
-        'hydro.mesure_barrage'::text AS source_table,
+        m.valeur::double precision AS value_num,
+        m.unite::text AS unit,
+        'hydro.mesure_barrage_param'::text AS source_table,
         'ok'::text AS data_quality_flag
-    FROM hydro.mesure_barrage m
-    WHERE m.barrage_id IS NOT NULL AND m.cote_m IS NOT NULL
-
-    UNION ALL
-
-    SELECT
-        'actuel','Actuel','hydrologie','Hydrologie',
-        'barrage','Barrage',
-        'volume_barrage','Volume barrage',TRUE,
-        m.barrage_id::uuid, (m.temps AT TIME ZONE 'UTC')::date, m.volume_mm3::double precision,
-        'Mm3','hydro.mesure_barrage','ok'
-    FROM hydro.mesure_barrage m
-    WHERE m.barrage_id IS NOT NULL AND m.volume_mm3 IS NOT NULL
-
-    UNION ALL
-
-    SELECT
-        'actuel','Actuel','hydrologie','Hydrologie',
-        'barrage','Barrage',
-        'lacher_barrage','Lâcher barrage',TRUE,
-        m.barrage_id::uuid, (m.temps AT TIME ZONE 'UTC')::date, m.lacher_m3s::double precision,
-        'm3/s','hydro.mesure_barrage','ok'
-    FROM hydro.mesure_barrage m
-    WHERE m.barrage_id IS NOT NULL AND m.lacher_m3s IS NOT NULL
+    FROM hydro.mesure_barrage_param m
+    WHERE m.barrage_id IS NOT NULL
+      AND m.valeur IS NOT NULL
+      AND m.parametre_code IN ('NIVEAU_EAU', 'VOLUME', 'LACHER', 'APPORT', 'TRANSFERT')
 ),
 all_rows AS (
     SELECT * FROM debit_station_daily
@@ -209,7 +201,7 @@ resolved AS (
     FROM all_rows r
     JOIN barrage_dim bd
       ON bd.site_id = r.site_id
-    WHERE r.source_table = 'hydro.mesure_barrage'
+    WHERE r.source_table = 'hydro.mesure_barrage_param'
 
     UNION ALL
 
@@ -287,4 +279,3 @@ CREATE INDEX idx_mv_dashboard_hydrologie_menu_geom
 ANALYZE analytics.mv_dashboard_hydrologie_menu;
 
 COMMIT;
-

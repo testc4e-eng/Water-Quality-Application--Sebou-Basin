@@ -1,0 +1,62 @@
+-- ATTENTION : SCRIPT PROPOSE, NON EXECUTE
+-- EXECUTION INTERDITE SANS VALIDATION HUMAINE EXPLICITE
+-- Lot E0 : préparation du périmètre dry-run uniquement.
+
+-- Schéma de simulation recommandé
+-- CREATE SCHEMA IF NOT EXISTS qa_dry_run;
+
+-- Table périmètre du dry-run
+-- CREATE TABLE qa_dry_run.e0_mapping_scope AS
+-- SELECT *
+-- FROM metadata.mapping_parametre_source_new
+-- WHERE scope_migration = 'MESURE'
+--   AND action_migration IN ('MIGRER', 'MIGRER_AVEC_FLAG');
+
+-- Table résultat préparé
+-- CREATE TABLE qa_dry_run.e0_mesures_preparees (
+--   id_run uuid,
+--   source_schema text,
+--   source_table text,
+--   source_column_parametre text,
+--   source_column_valeur text,
+--   parametre_source text,
+--   code_parametre_canonique text,
+--   parametre_standard_metier text,
+--   unite_source text,
+--   unite_source_resolue text,
+--   unite_standard text,
+--   conversion_regle text,
+--   valeur_brute text,
+--   valeur_preparee numeric,
+--   statut_valeur text,
+--   qa_flags text,
+--   action_migration text,
+--   temps_source timestamptz,
+--   identifiant_source text,
+--   commentaire_preparation text
+-- );
+
+-- Table quarantaine du dry-run
+-- CREATE TABLE qa_dry_run.e0_mesures_quarantaine (
+--   id_run uuid,
+--   source_schema text,
+--   source_table text,
+--   parametre_source text,
+--   code_parametre_canonique text,
+--   valeur_brute text,
+--   motif_quarantaine text,
+--   qa_flags text,
+--   commentaire_preparation text
+-- );
+
+-- Table contrôle volumes
+-- CREATE TABLE qa_dry_run.e0_controle_volumes (
+--   id_run uuid,
+--   source_table text,
+--   volume_mapping bigint,
+--   volume_prepare bigint,
+--   volume_quarantaine bigint,
+--   delta bigint,
+--   statut_controle text,
+--   commentaire text
+-- );

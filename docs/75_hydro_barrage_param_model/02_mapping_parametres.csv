@@ -1,0 +1,6 @@
+source_table,source_column,parametre_source,parametre_code_cible,parametre_ref_lookup,unite_source,unite_reference_exposee,volume_dedup,classification,commentaire
+staging.raw_mesures_niv_eau_barrages,niveau_eau_m_ngm,niveau_eau_m_ngm,NIVEAU_EAU,metadata.referentiel_parametre_canonique.code_parametre='NIVEAU_EAU',m NGM,m,84832,OK_UNITE_ASSUMED,Unite cible standardisee a m avec trace de l'unite legacy dans metadata_json
+staging.raw_mesures_niv_eau_barrages,volume_mm3,volume_mm3,VOLUME,metadata.referentiel_parametre_canonique.code_parametre='VOLUME',Mm3,Mm3,10136,OK_ALIAS_REQUIRED,Remplace l'usage legacy de VOLUME_BARRAGE
+staging.raw_mesures_niv_eau_barrages,restitutions_mm3,RESTITUTION,LACHER,metadata.referentiel_parametre_canonique.code_parametre='LACHER',Mm3|HM3|Hm3|hm3,Mm3/j,84831,OK_RULE_VALIDATED,Volume journalier lache; interdiction d'exposition en m3/s
+staging.raw_mesures_niv_eau_barrages,apports_mm3,apports_mm3,APPORTS_HM3,metadata.referentiel_parametre_canonique.code_parametre='APPORTS_HM3',Mm3|HM3|Hm3|hm3,Mm3/j,84821,OK_NEW_CANONICAL,Volume journalier entrant; HM3/Hm3/hm3 harmonise vers Mm3
+staging.raw_mesures_niv_eau_barrages,transfert_mm3,transfert_mm3,TRANSFERT,metadata.referentiel_parametre_canonique.code_parametre='TRANSFERT',Mm3|HM3|Hm3|hm3,Mm3/j,8035,OK_NEW_CANONICAL,Volume journalier transfere; HM3/Hm3/hm3 harmonise vers Mm3
