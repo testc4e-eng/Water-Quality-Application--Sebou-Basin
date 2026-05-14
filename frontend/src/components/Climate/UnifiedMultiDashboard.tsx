@@ -148,7 +148,7 @@ function formatYearTick(value: string | number) {
   return String(value);
 }
 
-function selectionIsReady(selection: Selection, climateTheme: boolean, analyticsTheme: boolean): boolean {
+function selectionIsReady(selection: Selection, climateTheme: boolean, hydroTheme: boolean, analyticsTheme: boolean): boolean {
   const baseReady = !!selection.stationId && !!selection.submenu;
   if (!baseReady) return false;
   if (climateTheme) {
@@ -156,18 +156,23 @@ function selectionIsReady(selection: Selection, climateTheme: boolean, analytics
     const hasPeriod = !!selection.aggregation && !!selection.dateStart && !!selection.dateEnd && selection.dateStart <= selection.dateEnd;
     return hasVariable && hasPeriod;
   }
+  if (hydroTheme) {
+    const hasCore = !!selection.parameter?.param_code && !!selection.scenario;
+    const hasPeriod = !!selection.aggregation && !!selection.dateStart && !!selection.dateEnd && selection.dateStart <= selection.dateEnd;
+    return hasCore && hasPeriod;
+  }
   if (analyticsTheme) return true;
   return !!selection.parameter;
 }
 
 function aggregatePoints(points: Array<{ datetime: string; value: number }>, aggregation?: string) {
-  if (!aggregation || aggregation === "day") return points;
+  if (!aggregation || aggregation === "raw" || aggregation === "daily") return points;
   const buckets = new Map<string, { sum: number; count: number }>();
   for (const row of points) {
     const d = new Date(row.datetime);
     if (Number.isNaN(d.getTime())) continue;
     const key =
-      aggregation === "year"
+      aggregation === "yearly"
         ? `${d.getFullYear()}-01-01`
         : `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-01`;
     const prev = buckets.get(key) || { sum: 0, count: 0 };
@@ -210,7 +215,7 @@ export default function UnifiedMultiDashboard({ theme }: { theme: string }) {
       const pollutionTheme = isPollutionTheme(theme);
       const analyticsTheme = climateTheme || hydroTheme || pollutionTheme;
       const readyConfigs = multiConfigs.filter((config) =>
-        selectionIsReady(config.selection, climateTheme, analyticsTheme)
+        selectionIsReady(config.selection, climateTheme, hydroTheme, analyticsTheme)
       );
 
       if (readyConfigs.length === 0) {
@@ -225,7 +230,7 @@ export default function UnifiedMultiDashboard({ theme }: { theme: string }) {
       const nextSeries = await Promise.all(
         multiConfigs.map(async (config, index) => {
           const sel = config.selection;
-          if (!selectionIsReady(sel, climateTheme, analyticsTheme)) return null;
+          if (!selectionIsReady(sel, climateTheme, hydroTheme, analyticsTheme)) return null;
 
           try {
             let data: Array<{ datetime: string; value: number }> = [];
@@ -240,7 +245,9 @@ export default function UnifiedMultiDashboard({ theme }: { theme: string }) {
                 scenario: sel.scenario || "actuel",
                 submenu: sel.submenu!,
                 site: sel.stationId!,
-                variable: sel.parameter?.param_code,
+                parameter: hydroTheme ? sel.parameter?.param_code : undefined,
+                variable: climateTheme ? sel.parameter?.param_code : undefined,
+                aggregation: hydroTheme ? sel.aggregation : undefined,
                 date_start: sel.dateStart,
                 date_end: sel.dateEnd,
               });
@@ -377,7 +384,7 @@ export default function UnifiedMultiDashboard({ theme }: { theme: string }) {
                 <div className="mt-2 rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-[11px] text-slate-600">
                   {(() => {
                     const analyticsTheme = isClimateTheme(theme) || isHydroTheme(theme) || isPollutionTheme(theme);
-                    const ready = selectionIsReady(config.selection, isClimateTheme(theme), analyticsTheme);
+                    const ready = selectionIsReady(config.selection, isClimateTheme(theme), isHydroTheme(theme), analyticsTheme);
                     const serie = multiSeriesById.get(config.id);
                     const sel = config.selection;
                     if (!ready) return "Etat: sélection incomplète";
@@ -459,7 +466,7 @@ export default function UnifiedMultiDashboard({ theme }: { theme: string }) {
             <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
               {multiConfigs.map((config, idx) => {
                 const analyticsTheme = isClimateTheme(theme) || isHydroTheme(theme) || isPollutionTheme(theme);
-                const ready = selectionIsReady(config.selection, isClimateTheme(theme), analyticsTheme);
+                const ready = selectionIsReady(config.selection, isClimateTheme(theme), isHydroTheme(theme), analyticsTheme);
                 const serie = multiSeriesById.get(config.id);
                 const values = serie?.points?.map((p) => p.value).filter((v) => !Number.isNaN(v)) || [];
                 const min = values.length ? Math.min(...values) : null;

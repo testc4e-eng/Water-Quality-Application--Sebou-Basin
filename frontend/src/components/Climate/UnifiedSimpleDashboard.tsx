@@ -90,11 +90,11 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
   const aggregationLabel =
     selection.aggregation === "raw"
       ? "Donnees brutes"
-      : selection.aggregation === "day"
+      : selection.aggregation === "daily"
       ? "Journaliere"
-      : selection.aggregation === "month"
+      : selection.aggregation === "monthly"
       ? "Mensuelle"
-      : selection.aggregation === "year"
+      : selection.aggregation === "yearly"
       ? "Annuelle"
       : "Non defini";
   const contextQaStatus: QaStatus = loading
@@ -106,13 +106,13 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
     : "FLAGGED";
 
   const aggregateSeries = (rows: TimeseriesRow[], aggregation?: string): TimeseriesRow[] => {
-    if (!aggregation || aggregation === "day") return rows;
+    if (!aggregation || aggregation === "raw" || aggregation === "daily") return rows;
     const buckets = new Map<string, { sum: number; count: number }>();
     for (const row of rows) {
       const d = new Date(row.datetime);
       if (Number.isNaN(d.getTime())) continue;
       const key =
-        aggregation === "year"
+        aggregation === "yearly"
           ? `${d.getFullYear()}-01-01`
           : `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-01`;
       const prev = buckets.get(key) || { sum: 0, count: 0 };
@@ -133,9 +133,12 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
     const needsVariable = !!selection.variableEnabled;
     const hasRequiredVariable = !needsVariable || !!selection.parameter?.param_code;
     const hasPeriod = !!selection.dateStart && !!selection.dateEnd && selection.dateStart <= selection.dateEnd;
-    const hasClimateFilters = !!selection.aggregation && hasPeriod;
+    const hasHydroFilters = !!selection.parameter?.param_code && !!selection.scenario && !!selection.aggregation && hasPeriod;
+    const hasClimateFilters = !!selection.scenario && !!selection.aggregation && hasPeriod;
     const canLoadClimate = climateTheme
       ? !!selection.stationId && !!selection.submenu && hasRequiredVariable && hasClimateFilters
+      : hydroThemeInner
+      ? !!selection.stationId && !!selection.submenu && hasRequiredVariable && hasHydroFilters
       : !!selection.stationId && !!selection.submenu && hasRequiredVariable;
     const canLoadGeneric = !!selection.stationId && !!selection.submenu && !!selection.parameter;
     if ((analyticsTheme && !canLoadClimate) || (!analyticsTheme && !canLoadGeneric)) {
@@ -162,7 +165,9 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
             scenario: selection.scenario || "actuel",
             submenu: selection.submenu!,
             site: selection.stationId!,
-            variable: selection.parameter?.param_code,
+            parameter: hydroThemeInner ? selection.parameter?.param_code : undefined,
+            variable: climateTheme ? selection.parameter?.param_code : undefined,
+            aggregation: hydroThemeInner ? selection.aggregation : undefined,
             date_start: selection.dateStart,
             date_end: selection.dateEnd,
           });

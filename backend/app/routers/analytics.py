@@ -76,6 +76,45 @@ def _normalize_aggregation(value: Optional[str]) -> str:
     return mapping.get(key, "day")
 
 
+def _normalize_hydro_aggregation(value: Optional[str]) -> str:
+    key = (value or "").strip().lower()
+    mapping = {
+        "raw": "raw",
+        "brut": "raw",
+        "donnees_brutes": "raw",
+        "daily": "daily",
+        "day": "daily",
+        "journaliere": "daily",
+        "journalier": "daily",
+        "monthly": "monthly",
+        "month": "monthly",
+        "mensuelle": "monthly",
+        "mensuel": "monthly",
+        "yearly": "yearly",
+        "year": "yearly",
+        "annuelle": "yearly",
+        "annuel": "yearly",
+    }
+    if key not in mapping:
+        raise HTTPException(status_code=422, detail="aggregation invalide. valeurs: raw,daily,monthly,yearly")
+    return mapping[key]
+
+
+def _hydro_bucket_expr(aggregation: str) -> str:
+    if aggregation == "raw":
+        return "date_obs::date"
+    if aggregation == "daily":
+        return "date_trunc('day', date_obs)::date"
+    if aggregation == "monthly":
+        return "date_trunc('month', date_obs)::date"
+    return "date_trunc('year', date_obs)::date"
+
+
+def getHydrologyAggregationFunction(parameter: Optional[str]) -> str:
+    _ = parameter
+    return "AVG(value_num)"
+
+
 def _climate_analytics_has_data(db: Session) -> bool:
     q = text(
         """
@@ -606,6 +645,132 @@ def get_hydrologie_options(
     return {"scenarios": scenarios, "submenus": submenus, "sites": sites}
 
 
+@router.get("/hydrologie/scenarios")
+def get_hydrologie_scenarios(
+    submenu: str = Query(...),
+    variable: Optional[str] = Query(None),
+    parameter: Optional[str] = Query(None),
+    db: Session = Depends(get_climate_db),
+):
+    norm_variable = _normalize_variable(parameter or variable)
+    mv = "analytics.mv_dashboard_hydrologie_menu"
+    rows = db.execute(
+        text(
+            f"""
+            SELECT DISTINCT scenario_code AS code, scenario_label AS label
+            FROM {mv}
+            WHERE submenu_code = :submenu
+              AND (:variable IS NULL OR variable_code = :variable)
+              AND value_num IS NOT NULL
+            ORDER BY scenario_code
+            """
+        ),
+        {"submenu": submenu, "variable": norm_variable},
+    ).mappings().all()
+    return [dict(r) for r in rows]
+
+
+@router.get("/hydrologie/submenus")
+def get_hydrologie_submenus(
+    scenario: str = Query("actuel"),
+    db: Session = Depends(get_climate_db),
+):
+    mv = "analytics.mv_dashboard_hydrologie_menu"
+    rows = db.execute(
+        text(
+            f"""
+            SELECT DISTINCT submenu_code AS id, submenu_label AS label
+            FROM {mv}
+            WHERE scenario_code = :scenario
+              AND value_num IS NOT NULL
+            ORDER BY submenu_label
+            """
+        ),
+        {"scenario": scenario},
+    ).mappings().all()
+    return [dict(r) for r in rows]
+
+
+@router.get("/hydrologie/parameters")
+def get_hydrologie_parameters(
+    submenu: str = Query(...),
+    scenario: str = Query("actuel"),
+    db: Session = Depends(get_climate_db),
+):
+    mv = "analytics.mv_dashboard_hydrologie_menu"
+    rows = db.execute(
+        text(
+            f"""
+            SELECT DISTINCT
+                variable_code AS id,
+                variable_label AS label,
+                unit
+            FROM {mv}
+            WHERE scenario_code = :scenario
+              AND submenu_code = :submenu
+              AND value_num IS NOT NULL
+              AND variable_code IS NOT NULL
+            ORDER BY variable_label
+            """
+        ),
+        {"scenario": scenario, "submenu": submenu},
+    ).mappings().all()
+    return [dict(r) for r in rows]
+
+
+@router.get("/hydrologie/date-range")
+def get_hydrologie_date_range(
+    submenu: str = Query(...),
+    scenario: str = Query("actuel"),
+    parameter: Optional[str] = Query(None),
+    variable: Optional[str] = Query(None),
+    aggregation: Optional[str] = Query("daily"),
+    db: Session = Depends(get_climate_db),
+):
+    mv = "analytics.mv_dashboard_hydrologie_menu"
+    norm_variable = _normalize_variable(parameter or variable)
+    norm_agg = _normalize_hydro_aggregation(aggregation)
+    has_vars = _submenu_has_variables_mv(db, mv, scenario=scenario, submenu=submenu)
+    if has_vars and norm_variable is None:
+        raise HTTPException(status_code=422, detail="parameter est obligatoire pour ce sous-menu")
+
+    bucket_expr = _hydro_bucket_expr(norm_agg)
+    q = text(
+        f"""
+        WITH series AS (
+            SELECT {bucket_expr} AS bucket_date
+            FROM {mv}
+            WHERE scenario_code = :scenario
+              AND submenu_code = :submenu
+              AND value_num IS NOT NULL
+              AND (
+                    (:has_vars = FALSE AND variable_code IS NULL)
+                    OR (:has_vars = TRUE AND variable_code = :variable)
+                  )
+        )
+        SELECT
+            MIN(bucket_date)::date AS min_date,
+            MAX(bucket_date)::date AS max_date,
+            COUNT(*)::int AS n
+        FROM series
+        """
+    )
+    row = db.execute(
+        q,
+        {
+            "scenario": scenario,
+            "submenu": submenu,
+            "variable": norm_variable,
+            "has_vars": has_vars,
+        },
+    ).mappings().first()
+    return {
+        "minDate": str(row["min_date"]) if row and row["min_date"] else None,
+        "maxDate": str(row["max_date"]) if row and row["max_date"] else None,
+        "count": int(row["n"]) if row else 0,
+    }
+
+
 @router.get("/pollution/options")
 def get_pollution_options(
     scenario: str = Query("actuel"),
@@ -712,16 +877,29 @@ def get_pollution_options(
 def get_hydrologie_sites(
     submenu: str,
     variable: Optional[str] = None,
+    parameter: Optional[str] = None,
     scenario: str = "actuel",
+    aggregation: Optional[str] = "daily",
+    date_start: Optional[str] = None,
+    date_end: Optional[str] = None,
+    startDate: Optional[str] = None,
+    endDate: Optional[str] = None,
     db: Session = Depends(get_climate_db),
 ):
     """
     Retourne uniquement les entités ayant réellement des valeurs
     pour la combinaison (scenario, submenu, variable éventuelle).
     """
-    norm_variable = _normalize_variable(variable)
+    norm_variable = _normalize_variable(parameter or variable)
+    eff_start = startDate or date_start
+    eff_end = endDate or date_end
+    _normalize_hydro_aggregation(aggregation)
+    if eff_start and eff_end and eff_start > eff_end:
+        raise HTTPException(status_code=422, detail="date_start doit etre <= date_end")
     mv = "analytics.mv_dashboard_hydrologie_menu"
     has_vars = _submenu_has_variables_mv(db, mv, scenario=scenario, submenu=submenu)
+    if has_vars and norm_variable is None:
+        raise HTTPException(status_code=422, detail="parameter est obligatoire pour ce sous-menu")
 
     query = text(
         f"""
@@ -736,9 +914,11 @@ def get_hydrologie_sites(
             WHERE scenario_code = :scenario
               AND submenu_code = :submenu
               AND value_num IS NOT NULL
+              AND (:date_start IS NULL OR date_obs >= CAST(:date_start AS date))
+              AND (:date_end IS NULL OR date_obs <= CAST(:date_end AS date))
               AND (
                     (:has_vars = FALSE AND variable_code IS NULL)
-                    OR (:has_vars = TRUE AND (:variable IS NULL OR variable_code = :variable))
+                    OR (:has_vars = TRUE AND variable_code = :variable)
                   )
             ORDER BY site_id, site_name, station_type
         ) s
@@ -752,6 +932,8 @@ def get_hydrologie_sites(
             "submenu": submenu,
             "variable": norm_variable,
             "has_vars": has_vars,
+            "date_start": eff_start,
+            "date_end": eff_end,
         },
     ).mappings().all()
     return [dict(r) for r in rows]
@@ -761,10 +943,15 @@ def get_hydrologie_sites(
 def get_hydrologie_series(
     scenario: str = Query("actuel"),
     submenu: str = Query(...),
-    site: str = Query(...),
+    site: Optional[str] = Query(None),
+    siteId: Optional[str] = Query(None),
     variable: Optional[str] = Query(None),
+    parameter: Optional[str] = Query(None),
+    aggregation: Optional[str] = Query("daily"),
     date_start: Optional[str] = Query(None),
     date_end: Optional[str] = Query(None),
+    startDate: Optional[str] = Query(None),
+    endDate: Optional[str] = Query(None),
     db: Session = Depends(get_climate_db),
 ):
     """
@@ -774,22 +961,33 @@ def get_hydrologie_series(
     - table historique
     - série temporelle
     """
-    norm_variable = _normalize_variable(variable)
+    effective_site = siteId or site
+    if not effective_site:
+        raise HTTPException(status_code=422, detail="site/siteId est obligatoire")
+    norm_variable = _normalize_variable(parameter or variable)
+    eff_start = startDate or date_start
+    eff_end = endDate or date_end
+    norm_agg = _normalize_hydro_aggregation(aggregation)
+    if eff_start and eff_end and eff_start > eff_end:
+        raise HTTPException(status_code=422, detail="date_start doit etre <= date_end")
     mv = "analytics.mv_dashboard_hydrologie_menu"
     has_vars = _submenu_has_variables_mv(db, mv, scenario=scenario, submenu=submenu)
     if has_vars and norm_variable is None:
-        raise HTTPException(status_code=422, detail="variable est obligatoire pour ce sous-menu")
+        raise HTTPException(status_code=422, detail="parameter est obligatoire pour ce sous-menu")
+
+    bucket_expr = _hydro_bucket_expr(norm_agg)
+    agg_fn = getHydrologyAggregationFunction(norm_variable)
 
     sql = text(
         f"""
         SELECT
-            date_obs,
-            value_num,
-            unit,
-            variable_code,
-            variable_label,
-            source_table,
-            data_quality_flag
+            {bucket_expr} AS date_obs,
+            {agg_fn} AS value_num,
+            MAX(unit) AS unit,
+            MAX(variable_code) AS variable_code,
+            MAX(variable_label) AS variable_label,
+            MAX(source_table) AS source_table,
+            NULL::text AS data_quality_flag
         FROM {mv}
         WHERE scenario_code = :scenario
           AND submenu_code = :submenu
@@ -801,6 +999,7 @@ def get_hydrologie_series(
               )
           AND (:date_start IS NULL OR date_obs >= CAST(:date_start AS date))
           AND (:date_end IS NULL OR date_obs <= CAST(:date_end AS date))
+        GROUP BY {bucket_expr}
         ORDER BY date_obs ASC
         """
     )
@@ -809,23 +1008,24 @@ def get_hydrologie_series(
         {
             "scenario": scenario,
             "submenu": submenu,
-            "site": site,
+            "site": effective_site,
             "variable": norm_variable,
             "has_vars": has_vars,
-            "date_start": date_start,
-            "date_end": date_end,
+            "date_start": eff_start,
+            "date_end": eff_end,
         },
     ).mappings().all()
 
     if not rows:
         return {
             "metadata": {
-                "scenario": scenario,
-                "submenu": submenu,
-                "variable": norm_variable,
-                "site": site,
-                "unit": None,
-            },
+            "scenario": scenario,
+            "submenu": submenu,
+            "variable": norm_variable,
+            "aggregation": norm_agg,
+            "site": effective_site,
+            "unit": None,
+        },
             "kpis": {
                 "min": None,
                 "max": None,
@@ -861,7 +1061,8 @@ def get_hydrologie_series(
             "scenario": scenario,
             "submenu": submenu,
             "variable": norm_variable,
-            "site": site,
+            "aggregation": norm_agg,
+            "site": effective_site,
             "unit": unit,
         },
         "kpis": {
@@ -875,6 +1076,38 @@ def get_hydrologie_series(
         "table": table_rows,
         "series": series_rows,
     }
+
+
+@router.get("/hydrologie/series-multiple")
+def get_hydrologie_series_multiple(
+    scenario: str = Query("actuel"),
+    submenu: str = Query(...),
+    parameter: Optional[str] = Query(None),
+    aggregation: Optional[str] = Query("daily"),
+    startDate: Optional[str] = Query(None),
+    endDate: Optional[str] = Query(None),
+    siteIds: str = Query(...),
+    db: Session = Depends(get_climate_db),
+):
+    norm_agg = _normalize_hydro_aggregation(aggregation)
+    site_ids = [s.strip() for s in siteIds.split(",") if s.strip()]
+    if not site_ids:
+        raise HTTPException(status_code=422, detail="siteIds vide")
+
+    out = []
+    for sid in site_ids:
+        one = get_hydrologie_series(
+            scenario=scenario,
+            submenu=submenu,
+            site=sid,
+            parameter=parameter,
+            aggregation=norm_agg,
+            startDate=startDate,
+            endDate=endDate,
+            db=db,
+        )
+        out.append(one)
+    return {"seriesBySite": out}
 
 
 @router.get("/climat-meteo/sites")
