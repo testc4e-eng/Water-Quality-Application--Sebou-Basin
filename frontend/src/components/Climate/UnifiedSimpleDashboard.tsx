@@ -4,13 +4,26 @@ import { Card } from "@/components/ui/card";
 import UnifiedFilters from "@/components/Climate/UnifiedFilters";
 import ClimateChart from "@/components/Climate/ClimateChart";
 import ClimateTable from "@/components/Climate/ClimateTable";
+import { QaBadge, type QaStatus } from "@/components/ui/qa-badge";
 import { getParameterTimeseries } from "@/api/observatory";
 import type { HierParameter } from "@/api/observatory";
+import { getClimatMeteoSeries, getHydrologieSeries, getPollutionSeries } from "@/api/analytics";
 
 type Selection = {
+  scenario?: string;
   stationId?: string;
   parameter?: HierParameter;
   submenu?: string;
+  submenuLabel?: string;
+  variableEnabled?: boolean;
+  entityObj?: {
+    id: string;
+    name: string;
+    code?: string;
+  };
+  aggregation?: string;
+  dateStart?: string;
+  dateEnd?: string;
 };
 
 type TimeseriesRow = {
@@ -18,10 +31,38 @@ type TimeseriesRow = {
   value: number;
 };
 
+function isClimateTheme(theme: string): boolean {
+  const normalized = (theme || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+  return normalized === "climat_meteo" || normalized.includes("climat") || normalized.includes("meteo");
+}
+
+function isHydroTheme(theme: string): boolean {
+  const normalized = (theme || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+  return normalized === "hydrologie" || normalized.includes("hydrolog");
+}
+
+function isPollutionTheme(theme: string): boolean {
+  const normalized = (theme || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+  return normalized === "pollution" || normalized.includes("pollut");
+}
+
 export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
   const [selection, setSelection] = useState<Selection>({});
   const [series, setSeries] = useState<TimeseriesRow[]>([]);
   const [loading, setLoading] = useState(false);
+  const [seriesUnit, setSeriesUnit] = useState<string>("");
   
   const chartRef = useRef<HTMLDivElement | null>(null);
 
@@ -30,13 +71,77 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
   const max = values.length ? Math.max(...values) : null;
   const mean = values.length ? values.reduce((a, b) => a + b, 0) / values.length : null;
 
-  const unit = selection.parameter?.unite || "";
-  const varLabel = selection.parameter?.param_label || "Choisir une variable";
+  const unit = selection.parameter?.unite || seriesUnit || "";
+  const varLabel =
+    selection.parameter?.param_label ||
+    selection.submenuLabel ||
+    selection.submenu ||
+    "Choisir une variable";
   const varIcon = varLabel.toLowerCase().includes("températ") ? "🌡️" : varLabel.toLowerCase().includes("précipit") ? "☔" : "📊";
+  const sourceLabel = selection.parameter
+    ? `${selection.parameter.source_schema}.${selection.parameter.source_table}`
+    : selection.scenario
+    ? `analytics:${selection.scenario}`
+    : "Source non sélectionnée";
+  const periodLabel =
+    selection.dateStart || selection.dateEnd
+      ? `${selection.dateStart || "debut"} -> ${selection.dateEnd || "fin"}`
+      : "Toutes les périodes disponibles";
+  const aggregationLabel =
+    selection.aggregation === "raw"
+      ? "Donnees brutes"
+      : selection.aggregation === "day"
+      ? "Journaliere"
+      : selection.aggregation === "month"
+      ? "Mensuelle"
+      : selection.aggregation === "year"
+      ? "Annuelle"
+      : "Non defini";
+  const contextQaStatus: QaStatus = loading
+    ? "FLAGGED"
+    : series.length > 0
+    ? "VALID"
+    : selection.stationId
+    ? "MISSING"
+    : "FLAGGED";
+
+  const aggregateSeries = (rows: TimeseriesRow[], aggregation?: string): TimeseriesRow[] => {
+    if (!aggregation || aggregation === "day") return rows;
+    const buckets = new Map<string, { sum: number; count: number }>();
+    for (const row of rows) {
+      const d = new Date(row.datetime);
+      if (Number.isNaN(d.getTime())) continue;
+      const key =
+        aggregation === "year"
+          ? `${d.getFullYear()}-01-01`
+          : `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-01`;
+      const prev = buckets.get(key) || { sum: 0, count: 0 };
+      prev.sum += Number(row.value);
+      prev.count += 1;
+      buckets.set(key, prev);
+    }
+    return Array.from(buckets.entries())
+      .sort((a, b) => a[0].localeCompare(b[0]))
+      .map(([datetime, v]) => ({ datetime, value: v.count ? v.sum / v.count : 0 }));
+  };
 
   useEffect(() => {
-    if (!selection.stationId || !selection.parameter || !selection.submenu) {
+    const climateTheme = isClimateTheme(theme);
+    const hydroThemeInner = isHydroTheme(theme);
+    const pollutionTheme = isPollutionTheme(theme);
+    const analyticsTheme = climateTheme || hydroThemeInner || pollutionTheme;
+    const needsVariable = !!selection.variableEnabled;
+    const hasRequiredVariable = !needsVariable || !!selection.parameter?.param_code;
+    const hasPeriod = !!selection.dateStart && !!selection.dateEnd && selection.dateStart <= selection.dateEnd;
+    const hasClimateFilters = !!selection.aggregation && hasPeriod;
+    const canLoadClimate = climateTheme
+      ? !!selection.stationId && !!selection.submenu && hasRequiredVariable && hasClimateFilters
+      : !!selection.stationId && !!selection.submenu && hasRequiredVariable;
+    const canLoadGeneric = !!selection.stationId && !!selection.submenu && !!selection.parameter;
+    if ((analyticsTheme && !canLoadClimate) || (!analyticsTheme && !canLoadGeneric)) {
       setSeries([]);
+      setSeriesUnit("");
+      setLoading(false);
       return;
     }
 
@@ -46,12 +151,35 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
 
     const load = async () => {
       try {
-        const data = await getParameterTimeseries({
-          theme: theme,
-          sous_menu: selection.submenu!,
-          param_code: selection.parameter!.param_code,
-          entity_id: selection.stationId!,
-        });
+        let data;
+        if (analyticsTheme) {
+          const loader = climateTheme
+            ? getClimatMeteoSeries
+            : hydroThemeInner
+            ? getHydrologieSeries
+            : getPollutionSeries;
+          const res = await loader({
+            scenario: selection.scenario || "actuel",
+            submenu: selection.submenu!,
+            site: selection.stationId!,
+            variable: selection.parameter?.param_code,
+            date_start: selection.dateStart,
+            date_end: selection.dateEnd,
+          });
+          data = aggregateSeries(res.series, selection.aggregation);
+          if (!cancelled) setSeriesUnit(res?.metadata?.unit || "");
+        } else {
+          data = await getParameterTimeseries({
+            theme: theme,
+            sous_menu: selection.submenu!,
+            param_code: selection.parameter!.param_code,
+            entity_id: selection.stationId!,
+            date_start: selection.dateStart,
+            date_end: selection.dateEnd,
+          });
+          if (!cancelled) setSeriesUnit(selection.parameter?.unite || "");
+          data = aggregateSeries(data, selection.aggregation);
+        }
         if (!cancelled) setSeries(Array.isArray(data) ? data : []);
       } catch (err) {
         if (!cancelled) {
@@ -67,7 +195,7 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
     return () => {
       cancelled = true;
     };
-  }, [theme, selection.stationId, selection.parameter, selection.submenu]);
+  }, [theme, selection.stationId, selection.parameter, selection.submenu, selection.scenario, selection.dateStart, selection.dateEnd, selection.aggregation]);
 
   return (
     <div className="space-y-6 animate-in fade-in duration-500">
@@ -89,9 +217,65 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
 
         {/* CONTENT */}
         <div className="col-span-12 space-y-6 lg:col-span-9">
+          <div className="rounded-2xl border border-slate-200 bg-white/90 px-5 py-4 shadow-sm">
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">
+                  Contexte décisionnel
+                </p>
+                <h2 className="mt-1 text-lg font-bold text-slate-900">
+                  {theme} · {selection.entityObj?.name || selection.entityObj?.code || "Site non sélectionné"}
+                </h2>
+              </div>
+              <span className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700">
+                {loading ? "Chargement" : series.length ? `${series.length} points` : "En attente"}
+              </span>
+              <QaBadge status={contextQaStatus} />
+            </div>
+            <div className="grid grid-cols-1 gap-3 text-xs md:grid-cols-5">
+              <div className="rounded-xl bg-slate-50 px-3 py-2">
+                <div className="font-semibold uppercase tracking-wide text-slate-400">Thème</div>
+                <div className="mt-1 font-semibold text-slate-800">{theme}</div>
+              </div>
+              <div className="rounded-xl bg-slate-50 px-3 py-2">
+                <div className="font-semibold uppercase tracking-wide text-slate-400">Paramètre</div>
+                <div className="mt-1 font-semibold text-slate-800">{varLabel}</div>
+              </div>
+              <div className="rounded-xl bg-slate-50 px-3 py-2">
+                <div className="font-semibold uppercase tracking-wide text-slate-400">Scénario</div>
+                <div className="mt-1 font-semibold text-slate-800">{selection.scenario || "Non défini"}</div>
+              </div>
+              <div className="rounded-xl bg-slate-50 px-3 py-2">
+                <div className="font-semibold uppercase tracking-wide text-slate-400">Agrégation</div>
+                <div className="mt-1 font-semibold text-slate-800">{aggregationLabel}</div>
+              </div>
+              <div className="rounded-xl bg-slate-50 px-3 py-2">
+                <div className="font-semibold uppercase tracking-wide text-slate-400">Période</div>
+                <div className="mt-1 font-semibold text-slate-800">{periodLabel}</div>
+              </div>
+            </div>
+          </div>
+
           {/* KPI CARDS */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <KpiCard title="STATUS" value={loading ? "Chargement..." : selection.stationId ? "Données OK" : "En attente"} bg="sky" icon="🛰️" />
+            <KpiCard
+              title="STATUS"
+              value={
+                loading
+                  ? "Chargement..."
+                  : !selection.submenu
+                  ? "Choisir sous-menu"
+                  : selection.variableEnabled && !selection.parameter?.param_code
+                  ? "Choisir variable"
+                  : !selection.stationId
+                  ? "Choisir site"
+                  : series.length > 0
+                  ? "Données OK"
+                  : "Aucune donnée"
+              }
+              bg="sky"
+              icon="🛰️"
+            />
             <KpiCard title="MINIMUM" value={`${fmt(min)} ${unit}`} bg="emerald" icon="📉" />
             <KpiCard title="MAXIMUM" value={`${fmt(max)} ${unit}`} bg="rose" icon="📈" />
             <KpiCard title="MOYENNE" value={`${fmt(mean)} ${unit}`} bg="violet" icon="📊" />
