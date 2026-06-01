@@ -1,0 +1,98 @@
+[
+  {
+    "id": "9d9c6454-777b-455f-a927-da8e8d63b5ec",
+    "code_station": "1359/8",
+    "nom": "khenichet",
+    "type_station": "hydrologique",
+    "actif": true,
+    "geom_wkt": "POINT(-5.68535755031269 34.44165203108236)"
+  },
+  {
+    "id": "b647955a-e26d-4564-8509-25cb40ef1404",
+    "code_station": "1540/15",
+    "nom": "azib soltane",
+    "type_station": "hydrologique",
+    "actif": true,
+    "geom_wkt": "POINT(-5.485333294244439 34.32455013367434)"
+  },
+  {
+    "id": "d098a56d-7e97-453f-b1c0-32305b595087",
+    "code_station": "1541/15",
+    "nom": "pont rp 26",
+    "type_station": "hydrologique",
+    "actif": true,
+    "geom_wkt": "POINT(-5.146177541797031 34.309017946633176)"
+  },
+  {
+    "id": "d65b42a0-4871-4582-9950-1465e53adaaa",
+    "code_station": "1545/8",
+    "nom": "my ali cherif",
+    "type_station": "hydrologique",
+    "actif": true,
+    "geom_wkt": "POINT(-6.112037260985787 34.729642906692995)"
+  },
+  {
+    "id": "440fef7e-9048-4ec4-ac30-d94a20e4f562",
+    "code_station": "2062/21",
+    "nom": "el hammam",
+    "type_station": "hydrologique",
+    "actif": true,
+    "geom_wkt": "POINT(-5.83197834725947 34.74213473631312)"
+  },
+  {
+    "id": "706fc2fe-3cee-4ec2-8e85-dbde9b672f89",
+    "code_station": "2263/15",
+    "nom": "dar el arsa",
+    "type_station": "hydrologique",
+    "actif": true,
+    "geom_wkt": "POINT(-4.928503121099006 34.19565290018216)"
+  },
+  {
+    "id": "c65f2655-996e-4d9e-942d-a2da7b4dafe7",
+    "code_station": "2551/15",
+    "nom": "tissa boukarkour",
+    "type_station": "hydrologique",
+    "actif": true,
+    "geom_wkt": "POINT(-4.570749724401756 34.313982439870465)"
+  },
+  {
+    "id": "517c713a-dda4-4dcb-a033-4143062487fd",
+    "code_station": "260/9",
+    "nom": "bab ouender",
+    "type_station": "hydrologique",
+    "actif": true,
+    "geom_wkt": "POINT(-4.5320310279197 34.55781613241394)"
+  },
+  {
+    "id": "9de7c827-693d-4af0-9f1f-ec66a407ccb3",
+    "code_station": "3261/14",
+    "nom": "souk el had rdom",
+    "type_station": "hydrologique",
+    "actif": true,
+    "geom_wkt": "POINT(-5.758004316429032 34.296117573592014)"
+  },
+  {
+    "id": "475219d3-b07e-4a02-a189-1b4a743d04c7",
+    "code_station": "3694/8",
+    "nom": "pont bel ksiri  ",
+    "type_station": null,
+    "actif": true,
+    "geom_wkt": "POINT(-5.963808792405898 34.56765709845768)"
+  },
+  {
+    "id": "d4ba6716-3169-4af4-be47-042db7ba289e",
+    "code_station": "3817/600",
+    "nom": "fes (ABHS)",
+    "type_station": "pluviometrique",
+    "actif": true,
+    "geom_wkt": "POINT(-5.001623850226262 34.03501411564286)"
+  },
+  {
+    "id": "81f85bbe-9afa-4c6b-b051-ff0de9f75df6",
+    "code_station": "618/22",
+    "nom": "souk el had oued ifrane",
+    "type_station": "hydrologique",
+    "actif": true,
+    "geom_wkt": "POINT(-5.491090065104011 33.295593827379804)"
+  }
+]

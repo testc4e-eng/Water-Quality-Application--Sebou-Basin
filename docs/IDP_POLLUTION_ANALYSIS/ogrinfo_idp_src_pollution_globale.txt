@@ -1,0 +1,92 @@
+INFO: Open of `C:\dev\WQDSS\data\Qualité & pollution shp\processed\idp_src_pollution_globale.shp'
+      using driver `ESRI Shapefile' successful.
+
+Layer name: idp_src_pollution_globale
+Metadata:
+  DBF_DATE_LAST_UPDATE=2026-05-18
+Geometry: Point
+Feature Count: 243
+Extent: (379171.000000, 294194.000000) - (633742.000000, 495449.000000)
+Layer SRS WKT:
+PROJCRS["Merchich / Nord Maroc",
+    BASEGEOGCRS["Merchich",
+        DATUM["Merchich",
+            ELLIPSOID["Clarke 1880 (IGN)",6378249.2,293.466021293627,
+                LENGTHUNIT["metre",1]]],
+        PRIMEM["Greenwich",0,
+            ANGLEUNIT["degree",0.0174532925199433]],
+        ID["EPSG",4261]],
+    CONVERSION["Nord Maroc",
+        METHOD["Lambert Conic Conformal (1SP)",
+            ID["EPSG",9801]],
+        PARAMETER["Latitude of natural origin",37,
+            ANGLEUNIT["grad",0.0157079632679489],
+            ID["EPSG",8801]],
+        PARAMETER["Longitude of natural origin",-6,
+            ANGLEUNIT["grad",0.0157079632679489],
+            ID["EPSG",8802]],
+        PARAMETER["Scale factor at natural origin",0.999625769,
+            SCALEUNIT["unity",1],
+            ID["EPSG",8805]],
+        PARAMETER["False easting",500000,
+            LENGTHUNIT["metre",1],
+            ID["EPSG",8806]],
+        PARAMETER["False northing",300000,
+            LENGTHUNIT["metre",1],
+            ID["EPSG",8807]]],
+    CS[Cartesian,2],
+        AXIS["easting (X)",east,
+            ORDER[1],
+            LENGTHUNIT["metre",1]],
+        AXIS["northing (Y)",north,
+            ORDER[2],
+            LENGTHUNIT["metre",1]],
+    USAGE[
+        SCOPE["Engineering survey, topographic mapping."],
+        AREA["Morocco onshore north of 35 grads North (31°30'N)."],
+        BBOX[31.49,-9.85,35.97,-1.01]],
+    ID["EPSG",26191]]
+Data axis to CRS axis mapping: 1,2
+id_pts: Integer64 (10.0)
+id_table: String (254.0)
+date_jr_pr: Date
+heure_prel: String (254.0)
+pts_prelev: String (254.0)
+n_enregest: String (254.0)
+n_ordre: String (254.0)
+n_indice: String (254.0)
+ire: String (254.0)
+commune: String (254.0)
+code_commu: String (254.0)
+coord_x: Real (24.15)
+coord_y: Real (24.15)
+t_air: Real (24.15)
+t_eau: Real (24.15)
+ph: Real (24.15)
+eh_mv: Real (24.15)
+cond_20_c: Real (24.15)
+turbidite: Real (24.15)
+disqu_secc: Real (24.15)
+o2_dissous: Real (24.15)
+sat_prc: Real (24.15)
+echantillo: String (254.0)
+nature_pts: String (254.0)
+conditions: String (254.0)
+but_analys: String (254.0)
+acces: String (254.0)
+observatio: String (254.0)
+eau_ss_ter: Real (24.15)
+eau_ss_t_1: String (254.0)
+eau_ss_t_2: String (254.0)
+eau_ss_t_3: String (254.0)
+eau_ss_t_4: String (254.0)
+eau_ss_t_5: String (254.0)
+observat_1: String (254.0)
+eau_surf_l: String (254.0)
+eau_surf_1: String (254.0)
+eau_surf_p: String (254.0)
+eau_surf_e: String (254.0)
+eau_surf_d: String (254.0)
+eau_surf_o: String (254.0)
+nature: String (254.0)
+parametre: String (254.0)

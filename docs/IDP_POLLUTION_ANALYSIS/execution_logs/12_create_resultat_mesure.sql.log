@@ -1,0 +1,28 @@
+START 12_create_resultat_mesure.sql 2026-05-18T14:39:50.6127076+01:00
+BEGIN
+CREATE EXTENSION
+psql:C:/dev/WQDSS/repo_git/database/idp_pollution/12_create_resultat_mesure.sql:7: NOTICE:  extension "pgcrypto" already exists, skipping
+psql:C:/dev/WQDSS/repo_git/database/idp_pollution/12_create_resultat_mesure.sql:8: NOTICE:  extension "postgis" already exists, skipping
+CREATE EXTENSION
+psql:C:/dev/WQDSS/repo_git/database/idp_pollution/12_create_resultat_mesure.sql:9: NOTICE:  schema "qualite" already exists, skipping
+CREATE SCHEMA
+psql:C:/dev/WQDSS/repo_git/database/idp_pollution/12_create_resultat_mesure.sql:10: NOTICE:  schema "qa" already exists, skipping
+CREATE SCHEMA
+CREATE TABLE
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE FUNCTION
+psql:C:/dev/WQDSS/repo_git/database/idp_pollution/12_create_resultat_mesure.sql:79: NOTICE:  trigger "trg_resultat_mesure_set_updated_at" for relation "qualite.resultat_mesure" does not exist, skipping
+DROP TRIGGER
+CREATE TRIGGER
+CREATE FUNCTION
+DROP TRIGGER
+psql:C:/dev/WQDSS/repo_git/database/idp_pollution/12_create_resultat_mesure.sql:97: NOTICE:  trigger "trg_resultat_mesure_set_geom_4326" for relation "qualite.resultat_mesure" does not exist, skipping
+CREATE TRIGGER
+COMMENT
+COMMIT
+END 12_create_resultat_mesure.sql 2026-05-18T14:39:50.8403107+01:00

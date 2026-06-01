@@ -1,0 +1,3603 @@
+{
+  "columns": [
+    {
+      "column_name": "id",
+      "data_type": "uuid",
+      "udt_name": "uuid"
+    },
+    {
+      "column_name": "code_station",
+      "data_type": "character varying",
+      "udt_name": "varchar"
+    },
+    {
+      "column_name": "nom",
+      "data_type": "character varying",
+      "udt_name": "varchar"
+    },
+    {
+      "column_name": "type_station",
+      "data_type": "character varying",
+      "udt_name": "varchar"
+    },
+    {
+      "column_name": "date_mise_service",
+      "data_type": "date",
+      "udt_name": "date"
+    },
+    {
+      "column_name": "altitude_m",
+      "data_type": "numeric",
+      "udt_name": "numeric"
+    },
+    {
+      "column_name": "organisme_gestionnaire_id",
+      "data_type": "integer",
+      "udt_name": "int4"
+    },
+    {
+      "column_name": "commune_id",
+      "data_type": "integer",
+      "udt_name": "int4"
+    },
+    {
+      "column_name": "geom",
+      "data_type": "USER-DEFINED",
+      "udt_name": "geometry"
+    },
+    {
+      "column_name": "actif",
+      "data_type": "boolean",
+      "udt_name": "bool"
+    }
+  ],
+  "count": [
+    {
+      "n": 390
+    }
+  ],
+  "stations": [
+    {
+      "id": "396ee989-2fdf-49c9-8b0f-5cc4857be975",
+      "code_station": "1253/15",
+      "nom": " ",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.306562502577816 33.81324174572751)"
+    },
+    {
+      "id": "e4b55a91-d864-4db7-9adc-998e32fd6151",
+      "code_station": "1817/18",
+      "nom": " ",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.317053432708106 34.30184957304388)"
+    },
+    {
+      "id": "346e234c-23f0-478b-b592-14898492ce2e",
+      "code_station": "2003/3",
+      "nom": " ",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.267151576791044 34.93915396630125)"
+    },
+    {
+      "id": "d8edea2e-2f15-4963-90ea-1cc79e8b7009",
+      "code_station": "237/8",
+      "nom": " ",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.244505503403943 34.76217489169096)"
+    },
+    {
+      "id": "a5ae4751-ca13-4235-bd87-fbe4f92147ad",
+      "code_station": "3106/8",
+      "nom": " ",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.103968722944169 34.78827640913951)"
+    },
+    {
+      "id": "3c2ce9ef-ef17-4f50-b38f-d75af8fa261f",
+      "code_station": "R1095/15",
+      "nom": " ",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.935349622207055 33.93055482252536)"
+    },
+    {
+      "id": "735c58dc-1119-4095-b0c2-f54b8d5a735e",
+      "code_station": "R3265/14",
+      "nom": " ",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.321030182351313 34.26710418997723)"
+    },
+    {
+      "id": "c6afa195-90f2-4b5f-9172-d4e54158844f",
+      "code_station": "140/30",
+      "nom": "aghbalou abarchane",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.047824661152544 33.13903565246607)"
+    },
+    {
+      "id": "a963a9da-0441-4b33-b6aa-6ffbc1041125",
+      "code_station": "1652/22",
+      "nom": "aguelmam sidi ali",
+      "type_station": "pluviometrique",
+      "actif": true,
+      "altitude_m": "2078.00",
+      "geom_wkt": "POINT(-4.991275280388716 33.08023261857071)"
+    },
+    {
+      "id": "37fdf9f6-bd9a-4de3-9c15-25210fe06451",
+      "code_station": "131/22",
+      "nom": "ain aghbal",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.387068279606329 33.71812907767163)"
+    },
+    {
+      "id": "610a95aa-2db2-4bf2-95c7-f47314f04a24",
+      "code_station": "159/22",
+      "nom": "ain aghbal",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.246715846369764 33.439795457185355)"
+    },
+    {
+      "id": "413fdbd2-d280-4bf0-8b2a-9b6340f43ee5",
+      "code_station": "576/22",
+      "nom": "ain aghbalou  ",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.633632940608322 33.66978070521699)"
+    },
+    {
+      "id": "e4c90644-8db2-45ba-b2ca-73040b1f0822",
+      "code_station": "473/22",
+      "nom": "ain aghbalou n'tolba",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.295166841291289 33.40692471064626)"
+    },
+    {
+      "id": "5776b37c-48c8-41b2-8f3d-afadac7fd12e",
+      "code_station": "1217/9",
+      "nom": "ain aicha",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.694141869853306 34.45694590777272)"
+    },
+    {
+      "id": "75932783-9878-425e-bc55-03a579402610",
+      "code_station": "148/30",
+      "nom": "ain ajaabou",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.342574471520861 33.27030891771718)"
+    },
+    {
+      "id": "ae23f4ac-e24e-4d88-9508-00ba141618a4",
+      "code_station": "788/22",
+      "nom": "ain ben smim",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.160402185662336 33.49125013905273)"
+    },
+    {
+      "id": "a1dec048-6819-441a-9323-866b3efdbb69",
+      "code_station": "2056/15",
+      "nom": "ain berda",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.882296676294736 34.02819334855018)"
+    },
+    {
+      "id": "bcf3ff99-5609-41b8-8df9-a4dc4b25b2d7",
+      "code_station": "1213/22",
+      "nom": "ain bittit",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.18605768116424 33.79326172966593)"
+    },
+    {
+      "id": "068aa113-cb9f-4692-b4cf-81472517d9f0",
+      "code_station": "80/10",
+      "nom": "ain bouadel",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.505439265440881 34.53689352575606)"
+    },
+    {
+      "id": "148680ec-0aaf-461f-a062-9b2b39d03b09",
+      "code_station": "1182/14",
+      "nom": "ain bouameir",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.559532891572751 33.895693495878454)"
+    },
+    {
+      "id": "55900188-06af-4c20-8e77-829513f3014c",
+      "code_station": "2210/15",
+      "nom": "ain el ouali",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.795427977091399 33.99015230614365)"
+    },
+    {
+      "id": "80b9e89c-cfc9-47eb-b315-7705fc35fc3f",
+      "code_station": "494/15",
+      "nom": "ain ferdi",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.522910894526928 33.61705728413241)"
+    },
+    {
+      "id": "d22773a0-fd1d-44bb-9fa2-f389768d8b18",
+      "code_station": "60/22",
+      "nom": "ain guemguem",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.980488358950374 33.566653541374)"
+    },
+    {
+      "id": "a77751d5-b7ec-49af-b032-9a3cc0f7e1ee",
+      "code_station": "1573/15",
+      "nom": "ain hamma my idriss",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.514321730573368 34.05536215545245)"
+    },
+    {
+      "id": "e6786aa2-16d4-4173-a568-2e7396b90786",
+      "code_station": "59/10",
+      "nom": "ain hamra ajdir",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-3.941570594410818 34.73855211281336)"
+    },
+    {
+      "id": "32b51791-709b-4a76-8416-c183058e3b9d",
+      "code_station": "124/22",
+      "nom": "ain maarouf",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.4927921629453 33.678412350727044)"
+    },
+    {
+      "id": "86090a6e-2081-4b5c-b368-adbd6feb33af",
+      "code_station": "690/22",
+      "nom": "ain mersa",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.092272501909782 33.610875795997025)"
+    },
+    {
+      "id": "3c2eba24-fde5-4dfa-8a2d-cd6edab48c18",
+      "code_station": "1243/15",
+      "nom": "ain my yaacoub sghir",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.836508216266992 34.13590393156622)"
+    },
+    {
+      "id": "129e7421-fa38-4d55-80b3-a35fd52fab63",
+      "code_station": "1336/16",
+      "nom": "ain ras el ma",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.011481981353684 34.14467274719126)"
+    },
+    {
+      "id": "cc39ecdd-497a-47be-8b93-149bd4f795db",
+      "code_station": "364/22",
+      "nom": "ain regreg",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.732027663988799 33.779926432529535)"
+    },
+    {
+      "id": "2418a11f-dee4-4766-9548-9badd478f257",
+      "code_station": "2035/14",
+      "nom": "ain rte meknès-kacem",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.836505494955949 34.13536288839614)"
+    },
+    {
+      "id": "4926d28a-38bf-46b9-91e4-a03416bd6a39",
+      "code_station": "574/22",
+      "nom": "ain sebou",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.533419009575108 33.73698054725472)"
+    },
+    {
+      "id": "58be681c-b3c8-4fe1-a28c-ca8df7b06e15",
+      "code_station": "268/8",
+      "nom": "ain si kacem",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.213216240471375 34.87280785101942)"
+    },
+    {
+      "id": "e441ea5b-cffc-4591-b8bb-079fc6cf5e5a",
+      "code_station": "102/15",
+      "nom": "ain sidi hrazem",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.882283242719237 34.03044778253115)"
+    },
+    {
+      "id": "1506d022-84a7-4c93-9b08-5b032308a7d4",
+      "code_station": "2528/15",
+      "nom": "ain skhounate",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.788833981308165 33.99598377704614)"
+    },
+    {
+      "id": "ec2717de-f92d-4b53-ab14-51fffdfd0f07",
+      "code_station": "2997/15",
+      "nom": "ain skhounate",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.303663293202894 33.99236033128414)"
+    },
+    {
+      "id": "cf1ffc32-c389-471c-aab7-dca23d0ea507",
+      "code_station": "178/23",
+      "nom": "ain skhounate ",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.338008798101698 33.453399097988196)"
+    },
+    {
+      "id": "51618553-62a8-44a0-bdca-75a1d64cb006",
+      "code_station": "872/15",
+      "nom": "ain skhounate mhaya",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.303657914372558 33.99721199515469)"
+    },
+    {
+      "id": "436a9205-1765-48a3-9651-fe4d1cb276e5",
+      "code_station": "22/3",
+      "nom": "ain souiere",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.151143017436217 34.96648497909358)"
+    },
+    {
+      "id": "a17ff46c-2e44-440a-aeb6-fd400b396bf0",
+      "code_station": "100/23",
+      "nom": "ain tataw",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.278724819932646 33.47813492303671)"
+    },
+    {
+      "id": "7e3c2f7a-cf6a-47a9-bafb-8dd4e3a68d78",
+      "code_station": "581/22",
+      "nom": "ain timedrine",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.54659863635213 33.74542750274506)"
+    },
+    {
+      "id": "69a56796-fd52-4995-9c77-105e55fb1503",
+      "code_station": "616/22",
+      "nom": "ain titzil",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.917041809272976 33.33071765156926)"
+    },
+    {
+      "id": "fe4c7757-9d2d-4d28-9f55-da1be2f4b827",
+      "code_station": "258/30",
+      "nom": "ain tizegdelt",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.414500918014235 33.18779072929191)"
+    },
+    {
+      "id": "2dc5a532-0d81-4831-bc57-cdf40c4200a8",
+      "code_station": "14/22",
+      "nom": "Ain vitel",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.10035887263493 33.547490748268025)"
+    },
+    {
+      "id": "2cefd88c-640d-487a-a9cb-f5273edd6ed5",
+      "code_station": "626/22",
+      "nom": "ain zerrouka",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.097874292042707 33.54955917375045)"
+    },
+    {
+      "id": "e17865cc-5948-47fb-ac95-1b2b9de9e6e7",
+      "code_station": "692/22",
+      "nom": "aioun amghas",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.467217382232467 33.38755881655408)"
+    },
+    {
+      "id": "c5a3e8a5-1db2-49b0-b78c-3e57fd8cc7af",
+      "code_station": "172/22",
+      "nom": "aioun sidi rached",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.147684132893814 33.45947683463458)"
+    },
+    {
+      "id": "1b62f3e9-91a7-4c4a-9385-d3aa78eae978",
+      "code_station": "585/22",
+      "nom": "ait khabbach",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": "1478.00",
+      "geom_wkt": "POINT(-4.783927068789291 33.427992718342885)"
+    },
+    {
+      "id": "c1299320-3bdb-4bb3-8bbf-0f9dc3ca71ef",
+      "code_station": "3738/8",
+      "nom": "amont barrage de garde",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.41284076801163 34.48822256266676)"
+    },
+    {
+      "id": "bfb9a874-e472-4b2c-86d8-7ccf01c5e08e",
+      "code_station": "3755/14",
+      "nom": "amont kenitra",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.566081420262036 34.27654003041398)"
+    },
+    {
+      "id": "530bfea2-de80-48bd-b328-5a5137ff43e2",
+      "code_station": "2001/8",
+      "nom": "amont oued mda",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.707227833297713 34.65265643279019)"
+    },
+    {
+      "id": "95409c0f-f75c-493e-8852-b9c01271642f",
+      "code_station": "4225/14",
+      "nom": "amont sidi yahia",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.317053432708106 34.30184957304388)"
+    },
+    {
+      "id": "27950d82-cc81-4467-a8bd-b78391636834",
+      "code_station": "2897/14",
+      "nom": "aval  sidi slimane",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.948923621303501 34.334923013440125)"
+    },
+    {
+      "id": "1ccf343d-09e7-4948-a937-b12d910f24a9",
+      "code_station": "3502/8",
+      "nom": "aval confluence sebou /beht",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.435125581000116 34.407784777406754)"
+    },
+    {
+      "id": "6a2947cd-af38-4119-a4e2-119d858ee6bc",
+      "code_station": "3514/8",
+      "nom": "aval confluence sebou /rdat",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.83937492471782 34.487910709490265)"
+    },
+    {
+      "id": "827d16cc-6eb2-400f-8969-324c3124c826",
+      "code_station": "3396/15",
+      "nom": "aval confluence sebou/ouergha  ",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.004568201282424 34.05447495904224)"
+    },
+    {
+      "id": "0a9f1311-a69f-499d-afc5-8625fb7096f4",
+      "code_station": "3693/8",
+      "nom": "aval dar gueddari  ",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.103079999651826 34.418461943182656)"
+    },
+    {
+      "id": "590b8f3f-b41c-437b-ac32-81a068b6b284",
+      "code_station": "2002/8",
+      "nom": "aval oued mda  ",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.028728115128635 34.69717223235691)"
+    },
+    {
+      "id": "79aa3ca5-175b-436f-a9a9-34c5f4bd3fbc",
+      "code_station": "2817/15",
+      "nom": "aval rejet de fes",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.928280550046325 34.07698110402408)"
+    },
+    {
+      "id": "494864be-331f-4a70-91d8-3c4ac59ac20f",
+      "code_station": "1236/14",
+      "nom": "aval rejet de meknes",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.579127920327337 33.958343493999635)"
+    },
+    {
+      "id": "3705df11-44cc-4eb3-9007-7dc896c7bc94",
+      "code_station": "2400/14",
+      "nom": "aval rejet khemisset",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.936028255947017 33.919898714525345)"
+    },
+    {
+      "id": "710cbf59-4303-4d7c-8173-1083560eef5a",
+      "code_station": "3695/8",
+      "nom": "aval rejet sucrerie bel ksiri  ",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.982566340969747 34.56937502455539)"
+    },
+    {
+      "id": "abbd0423-1320-4e97-b2fb-305c220b2d88",
+      "code_station": "2401/14",
+      "nom": "aval rejet tifelt",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.305268291470026 33.901990544802715)"
+    },
+    {
+      "id": "dfccfdfd-d141-49fb-b253-fcb366e1da8c",
+      "code_station": "2216/15",
+      "nom": "aval sefrou",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.811531266330153 33.88990221696708)"
+    },
+    {
+      "id": "b647955a-e26d-4564-8509-25cb40ef1404",
+      "code_station": "1540/15",
+      "nom": "azib soltane",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": "45.00",
+      "geom_wkt": "POINT(-5.485333294244439 34.32455013367434)"
+    },
+    {
+      "id": "68d55282-7106-4a08-a074-0d8c92a609dd",
+      "code_station": "583/22",
+      "nom": "azzaba",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.645949794667032 33.83269861725882)"
+    },
+    {
+      "id": "1230cd2c-2ca1-483a-8466-d6585fcfbd61",
+      "code_station": "702/16",
+      "nom": "bab chhoub",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": "402.00",
+      "geom_wkt": "POINT(-4.067235955395364 34.25177919345171)"
+    },
+    {
+      "id": "717aee14-7da1-4164-88c5-62e280003b55",
+      "code_station": "2169/15",
+      "nom": "bab machoir",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.004562658698867 34.055692347484346)"
+    },
+    {
+      "id": "da925486-bca7-49e3-af60-ea5f2294a77a",
+      "code_station": "551/16",
+      "nom": "bab merzouka",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.1413152435789 34.20060070095338)"
+    },
+    {
+      "id": "517c713a-dda4-4dcb-a033-4143062487fd",
+      "code_station": "260/9",
+      "nom": "bab ouender",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.5320310279197 34.55781613241394)"
+    },
+    {
+      "id": "3b477290-57ad-4aff-bf46-9418e450dc8d",
+      "code_station": "1586/600",
+      "nom": "bab taza",
+      "type_station": "pluviometrique",
+      "actif": true,
+      "altitude_m": "902.00",
+      "geom_wkt": "POINT(-5.203720535657829 35.05764324948633)"
+    },
+    {
+      "id": "40629401-ac08-4a0d-adcc-1741cdd06f93",
+      "code_station": "3265/14",
+      "nom": "bahiat mohammed",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.3226592446361 34.26709224318647)"
+    },
+    {
+      "id": "c9eda862-abf9-4375-b614-2e1b2eb84715",
+      "code_station": "672/16",
+      "nom": "beni heitem",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-3.965193683114501 34.30377008472321)"
+    },
+    {
+      "id": "d45bffb9-1d2e-4d17-b4e5-2e8daec85819",
+      "code_station": "R519/21",
+      "nom": "Bloc cooperative my ali",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.748467640954027 33.764631492483936)"
+    },
+    {
+      "id": "8672b830-aff8-4fd3-87a7-a43ac966af68",
+      "code_station": "1749/9",
+      "nom": "boufellou",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": "790.00",
+      "geom_wkt": "POINT(-4.744348624823597 34.73458220195769)"
+    },
+    {
+      "id": "7042849a-fb8a-4d37-9c74-94d910553723",
+      "code_station": "295/10",
+      "nom": "boured",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.114461252058 34.723380473389156)"
+    },
+    {
+      "id": "3cd77e60-3f44-42e7-8697-360325682823",
+      "code_station": "3265/15",
+      "nom": "brg allal el fassi",
+      "type_station": "barrage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.677918695543907 33.930652529449446)"
+    },
+    {
+      "id": "29413f5e-e7d2-4643-a325-f7a097f50227",
+      "code_station": "297/10",
+      "nom": "brg asfalou",
+      "type_station": "barrage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.190714865057523 34.63275088018088)"
+    },
+    {
+      "id": "cc7db7c4-4e5b-46fa-945d-1a5d822270b1",
+      "code_station": "938/16",
+      "nom": "brg bab louta",
+      "type_station": "barrage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.333618911174644 34.015066520306924)"
+    },
+    {
+      "id": "6747a9ef-4d08-46af-84b4-5dc4ed1b7b83",
+      "code_station": "1699/9",
+      "nom": "brg bouhouda ",
+      "type_station": "barrage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.573370294708663 34.61040975222556)"
+    },
+    {
+      "id": "4179b4bb-277c-4b29-80fa-300fd49eb9c2",
+      "code_station": "3323/8",
+      "nom": "brg de garde / sebou",
+      "type_station": "barrage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.326761863500497 34.518629489594126)"
+    },
+    {
+      "id": "2f62e4cd-af6b-49b4-80b8-a9bc928e514a",
+      "code_station": "3266/15",
+      "nom": "brg echahed",
+      "type_station": "barrage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.318626387740249 34.10660235686218)"
+    },
+    {
+      "id": "b7a13719-4fdd-4ca0-b790-861320c9ce66",
+      "code_station": "3907/14",
+      "nom": "brg el kansera",
+      "type_station": "barrage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.908200920076786 34.04160410742026)"
+    },
+    {
+      "id": "5607a627-86f5-496f-aca9-0728a8fd01e9",
+      "code_station": "1709/9",
+      "nom": "brg el wahda",
+      "type_station": "barrage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.197082996904328 34.59780538940813)"
+    },
+    {
+      "id": "5533ab49-e2ed-4580-862d-32146588bbf5",
+      "code_station": "3546/8",
+      "nom": "brg garde du sebou",
+      "type_station": "barrage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.41284076801163 34.48822256266676)"
+    },
+    {
+      "id": "849cf32b-4192-4cf6-9fc9-52b111b1281a",
+      "code_station": "3264/15",
+      "nom": "brg idriss 1er",
+      "type_station": "barrage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.749531656692188 34.16131985241702)"
+    },
+    {
+      "id": "c66ba128-6ece-46a3-9561-441257b73a41",
+      "code_station": "brg m'dez",
+      "nom": "brg m'dez",
+      "type_station": "barrage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.519818424885062 33.67088963740437)"
+    },
+    {
+      "id": "d9fadde8-d0b9-45b8-8d33-bebe8fdea7e2",
+      "code_station": "788/21",
+      "nom": "brg ouljet soltane",
+      "type_station": "barrage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.869514718321066 33.63947928458664)"
+    },
+    {
+      "id": "84c21eb2-6604-4bf9-8073-1e5fb86a925b",
+      "code_station": "1710/9",
+      "nom": "brg sahla",
+      "type_station": "barrage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.669267180159141 34.56488969649503)"
+    },
+    {
+      "id": "14a34bee-87f6-4835-bc4a-843e5c272bb8",
+      "code_station": "1727/9",
+      "nom": "cite du barrage sidi mokhfi  ",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.761415218606416 34.63311396528727)"
+    },
+    {
+      "id": "706fc2fe-3cee-4ec2-8e85-dbde9b672f89",
+      "code_station": "2263/15",
+      "nom": "dar el arsa",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.928503121099006 34.19565290018216)"
+    },
+    {
+      "id": "bc8e6d83-08d3-4bfa-8c78-daa754af79b7",
+      "code_station": "1000/23",
+      "nom": "dar el hamra",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.401866646254389 33.76837016097639)"
+    },
+    {
+      "id": "dc1d6b46-ff77-43bb-be02-802d3554ea5b",
+      "code_station": "3669/8",
+      "nom": "dar salem",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.33011615086696 34.206956122375914)"
+    },
+    {
+      "id": "4af6ca36-ff34-4dc3-b573-10fcdebed577",
+      "code_station": "1255/22",
+      "nom": "dayet aoua",
+      "type_station": "barrage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.044653414362145 33.65764829756274)"
+    },
+    {
+      "id": "70b390fd-75d5-40d1-a43f-fffe61d42941",
+      "code_station": "814/21",
+      "nom": "domaine my ali sodea",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.58183818414802 33.70176349628063)"
+    },
+    {
+      "id": "a7d73b36-5046-493e-b672-1d39217a1c8f",
+      "code_station": "4220/14",
+      "nom": "douar chenouka (aval yahya et cellulose)",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.31560482529447 34.31899264222059)"
+    },
+    {
+      "id": "871b91f8-228b-48bd-89ae-76b2aa986d65",
+      "code_station": "2244/15",
+      "nom": "el hajra",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.302414674866575 34.043743306329525)"
+    },
+    {
+      "id": "440fef7e-9048-4ec4-ac30-d94a20e4f562",
+      "code_station": "2062/21",
+      "nom": "el hammam",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.83197834725947 34.74213473631312)"
+    },
+    {
+      "id": "d4831d6b-1b8f-4599-b54b-55bdc53a5675",
+      "code_station": "Hammam/14",
+      "nom": "el hammam",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.824572949242617 33.542717405743765)"
+    },
+    {
+      "id": "fc8e8e8b-494c-46b7-aa72-d634d4c19cd2",
+      "code_station": "323/4",
+      "nom": "el malha",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.046277477102589 34.92752006195792)"
+    },
+    {
+      "id": "2ad1ba50-cc7b-456a-8464-0dd4dd9058c7",
+      "code_station": "541/23",
+      "nom": "el mers",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.395488697246055 33.461984959000745)"
+    },
+    {
+      "id": "d4ba6716-3169-4af4-be47-042db7ba289e",
+      "code_station": "3817/600",
+      "nom": "fes (ABHS)",
+      "type_station": "pluviometrique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.001623850226262 34.03501411564286)"
+    },
+    {
+      "id": "e06b2116-a639-4114-976e-7e9f43df2ed0",
+      "code_station": "1025/14",
+      "nom": "forage",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.227493632823475 34.275094742122064)"
+    },
+    {
+      "id": "d40f92da-f89f-4465-8eb4-fbb1d24d57e9",
+      "code_station": "1027/14",
+      "nom": "forage",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.445696166835922 34.29227923887479)"
+    },
+    {
+      "id": "a223957d-3bff-4bd0-83e2-60249799f1df",
+      "code_station": "1418/8",
+      "nom": "forage",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.334172368602058 34.37791721922472)"
+    },
+    {
+      "id": "9499d03e-5f03-4040-b8d2-30ecc8dee2d1",
+      "code_station": "1502/8",
+      "nom": "forage",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.368962886494949 34.71591865675413)"
+    },
+    {
+      "id": "09186172-fcb1-4b9b-9e2e-e16e889b581b",
+      "code_station": "1712/14",
+      "nom": "forage",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.76041918479411 34.35426873966871)"
+    },
+    {
+      "id": "6c31e4f3-f2a3-4296-8223-a28ba1a6f5c4",
+      "code_station": "1735/8",
+      "nom": "forage",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.003810482591379 34.56341491685809)"
+    },
+    {
+      "id": "b63de6b8-3652-4402-846a-44cc3a7e22c5",
+      "code_station": "1765/8",
+      "nom": "forage",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.405855644576902 34.6187409790376)"
+    },
+    {
+      "id": "c8264330-f814-4b3a-a013-ac34a3394a3f",
+      "code_station": "1852/14",
+      "nom": "forage",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.233245528568657 34.34346014511817)"
+    },
+    {
+      "id": "5fdf5e77-1f39-4983-ae15-88a3a849a577",
+      "code_station": "3249/14",
+      "nom": "forage",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.307592294173954 34.07296128392234)"
+    },
+    {
+      "id": "84da0337-e665-4514-9317-de9888914a1d",
+      "code_station": "3340/14",
+      "nom": "forage",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.561104438131777 34.28612655554488)"
+    },
+    {
+      "id": "25131c2e-130d-402f-8952-8a335a291fbb",
+      "code_station": "672/8",
+      "nom": "forage",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.308588440165414 34.686003794143694)"
+    },
+    {
+      "id": "9a475a6b-2624-4091-8ca8-7329993d1d1e",
+      "code_station": "994/14",
+      "nom": "forage",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.442410002781361 34.29005220069561)"
+    },
+    {
+      "id": "74b1961b-0750-4f8d-9db8-cea6f8c48c25",
+      "code_station": "911/8",
+      "nom": "forage 911/8",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.518310317864626 34.42150036806597)"
+    },
+    {
+      "id": "c24a45b1-7195-45be-acfb-95887c79e602",
+      "code_station": "AFAQFAQ/21",
+      "nom": "forage afaqfaq",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.030255251808749 33.49730846293404)"
+    },
+    {
+      "id": "6a8fd9e5-74b5-47ec-8fa4-4c04907946ae",
+      "code_station": "2026/22",
+      "nom": "forage ali azzou",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.115583698868867 33.837212968632684)"
+    },
+    {
+      "id": "912ce29b-3e36-434a-8a4d-c5079a2efb61",
+      "code_station": "1102/13",
+      "nom": "forage base aerienne bouknadel",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.654379532330689 34.147889412885476)"
+    },
+    {
+      "id": "badb0ca1-85eb-4927-a627-ed86d37f5099",
+      "code_station": "3927/14",
+      "nom": "forage bled chemassa",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.700573396914657 34.18310342716116)"
+    },
+    {
+      "id": "1bcea49d-5da0-4dca-9151-c17015fe16e6",
+      "code_station": "1513/8",
+      "nom": "forage cda sidi allal tazi",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.397862823018386 34.36516540921416)"
+    },
+    {
+      "id": "4c988bd2-1efc-42f0-9f24-f6ea821573d7",
+      "code_station": "R1513/8",
+      "nom": "Forage centre de developpement",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.70806738389567 34.38371156471138)"
+    },
+    {
+      "id": "05d4972f-3359-4435-a6fb-a62c7fe9108c",
+      "code_station": "3464/15",
+      "nom": "forage commune sidi khaiar",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.992110328455607 33.83956771914989)"
+    },
+    {
+      "id": "96d245b4-9e39-4619-becd-e2b94c373d77",
+      "code_station": "773/21",
+      "nom": "forage des mines ",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.667458438705949 33.82426382675277)"
+    },
+    {
+      "id": "e5974570-af45-40b2-8197-fe3c8c6ced0a",
+      "code_station": "2370/15",
+      "nom": "forage douyet ain allah",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.134624665109129 34.039803056442395)"
+    },
+    {
+      "id": "dbe5b4b4-54cc-4685-a47e-aa941c1107d3",
+      "code_station": "3921/14",
+      "nom": "forage dr belabdia (artesien)",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.7010767865899 34.171830543766845)"
+    },
+    {
+      "id": "6a3ab562-fad2-49ea-9935-b16eed060bfd",
+      "code_station": "TMH_PDOM_PE3/22",
+      "nom": "forage ferme haddadi",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.058003989831901 33.25340846266151)"
+    },
+    {
+      "id": "dec735c9-7848-44d8-a88c-823e57c073cf",
+      "code_station": "HJB_DECH1_PE1/22",
+      "nom": "forage ferme haj mouhcine",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.467758227397094 33.669635010639205)"
+    },
+    {
+      "id": "a3abc440-7322-4751-87ca-8364a22b36fe",
+      "code_station": "R1514/8",
+      "nom": "Forage ferme hosni ben slimane",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.767114288148068 34.39482382159946)"
+    },
+    {
+      "id": "968e91ca-6472-47b1-9c7b-6ecec7586ee7",
+      "code_station": "MARNISSI ABDELAZIZ",
+      "nom": "forage marnissi abdelaziz",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.996336285190852 33.844189893565435)"
+    },
+    {
+      "id": "ccbcabc1-bf9f-4df6-b47d-3363e6a1877e",
+      "code_station": "3462/15",
+      "nom": "forage mosquée zarnini",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.191340223722714 33.87875687319764)"
+    },
+    {
+      "id": "b9b8d337-e085-4e4b-9610-3c190a7371ac",
+      "code_station": "3923/14",
+      "nom": "forage my yacoub sghir",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.836505494955949 34.13536288839614)"
+    },
+    {
+      "id": "2bc7cc30-df3e-45a8-91ff-85d0b3b94b95",
+      "code_station": "1899/8",
+      "nom": "forage onep ben aouda",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.941172181971486 34.8336988595749)"
+    },
+    {
+      "id": "af7cdd75-c4f6-4850-98dc-54127b4d118a",
+      "code_station": "636/8",
+      "nom": "forage rak mograne",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.435077030336624 34.40372762049195)"
+    },
+    {
+      "id": "0f64e83c-efd4-4e6f-a8a2-916790ab93d2",
+      "code_station": "2036/14",
+      "nom": "forage vallee heureuse",
+      "type_station": "forage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.640532882582658 33.85633411923308)"
+    },
+    {
+      "id": "6f1bbf08-ce82-4dfe-ae44-6e26c9ef07e4",
+      "code_station": "1216/9",
+      "nom": "galaz",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": "214.00",
+      "geom_wkt": "POINT(-4.795190640154849 34.557450197098305)"
+    },
+    {
+      "id": "4db79902-2629-4dda-a348-65d60da05be4",
+      "code_station": "519/21",
+      "nom": "had ait mimoun taaouniat moulay ali",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.748478439114437 33.764631462370936)"
+    },
+    {
+      "id": "eecf0ca7-8e8b-45b1-b00c-ae8e75fd60ce",
+      "code_station": "1436/8",
+      "nom": "had kourt",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.721495873534644 34.558590004820985)"
+    },
+    {
+      "id": "0436c345-452d-4239-a3e3-2842fd3ab7b1",
+      "code_station": "1508/9",
+      "nom": "hajria",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.822901016045808 34.490916279585505)"
+    },
+    {
+      "id": "dd1d5547-265a-4d4b-8c5e-e7872db79cc4",
+      "code_station": "1024/14",
+      "nom": "IRE 1024/14",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.366492991792065 34.30193018112889)"
+    },
+    {
+      "id": "c8714923-acd7-4c86-91c7-98fc52024917",
+      "code_station": "1026/8",
+      "nom": "IRE 1026/8",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.191158078739732 34.555617221879416)"
+    },
+    {
+      "id": "cf81a38f-b4ac-453a-a3ef-63d1d676bc4b",
+      "code_station": "1103/13",
+      "nom": "ire 1103/13",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.69676648254024 34.189843433827114)"
+    },
+    {
+      "id": "b2982070-57c5-421d-a707-ff1fe65b37c6",
+      "code_station": "1265/14",
+      "nom": "IRE 1265/14",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.575647579231585 33.84264383321072)"
+    },
+    {
+      "id": "c2e58b12-fe81-4ec5-a7e6-c160fa45cece",
+      "code_station": "1283/13",
+      "nom": "ire 1283/13",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.614555281202192 34.16992425374257)"
+    },
+    {
+      "id": "58d8c618-e786-4df4-a0a4-fbb5ed12332a",
+      "code_station": "1294/8",
+      "nom": "ire 1294/8",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.079600783424182 34.462771086998856)"
+    },
+    {
+      "id": "08ffb548-9e1d-4220-9758-e8832822bab9",
+      "code_station": "1462/22",
+      "nom": "ire 1462/22",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.465368763783294 33.79170522604809)"
+    },
+    {
+      "id": "95f45c6c-c3c2-4366-813c-02598294a777",
+      "code_station": "1513/14",
+      "nom": "IRE 1513/14",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.708060964164631 34.381908282874676)"
+    },
+    {
+      "id": "66b8453e-e8cb-4e98-a848-8e257bc56b03",
+      "code_station": "1644/8",
+      "nom": "ire 1644/8",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.808989924435339 34.39469475963045)"
+    },
+    {
+      "id": "bd054a3f-5538-42fd-a046-e242a74b26a0",
+      "code_station": "324/15",
+      "nom": "IRE 324/15",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.064664376603856 33.473982544377286)"
+    },
+    {
+      "id": "dd15706f-4324-4a87-8f11-933af526e5fd",
+      "code_station": "3268/14",
+      "nom": "IRE 3268/14",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.045401534525732 34.299930319854205)"
+    },
+    {
+      "id": "b22f73a5-2fb3-4649-83c6-9f12e16e2461",
+      "code_station": "3288/14",
+      "nom": "IRE 3288/14 ",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.045401534525732 34.299930319854205)"
+    },
+    {
+      "id": "31849123-1af4-4bf3-b921-0fcda26322f1",
+      "code_station": "3290/14",
+      "nom": "IRE 3290/14 ",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.187176935621049 34.29821205351201)"
+    },
+    {
+      "id": "0c05c66b-463d-4f06-98ae-00022d4296c5",
+      "code_station": "518/21",
+      "nom": "IRE 518/21",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.748467640954027 33.764631492483936)"
+    },
+    {
+      "id": "e01b319f-752a-4488-ba17-084e7d116445",
+      "code_station": "727/14",
+      "nom": "IRE 727/14",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.056730888483549 34.28950210416852)"
+    },
+    {
+      "id": "027dc02d-633c-4ca6-99cd-7f70d42665e0",
+      "code_station": "738/8",
+      "nom": "IRE 738/8",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.428668382892569 34.41368957460144)"
+    },
+    {
+      "id": "a29d8cac-65a5-48a6-a749-db6e00e6c628",
+      "code_station": "915/8",
+      "nom": "IRE 915/8  PIEZO ( R 911/8 )",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.518364715889588 34.42149988499493)"
+    },
+    {
+      "id": "5f848c9d-4fd2-4c39-9f5a-ef4fc8130fab",
+      "code_station": "918/8",
+      "nom": "IRE 918/8",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.027541983948895 34.6466929675434)"
+    },
+    {
+      "id": "af292678-c171-41cd-afc0-a04759215421",
+      "code_station": "R1644/8",
+      "nom": "ire r1644/8",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.811606170081199 34.37304660006301)"
+    },
+    {
+      "id": "09a77fe8-b98b-415d-ad83-2981827fe04d",
+      "code_station": "R1757/14",
+      "nom": "IRE R1757/14",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.523027655333132 34.013860537938925)"
+    },
+    {
+      "id": "577cbef3-062f-4c1c-bd47-6d06922b85a0",
+      "code_station": "R1807/15",
+      "nom": "IRE R1807/15",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.412124376836344 33.84484080024005)"
+    },
+    {
+      "id": "76e4af33-60e0-4ae7-a94e-28b5a58a66aa",
+      "code_station": "R1837/15",
+      "nom": "ire r1837/15",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.114847897261742 34.009098771956516)"
+    },
+    {
+      "id": "cfa0fcf9-82d2-4dae-be20-06b36bfe0fd3",
+      "code_station": "4626/600",
+      "nom": "jbel oudka",
+      "type_station": "pluviometrique",
+      "actif": true,
+      "altitude_m": "1115.00",
+      "geom_wkt": "POINT(-4.811905176092143 34.73694291180767)"
+    },
+    {
+      "id": "aa8d4b56-472f-473d-b656-f64f27147ea0",
+      "code_station": "1826/9",
+      "nom": "jorf el malha",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.508406278852008 34.463583296264005)"
+    },
+    {
+      "id": "b1ba728c-f39b-4922-9a0c-3581390019e8",
+      "code_station": "454/9",
+      "nom": "kharrouba",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": "180.00",
+      "geom_wkt": "POINT(-5.434826733156752 34.723531186350336)"
+    },
+    {
+      "id": "9d9c6454-777b-455f-a927-da8e8d63b5ec",
+      "code_station": "1359/8",
+      "nom": "khenichet",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.68535755031269 34.44165203108236)"
+    },
+    {
+      "id": "f9173ebb-bf07-4383-8e5a-b9b952b0fee6",
+      "code_station": "1970/22",
+      "nom": "lac iffer",
+      "type_station": "barrage",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.929789815865016 33.558057648103386)"
+    },
+    {
+      "id": "343b85cf-030e-46d8-b892-c4ce6cee7bd7",
+      "code_station": "1815/8",
+      "nom": "lalla mimouna",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.108343950868191 34.85198354317286)"
+    },
+    {
+      "id": "fa307e65-c5bc-4772-8822-658e4e60d33a",
+      "code_station": "633/8",
+      "nom": "mechraa belksiri",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.960635672179315 34.297180849187214)"
+    },
+    {
+      "id": "d65b42a0-4871-4582-9950-1465e53adaaa",
+      "code_station": "1545/8",
+      "nom": "my ali cherif",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.112037260985787 34.729642906692995)"
+    },
+    {
+      "id": "408b6ba6-8e67-48a2-833a-c7b7ee2420fc",
+      "code_station": "2043/15",
+      "nom": "my yaacoub",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.908821175430973 34.12605280084795)"
+    },
+    {
+      "id": "a96471f3-959d-418e-a049-11b4821749a3",
+      "code_station": "2881/15",
+      "nom": "my yaacoub",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.181730640099987 34.088950463095294)"
+    },
+    {
+      "id": "de3e6416-40db-4a2b-aeb9-272ac6384b5f",
+      "code_station": "R1149/15",
+      "nom": "Najji khadija",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.234470979069906 33.94122768870976)"
+    },
+    {
+      "id": "b440a506-6b71-46fd-9f0d-c3a3fc01b3bc",
+      "code_station": "1474/9",
+      "nom": "onep ain aicha",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.654230984161674 34.477904241598026)"
+    },
+    {
+      "id": "1e6bf6c4-c2e9-4c15-ae50-f9a8fc8e7f5a",
+      "code_station": "1553/9",
+      "nom": "onep ain douj",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.401656711438643 34.72127324940241)"
+    },
+    {
+      "id": "e1c06df3-6d02-42d3-887e-daa552b71ec5",
+      "code_station": "1437/9",
+      "nom": "onep ghafsai",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.916241217561009 34.64281750216381)"
+    },
+    {
+      "id": "687c415b-052d-43a5-9b28-72a4d6ada2a2",
+      "code_station": "1248/9",
+      "nom": "onep taounate",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.61327597678921 34.55158713047296)"
+    },
+    {
+      "id": "1184d530-7c88-49a6-ac5f-0c6463c38242",
+      "code_station": "2048/14",
+      "nom": "oued el kell",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.666430291235035 33.84140118528295)"
+    },
+    {
+      "id": "05239150-c8b0-4925-be27-95c3fcd483da",
+      "code_station": "6153/600",
+      "nom": "oulad yaacoub",
+      "type_station": "pluviometrique",
+      "actif": true,
+      "altitude_m": "280.00",
+      "geom_wkt": "POINT(-5.410732212318948 34.74211484908888)"
+    },
+    {
+      "id": "5e8d7ac2-1ba8-4700-9979-de9ccca05325",
+      "code_station": "766/16",
+      "nom": "P 39 inaouene rp 1 aval taza  ",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.061359431950275 34.23359098960803)"
+    },
+    {
+      "id": "01f1a32a-f424-4f5b-ab26-6cb57a601d81",
+      "code_station": "1355/8",
+      "nom": "P29 a allal tazi  ",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.326761863500497 34.518629489594126)"
+    },
+    {
+      "id": "2d239a22-afd5-496a-8431-b658bb79c984",
+      "code_station": "2660/14",
+      "nom": "pépenière dar salam",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.33051697361416 34.2058690898866)"
+    },
+    {
+      "id": "b97150a6-b0c1-4a3d-97cd-dd1e3f0e6e3e",
+      "code_station": "2713/14",
+      "nom": "piezometre",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.202922435109452 34.15543958512174)"
+    },
+    {
+      "id": "b9ef0ed5-89e1-45e8-8b77-7365d6024960",
+      "code_station": "1820/8",
+      "nom": "Piezometre",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.366932274095835 34.53590934927243)"
+    },
+    {
+      "id": "773d8f8f-9aa1-40a2-b066-03aaf90043b6",
+      "code_station": "390/13",
+      "nom": "piézométre",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.770194197588912 34.097979771369424)"
+    },
+    {
+      "id": "f9e64bd3-ae18-4104-9ec9-cdcba0009bde",
+      "code_station": "1026/14",
+      "nom": "piezomètre",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.02362446569396 34.21798422477885)"
+    },
+    {
+      "id": "86d34531-fa5c-4495-9309-6f3652eb7941",
+      "code_station": "1190/13",
+      "nom": "piezomètre",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.614464574840588 34.070455105064184)"
+    },
+    {
+      "id": "646d85e6-635b-4243-8632-b2547b60b595",
+      "code_station": "1270/13",
+      "nom": "piezomètre",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.66312805265915 34.26155296290104)"
+    },
+    {
+      "id": "f8d8b1b8-b2af-402d-8798-f89a52e6c48b",
+      "code_station": "1780/8",
+      "nom": "piézomètre",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.215190180065735 34.79256666751246)"
+    },
+    {
+      "id": "6e9d94f5-61d7-4083-8389-daba1e942e6d",
+      "code_station": "1837/15",
+      "nom": "piézomètre",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.115079442016394 33.954991047176854)"
+    },
+    {
+      "id": "2880c788-f964-4de5-a978-2529e248d327",
+      "code_station": "574/8",
+      "nom": "piézomètre",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.14465478342457 34.6600305372311)"
+    },
+    {
+      "id": "ff9954c4-bdeb-4f3b-9994-1534e626a4c4",
+      "code_station": "606/22",
+      "nom": "piézomètre",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.467775755516338 33.83111496884754)"
+    },
+    {
+      "id": "f87df845-bf1b-430d-b116-2c354b9749e0",
+      "code_station": "1563/8",
+      "nom": "piezomètre ",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.333803586823838 34.595664262408064)"
+    },
+    {
+      "id": "50895690-185b-43b5-b3fe-0b4dd62b5638",
+      "code_station": "2628/14",
+      "nom": "piezonetre",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.268399200440456 34.16332704577936)"
+    },
+    {
+      "id": "08d77207-a4cf-4bfd-b2dc-83857604fd68",
+      "code_station": "2659/14",
+      "nom": "Piezonetre",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.248454801821742 34.23154573219826)"
+    },
+    {
+      "id": "58e2a5ed-a9f9-4385-95f6-bd1a59368e02",
+      "code_station": "1293/13",
+      "nom": "piezonetre plage des nations",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.725695976039995 34.13931063523782)"
+    },
+    {
+      "id": "d19d860c-a8c8-4a28-9b60-2fefc9cd8391",
+      "code_station": "198/30",
+      "nom": "pont ait aissa",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.068736154962556 33.166152875411534)"
+    },
+    {
+      "id": "3e73af33-dd6b-41c1-b82d-aee28388ea49",
+      "code_station": "1344/22",
+      "nom": "pont ait hamza ( p 103 )  ",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.892250806626492 33.34414840939044)"
+    },
+    {
+      "id": "2f40798e-5a65-4bcf-8cd7-9796a9aec2b1",
+      "code_station": "3692/8",
+      "nom": "pont amont dar gueddari  ",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.092716932910718 34.41509310385862)"
+    },
+    {
+      "id": "475219d3-b07e-4a02-a189-1b4a743d04c7",
+      "code_station": "3694/8",
+      "nom": "pont bel ksiri  ",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.963808792405898 34.56765709845768)"
+    },
+    {
+      "id": "ce3e35f5-769d-4b8c-99c0-73892bdbccc1",
+      "code_station": "2792/14",
+      "nom": "pont dar bel amri",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.965685413028277 34.188681603696615)"
+    },
+    {
+      "id": "83d3c62f-4017-4188-b953-a7158860ffd6",
+      "code_station": "582/22",
+      "nom": "pont de m'dez",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.520347096795916 33.672190399437476)"
+    },
+    {
+      "id": "13ff23af-7c6f-453a-b4c3-5c40e87d1ca0",
+      "code_station": "2396/14",
+      "nom": "pont kroumam",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.707882124915676 34.102379309503846)"
+    },
+    {
+      "id": "92c486e7-b40e-4714-a426-182a8a40e2bc",
+      "code_station": "3397/15",
+      "nom": "pont oued mikkes aval barrage echahed  ",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.344129657109979 34.19923080614076)"
+    },
+    {
+      "id": "46a1c170-95ea-470e-bd3f-87847ff98890",
+      "code_station": "2496/15",
+      "nom": "pont portugais",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.921055362568415 34.07050600156427)"
+    },
+    {
+      "id": "c25c2450-2447-479a-bbe2-b75197b01eb7",
+      "code_station": "1343/22",
+      "nom": "pont route principale 21",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.499403378792014 33.80016027069355)"
+    },
+    {
+      "id": "d098a56d-7e97-453f-b1c0-32305b595087",
+      "code_station": "1541/15",
+      "nom": "pont rp 26",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": "85.00",
+      "geom_wkt": "POINT(-5.146177541797031 34.309017946633176)"
+    },
+    {
+      "id": "dfce6704-f6f5-4f4e-8f4a-7a6dcf4f852d",
+      "code_station": "756/16",
+      "nom": "pt rp1 aval taza",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.057017138742402 34.23354464894801)"
+    },
+    {
+      "id": "ad4adaa1-eaa1-4653-b976-5328ff0e36c2",
+      "code_station": "2819/15",
+      "nom": "pt rs 302",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.765858210291638 34.25129497725705)"
+    },
+    {
+      "id": "ad7161aa-5615-46a4-8712-5ee15f997df7",
+      "code_station": "1135/8",
+      "nom": "puit à captage cuvelé",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.367479002678506 34.53608547862455)"
+    },
+    {
+      "id": "3866a9b9-b53b-4d2c-b44a-94313ec4b212",
+      "code_station": "1720/22",
+      "nom": "puit abderrahmane ou ahmed",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.065921612525369 33.45477457489279)"
+    },
+    {
+      "id": "8e73bc36-141c-48b9-9e42-0f8878bacf82",
+      "code_station": "1308/22",
+      "nom": "puit abdeslam",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.434454662823613 33.737064418545685)"
+    },
+    {
+      "id": "e0c84133-de42-4537-b0b2-ce5dad591583",
+      "code_station": "ABDOU KHADIJA",
+      "nom": "puit abdou khadija",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.381955391181285 33.91328926862373)"
+    },
+    {
+      "id": "0a1a3aaf-1c51-4947-91f9-94ca399727af",
+      "code_station": "3045/15",
+      "nom": "puit abou el ayachi",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.412124376836344 33.84484080024005)"
+    },
+    {
+      "id": "8175ace5-f539-4879-8584-5c15218737be",
+      "code_station": "AFAYFA",
+      "nom": "puit afayfa",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.501418246790632 34.46895068301808)"
+    },
+    {
+      "id": "99f4900e-ff75-4b33-b644-d352829c04f2",
+      "code_station": "302/22",
+      "nom": "puit afquir mohammed",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.37950071922456 33.77269133231322)"
+    },
+    {
+      "id": "15a12e75-62fd-4bc4-8314-29b902e5694e",
+      "code_station": "1490/22",
+      "nom": "puit ait bouziane",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.690978165106174 33.515438605388304)"
+    },
+    {
+      "id": "313ede9c-cc75-4589-b7b2-98f6e3ed9817",
+      "code_station": "1491/22",
+      "nom": "puit ait sidi arbi",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.742662469949574 33.37231070022729)"
+    },
+    {
+      "id": "8b89a0f0-3628-4adf-8afe-db5c5cce15b7",
+      "code_station": "AOAUKLA",
+      "nom": "puit aoaukla",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.192164369242433 34.74250057176147)"
+    },
+    {
+      "id": "d5591d3c-1eef-4ebf-b5f1-4bf287d5b0f8",
+      "code_station": "AZIB DRAIDI",
+      "nom": "puit azib draidi",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.932280893521452 34.50969599226558)"
+    },
+    {
+      "id": "89c2c280-dcba-4fcb-a4d8-c247a91d243d",
+      "code_station": "R1712/14",
+      "nom": "puit bakri ben aissa",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.760418058528244 34.35399824402439)"
+    },
+    {
+      "id": "8e5d3b0e-d3d7-49dd-ba02-3334dd910ae5",
+      "code_station": "R574/8",
+      "nom": "puit ben brahim abdelkbir",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.11198784047841 34.66788190574221)"
+    },
+    {
+      "id": "4364dfd9-5a6c-408a-928e-764f5ae52bef",
+      "code_station": "BEN SEYED KHALID",
+      "nom": "puit ben seyed khalid (puits n 6 )",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.227276695721353 34.02238016232451)"
+    },
+    {
+      "id": "fdfbf7ab-b0a4-4008-890e-85037c7a7e7b",
+      "code_station": "781/22",
+      "nom": "puit ben smime",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.189914435494566 33.50633861927202)"
+    },
+    {
+      "id": "22501630-8afc-4880-b12c-0ece03e93a59",
+      "code_station": "1306/22",
+      "nom": "puit birzafane",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.229215969071247 33.614295175014)"
+    },
+    {
+      "id": "a62c049c-6523-4b6e-9674-0fbbe3c92762",
+      "code_station": "BOURAAHMA",
+      "nom": "puit bouraahma",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.150322555038993 34.04299154968326)"
+    },
+    {
+      "id": "0acc8896-6cd2-45ff-b024-8c351d1790b6",
+      "code_station": "1347/22",
+      "nom": "puit centre guigo",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.827531814419553 33.38084797097107)"
+    },
+    {
+      "id": "0cc0486f-70f1-4d82-9292-86330196db32",
+      "code_station": "1324/16",
+      "nom": "puit chbanate",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.400605594318076 34.049176321628714)"
+    },
+    {
+      "id": "7a2ab64c-b3f3-49c5-b257-8a8c6be44414",
+      "code_station": "3665/14",
+      "nom": "puit chnaf lhmar",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.325322972943438 34.292771820964525)"
+    },
+    {
+      "id": "95f85d1c-64e7-4bd1-a756-c52b5963180a",
+      "code_station": "CHRIF MILOUDI",
+      "nom": "puit chrif miloudi",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.456783846167434 33.87819656122097)"
+    },
+    {
+      "id": "3f3ec31d-ee0b-4aa0-b472-d36a16eaa0f2",
+      "code_station": "1817/15",
+      "nom": "puit college omar ibn el khattab",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.154697199898512 33.83648414968982)"
+    },
+    {
+      "id": "99735887-092e-4856-bdef-d9348e41ee00",
+      "code_station": "R1270/13",
+      "nom": "puit complexe touristique mehdia",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.674458537096894 34.25950880892747)"
+    },
+    {
+      "id": "c155cc7e-c620-4d7e-af51-5f85561a457d",
+      "code_station": "COOPERATIVE MESBAH",
+      "nom": "puit cooperative mesbah",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.236659057260403 34.509927874627294)"
+    },
+    {
+      "id": "f447a774-b030-4977-9750-1e8df3cda740",
+      "code_station": "DABDOUBI",
+      "nom": "puit dabdoubi",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.057199406426618 34.4156892096089)"
+    },
+    {
+      "id": "409bf7e3-5049-4f76-aca0-f6bf41c8880a",
+      "code_station": "253/22",
+      "nom": "Puit damoum said",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.465368757019574 33.79169620745456)"
+    },
+    {
+      "id": "89d5acc3-1e1a-4a9b-9ca4-e133b92b92ee",
+      "code_station": "54/14",
+      "nom": "puit dar khaalifa lahcen",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.567503188885153 34.12571354452668)"
+    },
+    {
+      "id": "13861d20-d66a-4414-bd00-db3b2da7e891",
+      "code_station": "R2867/14",
+      "nom": "puit des eaux et forets smento",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.426888925332028 34.08051821913624)"
+    },
+    {
+      "id": "6e2e7e6c-e5d7-4ca2-8135-07c5e8b60168",
+      "code_station": "R1025/14",
+      "nom": "puit douar dayte aicha",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.24308645365527 34.265622239342534)"
+    },
+    {
+      "id": "53c6126e-5226-40f3-a72b-57fc66594214",
+      "code_station": "DOUAR EL KORCHI",
+      "nom": "puit douar el korchi",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.436141348020192 34.528904111682465)"
+    },
+    {
+      "id": "82a0f1f6-4b1d-4078-bfab-e5ef629cd232",
+      "code_station": "1751/9",
+      "nom": "puit douar hassassine",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.289403686494485 34.61408072926077)"
+    },
+    {
+      "id": "b6033418-a079-4048-bfe6-32105f8bf172",
+      "code_station": "DOUAR KHNACHA",
+      "nom": "puit douar khnacha",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.330983482024569 34.77286348431114)"
+    },
+    {
+      "id": "ee2bc4a4-4f24-40f7-99b2-4fa75a196595",
+      "code_station": "R1026/14",
+      "nom": "puit douar ouled mlouk",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.023634194874353 34.21933677211832)"
+    },
+    {
+      "id": "cfedc584-165b-40e4-a467-fdbc4f31efdf",
+      "code_station": "R2713/14",
+      "nom": "puit douar tewirza (ain assou)",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.202922435109452 34.15543958512174)"
+    },
+    {
+      "id": "c5c54938-d04f-4464-a752-63d607111dda",
+      "code_station": "809/16",
+      "nom": "puit dptp taza",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.00330344518717 34.231606323110924)"
+    },
+    {
+      "id": "061e7e15-b57c-4ac7-8d03-800a6e94f32e",
+      "code_station": "1474/14",
+      "nom": "puit eaux et forets ain assou",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.193546629423297 34.17399433265151)"
+    },
+    {
+      "id": "9619b8ac-d838-46ac-afbe-dd36117c1f0d",
+      "code_station": "2601/14",
+      "nom": "puit eaux et forets dar salim",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.318813076832661 34.21166334519473)"
+    },
+    {
+      "id": "7fea2eca-2142-48bb-a707-1eed0ce71d3d",
+      "code_station": "ECHAKAOUI LHOUCINE",
+      "nom": "puit echakaoui lhoucine",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.118824363740052 33.83433437728155)"
+    },
+    {
+      "id": "b5855dd7-5aea-4614-9415-8fa8cbe1f496",
+      "code_station": "1164/15",
+      "nom": "puit ecole oueled taib",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.994327372056884 33.950599898920125)"
+    },
+    {
+      "id": "e562429f-9fe9-498b-989c-6847ddd10f63",
+      "code_station": "1150/13",
+      "nom": "puit el ghouazi",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.607580694281213 34.07495858794987)"
+    },
+    {
+      "id": "526d872f-96fa-4541-8c20-56c30f7ff026",
+      "code_station": "R1103/13",
+      "nom": "puit elamamra boughaba",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.696369536430519 34.19958690295162)"
+    },
+    {
+      "id": "1c6b944f-755f-481c-8cf0-af4e424dc101",
+      "code_station": "R1150/13",
+      "nom": "puit elghouazi boughaba (prive)",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.686360874080829 34.073616115863864)"
+    },
+    {
+      "id": "fa77e75d-6207-4885-8fde-9e655d91d623",
+      "code_station": "1197/15",
+      "nom": "puit elhassnaoui",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.055085696684134 34.019743001407)"
+    },
+    {
+      "id": "9feda518-514f-4ca4-9187-9f4024ce8a4c",
+      "code_station": "R2035/14",
+      "nom": "puit essaydi ahmed",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.557943450267822 33.913732052278434)"
+    },
+    {
+      "id": "0b82ed5c-77f0-45d2-8af6-48ed122617c7",
+      "code_station": "3849/14",
+      "nom": "puit ferme a . radi",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.196353747258292 34.29185132587422)"
+    },
+    {
+      "id": "893a2c12-93ae-4d62-90ab-4b9f444b73bb",
+      "code_station": "R911/8",
+      "nom": "Puit ferme Bennani",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.518310317864626 34.42150036806597)"
+    },
+    {
+      "id": "e4ac8173-4321-4f18-bff5-b10312db4535",
+      "code_station": "R302/22",
+      "nom": "Puit ferme oufkir",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.37950071922456 33.77269133231322)"
+    },
+    {
+      "id": "0c7962ea-a971-4c23-8dc3-b9073b2712c5",
+      "code_station": "197/15",
+      "nom": "puit ferme sodea 5112",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.384329591467652 33.94359068891669)"
+    },
+    {
+      "id": "5a7dc428-3d45-41c4-b3ad-47c336542374",
+      "code_station": "R1502/8",
+      "nom": "puit ghandour bouchaib",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.364830970494551 34.713525176949226)"
+    },
+    {
+      "id": "5d0b7e30-6409-4420-bb86-11e9937e3fe5",
+      "code_station": "3046/15",
+      "nom": "puit hadj kadour ben nasser",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.402127535418684 33.87430447333332)"
+    },
+    {
+      "id": "80db9e48-21df-430f-ad98-3fec3c319f5b",
+      "code_station": "1162/15",
+      "nom": "puit kacimi abdelkader",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.990123577326066 34.01596723989848)"
+    },
+    {
+      "id": "c78e0768-ab37-464d-b35a-aea643a96d32",
+      "code_station": "PUITS KBIR MALKI",
+      "nom": "Puit kbir malki",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.708103356405666 34.38770577502235)"
+    },
+    {
+      "id": "521bbd41-dd91-4371-8247-55b50171939b",
+      "code_station": "337/21",
+      "nom": "puit lamhaedi",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.635577082768984 33.82252424510199)"
+    },
+    {
+      "id": "820cf471-8d59-4240-a636-f29bcd66f3d2",
+      "code_station": "LAMNINI MOHAMED",
+      "nom": "puit lamnini mohamed",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.191340223722714 33.87875687319764)"
+    },
+    {
+      "id": "1c094a1f-f071-42a5-b59e-dfc7e1a4dcb0",
+      "code_station": "R1765/8",
+      "nom": "puit majekare hassane",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.406581027332525 34.61922204712739)"
+    },
+    {
+      "id": "6f4b83a6-b9aa-40c0-9063-3b33724280fc",
+      "code_station": "2626/14",
+      "nom": "Puit mfadel khrit",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.410653060754461 34.12889642381365)"
+    },
+    {
+      "id": "4fc02a5c-77f7-43c8-9c05-af4b99d6ed06",
+      "code_station": "337/14",
+      "nom": "puit mhamdi",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.635577058379645 33.822515226617135)"
+    },
+    {
+      "id": "f05c3383-643e-46ec-84cf-535202927e1c",
+      "code_station": "R1292/13",
+      "nom": "puit miloudi ben bouchetta",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.716807023363635 34.15175907634849)"
+    },
+    {
+      "id": "b9bc4377-a5d5-4543-84e8-aa3efc7061a1",
+      "code_station": "1292/13",
+      "nom": "puit miloudi bouchta",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.716807023363635 34.15175907634849)"
+    },
+    {
+      "id": "8eec3d9b-fca4-4716-a068-d57d7b2844ea",
+      "code_station": "MITTISS Med",
+      "nom": "puit mittiss med",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.589807564757354 33.64502260744)"
+    },
+    {
+      "id": "8bc5e071-4741-415b-b01f-a8856fe150ad",
+      "code_station": "2702/15",
+      "nom": "puit mosquee lkhareb",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.794296134001296 33.98901223859015)"
+    },
+    {
+      "id": "df8997bf-26fe-4324-84c6-f63da6e4282a",
+      "code_station": "1628/22",
+      "nom": "puit mouhazine",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.208207110482603 33.33917447419884)"
+    },
+    {
+      "id": "4fb763bd-a72a-48f8-bf9a-273670017732",
+      "code_station": "R1293/13",
+      "nom": "puit musee dar bel ghazi",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.735369300443373 34.159679292701206)"
+    },
+    {
+      "id": "cbc1c706-0322-4b5e-8420-4267d08c5e43",
+      "code_station": "1294/13",
+      "nom": "puit nadak abderazak",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.771919753793845 34.10427377423625)"
+    },
+    {
+      "id": "64276823-05c4-4fa3-bc39-f1e9f672ca74",
+      "code_station": "R1294/13",
+      "nom": "Puit nadeq abdeerrazek",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.768646568427054 34.10295677222597)"
+    },
+    {
+      "id": "0dd32931-9aa2-42fc-842b-9a17a2e1405a",
+      "code_station": "3305/8",
+      "nom": "puit ouaddare",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.027813382522806 34.64651131183562)"
+    },
+    {
+      "id": "8b3689dc-306d-4bfc-aab8-ec2996e996fe",
+      "code_station": "544/22",
+      "nom": "Puit ouaratat moussa ben md",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.337689784170065 33.34471853964347)"
+    },
+    {
+      "id": "e1bf0273-0488-4e21-8aca-d642df1c25ae",
+      "code_station": "OULED AADOU",
+      "nom": "puit ouled aadou",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.073068890558147 34.345266528322504)"
+    },
+    {
+      "id": "c89f1611-4cdc-4eca-9846-d1df3ad58409",
+      "code_station": "3695/14",
+      "nom": "puit ouled abdelmoula",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.064542805735002 34.31651199761855)"
+    },
+    {
+      "id": "5cc6958e-1249-4aaf-92c5-e4881877b3c9",
+      "code_station": "OULED HLAL DUISLIM",
+      "nom": "puit ouled hlal duislim",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.470259710777283 34.088181753210286)"
+    },
+    {
+      "id": "f36a1c80-fa47-4266-97a7-2835e5fdf0d6",
+      "code_station": "OULED IZID",
+      "nom": "puit ouled izid",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.04883732122233 33.95797915390413)"
+    },
+    {
+      "id": "5b71e517-10ab-41c9-9517-3671c20560cc",
+      "code_station": "R1563/8",
+      "nom": "puit ouled lkelaye",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.311995284169496 34.59537295175073)"
+    },
+    {
+      "id": "6147eb43-3644-442b-bca1-e6d728126337",
+      "code_station": "OULED TALEB",
+      "nom": "puit ouled taleb",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.626936798412632 34.22991680625371)"
+    },
+    {
+      "id": "1ab78fb8-4cb8-4204-a4db-bd927376e42f",
+      "code_station": "R1775/14",
+      "nom": "puit public ouled taleb regag",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.556231533210545 34.10825066797413)"
+    },
+    {
+      "id": "7765bca8-60af-47d2-99fa-849f6cdbbb47",
+      "code_station": "R994/14",
+      "nom": "Puit r 994/14",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.442410002781361 34.29005220069561)"
+    },
+    {
+      "id": "d8eae699-badb-469b-9e7e-146d538b12fb",
+      "code_station": "R1191/13",
+      "nom": "Puit r1191/13 = 1190/13",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.614464574840588 34.070455105064184)"
+    },
+    {
+      "id": "01606dad-5dcc-495f-9779-df0818c79483",
+      "code_station": "R3305/8",
+      "nom": "puit r3305/8 =918/8",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.136211579935178 34.56564189288122)"
+    },
+    {
+      "id": "5b0d16eb-fde9-43b1-ba97-27862c9303ac",
+      "code_station": "2797/15",
+      "nom": "puit ras tadouda",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.712443173145459 34.003478718485134)"
+    },
+    {
+      "id": "cb678d32-aedb-4a8e-ab42-d91ce80a5ac2",
+      "code_station": "1745/9",
+      "nom": "puit rhouazi ouled aissa",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.306978721787817 34.485486436324585)"
+    },
+    {
+      "id": "cedd9a28-a8a9-44af-b3ad-4eb66ade4c7f",
+      "code_station": "693/14",
+      "nom": "puit sodea",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.679629737123183 33.91306846946205)"
+    },
+    {
+      "id": "cbdd025a-604e-472a-850d-262a78d4d1d9",
+      "code_station": "R1308/22",
+      "nom": "puit sodea",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.434508636847246 33.73706440365419)"
+    },
+    {
+      "id": "237bab3e-e976-45ec-b42c-b67097b677ee",
+      "code_station": "139/14",
+      "nom": "Puit sodea",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.777304955074505 34.237450612289564)"
+    },
+    {
+      "id": "0d1acd53-8e6f-4002-a311-0f813043e269",
+      "code_station": "1475/9",
+      "nom": "puit souk el had rafsai",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.654230984161674 34.477904241598026)"
+    },
+    {
+      "id": "77652571-7a6d-49ea-8ec6-b2127a12e947",
+      "code_station": "1470/22",
+      "nom": "puit souk tlet anasser",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.821180276074263 33.691084208587796)"
+    },
+    {
+      "id": "ffe17726-dfa0-4434-b943-0b6f771320e2",
+      "code_station": "853/16",
+      "nom": "puit souk tnin bouhlou",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.419183707929306 34.13093618905265)"
+    },
+    {
+      "id": "ab335c73-ee40-4bf3-9cb6-499799e0e3f4",
+      "code_station": "953/16",
+      "nom": "puit souk tnin bouhlou",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.419183707929306 34.13093618905265)"
+    },
+    {
+      "id": "90e5ab53-b75b-48fe-babb-8edc4ba00aa0",
+      "code_station": "897/16",
+      "nom": "puit station bab marzouka",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.21760036751161 34.20156751417759)"
+    },
+    {
+      "id": "76bfabb5-b0a8-403d-a443-8a4a9f2dcc76",
+      "code_station": "330/21",
+      "nom": "Puit ta?ouniat s?idia",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.581838165348331 33.70175447745692)"
+    },
+    {
+      "id": "f275b715-ab03-4951-a1c9-db34c722983c",
+      "code_station": "306/22",
+      "nom": "puit taaouinat ghazala",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.324440753527106 33.75418187639158)"
+    },
+    {
+      "id": "1a634969-a25f-4904-a20a-1b4ac5911786",
+      "code_station": "1162/14",
+      "nom": "puit taaouinat massira",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.713114122599674 33.89991266521563)"
+    },
+    {
+      "id": "5fb340b3-dadd-4e83-ade7-10e729e52b08",
+      "code_station": "3318/15",
+      "nom": "puit taaouniat nasser",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.532351955276035 34.09209109580417)"
+    },
+    {
+      "id": "96c712d3-ff9f-4257-ace4-405308f09a4b",
+      "code_station": "R823/15",
+      "nom": "Puit ziaissa mohamed prive",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.175048972831846 33.90686578911574)"
+    },
+    {
+      "id": "0f9fa1f3-0370-4733-a4c7-5babe9c588bd",
+      "code_station": "R1190/13",
+      "nom": "puit zniber seddik (prive)",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.614463313856847 34.07036493409775)"
+    },
+    {
+      "id": "64c741e1-0bbd-4450-a5de-38452d401207",
+      "code_station": "R1294/8",
+      "nom": "Puits",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.078469867951474 34.46430994761247)"
+    },
+    {
+      "id": "4be999a5-319d-41f9-8e44-2f2ab9f8cc51",
+      "code_station": "1062/8",
+      "nom": "puits à captage cuvelé",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.191158078739732 34.555617221879416)"
+    },
+    {
+      "id": "2b3a997d-ea11-434f-9676-d247eace60ce",
+      "code_station": "1095/15",
+      "nom": "puits à captage cuvelé",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.935349622207055 33.93055482252536)"
+    },
+    {
+      "id": "03ced66b-ddcb-48e2-9e30-485281ada64d",
+      "code_station": "1149/15",
+      "nom": "puits à captage cuvelé",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.23349569990774 33.94199293842495)"
+    },
+    {
+      "id": "f5054e01-15e7-4458-b2e4-3db266fb3f07",
+      "code_station": "1161/15",
+      "nom": "puits à captage cuvelé",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.058311497903552 34.02564053924127)"
+    },
+    {
+      "id": "1e5e27d1-0379-472a-b4fa-34a700382cef",
+      "code_station": "1226/15",
+      "nom": "puits à captage cuvelé",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.885244329173506 33.91457677946526)"
+    },
+    {
+      "id": "a827a27e-46d5-4706-b540-b0283d316341",
+      "code_station": "1253/22",
+      "nom": "puits à captage cuvelé",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.306562502577816 33.81324174572751)"
+    },
+    {
+      "id": "8818f7f4-a198-49a1-b8f4-07d632b70829",
+      "code_station": "131/15",
+      "nom": "puits à captage cuvelé",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.534608699255415 33.862805819001615)"
+    },
+    {
+      "id": "12633903-04de-4ee2-aa64-1485f9d96e26",
+      "code_station": "1564/14",
+      "nom": "puits à captage cuvelé",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.101846881394681 34.29331604484319)"
+    },
+    {
+      "id": "fc3ab6b8-6669-4c96-be17-8f63b8d63927",
+      "code_station": "1757/14",
+      "nom": "puits à captage cuvelé",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.523062615118267 34.01656575149233)"
+    },
+    {
+      "id": "654e1412-6a9f-48ca-a6c5-bea689bc8500",
+      "code_station": "2603/14",
+      "nom": "puits à captage cuvelé",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.361054465484996 34.15453597177135)"
+    },
+    {
+      "id": "49b9ddaf-f6de-4cac-aeb9-d8cd110aa129",
+      "code_station": "285/22",
+      "nom": "puits à captage cuvelé",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.289258520011867 33.82675539159664)"
+    },
+    {
+      "id": "f08b3230-eee6-460f-82db-cac7bcc6bddf",
+      "code_station": "2964/14",
+      "nom": "puits à captage cuvelé",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.908747500512991 34.295652186050454)"
+    },
+    {
+      "id": "452fcbda-da3b-4c6c-8ef2-f2cc87a001ac",
+      "code_station": "352/21",
+      "nom": "puits à captage cuvelé",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.643985195014545 33.738183731689894)"
+    },
+    {
+      "id": "478edba4-8eda-4ea3-afac-c9d894a3b9bc",
+      "code_station": "3707/14",
+      "nom": "puits à captage cuvelé",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.575647579231585 33.84264383321072)"
+    },
+    {
+      "id": "f860ae2a-8d28-4abe-aebb-c1d3c72abe8b",
+      "code_station": "494/22",
+      "nom": "puits à captage cuvelé",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.439965178124093 33.74833619077004)"
+    },
+    {
+      "id": "813b540a-88a7-42d2-961e-1e4eda91204c",
+      "code_station": "648/14",
+      "nom": "puits à captage cuvelé",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.775903194742007 34.289753518325)"
+    },
+    {
+      "id": "5ab97b05-3d70-401a-947d-6151f26e6624",
+      "code_station": "823/15",
+      "nom": "puits à captage cuvelé",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.175048972831846 33.90686578911574)"
+    },
+    {
+      "id": "bdbb45cc-3d36-4ed6-9fc2-5e5981b4409e",
+      "code_station": "1210/15",
+      "nom": "puits à captage non cuvelé",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.978236629039222 33.89914260696183)"
+    },
+    {
+      "id": "d351aee5-4c1f-4e4b-ba1a-99dcea8e3d6a",
+      "code_station": "1463/22",
+      "nom": "puits à captage non cuvelé",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.337689784170065 33.34471853964347)"
+    },
+    {
+      "id": "18af65a8-4719-4796-ae60-60c26b17d3d7",
+      "code_station": "2910/14",
+      "nom": "puits à cuvelé",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.81823308597702 34.3042272219022)"
+    },
+    {
+      "id": "001ef831-bbcf-44bf-b301-cbd2a543a638",
+      "code_station": "3458/15",
+      "nom": "puits abderrahman rifi",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.150320999800251 34.04353261607746)"
+    },
+    {
+      "id": "f8a1c4b4-d54e-41f6-89b9-98f4ff30296f",
+      "code_station": "3461/15",
+      "nom": "puits ahmed yamani ",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.456783846167434 33.87819656122097)"
+    },
+    {
+      "id": "ebf68d4e-a7ce-4e6f-9810-64e49de5185e",
+      "code_station": "AYD_DECH1_PE1/14",
+      "nom": "puits ait yadine",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.024625271271729 34.004331591581085)"
+    },
+    {
+      "id": "5e043b52-4c8b-47cf-a20a-314da9d5afcb",
+      "code_station": "3460/15",
+      "nom": "puits badr ait yahya",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.381955391181285 33.91328926862373)"
+    },
+    {
+      "id": "e69bd8c5-3c27-41e4-9a3b-13058b780f78",
+      "code_station": "5181/13",
+      "nom": "puits belaassir",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.624541413157604 34.23096819498471)"
+    },
+    {
+      "id": "d1ff09aa-00b5-47e0-bbb4-1ce5bcfdaa8e",
+      "code_station": "BRAHIM OMARIA/13",
+      "nom": "puits brahim omaria",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.722978147379741 34.13462280205233)"
+    },
+    {
+      "id": "a8bc21d7-d196-4551-b54f-c2e3f0f0f262",
+      "code_station": "MHA-DOM1-PE1/15",
+      "nom": "puits douar ouersefan",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.25882196426589 33.99773761917454)"
+    },
+    {
+      "id": "0cec9574-5219-4136-aa5c-0d6aff0b73f6",
+      "code_station": "4258/14",
+      "nom": "puits douar oulad taleb",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.567503188885153 34.12571354452668)"
+    },
+    {
+      "id": "de216978-2f22-477a-9218-a91c6f2dd001",
+      "code_station": "IMK_PDOM_PE1/15",
+      "nom": "puits habri hadou",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.03268546740614 33.73625847996457)"
+    },
+    {
+      "id": "695c90b6-8c73-4302-a824-5475cfc1276e",
+      "code_station": "HRICHMANE/14",
+      "nom": "puits hrichmane",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.043582100377383 33.962932411775654)"
+    },
+    {
+      "id": "2998e7e4-4513-4c12-baa6-8f3e8aa61477",
+      "code_station": "4259/14",
+      "nom": "puits khalouki",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.469235419601595 34.08598104957338)"
+    },
+    {
+      "id": "38c78f2c-d947-4e07-9712-8d920ad7315c",
+      "code_station": "2011/3",
+      "nom": "puits khlifi ramou",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.208247461091898 35.019133077136225)"
+    },
+    {
+      "id": "babf0923-22db-4291-92b7-966d53bea52a",
+      "code_station": "LAMSARA/16",
+      "nom": "puits lamsara",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.043471010505169 34.217329272808804)"
+    },
+    {
+      "id": "760a7db3-4bf5-4db2-9a38-0b906a580ecf",
+      "code_station": "LHAMMANI BRAHIM/9",
+      "nom": "puits lhammani brahim",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.057910848028687 34.58669127162001)"
+    },
+    {
+      "id": "39b5477f-a4e0-4dfd-b4ca-f442d01634b5",
+      "code_station": "LOUTFI BENKAMLEH/22",
+      "nom": "puits loutfi benkamleh",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.339554812481357 33.39846686047103)"
+    },
+    {
+      "id": "4efc0812-eb97-4696-b180-3439fa4eb836",
+      "code_station": "2061/21",
+      "nom": "puits med ben zadi",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.589807564757354 33.64502260744)"
+    },
+    {
+      "id": "251838a5-12aa-48c3-9b1f-5f7030e9fb0a",
+      "code_station": "3459/15",
+      "nom": "puits mohamed ben hary",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.046627144455066 33.95857715190326)"
+    },
+    {
+      "id": "22a42d10-7cde-4d23-ba3b-91d65c993102",
+      "code_station": "2013/3",
+      "nom": "puits mohamed chehyma",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.191396662676011 34.93829757181239)"
+    },
+    {
+      "id": "e029c13f-a780-4232-82aa-9606a4718a12",
+      "code_station": "1900/8",
+      "nom": "puits mohamed hassani",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.087094227748959 34.830286565779964)"
+    },
+    {
+      "id": "26ded7cd-d7d5-4fad-b7de-62752cce4240",
+      "code_station": "3465/15",
+      "nom": "puits msalak abdessamia",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.227276695721353 34.02238016232451)"
+    },
+    {
+      "id": "69b28ddf-00ac-4036-8b08-49f85577df7a",
+      "code_station": "2086/15",
+      "nom": "puits ras tabouda",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.695075480460834 33.999396190295066)"
+    },
+    {
+      "id": "860491a8-a343-4974-aa9b-ad062e73be71",
+      "code_station": "3463/15",
+      "nom": "puits said aallah",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.275023154337923 33.95750736181203)"
+    },
+    {
+      "id": "4103c297-9c74-4044-acd2-41f54188d691",
+      "code_station": "954/8",
+      "nom": "puits sochatour",
+      "type_station": "puits",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.11613159176299 34.90404184982555)"
+    },
+    {
+      "id": "9c16a819-c5b4-4e71-b9c8-d25f8a4f58c8",
+      "code_station": "1151/13",
+      "nom": "R 1151/13 = 1190/13",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.614463313856847 34.07036493409775)"
+    },
+    {
+      "id": "c968bd56-b457-4254-bd64-3b0b1965c2f0",
+      "code_station": "2762/15",
+      "nom": "R 1164/15",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.994327372056884 33.950599898920125)"
+    },
+    {
+      "id": "eec3ad5b-9639-441e-987b-ea124d2ec31b",
+      "code_station": "3710/14",
+      "nom": "r 1712/14",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.760419147251801 34.35425972314783)"
+    },
+    {
+      "id": "1939009b-569a-460b-a1b7-c8448c042721",
+      "code_station": "R1817/15",
+      "nom": "r 1817/15",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.15416765211752 33.836483109752045)"
+    },
+    {
+      "id": "8201bbfd-72e6-4e03-af1e-6a5c978f6c11",
+      "code_station": "R2659/14",
+      "nom": "R 2659/14",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.248454801821742 34.23154573219826)"
+    },
+    {
+      "id": "f276004a-3f51-426d-a0ec-d24d31d360d1",
+      "code_station": "R2964/14",
+      "nom": "r 2964/14",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.917113168329067 34.286547005013915)"
+    },
+    {
+      "id": "3b8206f8-7545-4894-868c-b44890981086",
+      "code_station": "R306/22",
+      "nom": "R 306/22",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.324440761346384 33.75417285769547)"
+    },
+    {
+      "id": "6ee92bbf-92a7-4075-8dca-8d567d66cd9c",
+      "code_station": "1775/14",
+      "nom": "r 3268/14 remplace par 1775/14",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.573614005181438 34.23118368542081)"
+    },
+    {
+      "id": "49ec76f8-26a4-45ae-a4b4-260cd4120e0c",
+      "code_station": "R330/21",
+      "nom": "R 330/21",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.581836304198205 33.700861613793876)"
+    },
+    {
+      "id": "8d76feb5-5ee6-4816-8cf6-bc85e945b459",
+      "code_station": "1126/15",
+      "nom": "R puit 1126/15 (kasmi abdelkader)",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.168751501286587 34.03806709633565)"
+    },
+    {
+      "id": "eb4c90e4-ec2f-4c74-a5c4-447071555598",
+      "code_station": "R1164/15",
+      "nom": "R1164/15",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.994327372056884 33.950599898920125)"
+    },
+    {
+      "id": "c71ce70d-5ffa-4b31-9fe7-f78289a00c18",
+      "code_station": "R1197/15",
+      "nom": "r1197/15",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.054540546753874 34.020661328492196)"
+    },
+    {
+      "id": "cc8ae7ea-e031-45b3-aed0-3f12613c1b0a",
+      "code_station": "R2628/14",
+      "nom": "R2628/14",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.267856826866319 34.16333079617937)"
+    },
+    {
+      "id": "b75c0467-400d-40fe-90cd-8a9e1b0c4fd9",
+      "code_station": "R3249/14",
+      "nom": "R3249/14",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.307592294173954 34.07296128392234)"
+    },
+    {
+      "id": "489ca7c6-a199-4b66-be0e-71ddd343d31f",
+      "code_station": "2393/15",
+      "nom": "ras el ma",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.098003074391368 33.97975078963996)"
+    },
+    {
+      "id": "26773b78-4ec7-4148-8523-20e31a197d75",
+      "code_station": "646/23",
+      "nom": "ras el oued",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.346013345138403 33.72675960960122)"
+    },
+    {
+      "id": "ddd6fea0-22b6-49b3-83c9-7533a1188a86",
+      "code_station": "1708/9",
+      "nom": "ratba",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": "180.00",
+      "geom_wkt": "POINT(-4.938359307912004 34.80654678688384)"
+    },
+    {
+      "id": "b59a657a-5a05-48cc-96ba-e61a4462c85c",
+      "code_station": "1775/15",
+      "nom": "sidi harazem 1",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.882283242719237 34.03044778253115)"
+    },
+    {
+      "id": "563bb112-2800-4e13-86ba-68525cf8a154",
+      "code_station": "2376/15",
+      "nom": "sidi harazem 2",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.843829960485215 34.03073394713852)"
+    },
+    {
+      "id": "d40d82f6-462c-4c03-a6bd-b8555f5a33d1",
+      "code_station": "669/22",
+      "nom": "sidi mokhfi",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.31667801312764 33.40378415813225)"
+    },
+    {
+      "id": "7a7606df-f9b5-4640-a96f-de816b8a7f0c",
+      "code_station": "1514/8",
+      "nom": "sondage ferme housni ben slimane",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.767114288148068 34.39482382159946)"
+    },
+    {
+      "id": "e398f4e8-b2a8-47c0-9b90-1b953e23825b",
+      "code_station": "160/15",
+      "nom": "sonnec 160/15",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.058338448626318 34.018786993230954)"
+    },
+    {
+      "id": "81f85bbe-9afa-4c6b-b051-ff0de9f75df6",
+      "code_station": "618/22",
+      "nom": "souk el had oued ifrane",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.491090065104011 33.295593827379804)"
+    },
+    {
+      "id": "9de7c827-693d-4af0-9f1f-ec66a407ccb3",
+      "code_station": "3261/14",
+      "nom": "souk el had rdom",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.758004316429032 34.296117573592014)"
+    },
+    {
+      "id": "5c1d8ae8-aa55-4cfa-9e66-d22b14dfcc06",
+      "code_station": "TAZ_PDOM_PE2/16",
+      "nom": "source abattoir",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.02021982567073 34.216562005461576)"
+    },
+    {
+      "id": "0f5e2289-7d45-4e26-a0a8-f39c7220b8f8",
+      "code_station": "SKR_PDOM_PE1/22",
+      "nom": "source akboub ",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.549040774672552 33.52288403107535)"
+    },
+    {
+      "id": "7fe59c88-d667-42c0-8b3b-865831737e65",
+      "code_station": "BHL_PDOM_PE1/15",
+      "nom": "source ammes dechquonda",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.878825281446976 33.86839398684075)"
+    },
+    {
+      "id": "40fdf24c-904e-4b70-81fe-6ffe425bf8a2",
+      "code_station": "REK_PDOM_PE1/15",
+      "nom": "source massegal",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.430668117230717 33.80663259579811)"
+    },
+    {
+      "id": "6784120f-c7d0-468a-87fb-250c2169cdeb",
+      "code_station": "2209/22",
+      "nom": "source ras el ain",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.690453537378379 33.88515276151383)"
+    },
+    {
+      "id": "345b591c-9ed4-41ca-bc9d-968752d9a807",
+      "code_station": "130/22",
+      "nom": "source ribaa",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.225635486836014 33.76084706186678)"
+    },
+    {
+      "id": "818c0cbe-fc6e-4b74-afca-0fbb4f47cbba",
+      "code_station": "1514/15",
+      "nom": "Source sidi hafyan",
+      "type_station": "source",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.179603126993093 34.03042147449215)"
+    },
+    {
+      "id": "ebf1df46-dc1b-4301-9071-e750d57e7962",
+      "code_station": "653/16",
+      "nom": "station el kouchet",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.490037645575224 34.14770200220183)"
+    },
+    {
+      "id": "c0d54bc4-eb1e-459b-a641-78e8e4cb8748",
+      "code_station": "Foum KHNEG/9",
+      "nom": "station foum khneg",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.06278586431644 33.151705059858315)"
+    },
+    {
+      "id": "2eaf9f2a-eedd-426e-b643-379120e5f3a7",
+      "code_station": "1225/15",
+      "nom": "Station Inconnue 1225/15",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.946324487823211 33.900654289901176)"
+    },
+    {
+      "id": "f47f0a9c-4ff1-405a-a317-4d142dbeb50a",
+      "code_station": "1538/8",
+      "nom": "Station Inconnue 1538/8",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.309675003590804 34.68554520981396)"
+    },
+    {
+      "id": "f0464d88-3483-4aa8-af1e-fff022b9c53e",
+      "code_station": "1744/8",
+      "nom": "Station Inconnue 1744/8",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.366543566777894 34.403821531793206)"
+    },
+    {
+      "id": "4a9ff21a-6dbf-4372-88de-74bc482f815c",
+      "code_station": "3283/14",
+      "nom": "Station Inconnue 3283/14",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-6.204353185679396 34.32262969102354)"
+    },
+    {
+      "id": "345aef96-2a9b-4cf2-b83e-27d213caf8ad",
+      "code_station": "609/9",
+      "nom": "Station mjaara ( n°12 ) ",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.250126166746684 34.58866179154468)"
+    },
+    {
+      "id": "af8adabc-9bad-443f-883f-52cafba2f722",
+      "code_station": "607/9",
+      "nom": "station rhafsai",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.931240788325432 34.61258246654213)"
+    },
+    {
+      "id": "833e0181-cfac-4886-890c-65b9c39fa0b7",
+      "code_station": "608/9",
+      "nom": "station tafrant  ",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.133184001654434 33.979830670938135)"
+    },
+    {
+      "id": "f88b46fe-ff1e-4b06-916d-8f3d465562ca",
+      "code_station": "1215/9",
+      "nom": "tabouda",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.135947822841286 34.755406481665055)"
+    },
+    {
+      "id": "edac01e4-2cdd-4540-a517-4b8547725b11",
+      "code_station": "2029/22",
+      "nom": "taghrout sup",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.606591812355134 33.48226472041329)"
+    },
+    {
+      "id": "5b01a831-2781-4d2e-b60a-aaba6238d325",
+      "code_station": "1707/9",
+      "nom": "taghzout",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.578265944069296 34.68877945661107)"
+    },
+    {
+      "id": "c65f2655-996e-4d9e-942d-a2da7b4dafe7",
+      "code_station": "2551/15",
+      "nom": "tissa boukarkour",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.570749724401756 34.313982439870465)"
+    },
+    {
+      "id": "7c861aab-81c0-47ce-b611-884ade798a6a",
+      "code_station": "1371/22",
+      "nom": "zaouiat sidi abdeslam",
+      "type_station": null,
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-5.176816225814489 33.56786314086183)"
+    },
+    {
+      "id": "7e275775-8cc5-4644-8381-87b3b3663f64",
+      "code_station": "891/16",
+      "nom": "zrarda",
+      "type_station": "hydrologique",
+      "actif": true,
+      "altitude_m": null,
+      "geom_wkt": "POINT(-4.320518945362121 33.967292582813975)"
+    }
+  ],
+  "meteo_temp_count": [
+    {
+      "n": 0
+    }
+  ],
+  "meteo_temp_columns": [
+    {
+      "column_name": "temps",
+      "data_type": "timestamp with time zone",
+      "udt_name": "timestamptz"
+    },
+    {
+      "column_name": "station_id",
+      "data_type": "uuid",
+      "udt_name": "uuid"
+    },
+    {
+      "column_name": "val_min",
+      "data_type": "double precision",
+      "udt_name": "float8"
+    },
+    {
+      "column_name": "val_max",
+      "data_type": "double precision",
+      "udt_name": "float8"
+    },
+    {
+      "column_name": "val_moy",
+      "data_type": "double precision",
+      "udt_name": "float8"
+    }
+  ]
+}

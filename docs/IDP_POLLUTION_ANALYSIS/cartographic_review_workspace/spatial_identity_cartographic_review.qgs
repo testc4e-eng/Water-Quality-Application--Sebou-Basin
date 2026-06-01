@@ -1,0 +1,41 @@
+<!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
+<qgis version="3.34" projectname="Revue cartographique identite spatiale simplifiee">
+  <title>Revue cartographique QA simplifiee - WQDSS SAD</title>
+  <homePath path="."/>
+  <projectCrs><spatialrefsys><authid>EPSG:26191</authid><srid>26191</srid></spatialrefsys></projectCrs>
+  <layer-tree-group name="">
+    <layer-tree-group name="A_VALIDER_RAPIDEMENT" checked="Qt::Checked"><layer-tree-layer id="review_exact_0m_20260520" name="EXACT_0M" checked="Qt::Checked"/></layer-tree-group>
+    <layer-tree-group name="A_VERIFIER" checked="Qt::Checked"><layer-tree-layer id="review_very_close_2m_20260520" name="VERY_CLOSE_2M" checked="Qt::Checked"/><layer-tree-layer id="review_different_object_20260520" name="DIFFERENT_OBJECT" checked="Qt::Checked"/></layer-tree-group>
+    <layer-tree-group name="ORPHELINS" checked="Qt::Checked"><layer-tree-layer id="review_orphans_20260520" name="ORPHANS" checked="Qt::Checked"/></layer-tree-group>
+  </layer-tree-group>
+  <projectlayers>
+    <maplayer type="vector" geometry="Point" readOnly="0">
+      <id>review_exact_0m_20260520</id>
+      <datasource>./review_exact_0m.gpkg|layername=review_exact_0m</datasource>
+      <layername>review_exact_0m</layername>
+      <provider>ogr</provider>
+      <srs><spatialrefsys><authid>EPSG:26191</authid><srid>26191</srid></spatialrefsys></srs>
+    </maplayer>
+    <maplayer type="vector" geometry="Point" readOnly="0">
+      <id>review_very_close_2m_20260520</id>
+      <datasource>./review_very_close_2m.gpkg|layername=review_very_close_2m</datasource>
+      <layername>review_very_close_2m</layername>
+      <provider>ogr</provider>
+      <srs><spatialrefsys><authid>EPSG:26191</authid><srid>26191</srid></spatialrefsys></srs>
+    </maplayer>
+    <maplayer type="vector" geometry="Point" readOnly="0">
+      <id>review_different_object_20260520</id>
+      <datasource>./review_different_object.gpkg|layername=review_different_object</datasource>
+      <layername>review_different_object</layername>
+      <provider>ogr</provider>
+      <srs><spatialrefsys><authid>EPSG:26191</authid><srid>26191</srid></spatialrefsys></srs>
+    </maplayer>
+    <maplayer type="vector" geometry="Point" readOnly="0">
+      <id>review_orphans_20260520</id>
+      <datasource>./review_orphans.gpkg|layername=review_orphans</datasource>
+      <layername>review_orphans</layername>
+      <provider>ogr</provider>
+      <srs><spatialrefsys><authid>EPSG:26191</authid><srid>26191</srid></spatialrefsys></srs>
+    </maplayer>
+  </projectlayers>
+</qgis>

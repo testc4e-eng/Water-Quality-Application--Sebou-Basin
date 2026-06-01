@@ -1,0 +1,107 @@
+AG|Argent|mg/L|t
+AL|Aluminium|mg/L|t
+AS|Arsenic|mg/L|t
+AZOTE_ORG|Azote_Org||t
+AZOTE_TOT_KJELD|Azote_tot_kjeld||t
+AZOTE_TOT_KJELDHAL|Azote_tot_kjeldhal||t
+AZOTE_TOTAL|Azote_Total||t
+BA|Baryum|mg/L|t
+BE|Beryllium|mg/L|t
+BORE|Bore|mg/L|t
+CA|Ca||t
+CD|Cadmium|mg/L|t
+CF|CF||t
+CHLA|Chla||t
+CL|Cl||t
+CL2_RES|Chlore residuel|mg/L|t
+CLOSTRI|Clostridium sulfito-reducteurs|spores/100 mL|t
+CN|Cyanures|mg/L|t
+CO|Cobalt|mg/L|t
+CO2_LIBRE|Dioxyde de carbone libre|mg/L|t
+CO3|CO3||t
+CONDUCTIVITE|Conductivite||t
+COULEUR|Couleur||t
+CRT|Chrome_total|mg/L|t
+CT|CT||t
+CU|Cuivre|mg/L|t
+DBO5|DBO5|mg/L|t
+DCO|DCO|mg/L|t
+DCO_DEC2H|DCO_dec2h||t
+DEBIT|Débit|m3/s|t
+DEBIT|Debit||t
+DETERGENT|Detergent||t
+DISQUE_SECCHI|Disque_secchi||t
+EH|Eh||t
+EVAPO|Evaporation|mm|t
+F-|Fluorures|mg/L|t
+F_M_MES|F_M_mes||t
+FE|Fe||t
+FE2|Fer_ferreux|mg/L|t
+FET|FeT||t
+FM|FM||t
+GERME_22|Germes totaux a 22 C|UFC/mL|t
+GERME_37|Germes totaux a 37 C|UFC/mL|t
+H2S|Hydrogene sulfure|mg/L|t
+HCO3-|HCO3-||t
+HCT|HCT||t
+HG|Mercure|mg/L|t
+HUILES_GRAISSES|Huiles_Graisses|mg/L|t
+IBD|IBD||t
+IBGN|IBGN||t
+K|K||t
+LACHER|Lâcher barrage|m3/s|t
+LARGEUR|Largeur||t
+LI|Lithium|mg/L|t
+MES|MES|mg/L|t
+MG|Mg||t
+MN|Mn||t
+Mo|Molybdene|mg/L|t
+MO|MO||t
+NA|NA||t
+NH4|NH4|mg/L|t
+NI|Nickel|mg/L|t
+NIVEAU_EAU|Niveau d'eau barrage|m|t
+NO2-|NO2-||t
+NO3-|NO3-|mg/L|t
+O2_DISS|O2_diss||t
+ODEUR|Odeur|qualitatif|t
+OH|OH||t
+PB|Plomb|mg/L|t
+PH|ph||t
+PHENOL|phenol||t
+PHEOPIGMENT|Pheopigment||t
+PHOSPHORE_TOTAL|Phosphore_Total||t
+PO4_3-|PO4 3-||t
+PRECIP|Précipitation|mm|t
+PROFONDEUR|Profondeur||t
+PSEUDO_AER|Pseudomonas aeruginosa|UFC/100 mL|t
+PTD|PTD||t
+PTP|PTP||t
+RS105|RS105||t
+S|S||t
+S2|S2||t
+SAT|sat||t
+SAVEUR|Saveur|qualitatif|t
+SB|Antimoine|mg/L|t
+SE|Selenium|mg/L|t
+SF|SF||t
+SIO2|Silice|mg/L|t
+SIO3|SiO3||t
+SN|Etain|mg/L|t
+SO3|Sulfites|mg/L|t
+SO4|SO4||t
+SR|Strontium|mg/L|t
+T_AIR|T_Air||t
+T_EAU|T_eau||t
+TA|TA||t
+TAC|TAC||t
+TEMP_MAX|Température max|°C|t
+TEMP_MIN|Température min|°C|t
+TEMP_MOY|Température moyenne|°C|t
+TH|TH||t
+TL|Thallium|mg/L|t
+TURBIDITE|Turbidite||t
+V|Vanadium|mg/L|t
+VIBRIO|Vibrion cholerique|UFC/100 mL|t
+VOLUME_BARRAGE|Volume barrage|Mm3|t
+ZN|Zinc|mg/L|t

@@ -1,0 +1,100 @@
+layer,field,type,length,non_null,null,completeness_pct,distinct,examples,min,max,role
+idp_src_pollution_globale,X,Real,,207,36,85.19,206,"['482265', '564883', '484976', '503938', '505266', '468890']",379171.0,633742.0,coordonnées
+idp_src_pollution_globale,Y,Real,,207,36,85.19,205,"['335765', '429075', '444828', '348098', '347101', '348365']",294194.0,495449.0,coordonnées
+idp_src_pollution_globale,id_pts,Integer64,10.0,243,0,100.0,243,"['155', '210', '131', '137', '138', '144']",1.0,243.0,identifiant
+idp_src_pollution_globale,id_table,String,254.0,243,0,100.0,243,"['_Agourai_482265_335765', '_Ain Aicha_564883_429075', '_Ain Dfali_484976_444828', '_Ait Naamane_503938_348098', '_Ait Naamane_505266_347101', '_Aït Yaazem _468890_348365']",,,identifiant
+idp_src_pollution_globale,date_jr_pr,Date,,243,0,100.0,53,"['2025/10/27', '2025/11/21', '2025/10/16', '2025/10/20', '2025/10/21', '2025/11/05']",2024-09-12,2025-12-15,date/heure
+idp_src_pollution_globale,heure_prel,String,254.0,243,0,100.0,62,"['12H25', '10H15', '13H00', '12H15', '14H45', '16h30']",,,date/heure
+idp_src_pollution_globale,pts_prelev,String,254.0,243,0,100.0,243,"['AGR_DECH_PE (AIN FERDI)', 'ACH_PDS_R5', 'AVAL AIN DFALI', 'HJB_PDOM1_PE1 (COOPERATIVE AIT NAAMANE)', 'AMONT STEP El Hajeb', 'AAZ_DOM1_R1']",,,nom/libellé du point
+idp_src_pollution_globale,n_enregest,String,254.0,213,30,87.65,212,"['180-1027-10-9', '180-1027-11-9', '180-1027-12-9', '180-1027-13-12', '180-1027-14-9', '180-1027-15-9']",,,identifiant
+idp_src_pollution_globale,n_ordre,String,254.0,6,237,2.47,6,"['653', '1371', '669', '2819', '551', '1508']",551.0,2819.0,identifiant
+idp_src_pollution_globale,n_indice,String,254.0,0,243,0.0,0,[],,,identifiant
+idp_src_pollution_globale,ire,String,254.0,0,243,0.0,0,[],,,identifiant
+idp_src_pollution_globale,commune,String,254.0,207,36,85.19,106,"['Agourai', 'Ain Aicha', 'Ain Dfali', 'Ait Naamane', 'Aït Yaazem', 'Azzaba']",,,localisation administrative
+idp_src_pollution_globale,code_commu,String,254.0,0,243,0.0,0,[],,,identifiant
+idp_src_pollution_globale,coord_x,Real,24.15,207,36,85.19,206,"['482265.000000000000000', '564883.000000000000000', '484976.000000000000000', '503938.000000000000000', '505266.000000000000000', '468890.000000000000000']",379171.0,633742.0,coordonnées
+idp_src_pollution_globale,coord_y,Real,24.15,207,36,85.19,205,"['335765.000000000000000', '429075.000000000000000', '444828.000000000000000', '348098.000000000000000', '347101.000000000000000', '348365.000000000000000']",294194.0,495449.0,coordonnées
+idp_src_pollution_globale,t_air,Real,24.15,189,54,77.78,25,"['31.000000000000000', '30.000000000000000', '25.000000000000000', '24.000000000000000', '29.000000000000000', '27.000000000000000']",10.0,35.0,valeur de mesure
+idp_src_pollution_globale,t_eau,Real,24.15,189,54,77.78,102,"['24.699999999999999', '28.300000000000001', '27.399999999999999', '21.300000000000001', '26.399999999999999', '24.000000000000000']",10.1,30.5,valeur de mesure
+idp_src_pollution_globale,ph,Real,24.15,201,42,82.72,47,"['7.050000000000000', '7.600000000000000', '7.800000000000000', '8.100000000000000', '7.700000000000000', '8.150000000000000']",6.6,9.0,valeur de mesure
+idp_src_pollution_globale,eh_mv,Real,24.15,0,243,0.0,0,[],,,paramètre qualité
+idp_src_pollution_globale,cond_20_c,Real,24.15,201,42,82.72,182,"['2140.000000000000000', '1704.000000000000000', '1960.000000000000000', '1665.000000000000000', '2910.000000000000000', '2380.000000000000000']",1.25,34000.0,valeur de mesure
+idp_src_pollution_globale,turbidite,Real,24.15,163,80,67.08,132,"['6.000000000000000', '337.000000000000000', '292.000000000000000', '54.000000000000000', '711.000000000000000', '176.000000000000000']",2.9,1000.0,valeur de mesure
+idp_src_pollution_globale,disqu_secc,Real,24.15,9,234,3.7,7,"['0.150000000000000', '0.600000000000000', '0.400000000000000', '0.350000000000000', '0.250000000000000', '0.300000000000000']",0.15,0.6,champ ambigu à arbitrer
+idp_src_pollution_globale,o2_dissous,Real,24.15,163,80,67.08,110,"['6.100000000000000', '0.560000000000000', '0.640000000000000', '4.900000000000000', '0.340000000000000', '0.800000000000000']",0.0,10.85,valeur de mesure
+idp_src_pollution_globale,sat_prc,Real,24.15,0,243,0.0,0,[],,,paramètre qualité
+idp_src_pollution_globale,echantillo,String,254.0,213,30,87.65,1,['LPEE/CEREP'],,,champ redondant
+idp_src_pollution_globale,nature_pts,String,254.0,207,36,85.19,10,"['14', '19', '4', '12', '13', '9']",4.0,21.0,type de source pollution
+idp_src_pollution_globale,conditions,String,254.0,207,36,85.19,4,"['1', '4', '2', '3']",1.0,4.0,catégorie métier
+idp_src_pollution_globale,but_analys,String,254.0,207,36,85.19,3,"['11', '1', '2']",1.0,11.0,catégorie métier
+idp_src_pollution_globale,acces,String,254.0,207,36,85.19,4,"['1', '2', '3', '4']",1.0,4.0,catégorie métier
+idp_src_pollution_globale,observatio,String,254.0,207,36,85.19,31,"['Source a sec', 'A sec', 'Puits ferme', 'Absence de rejet', 'Oued a sec', 'Non realise (absence de proprietaire)']",,,commentaire/observation
+idp_src_pollution_globale,eau_ss_ter,Real,24.15,11,232,4.53,10,"['9.000000000000000', '6.400000000000000', '3.500000000000000', '3.600000000000000', '2.700000000000000', '4.200000000000000']",2.7,12.0,champ ambigu à arbitrer
+idp_src_pollution_globale,eau_ss_t_1,String,254.0,18,225,7.41,2,"['Oui', 'Non']",,,champ ambigu à arbitrer
+idp_src_pollution_globale,eau_ss_t_2,String,254.0,10,233,4.12,2,"['Non', 'Oui']",,,champ ambigu à arbitrer
+idp_src_pollution_globale,eau_ss_t_3,String,254.0,2,241,0.82,1,['Non'],,,champ redondant
+idp_src_pollution_globale,eau_ss_t_4,String,254.0,0,243,0.0,0,[],,,champ redondant
+idp_src_pollution_globale,eau_ss_t_5,String,254.0,25,218,10.29,3,"['9', '3', '1']",1.0,9.0,champ ambigu à arbitrer
+idp_src_pollution_globale,observat_1,String,254.0,31,212,12.76,15,"['Source a sec', 'Puits ferme', 'Absence de proprietaire', 'Forage non equipe et np >100m)', 'Equipé, et protegé', 'Source amenagée']",,,commentaire/observation
+idp_src_pollution_globale,eau_surf_l,String,254.0,27,216,11.11,2,"['2', '1']",1.0,2.0,champ ambigu à arbitrer
+idp_src_pollution_globale,eau_surf_1,String,254.0,35,208,14.4,3,"['1', '2', '3']",1.0,3.0,champ ambigu à arbitrer
+idp_src_pollution_globale,eau_surf_p,String,254.0,0,243,0.0,0,[],,,champ redondant
+idp_src_pollution_globale,eau_surf_e,String,254.0,26,217,10.7,11,"['1', '4', '2', '1,5 m', '4,5 m', '3,8 m']",1.0,4.0,champ ambigu à arbitrer
+idp_src_pollution_globale,eau_surf_d,String,254.0,59,184,24.28,16,"['Important', 'Moyen', '13.2l/s', 'Faible', '5.3l/s', '4']",,,champ ambigu à arbitrer
+idp_src_pollution_globale,eau_surf_o,String,254.0,137,106,56.38,36,"['A sec', 'Abattoir raccorde au reseau d’assainissement', 'Chaaba a sec rejet inixistant', 'Même coodonnes que taz_pdom_r9', 'Oued à sec', 'Sortie STEP']",,,champ ambigu à arbitrer
+idp_src_pollution_globale,nature,String,254.0,161,82,66.26,13,"['Source', 'Rejet', 'Eaux superficielles', 'Eaux souterraines', 'Abattoir', 'Rejet domestique']",,,type de source pollution
+idp_src_pollution_globale,parametre,String,254.0,132,111,54.32,8,"['A-B-C-D', 'Rejet', 'Oued', 'A-B-C-D-H-E', 'Forage', 'Source']",,,paramètre qualité
+idp_src_pollution_marche_cadre,X,Real,,3614,0,100.0,103,"['381040', '377613', '393481', '383546', '383102', '388421']",377613.0,626964.0,coordonnées
+idp_src_pollution_marche_cadre,Y,Real,,3614,0,100.0,103,"['389473', '394130', '408618', '407614', '406392', '386862']",283900.0,491230.0,coordonnées
+idp_src_pollution_marche_cadre,id_pts,Integer64,10.0,3614,0,100.0,3614,"['1', '2', '3', '4', '5', '6']",1.0,3614.0,identifiant
+idp_src_pollution_marche_cadre,id_table,String,254.0,3614,0,100.0,127,"['180-999-1-8_Bouknadel_381040_389473', '180-999-3-8_Bouknadel_377613_394130', '180-999-7-7_Kenitra_393481_408618', '180-999-2-8_Mehdia_383546_407614', '180-999-6-7_Mehdia_383102_406392', '180-999-4-8_Shoul_388421_386862']",,,identifiant
+idp_src_pollution_marche_cadre,date_jr_pr,Date,,3614,0,100.0,33,"['2025/10/06', '2025/10/07', '2025/10/08', '2025/10/10', '2025/10/09', '2025/10/13']",2025-10-06,2025-12-01,date/heure
+idp_src_pollution_marche_cadre,heure_prel,String,254.0,3614,0,100.0,54,"['11H50', '12H40', '14H00', '14H40', '13H45', '12H00']",,,date/heure
+idp_src_pollution_marche_cadre,pts_prelev,String,254.0,3614,0,100.0,127,"['FORAGE ABD NBI BOUTABEQ', 'PUITS DAR BEL GHAZI', 'DAYAT FOUARATE', 'PUITS KBIR BOUTARTA', 'DAYAT SIDI BOUGHABA', 'PUITS FERME ZNIBER SADEK']",,,nom/libellé du point
+idp_src_pollution_marche_cadre,n_enregest,String,254.0,3614,0,100.0,127,"['180-999-1-8', '180-999-3-8', '180-999-7-7', '180-999-2-8', '180-999-6-7', '180-999-4-8']",,,identifiant
+idp_src_pollution_marche_cadre,n_ordre,String,254.0,2712,902,75.04,78,"['1190', '1293', '1270', '1150', '1757', 'R1899']",260.0,3907.0,identifiant
+idp_src_pollution_marche_cadre,n_indice,String,254.0,2419,1195,66.93,10,"['13', '14', '8', '3', '15', '22']",3.0,22.0,identifiant
+idp_src_pollution_marche_cadre,ire,String,254.0,0,3614,0.0,0,[],,,identifiant
+idp_src_pollution_marche_cadre,commune,String,254.0,3614,0,100.0,76,"['Bouknadel', 'Kenitra', 'Mehdia', 'Shoul', 'Sidi Allal Bahraoui', 'Arbaoui']",,,localisation administrative
+idp_src_pollution_marche_cadre,code_commu,String,254.0,0,3614,0.0,0,[],,,identifiant
+idp_src_pollution_marche_cadre,coord_x,Real,24.15,3614,0,100.0,103,"['381040.000000000000000', '377613.000000000000000', '393481.000000000000000', '383546.000000000000000', '383102.000000000000000', '388421.000000000000000']",377613.0,626964.0,coordonnées
+idp_src_pollution_marche_cadre,coord_y,Real,24.15,3614,0,100.0,103,"['389473.000000000000000', '394130.000000000000000', '408618.000000000000000', '407614.000000000000000', '406392.000000000000000', '386862.000000000000000']",283900.0,491230.0,coordonnées
+idp_src_pollution_marche_cadre,parametre_,String,254.0,3614,0,100.0,65,"['IP', 'NH4+ Spect', 'NH4+', 'RS \nmesuré_à 105 °C', 'NO2- _Spectro.', 'NO3-_Spectro']",,,paramètre qualité
+idp_src_pollution_marche_cadre,val_qual,String,254.0,3603,11,99.7,1839,"['<0,45', '<0,016', '<0,020', '575', '<0,010', '41,1']",0.0,21594.243,champ ambigu à arbitrer
+idp_src_pollution_marche_cadre,observatio,String,254.0,15,3599,0.42,4,"['Décanté 2h', 'pH au laboratoire est < 8,30', ""(*) NM = Disque de secchi n'est pas mesuré, l'accès est difficile."", ""(*) Interférence probable des ions chlorures sur l'analyse de la DCO.""]",,,commentaire/observation
+idp_mesures_qualité_marche_cadre_2024,X,Real,,3614,0,100.0,103,"['381040', '377613', '393481', '383546', '383102', '388421']",377613.0,626964.0,coordonnées
+idp_mesures_qualité_marche_cadre_2024,Y,Real,,3614,0,100.0,103,"['389473', '394130', '408618', '407614', '406392', '386862']",283900.0,491230.0,coordonnées
+idp_mesures_qualité_marche_cadre_2024,id_pts,Integer64,10.0,3614,0,100.0,3614,"['1', '2', '3', '4', '5', '6']",1.0,3614.0,identifiant
+idp_mesures_qualité_marche_cadre_2024,id_table,String,254.0,3614,0,100.0,127,"['180-999-1-8_Bouknadel_381040_389473', '180-999-3-8_Bouknadel_377613_394130', '180-999-7-7_Kenitra_393481_408618', '180-999-2-8_Mehdia_383546_407614', '180-999-6-7_Mehdia_383102_406392', '180-999-4-8_Shoul_388421_386862']",,,identifiant
+idp_mesures_qualité_marche_cadre_2024,date_jr_pr,Date,,3614,0,100.0,33,"['2025/10/06', '2025/10/07', '2025/10/08', '2025/10/10', '2025/10/09', '2025/10/13']",2025-10-06,2025-12-01,date/heure
+idp_mesures_qualité_marche_cadre_2024,heure_prel,String,254.0,3614,0,100.0,54,"['11H50', '12H40', '14H00', '14H40', '13H45', '12H00']",,,date/heure
+idp_mesures_qualité_marche_cadre_2024,pts_prelev,String,254.0,3614,0,100.0,127,"['FORAGE ABD NBI BOUTABEQ', 'PUITS DAR BEL GHAZI', 'DAYAT FOUARATE', 'PUITS KBIR BOUTARTA', 'DAYAT SIDI BOUGHABA', 'PUITS FERME ZNIBER SADEK']",,,nom/libellé du point
+idp_mesures_qualité_marche_cadre_2024,n_enregest,String,254.0,3614,0,100.0,127,"['180-999-1-8', '180-999-3-8', '180-999-7-7', '180-999-2-8', '180-999-6-7', '180-999-4-8']",,,identifiant
+idp_mesures_qualité_marche_cadre_2024,n_ordre,String,254.0,2712,902,75.04,78,"['1190', '1293', '1270', '1150', '1757', 'R1899']",260.0,3907.0,identifiant
+idp_mesures_qualité_marche_cadre_2024,n_indice,String,254.0,2419,1195,66.93,10,"['13', '14', '8', '3', '15', '22']",3.0,22.0,identifiant
+idp_mesures_qualité_marche_cadre_2024,ire,String,254.0,0,3614,0.0,0,[],,,identifiant
+idp_mesures_qualité_marche_cadre_2024,commune,String,254.0,3614,0,100.0,76,"['Bouknadel', 'Kenitra', 'Mehdia', 'Shoul', 'Sidi Allal Bahraoui', 'Arbaoui']",,,localisation administrative
+idp_mesures_qualité_marche_cadre_2024,code_commu,String,254.0,0,3614,0.0,0,[],,,identifiant
+idp_mesures_qualité_marche_cadre_2024,coord_x,Real,24.15,3614,0,100.0,103,"['381040.000000000000000', '377613.000000000000000', '393481.000000000000000', '383546.000000000000000', '383102.000000000000000', '388421.000000000000000']",377613.0,626964.0,coordonnées
+idp_mesures_qualité_marche_cadre_2024,coord_y,Real,24.15,3614,0,100.0,103,"['389473.000000000000000', '394130.000000000000000', '408618.000000000000000', '407614.000000000000000', '406392.000000000000000', '386862.000000000000000']",283900.0,491230.0,coordonnées
+idp_mesures_qualité_marche_cadre_2024,parametre_,String,254.0,3614,0,100.0,65,"['IP', 'NH4+ Spect', 'NH4+', 'RS \nmesuré_à 105 °C', 'NO2- _Spectro.', 'NO3-_Spectro']",,,paramètre qualité
+idp_mesures_qualité_marche_cadre_2024,val_qual,String,254.0,3603,11,99.7,1839,"['<0,45', '<0,016', '<0,020', '575', '<0,010', '41,1']",0.0,21594.243,champ ambigu à arbitrer
+idp_mesures_qualité_marche_cadre_2024,observatio,String,254.0,15,3599,0.42,4,"['Décanté 2h', 'pH au laboratoire est < 8,30', ""(*) NM = Disque de secchi n'est pas mesuré, l'accès est difficile."", ""(*) Interférence probable des ions chlorures sur l'analyse de la DCO.""]",,,commentaire/observation
+idp_mesures_qualité_globale_2024,X,Real,,4619,275,94.38,177,"['404650', '407303', '408732', '410306', '411431', '411388']",392616.0,633742.0,coordonnées
+idp_mesures_qualité_globale_2024,Y,Real,,4619,275,94.38,176,"['423453', '432473', '432361', '433218', '434938', '436987']",300449.0,495449.0,coordonnées
+idp_mesures_qualité_globale_2024,id_pts,Integer64,10.0,4894,0,100.0,4894,"['1', '2', '3', '4', '5', '6']",1.0,4894.0,identifiant
+idp_mesures_qualité_globale_2024,id_table,String,254.0,4894,0,100.0,212,"['180-798-1-1___', '180-798-2-1___', '180-798-3-1___', '180-797-1-9_Mograne_404650_423453', '180-797-2-9_Mograne_407303_432473', '180-797-3-9_Mograne_408732_432361']",,,identifiant
+idp_mesures_qualité_globale_2024,date_jr_pr,Date,,4894,0,100.0,51,"['2024/09/12', '2024/09/13', '2024/09/14', '2024/09/15', '2024/09/16', '2024/09/17']",2024-09-12,2025-12-14,date/heure
+idp_mesures_qualité_globale_2024,heure_prel,String,254.0,4894,0,100.0,59,"['09H23', '08H00', '10H00', '15H00', '14H00', '13H40']",,,date/heure
+idp_mesures_qualité_globale_2024,pts_prelev,String,254.0,4894,0,100.0,212,"['REJET R1 (R1: SHZ-DOM2-R1)', 'REJET R2 (R2: SHZ-DOM2-R2)', 'REJET R3  (R3: SHZ-DOM1-R1)', 'S1 (Aval_conf_Rejet_MOG (Mograne)', 'S2 (Barrage de garde)', 'S3 (Station Pompage Ferme (Amont Bge de garde)']",,,nom/libellé du point
+idp_mesures_qualité_globale_2024,n_enregest,String,254.0,4894,0,100.0,211,"['180-798-1-1', '180-798-2-1', '180-798-3-1', '180-797-1-9', '180-797-2-9', '180-797-3-9']",,,identifiant
+idp_mesures_qualité_globale_2024,n_ordre,String,254.0,101,4793,2.06,4,"['669', '2819', '551', '1508']",551.0,2819.0,identifiant
+idp_mesures_qualité_globale_2024,n_indice,String,254.0,0,4894,0.0,0,[],,,identifiant
+idp_mesures_qualité_globale_2024,ire,String,254.0,0,4894,0.0,0,[],,,identifiant
+idp_mesures_qualité_globale_2024,commune,String,254.0,4619,275,94.38,96,"['Mograne', 'Sidi Med Ben Mansour', 'Sidi Allal Tazi', 'Sidi Kamel', 'Mechraa Bel Ksiri', 'Douar Ouled Jrir']",,,localisation administrative
+idp_mesures_qualité_globale_2024,code_commu,String,254.0,0,4894,0.0,0,[],,,identifiant
+idp_mesures_qualité_globale_2024,coord_x,Real,24.15,4619,275,94.38,177,"['404650.000000000000000', '407303.000000000000000', '408732.000000000000000', '410306.000000000000000', '411431.000000000000000', '411388.000000000000000']",392616.0,633742.0,coordonnées
+idp_mesures_qualité_globale_2024,coord_y,Real,24.15,4619,275,94.38,176,"['423453.000000000000000', '432473.000000000000000', '432361.000000000000000', '433218.000000000000000', '434938.000000000000000', '436987.000000000000000']",300449.0,495449.0,coordonnées
+idp_mesures_qualité_globale_2024,parametre_,String,254.0,4894,0,100.0,57,"['DCO', 'DBO5', 'NTK', 'NH4+', 'PT', 'PO43-']",,,paramètre qualité
+idp_mesures_qualité_globale_2024,val_qual,String,254.0,4894,0,100.0,2917,"['<14,1', '198,24', '3,4645', '1,58', '0,280285714', '0,167']",0.0,30720.0,champ ambigu à arbitrer
+idp_mesures_qualité_globale_2024,observatio,String,254.0,0,4894,0.0,0,[],,,commentaire/observation

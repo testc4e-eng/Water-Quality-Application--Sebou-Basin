@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { NavLink } from "react-router-dom";
 import {
   Database,
@@ -12,6 +11,7 @@ import {
   Users,
   CloudUpload,
   MessageSquare,
+  ShieldCheck,
 } from "lucide-react";
 
 type NavItem = {
@@ -56,6 +56,7 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
   const allNavItems: NavItem[] = [
     { to: "/", label: "Accueil", icon: Home, group: "observation" },
     { to: "/dashboard-cartographique", label: "Carte métier du bassin", icon: Map, group: "observation" },
+    { to: "/dashboard-qualite-reglementaire", label: "Qualité Réglementaire", icon: ShieldCheck, group: "observation" },
     { to: "/dashboard-analytique", label: "Analyses temporelles", icon: LineChart, group: "analyse" },
     { to: "/dashboard-scenarios", label: "Scénarios SWAT / WASP", icon: Sparkles, group: "modeles" },
     { to: "/data", label: "Données & référentiels", icon: Database, group: "administration" },
@@ -67,24 +68,20 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
     { to: "/contact", label: "Contact", icon: Mail, group: "support" },
   ];
 
-  const primaryItems = useMemo(
-    () =>
-      allNavItems.filter((item) => {
-        if (canSeeAdmin) return true;
-        if (isManager) {
-          const managerAdminAllowed = [
-            "/data",
-            "/admin/data-scan",
-            "/admin/ingestion",
-            "/admin/popup-rules",
-          ];
-          return item.group !== "administration" || managerAdminAllowed.includes(item.to);
-        }
-        // Utilisateur: pas d'accès aux sections Administration
-        return item.group !== "administration";
-      }),
-    [canSeeAdmin, isManager]
-  );
+  const primaryItems = allNavItems.filter((item) => {
+    if (canSeeAdmin) return true;
+    if (isManager) {
+      const managerAdminAllowed = [
+        "/data",
+        "/admin/data-scan",
+        "/admin/ingestion",
+        "/admin/popup-rules",
+      ];
+      return item.group !== "administration" || managerAdminAllowed.includes(item.to);
+    }
+    // Utilisateur: pas d'accès aux sections Administration
+    return item.group !== "administration";
+  });
 
   const supportItems = primaryItems.filter((item) => item.group === "support");
   const navigationSections = [

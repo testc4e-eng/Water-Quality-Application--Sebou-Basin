@@ -1,0 +1,13 @@
+<!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
+<qgis projectname="final_human_review" version="3.34">
+  <title>WQDSS - Revue humaine finale identite spatiale</title>
+  <projectCrs><spatialrefsys><authid>EPSG:26191</authid><srid>26191</srid></spatialrefsys></projectCrs>
+  <layer-tree-group name="Revue finale Imane">
+    <layer-tree-layer name="TRUE_AMBIGUOUS" id="review_true_ambiguous" checked="Qt::Checked" source="review_true_ambiguous.gpkg|layername=review_true_ambiguous" providerKey="ogr"/>
+    <layer-tree-layer name="ORPHAN_REVIEW" id="review_orphans" checked="Qt::Checked" source="review_orphans.gpkg|layername=review_orphans" providerKey="ogr"/>
+  </layer-tree-group>
+  <projectlayers>
+    <maplayer type="vector" geometry="Point"><id>review_true_ambiguous</id><datasource>review_true_ambiguous.gpkg|layername=review_true_ambiguous</datasource><layername>TRUE_AMBIGUOUS</layername><provider encoding="UTF-8">ogr</provider></maplayer>
+    <maplayer type="vector" geometry="Point"><id>review_orphans</id><datasource>review_orphans.gpkg|layername=review_orphans</datasource><layername>ORPHAN_REVIEW</layername><provider encoding="UTF-8">ogr</provider></maplayer>
+  </projectlayers>
+</qgis>

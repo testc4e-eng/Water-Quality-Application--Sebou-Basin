@@ -1,0 +1,33 @@
+after|duplicate_exact|1316
+after|duplicate_near|69
+after|geometry_missing|0
+after|measurements_without_geometry|71
+after|multi_source_conflicts|299
+after|param_unmapped|0
+after|points_without_site|71
+after|unit_unmapped|0
+after_flag|GEOMETRY_MISSING|71
+after_flag|OK|1333
+after_flag|VALUE_NON_NUMERIC|5
+after_param|DBO5|202
+after_param|DCO|207
+after_param|MES|240
+after_param|NH4|444
+after_param|NO3-|316
+latest_param|DBO5|189
+latest_param|DCO|182
+latest_param|MES|223
+latest_param|NH4|365
+latest_param|NO3-|300
+mapping_rows|MEST Filtr|MES|3
+mapping_rows|NH4+|NH4|3
+mapping_rows|NH4+  Titri|NH4|3
+mapping_rows|NH4+ Spect|NH4|3
+mapping_rows|NH4+ Titri|NH4|3
+mapping_rows|NO3-|NO3-|3
+mapping_rows|NO3-_Spectro|NO3-|3
+unit_ref|DBO5|mg/L
+unit_ref|DCO|mg/L
+unit_ref|MES|mg/L
+unit_ref|NH4|mg/L
+unit_ref|NO3-|mg/L

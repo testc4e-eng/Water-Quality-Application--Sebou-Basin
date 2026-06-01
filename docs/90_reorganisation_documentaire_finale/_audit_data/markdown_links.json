@@ -1,0 +1,2948 @@
+[
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "target": "./01_project_reference/SOURCE_OF_TRUTH.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\SOURCE_OF_TRUTH.md",
+    "exists": true
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "target": "./01_project_reference/DOCUMENT_MAP.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\DOCUMENT_MAP.md",
+    "exists": true
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "target": "./30_audit_incoherences_global.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\30_audit_incoherences_global.md",
+    "exists": true
+  },
+  {
+    "source": "docs/12_plan_execution_par_lots.md",
+    "target": "./00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/12_plan_execution_par_lots.md",
+    "target": "./30_audit_incoherences_global.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\30_audit_incoherences_global.md",
+    "exists": true
+  },
+  {
+    "source": "docs/12_plan_execution_par_lots.md",
+    "target": "./31_plan_correction_documentaire.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\31_plan_correction_documentaire.md",
+    "exists": true
+  },
+  {
+    "source": "docs/30_audit_incoherences_global.md",
+    "target": "./00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/30_audit_incoherences_global.md",
+    "target": "./31_plan_correction_documentaire.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\31_plan_correction_documentaire.md",
+    "exists": true
+  },
+  {
+    "source": "docs/30_audit_incoherences_global.md",
+    "target": "./01_project_reference/SOURCE_OF_TRUTH.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\SOURCE_OF_TRUTH.md",
+    "exists": true
+  },
+  {
+    "source": "docs/30_audit_incoherences_global.md",
+    "target": "./31_plan_correction_documentaire.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\31_plan_correction_documentaire.md",
+    "exists": true
+  },
+  {
+    "source": "docs/31_plan_correction_documentaire.md",
+    "target": "./30_audit_incoherences_global.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\30_audit_incoherences_global.md",
+    "exists": true
+  },
+  {
+    "source": "docs/31_plan_correction_documentaire.md",
+    "target": "./00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/31_plan_correction_documentaire.md",
+    "target": "./01_project_reference/SOURCE_OF_TRUTH.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\SOURCE_OF_TRUTH.md",
+    "exists": true
+  },
+  {
+    "source": "docs/40_revue_critique_transversale_finale.md",
+    "target": "./00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/40_revue_critique_transversale_finale.md",
+    "target": "./12_plan_execution_par_lots.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\12_plan_execution_par_lots.md",
+    "exists": true
+  },
+  {
+    "source": "docs/40_revue_critique_transversale_finale.md",
+    "target": "./25_annexes_blocages_et_incoherences.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\25_annexes_blocages_et_incoherences.md",
+    "exists": true
+  },
+  {
+    "source": "docs/40_revue_critique_transversale_finale.md",
+    "target": "./25_limites_audit_techniques.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\25_limites_audit_techniques.md",
+    "exists": true
+  },
+  {
+    "source": "docs/41_plan_stabilisation_preindustrialisation.md",
+    "target": "./40_revue_critique_transversale_finale.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\40_revue_critique_transversale_finale.md",
+    "exists": true
+  },
+  {
+    "source": "docs/41_plan_stabilisation_preindustrialisation.md",
+    "target": "./00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/41_plan_stabilisation_preindustrialisation.md",
+    "target": "./12_plan_execution_par_lots.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\12_plan_execution_par_lots.md",
+    "exists": true
+  },
+  {
+    "source": "docs/41_plan_stabilisation_preindustrialisation.md",
+    "target": "./25_annexes_blocages_et_incoherences.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\25_annexes_blocages_et_incoherences.md",
+    "exists": true
+  },
+  {
+    "source": "docs/41_plan_stabilisation_preindustrialisation.md",
+    "target": "./25_limites_audit_techniques.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\25_limites_audit_techniques.md",
+    "exists": true
+  },
+  {
+    "source": "docs/README.md",
+    "target": "./00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/README.md",
+    "target": "./01_project_reference/DOCUMENT_MAP.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\DOCUMENT_MAP.md",
+    "exists": true
+  },
+  {
+    "source": "docs/README.md",
+    "target": "./01_project_reference/SOURCE_OF_TRUTH.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\SOURCE_OF_TRUTH.md",
+    "exists": true
+  },
+  {
+    "source": "docs/README.md",
+    "target": "./00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/README.md",
+    "target": "./04_etat_avancement/00_project_global_status.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\04_etat_avancement\\00_project_global_status.md",
+    "exists": true
+  },
+  {
+    "source": "docs/README.md",
+    "target": "./01_contexte_projet/01_mvp_scope.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_contexte_projet\\01_mvp_scope.md",
+    "exists": true
+  },
+  {
+    "source": "docs/README.md",
+    "target": "./05_blocages_et_risques/00_problemes_racines.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\05_blocages_et_risques\\00_problemes_racines.md",
+    "exists": true
+  },
+  {
+    "source": "docs/README.md",
+    "target": "./02_gouvernance_et_decisions/00_registre_decisions.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\02_gouvernance_et_decisions\\00_registre_decisions.md",
+    "exists": true
+  },
+  {
+    "source": "docs/README.md",
+    "target": "./07_donnees_et_referentiels/00_data_landscape.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\07_donnees_et_referentiels\\00_data_landscape.md",
+    "exists": true
+  },
+  {
+    "source": "docs/README.md",
+    "target": "./00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/README.md",
+    "target": "./00_source_of_truth/00_documents_prioritaires.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_source_of_truth\\00_documents_prioritaires.md",
+    "exists": true
+  },
+  {
+    "source": "docs/README.md",
+    "target": "./04_etat_avancement/00_project_global_status.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\04_etat_avancement\\00_project_global_status.md",
+    "exists": true
+  },
+  {
+    "source": "docs/README.md",
+    "target": "./01_contexte_projet/01_mvp_scope.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_contexte_projet\\01_mvp_scope.md",
+    "exists": true
+  },
+  {
+    "source": "docs/README.md",
+    "target": "./05_blocages_et_risques/00_problemes_racines.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\05_blocages_et_risques\\00_problemes_racines.md",
+    "exists": true
+  },
+  {
+    "source": "docs/README.md",
+    "target": "./02_gouvernance_et_decisions/00_registre_decisions.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\02_gouvernance_et_decisions\\00_registre_decisions.md",
+    "exists": true
+  },
+  {
+    "source": "docs/README.md",
+    "target": "./03_ai_knowledge_base/MEMORY_CORE.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\MEMORY_CORE.md",
+    "exists": true
+  },
+  {
+    "source": "docs/README.md",
+    "target": "./00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/README.md",
+    "target": "./02_contractual_and_reports/cps/cps_requirements_summary.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\02_contractual_and_reports\\cps\\cps_requirements_summary.md",
+    "exists": true
+  },
+  {
+    "source": "docs/README.md",
+    "target": "./02_contractual_and_reports/cps/CPS_MAPPING_PROJECT.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\02_contractual_and_reports\\cps\\CPS_MAPPING_PROJECT.md",
+    "exists": true
+  },
+  {
+    "source": "docs/README.md",
+    "target": "./02_contractual_and_reports/mission_iv/rapport_provisoire_mission_iv_sad.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\02_contractual_and_reports\\mission_iv\\rapport_provisoire_mission_iv_sad.md",
+    "exists": true
+  },
+  {
+    "source": "docs/README.md",
+    "target": "./01_project_reference/EVIDENCE_REGISTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\EVIDENCE_REGISTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/README.md",
+    "target": "./01_project_reference/data/DATABASE_SCHEMA.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATABASE_SCHEMA.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "../00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./SOURCE_OF_TRUTH.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\SOURCE_OF_TRUTH.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./LIVRABLES_MATRIX.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\LIVRABLES_MATRIX.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./EVIDENCE_REGISTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\EVIDENCE_REGISTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "../00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./SOURCE_OF_TRUTH.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\SOURCE_OF_TRUTH.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./README.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\README.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./overview/project_vision.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\overview\\project_vision.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./overview/data_governance_and_standards.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\overview\\data_governance_and_standards.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./architecture/system_architecture.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\architecture\\system_architecture.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./architecture/database_architecture.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\architecture\\database_architecture.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./backend/backend_overview.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\backend\\backend_overview.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./frontend/frontend_reference.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\frontend\\frontend_reference.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./backend/api_contracts.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\backend\\api_contracts.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./backend/traceability_matrix.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\backend\\traceability_matrix.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./data/DATABASE_SCHEMA.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATABASE_SCHEMA.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./data/DATA_MODELS.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATA_MODELS.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./data/DATA_FLOW.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATA_FLOW.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./data/DATA_QUALITY.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATA_QUALITY.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./data/API_DATA_MAPPING.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\API_DATA_MAPPING.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./data/sql_introspection_and_metadata.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\sql_introspection_and_metadata.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./data/data_sources_reference.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\data_sources_reference.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./data/data_migration_history_summary.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\data_migration_history_summary.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./deployment_operations/deployment_and_operations.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\deployment_operations\\deployment_and_operations.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "../02_contractual_and_reports/cps/cps_requirements_summary.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\02_contractual_and_reports\\cps\\cps_requirements_summary.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "../02_contractual_and_reports/cps/CPS_MAPPING_PROJECT.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\02_contractual_and_reports\\cps\\CPS_MAPPING_PROJECT.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "../02_contractual_and_reports/mission_iv/rapport_provisoire_mission_iv_sad.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\02_contractual_and_reports\\mission_iv\\rapport_provisoire_mission_iv_sad.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./LIVRABLES_MATRIX.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\LIVRABLES_MATRIX.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./EVIDENCE_REGISTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\EVIDENCE_REGISTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "../03_ai_knowledge_base/MEMORY_CORE.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\MEMORY_CORE.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "../03_ai_knowledge_base/QUICK_REFERENCE.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\QUICK_REFERENCE.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "../03_ai_knowledge_base/AGENT_RULES.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\AGENT_RULES.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "../03_ai_knowledge_base/DATABASE_SCHEMA_SUMMARY.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\DATABASE_SCHEMA_SUMMARY.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "../03_ai_knowledge_base/api_for_agents.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\api_for_agents.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "target": "./EVIDENCE_REGISTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\EVIDENCE_REGISTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/EVIDENCE_REGISTER.md",
+    "target": "./LIVRABLES_MATRIX.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\LIVRABLES_MATRIX.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/EVIDENCE_REGISTER.md",
+    "target": "../02_contractual_and_reports/cps/CPS_MAPPING_PROJECT.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\02_contractual_and_reports\\cps\\CPS_MAPPING_PROJECT.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/GLOSSARY.md",
+    "target": "./overview/project_vision.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\overview\\project_vision.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/GLOSSARY.md",
+    "target": "../02_contractual_and_reports/cps/CPS_MAPPING_PROJECT.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\02_contractual_and_reports\\cps\\CPS_MAPPING_PROJECT.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/LIVRABLES_MATRIX.md",
+    "target": "../00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/LIVRABLES_MATRIX.md",
+    "target": "./EVIDENCE_REGISTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\EVIDENCE_REGISTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/LIVRABLES_MATRIX.md",
+    "target": "../02_contractual_and_reports/cps/CPS_MAPPING_PROJECT.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\02_contractual_and_reports\\cps\\CPS_MAPPING_PROJECT.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/README.md",
+    "target": "./DOCUMENT_MAP.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\DOCUMENT_MAP.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/README.md",
+    "target": "./SOURCE_OF_TRUTH.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\SOURCE_OF_TRUTH.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/README.md",
+    "target": "./DOCUMENT_MAP.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\DOCUMENT_MAP.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/README.md",
+    "target": "./SOURCE_OF_TRUTH.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\SOURCE_OF_TRUTH.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/README.md",
+    "target": "./architecture/system_architecture.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\architecture\\system_architecture.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/README.md",
+    "target": "./architecture/database_architecture.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\architecture\\database_architecture.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/README.md",
+    "target": "./data/DATABASE_SCHEMA.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATABASE_SCHEMA.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/README.md",
+    "target": "./data/API_DATA_MAPPING.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\API_DATA_MAPPING.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/README.md",
+    "target": "./backend/backend_overview.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\backend\\backend_overview.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/README.md",
+    "target": "./frontend/frontend_reference.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\frontend\\frontend_reference.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./DOCUMENT_MAP.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\DOCUMENT_MAP.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./README.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\README.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./DOCUMENT_MAP.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\DOCUMENT_MAP.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../03_ai_knowledge_base/MEMORY_CORE.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\MEMORY_CORE.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../00_source_of_truth/00_documents_prioritaires.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_source_of_truth\\00_documents_prioritaires.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../README.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\README.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../03_ai_knowledge_base/MEMORY_CORE.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\MEMORY_CORE.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../04_etat_avancement/00_project_global_status.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\04_etat_avancement\\00_project_global_status.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../01_contexte_projet/01_mvp_scope.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_contexte_projet\\01_mvp_scope.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../04_etat_avancement/00_project_global_status.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\04_etat_avancement\\00_project_global_status.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../05_blocages_et_risques/00_problemes_racines.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\05_blocages_et_risques\\00_problemes_racines.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../34_synthese_strategique_anomalies/00_vue_globale.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\34_synthese_strategique_anomalies\\00_vue_globale.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../02_gouvernance_et_decisions/00_registre_decisions.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\02_gouvernance_et_decisions\\00_registre_decisions.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../07_donnees_et_referentiels/00_data_landscape.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\07_donnees_et_referentiels\\00_data_landscape.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../03_ai_knowledge_base/DATABASE_SCHEMA_SUMMARY.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\DATABASE_SCHEMA_SUMMARY.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./DOCUMENT_MAP.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\DOCUMENT_MAP.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./SOURCE_OF_TRUTH.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\SOURCE_OF_TRUTH.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../03_ai_knowledge_base/MEMORY_CORE.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\MEMORY_CORE.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./overview/project_vision.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\overview\\project_vision.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../03_ai_knowledge_base/MEMORY_CORE.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\MEMORY_CORE.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./overview/data_governance_and_standards.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\overview\\data_governance_and_standards.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./GLOSSARY.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\GLOSSARY.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./architecture/system_architecture.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\architecture\\system_architecture.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../03_ai_knowledge_base/architecture_for_agents.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\architecture_for_agents.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./architecture/database_architecture.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\architecture\\database_architecture.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./data/DATABASE_SCHEMA.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATABASE_SCHEMA.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../03_ai_knowledge_base/DATABASE_SCHEMA_SUMMARY.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\DATABASE_SCHEMA_SUMMARY.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./backend/backend_overview.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\backend\\backend_overview.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../03_ai_knowledge_base/api_for_agents.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\api_for_agents.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./backend/backend_overview.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\backend\\backend_overview.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../03_ai_knowledge_base/api_for_agents.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\api_for_agents.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./backend/api_contracts.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\backend\\api_contracts.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./backend/traceability_matrix.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\backend\\traceability_matrix.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./backend/traceability_matrix.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\backend\\traceability_matrix.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./EVIDENCE_REGISTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\EVIDENCE_REGISTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./frontend/frontend_reference.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\frontend\\frontend_reference.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../03_ai_knowledge_base/QUICK_REFERENCE.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\QUICK_REFERENCE.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./data/DATABASE_SCHEMA.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATABASE_SCHEMA.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../03_ai_knowledge_base/DATABASE_SCHEMA_SUMMARY.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\DATABASE_SCHEMA_SUMMARY.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./data/DATA_MODELS.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATA_MODELS.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../03_ai_knowledge_base/DATABASE_SCHEMA_SUMMARY.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\DATABASE_SCHEMA_SUMMARY.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./data/DATA_FLOW.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATA_FLOW.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../03_ai_knowledge_base/database_for_agents.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\database_for_agents.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./data/DATA_QUALITY.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATA_QUALITY.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./EVIDENCE_REGISTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\EVIDENCE_REGISTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./data/API_DATA_MAPPING.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\API_DATA_MAPPING.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../03_ai_knowledge_base/database_for_agents.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\database_for_agents.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./data/data_sources_reference.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\data_sources_reference.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./GLOSSARY.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\GLOSSARY.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./data/data_migration_history_summary.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\data_migration_history_summary.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./EVIDENCE_REGISTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\EVIDENCE_REGISTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "./deployment_operations/deployment_and_operations.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\deployment_operations\\deployment_and_operations.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../03_ai_knowledge_base/deployment_for_agents.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\deployment_for_agents.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../03_ai_knowledge_base/QUICK_REFERENCE.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\QUICK_REFERENCE.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../02_contractual_and_reports/cps/cps_requirements_summary.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\02_contractual_and_reports\\cps\\cps_requirements_summary.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../02_contractual_and_reports/cps/CPS_MAPPING_PROJECT.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\02_contractual_and_reports\\cps\\CPS_MAPPING_PROJECT.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../02_contractual_and_reports/cps/CPS_MAPPING_PROJECT.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\02_contractual_and_reports\\cps\\CPS_MAPPING_PROJECT.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../02_contractual_and_reports/mission_iv/rapport_provisoire_mission_iv_sad.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\02_contractual_and_reports\\mission_iv\\rapport_provisoire_mission_iv_sad.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../02_contractual_and_reports/mission_iv/rapport_provisoire_mission_iv_sad.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\02_contractual_and_reports\\mission_iv\\rapport_provisoire_mission_iv_sad.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../03_ai_knowledge_base/MEMORY_CORE.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\MEMORY_CORE.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../03_ai_knowledge_base/QUICK_REFERENCE.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\QUICK_REFERENCE.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "target": "../03_ai_knowledge_base/AGENT_RULES.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\AGENT_RULES.md",
+    "exists": true
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "target": "../00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "target": "../01_project_reference/backend/backend_overview.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\backend\\backend_overview.md",
+    "exists": true
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "target": "../01_project_reference/backend/api_contracts.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\backend\\api_contracts.md",
+    "exists": true
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/database_for_agents.md",
+    "target": "./DATABASE_SCHEMA_SUMMARY.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\DATABASE_SCHEMA_SUMMARY.md",
+    "exists": true
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/database_for_agents.md",
+    "target": "../01_project_reference/data/DATABASE_SCHEMA.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATABASE_SCHEMA.md",
+    "exists": true
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/database_for_agents.md",
+    "target": "./DATABASE_SCHEMA_SUMMARY.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\DATABASE_SCHEMA_SUMMARY.md",
+    "exists": true
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/database_for_agents.md",
+    "target": "../01_project_reference/data/DATABASE_SCHEMA.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATABASE_SCHEMA.md",
+    "exists": true
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/database_for_agents.md",
+    "target": "../01_project_reference/data/API_DATA_MAPPING.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\API_DATA_MAPPING.md",
+    "exists": true
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/database_for_agents.md",
+    "target": "../01_project_reference/data/DATA_MODELS.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATA_MODELS.md",
+    "exists": true
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/DATABASE_SCHEMA_SUMMARY.md",
+    "target": "../01_project_reference/data/DATABASE_SCHEMA.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATABASE_SCHEMA.md",
+    "exists": true
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/DATABASE_SCHEMA_SUMMARY.md",
+    "target": "../01_project_reference/data/API_DATA_MAPPING.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\API_DATA_MAPPING.md",
+    "exists": true
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/DATABASE_SCHEMA_SUMMARY.md",
+    "target": "../00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/MEMORY_CORE.md",
+    "target": "./QUICK_REFERENCE.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\QUICK_REFERENCE.md",
+    "exists": true
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/MEMORY_CORE.md",
+    "target": "./AGENT_RULES.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\AGENT_RULES.md",
+    "exists": true
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/MEMORY_CORE.md",
+    "target": "../00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/MEMORY_CORE.md",
+    "target": "../01_project_reference/SOURCE_OF_TRUTH.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\SOURCE_OF_TRUTH.md",
+    "exists": true
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/QUICK_REFERENCE.md",
+    "target": "./MEMORY_CORE.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\MEMORY_CORE.md",
+    "exists": true
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/QUICK_REFERENCE.md",
+    "target": "./project_structure_for_agents.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\project_structure_for_agents.md",
+    "exists": true
+  },
+  {
+    "source": "docs/100_frontend_industrialisation/00_index.md",
+    "target": "./01_audit_dette_et_points_lourds.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\100_frontend_industrialisation\\01_audit_dette_et_points_lourds.md",
+    "exists": true
+  },
+  {
+    "source": "docs/100_frontend_industrialisation/00_index.md",
+    "target": "./02_strategie_cache_lazy_virtualisation.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\100_frontend_industrialisation\\02_strategie_cache_lazy_virtualisation.md",
+    "exists": true
+  },
+  {
+    "source": "docs/100_frontend_industrialisation/00_index.md",
+    "target": "./03_roadmap_refactor_progressive.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\100_frontend_industrialisation\\03_roadmap_refactor_progressive.md",
+    "exists": true
+  },
+  {
+    "source": "docs/100_frontend_industrialisation/00_index.md",
+    "target": "./04_risques_readiness_checklist.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\100_frontend_industrialisation\\04_risques_readiness_checklist.md",
+    "exists": true
+  },
+  {
+    "source": "docs/101_preparation_ingestion_v1/00_index.md",
+    "target": "./01_architecture_cible_ingestion.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\101_preparation_ingestion_v1\\01_architecture_cible_ingestion.md",
+    "exists": true
+  },
+  {
+    "source": "docs/101_preparation_ingestion_v1/00_index.md",
+    "target": "./02_workflows_qa_geo_rollback_audit.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\101_preparation_ingestion_v1\\02_workflows_qa_geo_rollback_audit.md",
+    "exists": true
+  },
+  {
+    "source": "docs/101_preparation_ingestion_v1/00_index.md",
+    "target": "./03_api_dashboards_et_monitoring_futurs.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\101_preparation_ingestion_v1\\03_api_dashboards_et_monitoring_futurs.md",
+    "exists": true
+  },
+  {
+    "source": "docs/101_preparation_ingestion_v1/00_index.md",
+    "target": "./04_backlog_risques_readiness_checklist.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\101_preparation_ingestion_v1\\04_backlog_risques_readiness_checklist.md",
+    "exists": true
+  },
+  {
+    "source": "docs/33_annexes_anomalies_detaillees/00_index.md",
+    "target": "./A01_parametres_non_standardises.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\33_annexes_anomalies_detaillees\\A01_parametres_non_standardises.md",
+    "exists": true
+  },
+  {
+    "source": "docs/33_annexes_anomalies_detaillees/00_index.md",
+    "target": "./A02_parametres_ambigus_HG_sat.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\33_annexes_anomalies_detaillees\\A02_parametres_ambigus_HG_sat.md",
+    "exists": true
+  },
+  {
+    "source": "docs/33_annexes_anomalies_detaillees/00_index.md",
+    "target": "./A03_incoherence_valeurs_qualite.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\33_annexes_anomalies_detaillees\\A03_incoherence_valeurs_qualite.md",
+    "exists": true
+  },
+  {
+    "source": "docs/33_annexes_anomalies_detaillees/00_index.md",
+    "target": "./A04_doublons_stations_barrages.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\33_annexes_anomalies_detaillees\\A04_doublons_stations_barrages.md",
+    "exists": true
+  },
+  {
+    "source": "docs/33_annexes_anomalies_detaillees/00_index.md",
+    "target": "./A05_absence_referentiel_rejets.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\33_annexes_anomalies_detaillees\\A05_absence_referentiel_rejets.md",
+    "exists": true
+  },
+  {
+    "source": "docs/33_annexes_anomalies_detaillees/00_index.md",
+    "target": "./A06_fragmentation_donnees_IDP.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\33_annexes_anomalies_detaillees\\A06_fragmentation_donnees_IDP.md",
+    "exists": true
+  },
+  {
+    "source": "docs/33_annexes_anomalies_detaillees/00_index.md",
+    "target": "./A07_sources_pollution_non_rattachees.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\33_annexes_anomalies_detaillees\\A07_sources_pollution_non_rattachees.md",
+    "exists": true
+  },
+  {
+    "source": "docs/33_annexes_anomalies_detaillees/00_index.md",
+    "target": "./A08_donnees_qualite_null.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\33_annexes_anomalies_detaillees\\A08_donnees_qualite_null.md",
+    "exists": true
+  },
+  {
+    "source": "docs/33_annexes_anomalies_detaillees/00_index.md",
+    "target": "./A09_donnees_meteo_manquantes.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\33_annexes_anomalies_detaillees\\A09_donnees_meteo_manquantes.md",
+    "exists": true
+  },
+  {
+    "source": "docs/33_annexes_anomalies_detaillees/00_index.md",
+    "target": "./A10_temperature_non_disponible.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\33_annexes_anomalies_detaillees\\A10_temperature_non_disponible.md",
+    "exists": true
+  },
+  {
+    "source": "docs/33_annexes_anomalies_detaillees/00_index.md",
+    "target": "./A11_incoherence_noms_unites.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\33_annexes_anomalies_detaillees\\A11_incoherence_noms_unites.md",
+    "exists": true
+  },
+  {
+    "source": "docs/33_annexes_anomalies_detaillees/00_index.md",
+    "target": "./A12_incoherence_sources_donnees.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\33_annexes_anomalies_detaillees\\A12_incoherence_sources_donnees.md",
+    "exists": true
+  },
+  {
+    "source": "docs/33_annexes_anomalies_detaillees/00_index.md",
+    "target": "./A13_parametres_non_mappes.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\33_annexes_anomalies_detaillees\\A13_parametres_non_mappes.md",
+    "exists": true
+  },
+  {
+    "source": "docs/33_annexes_anomalies_detaillees/00_index.md",
+    "target": "./A14_donnees_extremes_aberrantes.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\33_annexes_anomalies_detaillees\\A14_donnees_extremes_aberrantes.md",
+    "exists": true
+  },
+  {
+    "source": "docs/33_annexes_anomalies_detaillees/00_index.md",
+    "target": "./A15_structuration_donnees_non_unifiee.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\33_annexes_anomalies_detaillees\\A15_structuration_donnees_non_unifiee.md",
+    "exists": true
+  },
+  {
+    "source": "docs/35_donnees_problematiques_par_bloc/00_index.md",
+    "target": "./01_donnees_problematiques_parametres.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\35_donnees_problematiques_par_bloc\\01_donnees_problematiques_parametres.md",
+    "exists": true
+  },
+  {
+    "source": "docs/35_donnees_problematiques_par_bloc/00_index.md",
+    "target": "./02_donnees_problematiques_pollution.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\35_donnees_problematiques_par_bloc\\02_donnees_problematiques_pollution.md",
+    "exists": true
+  },
+  {
+    "source": "docs/35_donnees_problematiques_par_bloc/00_index.md",
+    "target": "./03_donnees_problematiques_donnees.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\35_donnees_problematiques_par_bloc\\03_donnees_problematiques_donnees.md",
+    "exists": true
+  },
+  {
+    "source": "docs/35_donnees_problematiques_par_bloc/00_index.md",
+    "target": "./04_donnees_problematiques_referentiels.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\35_donnees_problematiques_par_bloc\\04_donnees_problematiques_referentiels.md",
+    "exists": true
+  },
+  {
+    "source": "docs/36_nettoyage_idp_2024_securise/00_index.md",
+    "target": "./01_audit_tables_idp.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\36_nettoyage_idp_2024_securise\\01_audit_tables_idp.md",
+    "exists": true
+  },
+  {
+    "source": "docs/36_nettoyage_idp_2024_securise/00_index.md",
+    "target": "./02_conflits_et_doublons_idp.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\36_nettoyage_idp_2024_securise\\02_conflits_et_doublons_idp.md",
+    "exists": true
+  },
+  {
+    "source": "docs/36_nettoyage_idp_2024_securise/00_index.md",
+    "target": "./03_parametres_idp_problematiques.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\36_nettoyage_idp_2024_securise\\03_parametres_idp_problematiques.md",
+    "exists": true
+  },
+  {
+    "source": "docs/36_nettoyage_idp_2024_securise/00_index.md",
+    "target": "./04_sources_pollution_idp_problematiques.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\36_nettoyage_idp_2024_securise\\04_sources_pollution_idp_problematiques.md",
+    "exists": true
+  },
+  {
+    "source": "docs/36_nettoyage_idp_2024_securise/00_index.md",
+    "target": "./05_comparaison_globale_vs_marche_cadre.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\36_nettoyage_idp_2024_securise\\05_comparaison_globale_vs_marche_cadre.md",
+    "exists": true
+  },
+  {
+    "source": "docs/36_nettoyage_idp_2024_securise/00_index.md",
+    "target": "./06_plan_nettoyage_securise.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\36_nettoyage_idp_2024_securise\\06_plan_nettoyage_securise.md",
+    "exists": true
+  },
+  {
+    "source": "docs/36_nettoyage_idp_2024_securise/00_index.md",
+    "target": "./07_scripts_sql_readonly_audit.sql",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\36_nettoyage_idp_2024_securise\\07_scripts_sql_readonly_audit.sql",
+    "exists": true
+  },
+  {
+    "source": "docs/36_nettoyage_idp_2024_securise/00_index.md",
+    "target": "./08_scripts_sql_backup_quarantaine_a_executer_apres_validation.sql",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\36_nettoyage_idp_2024_securise\\08_scripts_sql_backup_quarantaine_a_executer_apres_validation.sql",
+    "exists": true
+  },
+  {
+    "source": "docs/36_nettoyage_idp_2024_securise/00_index.md",
+    "target": "./09_scripts_sql_nettoyage_a_executer_apres_validation.sql",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\36_nettoyage_idp_2024_securise\\09_scripts_sql_nettoyage_a_executer_apres_validation.sql",
+    "exists": true
+  },
+  {
+    "source": "docs/36_nettoyage_idp_2024_securise/00_index.md",
+    "target": "./10_points_validation_metier.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\36_nettoyage_idp_2024_securise\\10_points_validation_metier.md",
+    "exists": true
+  },
+  {
+    "source": "docs/37_fiches_arbitrage_idp_2024/00_index_fiches.md",
+    "target": "./01_bloc_parametres/P01_parametres_non_mappes.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\37_fiches_arbitrage_idp_2024\\01_bloc_parametres\\P01_parametres_non_mappes.md",
+    "exists": true
+  },
+  {
+    "source": "docs/37_fiches_arbitrage_idp_2024/00_index_fiches.md",
+    "target": "./01_bloc_parametres/P02_parametres_ambigus.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\37_fiches_arbitrage_idp_2024\\01_bloc_parametres\\P02_parametres_ambigus.md",
+    "exists": true
+  },
+  {
+    "source": "docs/37_fiches_arbitrage_idp_2024/00_index_fiches.md",
+    "target": "./01_bloc_parametres/P03_parametres_variantes.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\37_fiches_arbitrage_idp_2024\\01_bloc_parametres\\P03_parametres_variantes.md",
+    "exists": true
+  },
+  {
+    "source": "docs/37_fiches_arbitrage_idp_2024/00_index_fiches.md",
+    "target": "./01_bloc_parametres/P04_unites_absentes_ou_melangees.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\37_fiches_arbitrage_idp_2024\\01_bloc_parametres\\P04_unites_absentes_ou_melangees.md",
+    "exists": true
+  },
+  {
+    "source": "docs/37_fiches_arbitrage_idp_2024/00_index_fiches.md",
+    "target": "./01_bloc_parametres/P05_valeurs_non_numeriques.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\37_fiches_arbitrage_idp_2024\\01_bloc_parametres\\P05_valeurs_non_numeriques.md",
+    "exists": true
+  },
+  {
+    "source": "docs/37_fiches_arbitrage_idp_2024/00_index_fiches.md",
+    "target": "./02_bloc_pollution/PL01_sources_non_rattachees.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\37_fiches_arbitrage_idp_2024\\02_bloc_pollution\\PL01_sources_non_rattachees.md",
+    "exists": true
+  },
+  {
+    "source": "docs/37_fiches_arbitrage_idp_2024/00_index_fiches.md",
+    "target": "./02_bloc_pollution/PL02_codes_pollution_ambigus.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\37_fiches_arbitrage_idp_2024\\02_bloc_pollution\\PL02_codes_pollution_ambigus.md",
+    "exists": true
+  },
+  {
+    "source": "docs/37_fiches_arbitrage_idp_2024/00_index_fiches.md",
+    "target": "./02_bloc_pollution/PL03_points_amont_aval.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\37_fiches_arbitrage_idp_2024\\02_bloc_pollution\\PL03_points_amont_aval.md",
+    "exists": true
+  },
+  {
+    "source": "docs/37_fiches_arbitrage_idp_2024/00_index_fiches.md",
+    "target": "./02_bloc_pollution/PL04_recouvrement_sources_globale_marche.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\37_fiches_arbitrage_idp_2024\\02_bloc_pollution\\PL04_recouvrement_sources_globale_marche.md",
+    "exists": true
+  },
+  {
+    "source": "docs/37_fiches_arbitrage_idp_2024/00_index_fiches.md",
+    "target": "./03_bloc_donnees/D01_valeurs_nulles.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\37_fiches_arbitrage_idp_2024\\03_bloc_donnees\\D01_valeurs_nulles.md",
+    "exists": true
+  },
+  {
+    "source": "docs/37_fiches_arbitrage_idp_2024/00_index_fiches.md",
+    "target": "./03_bloc_donnees/D02_valeurs_labo_speciales.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\37_fiches_arbitrage_idp_2024\\03_bloc_donnees\\D02_valeurs_labo_speciales.md",
+    "exists": true
+  },
+  {
+    "source": "docs/37_fiches_arbitrage_idp_2024/00_index_fiches.md",
+    "target": "./03_bloc_donnees/D03_donnees_non_convertibles.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\37_fiches_arbitrage_idp_2024\\03_bloc_donnees\\D03_donnees_non_convertibles.md",
+    "exists": true
+  },
+  {
+    "source": "docs/37_fiches_arbitrage_idp_2024/00_index_fiches.md",
+    "target": "./04_bloc_structure/S01_recouvrement_qualite_globale_marche.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\37_fiches_arbitrage_idp_2024\\04_bloc_structure\\S01_recouvrement_qualite_globale_marche.md",
+    "exists": true
+  },
+  {
+    "source": "docs/37_fiches_arbitrage_idp_2024/00_index_fiches.md",
+    "target": "./04_bloc_structure/S02_difference_structure_pollution.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\37_fiches_arbitrage_idp_2024\\04_bloc_structure\\S02_difference_structure_pollution.md",
+    "exists": true
+  },
+  {
+    "source": "docs/37_fiches_arbitrage_idp_2024/00_index_fiches.md",
+    "target": "./04_bloc_structure/S03_fragmentation_donnees_IDP.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\37_fiches_arbitrage_idp_2024\\04_bloc_structure\\S03_fragmentation_donnees_IDP.md",
+    "exists": true
+  },
+  {
+    "source": "docs/37_fiches_arbitrage_idp_2024/00_index_fiches.md",
+    "target": "./04_bloc_structure/S04_absence_tables_IDP_dans_abh_sad.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\37_fiches_arbitrage_idp_2024\\04_bloc_structure\\S04_absence_tables_IDP_dans_abh_sad.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/hydro_barrage_bathymetrie.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\hydro_barrage_bathymetrie.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/hydro_mesure_barrage.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\hydro_mesure_barrage.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/hydro_mesure_debit.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\hydro_mesure_debit.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/hydro_mesure_debit_mensuel.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\hydro_mesure_debit_mensuel.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/hydro_mesure_debit_source.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\hydro_mesure_debit_source.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/hydro_regle_qualite_debit_source.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\hydro_regle_qualite_debit_source.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/hydro_regle_qualite_debit_station.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\hydro_regle_qualite_debit_station.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/meteo_mesure_evaporation.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\meteo_mesure_evaporation.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/meteo_mesure_precipitation.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\meteo_mesure_precipitation.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/meteo_mesure_precipitation_annuelle_max.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\meteo_mesure_precipitation_annuelle_max.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/meteo_mesure_temperature.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\meteo_mesure_temperature.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/meteo_regle_qualite_evaporation_station.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\meteo_regle_qualite_evaporation_station.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/qualite_mesure_qualite_barrage.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\qualite_mesure_qualite_barrage.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/qualite_mesure_qualite_nappe.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\qualite_mesure_qualite_nappe.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/qualite_mesure_qualite_riviere.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\qualite_mesure_qualite_riviere.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/qualite_mesure_qualite_sebou.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\qualite_mesure_qualite_sebou.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/qualite_source_pollution_mesure_param.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\qualite_source_pollution_mesure_param.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/qualite_suivi_qualite_barrage_garde_hebdo.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\qualite_suivi_qualite_barrage_garde_hebdo.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/staging_legacy_qualite_riviere.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\staging_legacy_qualite_riviere.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/staging_mesure_precipitation_old_model.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\staging_mesure_precipitation_old_model.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/staging_mesures_debit_jr.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\staging_mesures_debit_jr.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/staging_mesures_debit_m.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\staging_mesures_debit_m.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/staging_mesures_debit_sources.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\staging_mesures_debit_sources.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/staging_mesures_evaporation_jr.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\staging_mesures_evaporation_jr.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/staging_mesures_niv_eau_barrages.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\staging_mesures_niv_eau_barrages.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/staging_mesures_precip.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\staging_mesures_precip.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/staging_mesures_precipitations_jr_max.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\staging_mesures_precipitations_jr_max.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/staging_mesures_precipitations_jr_traitees.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\staging_mesures_precipitations_jr_traitees.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/staging_mesures_qualite_barrages.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\staging_mesures_qualite_barrages.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/staging_mesures_qualite_nappes.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\staging_mesures_qualite_nappes.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/staging_sources_polution_mesure.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\staging_sources_polution_mesure.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/staging_suivi_qualite_brg_garde_hebdo.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\staging_suivi_qualite_brg_garde_hebdo.md",
+    "exists": true
+  },
+  {
+    "source": "docs/46_migration_par_table/00_index_tables.md",
+    "target": "01_fiches_tables/staging_suivi_qualite_sebou.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\46_migration_par_table\\01_fiches_tables\\staging_suivi_qualite_sebou.md",
+    "exists": true
+  },
+  {
+    "source": "docs/48_plan_execution_migration_corrige/54_lot_E0_dry_run_migration.md",
+    "target": "/C:/dev/WQDSS/repo_git/docs/48_plan_execution_migration_corrige/50_parametre_master_final.csv",
+    "resolved": "\\C:\\dev\\WQDSS\\repo_git\\docs\\48_plan_execution_migration_corrige\\50_parametre_master_final.csv",
+    "exists": false
+  },
+  {
+    "source": "docs/48_plan_execution_migration_corrige/54_lot_E0_dry_run_migration.md",
+    "target": "/C:/dev/WQDSS/repo_git/docs/48_plan_execution_migration_corrige/51_mapping_final_nettoye.csv",
+    "resolved": "\\C:\\dev\\WQDSS\\repo_git\\docs\\48_plan_execution_migration_corrige\\51_mapping_final_nettoye.csv",
+    "exists": false
+  },
+  {
+    "source": "docs/48_plan_execution_migration_corrige/54_lot_E0_dry_run_migration.md",
+    "target": "/C:/dev/WQDSS/repo_git/docs/48_plan_execution_migration_corrige/52_donnees_preparees_migration.sql",
+    "resolved": "\\C:\\dev\\WQDSS\\repo_git\\docs\\48_plan_execution_migration_corrige\\52_donnees_preparees_migration.sql",
+    "exists": false
+  },
+  {
+    "source": "docs/48_plan_execution_migration_corrige/54_lot_E0_dry_run_migration.md",
+    "target": "/C:/dev/WQDSS/repo_git/docs/48_plan_execution_migration_corrige/53_rapport_pre_migration.md",
+    "resolved": "\\C:\\dev\\WQDSS\\repo_git\\docs\\48_plan_execution_migration_corrige\\53_rapport_pre_migration.md",
+    "exists": false
+  },
+  {
+    "source": "docs/60_E1_1_qualite_barrage/00_index.md",
+    "target": "C:/dev/WQDSS/repo_git/scripts/execute_e1_1_qualite_barrage.py",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\scripts\\execute_e1_1_qualite_barrage.py",
+    "exists": true
+  },
+  {
+    "source": "docs/60_E1_1_qualite_barrage/00_index.md",
+    "target": "C:/dev/WQDSS/repo_git/backups/e1_1_qualite_barrage_20260505_143442/qualite_mesure_qualite_barrage_before_reset.csv",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\backups\\e1_1_qualite_barrage_20260505_143442\\qualite_mesure_qualite_barrage_before_reset.csv",
+    "exists": true
+  },
+  {
+    "source": "docs/60_E1_1_qualite_barrage/01_backup.md",
+    "target": "C:/dev/WQDSS/repo_git/backups/e1_1_qualite_barrage_20260505_143442/qualite_mesure_qualite_barrage_before_reset.csv",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\backups\\e1_1_qualite_barrage_20260505_143442\\qualite_mesure_qualite_barrage_before_reset.csv",
+    "exists": true
+  },
+  {
+    "source": "docs/61_E1_1_qualite_nappe/00_index.md",
+    "target": "C:/dev/WQDSS/repo_git/scripts/execute_e1_1_qualite_nappe.py",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\scripts\\execute_e1_1_qualite_nappe.py",
+    "exists": true
+  },
+  {
+    "source": "docs/61_E1_1_qualite_nappe/00_index.md",
+    "target": "C:/dev/WQDSS/repo_git/backups/e1_1_qualite_nappe_20260505_145624/qualite_mesure_qualite_nappe_before_reset.csv",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\backups\\e1_1_qualite_nappe_20260505_145624\\qualite_mesure_qualite_nappe_before_reset.csv",
+    "exists": true
+  },
+  {
+    "source": "docs/61_E1_1_qualite_nappe/01_backup.md",
+    "target": "C:/dev/WQDSS/repo_git/backups/e1_1_qualite_nappe_20260505_145624/qualite_mesure_qualite_nappe_before_reset.csv",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\backups\\e1_1_qualite_nappe_20260505_145624\\qualite_mesure_qualite_nappe_before_reset.csv",
+    "exists": true
+  },
+  {
+    "source": "docs/62_E1_1_qualite_riviere/00_index.md",
+    "target": "C:/dev/WQDSS/repo_git/scripts/execute_e1_1_qualite_riviere.py",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\scripts\\execute_e1_1_qualite_riviere.py",
+    "exists": true
+  },
+  {
+    "source": "docs/62_E1_1_qualite_riviere/00_index.md",
+    "target": "C:/dev/WQDSS/repo_git/backups/e1_1_qualite_riviere_20260505_151043/qualite_mesure_qualite_riviere_before_reset.csv",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\backups\\e1_1_qualite_riviere_20260505_151043\\qualite_mesure_qualite_riviere_before_reset.csv",
+    "exists": true
+  },
+  {
+    "source": "docs/62_E1_1_qualite_riviere/01_backup.md",
+    "target": "C:/dev/WQDSS/repo_git/backups/e1_1_qualite_riviere_20260505_151043/qualite_mesure_qualite_riviere_before_reset.csv",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\backups\\e1_1_qualite_riviere_20260505_151043\\qualite_mesure_qualite_riviere_before_reset.csv",
+    "exists": true
+  },
+  {
+    "source": "docs/63_E1_1_suivi_qualite_barrage_garde_hebdo/00_index.md",
+    "target": "C:/dev/WQDSS/repo_git/scripts/execute_e1_1_suivi_qualite_brg_garde_hebdo.py",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\scripts\\execute_e1_1_suivi_qualite_brg_garde_hebdo.py",
+    "exists": true
+  },
+  {
+    "source": "docs/63_E1_1_suivi_qualite_barrage_garde_hebdo/00_index.md",
+    "target": "C:/dev/WQDSS/repo_git/backups/e1_1_garde_hebdo_20260505_154344/qualite_suivi_qualite_barrage_garde_hebdo_before_reset.csv",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\backups\\e1_1_garde_hebdo_20260505_154344\\qualite_suivi_qualite_barrage_garde_hebdo_before_reset.csv",
+    "exists": true
+  },
+  {
+    "source": "docs/63_E1_1_suivi_qualite_barrage_garde_hebdo/01_backup.md",
+    "target": "C:/dev/WQDSS/repo_git/backups/e1_1_garde_hebdo_20260505_154344/qualite_suivi_qualite_barrage_garde_hebdo_before_reset.csv",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\backups\\e1_1_garde_hebdo_20260505_154344\\qualite_suivi_qualite_barrage_garde_hebdo_before_reset.csv",
+    "exists": true
+  },
+  {
+    "source": "docs/66_E1_1_hydro_mesure_debit/00_index.md",
+    "target": "C:/dev/WQDSS/repo_git/scripts/execute_e1_1_hydro_mesure_debit.py",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\scripts\\execute_e1_1_hydro_mesure_debit.py",
+    "exists": true
+  },
+  {
+    "source": "docs/66_E1_1_hydro_mesure_debit/00_index.md",
+    "target": "C:/dev/WQDSS/repo_git/backups/e1_1_hydro_debit_20260506_093804/hydro_mesure_debit_before_insert_only_missing.csv",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\backups\\e1_1_hydro_debit_20260506_093804\\hydro_mesure_debit_before_insert_only_missing.csv",
+    "exists": true
+  },
+  {
+    "source": "docs/66_E1_1_hydro_mesure_debit/00_index.md",
+    "target": "C:/dev/WQDSS/repo_git/docs/65_hydro_debit_reconstruction_stable/04_conflits_valeurs_a_arbitrer.csv",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\65_hydro_debit_reconstruction_stable\\04_conflits_valeurs_a_arbitrer.csv",
+    "exists": true
+  },
+  {
+    "source": "docs/66_E1_1_hydro_mesure_debit/01_backup.md",
+    "target": "C:/dev/WQDSS/repo_git/backups/e1_1_hydro_debit_20260506_093804/hydro_mesure_debit_before_insert_only_missing.csv",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\backups\\e1_1_hydro_debit_20260506_093804\\hydro_mesure_debit_before_insert_only_missing.csv",
+    "exists": true
+  },
+  {
+    "source": "docs/66_E1_1_hydro_mesure_debit/05_backlog_conflits.md",
+    "target": "C:/dev/WQDSS/repo_git/docs/65_hydro_debit_reconstruction_stable/04_conflits_valeurs_a_arbitrer.csv",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\65_hydro_debit_reconstruction_stable\\04_conflits_valeurs_a_arbitrer.csv",
+    "exists": true
+  },
+  {
+    "source": "docs/69_diagnostic_hydro_mesure_barrage/00_index.md",
+    "target": "./01_inventaire_parametres_barrage.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\69_diagnostic_hydro_mesure_barrage\\01_inventaire_parametres_barrage.md",
+    "exists": true
+  },
+  {
+    "source": "docs/69_diagnostic_hydro_mesure_barrage/00_index.md",
+    "target": "./02_analyse_cle_metier.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\69_diagnostic_hydro_mesure_barrage\\02_analyse_cle_metier.md",
+    "exists": true
+  },
+  {
+    "source": "docs/69_diagnostic_hydro_mesure_barrage/00_index.md",
+    "target": "./03_analyse_temporelle.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\69_diagnostic_hydro_mesure_barrage\\03_analyse_temporelle.md",
+    "exists": true
+  },
+  {
+    "source": "docs/69_diagnostic_hydro_mesure_barrage/00_index.md",
+    "target": "./04_analyse_unites.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\69_diagnostic_hydro_mesure_barrage\\04_analyse_unites.md",
+    "exists": true
+  },
+  {
+    "source": "docs/69_diagnostic_hydro_mesure_barrage/00_index.md",
+    "target": "./05_analyse_modele_metier.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\69_diagnostic_hydro_mesure_barrage\\05_analyse_modele_metier.md",
+    "exists": true
+  },
+  {
+    "source": "docs/69_diagnostic_hydro_mesure_barrage/00_index.md",
+    "target": "./06_comparaison_source_cible.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\69_diagnostic_hydro_mesure_barrage\\06_comparaison_source_cible.md",
+    "exists": true
+  },
+  {
+    "source": "docs/69_diagnostic_hydro_mesure_barrage/00_index.md",
+    "target": "./07_classification_scope.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\69_diagnostic_hydro_mesure_barrage\\07_classification_scope.md",
+    "exists": true
+  },
+  {
+    "source": "docs/69_diagnostic_hydro_mesure_barrage/00_index.md",
+    "target": "./08_recommandation_architecture.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\69_diagnostic_hydro_mesure_barrage\\08_recommandation_architecture.md",
+    "exists": true
+  },
+  {
+    "source": "docs/69_diagnostic_hydro_mesure_barrage/00_index.md",
+    "target": "./09_decision_hydro_barrage.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\69_diagnostic_hydro_mesure_barrage\\09_decision_hydro_barrage.md",
+    "exists": true
+  },
+  {
+    "source": "docs/95_dashboard_decisionnel_abh/00_index.md",
+    "target": "./01_vision_metier_carto_decisionnelle.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\95_dashboard_decisionnel_abh\\01_vision_metier_carto_decisionnelle.md",
+    "exists": true
+  },
+  {
+    "source": "docs/95_dashboard_decisionnel_abh/00_index.md",
+    "target": "./02_typologie_donnees_et_fraicheur.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\95_dashboard_decisionnel_abh\\02_typologie_donnees_et_fraicheur.md",
+    "exists": true
+  },
+  {
+    "source": "docs/95_dashboard_decisionnel_abh/00_index.md",
+    "target": "./03_organisation_par_campagne.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\95_dashboard_decisionnel_abh\\03_organisation_par_campagne.md",
+    "exists": true
+  },
+  {
+    "source": "docs/95_dashboard_decisionnel_abh/00_index.md",
+    "target": "./04_organisation_par_support_spatial.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\95_dashboard_decisionnel_abh\\04_organisation_par_support_spatial.md",
+    "exists": true
+  },
+  {
+    "source": "docs/95_dashboard_decisionnel_abh/00_index.md",
+    "target": "./05_modes_affichage_carte_tableau_graphique.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\95_dashboard_decisionnel_abh\\05_modes_affichage_carte_tableau_graphique.md",
+    "exists": true
+  },
+  {
+    "source": "docs/95_dashboard_decisionnel_abh/00_index.md",
+    "target": "./06_regles_performance_et_lazy_loading.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\95_dashboard_decisionnel_abh\\06_regles_performance_et_lazy_loading.md",
+    "exists": true
+  },
+  {
+    "source": "docs/95_dashboard_decisionnel_abh/00_index.md",
+    "target": "./07_personas_et_besoins_abh.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\95_dashboard_decisionnel_abh\\07_personas_et_besoins_abh.md",
+    "exists": true
+  },
+  {
+    "source": "docs/95_dashboard_decisionnel_abh/00_index.md",
+    "target": "./08_spec_dashboard_test.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\95_dashboard_decisionnel_abh\\08_spec_dashboard_test.md",
+    "exists": true
+  },
+  {
+    "source": "docs/95_dashboard_decisionnel_abh/00_index.md",
+    "target": "./09_checklist_validation_metier.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\95_dashboard_decisionnel_abh\\09_checklist_validation_metier.md",
+    "exists": true
+  },
+  {
+    "source": "docs/95_dashboard_decisionnel_abh/00_index.md",
+    "target": "./10_backlog_evolution_dashboard_decisionnel.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\95_dashboard_decisionnel_abh\\10_backlog_evolution_dashboard_decisionnel.md",
+    "exists": true
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/00_index.md",
+    "target": "./01_catalogue_global_parametres.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\96_catalogue_metier_donnees_affichage\\01_catalogue_global_parametres.md",
+    "exists": true
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/00_index.md",
+    "target": "./02_catalogue_campagnes.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\96_catalogue_metier_donnees_affichage\\02_catalogue_campagnes.md",
+    "exists": true
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/00_index.md",
+    "target": "./03_catalogue_supports.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\96_catalogue_metier_donnees_affichage\\03_catalogue_supports.md",
+    "exists": true
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/00_index.md",
+    "target": "./04_catalogue_sources_tables.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\96_catalogue_metier_donnees_affichage\\04_catalogue_sources_tables.md",
+    "exists": true
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/00_index.md",
+    "target": "./05_catalogue_vues_api.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\96_catalogue_metier_donnees_affichage\\05_catalogue_vues_api.md",
+    "exists": true
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/00_index.md",
+    "target": "./06_regles_affichage_metier.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\96_catalogue_metier_donnees_affichage\\06_regles_affichage_metier.md",
+    "exists": true
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/00_index.md",
+    "target": "./07_priorisation_decisionnelle.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\96_catalogue_metier_donnees_affichage\\07_priorisation_decisionnelle.md",
+    "exists": true
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/00_index.md",
+    "target": "./08_historique_vs_recent.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\96_catalogue_metier_donnees_affichage\\08_historique_vs_recent.md",
+    "exists": true
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/00_index.md",
+    "target": "./09_checklist_validation_metier_finale.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\96_catalogue_metier_donnees_affichage\\09_checklist_validation_metier_finale.md",
+    "exists": true
+  },
+  {
+    "source": "docs/97_audit_temporalite_reelle/00_index.md",
+    "target": "./01_synthese_temporalite.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\97_audit_temporalite_reelle\\01_synthese_temporalite.md",
+    "exists": true
+  },
+  {
+    "source": "docs/97_audit_temporalite_reelle/00_index.md",
+    "target": "./02_sql_read_only_audit_temporalite.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\97_audit_temporalite_reelle\\02_sql_read_only_audit_temporalite.md",
+    "exists": true
+  },
+  {
+    "source": "docs/97_audit_temporalite_reelle/00_index.md",
+    "target": "./03_recommandations_cache_pagination_partitionnement.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\97_audit_temporalite_reelle\\03_recommandations_cache_pagination_partitionnement.md",
+    "exists": true
+  },
+  {
+    "source": "docs/97_audit_temporalite_reelle/00_index.md",
+    "target": "./04_risques_readiness_checklist.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\97_audit_temporalite_reelle\\04_risques_readiness_checklist.md",
+    "exists": true
+  },
+  {
+    "source": "docs/98_pollution_idp_architecture/00_index.md",
+    "target": "./01_synthese_metier.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\98_pollution_idp_architecture\\01_synthese_metier.md",
+    "exists": true
+  },
+  {
+    "source": "docs/98_pollution_idp_architecture/00_index.md",
+    "target": "./02_architecture_cible_api_front_carto.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\98_pollution_idp_architecture\\02_architecture_cible_api_front_carto.md",
+    "exists": true
+  },
+  {
+    "source": "docs/98_pollution_idp_architecture/00_index.md",
+    "target": "./03_workflows_geo_qa_resolution_progressive.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\98_pollution_idp_architecture\\03_workflows_geo_qa_resolution_progressive.md",
+    "exists": true
+  },
+  {
+    "source": "docs/98_pollution_idp_architecture/00_index.md",
+    "target": "./04_backlog_risques_readiness_checklist.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\98_pollution_idp_architecture\\04_backlog_risques_readiness_checklist.md",
+    "exists": true
+  },
+  {
+    "source": "docs/99_dashboard_decisionnel_v2/00_index.md",
+    "target": "./01_synthese_architecture_ux.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\99_dashboard_decisionnel_v2\\01_synthese_architecture_ux.md",
+    "exists": true
+  },
+  {
+    "source": "docs/99_dashboard_decisionnel_v2/00_index.md",
+    "target": "./02_wireframes_mermaid_et_composants_cibles.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\99_dashboard_decisionnel_v2\\02_wireframes_mermaid_et_composants_cibles.md",
+    "exists": true
+  },
+  {
+    "source": "docs/99_dashboard_decisionnel_v2/00_index.md",
+    "target": "./03_cache_lazy_clustering_timeline.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\99_dashboard_decisionnel_v2\\03_cache_lazy_clustering_timeline.md",
+    "exists": true
+  },
+  {
+    "source": "docs/99_dashboard_decisionnel_v2/00_index.md",
+    "target": "./04_backlog_risques_readiness_checklist.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\99_dashboard_decisionnel_v2\\04_backlog_risques_readiness_checklist.md",
+    "exists": true
+  },
+  {
+    "source": "docs/pollution_dashboard/11_reconnexion_topologique/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/11_reconnexion_topologique/01_audit_connected_components.md",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\11_reconnexion_topologique\\01_audit_connected_components.md",
+    "exists": false
+  },
+  {
+    "source": "docs/pollution_dashboard/11_reconnexion_topologique/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/11_reconnexion_topologique/02_audit_gaps_reseau.md",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\11_reconnexion_topologique\\02_audit_gaps_reseau.md",
+    "exists": false
+  },
+  {
+    "source": "docs/pollution_dashboard/11_reconnexion_topologique/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/11_reconnexion_topologique/03_audit_intersections_non_connectees.md",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\11_reconnexion_topologique\\03_audit_intersections_non_connectees.md",
+    "exists": false
+  },
+  {
+    "source": "docs/pollution_dashboard/11_reconnexion_topologique/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/11_reconnexion_topologique/04_plan_snapping_progressif.md",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\11_reconnexion_topologique\\04_plan_snapping_progressif.md",
+    "exists": false
+  },
+  {
+    "source": "docs/pollution_dashboard/11_reconnexion_topologique/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/11_reconnexion_topologique/05_reseau_isole_reference.md",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\11_reconnexion_topologique\\05_reseau_isole_reference.md",
+    "exists": false
+  },
+  {
+    "source": "docs/pollution_dashboard/11_reconnexion_topologique/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/11_reconnexion_topologique/06_plan_reconstruction_graphe.md",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\11_reconnexion_topologique\\06_plan_reconstruction_graphe.md",
+    "exists": false
+  },
+  {
+    "source": "docs/pollution_dashboard/12_reconstruction_topologique_reelle/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/12_reconstruction_topologique_reelle/01_analyse_intersections_non_nodees.md",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\12_reconstruction_topologique_reelle\\01_analyse_intersections_non_nodees.md",
+    "exists": false
+  },
+  {
+    "source": "docs/pollution_dashboard/12_reconstruction_topologique_reelle/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/12_reconstruction_topologique_reelle/02_plan_nodification_reseau.md",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\12_reconstruction_topologique_reelle\\02_plan_nodification_reseau.md",
+    "exists": false
+  },
+  {
+    "source": "docs/pollution_dashboard/12_reconstruction_topologique_reelle/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/12_reconstruction_topologique_reelle/03_pipeline_reconstruction_topologique.md",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\12_reconstruction_topologique_reelle\\03_pipeline_reconstruction_topologique.md",
+    "exists": false
+  },
+  {
+    "source": "docs/pollution_dashboard/12_reconstruction_topologique_reelle/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/12_reconstruction_topologique_reelle/04_audit_avant_apres_nodification.md",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\12_reconstruction_topologique_reelle\\04_audit_avant_apres_nodification.md",
+    "exists": false
+  },
+  {
+    "source": "docs/pollution_dashboard/12_reconstruction_topologique_reelle/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/12_reconstruction_topologique_reelle/05_plan_rebuild_networkx.md",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\12_reconstruction_topologique_reelle\\05_plan_rebuild_networkx.md",
+    "exists": false
+  },
+  {
+    "source": "docs/pollution_dashboard/12_reconstruction_topologique_reelle/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/12_reconstruction_topologique_reelle/06_risques_topologiques.md",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\12_reconstruction_topologique_reelle\\06_risques_topologiques.md",
+    "exists": false
+  },
+  {
+    "source": "docs/pollution_dashboard/12_reconstruction_topologique_reelle/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/12_reconstruction_topologique_reelle/07_sql_nodification_prepare_A_VALIDER.sql",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\12_reconstruction_topologique_reelle\\07_sql_nodification_prepare_A_VALIDER.sql",
+    "exists": false
+  },
+  {
+    "source": "docs/pollution_dashboard/12_reconstruction_topologique_reelle/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/12_reconstruction_topologique_reelle/08_tests_post_nodification.md",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\12_reconstruction_topologique_reelle\\08_tests_post_nodification.md",
+    "exists": false
+  },
+  {
+    "source": "docs/pollution_dashboard/12_reconstruction_topologique_reelle/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/12_reconstruction_topologique_reelle/09_checklist_validation_hydrologique.md",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\12_reconstruction_topologique_reelle\\09_checklist_validation_hydrologique.md",
+    "exists": false
+  },
+  {
+    "source": "docs/pollution_dashboard/13_normalisation_post_nodification/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/13_normalisation_post_nodification/01_audit_micro_segments.md",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\13_normalisation_post_nodification\\01_audit_micro_segments.md",
+    "exists": false
+  },
+  {
+    "source": "docs/pollution_dashboard/13_normalisation_post_nodification/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/13_normalisation_post_nodification/02_audit_cycles_artificiels.md",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\13_normalisation_post_nodification\\02_audit_cycles_artificiels.md",
+    "exists": false
+  },
+  {
+    "source": "docs/pollution_dashboard/13_normalisation_post_nodification/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/13_normalisation_post_nodification/03_audit_doublons_geometriques.md",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\13_normalisation_post_nodification\\03_audit_doublons_geometriques.md",
+    "exists": false
+  },
+  {
+    "source": "docs/pollution_dashboard/13_normalisation_post_nodification/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/13_normalisation_post_nodification/04_plan_normalisation_segments.md",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\13_normalisation_post_nodification\\04_plan_normalisation_segments.md",
+    "exists": false
+  },
+  {
+    "source": "docs/pollution_dashboard/13_normalisation_post_nodification/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/13_normalisation_post_nodification/05_plan_snapping_final.md",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\13_normalisation_post_nodification\\05_plan_snapping_final.md",
+    "exists": false
+  },
+  {
+    "source": "docs/pollution_dashboard/13_normalisation_post_nodification/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/13_normalisation_post_nodification/06_plan_consolidation_networkx.md",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\13_normalisation_post_nodification\\06_plan_consolidation_networkx.md",
+    "exists": false
+  },
+  {
+    "source": "docs/pollution_dashboard/13_normalisation_post_nodification/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/13_normalisation_post_nodification/07_sql_cleanup_prepare_A_VALIDER.sql",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\13_normalisation_post_nodification\\07_sql_cleanup_prepare_A_VALIDER.sql",
+    "exists": false
+  },
+  {
+    "source": "docs/pollution_dashboard/13_normalisation_post_nodification/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/13_normalisation_post_nodification/08_tests_post_cleanup.md",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\13_normalisation_post_nodification\\08_tests_post_cleanup.md",
+    "exists": false
+  },
+  {
+    "source": "docs/pollution_dashboard/13_normalisation_post_nodification/00_index.md",
+    "target": "file:///c:/dev/WQDSS/repo_git/docs/pollution_dashboard/13_normalisation_post_nodification/09_kpi_connectivite_finale.md",
+    "resolved": "c:dev\\WQDSS\\repo_git\\docs\\pollution_dashboard\\13_normalisation_post_nodification\\09_kpi_connectivite_finale.md",
+    "exists": false
+  },
+  {
+    "source": "docs/99_legacy_archive/superseded_active_data_docs/2026-04-10_db_reference_refresh/sql_views_reference.md",
+    "target": "../../db_scripts/12_api_views.sql",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\99_legacy_archive\\db_scripts\\12_api_views.sql",
+    "exists": false
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/partie4_prompts_appliques/01_AUDIT_QUALITE_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/backend/app/api/api_v1.py#L23",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\backend\\app\\api\\api_v1.py",
+    "exists": false
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/partie4_prompts_appliques/01_AUDIT_QUALITE_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/backend/app/routers/layers.py#L8",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\backend\\app\\routers\\layers.py",
+    "exists": false
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/partie4_prompts_appliques/01_AUDIT_QUALITE_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/backend/app/routers/hydro.py#L43",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\backend\\app\\routers\\hydro.py",
+    "exists": false
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/partie4_prompts_appliques/01_AUDIT_QUALITE_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/backend/app/api/v1/stations.py#L65",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\backend\\app\\api\\v1\\stations.py",
+    "exists": false
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/partie4_prompts_appliques/01_AUDIT_QUALITE_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/backend/app/api/v1/raw.py#L140",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\backend\\app\\api\\v1\\raw.py",
+    "exists": false
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/partie4_prompts_appliques/01_AUDIT_QUALITE_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/frontend/src/api/client.ts#L1",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\frontend\\src\\api\\client.ts",
+    "exists": false
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/partie4_prompts_appliques/01_AUDIT_QUALITE_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/backend/app/main.py#L75",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\backend\\app\\main.py",
+    "exists": false
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/partie4_prompts_appliques/01_AUDIT_QUALITE_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/backend/app/routers/layers.py#L157",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\backend\\app\\routers\\layers.py",
+    "exists": false
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/partie4_prompts_appliques/02_DETECTION_BUGS_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/frontend/src/api/client.ts#L274",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\frontend\\src\\api\\client.ts",
+    "exists": false
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/partie4_prompts_appliques/02_DETECTION_BUGS_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/backend/app/routers/hydro.py#L57",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\backend\\app\\routers\\hydro.py",
+    "exists": false
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/partie4_prompts_appliques/02_DETECTION_BUGS_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/backend/app/api/v1/auth.py#L39",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\backend\\app\\api\\v1\\auth.py",
+    "exists": false
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/partie4_prompts_appliques/02_DETECTION_BUGS_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/frontend/src/api/client.ts#L126",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\frontend\\src\\api\\client.ts",
+    "exists": false
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/partie4_prompts_appliques/02_DETECTION_BUGS_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/frontend/src/api/client.ts#L178",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\frontend\\src\\api\\client.ts",
+    "exists": false
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/partie4_prompts_appliques/02_DETECTION_BUGS_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/backend/app/api/api_v1.py#L33",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\backend\\app\\api\\api_v1.py",
+    "exists": false
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "target": "/c:/dev/Postgresql_server/db_scripts/12_api_views.sql",
+    "resolved": "\\c:\\dev\\Postgresql_server\\db_scripts\\12_api_views.sql",
+    "exists": false
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Rapports_Audit/walkthrough.md",
+    "target": "file:///C:/Users/Yassine%20-%20C4E%20Africa/.gemini/antigravity/brain/8731a4ae-64fb-48d4-b5a0-c8ad5eee6b0d/implementation_guide.md",
+    "resolved": "C:Users\\Yassine%20-%20C4E%20Africa\\.gemini\\antigravity\\brain\\8731a4ae-64fb-48d4-b5a0-c8ad5eee6b0d\\implementation_guide.md",
+    "exists": false
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Rapports_Audit/walkthrough.md",
+    "target": "file:///C:/Users/Yassine%20-%20C4E%20Africa/.gemini/antigravity/brain/8731a4ae-64fb-48d4-b5a0-c8ad5eee6b0d/migration_plan.md",
+    "resolved": "C:Users\\Yassine%20-%20C4E%20Africa\\.gemini\\antigravity\\brain\\8731a4ae-64fb-48d4-b5a0-c8ad5eee6b0d\\migration_plan.md",
+    "exists": false
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Rapports_Audit/walkthrough.md",
+    "target": "file:///C:/Users/Yassine%20-%20C4E%20Africa/.gemini/antigravity/brain/8731a4ae-64fb-48d4-b5a0-c8ad5eee6b0d/maintenance_procedures.md",
+    "resolved": "C:Users\\Yassine%20-%20C4E%20Africa\\.gemini\\antigravity\\brain\\8731a4ae-64fb-48d4-b5a0-c8ad5eee6b0d\\maintenance_procedures.md",
+    "exists": false
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/mission4/partie4_prompts_appliques/01_AUDIT_QUALITE_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/backend/app/api/api_v1.py#L23",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\backend\\app\\api\\api_v1.py",
+    "exists": false
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/mission4/partie4_prompts_appliques/01_AUDIT_QUALITE_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/backend/app/routers/layers.py#L8",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\backend\\app\\routers\\layers.py",
+    "exists": false
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/mission4/partie4_prompts_appliques/01_AUDIT_QUALITE_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/backend/app/routers/hydro.py#L43",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\backend\\app\\routers\\hydro.py",
+    "exists": false
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/mission4/partie4_prompts_appliques/01_AUDIT_QUALITE_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/backend/app/api/v1/stations.py#L65",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\backend\\app\\api\\v1\\stations.py",
+    "exists": false
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/mission4/partie4_prompts_appliques/01_AUDIT_QUALITE_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/backend/app/api/v1/raw.py#L140",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\backend\\app\\api\\v1\\raw.py",
+    "exists": false
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/mission4/partie4_prompts_appliques/01_AUDIT_QUALITE_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/frontend/src/api/client.ts#L1",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\frontend\\src\\api\\client.ts",
+    "exists": false
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/mission4/partie4_prompts_appliques/01_AUDIT_QUALITE_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/backend/app/main.py#L75",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\backend\\app\\main.py",
+    "exists": false
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/mission4/partie4_prompts_appliques/01_AUDIT_QUALITE_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/backend/app/routers/layers.py#L157",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\backend\\app\\routers\\layers.py",
+    "exists": false
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/mission4/partie4_prompts_appliques/02_DETECTION_BUGS_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/frontend/src/api/client.ts#L274",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\frontend\\src\\api\\client.ts",
+    "exists": false
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/mission4/partie4_prompts_appliques/02_DETECTION_BUGS_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/backend/app/routers/hydro.py#L57",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\backend\\app\\routers\\hydro.py",
+    "exists": false
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/mission4/partie4_prompts_appliques/02_DETECTION_BUGS_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/backend/app/api/v1/auth.py#L39",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\backend\\app\\api\\v1\\auth.py",
+    "exists": false
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/mission4/partie4_prompts_appliques/02_DETECTION_BUGS_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/frontend/src/api/client.ts#L126",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\frontend\\src\\api\\client.ts",
+    "exists": false
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/mission4/partie4_prompts_appliques/02_DETECTION_BUGS_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/frontend/src/api/client.ts#L178",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\frontend\\src\\api\\client.ts",
+    "exists": false
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/mission4/partie4_prompts_appliques/02_DETECTION_BUGS_MISSION4.md",
+    "target": "/c:/dev/sad_sebou0210/sad_sebou2026/version%204/sad_sebou0210/backend/app/api/api_v1.py#L33",
+    "resolved": "\\c:\\dev\\sad_sebou0210\\sad_sebou2026\\version%204\\sad_sebou0210\\backend\\app\\api\\api_v1.py",
+    "exists": false
+  },
+  {
+    "source": "docs/02_contractual_and_reports/cps/CPS_MAPPING_PROJECT.md",
+    "target": "./cps_requirements_summary.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\02_contractual_and_reports\\cps\\cps_requirements_summary.md",
+    "exists": true
+  },
+  {
+    "source": "docs/02_contractual_and_reports/cps/CPS_MAPPING_PROJECT.md",
+    "target": "../mission_iv/rapport_provisoire_mission_iv_sad.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\02_contractual_and_reports\\mission_iv\\rapport_provisoire_mission_iv_sad.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/architecture/database_architecture.md",
+    "target": "../data/DATABASE_SCHEMA.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATABASE_SCHEMA.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/architecture/database_architecture.md",
+    "target": "../data/API_DATA_MAPPING.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\API_DATA_MAPPING.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/architecture/database_architecture.md",
+    "target": "../EVIDENCE_REGISTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\EVIDENCE_REGISTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/architecture/database_architecture.md",
+    "target": "../data/DATABASE_SCHEMA.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATABASE_SCHEMA.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/architecture/database_architecture.md",
+    "target": "../data/DATA_MODELS.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATA_MODELS.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/architecture/database_architecture.md",
+    "target": "../data/DATA_FLOW.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATA_FLOW.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/architecture/database_architecture.md",
+    "target": "../data/DATA_QUALITY.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATA_QUALITY.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/architecture/database_architecture.md",
+    "target": "../data/API_DATA_MAPPING.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\API_DATA_MAPPING.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/architecture/database_architecture.md",
+    "target": "../data/sql_introspection_and_metadata.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\sql_introspection_and_metadata.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/architecture/database_architecture.md",
+    "target": "../EVIDENCE_REGISTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\EVIDENCE_REGISTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/architecture/system_architecture.md",
+    "target": "./database_architecture.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\architecture\\database_architecture.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/architecture/system_architecture.md",
+    "target": "../backend/backend_overview.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\backend\\backend_overview.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/architecture/system_architecture.md",
+    "target": "../frontend/frontend_reference.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\frontend\\frontend_reference.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/backend/api_contracts.md",
+    "target": "./backend_overview.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\backend\\backend_overview.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/backend/api_contracts.md",
+    "target": "../../00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/backend/api_contracts.md",
+    "target": "../../03_ai_knowledge_base/api_for_agents.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\api_for_agents.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "target": "../../00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "target": "./api_contracts.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\backend\\api_contracts.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "target": "../../03_ai_knowledge_base/api_for_agents.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\api_for_agents.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "target": "../../00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "target": "./api_contracts.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\backend\\api_contracts.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "target": "../../03_ai_knowledge_base/api_for_agents.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\api_for_agents.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "target": "./api_contracts.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\backend\\api_contracts.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/API_DATA_MAPPING.md",
+    "target": "./DATABASE_SCHEMA.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATABASE_SCHEMA.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/API_DATA_MAPPING.md",
+    "target": "./DATA_FLOW.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATA_FLOW.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/API_DATA_MAPPING.md",
+    "target": "../../03_ai_knowledge_base/DATABASE_SCHEMA_SUMMARY.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\DATABASE_SCHEMA_SUMMARY.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/DATABASE_SCHEMA.md",
+    "target": "../architecture/database_architecture.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\architecture\\database_architecture.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/DATABASE_SCHEMA.md",
+    "target": "./DATA_MODELS.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATA_MODELS.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/DATABASE_SCHEMA.md",
+    "target": "./DATA_FLOW.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATA_FLOW.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/DATABASE_SCHEMA.md",
+    "target": "./DATA_QUALITY.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATA_QUALITY.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/DATABASE_SCHEMA.md",
+    "target": "./API_DATA_MAPPING.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\API_DATA_MAPPING.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/DATA_FLOW.md",
+    "target": "./DATABASE_SCHEMA.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATABASE_SCHEMA.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/DATA_FLOW.md",
+    "target": "./DATA_MODELS.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATA_MODELS.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/DATA_FLOW.md",
+    "target": "./DATA_QUALITY.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATA_QUALITY.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/data_migration_history_summary.md",
+    "target": "../architecture/database_architecture.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\architecture\\database_architecture.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/data_migration_history_summary.md",
+    "target": "../EVIDENCE_REGISTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\EVIDENCE_REGISTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/DATA_MODELS.md",
+    "target": "./DATABASE_SCHEMA.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATABASE_SCHEMA.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/DATA_MODELS.md",
+    "target": "./DATA_FLOW.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATA_FLOW.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/DATA_MODELS.md",
+    "target": "./API_DATA_MAPPING.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\API_DATA_MAPPING.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/DATA_QUALITY.md",
+    "target": "./DATABASE_SCHEMA.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATABASE_SCHEMA.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/DATA_QUALITY.md",
+    "target": "./DATA_FLOW.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATA_FLOW.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/DATA_QUALITY.md",
+    "target": "./API_DATA_MAPPING.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\API_DATA_MAPPING.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/data_sources_reference.md",
+    "target": "./DATABASE_SCHEMA.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATABASE_SCHEMA.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/data_sources_reference.md",
+    "target": "../architecture/database_architecture.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\architecture\\database_architecture.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/README.md",
+    "target": "./DATABASE_SCHEMA.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATABASE_SCHEMA.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/README.md",
+    "target": "../architecture/database_architecture.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\architecture\\database_architecture.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/README.md",
+    "target": "./DATABASE_SCHEMA.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATABASE_SCHEMA.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/README.md",
+    "target": "./DATA_MODELS.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATA_MODELS.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/README.md",
+    "target": "./DATA_FLOW.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATA_FLOW.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/README.md",
+    "target": "./DATA_QUALITY.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATA_QUALITY.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/README.md",
+    "target": "./API_DATA_MAPPING.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\API_DATA_MAPPING.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/README.md",
+    "target": "./data_sources_reference.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\data_sources_reference.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/README.md",
+    "target": "./data_migration_history_summary.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\data_migration_history_summary.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/README.md",
+    "target": "./sql_introspection_and_metadata.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\sql_introspection_and_metadata.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/README.md",
+    "target": "./generated/db_introspection_snapshot_2026-04-10.json",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\generated\\db_introspection_snapshot_2026-04-10.json",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/sql_introspection_and_metadata.md",
+    "target": "./DATABASE_SCHEMA.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\DATABASE_SCHEMA.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/data/sql_introspection_and_metadata.md",
+    "target": "./generated/db_introspection_snapshot_2026-04-10.json",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\data\\generated\\db_introspection_snapshot_2026-04-10.json",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/deployment_operations/deployment_and_operations.md",
+    "target": "../backend/backend_overview.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\backend\\backend_overview.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/deployment_operations/deployment_and_operations.md",
+    "target": "../frontend/frontend_reference.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\frontend\\frontend_reference.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/frontend/frontend_reference.md",
+    "target": "../../00_SOURCE_OF_TRUTH_MASTER.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\00_SOURCE_OF_TRUTH_MASTER.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/frontend/frontend_reference.md",
+    "target": "../backend/backend_overview.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\backend\\backend_overview.md",
+    "exists": true
+  },
+  {
+    "source": "docs/01_project_reference/frontend/frontend_reference.md",
+    "target": "../../03_ai_knowledge_base/api_for_agents.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\03_ai_knowledge_base\\api_for_agents.md",
+    "exists": true
+  },
+  {
+    "source": "frontend/dist/assets/index.es-CR_PF7cf.js",
+    "target": "s",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\frontend\\dist\\assets\\s",
+    "exists": false
+  },
+  {
+    "source": "frontend/dist/assets/index.es-CR_PF7cf.js",
+    "target": "y",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\frontend\\dist\\assets\\y",
+    "exists": false
+  },
+  {
+    "source": "frontend/dist/assets/index.es-CR_PF7cf.js",
+    "target": "\"\"",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\frontend\\dist\\assets\\\"\"",
+    "exists": false
+  },
+  {
+    "source": "frontend/dist/assets/index.es-CR_PF7cf.js",
+    "target": "s(m",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\frontend\\dist\\assets\\s(m",
+    "exists": false
+  },
+  {
+    "source": "frontend/dist/assets/index.es-CR_PF7cf.js",
+    "target": "\"a\",\"$0\"",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\frontend\\dist\\assets\\\"a\",\"$0\"",
+    "exists": false
+  },
+  {
+    "source": "frontend/dist/assets/index.es-CR_PF7cf.js",
+    "target": "t",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\frontend\\dist\\assets\\t",
+    "exists": false
+  },
+  {
+    "source": "frontend/dist/assets/index.es-CR_PF7cf.js",
+    "target": "t",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\frontend\\dist\\assets\\t",
+    "exists": false
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "target": "../architecture/database_architecture.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\architecture\\database_architecture.md",
+    "exists": false
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "target": "./DATA_MODELS.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\scripts\\DATA_MODELS.md",
+    "exists": false
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "target": "./DATA_FLOW.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\scripts\\DATA_FLOW.md",
+    "exists": false
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "target": "./DATA_QUALITY.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\scripts\\DATA_QUALITY.md",
+    "exists": false
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "target": "./API_DATA_MAPPING.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\scripts\\API_DATA_MAPPING.md",
+    "exists": false
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "target": "./DATABASE_SCHEMA.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\scripts\\DATABASE_SCHEMA.md",
+    "exists": false
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "target": "./DATA_FLOW.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\scripts\\DATA_FLOW.md",
+    "exists": false
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "target": "./API_DATA_MAPPING.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\scripts\\API_DATA_MAPPING.md",
+    "exists": false
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "target": "./DATABASE_SCHEMA.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\scripts\\DATABASE_SCHEMA.md",
+    "exists": false
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "target": "./DATA_MODELS.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\scripts\\DATA_MODELS.md",
+    "exists": false
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "target": "./DATA_QUALITY.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\scripts\\DATA_QUALITY.md",
+    "exists": false
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "target": "./DATABASE_SCHEMA.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\scripts\\DATABASE_SCHEMA.md",
+    "exists": false
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "target": "./DATA_FLOW.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\scripts\\DATA_FLOW.md",
+    "exists": false
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "target": "./API_DATA_MAPPING.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\scripts\\API_DATA_MAPPING.md",
+    "exists": false
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "target": "./DATABASE_SCHEMA.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\scripts\\DATABASE_SCHEMA.md",
+    "exists": false
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "target": "./DATA_FLOW.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\scripts\\DATA_FLOW.md",
+    "exists": false
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "target": "../../03_ai_knowledge_base/DATABASE_SCHEMA_SUMMARY.md",
+    "resolved": "C:\\dev\\WQDSS\\03_ai_knowledge_base\\DATABASE_SCHEMA_SUMMARY.md",
+    "exists": false
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "target": "../01_project_reference/data/DATABASE_SCHEMA.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\01_project_reference\\data\\DATABASE_SCHEMA.md",
+    "exists": false
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "target": "../01_project_reference/data/API_DATA_MAPPING.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\01_project_reference\\data\\API_DATA_MAPPING.md",
+    "exists": false
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "target": "../01_project_reference/data/DATA_MODELS.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\01_project_reference\\data\\DATA_MODELS.md",
+    "exists": false
+  },
+  {
+    "source": "README.md",
+    "target": "docs/04_working_prompts_and_runs/runs/2026-04-09_merge_dashboards/status_note_merge_dashboards_2026-04-09.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\04_working_prompts_and_runs\\runs\\2026-04-09_merge_dashboards\\status_note_merge_dashboards_2026-04-09.md",
+    "exists": true
+  },
+  {
+    "source": "README.md",
+    "target": "backend/scripts/refresh_mviews.py",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\backend\\scripts\\refresh_mviews.py",
+    "exists": true
+  },
+  {
+    "source": "README.md",
+    "target": "backend/scripts/register_mv_refresh_task.ps1",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\backend\\scripts\\register_mv_refresh_task.ps1",
+    "exists": true
+  },
+  {
+    "source": "README.md",
+    "target": "docs/README.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\README.md",
+    "exists": true
+  },
+  {
+    "source": "README.md",
+    "target": "docs/01_project_reference/DOCUMENT_MAP.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\DOCUMENT_MAP.md",
+    "exists": true
+  },
+  {
+    "source": "README.md",
+    "target": "docs/01_project_reference/SOURCE_OF_TRUTH.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\SOURCE_OF_TRUTH.md",
+    "exists": true
+  },
+  {
+    "source": "README.md",
+    "target": "docs/01_project_reference/architecture/system_architecture.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\architecture\\system_architecture.md",
+    "exists": true
+  },
+  {
+    "source": "README.md",
+    "target": "docs/01_project_reference/architecture/database_architecture.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\architecture\\database_architecture.md",
+    "exists": true
+  },
+  {
+    "source": "README.md",
+    "target": "docs/01_project_reference/backend/api_contracts.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\backend\\api_contracts.md",
+    "exists": true
+  },
+  {
+    "source": "README.md",
+    "target": "docs/01_project_reference/frontend/frontend_reference.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\frontend\\frontend_reference.md",
+    "exists": true
+  },
+  {
+    "source": "README.md",
+    "target": "docs/01_project_reference/deployment_operations/deployment_and_operations.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\01_project_reference\\deployment_operations\\deployment_and_operations.md",
+    "exists": true
+  },
+  {
+    "source": "README.md",
+    "target": "docs/02_contractual_and_reports/mission_iv/rapport_provisoire_mission_iv_sad.md",
+    "resolved": "C:\\dev\\WQDSS\\repo_git\\docs\\02_contractual_and_reports\\mission_iv\\rapport_provisoire_mission_iv_sad.md",
+    "exists": true
+  }
+]

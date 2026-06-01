@@ -7,7 +7,7 @@
 | Périmètre | gouvernance documentaire et sources de vérité |
 | Source de vérité | Oui |
 | Documents liés | [../00_SOURCE_OF_TRUTH_MASTER.md](../00_SOURCE_OF_TRUTH_MASTER.md), [DOCUMENT_MAP](./DOCUMENT_MAP.md), [README](./README.md) |
-| Dernière mise à jour | 2026-04-17 |
+| Dernière mise à jour | 2026-05-22 |
 
 ## 1. Règles générales
 
@@ -34,6 +34,14 @@ Il prime sur tout résumé ou toute spécification cible lorsqu’un écart est 
 | Sujet | Document maître | Documents dérivés / d’appui | Documents archivés ou non maîtres |
 |---|---|---|---|
 | Photographie transverse du système réel | [00_SOURCE_OF_TRUTH_MASTER](../00_SOURCE_OF_TRUTH_MASTER.md) | [DOCUMENT_MAP](./DOCUMENT_MAP.md), [MEMORY_CORE](../03_ai_knowledge_base/MEMORY_CORE.md) | anciens états globaux dispersés |
+| Priorisation documentaire | [00_documents_prioritaires](../00_source_of_truth/00_documents_prioritaires.md) | [README](../README.md), [MEMORY_CORE](../03_ai_knowledge_base/MEMORY_CORE.md) | index historiques dispersés |
+| État global projet | [00_project_global_status](../04_etat_avancement/00_project_global_status.md) | [00_SOURCE_OF_TRUTH_MASTER](../00_SOURCE_OF_TRUTH_MASTER.md) | anciens statuts par lots et phases |
+| MVP et périmètre | [01_mvp_scope](../01_contexte_projet/01_mvp_scope.md) | [00_project_global_status](../04_etat_avancement/00_project_global_status.md) | notes de périmètre dispersées |
+| Problèmes racines | [00_problemes_racines](../05_blocages_et_risques/00_problemes_racines.md) | [34_synthese_strategique_anomalies](../34_synthese_strategique_anomalies/00_vue_globale.md) | fiches anomalies isolées |
+| Registre des décisions | [00_registre_decisions](../02_gouvernance_et_decisions/00_registre_decisions.md) | dossiers d'arbitrage et rapports de lots | décisions implicites dans notes historiques |
+| Cartographie des données stratégique | [00_data_landscape](../07_donnees_et_referentiels/00_data_landscape.md) | [DATABASE_SCHEMA_SUMMARY](../03_ai_knowledge_base/DATABASE_SCHEMA_SUMMARY.md), [00_SOURCE_OF_TRUTH_MASTER](../00_SOURCE_OF_TRUTH_MASTER.md) | inventaires bruts dispersés |
+| Source consolidée 2026-05-22 | [01_source_of_truth_consolidee](../00_source_of_truth/01_source_of_truth_consolidee.md) | [90_reorganisation_documentaire_finale](../90_reorganisation_documentaire_finale/00_index.md) | anciens rapports d'audit dispersés |
+| Rapport de réorganisation documentaire | [16_rapport_final_reorganisation](../90_reorganisation_documentaire_finale/16_rapport_final_reorganisation.md) | [17_execution_deplacement_lot_a](../90_reorganisation_documentaire_finale/17_execution_deplacement_lot_a.md) | mappings non exécutés |
 | Cartographie documentaire | [DOCUMENT_MAP](./DOCUMENT_MAP.md) | `docs/README.md` | anciens index dispersés |
 | Gouvernance documentaire | [SOURCE_OF_TRUTH](./SOURCE_OF_TRUTH.md) | [MEMORY_CORE](../03_ai_knowledge_base/MEMORY_CORE.md) | notes de restructuration historiques |
 | Vision projet | [project_vision](./overview/project_vision.md) | [MEMORY_CORE](../03_ai_knowledge_base/MEMORY_CORE.md) | anciens overview dispersés |
@@ -65,6 +73,7 @@ Il prime sur tout résumé ou toute spécification cible lorsqu’un écart est 
 - `docs/02_contractual_and_reports/mission_iv/generated_exports/*`
 - les documents historiques de merge, de prompt ou de migration détaillée conservés pour traçabilité
 - tout document de spécification non vérifié par le code ou la base
+- les anciens chemins racine déplacés vers `docs/12_historique_et_archives/root_legacy/`, sauf comme références historiques dans le mapping de réorganisation
 
 ## 5. Règle de maintenance
 

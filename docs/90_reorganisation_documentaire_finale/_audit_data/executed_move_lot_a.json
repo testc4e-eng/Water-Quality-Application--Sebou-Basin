@@ -1,0 +1,473 @@
+{
+  "moved": [
+    {
+      "old": "docs/04_migrations_bloc3_recap.md",
+      "new": "docs/12_historique_et_archives/root_legacy/04_migrations_bloc3_recap.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "low",
+      "refs_to_update": 0,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/05_bloc4_plan_implementation.md",
+      "new": "docs/12_historique_et_archives/root_legacy/05_bloc4_plan_implementation.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "low",
+      "refs_to_update": 0,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/06_audit_idp_qualite.md",
+      "new": "docs/12_historique_et_archives/root_legacy/06_audit_idp_qualite.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 2,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/10_master_plan_convergence_abh_sad.md",
+      "new": "docs/12_historique_et_archives/root_legacy/10_master_plan_convergence_abh_sad.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "low",
+      "refs_to_update": 0,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/11_catalogue_decision_tables.md",
+      "new": "docs/12_historique_et_archives/root_legacy/11_catalogue_decision_tables.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 2,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/12_lot1_barrages_audit_ab.md",
+      "new": "docs/12_historique_et_archives/root_legacy/12_lot1_barrages_audit_ab.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 1,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/12_lot2_stations_audit_ab.md",
+      "new": "docs/12_historique_et_archives/root_legacy/12_lot2_stations_audit_ab.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 1,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/12_lot3a2_mensuels_debug.md",
+      "new": "docs/12_historique_et_archives/root_legacy/12_lot3a2_mensuels_debug.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 1,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/12_lot3a_debits_audit_ab.md",
+      "new": "docs/12_historique_et_archives/root_legacy/12_lot3a_debits_audit_ab.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 1,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/12_lot3b_meteo_audit_ab.md",
+      "new": "docs/12_historique_et_archives/root_legacy/12_lot3b_meteo_audit_ab.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 1,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/12_lot4a1b_dictionnaire_parametres_valide.md",
+      "new": "docs/12_historique_et_archives/root_legacy/12_lot4a1b_dictionnaire_parametres_valide.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "low",
+      "refs_to_update": 0,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/12_lot4a1_dictionnaire_parametres.md",
+      "new": "docs/12_historique_et_archives/root_legacy/12_lot4a1_dictionnaire_parametres.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 1,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/12_lot4a3_barrages_audit_ab.md",
+      "new": "docs/12_historique_et_archives/root_legacy/12_lot4a3_barrages_audit_ab.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 1,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/12_lot4a4_idp_audit_ab.md",
+      "new": "docs/12_historique_et_archives/root_legacy/12_lot4a4_idp_audit_ab.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 2,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/12_lot4a_qualite_audit_ab.md",
+      "new": "docs/12_historique_et_archives/root_legacy/12_lot4a_qualite_audit_ab.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 1,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/12_plan_execution_par_lots.md",
+      "new": "docs/12_historique_et_archives/root_legacy/12_plan_execution_par_lots.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 9,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/13_lot1_barrages_mapping.md",
+      "new": "docs/12_historique_et_archives/root_legacy/13_lot1_barrages_mapping.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "low",
+      "refs_to_update": 0,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/13_lot2_stations_mapping.md",
+      "new": "docs/12_historique_et_archives/root_legacy/13_lot2_stations_mapping.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "low",
+      "refs_to_update": 0,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/13_lot3a_debits_mapping.md",
+      "new": "docs/12_historique_et_archives/root_legacy/13_lot3a_debits_mapping.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "low",
+      "refs_to_update": 0,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/13_lot3b_meteo_mapping.md",
+      "new": "docs/12_historique_et_archives/root_legacy/13_lot3b_meteo_mapping.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "low",
+      "refs_to_update": 0,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/13_lot4a2_qualite_mapping.md",
+      "new": "docs/12_historique_et_archives/root_legacy/13_lot4a2_qualite_mapping.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "low",
+      "refs_to_update": 0,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/13_lot4a3_barrages_mapping.md",
+      "new": "docs/12_historique_et_archives/root_legacy/13_lot4a3_barrages_mapping.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "low",
+      "refs_to_update": 0,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/13_lot4a4b_idp_structuration_logique.md",
+      "new": "docs/12_historique_et_archives/root_legacy/13_lot4a4b_idp_structuration_logique.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "low",
+      "refs_to_update": 0,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/14_lot1_barrages_dry_run_resultats.md",
+      "new": "docs/12_historique_et_archives/root_legacy/14_lot1_barrages_dry_run_resultats.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 1,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/14_lot2_stations_dry_run_resultats.md",
+      "new": "docs/12_historique_et_archives/root_legacy/14_lot2_stations_dry_run_resultats.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 1,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/14_lot3a2_debits_mensuels_dry_run_fix_resultats.md",
+      "new": "docs/12_historique_et_archives/root_legacy/14_lot3a2_debits_mensuels_dry_run_fix_resultats.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 1,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/14_lot3a_debits_dry_run_resultats.md",
+      "new": "docs/12_historique_et_archives/root_legacy/14_lot3a_debits_dry_run_resultats.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 1,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/14_lot3b_meteo_dry_run_resultats.md",
+      "new": "docs/12_historique_et_archives/root_legacy/14_lot3b_meteo_dry_run_resultats.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 1,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/14_lot4a2_qualite_dry_run_resultats.md",
+      "new": "docs/12_historique_et_archives/root_legacy/14_lot4a2_qualite_dry_run_resultats.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 1,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/14_lot4a2_updates_detail.md",
+      "new": "docs/12_historique_et_archives/root_legacy/14_lot4a2_updates_detail.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 1,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/14_lot4a3_barrages_dry_run_resultats.md",
+      "new": "docs/12_historique_et_archives/root_legacy/14_lot4a3_barrages_dry_run_resultats.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 1,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/14_lot4a3_barrages_updates_detail.md",
+      "new": "docs/12_historique_et_archives/root_legacy/14_lot4a3_barrages_updates_detail.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 1,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/14_lot4a3_garde_sebou_station_resolution.md",
+      "new": "docs/12_historique_et_archives/root_legacy/14_lot4a3_garde_sebou_station_resolution.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 1,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/15_registre_anomalies_metier.md",
+      "new": "docs/12_historique_et_archives/root_legacy/15_registre_anomalies_metier.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 2,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/16_rapport_validation_client_parametres_qualite.md",
+      "new": "docs/12_historique_et_archives/root_legacy/16_rapport_validation_client_parametres_qualite.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "low",
+      "refs_to_update": 0,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/17_synthese_interne_equipe_parametres_qualite.md",
+      "new": "docs/12_historique_et_archives/root_legacy/17_synthese_interne_equipe_parametres_qualite.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "low",
+      "refs_to_update": 0,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/18_rapport_validation_client_idp.md",
+      "new": "docs/12_historique_et_archives/root_legacy/18_rapport_validation_client_idp.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 2,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/19_synthese_interne_idp.md",
+      "new": "docs/12_historique_et_archives/root_legacy/19_synthese_interne_idp.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 2,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/20_blocages_validation_client.md",
+      "new": "docs/12_historique_et_archives/root_legacy/20_blocages_validation_client.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 1,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/21_blocages_validation_interne.md",
+      "new": "docs/12_historique_et_archives/root_legacy/21_blocages_validation_interne.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 1,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/22_rapport_global_blocages_interne.md",
+      "new": "docs/12_historique_et_archives/root_legacy/22_rapport_global_blocages_interne.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "low",
+      "refs_to_update": 0,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/23_rapport_global_blocages_client.md",
+      "new": "docs/12_historique_et_archives/root_legacy/23_rapport_global_blocages_client.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "low",
+      "refs_to_update": 0,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/24_dossier_detaille_blocages_interne.md",
+      "new": "docs/12_historique_et_archives/root_legacy/24_dossier_detaille_blocages_interne.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "low",
+      "refs_to_update": 0,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/25_annexes_blocages_et_incoherences.md",
+      "new": "docs/12_historique_et_archives/root_legacy/25_annexes_blocages_et_incoherences.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 4,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/25_limites_audit_techniques.md",
+      "new": "docs/12_historique_et_archives/root_legacy/25_limites_audit_techniques.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 3,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/26_dossier_blocages_client_filtre.md",
+      "new": "docs/12_historique_et_archives/root_legacy/26_dossier_blocages_client_filtre.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "low",
+      "refs_to_update": 0,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/30_audit_incoherences_global.md",
+      "new": "docs/12_historique_et_archives/root_legacy/30_audit_incoherences_global.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 5,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/31_plan_correction_documentaire.md",
+      "new": "docs/12_historique_et_archives/root_legacy/31_plan_correction_documentaire.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 5,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/40_revue_critique_transversale_finale.md",
+      "new": "docs/12_historique_et_archives/root_legacy/40_revue_critique_transversale_finale.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "medium",
+      "refs_to_update": 1,
+      "execute_lot": "A",
+      "status": "moved"
+    },
+    {
+      "old": "docs/41_plan_stabilisation_preindustrialisation.md",
+      "new": "docs/12_historique_et_archives/root_legacy/41_plan_stabilisation_preindustrialisation.md",
+      "reason": "Document racine historique de migration/audit à archiver",
+      "risk": "low",
+      "refs_to_update": 0,
+      "execute_lot": "A",
+      "status": "moved"
+    }
+  ],
+  "skipped": [],
+  "link_updates": 216,
+  "changed_files": [
+    "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "docs/01_project_reference/LIVRABLES_MATRIX.md",
+    "docs/12_historique_et_archives/root_legacy/05_bloc4_plan_implementation.md",
+    "docs/12_historique_et_archives/root_legacy/10_master_plan_convergence_abh_sad.md",
+    "docs/12_historique_et_archives/root_legacy/12_plan_execution_par_lots.md",
+    "docs/12_historique_et_archives/root_legacy/30_audit_incoherences_global.md",
+    "docs/12_historique_et_archives/root_legacy/31_plan_correction_documentaire.md",
+    "docs/12_historique_et_archives/root_legacy/40_revue_critique_transversale_finale.md",
+    "docs/12_historique_et_archives/root_legacy/41_plan_stabilisation_preindustrialisation.md",
+    "docs/90_reorganisation_documentaire_finale/01_inventaire_documentaire_global.md",
+    "docs/90_reorganisation_documentaire_finale/04_documents_historiques.md",
+    "docs/90_reorganisation_documentaire_finale/06_documents_contradictoires.md",
+    "docs/90_reorganisation_documentaire_finale/07_ecarts_documentation_vs_bd.md",
+    "docs/90_reorganisation_documentaire_finale/10_plan_deplacement_fichiers.md",
+    "docs/90_reorganisation_documentaire_finale/11_mapping_ancien_vs_nouveau.md"
+  ]
+}

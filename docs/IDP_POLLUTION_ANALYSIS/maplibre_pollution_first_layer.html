@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WQDSS - Pollution IDP DEV</title>
+    <link
+      href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body,
+      #map {
+        height: 100%;
+        margin: 0;
+      }
+      .panel {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        z-index: 1;
+        background: #fff;
+        border: 1px solid #d8dee4;
+        border-radius: 6px;
+        padding: 8px;
+        font: 13px system-ui, sans-serif;
+      }
+      .panel select {
+        margin-left: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div class="panel">
+      <label>
+        Parametre
+        <select id="parameter">
+          <option value="">Tous</option>
+          <option value="DBO5">DBO5</option>
+          <option value="DCO">DCO</option>
+          <option value="NH4">NH4</option>
+          <option value="NO3">NO3</option>
+          <option value="MES">MES</option>
+        </select>
+      </label>
+    </div>
+    <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+    <script>
+      const apiBaseUrl = "http://localhost:8000/api/v1";
+      const sourceId = "pollution-sites";
+
+      const map = new maplibregl.Map({
+        container: "map",
+        style: {
+          version: 8,
+          sources: {
+            osm: {
+              type: "raster",
+              tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
+              tileSize: 256,
+              attribution: "OpenStreetMap contributors"
+            }
+          },
+          layers: [{ id: "osm", type: "raster", source: "osm" }]
+        },
+        center: [-4.8, 34.4],
+        zoom: 7.2
+      });
+
+      function dataUrl() {
+        const parameter = document.getElementById("parameter").value;
+        const url = new URL(`${apiBaseUrl}/pollution/sites.geojson`);
+        url.searchParams.set("limit", "5000");
+        if (parameter) url.searchParams.set("parameter_code", parameter);
+        return url.toString();
+      }
+
+      map.on("load", () => {
+        map.addSource(sourceId, { type: "geojson", data: dataUrl() });
+        map.addLayer({
+          id: "pollution-sites-circle",
+          type: "circle",
+          source: sourceId,
+          paint: {
+            "circle-radius": ["interpolate", ["linear"], ["zoom"], 7, 4, 12, 8],
+            "circle-color": [
+              "match",
+              ["get", "validation_status"],
+              "VALIDATED",
+              "#1b9e77",
+              "TO_VALIDATE",
+              "#d95f02",
+              "#7570b3"
+            ],
+            "circle-stroke-color": "#ffffff",
+            "circle-stroke-width": 1.2,
+            "circle-opacity": 0.86
+          }
+        });
+
+        map.on("click", "pollution-sites-circle", (event) => {
+          const feature = event.features[0];
+          const p = feature.properties;
+          const latest = Array.isArray(p.latest_results)
+            ? p.latest_results
+            : p.latest_results
+              ? JSON.parse(p.latest_results)
+              : [];
+          const results = latest
+            .map((r) => `${r.parameter_code}: ${r.value_numeric ?? r.value_text ?? ""} ${r.unit ?? ""}`)
+            .join("<br>");
+          new maplibregl.Popup()
+            .setLngLat(event.lngLat)
+            .setHTML(
+              `<strong>${p.site_name || p.site_code || "Site pollution"}</strong><br>` +
+                `${p.source_type_label || ""}<br>` +
+                `${p.commune || ""}<br>` +
+                `${results}`
+            )
+            .addTo(map);
+        });
+
+        map.on("mouseenter", "pollution-sites-circle", () => {
+          map.getCanvas().style.cursor = "pointer";
+        });
+        map.on("mouseleave", "pollution-sites-circle", () => {
+          map.getCanvas().style.cursor = "";
+        });
+      });
+
+      document.getElementById("parameter").addEventListener("change", () => {
+        const source = map.getSource(sourceId);
+        if (source) source.setData(dataUrl());
+      });
+    </script>
+  </body>
+</html>

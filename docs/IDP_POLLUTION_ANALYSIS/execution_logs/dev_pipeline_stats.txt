@@ -1,0 +1,29 @@
+Le format de sortie est unaligned.
+Le s�parateur de champs est � | �.
+STAGING|raw_idp_src_pollution_marche_cadre|3614|3614|3614
+STAGING|raw_idp_src_pollution_globale|243|207|207
+STAGING|raw_idp_mesures_qualite_marche_cadre_2024|3614|3614|3614
+STAGING|raw_idp_mesures_qualite_globale_2024|4894|4619|4619
+CONSOLIDATION|NEW_SITE|OK|true|9593
+CONSOLIDATION|REUSE_EXISTING_SITE_EXACT|OK|false|1929
+CONSOLIDATION|GEOMETRY_MISSING|MISSING|true|311
+CONSOLIDATION|REUSE_EXISTING_SITE_EXACT|OK|true|290
+CONSOLIDATION|POSSIBLE_EXISTING_SITE|OK|true|242
+QUALITY_FLAG|PARAM_UNMAPPED|813
+QUALITY_FLAG|UNIT_UNMAPPED|520
+QUALITY_FLAG|GEOMETRY_MISSING|71
+QUALITY_FLAG|VALUE_NON_NUMERIC|5
+QUALITY_PARAM|UNMAPPED|837
+QUALITY_PARAM|DCO|207
+QUALITY_PARAM|DBO5|202
+QUALITY_PARAM|MES|163
+API|v_pollution_sites|1951
+API|v_pollution_latest_results|517
+QA|duplicate_exact|1316
+QA|param_unmapped|837
+QA|unit_unmapped|572
+QA|multi_source_conflicts|299
+QA|measurements_without_geometry|71
+QA|points_without_site|71
+QA|duplicate_near|69
+QA|geometry_missing|0

@@ -2,17 +2,19 @@
 
 ## Statut
 
-`BACKLOG_GOUVERNANCE`
+`UNITES_REFERENTIEL_37_VALIDEES_APPLIQUEES`
 
-Les propositions ci-dessous ne sont pas appliquees. Elles servent a validation Yassine/C4E.
+Les `37` unites validees par Yassine ont ete appliquees le `2026-05-12`.
+Le backlog residuel actif sans unite dans le referentiel canonique est limite a `FM` et `F_M_MES`.
+`MD` reste suivi comme cas client documentaire hors execution de ce run.
 
 ## Synthese
 
 | Indicateur | Volume |
 |---|---:|
-| parametres actifs sans unite | 39 |
-| utilises en production | 34 |
-| non utilises actuellement | 5 |
+| parametres actifs sans unite | 2 |
+| utilises en production | 0 |
+| non utilises actuellement | 2 |
 
 ## Audit
 

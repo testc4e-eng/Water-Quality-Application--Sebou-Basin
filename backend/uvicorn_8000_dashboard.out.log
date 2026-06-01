@@ -1,0 +1,46 @@
+Connexion PostgreSQL OK
+INFO:     127.0.0.1:64885 - "GET /api/v1/quality/stations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64892 - "GET /api/v1/quality/timeseries?station_id=5776b37c-48c8-41b2-8f3d-afadac7fd12e HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64895 - "GET /api/v1/quality/stations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64897 - "GET /api/v1/quality/timeseries?station_id=5776b37c-48c8-41b2-8f3d-afadac7fd12e HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64919 - "GET /api/v1/quality/regulatory-status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64920 - "GET /api/v1/quality/thresholds?type_eau=surface_generale&active_only=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64921 - "GET /api/v1/quality/stations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64942 - "GET /api/v1/quality/regulatory-status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64943 - "GET /api/v1/quality/thresholds?type_eau=surface_generale&active_only=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64944 - "GET /api/v1/quality/stations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64962 - "GET /api/v1/quality/timeseries?station_id=5776b37c-48c8-41b2-8f3d-afadac7fd12e HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64962 - "OPTIONS /api/v1/quality/classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64962 - "POST /api/v1/quality/classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64963 - "GET /api/v1/quality/timeseries?station_id=5776b37c-48c8-41b2-8f3d-afadac7fd12e HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64991 - "POST /api/v1/quality/classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64992 - "GET /api/v1/quality/thresholds?type_eau=surface_generale&active_only=false HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64993 - "GET /api/v1/quality/latest?parameter=dbo5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64996 - "POST /api/v1/quality/classify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32179 - "GET /api/v1/quality/regulatory-status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32180 - "GET /api/v1/quality/thresholds?type_eau=surface_generale&active_only=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32181 - "GET /api/v1/quality/stations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32196 - "GET /api/v1/quality/regulatory-status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32197 - "GET /api/v1/quality/thresholds?type_eau=surface_generale&active_only=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32201 - "GET /api/v1/observatory/hierarchy/themes HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32201 - "GET /api/v1/observatory/hierarchy/themes HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32201 - "GET /api/v1/observatory/hierarchy/submenus?theme=Climat+%26+meteo HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32201 - "GET /api/v1/observatory/hierarchy/parameters?theme=Climat+%26+meteo&sous_menu=Evaporation HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32196 - "GET /api/v1/observatory/popup-rules HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32196 - "GET /api/v1/observatory/popup-rules HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32211 - "GET /api/v1/layers/configs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:32211 - "GET /api/v1/layers/configs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:32211 - "GET /api/v1/layers/bassin_sebou?max_features=5000&bbox=-9.589785%2C32.563946%2C-1.510215%2C35.902937 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32211 - "GET /api/v1/layers/reseau_hydro_abhs?max_features=5000&bbox=-9.589785%2C32.563946%2C-1.510215%2C35.902937 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32196 - "GET /api/v1/observatory/hierarchy/timeline?theme=Climat+%26+meteo&sous_menu=Evaporation&param_code=EVAPO&source_table=mesure_evaporation&date_start=2024-01-01&date_end=2026-06-01&limit=5000 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32201 - "GET /api/v1/observatory/hierarchy/kpi?theme=Climat+%26+meteo&sous_menu=Evaporation&param_code=EVAPO&source_table=mesure_evaporation&date_start=2024-01-01&date_end=2026-06-01&time_step=day&aggregation=avg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32214 - "GET /api/v1/layers/sous_bassin_sebou?max_features=5000&bbox=-9.589785%2C32.563946%2C-1.510215%2C35.902937 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32211 - "GET /api/v1/observatory/hierarchy/timeline?theme=Climat+%26+meteo&sous_menu=Evaporation&param_code=EVAPO&source_table=mesure_evaporation&date_start=2024-01-01&date_end=2024-01-01&limit=5000 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32201 - "GET /api/v1/observatory/hierarchy/kpi?theme=Climat+%26+meteo&sous_menu=Evaporation&param_code=EVAPO&source_table=mesure_evaporation&date_start=2024-01-01&date_end=2024-01-01&time_step=day&aggregation=avg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32196 - "GET /api/v1/analytics/climat-meteo/options HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32196 - "GET /api/v1/analytics/climat-meteo/options HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32214 - "GET /api/v1/analytics/climat-meteo/sites?submenu=evaporation&scenario=actuel HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32214 - "GET /api/v1/analytics/climat-meteo/series?scenario=actuel&submenu=evaporation&site=3cd77e60-3f44-42e7-8697-360325682823 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32198 - "GET /api/v1/quality/stations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32197 - "GET /api/v1/stations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32197 - "GET /api/v1/stations HTTP/1.1" 200 OK

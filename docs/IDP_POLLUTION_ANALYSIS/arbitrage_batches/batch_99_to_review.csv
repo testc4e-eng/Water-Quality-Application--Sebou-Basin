@@ -1,0 +1,1 @@
+arbitrage_id,priority,anomaly_type,source_layer_a,source_feature_id_a,source_layer_b,source_feature_id_b,match_method,match_score,distance_m,site_name_a,site_name_b,commune_a,commune_b,recommended_status,business_decision,comments

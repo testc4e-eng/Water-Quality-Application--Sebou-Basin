@@ -25,9 +25,9 @@
 | Schéma de données détaillé | `docs/01_project_reference/data/DATABASE_SCHEMA.md` | Description fonctionnelle des structures de données | Actif | Oui |
 | Résumé DB vérifié | `docs/03_ai_knowledge_base/DATABASE_SCHEMA_SUMMARY.md` | Synthèse opérationnelle de la base réelle | Actif | Oui sur le périmètre résumé |
 | Référence déploiement/ops | `docs/01_project_reference/deployment_operations/deployment_and_operations.md` | Déploiement local, exploitation et maintenance | Actif | Oui |
-| Plan d’exécution par lots | `docs/12_plan_execution_par_lots.md` | Pilotage réel des lots de convergence | Actif | Oui |
-| Audit global des incohérences | `docs/30_audit_incoherences_global.md` | Registre des écarts docs/code/DB/frontend | Actif | Oui |
-| Plan de correction documentaire | `docs/31_plan_correction_documentaire.md` | Stratégie de résolution des écarts | Actif | Oui |
+| Plan d’exécution par lots | `docs/12_historique_et_archives/root_legacy/12_plan_execution_par_lots.md` | Pilotage réel des lots de convergence | Actif | Oui |
+| Audit global des incohérences | `docs/12_historique_et_archives/root_legacy/30_audit_incoherences_global.md` | Registre des écarts docs/code/DB/frontend | Actif | Oui |
+| Plan de correction documentaire | `docs/12_historique_et_archives/root_legacy/31_plan_correction_documentaire.md` | Stratégie de résolution des écarts | Actif | Oui |
 | Mapping CPS / projet | `docs/02_contractual_and_reports/cps/CPS_MAPPING_PROJECT.md` | Couverture des exigences Mission IV | Actif | Oui |
 | Rapport provisoire Mission IV | `docs/02_contractual_and_reports/mission_iv/rapport_provisoire_mission_iv_sad.md` | Livrable de restitution principal | Actif | Oui |
 | Export Word du rapport | `docs/02_contractual_and_reports/mission_iv/generated_exports/Rapport_Provisoire_Mission_IV_SAD.docx` | Export bureautique du rapport | Généré | Non |

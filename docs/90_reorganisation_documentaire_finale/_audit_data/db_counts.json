@@ -1,0 +1,1562 @@
+[
+  {
+    "fq": "geo.ref_site_pollution",
+    "count": 1951,
+    "estimate": 1951,
+    "status": "ok"
+  },
+  {
+    "fq": "hydro.mesure_barrage_param",
+    "count": 272652,
+    "estimate": 272652,
+    "status": "ok"
+  },
+  {
+    "fq": "hydro.mesure_debit",
+    "count": 652446,
+    "estimate": 0,
+    "status": "ok"
+  },
+  {
+    "fq": "hydro.mesure_debit_mensuel",
+    "count": 19316,
+    "estimate": 0,
+    "status": "ok"
+  },
+  {
+    "fq": "infra.barrages",
+    "count": 33,
+    "estimate": 0,
+    "status": "ok"
+  },
+  {
+    "fq": "infra.stations_mesure",
+    "count": 390,
+    "estimate": 0,
+    "status": "ok"
+  },
+  {
+    "fq": "meteo.mesure_evaporation",
+    "count": 48900,
+    "estimate": 0,
+    "status": "ok"
+  },
+  {
+    "fq": "meteo.mesure_precipitation",
+    "count": 546007,
+    "estimate": 0,
+    "status": "ok"
+  },
+  {
+    "fq": "meteo.mesure_temperature",
+    "count": 0,
+    "estimate": 0,
+    "status": "ok"
+  },
+  {
+    "fq": "qualite.mesure_qualite_barrage",
+    "count": 7820,
+    "estimate": 0,
+    "status": "ok"
+  },
+  {
+    "fq": "qualite.mesure_qualite_nappe",
+    "count": 63047,
+    "estimate": 0,
+    "status": "ok"
+  },
+  {
+    "fq": "qualite.mesure_qualite_riviere",
+    "count": 59534,
+    "estimate": 0,
+    "status": "ok"
+  },
+  {
+    "fq": "qualite.mesure_qualite_sebou",
+    "count": 49954,
+    "estimate": 0,
+    "status": "ok"
+  },
+  {
+    "fq": "qualite.resultat_mesure",
+    "count": 1409,
+    "estimate": 1409,
+    "status": "ok"
+  },
+  {
+    "fq": "qualite.source_pollution_mesure_param",
+    "count": 7191,
+    "estimate": 0,
+    "status": "ok"
+  },
+  {
+    "fq": "qualite.source_pollution_prelevement",
+    "count": 141,
+    "estimate": 0,
+    "status": "ok"
+  },
+  {
+    "fq": "qualite.suivi_qualite_barrage_garde_hebdo",
+    "count": 1780,
+    "estimate": 0,
+    "status": "ok"
+  },
+  {
+    "fq": "security.activity_logs",
+    "count": 86671,
+    "estimate": 86679,
+    "status": "ok"
+  },
+  {
+    "fq": "swat_sebou.swat_scenarios",
+    "count": 1,
+    "estimate": 0,
+    "status": "ok"
+  },
+  {
+    "fq": "wasp_sebou.wasp_results",
+    "count": 931770,
+    "estimate": 0,
+    "status": "ok"
+  },
+  {
+    "fq": "wasp_sebou.wasp_scenarios",
+    "count": 1,
+    "estimate": 0,
+    "status": "ok"
+  },
+  {
+    "fq": "admin.cercle",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "admin.communes",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "admin.localite",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "admin.provinces",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "admin.regions",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "analytics.mv_dashboard_climat_meteo_menu",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "analytics.mv_dashboard_hydrologie_menu",
+    "count": null,
+    "estimate": 816081,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "analytics.mv_dashboard_pollution_menu",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.ca_hydro_debit_source_day",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.ca_meteo_evaporation_day",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.ca_meteo_precip_day",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.mv_admin_villes_points",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.mv_barrage_dimension",
+    "count": null,
+    "estimate": 11,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.mv_bassin_geojson",
+    "count": null,
+    "estimate": 1,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.mv_hierarchie_metier_listing",
+    "count": null,
+    "estimate": 240,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.mv_hydro_debit_day_qa",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.mv_hydro_debit_mensuel",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.mv_meteo_precipitation_annuelle_max",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.mv_nappes_geojson",
+    "count": null,
+    "estimate": 17,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.mv_points_eau",
+    "count": null,
+    "estimate": 46,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.mv_qualite_barrages_day",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.mv_qualite_nappes_day",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.mv_qualite_riviere_day",
+    "count": null,
+    "estimate": 59534,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.mv_qualite_sebou_day",
+    "count": null,
+    "estimate": 49954,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.mv_reseau_hydrographique",
+    "count": null,
+    "estimate": 697,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.mv_sources_geojson",
+    "count": null,
+    "estimate": 135,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.mv_sous_bassin_geojson",
+    "count": null,
+    "estimate": 15,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.mv_sous_bassin_swat_geojson",
+    "count": null,
+    "estimate": 174,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.mv_sous_bassin_swat_geom_4326",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.mv_station_dimension",
+    "count": null,
+    "estimate": 390,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.mv_suivi_qualite_barrage_garde_hebdo_day",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.mv_swat_qualite_subbasin_day",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "api.mv_wasp_qualite_segment_day",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "audit.bkp_hydro_mesure_barrage_param_apport_20260508_075857_164913",
+    "count": null,
+    "estimate": 84820,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "audit.bkp_metadata_referentiel_parametre_20260507_145102_388030",
+    "count": null,
+    "estimate": 91,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "audit.bkp_metadata_referentiel_parametre_canonique_apport_20260508_07",
+    "count": null,
+    "estimate": 1,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "audit.bkp_qualite_mo_metal_to_mo_case_20260508",
+    "count": null,
+    "estimate": 11,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "audit.bkp_qualite_ref001_004_mapping_final_20260508",
+    "count": null,
+    "estimate": 62361,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "audit.bkp_ref_param_canonique_enrich_final_20260508",
+    "count": null,
+    "estimate": 23,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "audit.bkp_ref_param_hm3_unit_alias_20260508",
+    "count": null,
+    "estimate": 2,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "audit.bkp_ref_param_mo_case_resolution_20260508",
+    "count": null,
+    "estimate": 2,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "audit.bkp_ref_table_cible_final_metier_20260513",
+    "count": null,
+    "estimate": 65,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "audit.bkp_ref_unites_37_validees_20260512",
+    "count": null,
+    "estimate": 37,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "audit.bkp_referentiel_parametre_sync_fk_20260508",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "audit.hydro_barrage_param_apport_harmonisation_audit",
+    "count": null,
+    "estimate": 1,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "audit.hydro_barrage_param_load_audit",
+    "count": null,
+    "estimate": 1,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "audit.ingestion_audit_logs",
+    "count": null,
+    "estimate": 2,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "audit.qualite_ref001_004_mapping_journal",
+    "count": null,
+    "estimate": 4,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "audit.referentiel_parametre_sync_fk_journal",
+    "count": null,
+    "estimate": 15,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "audit.referentiel_unite_hm3_decision_journal",
+    "count": null,
+    "estimate": 2,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "geo._bak_sous_bassin_swat_leben_innaouen_20260403",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "geo.bassin_versant",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "geo.nappe",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "geo.ref_site_pollution_merge_history",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "geo.ref_site_pollution_source_link",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "geo.reseau_hydrographique",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "geo.source",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "geo.sous_bassin_abh",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "geo.sous_bassin_swat_bas_sebou",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "geo.sous_bassin_swat_bassin_cotier",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "geo.sous_bassin_swat_beht",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "geo.sous_bassin_swat_haut_sebou",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "geo.sous_bassin_swat_leben_innaouen",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "geo.sous_bassin_swat_moyen_sebou",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "geo.sous_bassin_swat_ouergha",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "geo_work.reseau_hydro_edges_final",
+    "count": null,
+    "estimate": 728,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "geo_work.reseau_hydro_edges_final_vertices_pgr",
+    "count": null,
+    "estimate": 740,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "geo_work.reseau_hydro_edges_noded",
+    "count": null,
+    "estimate": 749,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "geo_work.reseau_hydro_edges_noded_preview",
+    "count": null,
+    "estimate": 749,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "geo_work.reseau_hydro_edges_raw",
+    "count": null,
+    "estimate": 697,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "geo_work.reseau_hydro_nodes",
+    "count": null,
+    "estimate": 732,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "hydro.barrage_bathymetrie",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "hydro.mesure_barrage",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "hydro.mesure_debit_source",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "hydro.regle_qualite_debit_source",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "hydro.regle_qualite_debit_station",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "infra.decharge",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "infra.decharge_inventaire_pollution",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "infra.decharge_inventaire_pollution_general",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "infra.fosses_septiques_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "infra.huilerie",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "infra.huilerie_inventaire_pollution",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "infra.mine",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "infra.mine_inventaire_pollution",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "infra.point_eau",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "infra.profil_station",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "infra.rejet_abattoir",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "infra.rejet_abattoir_inventaire_pollution",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "infra.rejet_domestique",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "infra.rejet_industriel",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "infra.rejet_inventaire_pollution",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "infra.stations",
+    "count": null,
+    "estimate": 390,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "infra.step",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "infra.step_industrielle",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "infra.step_inventaire_pollution",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "infra.stm",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.api_view_catalog",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.api_view_column_catalog",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.catalogue_type_mesure",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.dictionnaire_donnees",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_abreviation_colonne_inventaire",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_abreviation_unresolved_sources",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_barrage",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_barrage_unresolved_suivi_qualite_brg_garde_hebdo",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_nappe_unresolved_qualite_nappes",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_parametre_source",
+    "count": null,
+    "estimate": 21,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_parametre_source_orphans_audit",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_parametre_unresolved_legacy_qualite_riviere",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_parametre_unresolved_suivi_qualite_sebou",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_point_eau",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_point_eau_unresolved_nappe",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_point_eau_unresolved_station",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_profil_station",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_profil_unresolved_nappe",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_profil_unresolved_station",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_source",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_station",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_station_unresolved_precip_ann_max",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_station_unresolved_qualite_barrages",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_station_unresolved_qualite_nappes",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_station_unresolved_suivi_qualite_brg_garde_hebdo",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_station_unresolved_suivi_qualite_brg_garde_hebdo_null_i",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_step_ind",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_step_ind_unresolved_commune",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_stm",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mapping_stm_unresolved_commune",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mv_obs_parametre_coverage",
+    "count": null,
+    "estimate": 16,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mv_obs_parametre_entite_compat",
+    "count": null,
+    "estimate": 18,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mv_obs_referentiel_parametre",
+    "count": null,
+    "estimate": 18,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.mv_refresh_status",
+    "count": null,
+    "estimate": 13,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.obs_parametre_coverage",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.obs_parametre_entite_compat",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.obs_referentiel_parametre",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.popup_rules_config",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.qualite_classe_reglementaire",
+    "count": null,
+    "estimate": 5,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.qualite_mapping_canonique_reglementaire",
+    "count": null,
+    "estimate": 41,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.qualite_parametre_reglementaire",
+    "count": null,
+    "estimate": 41,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.qualite_regle_classification",
+    "count": null,
+    "estimate": 5,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.qualite_seuil_reglementaire",
+    "count": null,
+    "estimate": 205,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.qualite_source_reglementaire",
+    "count": null,
+    "estimate": 1,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.qualite_type_eau",
+    "count": null,
+    "estimate": 4,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.ref_categorie_pollution",
+    "count": null,
+    "estimate": 1,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.ref_type_source_pollution",
+    "count": null,
+    "estimate": 94,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.referentiel_abreviation_inventaire",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.referentiel_parametre",
+    "count": null,
+    "estimate": 16,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "metadata.referentiel_parametre_canonique",
+    "count": null,
+    "estimate": 108,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "meteo.mesure_precipitation_annuelle_max",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "meteo.regle_qualite_evaporation_station",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "modeles.resultat_swat",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "modeles.resultat_wasp",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "modeles.scenario_simulation",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "monitoring.alerte_seuil",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "monitoring.flux_iot_brut",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "monitoring.statut_capteur",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "public.spatial_ref_sys",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "qa.spatial_identity_candidates",
+    "count": null,
+    "estimate": 14380,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "qa.spatial_identity_conflicts",
+    "count": null,
+    "estimate": 14366,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "qa.spatial_identity_decisions",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "qa.spatial_identity_decisions_cartographic",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "qa.spatial_identity_orphans",
+    "count": null,
+    "estimate": 590,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "qa.variable_thresholds",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "qualite.source_pollution_prelevement_lien",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "security.auth_logs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "security.log_audit",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "security.password_history",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "security.password_reset_requests",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "security.password_reset_tokens",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "security.permissions",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "security.refresh_tokens",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "security.role_permissions",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "security.roles",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "security.users",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_adm_cercles_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_adm_communes_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_adm_douars_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_adm_provinces_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_adm_regions_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_adm_villes_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_barrages_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_bassin_sebou",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_bathymetries_barrages_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_capteurs_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_decharges_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_fosses_septiques_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_huileries_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_idp_2024_mesures_qualite_globale",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_idp_2024_mesures_qualite_marche_cadre",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_idp_2024_src_pollution_globale",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_idp_2024_src_pollution_marche_cadre",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_idp_mesures_qualite_globale_2024",
+    "count": null,
+    "estimate": 4894,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_idp_mesures_qualite_marche_cadre_2024",
+    "count": null,
+    "estimate": 3614,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_idp_src_pollution_globale",
+    "count": null,
+    "estimate": 243,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_idp_src_pollution_marche_cadre",
+    "count": null,
+    "estimate": 3614,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_mesures_debit_jr",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_mesures_debit_m",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_mesures_debit_sources",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_mesures_evaporation_jr",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_mesures_niv_eau_barrages",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_mesures_precipitations_jr",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_mesures_precipitations_jr_max",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_mesures_precipitations_jr_traitees",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_mesures_qualite_barrages",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_mesures_qualite_nappes",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_mesures_qualite_rivieres",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_mesures_temperatures_jr",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_mines_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_nappes_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_points_eau_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_profils_stations",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_rejets_abattoirs_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_rejets_domestiques_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_rejets_ind_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_reseau_hydro_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_sources_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_sous_bassin_sebou",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_stations_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_step_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_step_ind_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_stm_abhs",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_suivi_qualite_brg_garde_hebdo",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_suivi_qualite_sebou_jr",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "staging.raw_types_mesures",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "swat_output.mesure_qualite_subbasin_ts",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "swat_output.ref_bassin",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "swat_output.ref_parametre_qualite",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "swat_output.ref_run_modele",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "swat_output.ref_scenario",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "swat_output.ref_subbasin",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "swat_output.stg_swat_qualite_long",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "swat_output.stg_swat_qualite_meta",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "swat_sebou.swat_models",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "swat_sebou.swat_reach_results",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "swat_sebou.swat_subbasin_results",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "wasp_output.mesure_qualite_segment_ts",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "wasp_output.ref_parametre_qualite",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "wasp_output.ref_run_modele",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "wasp_output.ref_segment_modele",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "wasp_output.stg_wasp_qualite_long",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  },
+  {
+    "fq": "wasp_sebou.wasp_variables",
+    "count": null,
+    "estimate": 0,
+    "status": "estimate_only"
+  }
+]

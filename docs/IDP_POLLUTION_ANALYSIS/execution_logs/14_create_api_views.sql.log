@@ -1,0 +1,14 @@
+START 14_create_api_views.sql 2026-05-18T14:39:50.8438683+01:00
+BEGIN
+psql:C:/dev/WQDSS/repo_git/database/idp_pollution/14_create_api_views.sql:6: NOTICE:  schema "api" already exists, skipping
+CREATE SCHEMA
+CREATE VIEW
+CREATE VIEW
+CREATE VIEW
+CREATE VIEW
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+COMMIT
+END 14_create_api_views.sql 2026-05-18T14:39:51.0942385+01:00

@@ -1,0 +1,75 @@
+dataset:
+  code: hydro_ml_baseline_v0_sandbox
+  status: ML_SANDBOX_ONLY
+  snapshot_date: null
+  extraction_timestamp: null
+  training_cutoff_date: null
+
+sources:
+  hydro_discharge: hydro.mesure_debit
+  rainfall: meteo.mesure_precipitation
+  evaporation: meteo.mesure_evaporation
+
+targets:
+  - name: q_t_plus_1
+    horizon_days: 1
+  - name: q_t_plus_7
+    horizon_days: 7
+
+features:
+  hydro:
+    - q_lag_1
+    - q_lag_7
+  meteo:
+    - rainfall_1d
+    - rainfall_7d
+    - rainfall_30d
+    - evap_7d
+    - evap_30d
+  temporal:
+    - month
+    - wet_season_flag
+
+split:
+  strategy: strict_temporal
+  random_split_allowed: false
+  train_end: null
+  validation_start: null
+  validation_end: null
+  test_start: null
+
+models:
+  random_seed: 42
+  xgboost:
+    enabled: true
+    params:
+      n_estimators: 300
+      max_depth: 4
+      learning_rate: 0.05
+      subsample: 0.8
+      colsample_bytree: 0.8
+      objective: reg:squarederror
+  lightgbm:
+    enabled: true
+    params:
+      n_estimators: 300
+      max_depth: -1
+      learning_rate: 0.05
+      num_leaves: 31
+      subsample: 0.8
+      colsample_bytree: 0.8
+
+metrics:
+  - rmse
+  - mae
+  - nse
+  - r2
+
+governance:
+  overwrite_allowed: false
+  official_reporting_allowed: false
+  dg_reporting_allowed: false
+  graph_ai_allowed: false
+  graph_embeddings_allowed: false
+  swat_wasp_legacy_as_truth_allowed: false
+

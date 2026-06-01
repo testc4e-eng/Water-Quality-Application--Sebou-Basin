@@ -1,0 +1,8 @@
+<OGRVRTDataSource>
+  <OGRVRTLayer name="review_very_close_2m">
+    <SrcDataSource>C:/dev/WQDSS/repo_git/docs/IDP_POLLUTION_ANALYSIS/cartographic_review_workspace/review_very_close_2m.csv</SrcDataSource>
+    <GeometryType>wkbPoint</GeometryType>
+    <LayerSRS>EPSG:26191</LayerSRS>
+    <GeometryField encoding="WKT" field="WKT"/>
+  </OGRVRTLayer>
+</OGRVRTDataSource>

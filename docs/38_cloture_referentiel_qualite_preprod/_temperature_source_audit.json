@@ -1,0 +1,555 @@
+{
+  "files": {
+    "timeseries_temperature_global.csv": {
+      "path": "C:\\dev\\WQDSS\\data\\donnees temperature\\timeseries_temperature_global.csv",
+      "size_bytes": 19476476,
+      "modified": 1775224868.1763313
+    },
+    "timeseries_TMAX_par_station.csv": {
+      "path": "C:\\dev\\WQDSS\\data\\donnees temperature\\timeseries_TMAX_par_station.csv",
+      "size_bytes": 2945920,
+      "modified": 1775224869.6085522
+    },
+    "timeseries_TMIN_par_station.csv": {
+      "path": "C:\\dev\\WQDSS\\data\\donnees temperature\\timeseries_TMIN_par_station.csv",
+      "size_bytes": 2780933,
+      "modified": 1775224870.1553643
+    }
+  },
+  "global": {
+    "rows": 445194,
+    "columns": [
+      "Date",
+      "Sous_Bassin",
+      "Station",
+      "T_Max",
+      "T_Min"
+    ],
+    "stations": 37,
+    "station_list": [
+      "ABHS",
+      "Aguelmam_Sidi_Ali",
+      "Ain_aicha",
+      "Ait_Khabbach",
+      "Azibe_Soltane",
+      "Azzaba",
+      "Bab Chhoub",
+      "Bab Merzouka",
+      "Bab Ouender",
+      "Bab_Ouender",
+      "Bab_taza",
+      "Belksiri",
+      "Beni Heitem",
+      "Boufellou",
+      "Boured",
+      "Dar_El_Arssa",
+      "Dar_El_Hamra",
+      "ElHamam",
+      "El_Malha",
+      "El_Mers",
+      "Galaz",
+      "Had_kourt",
+      "Hajria",
+      "Jbel_oudka",
+      "Kharrouba",
+      "Khennichet",
+      "Lalla_Mimouna",
+      "Moulay_Ali_Cherif",
+      "OuedIfrane",
+      "Oulad_yaacoub",
+      "Ratba",
+      "Rdom",
+      "Route26",
+      "Tabouda",
+      "Taghzout",
+      "Tissa",
+      "Zrarda"
+    ],
+    "sous_bassins": [
+      "Bas sebou",
+      "Cotier",
+      "Haut sebou",
+      "Lben inaouen",
+      "Moyen sebou",
+      "beht",
+      "ouergha"
+    ],
+    "date_min": "1983-01-01",
+    "date_max": "2026-06-10",
+    "nulls": {
+      "Date": 0,
+      "Sous_Bassin": 0,
+      "Station": 0,
+      "T_Max": 0,
+      "T_Min": 0
+    },
+    "duplicate_station_date": 0,
+    "tmin_gt_tmax": 0,
+    "outlier_count_rule_minus30_60": 0,
+    "range_suspicious_count_gt35": 0,
+    "t_min_min": -12.41,
+    "t_max_max": 49.54,
+    "sample_outliers": []
+  },
+  "wide_tmax": {
+    "rows": 15867,
+    "date_min": "1983-01-01",
+    "date_max": "2026-06-10",
+    "duplicate_dates": 0,
+    "station_columns": [
+      "ABHS",
+      "Aguelmam_Sidi_Ali",
+      "Ain_aicha",
+      "Ait_Khabbach",
+      "Azibe_Soltane",
+      "Azzaba",
+      "Bab Chhoub",
+      "Bab Merzouka",
+      "Bab Ouender",
+      "Bab_Ouender",
+      "Bab_taza",
+      "Belksiri",
+      "Beni Heitem",
+      "Boufellou",
+      "Boured",
+      "Dar_El_Arssa",
+      "Dar_El_Hamra",
+      "ElHamam",
+      "El_Malha",
+      "El_Mers",
+      "Galaz",
+      "Had_kourt",
+      "Hajria",
+      "Jbel_oudka",
+      "Kharrouba",
+      "Khennichet",
+      "Lalla_Mimouna",
+      "Moulay_Ali_Cherif",
+      "OuedIfrane",
+      "Oulad_yaacoub",
+      "Ratba",
+      "Rdom",
+      "Route26",
+      "Tabouda",
+      "Taghzout",
+      "Tissa",
+      "Zrarda"
+    ],
+    "station_count": 37,
+    "non_null_values": 445194,
+    "same_norm": {
+      "babouender": [
+        "Bab Ouender",
+        "Bab_Ouender"
+      ]
+    }
+  },
+  "wide_tmin": {
+    "rows": 15867,
+    "date_min": "1983-01-01",
+    "date_max": "2026-06-10",
+    "duplicate_dates": 0,
+    "station_columns": [
+      "ABHS",
+      "Aguelmam_Sidi_Ali",
+      "Ain_aicha",
+      "Ait_Khabbach",
+      "Azibe_Soltane",
+      "Azzaba",
+      "Bab Chhoub",
+      "Bab Merzouka",
+      "Bab Ouender",
+      "Bab_Ouender",
+      "Bab_taza",
+      "Belksiri",
+      "Beni Heitem",
+      "Boufellou",
+      "Boured",
+      "Dar_El_Arssa",
+      "Dar_El_Hamra",
+      "ElHamam",
+      "El_Malha",
+      "El_Mers",
+      "Galaz",
+      "Had_kourt",
+      "Hajria",
+      "Jbel_oudka",
+      "Kharrouba",
+      "Khennichet",
+      "Lalla_Mimouna",
+      "Moulay_Ali_Cherif",
+      "OuedIfrane",
+      "Oulad_yaacoub",
+      "Ratba",
+      "Rdom",
+      "Route26",
+      "Tabouda",
+      "Taghzout",
+      "Tissa",
+      "Zrarda"
+    ],
+    "station_count": 37,
+    "non_null_values": 445194,
+    "same_norm": {
+      "babouender": [
+        "Bab Ouender",
+        "Bab_Ouender"
+      ]
+    }
+  },
+  "comparison_global_wide": {
+    "wide_duplicate_station_norm_date_tmax": 7305,
+    "wide_duplicate_station_norm_date_tmin": 7305,
+    "global_rows_missing_tmax_in_wide": 0,
+    "global_rows_missing_tmin_in_wide": 0,
+    "wide_tmax_rows_missing_in_global_after_norm": 0,
+    "wide_tmin_rows_missing_in_global_after_norm": 0,
+    "matched_tmax_value_differences": 0,
+    "matched_tmin_value_differences": 0
+  },
+  "station_name_compare": {
+    "global_only_norms": [],
+    "wide_only_norms": [],
+    "wide_columns_with_same_norm": {
+      "babouender": [
+        "Bab Ouender",
+        "Bab_Ouender"
+      ]
+    }
+  },
+  "global_station_counts": [
+    {
+      "Sous_Bassin": "Bas sebou",
+      "Station": "Belksiri",
+      "rows": 14245,
+      "date_min": "1985-09-01",
+      "date_max": "2024-08-31",
+      "tmin_min": 1.46,
+      "tmax_max": 45.92
+    },
+    {
+      "Sous_Bassin": "Bas sebou",
+      "Station": "Had_kourt",
+      "rows": 14245,
+      "date_min": "1985-09-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -2.3,
+      "tmax_max": 49.54
+    },
+    {
+      "Sous_Bassin": "Bas sebou",
+      "Station": "Kharrouba",
+      "rows": 14245,
+      "date_min": "1985-09-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -2.3,
+      "tmax_max": 49.54
+    },
+    {
+      "Sous_Bassin": "Bas sebou",
+      "Station": "Oulad_yaacoub",
+      "rows": 14245,
+      "date_min": "1985-09-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -2.3,
+      "tmax_max": 49.54
+    },
+    {
+      "Sous_Bassin": "Cotier",
+      "Station": "Lalla_Mimouna",
+      "rows": 14245,
+      "date_min": "1985-09-01",
+      "date_max": "2024-08-31",
+      "tmin_min": 4.68,
+      "tmax_max": 42.34
+    },
+    {
+      "Sous_Bassin": "Cotier",
+      "Station": "Moulay_Ali_Cherif",
+      "rows": 14245,
+      "date_min": "1985-09-01",
+      "date_max": "2024-08-31",
+      "tmin_min": 1.46,
+      "tmax_max": 45.92
+    },
+    {
+      "Sous_Bassin": "Haut sebou",
+      "Station": "ABHS",
+      "rows": 14245,
+      "date_min": "1985-09-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -3.86,
+      "tmax_max": 47.01
+    },
+    {
+      "Sous_Bassin": "Haut sebou",
+      "Station": "Aguelmam_Sidi_Ali",
+      "rows": 14245,
+      "date_min": "1985-09-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -12.41,
+      "tmax_max": 39.5
+    },
+    {
+      "Sous_Bassin": "Haut sebou",
+      "Station": "Ait_Khabbach",
+      "rows": 14245,
+      "date_min": "1985-09-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -9.25,
+      "tmax_max": 41.58
+    },
+    {
+      "Sous_Bassin": "Haut sebou",
+      "Station": "Azzaba",
+      "rows": 14245,
+      "date_min": "1985-09-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -4.86,
+      "tmax_max": 44.88
+    },
+    {
+      "Sous_Bassin": "Haut sebou",
+      "Station": "Dar_El_Arssa",
+      "rows": 14245,
+      "date_min": "1985-09-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -3.86,
+      "tmax_max": 47.01
+    },
+    {
+      "Sous_Bassin": "Haut sebou",
+      "Station": "Dar_El_Hamra",
+      "rows": 14245,
+      "date_min": "1985-09-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -4.86,
+      "tmax_max": 44.88
+    },
+    {
+      "Sous_Bassin": "Haut sebou",
+      "Station": "El_Mers",
+      "rows": 14245,
+      "date_min": "1985-09-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -11.07,
+      "tmax_max": 40.3
+    },
+    {
+      "Sous_Bassin": "Lben inaouen",
+      "Station": "Bab Chhoub",
+      "rows": 15867,
+      "date_min": "1983-01-01",
+      "date_max": "2026-06-10",
+      "tmin_min": -5.89,
+      "tmax_max": 44.78
+    },
+    {
+      "Sous_Bassin": "Lben inaouen",
+      "Station": "Bab Merzouka",
+      "rows": 15867,
+      "date_min": "1983-01-01",
+      "date_max": "2026-06-10",
+      "tmin_min": -6.78,
+      "tmax_max": 44.88
+    },
+    {
+      "Sous_Bassin": "Lben inaouen",
+      "Station": "Bab Ouender",
+      "rows": 13880,
+      "date_min": "1983-01-01",
+      "date_max": "2020-12-31",
+      "tmin_min": -5.89,
+      "tmax_max": 42.36
+    },
+    {
+      "Sous_Bassin": "Lben inaouen",
+      "Station": "Beni Heitem",
+      "rows": 15867,
+      "date_min": "1983-01-01",
+      "date_max": "2026-06-10",
+      "tmin_min": -6.55,
+      "tmax_max": 43.86
+    },
+    {
+      "Sous_Bassin": "Lben inaouen",
+      "Station": "Tissa",
+      "rows": 15867,
+      "date_min": "1983-01-01",
+      "date_max": "2026-06-10",
+      "tmin_min": -5.89,
+      "tmax_max": 44.78
+    },
+    {
+      "Sous_Bassin": "Lben inaouen",
+      "Station": "Zrarda",
+      "rows": 15867,
+      "date_min": "1983-01-01",
+      "date_max": "2026-06-10",
+      "tmin_min": -6.78,
+      "tmax_max": 44.88
+    },
+    {
+      "Sous_Bassin": "Moyen sebou",
+      "Station": "Azibe_Soltane",
+      "rows": 14245,
+      "date_min": "1985-09-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -2.3,
+      "tmax_max": 49.54
+    },
+    {
+      "Sous_Bassin": "Moyen sebou",
+      "Station": "Route26",
+      "rows": 14245,
+      "date_min": "1985-09-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -3.05,
+      "tmax_max": 48.26
+    },
+    {
+      "Sous_Bassin": "beht",
+      "Station": "ElHamam",
+      "rows": 8644,
+      "date_min": "2001-01-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -6.83,
+      "tmax_max": 44.83
+    },
+    {
+      "Sous_Bassin": "beht",
+      "Station": "OuedIfrane",
+      "rows": 8644,
+      "date_min": "2001-01-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -6.83,
+      "tmax_max": 44.83
+    },
+    {
+      "Sous_Bassin": "beht",
+      "Station": "Rdom",
+      "rows": 8644,
+      "date_min": "2001-01-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -2.3,
+      "tmax_max": 49.54
+    },
+    {
+      "Sous_Bassin": "ouergha",
+      "Station": "Ain_aicha",
+      "rows": 8644,
+      "date_min": "2001-01-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -4.91,
+      "tmax_max": 44.3
+    },
+    {
+      "Sous_Bassin": "ouergha",
+      "Station": "Bab_Ouender",
+      "rows": 8644,
+      "date_min": "2001-01-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -5.41,
+      "tmax_max": 44.78
+    },
+    {
+      "Sous_Bassin": "ouergha",
+      "Station": "Bab_taza",
+      "rows": 8644,
+      "date_min": "2001-01-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -3.05,
+      "tmax_max": 48.26
+    },
+    {
+      "Sous_Bassin": "ouergha",
+      "Station": "Boufellou",
+      "rows": 8644,
+      "date_min": "2001-01-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -3.05,
+      "tmax_max": 48.26
+    },
+    {
+      "Sous_Bassin": "ouergha",
+      "Station": "Boured",
+      "rows": 8644,
+      "date_min": "2001-01-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -5.41,
+      "tmax_max": 44.78
+    },
+    {
+      "Sous_Bassin": "ouergha",
+      "Station": "El_Malha",
+      "rows": 8644,
+      "date_min": "2001-01-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -4.91,
+      "tmax_max": 44.3
+    },
+    {
+      "Sous_Bassin": "ouergha",
+      "Station": "Galaz",
+      "rows": 8644,
+      "date_min": "2001-01-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -3.05,
+      "tmax_max": 48.26
+    },
+    {
+      "Sous_Bassin": "ouergha",
+      "Station": "Hajria",
+      "rows": 8644,
+      "date_min": "2001-01-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -3.05,
+      "tmax_max": 48.26
+    },
+    {
+      "Sous_Bassin": "ouergha",
+      "Station": "Jbel_oudka",
+      "rows": 8644,
+      "date_min": "2001-01-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -5.41,
+      "tmax_max": 44.78
+    },
+    {
+      "Sous_Bassin": "ouergha",
+      "Station": "Khennichet",
+      "rows": 8644,
+      "date_min": "2001-01-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -4.91,
+      "tmax_max": 44.3
+    },
+    {
+      "Sous_Bassin": "ouergha",
+      "Station": "Ratba",
+      "rows": 8644,
+      "date_min": "2001-01-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -4.91,
+      "tmax_max": 44.3
+    },
+    {
+      "Sous_Bassin": "ouergha",
+      "Station": "Tabouda",
+      "rows": 8644,
+      "date_min": "2001-01-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -2.3,
+      "tmax_max": 49.54
+    },
+    {
+      "Sous_Bassin": "ouergha",
+      "Station": "Taghzout",
+      "rows": 8644,
+      "date_min": "2001-01-01",
+      "date_max": "2024-08-31",
+      "tmin_min": -5.41,
+      "tmax_max": 44.78
+    }
+  ]
+}

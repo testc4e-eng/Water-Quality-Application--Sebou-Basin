@@ -6,8 +6,8 @@
 | Type | reference |
 | Perimetre | vue consolidee et verifiee du projet WQDSS : architecture, DB, API, frontend, lots et blocages |
 | Source de verite | Oui |
-| Documents lies | [SOURCE_OF_TRUTH](./01_project_reference/SOURCE_OF_TRUTH.md), [DOCUMENT_MAP](./01_project_reference/DOCUMENT_MAP.md), [30_audit_incoherences_global](./30_audit_incoherences_global.md) |
-| Derniere mise a jour | 2026-04-17 |
+| Documents lies | [SOURCE_OF_TRUTH](./01_project_reference/SOURCE_OF_TRUTH.md), [DOCUMENT_MAP](./01_project_reference/DOCUMENT_MAP.md), [30_audit_incoherences_global](./12_historique_et_archives/root_legacy/30_audit_incoherences_global.md) |
+| Derniere mise a jour | 2026-05-22 |
 
 ## 1. Finalite
 
@@ -264,7 +264,192 @@ Taxonomie de statut appliquee : `SYNCED`, `SYNCED_WITH_QA_FLAGS`, `BLOCKED_BY_BU
 - normalisation du prefixe SWAT analysis ;
 - unification de la configuration frontend backend (`8000` vs `8011`).
 
-## 8. Usage
+## 8. Pipeline SAD Sebou - Gouvernance scientifique, Model Build et IA
+
+### Vision cible
+
+Le projet SAD Sebou evolue vers une plateforme hydro-spatio-temporelle gouvernee, reproductible, QA-first, ML-ready, Graph-ready et compatible avec un futur jumeau numerique hydro-environnemental.
+
+### Architecture cible du pipeline
+
+```text
+SOURCES BRUTES
+    ↓
+RAW / STAGING
+    ↓
+CANONICAL REFERENCE
+    ↓
+MODEL BUILD LAYER
+    ↓
+QA + LINEAGE + CERTIFICATION
+    ↓
+FEATURE STORE
+    ↓
+TRAINING DATASETS
+    ↓
+ML / Forecasting / Surrogate
+    ↓
+Future Graph AI / Hybrid GNN+LSTM
+```
+
+### Statut des phases de preparation
+
+| Phase | Statut | Document principal | Role |
+|---|---|---|---|
+| Phase 0 - Audit et etat des lieux | `COMPLETED` | audit en conversation + dossier cible a formaliser | audit documentaire, DB, spatial, temporel, modeles, IA readiness |
+| Phase A - Data Governance Foundation | `READY` | `docs/102_preparation_model_build_feature_store/01_data_governance_foundation.md` | canonical reference, temporal policy, data origin, dataset contracts, unit policy, validation authority |
+| Phase B - Model Build Specification | `READY` | `docs/102_preparation_model_build_feature_store/06_model_build_specification.md` | couche `model_build`, scenarios, runs, parameter sets, contract bindings |
+| Phase C - Feature Store Specification | `READY` | `docs/102_preparation_model_build_feature_store/07_feature_store_specification.md` | features, anti-leakage, freshness, training windows, drift |
+| Phase D - QA & Lineage Framework | `READY` | `docs/102_preparation_model_build_feature_store/08_qa_validation_framework.md` | QA rules, blocking, quarantine, certification, reproducibility, lineage |
+| Phase D.1 - Graph Ready Integration | `GRAPH_READY_PREPARED` | `docs/102_preparation_model_build_feature_store/13_graph_governance.md`, `14_graph_model_build.md`, `15_graph_feature_store.md` | graph governance, topology QA, graph snapshots, graph windows |
+| Phase E - Pre-ML Readiness & First ML Pilot | `PREPARED` | `docs/102_preparation_model_build_feature_store/09_pre_ml_readiness.md` | pipeline ML controle, XGBoost/LightGBM baseline, readiness scoring |
+| Phase E1 - First Real ML Sandbox Execution | `SANDBOX_BASELINE_EXECUTED` | `docs/102_preparation_model_build_feature_store/10_ml_sandbox_execution_governance.md` | experimentation gouvernee, freeze minimal, baseline persistence exécutée, feedback D.1 |
+
+### Resultat de la Phase 0
+
+| Domaine | Etat |
+|---|---|
+| Hydro | fort potentiel |
+| Meteo | fort potentiel |
+| Reseau hydro | bon, mais direction hydraulique non validee scientifiquement |
+| SWAT legacy | exploitable en sandbox, non officiel |
+| WASP legacy | exploitable en sandbox, non officiel |
+| QA spatial | partiellement bloquant |
+| IA readiness | `IN_PROGRESS` |
+
+### Fondations de gouvernance preparees
+
+| Composant | Objectif | Statut |
+|---|---|---|
+| Canonical Reference | IDs stables, mappings multi-modeles, compatibilite SWAT/WASP/Graph | `SPECIFIED` |
+| Temporal Policy | `as_of_date`, `target_date`, horizon, availability, freshness, anti-leakage | `SPECIFIED` |
+| Data Origin Policy | separer `observed`, `modeled`, `interpolated`, `corrected`, `expert_estimated`, `legacy_modeling` | `SPECIFIED` |
+| Feature Registry | gouverner features, lineage, QA, leakage, freshness, reproductibilite | `SPECIFIED` |
+| Dataset Contracts | colonnes obligatoires, unites, QA minimum, regles physiques, temporal policy | `SPECIFIED` |
+| Unit Policy | unites, conversions, plages physiques, familles dimensionnelles | `SPECIFIED` |
+| Validation Authority | qui valide quoi aux niveaux technique, scientifique, metier et DG | `SPECIFIED` |
+
+### Model Build cible
+
+Objets conceptuels prepares :
+
+- core entities : `build_catchments`, `build_reaches`, `build_hrus` ;
+- time series : `build_hydro_series`, `build_meteo_series`, `build_quality_series`, `build_pollution_series` ;
+- scenarios : `build_scenarios`, `build_scenario_versions` ;
+- runs : `build_model_runs`, `build_run_artifacts` ;
+- QA : `build_geometry_status`, `build_quality_flags`, `build_lineage`.
+
+Regle critique : les outputs SWAT/WASP actuels restent `LEGACY_MODELING_TO_REPLACE` tant que Reda et Anas ne les ont pas valides. Ils peuvent servir a des tests sandbox, pas a des runs officiels.
+
+### Feature Store cible
+
+Objets conceptuels prepares :
+
+- daily features : `fs_hydro_daily`, `fs_meteo_daily`, `fs_quality_daily` ;
+- spatial features : `fs_reach_features`, `fs_catchment_features` ;
+- events : `fs_pollution_events`, `fs_event_features` ;
+- training : `fs_training_windows`, `fs_training_datasets` ;
+- gouvernance : `fs_feature_registry_bindings`, `fs_feature_quality`, `fs_feature_lineage`, `fs_feature_drift`.
+
+Regles critiques :
+
+- toutes les features temporelles doivent respecter `as_of_date` ;
+- `data_available_at` prime sur `event_time` si la disponibilite est retardee ;
+- les donnees qualite sparse doivent porter `freshness_class` et `freshness_weight` ;
+- aucune feature spatiale ne peut etre `ACTIVE` sans validation SIG/QA ;
+- aucune feature legacy SWAT/WASP ne peut etre officialisee sans validation Reda/Anas.
+
+### QA, lineage et certification
+
+Registres conceptuels prepares :
+
+- QA : `qa_rule_registry`, `qa_validation_results`, `qa_data_anomalies` ;
+- blocking : `qa_blocking_registry`, `qa_quarantine_registry` ;
+- drift : `qa_drift_monitoring` ;
+- certification : `qa_certification_registry` ;
+- reproductibilite : `qa_reproducibility_registry` ;
+- lineage : `qa_lineage_registry` ;
+- publication : `qa_dataset_publication_registry`.
+
+Niveaux structurants :
+
+| Famille | Valeurs |
+|---|---|
+| QA blocking | `INFO`, `WARNING`, `BLOCKING`, `CRITICAL` |
+| Certification scope | `SANDBOX_ONLY`, `SCIENTIFIC_USE`, `DECISION_SUPPORT`, `OFFICIAL_REPORTING` |
+| Reproducibility level | `NONE`, `PARTIAL`, `CONTROLLED`, `SCIENTIFIC_GRADE` |
+
+### Graph-ready integration
+
+La preparation Graph AI reste conceptuelle. Aucun GNN ou tenseur de propagation officiel ne doit etre produit tant que la topologie et la direction hydraulique ne sont pas validees.
+
+Objets a formaliser plus tard :
+
+- `graph_entity_types` ;
+- `graph_relationship_types` ;
+- `graph_semantic_rules` ;
+- `graph_snapshot_id`, `graph_version`, `topology_hash` ;
+- `fs_graph_training_windows`.
+
+Roadmap Graph :
+
+| Horizon | Objectif |
+|---|---|
+| court terme | graph governance, topology QA, graph features SQL |
+| moyen terme | XGBoost spatial, LSTM hydro |
+| long terme | GNN, Hybrid Graph+LSTM, causal propagation AI |
+
+### Etat actuel et dependances critiques
+
+| Domaine | Etat |
+|---|---|
+| Governance | avancee |
+| Temporal governance | avancee |
+| QA | avancee |
+| Model Build | specifie |
+| Feature Store | specifie |
+| Graph readiness | preparation avancee |
+| SWAT industrialisation | en cours, depend Reda |
+| WASP industrialisation | en cours, depend Anas |
+| ML readiness | bonne |
+| Deep Learning readiness | limitee |
+| Graph AI readiness | preparation |
+
+Dependances ouvertes :
+
+- SIG/QA : doublons spatiaux, orphelins, topology validation ;
+- Reda : validation SWAT, mappings, calibration, unites, runs officiels ;
+- Anas : validation WASP, segments, unites, scenarios, surrogate ;
+- DG / ABH : certification officielle, publication, reporting.
+
+### Phase E1 - experimentation gouvernee
+
+La phase `PHASE E - PRE-ML READINESS & FIRST ML PILOT` est preparee. Le chantier actif devient `PHASE E1 - FIRST REAL ML SANDBOX EXECUTION`.
+
+Objectif : lancer un premier pipeline ML hydro sandbox pour observer le comportement reel du pipeline, sans produire de modele scientifique ou officiel.
+
+Livrables :
+
+- `docs/102_preparation_model_build_feature_store/09_pre_ml_readiness.md` ;
+- `docs/102_preparation_model_build_feature_store/10_ml_sandbox_execution_governance.md` ;
+- `sandbox/ml_hydro_baseline/`.
+
+Regles E1 :
+
+- `RUN FIRST BUT TRACE EVERYTHING` ;
+- outputs `ML_SANDBOX_ONLY` ;
+- freeze minimal obligatoire : dataset hash, feature list hash, split config hash, model config hash, seed, cutoff, run id ;
+- split temporel strict, random split interdit ;
+- overwrite de run interdit ;
+- aucun reporting DG ou metier ;
+- aucun GNN, embedding graph ou propagation officielle ;
+- outputs SWAT/WASP legacy interdits comme verite officielle.
+
+E1 alimente D.1 via `ML_TO_GRAPH_FEEDBACK` : leakage suspect, feature graph dominante, upstream lag incoherent, station dominante, feature instable ou reach orphelin suspect doivent devenir des observations QA/Graph, pas des corrections automatiques.
+
+E1.1 execute le premier run réel sandbox `run_20260522_143742_hydro_ml_baseline_v0_sandbox` sur le dataset `hydro_ml_baseline_v0_sandbox_20260522_122901.csv`. Le run est strictement `ML_SANDBOX_ONLY`. Seule la baseline persistence a été exécutée, car XGBoost, LightGBM et scikit-learn ne sont pas disponibles dans l'environnement courant et numpy/pandas sont instables à l'import.
+
+## 9. Usage
 
 Avant toute decision :
 
@@ -272,3 +457,26 @@ Avant toute decision :
 2. verifier le document maitre du domaine ;
 3. si un ecart subsiste, verifier la base ou le code ;
 4. corriger ensuite `SOURCE_OF_TRUTH.md`, `DOCUMENT_MAP.md` et les resumes IA.
+
+## 10. Réorganisation documentaire consolidée - 2026-05-22
+
+Un audit documentaire et BD read-only a été produit dans `docs/90_reorganisation_documentaire_finale/`.
+
+| Indicateur | Valeur |
+|---|---:|
+| Documents analysés | 2144 |
+| Fichiers code/config analysés | 524 |
+| Objets tables/vues inspectés | 339 |
+| Vues matérialisées inspectées | 31 |
+| Colonnes inspectées | 4554 |
+| Fichiers historiques racine déplacés | 50 |
+| Références mises à jour pendant le lot A | 216 |
+
+La source de vérité consolidée est désormais `docs/00_source_of_truth/01_source_of_truth_consolidee.md`.
+
+Règles :
+
+- les dossiers historiques ne sont pas supprimés ;
+- les dossiers historiques complets ne sont déplacés qu'après validation des liens croisés ;
+- les objets documentés mais absents de la BD réelle doivent être classés `legacy`, `proposé`, `historique` ou `contradiction` ;
+- les références `public.*` hors archive doivent être considérées comme dette legacy jusqu'à preuve contraire.

@@ -1,0 +1,10 @@
+START 13_build_quality_long_format.sql 2026-05-18T14:45:03.6001481+01:00
+BEGIN
+CREATE SCHEMA
+psql:C:/dev/WQDSS/repo_git/database/idp_pollution/13_build_quality_long_format.sql:7: NOTICE:  schema "staging" already exists, skipping
+psql:C:/dev/WQDSS/repo_git/database/idp_pollution/13_build_quality_long_format.sql:8: NOTICE:  schema "qualite" already exists, skipping
+CREATE SCHEMA
+CREATE VIEW
+INSERT 0 1409
+COMMIT
+END 13_build_quality_long_format.sql 2026-05-18T14:45:04.4539527+01:00

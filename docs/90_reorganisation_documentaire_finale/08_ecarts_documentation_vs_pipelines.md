@@ -1,0 +1,73 @@
+# Écarts documentation vs pipelines
+
+| Champ | Valeur |
+|---|---|
+| Statut | Actif |
+| Type | rapport de réorganisation documentaire |
+| Source de vérité | Non - rapport d'audit et de consolidation |
+| Date | 2026-05-22 |
+
+## Pipelines/scripts détectés
+
+| Fichier |
+|---|
+| backend/scripts/audit_ab_lot4a4_idp.py |
+| backend/scripts/audit_idp_qualite.py |
+| backend/scripts/lot4a4_idp_discovery.py |
+| backend/sql/2026_04_mv_dashboard_pollution_menu.sql |
+| backend/sql/2026_04_mv_swat_geom_perf.sql |
+| backend/sql/2026_04_refresh_mv_dashboard_pollution_menu.sql |
+| backend/sql/bloc2_view_wasp_resultats_actifs.sql |
+| database/idp_pollution/00_create_schemas.sql |
+| database/idp_pollution/01_create_staging_tables.sql |
+| database/idp_pollution/02_create_metadata_refs.sql |
+| database/idp_pollution/03_create_business_tables.sql |
+| database/idp_pollution/04_create_indexes_constraints.sql |
+| database/idp_pollution/05_create_qa_views.sql |
+| database/idp_pollution/06_example_etl_insert.sql |
+| database/idp_pollution/07_create_arbitrage_tables.sql |
+| database/idp_pollution/08_create_quality_long_format_views.sql |
+| database/idp_pollution/09_create_api_views_idp_pollution.sql |
+| database/idp_pollution/10_create_ref_site_pollution.sql |
+| database/idp_pollution/11_build_spatial_consolidation_views.sql |
+| database/idp_pollution/12_create_resultat_mesure.sql |
+| database/idp_pollution/13_build_quality_long_format.sql |
+| database/idp_pollution/14_create_api_views.sql |
+| database/idp_pollution/15_create_qa_views.sql |
+| database/idp_pollution/16_load_ref_site_pollution_dev.sql |
+| database/idp_pollution/17_fix_p0_parameter_mappings.sql |
+| database/idp_pollution/18_fix_p0_unit_mappings.sql |
+| database/idp_pollution/20_create_ref_site_pollution_master.sql |
+| database/idp_pollution/21_create_spatial_identity_qa.sql |
+| database/idp_pollution/22_create_spatial_identity_review_views.sql |
+| database/idp_pollution/23_create_cartographic_review_layers.sql |
+| database/idp_pollution/24_create_cartographic_decision_tables.sql |
+| database/idp_pollution/25_create_site_object_mapping.sql |
+| database/idp_pollution/26_create_final_spatial_identity_views.sql |
+| scripts/execute_lot_e1_without_idp.py |
+| scripts/idp_pollution/auto_validate_exact_0m.py |
+| scripts/idp_pollution/auto_validate_very_close_2m.py |
+| scripts/idp_pollution/build_phase3_validation_packages.py |
+| scripts/idp_pollution/build_spatial_consolidation.py |
+| scripts/idp_pollution/build_spatial_identity_resolution.py |
+| scripts/idp_pollution/detect_duplicates.py |
+| scripts/idp_pollution/generate_value_dictionaries.py |
+| scripts/idp_pollution/import_idp_to_staging.py |
+| scripts/idp_pollution/load_cartographic_decisions.py |
+| scripts/idp_pollution/load_spatial_identity_qa.py |
+| scripts/idp_pollution/match_inventory_measurements.py |
+| scripts/idp_pollution/prepare_arbitrage_candidates.py |
+| scripts/idp_pollution/preview_long_format_quality.py |
+| scripts/idp_pollution/profile_layers.py |
+| scripts/idp_pollution/validate_crs_consistency.py |
+| scripts/prepare_e1_pre_migration.py |
+| scripts/prepare_e1_without_idp_and_idp_geo.py |
+
+## Risques
+
+| Risque | Impact | Action |
+|---|---|---|
+| SQL proposés vs exécutés | confusion cible/réalité | marquer PROPOSE/EXECUTE_DEV/HOLD |
+| Pipelines IDP multiples | workflow actif difficile à isoler | consolider après arbitrage |
+| Ingestion API optionnelle | documents peuvent la supposer active | documenter les flags runtime |
+| Auto-validation spatiale dry-run | risque de croire à une fusion effective | rappeler aucune fusion destructive |

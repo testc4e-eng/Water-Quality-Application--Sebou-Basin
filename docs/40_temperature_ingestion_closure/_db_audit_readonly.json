@@ -1,0 +1,268 @@
+{
+  "table_existence": [
+    {
+      "schema_name": "infra",
+      "table_name": "stations_mesure",
+      "exists": true
+    },
+    {
+      "schema_name": "metadata",
+      "table_name": "import_batch",
+      "exists": false
+    },
+    {
+      "schema_name": "metadata",
+      "table_name": "import_batch_lineage",
+      "exists": false
+    },
+    {
+      "schema_name": "meteo",
+      "table_name": "mesure_temperature",
+      "exists": true
+    },
+    {
+      "schema_name": "staging",
+      "table_name": "temperature_daily_raw",
+      "exists": false
+    }
+  ],
+  "columns_target": [
+    {
+      "table_schema": "infra",
+      "table_name": "stations_mesure",
+      "column_name": "id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "NO",
+      "column_default": "uuid_generate_v4()"
+    },
+    {
+      "table_schema": "infra",
+      "table_name": "stations_mesure",
+      "column_name": "code_station",
+      "data_type": "character varying",
+      "udt_name": "varchar",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "infra",
+      "table_name": "stations_mesure",
+      "column_name": "nom",
+      "data_type": "character varying",
+      "udt_name": "varchar",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "infra",
+      "table_name": "stations_mesure",
+      "column_name": "type_station",
+      "data_type": "character varying",
+      "udt_name": "varchar",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "infra",
+      "table_name": "stations_mesure",
+      "column_name": "date_mise_service",
+      "data_type": "date",
+      "udt_name": "date",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "infra",
+      "table_name": "stations_mesure",
+      "column_name": "altitude_m",
+      "data_type": "numeric",
+      "udt_name": "numeric",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "infra",
+      "table_name": "stations_mesure",
+      "column_name": "organisme_gestionnaire_id",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "infra",
+      "table_name": "stations_mesure",
+      "column_name": "commune_id",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "infra",
+      "table_name": "stations_mesure",
+      "column_name": "geom",
+      "data_type": "USER-DEFINED",
+      "udt_name": "geometry",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "infra",
+      "table_name": "stations_mesure",
+      "column_name": "actif",
+      "data_type": "boolean",
+      "udt_name": "bool",
+      "is_nullable": "YES",
+      "column_default": "true"
+    },
+    {
+      "table_schema": "meteo",
+      "table_name": "mesure_temperature",
+      "column_name": "temps",
+      "data_type": "timestamp with time zone",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "meteo",
+      "table_name": "mesure_temperature",
+      "column_name": "station_id",
+      "data_type": "uuid",
+      "udt_name": "uuid",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "meteo",
+      "table_name": "mesure_temperature",
+      "column_name": "val_min",
+      "data_type": "double precision",
+      "udt_name": "float8",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "meteo",
+      "table_name": "mesure_temperature",
+      "column_name": "val_max",
+      "data_type": "double precision",
+      "udt_name": "float8",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "meteo",
+      "table_name": "mesure_temperature",
+      "column_name": "val_moy",
+      "data_type": "double precision",
+      "udt_name": "float8",
+      "is_nullable": "YES",
+      "column_default": null
+    }
+  ],
+  "target_count": [
+    {
+      "n": 0
+    }
+  ],
+  "stations_count": [
+    {
+      "n": 390
+    }
+  ],
+  "constraints": [
+    {
+      "schema_name": "infra",
+      "table_name": "stations_mesure",
+      "conname": "station_mesure_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "schema_name": "infra",
+      "table_name": "stations_mesure",
+      "conname": "station_mesure_code_station_key",
+      "contype": "u",
+      "definition": "UNIQUE (code_station)"
+    },
+    {
+      "schema_name": "meteo",
+      "table_name": "mesure_temperature",
+      "conname": "mesure_temperature_station_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (station_id) REFERENCES infra.stations_mesure(id)"
+    },
+    {
+      "schema_name": "meteo",
+      "table_name": "mesure_temperature",
+      "conname": "mesure_temperature_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (temps, station_id)"
+    }
+  ],
+  "indexes": [
+    {
+      "schemaname": "infra",
+      "tablename": "stations_mesure",
+      "indexname": "idx_infra_station_commune",
+      "indexdef": "CREATE INDEX idx_infra_station_commune ON infra.stations_mesure USING btree (commune_id)"
+    },
+    {
+      "schemaname": "infra",
+      "tablename": "stations_mesure",
+      "indexname": "idx_infra_station_geom",
+      "indexdef": "CREATE INDEX idx_infra_station_geom ON infra.stations_mesure USING gist (geom)"
+    },
+    {
+      "schemaname": "infra",
+      "tablename": "stations_mesure",
+      "indexname": "idx_infra_station_type_actif",
+      "indexdef": "CREATE INDEX idx_infra_station_type_actif ON infra.stations_mesure USING btree (type_station, actif)"
+    },
+    {
+      "schemaname": "infra",
+      "tablename": "stations_mesure",
+      "indexname": "station_mesure_code_station_key",
+      "indexdef": "CREATE UNIQUE INDEX station_mesure_code_station_key ON infra.stations_mesure USING btree (code_station)"
+    },
+    {
+      "schemaname": "infra",
+      "tablename": "stations_mesure",
+      "indexname": "station_mesure_pkey",
+      "indexdef": "CREATE UNIQUE INDEX station_mesure_pkey ON infra.stations_mesure USING btree (id)"
+    },
+    {
+      "schemaname": "meteo",
+      "tablename": "mesure_temperature",
+      "indexname": "idx_meteo_temp_station_temps",
+      "indexdef": "CREATE INDEX idx_meteo_temp_station_temps ON meteo.mesure_temperature USING btree (station_id, temps DESC)"
+    },
+    {
+      "schemaname": "meteo",
+      "tablename": "mesure_temperature",
+      "indexname": "mesure_temperature_pkey",
+      "indexdef": "CREATE UNIQUE INDEX mesure_temperature_pkey ON meteo.mesure_temperature USING btree (temps, station_id)"
+    },
+    {
+      "schemaname": "meteo",
+      "tablename": "mesure_temperature",
+      "indexname": "mesure_temperature_temps_idx",
+      "indexdef": "CREATE INDEX mesure_temperature_temps_idx ON meteo.mesure_temperature USING btree (temps DESC)"
+    }
+  ],
+  "temperature_duplicates": [
+    {
+      "duplicate_keys": 0
+    }
+  ],
+  "temperature_range": [
+    {
+      "min_temps": null,
+      "max_temps": null,
+      "n": 0
+    }
+  ]
+}

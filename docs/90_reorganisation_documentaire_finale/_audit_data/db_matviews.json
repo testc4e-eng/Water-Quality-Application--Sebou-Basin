@@ -1,0 +1,157 @@
+[
+  {
+    "schema": "analytics",
+    "name": "mv_dashboard_climat_meteo_menu",
+    "fq": "analytics.mv_dashboard_climat_meteo_menu"
+  },
+  {
+    "schema": "analytics",
+    "name": "mv_dashboard_hydrologie_menu",
+    "fq": "analytics.mv_dashboard_hydrologie_menu"
+  },
+  {
+    "schema": "analytics",
+    "name": "mv_dashboard_pollution_menu",
+    "fq": "analytics.mv_dashboard_pollution_menu"
+  },
+  {
+    "schema": "api",
+    "name": "ca_hydro_debit_source_day",
+    "fq": "api.ca_hydro_debit_source_day"
+  },
+  {
+    "schema": "api",
+    "name": "ca_meteo_evaporation_day",
+    "fq": "api.ca_meteo_evaporation_day"
+  },
+  {
+    "schema": "api",
+    "name": "ca_meteo_precip_day",
+    "fq": "api.ca_meteo_precip_day"
+  },
+  {
+    "schema": "api",
+    "name": "mv_admin_villes_points",
+    "fq": "api.mv_admin_villes_points"
+  },
+  {
+    "schema": "api",
+    "name": "mv_barrage_dimension",
+    "fq": "api.mv_barrage_dimension"
+  },
+  {
+    "schema": "api",
+    "name": "mv_bassin_geojson",
+    "fq": "api.mv_bassin_geojson"
+  },
+  {
+    "schema": "api",
+    "name": "mv_hierarchie_metier_listing",
+    "fq": "api.mv_hierarchie_metier_listing"
+  },
+  {
+    "schema": "api",
+    "name": "mv_hydro_debit_day_qa",
+    "fq": "api.mv_hydro_debit_day_qa"
+  },
+  {
+    "schema": "api",
+    "name": "mv_hydro_debit_mensuel",
+    "fq": "api.mv_hydro_debit_mensuel"
+  },
+  {
+    "schema": "api",
+    "name": "mv_meteo_precipitation_annuelle_max",
+    "fq": "api.mv_meteo_precipitation_annuelle_max"
+  },
+  {
+    "schema": "api",
+    "name": "mv_nappes_geojson",
+    "fq": "api.mv_nappes_geojson"
+  },
+  {
+    "schema": "api",
+    "name": "mv_points_eau",
+    "fq": "api.mv_points_eau"
+  },
+  {
+    "schema": "api",
+    "name": "mv_qualite_barrages_day",
+    "fq": "api.mv_qualite_barrages_day"
+  },
+  {
+    "schema": "api",
+    "name": "mv_qualite_nappes_day",
+    "fq": "api.mv_qualite_nappes_day"
+  },
+  {
+    "schema": "api",
+    "name": "mv_qualite_riviere_day",
+    "fq": "api.mv_qualite_riviere_day"
+  },
+  {
+    "schema": "api",
+    "name": "mv_qualite_sebou_day",
+    "fq": "api.mv_qualite_sebou_day"
+  },
+  {
+    "schema": "api",
+    "name": "mv_reseau_hydrographique",
+    "fq": "api.mv_reseau_hydrographique"
+  },
+  {
+    "schema": "api",
+    "name": "mv_sources_geojson",
+    "fq": "api.mv_sources_geojson"
+  },
+  {
+    "schema": "api",
+    "name": "mv_sous_bassin_geojson",
+    "fq": "api.mv_sous_bassin_geojson"
+  },
+  {
+    "schema": "api",
+    "name": "mv_sous_bassin_swat_geojson",
+    "fq": "api.mv_sous_bassin_swat_geojson"
+  },
+  {
+    "schema": "api",
+    "name": "mv_sous_bassin_swat_geom_4326",
+    "fq": "api.mv_sous_bassin_swat_geom_4326"
+  },
+  {
+    "schema": "api",
+    "name": "mv_station_dimension",
+    "fq": "api.mv_station_dimension"
+  },
+  {
+    "schema": "api",
+    "name": "mv_suivi_qualite_barrage_garde_hebdo_day",
+    "fq": "api.mv_suivi_qualite_barrage_garde_hebdo_day"
+  },
+  {
+    "schema": "api",
+    "name": "mv_swat_qualite_subbasin_day",
+    "fq": "api.mv_swat_qualite_subbasin_day"
+  },
+  {
+    "schema": "api",
+    "name": "mv_wasp_qualite_segment_day",
+    "fq": "api.mv_wasp_qualite_segment_day"
+  },
+  {
+    "schema": "metadata",
+    "name": "mv_obs_parametre_coverage",
+    "fq": "metadata.mv_obs_parametre_coverage"
+  },
+  {
+    "schema": "metadata",
+    "name": "mv_obs_parametre_entite_compat",
+    "fq": "metadata.mv_obs_parametre_entite_compat"
+  },
+  {
+    "schema": "metadata",
+    "name": "mv_obs_referentiel_parametre",
+    "fq": "metadata.mv_obs_referentiel_parametre"
+  }
+]

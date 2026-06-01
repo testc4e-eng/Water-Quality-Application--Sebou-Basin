@@ -1,0 +1,50 @@
+[
+  {
+    "schema_name": "geo",
+    "object_name": "reseau_hydrographique",
+    "relkind": "r",
+    "n": 697
+  },
+  {
+    "schema_name": "geo_work",
+    "object_name": "reseau_hydro_edges_final",
+    "relkind": "r",
+    "n": 728
+  },
+  {
+    "schema_name": "geo_work",
+    "object_name": "reseau_hydro_edges_final_vertices_pgr",
+    "relkind": "r",
+    "n": 740
+  },
+  {
+    "schema_name": "geo_work",
+    "object_name": "reseau_hydro_edges_noded",
+    "relkind": "r",
+    "n": 749
+  },
+  {
+    "schema_name": "geo_work",
+    "object_name": "reseau_hydro_edges_noded_preview",
+    "relkind": "r",
+    "n": 749
+  },
+  {
+    "schema_name": "geo_work",
+    "object_name": "reseau_hydro_edges_raw",
+    "relkind": "r",
+    "n": 697
+  },
+  {
+    "schema_name": "geo_work",
+    "object_name": "reseau_hydro_nodes",
+    "relkind": "r",
+    "n": 732
+  },
+  {
+    "schema_name": "geo_work",
+    "object_name": "v_topo_qa",
+    "relkind": "v",
+    "n": null
+  }
+]

@@ -1,0 +1,4042 @@
+[
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1/auth/"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1/stations"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1/stations/{station_id}/measurements"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1/geojson/"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1/meta/"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1/raw/"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1/layers/"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1/layers/configs/"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1/names/"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1/users/"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1/security/logs/"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1/admin/data-availability"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1/admin/password-reset-requests/"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1/admin/users/{user_id}/reset-password"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1/climate/"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1/hydro/"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1/quality/"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1/observatory/"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1/analytics/"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1/swat/"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1/ingestion/"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1/swat/analysis"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/00_SOURCE_OF_TRUTH_MASTER.md",
+    "endpoint": "/api/v1/climate"
+  },
+  {
+    "source": "docs/30_audit_incoherences_global.md",
+    "endpoint": "/api/v1/"
+  },
+  {
+    "source": "docs/30_audit_incoherences_global.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/30_audit_incoherences_global.md",
+    "endpoint": "/api/v1/swat_analysis.py"
+  },
+  {
+    "source": "docs/30_audit_incoherences_global.md",
+    "endpoint": "/api/v1/swat/analysis"
+  },
+  {
+    "source": "docs/30_audit_incoherences_global.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/30_audit_incoherences_global.md",
+    "endpoint": "/api/v1/stations.py"
+  },
+  {
+    "source": "docs/30_audit_incoherences_global.md",
+    "endpoint": "/api/v1/measurements.py"
+  },
+  {
+    "source": "docs/30_audit_incoherences_global.md",
+    "endpoint": "/api/v1/swat_analysis.py"
+  },
+  {
+    "source": "docs/30_audit_incoherences_global.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/30_audit_incoherences_global.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/30_audit_incoherences_global.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/30_audit_incoherences_global.md",
+    "endpoint": "/api/v1/climate"
+  },
+  {
+    "source": "docs/40_revue_critique_transversale_finale.md",
+    "endpoint": "/api/v1/swat_analysis.py"
+  },
+  {
+    "source": "docs/40_revue_critique_transversale_finale.md",
+    "endpoint": "/api/v1/measurements.py"
+  },
+  {
+    "source": "docs/40_revue_critique_transversale_finale.md",
+    "endpoint": "/api/v1/stations.py"
+  },
+  {
+    "source": "docs/40_revue_critique_transversale_finale.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/40_revue_critique_transversale_finale.md",
+    "endpoint": "/api/v1/measurements.py"
+  },
+  {
+    "source": "docs/40_revue_critique_transversale_finale.md",
+    "endpoint": "/api/v1/stations.py"
+  },
+  {
+    "source": "docs/40_revue_critique_transversale_finale.md",
+    "endpoint": "/api/v1/raw.py"
+  },
+  {
+    "source": "docs/01_contexte_projet/01_mvp_scope.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/01_contexte_projet/01_mvp_scope.md",
+    "endpoint": "/api/v1/qualite/"
+  },
+  {
+    "source": "docs/01_contexte_projet/01_mvp_scope.md",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/01_contexte_projet/01_mvp_scope.md",
+    "endpoint": "/api/v1/pollution/latest-results"
+  },
+  {
+    "source": "docs/01_project_reference/EVIDENCE_REGISTER.md",
+    "endpoint": "/api/v1/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/AGENT_RULES.md",
+    "endpoint": "/api/v1/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/AGENT_RULES.md",
+    "endpoint": "/health"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/health"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/docs"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/auth/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/stations/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/measurements/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/entities/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/names/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/meta/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/geojson/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/layers/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/layers/configs/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/users/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/security/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/admin/data-availability/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/admin/password-reset-requests/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/admin/users/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/raw/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/climate/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/hydro/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/quality/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/observatory/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/analytics/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/alerts/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/swat/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/ingestion/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/api/v1/swat/analysis/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/observatory/barrage/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/qualite"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/quality"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/health"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/docs"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/openapi.json"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/swat/analysis/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/ingestion/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/quality"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/quality"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/quality/thresholds"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/quality/classify"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/quality/global-index"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/quality/regulatory-status"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/qualite/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/routing/downstream-to-garde"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/pollution"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/pollution/latest-results"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/map"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/map/catalog"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/map/entities/{id}"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/map/entities/{id}/parameters"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/map/entities/{id}/timeseries"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/map/latest-values"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/map/classification"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/map/layers"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/map/sites"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/map/sites/{id}"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/map/sites/{id}/parameters"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/map/sites/{id}/timeseries"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/map/sites/{id}/sources"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/map/sites/conflicts"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/map/sites/orphans"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/api_for_agents.md",
+    "endpoint": "/api/v1/pollution/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/architecture_for_agents.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/architecture_for_agents.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/architecture_for_agents.md",
+    "endpoint": "/api/v1/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/architecture_for_agents.md",
+    "endpoint": "/api/v1/qualite"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/architecture_for_agents.md",
+    "endpoint": "/api/v1/quality/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/architecture_for_agents.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/architecture_for_agents.md",
+    "endpoint": "/api/v1/pollution"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/architecture_for_agents.md",
+    "endpoint": "/api/v1/pollution/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/architecture_for_agents.md",
+    "endpoint": "/api/v1/map.py"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/architecture_for_agents.md",
+    "endpoint": "/api/v1/map"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/architecture_for_agents.md",
+    "endpoint": "/api/v1/map/catalog"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/architecture_for_agents.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/architecture_for_agents.md",
+    "endpoint": "/api/v1/map/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/architecture_for_agents.md",
+    "endpoint": "/api/v1/qualite/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/environments_for_agents.md",
+    "endpoint": "/docs"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/MEMORY_CORE.md",
+    "endpoint": "/api/v1/pollution"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/project_structure_for_agents.md",
+    "endpoint": "/api/v1/pollution.py"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/project_structure_for_agents.md",
+    "endpoint": "/api/v1/map/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/QUICK_REFERENCE.md",
+    "endpoint": "/api/v1/"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/testing_quick_reference.md",
+    "endpoint": "/health"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/testing_quick_reference.md",
+    "endpoint": "/api/v1/auth/login"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/testing_quick_reference.md",
+    "endpoint": "/api/v1/stations"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/testing_quick_reference.md",
+    "endpoint": "/api/v1/barrages"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/testing_quick_reference.md",
+    "endpoint": "/api/v1/layers/barrages_abhs"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/testing_quick_reference.md",
+    "endpoint": "/api/v1/climate/stations"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/testing_quick_reference.md",
+    "endpoint": "/api/v1/hydro/stations"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/testing_quick_reference.md",
+    "endpoint": "/api/v1/quality/stations"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/troubleshooting_for_agents.md",
+    "endpoint": "/health"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/troubleshooting_for_agents.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/03_ai_knowledge_base/workflows_for_agents.md",
+    "endpoint": "/api/v1/layers/{layer_key}"
+  },
+  {
+    "source": "docs/03_architecture_globale/00_index.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/04_etat_avancement/00_project_global_status.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/04_etat_avancement/00_project_global_status.md",
+    "endpoint": "/api/v1/qualite/"
+  },
+  {
+    "source": "docs/04_etat_avancement/00_project_global_status.md",
+    "endpoint": "/api/v1/map/sites/"
+  },
+  {
+    "source": "docs/101_preparation_ingestion_v1/03_api_dashboards_et_monitoring_futurs.md",
+    "endpoint": "/api/v1/ingestion/batches"
+  },
+  {
+    "source": "docs/101_preparation_ingestion_v1/03_api_dashboards_et_monitoring_futurs.md",
+    "endpoint": "/api/v1/ingestion/batches/{id}"
+  },
+  {
+    "source": "docs/101_preparation_ingestion_v1/03_api_dashboards_et_monitoring_futurs.md",
+    "endpoint": "/api/v1/ingestion/quarantine"
+  },
+  {
+    "source": "docs/101_preparation_ingestion_v1/03_api_dashboards_et_monitoring_futurs.md",
+    "endpoint": "/api/v1/ingestion/referentiel-check"
+  },
+  {
+    "source": "docs/101_preparation_ingestion_v1/03_api_dashboards_et_monitoring_futurs.md",
+    "endpoint": "/api/v1/ingestion/geo-review"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/04_references_bibliographiques_parametres.md",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/cadmium-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/04_references_bibliographiques_parametres.md",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/chloride-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/04_references_bibliographiques_parametres.md",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/fluoride-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/04_references_bibliographiques_parametres.md",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/iron-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/04_references_bibliographiques_parametres.md",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/manganese-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/04_references_bibliographiques_parametres.md",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/nitrate-and-nitrite-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/04_references_bibliographiques_parametres.md",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/nitrate-and-nitrite-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/04_references_bibliographiques_parametres.md",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/lead-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/04_references_bibliographiques_parametres.md",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/cadmium-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/04_references_bibliographiques_parametres.md",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/chloride-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/04_references_bibliographiques_parametres.md",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/fluoride-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/04_references_bibliographiques_parametres.md",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/iron-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/04_references_bibliographiques_parametres.md",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/manganese-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/04_references_bibliographiques_parametres.md",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/nitrate-and-nitrite-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/04_references_bibliographiques_parametres.md",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/nitrate-and-nitrite-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/04_references_bibliographiques_parametres.md",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/lead-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/nitrate-and-nitrite-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/manganese-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/cadmium-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/cadmium-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/cadmium-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/nitrate-and-nitrite-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/chloride-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/chloride-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/chloride-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/chloride-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/chloride-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/chloride-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/chloride-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/cadmium-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/iron-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/fluoride-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/fluoride-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/fluoride-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/lead-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/iron-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/iron-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/iron-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/iron-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/manganese-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/iron-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/iron-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/iron-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/iron-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/iron-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/iron-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/iron-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/iron-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/nitrate-and-nitrite-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/manganese-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/iron-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/manganese-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/manganese-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/manganese-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/manganese-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/nitrate-and-nitrite-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/nitrate-and-nitrite-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/nitrate-and-nitrite-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/nitrate-and-nitrite-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/cadmium-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/nitrate-and-nitrite-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/nitrate-and-nitrite-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/nitrate-and-nitrite-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/nitrate-and-nitrite-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/nitrate-and-nitrite-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/nitrate-and-nitrite-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/lead-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/lead-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/lead-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/lead-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/nitrate-and-nitrite-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/manganese-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/42_analyse_parametres_valeurs_migration/06_tableau_decision_migration_parametres.csv",
+    "endpoint": "/docs/default-source/wash-documents/water-safety-and-quality/chemical-fact-sheets-2022/iron-fact-sheet-2022.pdf"
+  },
+  {
+    "source": "docs/48_plan_execution_migration_corrige/54_lot_E0_dry_run_migration.md",
+    "endpoint": "/docs/48_plan_execution_migration_corrige/50_parametre_master_final.csv"
+  },
+  {
+    "source": "docs/48_plan_execution_migration_corrige/54_lot_E0_dry_run_migration.md",
+    "endpoint": "/docs/48_plan_execution_migration_corrige/51_mapping_final_nettoye.csv"
+  },
+  {
+    "source": "docs/48_plan_execution_migration_corrige/54_lot_E0_dry_run_migration.md",
+    "endpoint": "/docs/48_plan_execution_migration_corrige/52_donnees_preparees_migration.sql"
+  },
+  {
+    "source": "docs/48_plan_execution_migration_corrige/54_lot_E0_dry_run_migration.md",
+    "endpoint": "/docs/48_plan_execution_migration_corrige/53_rapport_pre_migration.md"
+  },
+  {
+    "source": "docs/66_E1_1_hydro_mesure_debit/00_index.md",
+    "endpoint": "/docs/65_hydro_debit_reconstruction_stable/04_conflits_valeurs_a_arbitrer.csv"
+  },
+  {
+    "source": "docs/66_E1_1_hydro_mesure_debit/05_backlog_conflits.md",
+    "endpoint": "/docs/65_hydro_debit_reconstruction_stable/04_conflits_valeurs_a_arbitrer.csv"
+  },
+  {
+    "source": "docs/89_modele_ingestion_futures_donnees/09_api_ingestion_proposee.md",
+    "endpoint": "/api/v1/ingestion/batches"
+  },
+  {
+    "source": "docs/89_modele_ingestion_futures_donnees/09_api_ingestion_proposee.md",
+    "endpoint": "/api/v1/ingestion/batches/{batch_id}/upload"
+  },
+  {
+    "source": "docs/89_modele_ingestion_futures_donnees/09_api_ingestion_proposee.md",
+    "endpoint": "/api/v1/ingestion/batches/{batch_id}/validate"
+  },
+  {
+    "source": "docs/89_modele_ingestion_futures_donnees/09_api_ingestion_proposee.md",
+    "endpoint": "/api/v1/ingestion/batches/{batch_id}/report"
+  },
+  {
+    "source": "docs/89_modele_ingestion_futures_donnees/09_api_ingestion_proposee.md",
+    "endpoint": "/api/v1/ingestion/batches/{batch_id}/load"
+  },
+  {
+    "source": "docs/89_modele_ingestion_futures_donnees/09_api_ingestion_proposee.md",
+    "endpoint": "/api/v1/ingestion/batches/{batch_id}/rollback"
+  },
+  {
+    "source": "docs/89_modele_ingestion_futures_donnees/09_api_ingestion_proposee.md",
+    "endpoint": "/api/v1/ingestion/mappings/pending"
+  },
+  {
+    "source": "docs/89_modele_ingestion_futures_donnees/09_api_ingestion_proposee.md",
+    "endpoint": "/api/v1/ingestion/mappings/decisions"
+  },
+  {
+    "source": "docs/92_referentiel_reglementaire_qualite_SAD/07_STRATEGIE_API_CLASSIFICATION.md",
+    "endpoint": "/api/v1/quality/thresholds"
+  },
+  {
+    "source": "docs/92_referentiel_reglementaire_qualite_SAD/07_STRATEGIE_API_CLASSIFICATION.md",
+    "endpoint": "/api/v1/quality/classify"
+  },
+  {
+    "source": "docs/92_referentiel_reglementaire_qualite_SAD/07_STRATEGIE_API_CLASSIFICATION.md",
+    "endpoint": "/api/v1/quality/global-index"
+  },
+  {
+    "source": "docs/92_referentiel_reglementaire_qualite_SAD/07_STRATEGIE_API_CLASSIFICATION.md",
+    "endpoint": "/api/v1/quality/regulatory-status"
+  },
+  {
+    "source": "docs/92_referentiel_reglementaire_qualite_SAD/07_STRATEGIE_API_CLASSIFICATION.md",
+    "endpoint": "/api/v1/pollution/predict-impact"
+  },
+  {
+    "source": "docs/92_referentiel_reglementaire_qualite_SAD/16_RAPPORT_CHARGEMENT_DEV_A_EXECUTER.md",
+    "endpoint": "/docs/92_referentiel_reglementaire_qualite_SAD/15_SQL_LOAD_REGLEMENTAIRE_DEV.sql"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/climate/stations"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/climate/timeseries"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/climate/kpis"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/hydro/stations"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/hydro/timeseries"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/hydro/latest"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/observatory/barrage/timeseries"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/observatory/barrage/latest"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/quality/stations"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/quality/parameters"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/quality/timeseries"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/quality/latest"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/quality/inventory/rows"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/barrages/{id}/quality-parameters"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/barrages/{id}/quality-series"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/entity/{id}/data"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/observatory/parameter/latest"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/observatory/parameter/timeseries"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/analytics/"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/layers/"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/names/"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/geojson/"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/catalog/"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/stations"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/raw/"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/swat/"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/01_audit_backend_fastapi.md",
+    "endpoint": "/api/v1/ingestion/"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/03_mapping_endpoints_vues.md",
+    "endpoint": "/api/v1/meteo/temperature"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/03_mapping_endpoints_vues.md",
+    "endpoint": "/api/v1/meteo/precipitation"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/03_mapping_endpoints_vues.md",
+    "endpoint": "/api/v1/meteo/evaporation"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/03_mapping_endpoints_vues.md",
+    "endpoint": "/api/v1/hydro/barrages/parametres"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/03_mapping_endpoints_vues.md",
+    "endpoint": "/api/v1/hydro/barrages/qualite"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/03_mapping_endpoints_vues.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/03_mapping_endpoints_vues.md",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/03_mapping_endpoints_vues.md",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/03_mapping_endpoints_vues.md",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/03_mapping_endpoints_vues.md",
+    "endpoint": "/api/v1/qualite/microbiologie"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/03_mapping_endpoints_vues.md",
+    "endpoint": "/api/v1/qualite/biologique"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/03_mapping_endpoints_vues.md",
+    "endpoint": "/api/v1/qualite/terrain"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/03_mapping_endpoints_vues.md",
+    "endpoint": "/api/v1/qualite/contexte-station"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/03_mapping_endpoints_vues.md",
+    "endpoint": "/api/v1/qualite/organoleptique"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/03_mapping_endpoints_vues.md",
+    "endpoint": "/api/v1/pollution/constat-prealable"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/03_mapping_endpoints_vues.md",
+    "endpoint": "/api/v1/pollution/analyses-finales"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/03_mapping_endpoints_vues.md",
+    "endpoint": "/api/v1/idp/points"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/03_mapping_endpoints_vues.md",
+    "endpoint": "/api/v1/idp/non-resolus"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/03_mapping_endpoints_vues.md",
+    "endpoint": "/api/v1/qualite/parametres"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/03_mapping_endpoints_vues.md",
+    "endpoint": "/api/v1/qualite/supports"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/03_mapping_endpoints_vues.md",
+    "endpoint": "/api/v1/exposure/catalog"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/05_audit_frontend_react.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/06_architecture_frontend_cible.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/09_priorisation_implementation.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/09_priorisation_implementation.md",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/09_priorisation_implementation.md",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/09_priorisation_implementation.md",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/09_priorisation_implementation.md",
+    "endpoint": "/api/v1/meteo/precipitation"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/09_priorisation_implementation.md",
+    "endpoint": "/api/v1/hydro/barrages/parametres"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/09_priorisation_implementation.md",
+    "endpoint": "/api/v1/hydro/barrages/qualite"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/09_priorisation_implementation.md",
+    "endpoint": "/api/v1/qualite/microbiologie"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/09_priorisation_implementation.md",
+    "endpoint": "/api/v1/qualite/terrain"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/09_priorisation_implementation.md",
+    "endpoint": "/api/v1/pollution/analyses-finales"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/09_priorisation_implementation.md",
+    "endpoint": "/api/v1/idp/points"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/10_recommandation_api_frontend.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/10_recommandation_api_frontend.md",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/10_recommandation_api_frontend.md",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/10_recommandation_api_frontend.md",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "docs/95_dashboard_decisionnel_abh/00_index.md",
+    "endpoint": "/api/v1/qualite/"
+  },
+  {
+    "source": "docs/95_dashboard_decisionnel_abh/08_spec_dashboard_test.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/95_dashboard_decisionnel_abh/08_spec_dashboard_test.md",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "docs/95_dashboard_decisionnel_abh/08_spec_dashboard_test.md",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "docs/95_dashboard_decisionnel_abh/08_spec_dashboard_test.md",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/00_index.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/00_index.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/00_index.md",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/00_index.md",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/00_index.md",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/01_catalogue_global_parametres.md",
+    "endpoint": "/api/v1/meteo/precipitation"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/01_catalogue_global_parametres.md",
+    "endpoint": "/api/v1/meteo/evaporation"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/01_catalogue_global_parametres.md",
+    "endpoint": "/api/v1/meteo/temperature"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/01_catalogue_global_parametres.md",
+    "endpoint": "/api/v1/hydro/debits"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/01_catalogue_global_parametres.md",
+    "endpoint": "/api/v1/hydro/barrages/parametres"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/01_catalogue_global_parametres.md",
+    "endpoint": "/api/v1/hydro/barrages/parametres"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/01_catalogue_global_parametres.md",
+    "endpoint": "/api/v1/observatory/barrage/"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/01_catalogue_global_parametres.md",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/01_catalogue_global_parametres.md",
+    "endpoint": "/api/v1/qualite/terrain"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/01_catalogue_global_parametres.md",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/01_catalogue_global_parametres.md",
+    "endpoint": "/api/v1/qualite/nutriments"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/01_catalogue_global_parametres.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/01_catalogue_global_parametres.md",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/01_catalogue_global_parametres.md",
+    "endpoint": "/api/v1/qualite/microbiologie"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/01_catalogue_global_parametres.md",
+    "endpoint": "/api/v1/qualite/biologique"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/01_catalogue_global_parametres.md",
+    "endpoint": "/api/v1/qualite/organoleptique"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/01_catalogue_global_parametres.md",
+    "endpoint": "/api/v1/hydro/barrages/qualite"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/01_catalogue_global_parametres.md",
+    "endpoint": "/api/v1/qualite/terrain"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/01_catalogue_global_parametres.md",
+    "endpoint": "/api/v1/qualite/contexte-station"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/01_catalogue_global_parametres.md",
+    "endpoint": "/api/v1/qualite/"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/05_catalogue_vues_api.md",
+    "endpoint": "/api/v1/meteo/temperature"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/05_catalogue_vues_api.md",
+    "endpoint": "/api/v1/meteo/precipitation"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/05_catalogue_vues_api.md",
+    "endpoint": "/api/v1/meteo/evaporation"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/05_catalogue_vues_api.md",
+    "endpoint": "/api/v1/hydro/debits"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/05_catalogue_vues_api.md",
+    "endpoint": "/api/v1/hydro/barrages/parametres"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/05_catalogue_vues_api.md",
+    "endpoint": "/api/v1/hydro/barrages/qualite"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/05_catalogue_vues_api.md",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/05_catalogue_vues_api.md",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/05_catalogue_vues_api.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/05_catalogue_vues_api.md",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/05_catalogue_vues_api.md",
+    "endpoint": "/api/v1/qualite/microbiologie"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/05_catalogue_vues_api.md",
+    "endpoint": "/api/v1/qualite/biologique"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/05_catalogue_vues_api.md",
+    "endpoint": "/api/v1/qualite/terrain"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/05_catalogue_vues_api.md",
+    "endpoint": "/api/v1/qualite/contexte-station"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/05_catalogue_vues_api.md",
+    "endpoint": "/api/v1/qualite/organoleptique"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/05_catalogue_vues_api.md",
+    "endpoint": "/api/v1/pollution/constat-prealable"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/05_catalogue_vues_api.md",
+    "endpoint": "/api/v1/pollution/analyses-finales"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/05_catalogue_vues_api.md",
+    "endpoint": "/api/v1/idp/points"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/05_catalogue_vues_api.md",
+    "endpoint": "/api/v1/idp/non-resolus"
+  },
+  {
+    "source": "docs/96_catalogue_metier_donnees_affichage/05_catalogue_vues_api.md",
+    "endpoint": "/api/v1/observatory/barrage/"
+  },
+  {
+    "source": "docs/98_pollution_idp_architecture/02_architecture_cible_api_front_carto.md",
+    "endpoint": "/api/v1/pollution/constat-prealable"
+  },
+  {
+    "source": "docs/98_pollution_idp_architecture/02_architecture_cible_api_front_carto.md",
+    "endpoint": "/api/v1/pollution/analyses-finales"
+  },
+  {
+    "source": "docs/98_pollution_idp_architecture/02_architecture_cible_api_front_carto.md",
+    "endpoint": "/api/v1/idp/points"
+  },
+  {
+    "source": "docs/98_pollution_idp_architecture/02_architecture_cible_api_front_carto.md",
+    "endpoint": "/api/v1/idp/non-resolus"
+  },
+  {
+    "source": "docs/98_pollution_idp_architecture/02_architecture_cible_api_front_carto.md",
+    "endpoint": "/api/v1/pollution/sources"
+  },
+  {
+    "source": "docs/99_dashboard_decisionnel_v2/01_synthese_architecture_ux.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/99_dashboard_decisionnel_v2/01_synthese_architecture_ux.md",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "docs/99_dashboard_decisionnel_v2/01_synthese_architecture_ux.md",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "docs/99_dashboard_decisionnel_v2/01_synthese_architecture_ux.md",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "docs/99_dashboard_decisionnel_v2/01_synthese_architecture_ux.md",
+    "endpoint": "/api/v1/hydro/barrages/parametres"
+  },
+  {
+    "source": "docs/99_dashboard_decisionnel_v2/01_synthese_architecture_ux.md",
+    "endpoint": "/api/v1/pollution/constat-prealable"
+  },
+  {
+    "source": "docs/99_dashboard_decisionnel_v2/01_synthese_architecture_ux.md",
+    "endpoint": "/api/v1/idp/points"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/00_audit_dashboard_metier.md",
+    "endpoint": "/api/v1/"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/00_audit_dashboard_metier.md",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/00_audit_dashboard_metier.md",
+    "endpoint": "/api/v1/pollution/latest-results"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/00_audit_dashboard_metier.md",
+    "endpoint": "/api/v1/quality/classify"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/00_audit_dashboard_metier.md",
+    "endpoint": "/api/v1/quality/thresholds"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/00_audit_dashboard_metier.md",
+    "endpoint": "/api/v1/qualite/"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/00_audit_dashboard_metier.md",
+    "endpoint": "/api/v1/layers/"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/00_audit_dashboard_metier.md",
+    "endpoint": "/api/v1/geojson/"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/00_audit_dashboard_metier.md",
+    "endpoint": "/api/v1/observatory/"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/00_audit_dashboard_metier.md",
+    "endpoint": "/api/v1/map.py"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/01_inventory_existing_components.md",
+    "endpoint": "/api/v1/pollution.py"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/01_inventory_existing_components.md",
+    "endpoint": "/api/v1/qualite_specialized.py"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/01_inventory_existing_components.md",
+    "endpoint": "/api/v1/geojson.py"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/01_inventory_existing_components.md",
+    "endpoint": "/api/v1/map.py"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/02_reuse_vs_refactor_strategy.md",
+    "endpoint": "/api/v1/qualite/"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/02_reuse_vs_refactor_strategy.md",
+    "endpoint": "/api/v1/map/"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/02_reuse_vs_refactor_strategy.md",
+    "endpoint": "/health"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/02_reuse_vs_refactor_strategy.md",
+    "endpoint": "/api/v1/map/catalog"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/02_reuse_vs_refactor_strategy.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/03_target_business_architecture.md",
+    "endpoint": "/api/v1/layers/reseau_hydro_abhs"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/03_target_business_architecture.md",
+    "endpoint": "/api/v1/layers/sous_bassin_sebou"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/03_target_business_architecture.md",
+    "endpoint": "/api/v1/map.py"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/03_target_business_architecture.md",
+    "endpoint": "/api/v1/map/catalog"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/03_target_business_architecture.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/03_target_business_architecture.md",
+    "endpoint": "/api/v1/map/entities/{id}"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/03_target_business_architecture.md",
+    "endpoint": "/api/v1/map/entities/{id}/parameters"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/03_target_business_architecture.md",
+    "endpoint": "/api/v1/map/latest-values"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/03_target_business_architecture.md",
+    "endpoint": "/api/v1/map/layers"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/03_target_business_architecture.md",
+    "endpoint": "/api/v1/map/entities/{id}/timeseries"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/03_target_business_architecture.md",
+    "endpoint": "/api/v1/map/classification"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/03_target_business_architecture.md",
+    "endpoint": "/api/v1/map/catalog"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/03_target_business_architecture.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/04_api_map_p0_implementation.md",
+    "endpoint": "/api/v1/map.py"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/04_api_map_p0_implementation.md",
+    "endpoint": "/api/v1/map/catalog"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/04_api_map_p0_implementation.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/04_api_map_p0_implementation.md",
+    "endpoint": "/api/v1/map/entities/{id}"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/04_api_map_p0_implementation.md",
+    "endpoint": "/api/v1/map/entities/{id}/parameters"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/04_api_map_p0_implementation.md",
+    "endpoint": "/api/v1/map/entities/{id}/timeseries"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/04_api_map_p0_implementation.md",
+    "endpoint": "/api/v1/map/latest-values"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/04_api_map_p0_implementation.md",
+    "endpoint": "/api/v1/map/classification"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/04_api_map_p0_implementation.md",
+    "endpoint": "/api/v1/map/layers"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/04_api_map_p0_implementation.md",
+    "endpoint": "/api/v1/map.py"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/04_api_map_p0_implementation.md",
+    "endpoint": "/api/v1/map/"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/04_api_map_p0_implementation.md",
+    "endpoint": "/api/v1/map/catalog"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/04_api_map_p0_implementation.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/04_api_map_p0_implementation.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/04_api_map_p0_implementation.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/04_api_map_p0_implementation.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/04_api_map_p0_implementation.md",
+    "endpoint": "/api/v1/map/latest-values"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/04_api_map_p0_implementation.md",
+    "endpoint": "/api/v1/map/classification"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/04_api_map_p0_implementation.md",
+    "endpoint": "/api/v1/map/layers"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/04_api_map_p0_implementation.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/08_support_catalog_reorganization.md",
+    "endpoint": "/api/v1/map/catalog"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/08_support_catalog_reorganization.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/08_support_catalog_reorganization.md",
+    "endpoint": "/api/v1/map/catalog"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/08_support_catalog_reorganization.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/08_support_catalog_reorganization.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/08_support_catalog_reorganization.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/08_support_catalog_reorganization.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/08_support_catalog_reorganization.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/09_frontend_dashboard_carto_metier.md",
+    "endpoint": "/api/v1/map/catalog"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/09_frontend_dashboard_carto_metier.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/09_frontend_dashboard_carto_metier.md",
+    "endpoint": "/api/v1/map/latest-values"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/09_frontend_dashboard_carto_metier.md",
+    "endpoint": "/api/v1/map/classification"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/09_frontend_dashboard_carto_metier.md",
+    "endpoint": "/api/v1/map/catalog"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/09_frontend_dashboard_carto_metier.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/09_frontend_dashboard_carto_metier.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/09_frontend_dashboard_carto_metier.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/10_frontend_components_inventory.md",
+    "endpoint": "/api/v1/map/"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/10_frontend_components_inventory.md",
+    "endpoint": "/api/v1/map/"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/11_frontend_go_nogo_report.md",
+    "endpoint": "/api/v1/map/catalog"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/11_frontend_go_nogo_report.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/11_frontend_go_nogo_report.md",
+    "endpoint": "/api/v1/map/catalog"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/11_frontend_go_nogo_report.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/11_frontend_go_nogo_report.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/11_frontend_go_nogo_report.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/11_frontend_go_nogo_report.md",
+    "endpoint": "/api/v1/map/latest-values"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/11_frontend_go_nogo_report.md",
+    "endpoint": "/api/v1/map/classification"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/11_frontend_go_nogo_report.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/11_frontend_go_nogo_report.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/11_frontend_go_nogo_report.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/12_p01_frontend_ux_fix_report.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/12_p01_frontend_ux_fix_report.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/dashboard_metier_p0/12_p01_frontend_ux_fix_report.md",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/22_api_validation_report.md",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/22_api_validation_report.md",
+    "endpoint": "/api/v1/pollution/latest-results"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/23_maplibre_first_layer_report.md",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/25_go_nogo_dev_execution.md",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/30_react_maplibre_integration_report.md",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/30_react_maplibre_integration_report.md",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/30_react_maplibre_integration_report.md",
+    "endpoint": "/api/v1/pollution/"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/31_phase6_test_report.md",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/31_phase6_test_report.md",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/31_phase6_test_report.md",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/31_phase6_test_report.md",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/31_phase6_test_report.md",
+    "endpoint": "/api/v1/pollution/latest-results"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/31_phase6_test_report.md",
+    "endpoint": "/api/v1/pollution.py"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/32_demo_dg_metier_pollution_idp.md",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/34_pollution_regulatory_classification_integration.md",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/34_pollution_regulatory_classification_integration.md",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/34_pollution_regulatory_classification_integration.md",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/34_pollution_regulatory_classification_integration.md",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/34_pollution_regulatory_classification_integration.md",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/34_pollution_regulatory_classification_integration.md",
+    "endpoint": "/api/v1/pollution.py"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/44_spatial_identity_api_contract.md",
+    "endpoint": "/api/v1/map/sites"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/44_spatial_identity_api_contract.md",
+    "endpoint": "/api/v1/map/sites/{id}"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/44_spatial_identity_api_contract.md",
+    "endpoint": "/api/v1/map/sites/{id}/parameters"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/44_spatial_identity_api_contract.md",
+    "endpoint": "/api/v1/map/sites/{id}/timeseries"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/44_spatial_identity_api_contract.md",
+    "endpoint": "/api/v1/map/sites/{id}/sources"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/44_spatial_identity_api_contract.md",
+    "endpoint": "/api/v1/map/sites/conflicts"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/44_spatial_identity_api_contract.md",
+    "endpoint": "/api/v1/map/sites/orphans"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/44_spatial_identity_api_contract.md",
+    "endpoint": "/api/v1/map/sites"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/45_spatial_identity_migration_plan.md",
+    "endpoint": "/api/v1/pollution/"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/45_spatial_identity_migration_plan.md",
+    "endpoint": "/api/v1/map/sites"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/46_spatial_identity_post_ddl_dev.md",
+    "endpoint": "/api/v1/pollution/"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/49_spatial_identity_go_nogo_arbitrage.md",
+    "endpoint": "/api/v1/pollution/"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/65_spatial_identity_auto_validation_execution_report.md",
+    "endpoint": "/api/v1/pollution/"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/maplibre_pollution_first_layer.html",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/maplibre_pollution_layer_config.json",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/maplibre_pollution_layer_config.json",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/pollution_dashboard/01_architecture_actuelle.md",
+    "endpoint": "/api/v1/geojson/{layer_key}"
+  },
+  {
+    "source": "docs/pollution_dashboard/02_flux_cartographiques.md",
+    "endpoint": "/api/v1/geojson/{layer_key}"
+  },
+  {
+    "source": "docs/pollution_dashboard/02_flux_cartographiques.md",
+    "endpoint": "/api/v1/geojson.py"
+  },
+  {
+    "source": "docs/pollution_dashboard/05_backlog_phase_1.md",
+    "endpoint": "/api/v1/routing/downstream"
+  },
+  {
+    "source": "docs/pollution_dashboard/09_plan_implementation_phase1_routage_visuel.md",
+    "endpoint": "/api/v1/routing/downstream"
+  },
+  {
+    "source": "docs/pollution_dashboard/09_plan_implementation_phase1_routage_visuel.md",
+    "endpoint": "/api/v1/routing/downstream"
+  },
+  {
+    "source": "docs/pollution_dashboard/10_topologie_reseau_hydro/09_tests_routage_garde_sebou.md",
+    "endpoint": "/api/v1/routing/downstream-to-garde"
+  },
+  {
+    "source": "docs/pollution_dashboard/11_reconnexion_topologique/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/11_reconnexion_topologique/01_audit_connected_components.md"
+  },
+  {
+    "source": "docs/pollution_dashboard/11_reconnexion_topologique/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/11_reconnexion_topologique/02_audit_gaps_reseau.md"
+  },
+  {
+    "source": "docs/pollution_dashboard/11_reconnexion_topologique/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/11_reconnexion_topologique/03_audit_intersections_non_connectees.md"
+  },
+  {
+    "source": "docs/pollution_dashboard/11_reconnexion_topologique/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/11_reconnexion_topologique/04_plan_snapping_progressif.md"
+  },
+  {
+    "source": "docs/pollution_dashboard/11_reconnexion_topologique/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/11_reconnexion_topologique/05_reseau_isole_reference.md"
+  },
+  {
+    "source": "docs/pollution_dashboard/11_reconnexion_topologique/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/11_reconnexion_topologique/06_plan_reconstruction_graphe.md"
+  },
+  {
+    "source": "docs/pollution_dashboard/12_reconstruction_topologique_reelle/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/12_reconstruction_topologique_reelle/01_analyse_intersections_non_nodees.md"
+  },
+  {
+    "source": "docs/pollution_dashboard/12_reconstruction_topologique_reelle/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/12_reconstruction_topologique_reelle/02_plan_nodification_reseau.md"
+  },
+  {
+    "source": "docs/pollution_dashboard/12_reconstruction_topologique_reelle/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/12_reconstruction_topologique_reelle/03_pipeline_reconstruction_topologique.md"
+  },
+  {
+    "source": "docs/pollution_dashboard/12_reconstruction_topologique_reelle/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/12_reconstruction_topologique_reelle/04_audit_avant_apres_nodification.md"
+  },
+  {
+    "source": "docs/pollution_dashboard/12_reconstruction_topologique_reelle/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/12_reconstruction_topologique_reelle/05_plan_rebuild_networkx.md"
+  },
+  {
+    "source": "docs/pollution_dashboard/12_reconstruction_topologique_reelle/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/12_reconstruction_topologique_reelle/06_risques_topologiques.md"
+  },
+  {
+    "source": "docs/pollution_dashboard/12_reconstruction_topologique_reelle/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/12_reconstruction_topologique_reelle/07_sql_nodification_prepare_A_VALIDER.sql"
+  },
+  {
+    "source": "docs/pollution_dashboard/12_reconstruction_topologique_reelle/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/12_reconstruction_topologique_reelle/08_tests_post_nodification.md"
+  },
+  {
+    "source": "docs/pollution_dashboard/12_reconstruction_topologique_reelle/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/12_reconstruction_topologique_reelle/09_checklist_validation_hydrologique.md"
+  },
+  {
+    "source": "docs/pollution_dashboard/13_normalisation_post_nodification/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/13_normalisation_post_nodification/01_audit_micro_segments.md"
+  },
+  {
+    "source": "docs/pollution_dashboard/13_normalisation_post_nodification/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/13_normalisation_post_nodification/02_audit_cycles_artificiels.md"
+  },
+  {
+    "source": "docs/pollution_dashboard/13_normalisation_post_nodification/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/13_normalisation_post_nodification/03_audit_doublons_geometriques.md"
+  },
+  {
+    "source": "docs/pollution_dashboard/13_normalisation_post_nodification/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/13_normalisation_post_nodification/04_plan_normalisation_segments.md"
+  },
+  {
+    "source": "docs/pollution_dashboard/13_normalisation_post_nodification/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/13_normalisation_post_nodification/05_plan_snapping_final.md"
+  },
+  {
+    "source": "docs/pollution_dashboard/13_normalisation_post_nodification/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/13_normalisation_post_nodification/06_plan_consolidation_networkx.md"
+  },
+  {
+    "source": "docs/pollution_dashboard/13_normalisation_post_nodification/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/13_normalisation_post_nodification/07_sql_cleanup_prepare_A_VALIDER.sql"
+  },
+  {
+    "source": "docs/pollution_dashboard/13_normalisation_post_nodification/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/13_normalisation_post_nodification/08_tests_post_cleanup.md"
+  },
+  {
+    "source": "docs/pollution_dashboard/13_normalisation_post_nodification/00_index.md",
+    "endpoint": "/docs/pollution_dashboard/13_normalisation_post_nodification/09_kpi_connectivite_finale.md"
+  },
+  {
+    "source": "docs/pollution_dashboard/14_runtime_stabilization/00_runtime_stabilization.md",
+    "endpoint": "/api/v1/routing/downstream-to-garde"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/execution_logs/phase6_backend_endpoint_tests.txt",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/execution_logs/phase6_backend_endpoint_tests.txt",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/execution_logs/phase6_backend_endpoint_tests.txt",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/execution_logs/phase6_backend_endpoint_tests.txt",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "docs/IDP_POLLUTION_ANALYSIS/execution_logs/phase6_backend_endpoint_tests.txt",
+    "endpoint": "/api/v1/pollution/latest-results"
+  },
+  {
+    "source": "docs/99_legacy_archive/mission_iv_versions/rapport_provisoire_mission_iv_sad_2026-04-10_before_final_rewrite.md",
+    "endpoint": "/health"
+  },
+  {
+    "source": "docs/99_legacy_archive/mission_iv_versions/rapport_provisoire_mission_iv_sad_2026-04-10_before_final_rewrite.md",
+    "endpoint": "/docs"
+  },
+  {
+    "source": "docs/99_legacy_archive/mission_iv_versions/rapport_provisoire_mission_iv_sad_2026-04-10_before_final_rewrite.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/99_legacy_archive/mission_iv_versions/rapport_provisoire_mission_iv_sad_2026-04-10_before_final_rewrite.md",
+    "endpoint": "/docs/scripts"
+  },
+  {
+    "source": "docs/99_legacy_archive/mission_iv_versions/rapport_provisoire_mission_iv_sad_2026-04-10_before_final_rewrite.md",
+    "endpoint": "/docs/scripts"
+  },
+  {
+    "source": "docs/99_legacy_archive/superseded_active_data_docs/2026-04-10_db_reference_refresh/sql_views_reference.md",
+    "endpoint": "/api/v1/map/layers/quality-status"
+  },
+  {
+    "source": "docs/99_legacy_archive/restructured_source_docs/04_data/06_industrialisation_bdd.md",
+    "endpoint": "/api/v1/hydro/stations"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/AGENT_RULES.md",
+    "endpoint": "/api/v1/"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/AGENT_RULES.md",
+    "endpoint": "/health"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/docs"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/health"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/auth/register"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/auth/login"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/stations"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/barrages"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/alerts"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/layers/{layer_key}"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/names/{entity}"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/catalog/..."
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/raw/tables"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/raw/{schema}/{table}/columns"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/raw/{schema}/{table}/rows"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/raw/{schema}/{table}/pk"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/raw/{schema}/{table}"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/raw/{schema}/{table}/{row_id}"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/raw/{schema}/{table}/{row_id}"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/climate/stations"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/climate/station-stats"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/climate/timeseries"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/climate/kpis"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/hydro/stations"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/hydro/stats"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/hydro/timeseries"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/hydro/kpis"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/quality/stations"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/quality/kpis"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/quality/table"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/API_ENDPOINTS.md",
+    "endpoint": "/api/v1/quality/chart"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/ARCHITECTURE.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/ARCHITECTURE.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/ARCHITECTURE.md",
+    "endpoint": "/api/v1/"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/DEPLOYMENT.md",
+    "endpoint": "/health"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/ENVIRONNEMENTS.md",
+    "endpoint": "/docs"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/PROJECT_STRUCTURE.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/TESTING_GUIDE.md",
+    "endpoint": "/health"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/TESTING_GUIDE.md",
+    "endpoint": "/api/v1/auth/login"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/TESTING_GUIDE.md",
+    "endpoint": "/api/v1/stations"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/TESTING_GUIDE.md",
+    "endpoint": "/api/v1/barrages"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/TESTING_GUIDE.md",
+    "endpoint": "/api/v1/layers/barrages_abhs"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/TESTING_GUIDE.md",
+    "endpoint": "/api/v1/climate/stations"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/TESTING_GUIDE.md",
+    "endpoint": "/api/v1/hydro/stations"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/TESTING_GUIDE.md",
+    "endpoint": "/api/v1/quality/stations"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/TROUBLESHOOTING.md",
+    "endpoint": "/health"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/TROUBLESHOOTING.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/WORKFLOWS.md",
+    "endpoint": "/api/v1/layers/{layer_key}"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/partie2_prompts_appliques/01_ARCHITECTURE_APPLICATIVE_MISSION4.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/partie4_prompts_appliques/01_AUDIT_QUALITE_MISSION4.md",
+    "endpoint": "/api/v1/"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/partie4_prompts_appliques/01_AUDIT_QUALITE_MISSION4.md",
+    "endpoint": "/api/v1/stations.py"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/partie4_prompts_appliques/01_AUDIT_QUALITE_MISSION4.md",
+    "endpoint": "/api/v1/raw.py"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/partie4_prompts_appliques/02_DETECTION_BUGS_MISSION4.md",
+    "endpoint": "/api/v1/auth.py"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/partie5_prompts_appliques/02_SECURITE_API_MISSION4.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/99_legacy_archive/duplicated_ia_kits/10_ia_kit_snapshot/partie5_prompts_appliques/04_PROMPTS_PERSONNALISES_PARTIE5_MISSION4.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/infra/stations"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/qualite/analyses/timeseries"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/admin/parametres"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/admin/organismes"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/geo/bassins"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/geo/sous-bassins"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/geo/cours-eau"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/infra/stations"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/infra/stations/{stationId}"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/infra/barrages"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/meteo/precipitations/timeseries"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/meteo/temperatures/timeseries"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/meteo/precipitations/latest"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/meteo/temperatures/latest"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/hydro/debits/timeseries"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/hydro/debits/fdc"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/hydro/barrages/timeseries"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/hydro/debits/latest"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/qualite/analyses/timeseries"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/qualite/analyses/latest"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/qualite/conformite"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/qualite/campagnes"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/map/overview"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/map/layers/stations"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/map/layers/barrages"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/map/layers/quality-status"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/map/layers/sous-bassins"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/raw/{schema}/{table}"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/raw/{schema}/{table}"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/raw/{schema}/{table}/{id}"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/raw/{schema}/{table}/{id}"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/api_architecture.md",
+    "endpoint": "/api/v1/exports"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/openapi_waterqual_sebou.yaml",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/99_legacy_archive/db_audit_legacy/Guides_Migration_Maintenance/openapi_waterqual_sebou.yaml",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/01_implementation_backend_p0.md",
+    "endpoint": "/api/v1/qualite_specialized.py"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/01_implementation_backend_p0.md",
+    "endpoint": "/api/v1/qualite/"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/01_implementation_backend_p0.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/01_implementation_backend_p0.md",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/01_implementation_backend_p0.md",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/01_implementation_backend_p0.md",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/02_tests_backend_p0.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/02_tests_backend_p0.md",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/02_tests_backend_p0.md",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/02_tests_backend_p0.md",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/02_tests_backend_p0.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/02_tests_backend_p0.md",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/02_tests_backend_p0.md",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/02_tests_backend_p0.md",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/02_tests_backend_p0.md",
+    "endpoint": "/health"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/02_tests_backend_p0.md",
+    "endpoint": "/docs"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/02_tests_backend_p0.md",
+    "endpoint": "/openapi.json"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/03_openapi_validation.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/03_openapi_validation.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/03_openapi_validation.md",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/03_openapi_validation.md",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/03_openapi_validation.md",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/03_openapi_validation.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/03_openapi_validation.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/03_openapi_validation.md",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/03_openapi_validation.md",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/03_openapi_validation.md",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/05_backlog_backend_p1.md",
+    "endpoint": "/api/v1/meteo/temperature"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/05_backlog_backend_p1.md",
+    "endpoint": "/api/v1/hydro/barrages/parametres"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/backend_p0/05_backlog_backend_p1.md",
+    "endpoint": "/api/v1/exposure/catalog"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/frontend_pilote_metaux/00_index.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/frontend_pilote_metaux/00_index.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/frontend_pilote_metaux/02_api_usage.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/frontend_pilote_metaux/02_api_usage.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/frontend_pilote_metaux/04_tests_frontend.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/frontend_pilote_metaux/05_validation_metier_front.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/frontend_pilote_metaux/06_backlog_front_p1.md",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/observatory_menu_v2/02_catalogue_metier_frontend.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/observatory_menu_v2/02_catalogue_metier_frontend.md",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/observatory_menu_v2/02_catalogue_metier_frontend.md",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/observatory_menu_v2/02_catalogue_metier_frontend.md",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/observatory_menu_v2/04_integration_api_specialisee.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/observatory_menu_v2/04_integration_api_specialisee.md",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/observatory_menu_v2/04_integration_api_specialisee.md",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/observatory_menu_v2/04_integration_api_specialisee.md",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/00_index.md",
+    "endpoint": "/docs"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/00_index.md",
+    "endpoint": "/openapi.json"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/01_analyse_blocage_numpy_swat.md",
+    "endpoint": "/docs"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/01_analyse_blocage_numpy_swat.md",
+    "endpoint": "/openapi.json"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/02_strategy_import_lazy.md",
+    "endpoint": "/api/v1/swat/analysis/"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/02_strategy_import_lazy.md",
+    "endpoint": "/api/v1/ingestion/"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/03_modifications_backend.md",
+    "endpoint": "/api/v1/swat_analysis.py"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/03_modifications_backend.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/03_modifications_backend.md",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/03_modifications_backend.md",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/03_modifications_backend.md",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/04_tests_runtime_globaux.md",
+    "endpoint": "/health"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/04_tests_runtime_globaux.md",
+    "endpoint": "/docs"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/04_tests_runtime_globaux.md",
+    "endpoint": "/openapi.json"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/04_tests_runtime_globaux.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/04_tests_runtime_globaux.md",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/04_tests_runtime_globaux.md",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/04_tests_runtime_globaux.md",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/04_tests_runtime_globaux.md",
+    "endpoint": "/api/v1/swat/analysis/status"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/04_tests_runtime_globaux.md",
+    "endpoint": "/api/v1/ingestion/upload"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/04_tests_runtime_globaux.md",
+    "endpoint": "/openapi.json"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/05_validation_openapi.md",
+    "endpoint": "/openapi.json"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/05_validation_openapi.md",
+    "endpoint": "/docs"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/05_validation_openapi.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/05_validation_openapi.md",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/05_validation_openapi.md",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/05_validation_openapi.md",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/05_validation_openapi.md",
+    "endpoint": "/api/v1/swat/analysis/"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/05_validation_openapi.md",
+    "endpoint": "/api/v1/ingestion/"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/06_recommandation_frontend_pilote.md",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "docs/94_api_frontend_transition/runtime_fix_swat/06_recommandation_frontend_pilote.md",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/runs/2026-04-09_merge_dashboards/status_note_merge_dashboards_2026-04-09.md",
+    "endpoint": "/api/v1/observatory/mviews/status"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/runs/2026-04-09_merge_dashboards/status_note_merge_dashboards_2026-04-09.md",
+    "endpoint": "/api/v1/observatory/mviews/refresh"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/runs/popup_rules/popup_rules_functional_test_workflow.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/runs/popup_rules/popup_rules_functional_test_workflow.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/runs/popup_rules/popup_rules_functional_test_workflow.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/layers/{layer_key}"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/layers/{layer_key}/names"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/climate/stations"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/climate/station-stats"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/climate/timeseries"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/climate/kpis"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/hydro/stations"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/hydro/stats"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/hydro/timeseries"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/hydro/kpis"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/hydro/points-eau"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/quality/stations"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/quality/parameters"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/quality/timeseries"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/quality/inventory/rows"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/stations"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/barrages"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/barrages/{id}/quality-parameters"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/barrages/{id}/quality-series"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/meta/dictionary"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/meta/api-catalog"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/meta/api-column-catalog"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/climate/"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/climate/stations"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/climate/timeseries"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/hydro/"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/hydro/stations"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/hydro/timeseries"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/quality/"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/quality/stations"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/quality/timeseries"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/quality/stations"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/quality/timeseries"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/quality/stations"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/quality/timeseries"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/quality/stations"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/quality/timeseries"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/quality/stations"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/quality/timeseries"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/quality/inventory/rows"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/layers/decharges_abhs"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/layers/huileries_abhs"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/layers/step_abhs"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/layers/rejets_domestiques_abhs"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/climate/stations"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/layers/stations_abhs"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/climate/timeseries"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/layers/stations_abhs"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/hydro/stations"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/layers/stations_abhs"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/hydro/timeseries"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/observatory/observatory_layers_refactor_prompt.md",
+    "endpoint": "/api/v1/layers/{key}"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/mission4/partie2_prompts_appliques/01_ARCHITECTURE_APPLICATIVE_MISSION4.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/mission4/partie4_prompts_appliques/01_AUDIT_QUALITE_MISSION4.md",
+    "endpoint": "/api/v1/"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/mission4/partie4_prompts_appliques/01_AUDIT_QUALITE_MISSION4.md",
+    "endpoint": "/api/v1/stations.py"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/mission4/partie4_prompts_appliques/01_AUDIT_QUALITE_MISSION4.md",
+    "endpoint": "/api/v1/raw.py"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/mission4/partie4_prompts_appliques/02_DETECTION_BUGS_MISSION4.md",
+    "endpoint": "/api/v1/auth.py"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/mission4/partie5_prompts_appliques/02_SECURITE_API_MISSION4.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/04_working_prompts_and_runs/prompts/mission4/partie5_prompts_appliques/04_PROMPTS_PERSONNALISES_PARTIE5_MISSION4.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/01_project_reference/backend/api_contracts.md",
+    "endpoint": "/api/v1/infra/stations"
+  },
+  {
+    "source": "docs/01_project_reference/backend/api_contracts.md",
+    "endpoint": "/api/v1/infra/stations"
+  },
+  {
+    "source": "docs/01_project_reference/backend/api_contracts.md",
+    "endpoint": "/api/v1/meteo/precipitations/timeseries"
+  },
+  {
+    "source": "docs/01_project_reference/backend/api_contracts.md",
+    "endpoint": "/api/v1/meteo/temperatures/timeseries"
+  },
+  {
+    "source": "docs/01_project_reference/backend/api_contracts.md",
+    "endpoint": "/api/v1/hydro/debits/timeseries"
+  },
+  {
+    "source": "docs/01_project_reference/backend/api_contracts.md",
+    "endpoint": "/api/v1/hydro/debits/timeseries"
+  },
+  {
+    "source": "docs/01_project_reference/backend/api_contracts.md",
+    "endpoint": "/api/v1/hydro/debits/fdc"
+  },
+  {
+    "source": "docs/01_project_reference/backend/api_contracts.md",
+    "endpoint": "/api/v1/qualite/analyses/timeseries"
+  },
+  {
+    "source": "docs/01_project_reference/backend/api_contracts.md",
+    "endpoint": "/api/v1/qualite/conformite"
+  },
+  {
+    "source": "docs/01_project_reference/backend/api_contracts.md",
+    "endpoint": "/api/v1/map/overview"
+  },
+  {
+    "source": "docs/01_project_reference/backend/api_contracts.md",
+    "endpoint": "/api/v1/map/layers/quality-status"
+  },
+  {
+    "source": "docs/01_project_reference/backend/api_contracts.md",
+    "endpoint": "/api/v1/raw/..."
+  },
+  {
+    "source": "docs/01_project_reference/backend/api_contracts.md",
+    "endpoint": "/api/v1/exports"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/auth"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/stations"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/geojson"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/measurements"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/alerts"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/meta"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/raw"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/entities"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/layers"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/names"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/users"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/security"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/admin/data-availability"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/admin/password-reset-requests"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/admin/users"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/climate"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/hydro"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/quality"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/observatory"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/analytics"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/swat"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/api/v1/swat/analysis"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/ingestion"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/layers/configs"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/stations.py"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/measurements.py"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/swat_analysis.py"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/swat/analysis"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/01_project_reference/backend/backend_overview.md",
+    "endpoint": "/api/v1/api/v1/swat/analysis/"
+  },
+  {
+    "source": "docs/01_project_reference/backend/traceability_matrix.md",
+    "endpoint": "/api/v1/meteo/precipitations/timeseries"
+  },
+  {
+    "source": "docs/01_project_reference/backend/traceability_matrix.md",
+    "endpoint": "/api/v1/meteo/temperatures/timeseries"
+  },
+  {
+    "source": "docs/01_project_reference/backend/traceability_matrix.md",
+    "endpoint": "/api/v1/hydro/debits/timeseries"
+  },
+  {
+    "source": "docs/01_project_reference/backend/traceability_matrix.md",
+    "endpoint": "/api/v1/hydro/debits/fdc"
+  },
+  {
+    "source": "docs/01_project_reference/backend/traceability_matrix.md",
+    "endpoint": "/api/v1/qualite/analyses/timeseries"
+  },
+  {
+    "source": "docs/01_project_reference/backend/traceability_matrix.md",
+    "endpoint": "/api/v1/map/overview"
+  },
+  {
+    "source": "docs/01_project_reference/backend/traceability_matrix.md",
+    "endpoint": "/api/v1/map/layers/quality-status"
+  },
+  {
+    "source": "docs/01_project_reference/backend/traceability_matrix.md",
+    "endpoint": "/api/v1/raw/{schema}/{table}"
+  },
+  {
+    "source": "docs/01_project_reference/data/API_DATA_MAPPING.md",
+    "endpoint": "/api/v1/layers"
+  },
+  {
+    "source": "docs/01_project_reference/data/API_DATA_MAPPING.md",
+    "endpoint": "/api/v1/geojson"
+  },
+  {
+    "source": "docs/01_project_reference/data/API_DATA_MAPPING.md",
+    "endpoint": "/api/v1/observatory"
+  },
+  {
+    "source": "docs/01_project_reference/data/API_DATA_MAPPING.md",
+    "endpoint": "/api/v1/analytics"
+  },
+  {
+    "source": "docs/01_project_reference/data/API_DATA_MAPPING.md",
+    "endpoint": "/api/v1/climate"
+  },
+  {
+    "source": "docs/01_project_reference/data/API_DATA_MAPPING.md",
+    "endpoint": "/api/v1/observatory"
+  },
+  {
+    "source": "docs/01_project_reference/data/API_DATA_MAPPING.md",
+    "endpoint": "/api/v1/analytics"
+  },
+  {
+    "source": "docs/01_project_reference/data/API_DATA_MAPPING.md",
+    "endpoint": "/api/v1/hydro"
+  },
+  {
+    "source": "docs/01_project_reference/data/API_DATA_MAPPING.md",
+    "endpoint": "/api/v1/observatory"
+  },
+  {
+    "source": "docs/01_project_reference/data/API_DATA_MAPPING.md",
+    "endpoint": "/api/v1/analytics"
+  },
+  {
+    "source": "docs/01_project_reference/data/API_DATA_MAPPING.md",
+    "endpoint": "/api/v1/quality"
+  },
+  {
+    "source": "docs/01_project_reference/data/API_DATA_MAPPING.md",
+    "endpoint": "/api/v1/observatory"
+  },
+  {
+    "source": "docs/01_project_reference/data/API_DATA_MAPPING.md",
+    "endpoint": "/api/v1/ingestion/"
+  },
+  {
+    "source": "docs/01_project_reference/data/API_DATA_MAPPING.md",
+    "endpoint": "/api/v1/auth"
+  },
+  {
+    "source": "docs/01_project_reference/data/API_DATA_MAPPING.md",
+    "endpoint": "/api/v1/admin/users"
+  },
+  {
+    "source": "docs/01_project_reference/data/API_DATA_MAPPING.md",
+    "endpoint": "/api/v1/admin/password-resets"
+  },
+  {
+    "source": "docs/01_project_reference/data/API_DATA_MAPPING.md",
+    "endpoint": "/api/v1/security/logs"
+  },
+  {
+    "source": "docs/01_project_reference/deployment_operations/deployment_and_operations.md",
+    "endpoint": "/health"
+  },
+  {
+    "source": "docs/01_project_reference/deployment_operations/deployment_and_operations.md",
+    "endpoint": "/docs"
+  },
+  {
+    "source": "docs/01_project_reference/deployment_operations/deployment_and_operations.md",
+    "endpoint": "/api/v1/observatory/mviews/status"
+  },
+  {
+    "source": "docs/01_project_reference/deployment_operations/deployment_and_operations.md",
+    "endpoint": "/api/v1/observatory/mviews/refresh"
+  },
+  {
+    "source": "docs/01_project_reference/document_control/docs_restructuring_audit_2026-04-10.md",
+    "endpoint": "/docs"
+  },
+  {
+    "source": "docs/01_project_reference/frontend/frontend_reference.md",
+    "endpoint": "/api/v1/admin/data-availability/"
+  },
+  {
+    "source": "docs/01_project_reference/frontend/frontend_reference.md",
+    "endpoint": "/api/v1/users/"
+  },
+  {
+    "source": "docs/01_project_reference/frontend/frontend_reference.md",
+    "endpoint": "/api/v1/security/logs/"
+  },
+  {
+    "source": "docs/01_project_reference/frontend/frontend_reference.md",
+    "endpoint": "/api/v1/admin/password-reset-requests/"
+  },
+  {
+    "source": "docs/01_project_reference/frontend/frontend_reference.md",
+    "endpoint": "/api/v1/ingestion/"
+  },
+  {
+    "source": "docs/01_project_reference/frontend/frontend_reference.md",
+    "endpoint": "/api/v1/layers/configs/"
+  },
+  {
+    "source": "docs/01_project_reference/frontend/frontend_reference.md",
+    "endpoint": "/api/v1/raw/"
+  },
+  {
+    "source": "docs/01_project_reference/frontend/frontend_reference.md",
+    "endpoint": "/api/v1/analytics/"
+  },
+  {
+    "source": "docs/01_project_reference/frontend/frontend_reference.md",
+    "endpoint": "/api/v1/observatory/"
+  },
+  {
+    "source": "docs/01_project_reference/frontend/frontend_reference.md",
+    "endpoint": "/api/v1/climate/"
+  },
+  {
+    "source": "docs/01_project_reference/frontend/frontend_reference.md",
+    "endpoint": "/api/v1/hydro/"
+  },
+  {
+    "source": "docs/01_project_reference/frontend/frontend_reference.md",
+    "endpoint": "/api/v1/quality/"
+  },
+  {
+    "source": "docs/01_project_reference/frontend/frontend_reference.md",
+    "endpoint": "/api/v1/swat/"
+  },
+  {
+    "source": "docs/01_project_reference/frontend/frontend_reference.md",
+    "endpoint": "/api/v1/swat/analysis/"
+  },
+  {
+    "source": "docs/01_project_reference/frontend/frontend_reference.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "docs/01_project_reference/frontend/frontend_reference.md",
+    "endpoint": "/api/v1/quality/"
+  },
+  {
+    "source": "docs/01_project_reference/frontend/frontend_reference.md",
+    "endpoint": "/api/v1/api/v1/swat/analysis/"
+  },
+  {
+    "source": "backend/README.md",
+    "endpoint": "/docs"
+  },
+  {
+    "source": "backend/README.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "backend/tmp_test_layers.py",
+    "endpoint": "/api/v1/layers/bassin_sebou"
+  },
+  {
+    "source": "backend/tmp_test_layers.py",
+    "endpoint": "/api/v1/layers/reseau_hydro_abhs"
+  },
+  {
+    "source": "backend/app/main.py",
+    "endpoint": "/health"
+  },
+  {
+    "source": "backend/app/main.py",
+    "endpoint": "/docs"
+  },
+  {
+    "source": "backend/app/main.py",
+    "endpoint": "/openapi.json"
+  },
+  {
+    "source": "backend/app/main.py",
+    "endpoint": "/api/v1/security/logs"
+  },
+  {
+    "source": "backend/app/main.py",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "backend/app/main.py",
+    "endpoint": "/docs"
+  },
+  {
+    "source": "backend/app/main.py",
+    "endpoint": "/health"
+  },
+  {
+    "source": "backend/scripts/audit_ab_lot1_barrages.py",
+    "endpoint": "/docs/12_lot1_barrages_audit_ab.md"
+  },
+  {
+    "source": "backend/scripts/audit_ab_lot2_stations.py",
+    "endpoint": "/docs/12_lot2_stations_audit_ab.md"
+  },
+  {
+    "source": "backend/scripts/audit_ab_lot3a_debits.py",
+    "endpoint": "/docs/12_lot3a_debits_audit_ab.md"
+  },
+  {
+    "source": "backend/scripts/audit_ab_lot3b_meteo.py",
+    "endpoint": "/docs/12_lot3b_meteo_audit_ab.md"
+  },
+  {
+    "source": "backend/scripts/audit_ab_lot4a3_barrages.py",
+    "endpoint": "/docs/12_lot4a3_barrages_audit_ab.md"
+  },
+  {
+    "source": "backend/scripts/audit_ab_lot4a4_idp.py",
+    "endpoint": "/docs/12_lot4a4_idp_audit_ab.md"
+  },
+  {
+    "source": "backend/scripts/audit_ab_lot4a4_idp.py",
+    "endpoint": "/docs/15_registre_anomalies_metier.md"
+  },
+  {
+    "source": "backend/scripts/audit_ab_lot4a4_idp.py",
+    "endpoint": "/docs/18_rapport_validation_client_idp.md"
+  },
+  {
+    "source": "backend/scripts/audit_ab_lot4a4_idp.py",
+    "endpoint": "/docs/19_synthese_interne_idp.md"
+  },
+  {
+    "source": "backend/scripts/audit_ab_lot4a_qualite.py",
+    "endpoint": "/docs/12_lot4a_qualite_audit_ab.md"
+  },
+  {
+    "source": "backend/scripts/audit_global_generator.py",
+    "endpoint": "/docs/audit_abh_sebou_070426_complet.md"
+  },
+  {
+    "source": "backend/scripts/audit_global_generator.py",
+    "endpoint": "/docs/audit_abh_sebou_070426_summary.json"
+  },
+  {
+    "source": "backend/scripts/audit_idp_qualite.py",
+    "endpoint": "/docs/06_audit_idp_qualite.md"
+  },
+  {
+    "source": "backend/scripts/generate_decision_catalog.py",
+    "endpoint": "/docs/audit_abh_sebou_070426_summary.json"
+  },
+  {
+    "source": "backend/scripts/generate_decision_catalog.py",
+    "endpoint": "/docs/11_catalogue_decision_tables.md"
+  },
+  {
+    "source": "backend/scripts/lot1_barrages_dry_run.py",
+    "endpoint": "/docs/14_lot1_barrages_dry_run_resultats.md"
+  },
+  {
+    "source": "backend/scripts/lot2_stations_dry_run.py",
+    "endpoint": "/docs/14_lot2_stations_dry_run_resultats.md"
+  },
+  {
+    "source": "backend/scripts/lot3a2_debits_mensuels_debug.py",
+    "endpoint": "/docs/12_lot3a2_mensuels_debug.md"
+  },
+  {
+    "source": "backend/scripts/lot3a2_debits_mensuels_dry_run_fix.py",
+    "endpoint": "/docs/14_lot3a2_debits_mensuels_dry_run_fix_resultats.md"
+  },
+  {
+    "source": "backend/scripts/lot3a_debits_dry_run.py",
+    "endpoint": "/docs/14_lot3a_debits_dry_run_resultats.md"
+  },
+  {
+    "source": "backend/scripts/lot3b_meteo_dry_run.py",
+    "endpoint": "/docs/14_lot3b_meteo_dry_run_resultats.md"
+  },
+  {
+    "source": "backend/scripts/lot4a1_dict_param_analyzer.py",
+    "endpoint": "/docs/12_lot4a1_dictionnaire_parametres.md"
+  },
+  {
+    "source": "backend/scripts/lot4a2_qualite_dry_run.py",
+    "endpoint": "/docs/14_lot4a2_qualite_dry_run_resultats.md"
+  },
+  {
+    "source": "backend/scripts/lot4a2_updates_analyzer.py",
+    "endpoint": "/docs/14_lot4a2_updates_detail.md"
+  },
+  {
+    "source": "backend/scripts/lot4a3_barrages_dry_run.py",
+    "endpoint": "/docs/14_lot4a3_barrages_dry_run_resultats.md"
+  },
+  {
+    "source": "backend/scripts/lot4a3_station_updates_resolver.py",
+    "endpoint": "/docs/14_lot4a3_garde_sebou_station_resolution.md"
+  },
+  {
+    "source": "backend/scripts/lot4a3_station_updates_resolver.py",
+    "endpoint": "/docs/14_lot4a3_barrages_updates_detail.md"
+  },
+  {
+    "source": "backend/scripts/smoke_observatory_popup_rules.py",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "backend/scripts/smoke_observatory_popup_rules.py",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "backend/scripts/smoke_observatory_popup_rules.py",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "backend/scripts/smoke_observatory_popup_rules.py",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "backend/scripts/strict_closure_audit.py",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "backend/scripts/strict_closure_audit.py",
+    "endpoint": "/health"
+  },
+  {
+    "source": "backend/scripts/strict_closure_audit.py",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "backend/tests/test_qualite_specialized_api.py",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "backend/tests/test_qualite_specialized_api.py",
+    "endpoint": "/openapi.json"
+  },
+  {
+    "source": "backend/tests/test_qualite_specialized_api.py",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "backend/tests/test_qualite_specialized_api.py",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "backend/tests/test_qualite_specialized_api.py",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "backend/tests/test_qualite_specialized_api.py",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "backend/tests/test_qualite_specialized_api.py",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "backend/tests/test_qualite_specialized_api.py",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "backend/tests/test_qualite_specialized_api.py",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "backend/tests/test_qualite_specialized_api.py",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "backend/tests/test_qualite_specialized_api.py",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "backend/tests/test_qualite_specialized_api.py",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "backend/tests/test_qualite_specialized_api.py",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "backend/tests/test_qualite_specialized_api.py",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "backend/tests/test_qualite_specialized_api.py",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "backend/tests/test_qualite_specialized_api.py",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "backend/tests/test_qualite_specialized_api.py",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "backend/tests/test_qualite_specialized_api.py",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "backend/tests/test_runtime_optional_swat.py",
+    "endpoint": "/health"
+  },
+  {
+    "source": "backend/tests/test_runtime_optional_swat.py",
+    "endpoint": "/docs"
+  },
+  {
+    "source": "backend/tests/test_runtime_optional_swat.py",
+    "endpoint": "/openapi.json"
+  },
+  {
+    "source": "backend/tests/test_runtime_optional_swat.py",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "backend/tests/test_runtime_optional_swat.py",
+    "endpoint": "/api/v1/swat/analysis/status"
+  },
+  {
+    "source": "backend/tests/test_runtime_optional_swat.py",
+    "endpoint": "/api/v1/ingestion/upload"
+  },
+  {
+    "source": "backend/tests/test_runtime_optional_swat.py",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "backend/app/api/deps.py",
+    "endpoint": "/api/v1/auth/login"
+  },
+  {
+    "source": "backend/app/routers/api.py",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "backend/app/routers/stations.py",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "backend/app/security/deps.py",
+    "endpoint": "/api/v1/auth/login"
+  },
+  {
+    "source": "backend/app/api/v1/alerts.py",
+    "endpoint": "/api/v1/alerts.py"
+  },
+  {
+    "source": "backend/app/api/v1/api_router.py",
+    "endpoint": "/api/v1/api_router.py"
+  },
+  {
+    "source": "backend/app/api/v1/api_router.py",
+    "endpoint": "/api/v1/catalog/..."
+  },
+  {
+    "source": "backend/app/api/v1/auth.py",
+    "endpoint": "/api/v1/auth.py"
+  },
+  {
+    "source": "backend/app/api/v1/geojson.py",
+    "endpoint": "/api/v1/geojson.py"
+  },
+  {
+    "source": "backend/app/api/v1/hydro.py",
+    "endpoint": "/api/v1/hydro.py"
+  },
+  {
+    "source": "backend/app/api/v1/items.py",
+    "endpoint": "/api/v1/items.py"
+  },
+  {
+    "source": "backend/app/api/v1/map.py",
+    "endpoint": "/api/v1/layers/bassin_sebou"
+  },
+  {
+    "source": "backend/app/api/v1/map.py",
+    "endpoint": "/api/v1/layers/sous_bassin_sebou"
+  },
+  {
+    "source": "backend/app/api/v1/map.py",
+    "endpoint": "/api/v1/layers/reseau_hydro_abhs"
+  },
+  {
+    "source": "backend/app/api/v1/map.py",
+    "endpoint": "/api/v1/layers/barrages_abhs"
+  },
+  {
+    "source": "backend/app/api/v1/map.py",
+    "endpoint": "/api/v1/layers/step_abhs"
+  },
+  {
+    "source": "backend/app/api/v1/map.py",
+    "endpoint": "/api/v1/layers/rejets_industriels_abhs"
+  },
+  {
+    "source": "backend/app/api/v1/map.py",
+    "endpoint": "/api/v1/layers/rejets_domestiques_abhs"
+  },
+  {
+    "source": "backend/app/api/v1/meta.py",
+    "endpoint": "/api/v1/meta.py"
+  },
+  {
+    "source": "backend/app/api/v1/raw.py",
+    "endpoint": "/api/v1/raw.py"
+  },
+  {
+    "source": "backend/app/api/v1/stations.py",
+    "endpoint": "/api/v1/stations.py"
+  },
+  {
+    "source": "backend/app/api/v1/swat.py",
+    "endpoint": "/api/v1/swat.py"
+  },
+  {
+    "source": "backend/app/api/v1/swat_analysis.py",
+    "endpoint": "/api/v1/swat_analysis.py"
+  },
+  {
+    "source": "frontend/README.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "frontend/src/api/client.ts",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "frontend/src/api/client.ts",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "frontend/src/api/hydroqual.js",
+    "endpoint": "/api/v1/stations"
+  },
+  {
+    "source": "frontend/src/api/hydroqual.js",
+    "endpoint": "/api/v1/alerts"
+  },
+  {
+    "source": "frontend/src/api/hydroqual.js",
+    "endpoint": "/api/v1/stations/"
+  },
+  {
+    "source": "frontend/src/api/mapBusiness.ts",
+    "endpoint": "/api/v1/map/entities"
+  },
+  {
+    "source": "frontend/src/config/decisionDashboardCatalog.ts",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "frontend/src/config/decisionDashboardCatalog.ts",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "frontend/src/config/decisionDashboardCatalog.ts",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "frontend/src/config/decisionDashboardCatalog.ts",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "frontend/src/config/observatoryCatalog.ts",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "frontend/src/config/observatoryCatalog.ts",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "frontend/src/config/observatoryCatalog.ts",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "frontend/src/config/observatoryCatalog.ts",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "frontend/src/lib/api.ts",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "frontend/src/lib/api.ts",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "frontend/src/pages/Dashboard1.tsx",
+    "endpoint": "/api/v1/geojson/"
+  },
+  {
+    "source": "frontend/src/pages/DashboardCartoMetier.tsx",
+    "endpoint": "/api/v1/map/catalog"
+  },
+  {
+    "source": "frontend/src/pages/PollutionIdpDevPage.tsx",
+    "endpoint": "/api/v1/pollution/sites.geojson"
+  },
+  {
+    "source": "frontend/src/pages/qualite/MetauxPage.tsx",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "frontend/src/components/Dashboard/AlertPanel.jsx",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "frontend/src/components/Dashboard/AlertPanel.jsx",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "frontend/src/components/Tables/LatestMeasuresTable.jsx",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "frontend/dist/assets/DecisionDashboardTest-B_hmKitt.js",
+    "endpoint": "/api/v1/qualite/metaux"
+  },
+  {
+    "source": "frontend/dist/assets/DecisionDashboardTest-B_hmKitt.js",
+    "endpoint": "/api/v1/qualite/pollution-organique"
+  },
+  {
+    "source": "frontend/dist/assets/DecisionDashboardTest-B_hmKitt.js",
+    "endpoint": "/api/v1/qualite/chimie-minerale"
+  },
+  {
+    "source": "frontend/dist/assets/DecisionDashboardTest-B_hmKitt.js",
+    "endpoint": "/api/v1/qualite/physicochimie"
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "endpoint": "/api/v1/layers"
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "endpoint": "/api/v1/geojson"
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "endpoint": "/api/v1/observatory"
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "endpoint": "/api/v1/analytics"
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "endpoint": "/api/v1/climate"
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "endpoint": "/api/v1/observatory"
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "endpoint": "/api/v1/analytics"
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "endpoint": "/api/v1/hydro"
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "endpoint": "/api/v1/observatory"
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "endpoint": "/api/v1/analytics"
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "endpoint": "/api/v1/quality"
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "endpoint": "/api/v1/observatory"
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "endpoint": "/api/v1/ingestion/"
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "endpoint": "/api/v1/auth"
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "endpoint": "/api/v1/admin/users"
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "endpoint": "/api/v1/admin/password-resets"
+  },
+  {
+    "source": "scripts/render_db_docs_from_snapshot.py",
+    "endpoint": "/api/v1/security/logs"
+  },
+  {
+    "source": "README.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "README.md",
+    "endpoint": "/api/v1"
+  },
+  {
+    "source": "README.md",
+    "endpoint": "/api/v1/observatory/mviews/refresh"
+  },
+  {
+    "source": "README.md",
+    "endpoint": "/api/v1/observatory/mviews/status"
+  }
+]

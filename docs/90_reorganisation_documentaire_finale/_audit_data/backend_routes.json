@@ -1,0 +1,274 @@
+[
+  {
+    "path": "backend/app/main.py",
+    "prefixes": [],
+    "route_count": 0
+  },
+  {
+    "path": "backend/app/api/api_v1.py",
+    "prefixes": [
+      "/admin",
+      "/analytics",
+      "/climate",
+      "/hydro",
+      "/layers",
+      "/names",
+      "/quality",
+      "/routing"
+    ],
+    "route_count": 0
+  },
+  {
+    "path": "backend/app/api/items.py",
+    "prefixes": [
+      "/items"
+    ],
+    "route_count": 2
+  },
+  {
+    "path": "backend/app/api/__init__.py",
+    "prefixes": [
+      "/layers"
+    ],
+    "route_count": 0
+  },
+  {
+    "path": "backend/app/routers/admin_data_scan.py",
+    "prefixes": [],
+    "route_count": 1
+  },
+  {
+    "path": "backend/app/routers/admin_password_resets.py",
+    "prefixes": [
+      "/password-reset-requests"
+    ],
+    "route_count": 3
+  },
+  {
+    "path": "backend/app/routers/admin_users.py",
+    "prefixes": [
+      "/users"
+    ],
+    "route_count": 1
+  },
+  {
+    "path": "backend/app/routers/analytics.py",
+    "prefixes": [],
+    "route_count": 9
+  },
+  {
+    "path": "backend/app/routers/api.py",
+    "prefixes": [
+      "/api/v1"
+    ],
+    "route_count": 3
+  },
+  {
+    "path": "backend/app/routers/catalog.py",
+    "prefixes": [
+      "/catalog"
+    ],
+    "route_count": 4
+  },
+  {
+    "path": "backend/app/routers/climate.py",
+    "prefixes": [],
+    "route_count": 5
+  },
+  {
+    "path": "backend/app/routers/entities.py",
+    "prefixes": [],
+    "route_count": 6
+  },
+  {
+    "path": "backend/app/routers/geojson.py",
+    "prefixes": [
+      "/geojson"
+    ],
+    "route_count": 3
+  },
+  {
+    "path": "backend/app/routers/hydro.py",
+    "prefixes": [],
+    "route_count": 7
+  },
+  {
+    "path": "backend/app/routers/ingestion.py",
+    "prefixes": [
+      "/ingestion"
+    ],
+    "route_count": 11
+  },
+  {
+    "path": "backend/app/routers/layers.py",
+    "prefixes": [],
+    "route_count": 3
+  },
+  {
+    "path": "backend/app/routers/layer_configs.py",
+    "prefixes": [
+      "/layers/configs"
+    ],
+    "route_count": 5
+  },
+  {
+    "path": "backend/app/routers/measurements.py",
+    "prefixes": [
+      "/stations"
+    ],
+    "route_count": 1
+  },
+  {
+    "path": "backend/app/routers/names.py",
+    "prefixes": [],
+    "route_count": 1
+  },
+  {
+    "path": "backend/app/routers/objects.py",
+    "prefixes": [],
+    "route_count": 2
+  },
+  {
+    "path": "backend/app/routers/observatory.py",
+    "prefixes": [
+      "/observatory"
+    ],
+    "route_count": 29
+  },
+  {
+    "path": "backend/app/routers/quality.py",
+    "prefixes": [],
+    "route_count": 9
+  },
+  {
+    "path": "backend/app/routers/stations.py",
+    "prefixes": [
+      "/api/v1"
+    ],
+    "route_count": 1
+  },
+  {
+    "path": "backend/app/security/routes_logs.py",
+    "prefixes": [
+      "/security"
+    ],
+    "route_count": 2
+  },
+  {
+    "path": "backend/app/security/routes_users.py",
+    "prefixes": [
+      "/users"
+    ],
+    "route_count": 7
+  },
+  {
+    "path": "backend/app/api/v1/alerts.py",
+    "prefixes": [
+      "/alerts"
+    ],
+    "route_count": 1
+  },
+  {
+    "path": "backend/app/api/v1/api_router.py",
+    "prefixes": [
+      "/catalog",
+      "/layers",
+      "/names"
+    ],
+    "route_count": 0
+  },
+  {
+    "path": "backend/app/api/v1/auth.py",
+    "prefixes": [
+      "/auth"
+    ],
+    "route_count": 7
+  },
+  {
+    "path": "backend/app/api/v1/geojson.py",
+    "prefixes": [
+      "/geojson"
+    ],
+    "route_count": 1
+  },
+  {
+    "path": "backend/app/api/v1/hydro.py",
+    "prefixes": [],
+    "route_count": 1
+  },
+  {
+    "path": "backend/app/api/v1/items.py",
+    "prefixes": [
+      "/items"
+    ],
+    "route_count": 5
+  },
+  {
+    "path": "backend/app/api/v1/map.py",
+    "prefixes": [
+      "/map"
+    ],
+    "route_count": 8
+  },
+  {
+    "path": "backend/app/api/v1/measurements.py",
+    "prefixes": [
+      "/stations"
+    ],
+    "route_count": 1
+  },
+  {
+    "path": "backend/app/api/v1/meta.py",
+    "prefixes": [
+      "/meta"
+    ],
+    "route_count": 5
+  },
+  {
+    "path": "backend/app/api/v1/pollution.py",
+    "prefixes": [
+      "/pollution"
+    ],
+    "route_count": 2
+  },
+  {
+    "path": "backend/app/api/v1/qualite_specialized.py",
+    "prefixes": [
+      "/qualite"
+    ],
+    "route_count": 4
+  },
+  {
+    "path": "backend/app/api/v1/raw.py",
+    "prefixes": [
+      "/raw"
+    ],
+    "route_count": 6
+  },
+  {
+    "path": "backend/app/api/v1/routing.py",
+    "prefixes": [],
+    "route_count": 3
+  },
+  {
+    "path": "backend/app/api/v1/stations.py",
+    "prefixes": [
+      "/stations"
+    ],
+    "route_count": 1
+  },
+  {
+    "path": "backend/app/api/v1/swat.py",
+    "prefixes": [
+      "/swat"
+    ],
+    "route_count": 4
+  },
+  {
+    "path": "backend/app/api/v1/swat_analysis.py",
+    "prefixes": [
+      "/swat/analysis"
+    ],
+    "route_count": 2
+  }
+]

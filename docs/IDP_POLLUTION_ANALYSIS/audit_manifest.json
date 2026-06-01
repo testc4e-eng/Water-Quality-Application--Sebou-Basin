@@ -1,0 +1,247 @@
+{
+  "audit_timestamp_utc": "2026-05-18T08:58:35.932314+00:00",
+  "mode": "read_only_no_database_connection",
+  "source_dir": "C:\\dev\\WQDSS\\data\\Qualité & pollution shp\\processed",
+  "repo_root": "C:\\dev\\WQDSS\\repo_git",
+  "tools": {
+    "python": "3.14.2",
+    "platform": "Windows-11-10.0.22000-SP0",
+    "gdal_ogrinfo": "GDAL 3.9.2, released 2024/08/13",
+    "read_engine": "GDAL ogrinfo/ogr2ogr CLI + Python stdlib CSV parser",
+    "note": "pandas/geopandas/pyogrio avoided because local NumPy import crashes in this runtime"
+  },
+  "layers": {
+    "idp_src_pollution_globale": {
+      "role": "inventaire",
+      "components": {
+        ".shp": {
+          "path": "C:\\dev\\WQDSS\\data\\Qualité & pollution shp\\processed\\idp_src_pollution_globale.shp",
+          "exists": true,
+          "size_bytes": 6328,
+          "mtime": "2026-05-18T09:07:33.780985",
+          "sha256": "4472cd732c5b2bb90dfd6b565aaad05db419231badfceb5f9016547556772bf0"
+        },
+        ".shx": {
+          "path": "C:\\dev\\WQDSS\\data\\Qualité & pollution shp\\processed\\idp_src_pollution_globale.shx",
+          "exists": true,
+          "size_bytes": 2044,
+          "mtime": "2026-05-18T09:07:33.780985",
+          "sha256": "6584f27fda4ed8ccde4ee048a4883251807fa93abacfe6557545618c6a31d44f"
+        },
+        ".dbf": {
+          "path": "C:\\dev\\WQDSS\\data\\Qualité & pollution shp\\processed\\idp_src_pollution_globale.dbf",
+          "exists": true,
+          "size_bytes": 1865949,
+          "mtime": "2026-05-18T09:07:33.780985",
+          "sha256": "bf1f5cf1934064b8233c7453598e6ddcb315256889e9af535650df3ea06fa364"
+        },
+        ".prj": {
+          "path": "C:\\dev\\WQDSS\\data\\Qualité & pollution shp\\processed\\idp_src_pollution_globale.prj",
+          "exists": true,
+          "size_bytes": 453,
+          "mtime": "2026-05-18T09:07:33.749373",
+          "sha256": "90bb891d46d0e01c8606538c221a9e61c0bcdc1efb7017e5ceea0a98c065ea6c"
+        },
+        ".cpg": {
+          "path": "C:\\dev\\WQDSS\\data\\Qualité & pollution shp\\processed\\idp_src_pollution_globale.cpg",
+          "exists": true,
+          "size_bytes": 5,
+          "mtime": "2026-05-18T09:07:33.748757",
+          "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824"
+        }
+      },
+      "encoding_cpg": "UTF-8",
+      "crs": "EPSG:26191",
+      "geometry_type": "Point",
+      "feature_count": 243,
+      "field_count": 43,
+      "extent": "(379171.000000, 294194.000000) - (633742.000000, 495449.000000)",
+      "geometry_quality": {
+        "null": 36,
+        "empty": 0,
+        "invalid": 0
+      },
+      "coordinate_quality": {
+        "point_count": 207,
+        "min_x": 379171.0,
+        "max_x": 633742.0,
+        "min_y": 294194.0,
+        "max_y": 495449.0
+      }
+    },
+    "idp_src_pollution_marche_cadre": {
+      "role": "inventaire",
+      "components": {
+        ".shp": {
+          "path": "C:\\dev\\WQDSS\\data\\Qualité & pollution shp\\processed\\idp_src_pollution_marche_cadre.shp",
+          "exists": true,
+          "size_bytes": 101292,
+          "mtime": "2026-05-18T09:08:29.859166",
+          "sha256": "5d12a9f13b5c0c8a32d13832aff239bff10f95c04298c4febf7ca62fe6b0fde8"
+        },
+        ".shx": {
+          "path": "C:\\dev\\WQDSS\\data\\Qualité & pollution shp\\processed\\idp_src_pollution_marche_cadre.shx",
+          "exists": true,
+          "size_bytes": 29012,
+          "mtime": "2026-05-18T09:08:29.859166",
+          "sha256": "64b1748a07d0dc5a71199cc903eb5655955419961260deea4b42cf7d996bc0de"
+        },
+        ".dbf": {
+          "path": "C:\\dev\\WQDSS\\data\\Qualité & pollution shp\\processed\\idp_src_pollution_marche_cadre.dbf",
+          "exists": true,
+          "size_bytes": 11258156,
+          "mtime": "2026-05-18T09:08:29.859166",
+          "sha256": "563760eed37aa3de8ff52642b5dd715bb79a7abf6a23f7a058504ce7e91e0867"
+        },
+        ".prj": {
+          "path": "C:\\dev\\WQDSS\\data\\Qualité & pollution shp\\processed\\idp_src_pollution_marche_cadre.prj",
+          "exists": true,
+          "size_bytes": 453,
+          "mtime": "2026-05-18T09:08:29.389438",
+          "sha256": "90bb891d46d0e01c8606538c221a9e61c0bcdc1efb7017e5ceea0a98c065ea6c"
+        },
+        ".cpg": {
+          "path": "C:\\dev\\WQDSS\\data\\Qualité & pollution shp\\processed\\idp_src_pollution_marche_cadre.cpg",
+          "exists": true,
+          "size_bytes": 5,
+          "mtime": "2026-05-18T09:08:29.389438",
+          "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824"
+        }
+      },
+      "encoding_cpg": "UTF-8",
+      "crs": "EPSG:26191",
+      "geometry_type": "Point",
+      "feature_count": 3614,
+      "field_count": 16,
+      "extent": "(377613.000000, 283900.000000) - (626964.000000, 491230.000000)",
+      "geometry_quality": {
+        "null": 0,
+        "empty": 0,
+        "invalid": 0
+      },
+      "coordinate_quality": {
+        "point_count": 3614,
+        "min_x": 377613.0,
+        "max_x": 626964.0,
+        "min_y": 283900.0,
+        "max_y": 491230.0
+      }
+    },
+    "idp_mesures_qualité_marche_cadre_2024": {
+      "role": "mesures",
+      "components": {
+        ".shp": {
+          "path": "C:\\dev\\WQDSS\\data\\Qualité & pollution shp\\processed\\idp_mesures_qualité_marche_cadre_2024.shp",
+          "exists": true,
+          "size_bytes": 101292,
+          "mtime": "2026-05-18T09:10:50.037242",
+          "sha256": "5d12a9f13b5c0c8a32d13832aff239bff10f95c04298c4febf7ca62fe6b0fde8"
+        },
+        ".shx": {
+          "path": "C:\\dev\\WQDSS\\data\\Qualité & pollution shp\\processed\\idp_mesures_qualité_marche_cadre_2024.shx",
+          "exists": true,
+          "size_bytes": 29012,
+          "mtime": "2026-05-18T09:10:50.037242",
+          "sha256": "64b1748a07d0dc5a71199cc903eb5655955419961260deea4b42cf7d996bc0de"
+        },
+        ".dbf": {
+          "path": "C:\\dev\\WQDSS\\data\\Qualité & pollution shp\\processed\\idp_mesures_qualité_marche_cadre_2024.dbf",
+          "exists": true,
+          "size_bytes": 11258156,
+          "mtime": "2026-05-18T09:10:50.037242",
+          "sha256": "563760eed37aa3de8ff52642b5dd715bb79a7abf6a23f7a058504ce7e91e0867"
+        },
+        ".prj": {
+          "path": "C:\\dev\\WQDSS\\data\\Qualité & pollution shp\\processed\\idp_mesures_qualité_marche_cadre_2024.prj",
+          "exists": true,
+          "size_bytes": 453,
+          "mtime": "2026-05-18T09:10:49.655567",
+          "sha256": "90bb891d46d0e01c8606538c221a9e61c0bcdc1efb7017e5ceea0a98c065ea6c"
+        },
+        ".cpg": {
+          "path": "C:\\dev\\WQDSS\\data\\Qualité & pollution shp\\processed\\idp_mesures_qualité_marche_cadre_2024.cpg",
+          "exists": true,
+          "size_bytes": 5,
+          "mtime": "2026-05-18T09:10:49.639942",
+          "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824"
+        }
+      },
+      "encoding_cpg": "UTF-8",
+      "crs": "EPSG:26191",
+      "geometry_type": "Point",
+      "feature_count": 3614,
+      "field_count": 16,
+      "extent": "(377613.000000, 283900.000000) - (626964.000000, 491230.000000)",
+      "geometry_quality": {
+        "null": 0,
+        "empty": 0,
+        "invalid": 0
+      },
+      "coordinate_quality": {
+        "point_count": 3614,
+        "min_x": 377613.0,
+        "max_x": 626964.0,
+        "min_y": 283900.0,
+        "max_y": 491230.0
+      }
+    },
+    "idp_mesures_qualité_globale_2024": {
+      "role": "mesures",
+      "components": {
+        ".shp": {
+          "path": "C:\\dev\\WQDSS\\data\\Qualité & pollution shp\\processed\\idp_mesures_qualité_globale_2024.shp",
+          "exists": true,
+          "size_bytes": 132732,
+          "mtime": "2026-05-18T09:11:06.999835",
+          "sha256": "0fb5467382e90bae769a194da9d75e80715df0c8944edd6735fdea7bad424a30"
+        },
+        ".shx": {
+          "path": "C:\\dev\\WQDSS\\data\\Qualité & pollution shp\\processed\\idp_mesures_qualité_globale_2024.shx",
+          "exists": true,
+          "size_bytes": 39252,
+          "mtime": "2026-05-18T09:11:06.999835",
+          "sha256": "b8b7b430113240d0ec8feffb0224c90637e56f74d38a2c3fb2974a0e53f634c3"
+        },
+        ".dbf": {
+          "path": "C:\\dev\\WQDSS\\data\\Qualité & pollution shp\\processed\\idp_mesures_qualité_globale_2024.dbf",
+          "exists": true,
+          "size_bytes": 15245356,
+          "mtime": "2026-05-18T09:11:06.999835",
+          "sha256": "808fb2554f805a99f836e7479faef9e8f974d53996af3b9279f9db41446b68ff"
+        },
+        ".prj": {
+          "path": "C:\\dev\\WQDSS\\data\\Qualité & pollution shp\\processed\\idp_mesures_qualité_globale_2024.prj",
+          "exists": true,
+          "size_bytes": 453,
+          "mtime": "2026-05-18T09:11:06.542011",
+          "sha256": "90bb891d46d0e01c8606538c221a9e61c0bcdc1efb7017e5ceea0a98c065ea6c"
+        },
+        ".cpg": {
+          "path": "C:\\dev\\WQDSS\\data\\Qualité & pollution shp\\processed\\idp_mesures_qualité_globale_2024.cpg",
+          "exists": true,
+          "size_bytes": 5,
+          "mtime": "2026-05-18T09:11:06.538983",
+          "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824"
+        }
+      },
+      "encoding_cpg": "UTF-8",
+      "crs": "EPSG:26191",
+      "geometry_type": "Point",
+      "feature_count": 4894,
+      "field_count": 16,
+      "extent": "(0.000000, 0.000000) - (633742.000000, 495449.000000)",
+      "geometry_quality": {
+        "null": 275,
+        "empty": 0,
+        "invalid": 0
+      },
+      "coordinate_quality": {
+        "point_count": 4619,
+        "min_x": 392616.0,
+        "max_x": 633742.0,
+        "min_y": 300449.0,
+        "max_y": 495449.0
+      }
+    }
+  }
+}

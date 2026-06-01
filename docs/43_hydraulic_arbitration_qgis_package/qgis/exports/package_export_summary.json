@@ -1,0 +1,18 @@
+{
+  "gpkg": "C:\\dev\\WQDSS\\repo_git\\docs\\43_hydraulic_arbitration_qgis_package\\qgis\\exports\\hydraulic_arbitration_package.gpkg",
+  "layers": {
+    "hydraulic_direction_validation_all": 728,
+    "hydraulic_reversed_suspected": 139,
+    "hydraulic_flat_segments": 81,
+    "hydraulic_flow_confirmed": 508,
+    "hydraulic_nodes": 740,
+    "hydraulic_topology_nodes_degree": 740,
+    "reseau_hydrographique_source_readonly": 697,
+    "reseau_hydro_runtime_readonly": 728
+  },
+  "csv": {
+    "reversed_suspected_edges.csv": 139,
+    "flat_segments.csv": 81,
+    "hydraulic_arbitration_grid.csv": 220
+  }
+}

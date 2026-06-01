@@ -52,7 +52,7 @@ def layer_geojson(layer_key: str, limit: int = 10000):
         'features', COALESCE(jsonb_agg(
           jsonb_build_object(
             'type','Feature',
-            'geometry', ST_AsGeoJSON({geom_col})::jsonb,
+            'geometry', ST_AsGeoJSON(ST_Transform({geom_col}, 4326))::jsonb,
             'properties', to_jsonb(t) - '{geom_col}'
           )
         ), '[]'::jsonb)

@@ -1,0 +1,2912 @@
+[
+  {
+    "schema": "admin",
+    "table": "cercle",
+    "index": "adm_cercles_abhs_pkey",
+    "def": "CREATE UNIQUE INDEX adm_cercles_abhs_pkey ON admin.cercle USING btree (code_cercle)"
+  },
+  {
+    "schema": "admin",
+    "table": "cercle",
+    "index": "idx_admin_cercle_geom_gist_b793cad7",
+    "def": "CREATE INDEX idx_admin_cercle_geom_gist_b793cad7 ON admin.cercle USING gist (geom)"
+  },
+  {
+    "schema": "admin",
+    "table": "communes",
+    "index": "communes_abhs_new_pkey",
+    "def": "CREATE UNIQUE INDEX communes_abhs_new_pkey ON admin.communes USING btree (code_commune)"
+  },
+  {
+    "schema": "admin",
+    "table": "communes",
+    "index": "idx_admin_communes_geom_gist_a51b090b",
+    "def": "CREATE INDEX idx_admin_communes_geom_gist_a51b090b ON admin.communes USING gist (geom)"
+  },
+  {
+    "schema": "admin",
+    "table": "localite",
+    "index": "idx_admin_localite_geom_gist_d22b4c09",
+    "def": "CREATE INDEX idx_admin_localite_geom_gist_d22b4c09 ON admin.localite USING gist (geom)"
+  },
+  {
+    "schema": "admin",
+    "table": "localite",
+    "index": "localite_pkey",
+    "def": "CREATE UNIQUE INDEX localite_pkey ON admin.localite USING btree (id)"
+  },
+  {
+    "schema": "admin",
+    "table": "provinces",
+    "index": "adm_provinces_abhs_pkey",
+    "def": "CREATE UNIQUE INDEX adm_provinces_abhs_pkey ON admin.provinces USING btree (code_province)"
+  },
+  {
+    "schema": "admin",
+    "table": "provinces",
+    "index": "idx_admin_provinces_geom_gist_044a261d",
+    "def": "CREATE INDEX idx_admin_provinces_geom_gist_044a261d ON admin.provinces USING gist (geom)"
+  },
+  {
+    "schema": "admin",
+    "table": "regions",
+    "index": "adm_regions_abhs_pkey",
+    "def": "CREATE UNIQUE INDEX adm_regions_abhs_pkey ON admin.regions USING btree (code_region)"
+  },
+  {
+    "schema": "admin",
+    "table": "regions",
+    "index": "idx_admin_regions_geom_gist_50818664",
+    "def": "CREATE INDEX idx_admin_regions_geom_gist_50818664 ON admin.regions USING gist (geom)"
+  },
+  {
+    "schema": "analytics",
+    "table": "mv_dashboard_climat_meteo_menu",
+    "index": "idx_mv_dashboard_climat_meteo_menu_date",
+    "def": "CREATE INDEX idx_mv_dashboard_climat_meteo_menu_date ON analytics.mv_dashboard_climat_meteo_menu USING btree (date_obs)"
+  },
+  {
+    "schema": "analytics",
+    "table": "mv_dashboard_climat_meteo_menu",
+    "index": "idx_mv_dashboard_climat_meteo_menu_geom",
+    "def": "CREATE INDEX idx_mv_dashboard_climat_meteo_menu_geom ON analytics.mv_dashboard_climat_meteo_menu USING gist (geom)"
+  },
+  {
+    "schema": "analytics",
+    "table": "mv_dashboard_climat_meteo_menu",
+    "index": "idx_mv_dashboard_climat_meteo_menu_scenario",
+    "def": "CREATE INDEX idx_mv_dashboard_climat_meteo_menu_scenario ON analytics.mv_dashboard_climat_meteo_menu USING btree (scenario_code)"
+  },
+  {
+    "schema": "analytics",
+    "table": "mv_dashboard_climat_meteo_menu",
+    "index": "idx_mv_dashboard_climat_meteo_menu_site",
+    "def": "CREATE INDEX idx_mv_dashboard_climat_meteo_menu_site ON analytics.mv_dashboard_climat_meteo_menu USING btree (site_id)"
+  },
+  {
+    "schema": "analytics",
+    "table": "mv_dashboard_climat_meteo_menu",
+    "index": "idx_mv_dashboard_climat_meteo_menu_submenu",
+    "def": "CREATE INDEX idx_mv_dashboard_climat_meteo_menu_submenu ON analytics.mv_dashboard_climat_meteo_menu USING btree (submenu_code)"
+  },
+  {
+    "schema": "analytics",
+    "table": "mv_dashboard_climat_meteo_menu",
+    "index": "idx_mv_dashboard_climat_meteo_menu_uk",
+    "def": "CREATE UNIQUE INDEX idx_mv_dashboard_climat_meteo_menu_uk ON analytics.mv_dashboard_climat_meteo_menu USING btree (scenario_code, submenu_code, variable_code_nz, site_id, date_obs, source_table)"
+  },
+  {
+    "schema": "analytics",
+    "table": "mv_dashboard_climat_meteo_menu",
+    "index": "idx_mv_dashboard_climat_meteo_menu_variable",
+    "def": "CREATE INDEX idx_mv_dashboard_climat_meteo_menu_variable ON analytics.mv_dashboard_climat_meteo_menu USING btree (variable_code)"
+  },
+  {
+    "schema": "analytics",
+    "table": "mv_dashboard_hydrologie_menu",
+    "index": "idx_mv_dashboard_hydrologie_menu_date",
+    "def": "CREATE INDEX idx_mv_dashboard_hydrologie_menu_date ON analytics.mv_dashboard_hydrologie_menu USING btree (date_obs)"
+  },
+  {
+    "schema": "analytics",
+    "table": "mv_dashboard_hydrologie_menu",
+    "index": "idx_mv_dashboard_hydrologie_menu_geom",
+    "def": "CREATE INDEX idx_mv_dashboard_hydrologie_menu_geom ON analytics.mv_dashboard_hydrologie_menu USING gist (geom)"
+  },
+  {
+    "schema": "analytics",
+    "table": "mv_dashboard_hydrologie_menu",
+    "index": "idx_mv_dashboard_hydrologie_menu_scenario",
+    "def": "CREATE INDEX idx_mv_dashboard_hydrologie_menu_scenario ON analytics.mv_dashboard_hydrologie_menu USING btree (scenario_code)"
+  },
+  {
+    "schema": "analytics",
+    "table": "mv_dashboard_hydrologie_menu",
+    "index": "idx_mv_dashboard_hydrologie_menu_site",
+    "def": "CREATE INDEX idx_mv_dashboard_hydrologie_menu_site ON analytics.mv_dashboard_hydrologie_menu USING btree (site_id)"
+  },
+  {
+    "schema": "analytics",
+    "table": "mv_dashboard_hydrologie_menu",
+    "index": "idx_mv_dashboard_hydrologie_menu_submenu",
+    "def": "CREATE INDEX idx_mv_dashboard_hydrologie_menu_submenu ON analytics.mv_dashboard_hydrologie_menu USING btree (submenu_code)"
+  },
+  {
+    "schema": "analytics",
+    "table": "mv_dashboard_hydrologie_menu",
+    "index": "idx_mv_dashboard_hydrologie_menu_uk",
+    "def": "CREATE UNIQUE INDEX idx_mv_dashboard_hydrologie_menu_uk ON analytics.mv_dashboard_hydrologie_menu USING btree (scenario_code, submenu_code, variable_code_nz, site_id, date_obs, source_table)"
+  },
+  {
+    "schema": "analytics",
+    "table": "mv_dashboard_hydrologie_menu",
+    "index": "idx_mv_dashboard_hydrologie_menu_variable",
+    "def": "CREATE INDEX idx_mv_dashboard_hydrologie_menu_variable ON analytics.mv_dashboard_hydrologie_menu USING btree (variable_code)"
+  },
+  {
+    "schema": "analytics",
+    "table": "mv_dashboard_pollution_menu",
+    "index": "idx_mv_dashboard_pollution_menu_date",
+    "def": "CREATE INDEX idx_mv_dashboard_pollution_menu_date ON analytics.mv_dashboard_pollution_menu USING btree (date_obs)"
+  },
+  {
+    "schema": "analytics",
+    "table": "mv_dashboard_pollution_menu",
+    "index": "idx_mv_dashboard_pollution_menu_scenario",
+    "def": "CREATE INDEX idx_mv_dashboard_pollution_menu_scenario ON analytics.mv_dashboard_pollution_menu USING btree (scenario_code)"
+  },
+  {
+    "schema": "analytics",
+    "table": "mv_dashboard_pollution_menu",
+    "index": "idx_mv_dashboard_pollution_menu_site",
+    "def": "CREATE INDEX idx_mv_dashboard_pollution_menu_site ON analytics.mv_dashboard_pollution_menu USING btree (site_id)"
+  },
+  {
+    "schema": "analytics",
+    "table": "mv_dashboard_pollution_menu",
+    "index": "idx_mv_dashboard_pollution_menu_submenu",
+    "def": "CREATE INDEX idx_mv_dashboard_pollution_menu_submenu ON analytics.mv_dashboard_pollution_menu USING btree (submenu_code)"
+  },
+  {
+    "schema": "analytics",
+    "table": "mv_dashboard_pollution_menu",
+    "index": "idx_mv_dashboard_pollution_menu_uk",
+    "def": "CREATE UNIQUE INDEX idx_mv_dashboard_pollution_menu_uk ON analytics.mv_dashboard_pollution_menu USING btree (scenario_code, submenu_code, variable_code_nz, site_id, date_obs, source_table, source_row_uid, source_seq)"
+  },
+  {
+    "schema": "analytics",
+    "table": "mv_dashboard_pollution_menu",
+    "index": "idx_mv_dashboard_pollution_menu_variable",
+    "def": "CREATE INDEX idx_mv_dashboard_pollution_menu_variable ON analytics.mv_dashboard_pollution_menu USING btree (variable_code)"
+  },
+  {
+    "schema": "api",
+    "table": "ca_hydro_debit_source_day",
+    "index": "idx_ca_hydro_debit_source_day_sid_day",
+    "def": "CREATE INDEX idx_ca_hydro_debit_source_day_sid_day ON api.ca_hydro_debit_source_day USING btree (source_id, bucket_day)"
+  },
+  {
+    "schema": "api",
+    "table": "ca_meteo_evaporation_day",
+    "index": "idx_ca_meteo_evapo_day_station_day",
+    "def": "CREATE INDEX idx_ca_meteo_evapo_day_station_day ON api.ca_meteo_evaporation_day USING btree (station_id, bucket_day)"
+  },
+  {
+    "schema": "api",
+    "table": "ca_meteo_precip_day",
+    "index": "idx_ca_meteo_precip_day_station_day",
+    "def": "CREATE INDEX idx_ca_meteo_precip_day_station_day ON api.ca_meteo_precip_day USING btree (station_id, bucket_start)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_admin_villes_points",
+    "index": "idx_mv_admin_villes_points_code_commune",
+    "def": "CREATE INDEX idx_mv_admin_villes_points_code_commune ON api.mv_admin_villes_points USING btree (code_commune)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_admin_villes_points",
+    "index": "idx_mv_admin_villes_points_geom_gist",
+    "def": "CREATE INDEX idx_mv_admin_villes_points_geom_gist ON api.mv_admin_villes_points USING gist (geom)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_admin_villes_points",
+    "index": "idx_mv_admin_villes_points_id",
+    "def": "CREATE UNIQUE INDEX idx_mv_admin_villes_points_id ON api.mv_admin_villes_points USING btree (id)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_barrage_dimension",
+    "index": "idx_mv_barrage_dimension_barrage_id",
+    "def": "CREATE INDEX idx_mv_barrage_dimension_barrage_id ON api.mv_barrage_dimension USING btree (barrage_id)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_barrage_dimension",
+    "index": "idx_mv_barrage_dimension_geom_gist",
+    "def": "CREATE INDEX idx_mv_barrage_dimension_geom_gist ON api.mv_barrage_dimension USING gist (geom)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_bassin_geojson",
+    "index": "idx_mv_bassin_geojson_id",
+    "def": "CREATE INDEX idx_mv_bassin_geojson_id ON api.mv_bassin_geojson USING btree (id)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_hierarchie_metier_listing",
+    "index": "idx_mv_hierarchie_param",
+    "def": "CREATE INDEX idx_mv_hierarchie_param ON api.mv_hierarchie_metier_listing USING btree (param_code, source_table, entity_type)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_hierarchie_metier_listing",
+    "index": "idx_mv_hierarchie_theme",
+    "def": "CREATE INDEX idx_mv_hierarchie_theme ON api.mv_hierarchie_metier_listing USING btree (theme)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_hierarchie_metier_listing",
+    "index": "idx_mv_hierarchie_theme_sous_menu",
+    "def": "CREATE INDEX idx_mv_hierarchie_theme_sous_menu ON api.mv_hierarchie_metier_listing USING btree (theme, sous_menu)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_hydro_debit_day_qa",
+    "index": "idx_mv_hydro_debit_day_qa_station_day",
+    "def": "CREATE INDEX idx_mv_hydro_debit_day_qa_station_day ON api.mv_hydro_debit_day_qa USING btree (station_id, bucket_day)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_hydro_debit_mensuel",
+    "index": "idx_mv_hydro_debit_mensuel_station_month",
+    "def": "CREATE INDEX idx_mv_hydro_debit_mensuel_station_month ON api.mv_hydro_debit_mensuel USING btree (station_id, bucket_month)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_meteo_precipitation_annuelle_max",
+    "index": "idx_mv_precip_ann_max_station_year",
+    "def": "CREATE INDEX idx_mv_precip_ann_max_station_year ON api.mv_meteo_precipitation_annuelle_max USING btree (station_id, annee)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_nappes_geojson",
+    "index": "idx_mv_nappes_geojson_id",
+    "def": "CREATE INDEX idx_mv_nappes_geojson_id ON api.mv_nappes_geojson USING btree (id)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_points_eau",
+    "index": "idx_mv_points_eau_geom_gist",
+    "def": "CREATE INDEX idx_mv_points_eau_geom_gist ON api.mv_points_eau USING gist (geom)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_points_eau",
+    "index": "idx_mv_points_eau_point_eau_id",
+    "def": "CREATE INDEX idx_mv_points_eau_point_eau_id ON api.mv_points_eau USING btree (point_eau_id)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_qualite_barrages_day",
+    "index": "idx_mv_qbar_day_station_param_day",
+    "def": "CREATE INDEX idx_mv_qbar_day_station_param_day ON api.mv_qualite_barrages_day USING btree (station_id, parametre_qualite, bucket_day)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_qualite_nappes_day",
+    "index": "idx_mv_qnap_day_station_param_day",
+    "def": "CREATE INDEX idx_mv_qnap_day_station_param_day ON api.mv_qualite_nappes_day USING btree (station_id, parametre_qualite, bucket_day)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_qualite_riviere_day",
+    "index": "idx_mv_qualite_riviere_day_station_param_day",
+    "def": "CREATE INDEX idx_mv_qualite_riviere_day_station_param_day ON api.mv_qualite_riviere_day USING btree (station_id, parametre_qualite, bucket_day)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_qualite_sebou_day",
+    "index": "idx_mv_qualite_sebou_day_station_param_day",
+    "def": "CREATE INDEX idx_mv_qualite_sebou_day_station_param_day ON api.mv_qualite_sebou_day USING btree (station_id, parametre_qualite, bucket_day)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_reseau_hydrographique",
+    "index": "idx_mv_reseau_hydrographique_geom_gist",
+    "def": "CREATE INDEX idx_mv_reseau_hydrographique_geom_gist ON api.mv_reseau_hydrographique USING gist (geom)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_sources_geojson",
+    "index": "idx_mv_sources_geojson_id",
+    "def": "CREATE INDEX idx_mv_sources_geojson_id ON api.mv_sources_geojson USING btree (id)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_sous_bassin_geojson",
+    "index": "idx_mv_sous_bassin_geojson_id",
+    "def": "CREATE INDEX idx_mv_sous_bassin_geojson_id ON api.mv_sous_bassin_geojson USING btree (id)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_sous_bassin_swat_geojson",
+    "index": "idx_mv_sous_bassin_swat_geojson_id",
+    "def": "CREATE INDEX idx_mv_sous_bassin_swat_geojson_id ON api.mv_sous_bassin_swat_geojson USING btree (id)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_sous_bassin_swat_geojson",
+    "index": "idx_mv_sous_bassin_swat_geojson_sub",
+    "def": "CREATE INDEX idx_mv_sous_bassin_swat_geojson_sub ON api.mv_sous_bassin_swat_geojson USING btree (subbasin_id)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_sous_bassin_swat_geom_4326",
+    "index": "idx_mv_sous_bassin_swat_geom_4326_geom",
+    "def": "CREATE INDEX idx_mv_sous_bassin_swat_geom_4326_geom ON api.mv_sous_bassin_swat_geom_4326 USING gist (geom)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_sous_bassin_swat_geom_4326",
+    "index": "idx_mv_sous_bassin_swat_geom_4326_name",
+    "def": "CREATE INDEX idx_mv_sous_bassin_swat_geom_4326_name ON api.mv_sous_bassin_swat_geom_4326 USING btree (name)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_sous_bassin_swat_geom_4326",
+    "index": "idx_mv_sous_bassin_swat_geom_4326_subbasin",
+    "def": "CREATE INDEX idx_mv_sous_bassin_swat_geom_4326_subbasin ON api.mv_sous_bassin_swat_geom_4326 USING btree (subbasin_id)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_station_dimension",
+    "index": "idx_mv_station_dimension_code_station",
+    "def": "CREATE INDEX idx_mv_station_dimension_code_station ON api.mv_station_dimension USING btree (code_station)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_station_dimension",
+    "index": "idx_mv_station_dimension_geom_gist",
+    "def": "CREATE INDEX idx_mv_station_dimension_geom_gist ON api.mv_station_dimension USING gist (geom)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_station_dimension",
+    "index": "idx_mv_station_dimension_station_id",
+    "def": "CREATE INDEX idx_mv_station_dimension_station_id ON api.mv_station_dimension USING btree (station_id)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_suivi_qualite_barrage_garde_hebdo_day",
+    "index": "idx_mv_suivi_qbrg_day_station_param_day",
+    "def": "CREATE INDEX idx_mv_suivi_qbrg_day_station_param_day ON api.mv_suivi_qualite_barrage_garde_hebdo_day USING btree (station_id, parametre_qualite, bucket_day)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_swat_qualite_subbasin_day",
+    "index": "idx_mv_swat_qualite_subbasin_day_key",
+    "def": "CREATE INDEX idx_mv_swat_qualite_subbasin_day_key ON api.mv_swat_qualite_subbasin_day USING btree (scenario_id, subbasin_id, bucket_day, parametre_code)"
+  },
+  {
+    "schema": "api",
+    "table": "mv_wasp_qualite_segment_day",
+    "index": "idx_mv_wasp_qualite_segment_day_key",
+    "def": "CREATE INDEX idx_mv_wasp_qualite_segment_day_key ON api.mv_wasp_qualite_segment_day USING btree (scenario_id, segment_id, bucket_day, parametre_code)"
+  },
+  {
+    "schema": "audit",
+    "table": "hydro_barrage_param_apport_harmonisation_audit",
+    "index": "hydro_barrage_param_apport_harmonisation_audit_pkey",
+    "def": "CREATE UNIQUE INDEX hydro_barrage_param_apport_harmonisation_audit_pkey ON audit.hydro_barrage_param_apport_harmonisation_audit USING btree (run_id)"
+  },
+  {
+    "schema": "audit",
+    "table": "hydro_barrage_param_load_audit",
+    "index": "hydro_barrage_param_load_audit_pkey",
+    "def": "CREATE UNIQUE INDEX hydro_barrage_param_load_audit_pkey ON audit.hydro_barrage_param_load_audit USING btree (run_id)"
+  },
+  {
+    "schema": "audit",
+    "table": "ingestion_audit_logs",
+    "index": "idx_ingestion_audit_logs_horodatage",
+    "def": "CREATE INDEX idx_ingestion_audit_logs_horodatage ON audit.ingestion_audit_logs USING btree (horodatage DESC)"
+  },
+  {
+    "schema": "audit",
+    "table": "ingestion_audit_logs",
+    "index": "ingestion_audit_logs_pkey",
+    "def": "CREATE UNIQUE INDEX ingestion_audit_logs_pkey ON audit.ingestion_audit_logs USING btree (id)"
+  },
+  {
+    "schema": "audit",
+    "table": "qualite_ref001_004_mapping_journal",
+    "index": "qualite_ref001_004_mapping_journal_pkey",
+    "def": "CREATE UNIQUE INDEX qualite_ref001_004_mapping_journal_pkey ON audit.qualite_ref001_004_mapping_journal USING btree (journal_id)"
+  },
+  {
+    "schema": "audit",
+    "table": "referentiel_parametre_sync_fk_journal",
+    "index": "referentiel_parametre_sync_fk_journal_pkey",
+    "def": "CREATE UNIQUE INDEX referentiel_parametre_sync_fk_journal_pkey ON audit.referentiel_parametre_sync_fk_journal USING btree (journal_id)"
+  },
+  {
+    "schema": "audit",
+    "table": "referentiel_unite_hm3_decision_journal",
+    "index": "referentiel_unite_hm3_decision_journal_pkey",
+    "def": "CREATE UNIQUE INDEX referentiel_unite_hm3_decision_journal_pkey ON audit.referentiel_unite_hm3_decision_journal USING btree (journal_id)"
+  },
+  {
+    "schema": "geo",
+    "table": "bassin_versant",
+    "index": "bassin_versant_pkey",
+    "def": "CREATE UNIQUE INDEX bassin_versant_pkey ON geo.bassin_versant USING btree (id)"
+  },
+  {
+    "schema": "geo",
+    "table": "bassin_versant",
+    "index": "idx_geo_bv_geom",
+    "def": "CREATE INDEX idx_geo_bv_geom ON geo.bassin_versant USING gist (geom)"
+  },
+  {
+    "schema": "geo",
+    "table": "nappe",
+    "index": "idx_geo_nappe_geom_gist_708faed4",
+    "def": "CREATE INDEX idx_geo_nappe_geom_gist_708faed4 ON geo.nappe USING gist (geom)"
+  },
+  {
+    "schema": "geo",
+    "table": "nappe",
+    "index": "nappes_abhs_n_pkey",
+    "def": "CREATE UNIQUE INDEX nappes_abhs_n_pkey ON geo.nappe USING btree (id)"
+  },
+  {
+    "schema": "geo",
+    "table": "ref_site_pollution",
+    "index": "idx_ref_site_pollution_category",
+    "def": "CREATE INDEX idx_ref_site_pollution_category ON geo.ref_site_pollution USING btree (pollution_category_id)"
+  },
+  {
+    "schema": "geo",
+    "table": "ref_site_pollution",
+    "index": "idx_ref_site_pollution_commune",
+    "def": "CREATE INDEX idx_ref_site_pollution_commune ON geo.ref_site_pollution USING btree (commune)"
+  },
+  {
+    "schema": "geo",
+    "table": "ref_site_pollution",
+    "index": "idx_ref_site_pollution_geom",
+    "def": "CREATE INDEX idx_ref_site_pollution_geom ON geo.ref_site_pollution USING gist (geom)"
+  },
+  {
+    "schema": "geo",
+    "table": "ref_site_pollution",
+    "index": "idx_ref_site_pollution_geom_4326",
+    "def": "CREATE INDEX idx_ref_site_pollution_geom_4326 ON geo.ref_site_pollution USING gist (geom_4326)"
+  },
+  {
+    "schema": "geo",
+    "table": "ref_site_pollution",
+    "index": "idx_ref_site_pollution_status",
+    "def": "CREATE INDEX idx_ref_site_pollution_status ON geo.ref_site_pollution USING btree (validation_status)"
+  },
+  {
+    "schema": "geo",
+    "table": "ref_site_pollution",
+    "index": "idx_ref_site_pollution_type",
+    "def": "CREATE INDEX idx_ref_site_pollution_type ON geo.ref_site_pollution USING btree (source_type_id)"
+  },
+  {
+    "schema": "geo",
+    "table": "ref_site_pollution",
+    "index": "ix_ref_site_pollution_admin",
+    "def": "CREATE INDEX ix_ref_site_pollution_admin ON geo.ref_site_pollution USING btree (bassin, province, commune)"
+  },
+  {
+    "schema": "geo",
+    "table": "ref_site_pollution",
+    "index": "ix_ref_site_pollution_centroid_gist",
+    "def": "CREATE INDEX ix_ref_site_pollution_centroid_gist ON geo.ref_site_pollution USING gist (centroid)"
+  },
+  {
+    "schema": "geo",
+    "table": "ref_site_pollution",
+    "index": "ix_ref_site_pollution_code",
+    "def": "CREATE INDEX ix_ref_site_pollution_code ON geo.ref_site_pollution USING btree (site_code)"
+  },
+  {
+    "schema": "geo",
+    "table": "ref_site_pollution",
+    "index": "ix_ref_site_pollution_geom_4326_gist",
+    "def": "CREATE INDEX ix_ref_site_pollution_geom_4326_gist ON geo.ref_site_pollution USING gist (geom_4326)"
+  },
+  {
+    "schema": "geo",
+    "table": "ref_site_pollution",
+    "index": "ix_ref_site_pollution_geom_gist",
+    "def": "CREATE INDEX ix_ref_site_pollution_geom_gist ON geo.ref_site_pollution USING gist (geom)"
+  },
+  {
+    "schema": "geo",
+    "table": "ref_site_pollution",
+    "index": "ix_ref_site_pollution_type_status",
+    "def": "CREATE INDEX ix_ref_site_pollution_type_status ON geo.ref_site_pollution USING btree (source_type_id, pollution_category_id, validation_status, identity_status)"
+  },
+  {
+    "schema": "geo",
+    "table": "ref_site_pollution",
+    "index": "ref_site_pollution_pkey",
+    "def": "CREATE UNIQUE INDEX ref_site_pollution_pkey ON geo.ref_site_pollution USING btree (site_id)"
+  },
+  {
+    "schema": "geo",
+    "table": "ref_site_pollution",
+    "index": "ux_ref_site_pollution_origin_code",
+    "def": "CREATE UNIQUE INDEX ux_ref_site_pollution_origin_code ON geo.ref_site_pollution USING btree (source_origin, site_code) WHERE (site_code IS NOT NULL)"
+  },
+  {
+    "schema": "geo",
+    "table": "ref_site_pollution_merge_history",
+    "index": "ref_site_pollution_merge_history_pkey",
+    "def": "CREATE UNIQUE INDEX ref_site_pollution_merge_history_pkey ON geo.ref_site_pollution_merge_history USING btree (merge_id)"
+  },
+  {
+    "schema": "geo",
+    "table": "ref_site_pollution_source_link",
+    "index": "ix_ref_site_pollution_source_link_score",
+    "def": "CREATE INDEX ix_ref_site_pollution_source_link_score ON geo.ref_site_pollution_source_link USING btree (match_score DESC, distance_m)"
+  },
+  {
+    "schema": "geo",
+    "table": "ref_site_pollution_source_link",
+    "index": "ix_ref_site_pollution_source_link_site",
+    "def": "CREATE INDEX ix_ref_site_pollution_source_link_site ON geo.ref_site_pollution_source_link USING btree (site_id, active, decision_status)"
+  },
+  {
+    "schema": "geo",
+    "table": "ref_site_pollution_source_link",
+    "index": "ix_ref_site_pollution_source_link_source",
+    "def": "CREATE INDEX ix_ref_site_pollution_source_link_source ON geo.ref_site_pollution_source_link USING btree (source_schema, source_table, source_pk)"
+  },
+  {
+    "schema": "geo",
+    "table": "ref_site_pollution_source_link",
+    "index": "ref_site_pollution_source_link_pkey",
+    "def": "CREATE UNIQUE INDEX ref_site_pollution_source_link_pkey ON geo.ref_site_pollution_source_link USING btree (link_id)"
+  },
+  {
+    "schema": "geo",
+    "table": "ref_site_pollution_source_link",
+    "index": "uq_ref_site_pollution_source_link",
+    "def": "CREATE UNIQUE INDEX uq_ref_site_pollution_source_link ON geo.ref_site_pollution_source_link USING btree (source_schema, source_table, source_pk, site_id)"
+  },
+  {
+    "schema": "geo",
+    "table": "reseau_hydrographique",
+    "index": "idx_geo_reseau_hydrographique_geom_gist_5d867224",
+    "def": "CREATE INDEX idx_geo_reseau_hydrographique_geom_gist_5d867224 ON geo.reseau_hydrographique USING gist (geom)"
+  },
+  {
+    "schema": "geo",
+    "table": "reseau_hydrographique",
+    "index": "reseau_hydrographique_pkey",
+    "def": "CREATE UNIQUE INDEX reseau_hydrographique_pkey ON geo.reseau_hydrographique USING btree (id)"
+  },
+  {
+    "schema": "geo",
+    "table": "source",
+    "index": "idx_geo_source_geom_gist_a12b6569",
+    "def": "CREATE INDEX idx_geo_source_geom_gist_a12b6569 ON geo.source USING gist (geom)"
+  },
+  {
+    "schema": "geo",
+    "table": "sous_bassin_abh",
+    "index": "idx_geo_sb_geom",
+    "def": "CREATE INDEX idx_geo_sb_geom ON geo.sous_bassin_abh USING gist (geom)"
+  },
+  {
+    "schema": "geo",
+    "table": "sous_bassin_abh",
+    "index": "sous_bassin_pkey",
+    "def": "CREATE UNIQUE INDEX sous_bassin_pkey ON geo.sous_bassin_abh USING btree (id)"
+  },
+  {
+    "schema": "geo",
+    "table": "sous_bassin_swat_bas_sebou",
+    "index": "idx_sous_bassin_swat_bas_sebou_geom_gist",
+    "def": "CREATE INDEX idx_sous_bassin_swat_bas_sebou_geom_gist ON geo.sous_bassin_swat_bas_sebou USING gist (geom)"
+  },
+  {
+    "schema": "geo",
+    "table": "sous_bassin_swat_bas_sebou",
+    "index": "sous_bassin_swat_bas_sebou_pkey",
+    "def": "CREATE UNIQUE INDEX sous_bassin_swat_bas_sebou_pkey ON geo.sous_bassin_swat_bas_sebou USING btree (id)"
+  },
+  {
+    "schema": "geo",
+    "table": "sous_bassin_swat_bassin_cotier",
+    "index": "idx_sous_bassin_swat_bassin_cotier_geom_gist",
+    "def": "CREATE INDEX idx_sous_bassin_swat_bassin_cotier_geom_gist ON geo.sous_bassin_swat_bassin_cotier USING gist (geom)"
+  },
+  {
+    "schema": "geo",
+    "table": "sous_bassin_swat_bassin_cotier",
+    "index": "sous_bassin_swat_bassin_cotier_pkey",
+    "def": "CREATE UNIQUE INDEX sous_bassin_swat_bassin_cotier_pkey ON geo.sous_bassin_swat_bassin_cotier USING btree (id)"
+  },
+  {
+    "schema": "geo",
+    "table": "sous_bassin_swat_beht",
+    "index": "idx_sous_bassin_swat_beht_geom_gist",
+    "def": "CREATE INDEX idx_sous_bassin_swat_beht_geom_gist ON geo.sous_bassin_swat_beht USING gist (geom)"
+  },
+  {
+    "schema": "geo",
+    "table": "sous_bassin_swat_beht",
+    "index": "sous_bassin_swat_beht_pkey",
+    "def": "CREATE UNIQUE INDEX sous_bassin_swat_beht_pkey ON geo.sous_bassin_swat_beht USING btree (id)"
+  },
+  {
+    "schema": "geo",
+    "table": "sous_bassin_swat_haut_sebou",
+    "index": "idx_sous_bassin_swat_haut_sebou_geom_gist",
+    "def": "CREATE INDEX idx_sous_bassin_swat_haut_sebou_geom_gist ON geo.sous_bassin_swat_haut_sebou USING gist (geom)"
+  },
+  {
+    "schema": "geo",
+    "table": "sous_bassin_swat_haut_sebou",
+    "index": "sous_bassin_swat_haut_sebou_pkey",
+    "def": "CREATE UNIQUE INDEX sous_bassin_swat_haut_sebou_pkey ON geo.sous_bassin_swat_haut_sebou USING btree (id)"
+  },
+  {
+    "schema": "geo",
+    "table": "sous_bassin_swat_leben_innaouen",
+    "index": "idx_geo_sous_bassin_swat_bassin_sub",
+    "def": "CREATE INDEX idx_geo_sous_bassin_swat_bassin_sub ON geo.sous_bassin_swat_leben_innaouen USING btree (bassin_code, \"Subbasin\")"
+  },
+  {
+    "schema": "geo",
+    "table": "sous_bassin_swat_leben_innaouen",
+    "index": "idx_sous_bassin_swat_leben_innaouen_geom_gist",
+    "def": "CREATE INDEX idx_sous_bassin_swat_leben_innaouen_geom_gist ON geo.sous_bassin_swat_leben_innaouen USING gist (geom)"
+  },
+  {
+    "schema": "geo",
+    "table": "sous_bassin_swat_leben_innaouen",
+    "index": "sous_bassin_swat_pkey",
+    "def": "CREATE UNIQUE INDEX sous_bassin_swat_pkey ON geo.sous_bassin_swat_leben_innaouen USING btree (id)"
+  },
+  {
+    "schema": "geo",
+    "table": "sous_bassin_swat_moyen_sebou",
+    "index": "idx_sous_bassin_swat_moyen_sebou_geom_gist",
+    "def": "CREATE INDEX idx_sous_bassin_swat_moyen_sebou_geom_gist ON geo.sous_bassin_swat_moyen_sebou USING gist (geom)"
+  },
+  {
+    "schema": "geo",
+    "table": "sous_bassin_swat_moyen_sebou",
+    "index": "sous_bassin_swat_moyen_sebou_pkey",
+    "def": "CREATE UNIQUE INDEX sous_bassin_swat_moyen_sebou_pkey ON geo.sous_bassin_swat_moyen_sebou USING btree (id)"
+  },
+  {
+    "schema": "geo",
+    "table": "sous_bassin_swat_ouergha",
+    "index": "idx_sous_bassin_swat_ouergha_geom_gist",
+    "def": "CREATE INDEX idx_sous_bassin_swat_ouergha_geom_gist ON geo.sous_bassin_swat_ouergha USING gist (geom)"
+  },
+  {
+    "schema": "geo",
+    "table": "sous_bassin_swat_ouergha",
+    "index": "sous_bassin_swat_ouergha_pkey",
+    "def": "CREATE UNIQUE INDEX sous_bassin_swat_ouergha_pkey ON geo.sous_bassin_swat_ouergha USING btree (id)"
+  },
+  {
+    "schema": "geo_work",
+    "table": "reseau_hydro_edges_final",
+    "index": "reseau_hydro_edges_final_geom_idx",
+    "def": "CREATE INDEX reseau_hydro_edges_final_geom_idx ON geo_work.reseau_hydro_edges_final USING gist (geom)"
+  },
+  {
+    "schema": "geo_work",
+    "table": "reseau_hydro_edges_final",
+    "index": "reseau_hydro_edges_final_pkey",
+    "def": "CREATE UNIQUE INDEX reseau_hydro_edges_final_pkey ON geo_work.reseau_hydro_edges_final USING btree (edge_id)"
+  },
+  {
+    "schema": "geo_work",
+    "table": "reseau_hydro_edges_final",
+    "index": "reseau_hydro_edges_final_source_idx",
+    "def": "CREATE INDEX reseau_hydro_edges_final_source_idx ON geo_work.reseau_hydro_edges_final USING btree (source)"
+  },
+  {
+    "schema": "geo_work",
+    "table": "reseau_hydro_edges_final",
+    "index": "reseau_hydro_edges_final_target_idx",
+    "def": "CREATE INDEX reseau_hydro_edges_final_target_idx ON geo_work.reseau_hydro_edges_final USING btree (target)"
+  },
+  {
+    "schema": "geo_work",
+    "table": "reseau_hydro_edges_final_vertices_pgr",
+    "index": "reseau_hydro_edges_final_vertices_pgr_pkey",
+    "def": "CREATE UNIQUE INDEX reseau_hydro_edges_final_vertices_pgr_pkey ON geo_work.reseau_hydro_edges_final_vertices_pgr USING btree (id)"
+  },
+  {
+    "schema": "geo_work",
+    "table": "reseau_hydro_edges_final_vertices_pgr",
+    "index": "reseau_hydro_edges_final_vertices_pgr_the_geom_idx",
+    "def": "CREATE INDEX reseau_hydro_edges_final_vertices_pgr_the_geom_idx ON geo_work.reseau_hydro_edges_final_vertices_pgr USING gist (the_geom)"
+  },
+  {
+    "schema": "geo_work",
+    "table": "reseau_hydro_edges_raw",
+    "index": "idx_geo_work_edges_geom",
+    "def": "CREATE INDEX idx_geo_work_edges_geom ON geo_work.reseau_hydro_edges_raw USING gist (geom)"
+  },
+  {
+    "schema": "geo_work",
+    "table": "reseau_hydro_edges_raw",
+    "index": "idx_geo_work_edges_source",
+    "def": "CREATE INDEX idx_geo_work_edges_source ON geo_work.reseau_hydro_edges_raw USING btree (source)"
+  },
+  {
+    "schema": "geo_work",
+    "table": "reseau_hydro_edges_raw",
+    "index": "idx_geo_work_edges_target",
+    "def": "CREATE INDEX idx_geo_work_edges_target ON geo_work.reseau_hydro_edges_raw USING btree (target)"
+  },
+  {
+    "schema": "geo_work",
+    "table": "reseau_hydro_edges_raw",
+    "index": "reseau_hydro_edges_raw_pkey",
+    "def": "CREATE UNIQUE INDEX reseau_hydro_edges_raw_pkey ON geo_work.reseau_hydro_edges_raw USING btree (edge_id)"
+  },
+  {
+    "schema": "geo_work",
+    "table": "reseau_hydro_nodes",
+    "index": "idx_geo_work_nodes_geom",
+    "def": "CREATE INDEX idx_geo_work_nodes_geom ON geo_work.reseau_hydro_nodes USING gist (geom)"
+  },
+  {
+    "schema": "geo_work",
+    "table": "reseau_hydro_nodes",
+    "index": "reseau_hydro_nodes_pkey",
+    "def": "CREATE UNIQUE INDEX reseau_hydro_nodes_pkey ON geo_work.reseau_hydro_nodes USING btree (node_id)"
+  },
+  {
+    "schema": "hydro",
+    "table": "barrage_bathymetrie",
+    "index": "bathymetries_barrages_abhs_pkey",
+    "def": "CREATE UNIQUE INDEX bathymetries_barrages_abhs_pkey ON hydro.barrage_bathymetrie USING btree (id)"
+  },
+  {
+    "schema": "hydro",
+    "table": "mesure_barrage",
+    "index": "idx_hydro_barrage_temps",
+    "def": "CREATE INDEX idx_hydro_barrage_temps ON hydro.mesure_barrage USING btree (barrage_id, temps DESC)"
+  },
+  {
+    "schema": "hydro",
+    "table": "mesure_barrage",
+    "index": "mesure_barrage_pkey",
+    "def": "CREATE UNIQUE INDEX mesure_barrage_pkey ON hydro.mesure_barrage USING btree (temps, barrage_id)"
+  },
+  {
+    "schema": "hydro",
+    "table": "mesure_barrage",
+    "index": "mesure_barrage_temps_idx",
+    "def": "CREATE INDEX mesure_barrage_temps_idx ON hydro.mesure_barrage USING btree (temps DESC)"
+  },
+  {
+    "schema": "hydro",
+    "table": "mesure_barrage_param",
+    "index": "idx_mesure_barrage_param_barrage_temps",
+    "def": "CREATE INDEX idx_mesure_barrage_param_barrage_temps ON hydro.mesure_barrage_param USING btree (barrage_id, temps DESC)"
+  },
+  {
+    "schema": "hydro",
+    "table": "mesure_barrage_param",
+    "index": "idx_mesure_barrage_param_barrage_temps_code",
+    "def": "CREATE INDEX idx_mesure_barrage_param_barrage_temps_code ON hydro.mesure_barrage_param USING btree (barrage_id, temps DESC, parametre_code)"
+  },
+  {
+    "schema": "hydro",
+    "table": "mesure_barrage_param",
+    "index": "idx_mesure_barrage_param_code_temps",
+    "def": "CREATE INDEX idx_mesure_barrage_param_code_temps ON hydro.mesure_barrage_param USING btree (parametre_code, temps DESC)"
+  },
+  {
+    "schema": "hydro",
+    "table": "mesure_barrage_param",
+    "index": "idx_mesure_barrage_param_source_row_hash",
+    "def": "CREATE INDEX idx_mesure_barrage_param_source_row_hash ON hydro.mesure_barrage_param USING btree (source_row_hash)"
+  },
+  {
+    "schema": "hydro",
+    "table": "mesure_barrage_param",
+    "index": "mesure_barrage_param_pkey",
+    "def": "CREATE UNIQUE INDEX mesure_barrage_param_pkey ON hydro.mesure_barrage_param USING btree (id)"
+  },
+  {
+    "schema": "hydro",
+    "table": "mesure_barrage_param",
+    "index": "uq_mesure_barrage_param_business_hash",
+    "def": "CREATE UNIQUE INDEX uq_mesure_barrage_param_business_hash ON hydro.mesure_barrage_param USING btree (target_business_key_hash)"
+  },
+  {
+    "schema": "hydro",
+    "table": "mesure_debit",
+    "index": "idx_hydro_debit_station_temps",
+    "def": "CREATE INDEX idx_hydro_debit_station_temps ON hydro.mesure_debit USING btree (station_id, temps DESC)"
+  },
+  {
+    "schema": "hydro",
+    "table": "mesure_debit",
+    "index": "mesure_debit_pkey",
+    "def": "CREATE UNIQUE INDEX mesure_debit_pkey ON hydro.mesure_debit USING btree (temps, station_id)"
+  },
+  {
+    "schema": "hydro",
+    "table": "mesure_debit",
+    "index": "mesure_debit_temps_idx",
+    "def": "CREATE INDEX mesure_debit_temps_idx ON hydro.mesure_debit USING btree (temps DESC)"
+  },
+  {
+    "schema": "hydro",
+    "table": "mesure_debit_mensuel",
+    "index": "mesure_debit_mensuel_pkey",
+    "def": "CREATE UNIQUE INDEX mesure_debit_mensuel_pkey ON hydro.mesure_debit_mensuel USING btree (station_id, bucket_month)"
+  },
+  {
+    "schema": "hydro",
+    "table": "mesure_debit_source",
+    "index": "idx_hydro_debit_source_sid_tdesc",
+    "def": "CREATE INDEX idx_hydro_debit_source_sid_tdesc ON hydro.mesure_debit_source USING btree (source_id, temps DESC)"
+  },
+  {
+    "schema": "hydro",
+    "table": "mesure_debit_source",
+    "index": "idx_hydro_debit_source_tdesc",
+    "def": "CREATE INDEX idx_hydro_debit_source_tdesc ON hydro.mesure_debit_source USING btree (temps DESC)"
+  },
+  {
+    "schema": "hydro",
+    "table": "mesure_debit_source",
+    "index": "mesure_debit_source_pkey",
+    "def": "CREATE UNIQUE INDEX mesure_debit_source_pkey ON hydro.mesure_debit_source USING btree (temps, source_id)"
+  },
+  {
+    "schema": "hydro",
+    "table": "mesure_debit_source",
+    "index": "mesure_debit_source_temps_idx",
+    "def": "CREATE INDEX mesure_debit_source_temps_idx ON hydro.mesure_debit_source USING btree (temps DESC)"
+  },
+  {
+    "schema": "hydro",
+    "table": "regle_qualite_debit_source",
+    "index": "regle_qualite_debit_source_pkey",
+    "def": "CREATE UNIQUE INDEX regle_qualite_debit_source_pkey ON hydro.regle_qualite_debit_source USING btree (source_id)"
+  },
+  {
+    "schema": "hydro",
+    "table": "regle_qualite_debit_station",
+    "index": "regle_qualite_debit_station_pkey",
+    "def": "CREATE UNIQUE INDEX regle_qualite_debit_station_pkey ON hydro.regle_qualite_debit_station USING btree (station_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "barrages",
+    "index": "barrages_abhs_pkey",
+    "def": "CREATE UNIQUE INDEX barrages_abhs_pkey ON infra.barrages USING btree (id)"
+  },
+  {
+    "schema": "infra",
+    "table": "barrages",
+    "index": "idx_infra_barrages_geom_gist_4b934b02",
+    "def": "CREATE INDEX idx_infra_barrages_geom_gist_4b934b02 ON infra.barrages USING gist (geom)"
+  },
+  {
+    "schema": "infra",
+    "table": "decharge",
+    "index": "decharges_abhs_pkey",
+    "def": "CREATE UNIQUE INDEX decharges_abhs_pkey ON infra.decharge USING btree (id)"
+  },
+  {
+    "schema": "infra",
+    "table": "decharge",
+    "index": "idx_infra_decharge_geom_gist_c4f16d6a",
+    "def": "CREATE INDEX idx_infra_decharge_geom_gist_c4f16d6a ON infra.decharge USING gist (geom)"
+  },
+  {
+    "schema": "infra",
+    "table": "decharge_inventaire_pollution",
+    "index": "decharge_inventaire_pollution_pkey",
+    "def": "CREATE UNIQUE INDEX decharge_inventaire_pollution_pkey ON infra.decharge_inventaire_pollution USING btree (id)"
+  },
+  {
+    "schema": "infra",
+    "table": "decharge_inventaire_pollution",
+    "index": "decharge_inventaire_pollution_source_row_id_key",
+    "def": "CREATE UNIQUE INDEX decharge_inventaire_pollution_source_row_id_key ON infra.decharge_inventaire_pollution USING btree (source_row_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "decharge_inventaire_pollution",
+    "index": "idx_decharge_inv_pollution_decharge_id",
+    "def": "CREATE INDEX idx_decharge_inv_pollution_decharge_id ON infra.decharge_inventaire_pollution USING btree (decharge_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "decharge_inventaire_pollution",
+    "index": "idx_decharge_inv_pollution_geom",
+    "def": "CREATE INDEX idx_decharge_inv_pollution_geom ON infra.decharge_inventaire_pollution USING gist (geom)"
+  },
+  {
+    "schema": "infra",
+    "table": "decharge_inventaire_pollution_general",
+    "index": "decharge_inventaire_pollution_general_pkey",
+    "def": "CREATE UNIQUE INDEX decharge_inventaire_pollution_general_pkey ON infra.decharge_inventaire_pollution_general USING btree (id)"
+  },
+  {
+    "schema": "infra",
+    "table": "decharge_inventaire_pollution_general",
+    "index": "decharge_inventaire_pollution_general_source_row_id_key",
+    "def": "CREATE UNIQUE INDEX decharge_inventaire_pollution_general_source_row_id_key ON infra.decharge_inventaire_pollution_general USING btree (source_row_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "decharge_inventaire_pollution_general",
+    "index": "idx_dech_inv_gen_code",
+    "def": "CREATE INDEX idx_dech_inv_gen_code ON infra.decharge_inventaire_pollution_general USING btree (code_decharge_source)"
+  },
+  {
+    "schema": "infra",
+    "table": "decharge_inventaire_pollution_general",
+    "index": "idx_dech_inv_gen_decharge_id",
+    "def": "CREATE INDEX idx_dech_inv_gen_decharge_id ON infra.decharge_inventaire_pollution_general USING btree (decharge_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "decharge_inventaire_pollution_general",
+    "index": "idx_dech_inv_gen_geom",
+    "def": "CREATE INDEX idx_dech_inv_gen_geom ON infra.decharge_inventaire_pollution_general USING gist (geom)"
+  },
+  {
+    "schema": "infra",
+    "table": "fosses_septiques_abhs",
+    "index": "Couche issue de la jointure_pkey",
+    "def": "CREATE UNIQUE INDEX \"Couche issue de la jointure_pkey\" ON infra.fosses_septiques_abhs USING btree (id)"
+  },
+  {
+    "schema": "infra",
+    "table": "huilerie",
+    "index": "huileries_abhs_pkey",
+    "def": "CREATE UNIQUE INDEX huileries_abhs_pkey ON infra.huilerie USING btree (id)"
+  },
+  {
+    "schema": "infra",
+    "table": "huilerie",
+    "index": "idx_infra_huilerie_geom_gist_fab9d02f",
+    "def": "CREATE INDEX idx_infra_huilerie_geom_gist_fab9d02f ON infra.huilerie USING gist (geom)"
+  },
+  {
+    "schema": "infra",
+    "table": "huilerie_inventaire_pollution",
+    "index": "huilerie_inventaire_pollution_pkey",
+    "def": "CREATE UNIQUE INDEX huilerie_inventaire_pollution_pkey ON infra.huilerie_inventaire_pollution USING btree (id)"
+  },
+  {
+    "schema": "infra",
+    "table": "huilerie_inventaire_pollution",
+    "index": "huilerie_inventaire_pollution_source_row_id_key",
+    "def": "CREATE UNIQUE INDEX huilerie_inventaire_pollution_source_row_id_key ON infra.huilerie_inventaire_pollution USING btree (source_row_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "huilerie_inventaire_pollution",
+    "index": "idx_huilerie_inv_pollution_code",
+    "def": "CREATE INDEX idx_huilerie_inv_pollution_code ON infra.huilerie_inventaire_pollution USING btree (code_huilerie_source)"
+  },
+  {
+    "schema": "infra",
+    "table": "huilerie_inventaire_pollution",
+    "index": "idx_huilerie_inv_pollution_geom",
+    "def": "CREATE INDEX idx_huilerie_inv_pollution_geom ON infra.huilerie_inventaire_pollution USING gist (geom)"
+  },
+  {
+    "schema": "infra",
+    "table": "huilerie_inventaire_pollution",
+    "index": "idx_huilerie_inv_pollution_huilerie_id",
+    "def": "CREATE INDEX idx_huilerie_inv_pollution_huilerie_id ON infra.huilerie_inventaire_pollution USING btree (huilerie_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "huilerie_inventaire_pollution",
+    "index": "idx_huilerie_inv_pollution_payload_gin",
+    "def": "CREATE INDEX idx_huilerie_inv_pollution_payload_gin ON infra.huilerie_inventaire_pollution USING gin (raw_payload)"
+  },
+  {
+    "schema": "infra",
+    "table": "mine",
+    "index": "idx_infra_mine_geom_gist_4054ac48",
+    "def": "CREATE INDEX idx_infra_mine_geom_gist_4054ac48 ON infra.mine USING gist (geom)"
+  },
+  {
+    "schema": "infra",
+    "table": "mine",
+    "index": "mines_abhs_pkey",
+    "def": "CREATE UNIQUE INDEX mines_abhs_pkey ON infra.mine USING btree (id)"
+  },
+  {
+    "schema": "infra",
+    "table": "mine_inventaire_pollution",
+    "index": "idx_mine_inv_pollution_geom",
+    "def": "CREATE INDEX idx_mine_inv_pollution_geom ON infra.mine_inventaire_pollution USING gist (geom)"
+  },
+  {
+    "schema": "infra",
+    "table": "mine_inventaire_pollution",
+    "index": "idx_mine_inv_pollution_mine_id",
+    "def": "CREATE INDEX idx_mine_inv_pollution_mine_id ON infra.mine_inventaire_pollution USING btree (mine_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "mine_inventaire_pollution",
+    "index": "idx_mine_inv_pollution_nom",
+    "def": "CREATE INDEX idx_mine_inv_pollution_nom ON infra.mine_inventaire_pollution USING btree (nom_mine_source)"
+  },
+  {
+    "schema": "infra",
+    "table": "mine_inventaire_pollution",
+    "index": "mine_inventaire_pollution_pkey",
+    "def": "CREATE UNIQUE INDEX mine_inventaire_pollution_pkey ON infra.mine_inventaire_pollution USING btree (id)"
+  },
+  {
+    "schema": "infra",
+    "table": "mine_inventaire_pollution",
+    "index": "mine_inventaire_pollution_source_row_id_key",
+    "def": "CREATE UNIQUE INDEX mine_inventaire_pollution_source_row_id_key ON infra.mine_inventaire_pollution USING btree (source_row_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "point_eau",
+    "index": "idx_infra_point_eau_code",
+    "def": "CREATE INDEX idx_infra_point_eau_code ON infra.point_eau USING btree (code_pt_eau)"
+  },
+  {
+    "schema": "infra",
+    "table": "point_eau",
+    "index": "idx_infra_point_eau_geom",
+    "def": "CREATE INDEX idx_infra_point_eau_geom ON infra.point_eau USING gist (geom)"
+  },
+  {
+    "schema": "infra",
+    "table": "point_eau",
+    "index": "idx_infra_point_eau_nappe",
+    "def": "CREATE INDEX idx_infra_point_eau_nappe ON infra.point_eau USING btree (nappe_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "point_eau",
+    "index": "idx_infra_point_eau_station",
+    "def": "CREATE INDEX idx_infra_point_eau_station ON infra.point_eau USING btree (station_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "point_eau",
+    "index": "point_eau_legacy_point_eau_id_key",
+    "def": "CREATE UNIQUE INDEX point_eau_legacy_point_eau_id_key ON infra.point_eau USING btree (legacy_point_eau_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "point_eau",
+    "index": "point_eau_pkey",
+    "def": "CREATE UNIQUE INDEX point_eau_pkey ON infra.point_eau USING btree (id)"
+  },
+  {
+    "schema": "infra",
+    "table": "profil_station",
+    "index": "idx_infra_profil_station_geom",
+    "def": "CREATE INDEX idx_infra_profil_station_geom ON infra.profil_station USING gist (geom)"
+  },
+  {
+    "schema": "infra",
+    "table": "profil_station",
+    "index": "idx_infra_profil_station_nappe",
+    "def": "CREATE INDEX idx_infra_profil_station_nappe ON infra.profil_station USING btree (nappe_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "profil_station",
+    "index": "idx_infra_profil_station_station",
+    "def": "CREATE INDEX idx_infra_profil_station_station ON infra.profil_station USING btree (station_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "profil_station",
+    "index": "profil_station_legacy_profil_id_key",
+    "def": "CREATE UNIQUE INDEX profil_station_legacy_profil_id_key ON infra.profil_station USING btree (legacy_profil_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "profil_station",
+    "index": "profil_station_pkey",
+    "def": "CREATE UNIQUE INDEX profil_station_pkey ON infra.profil_station USING btree (id)"
+  },
+  {
+    "schema": "infra",
+    "table": "rejet_abattoir",
+    "index": "idx_infra_rejet_abattoir_geom_gist_d066fc75",
+    "def": "CREATE INDEX idx_infra_rejet_abattoir_geom_gist_d066fc75 ON infra.rejet_abattoir USING gist (geom)"
+  },
+  {
+    "schema": "infra",
+    "table": "rejet_abattoir",
+    "index": "rejets_abattoirs_abhs_pkey",
+    "def": "CREATE UNIQUE INDEX rejets_abattoirs_abhs_pkey ON infra.rejet_abattoir USING btree (id)"
+  },
+  {
+    "schema": "infra",
+    "table": "rejet_abattoir_inventaire_pollution",
+    "index": "idx_rej_abat_inv_geom",
+    "def": "CREATE INDEX idx_rej_abat_inv_geom ON infra.rejet_abattoir_inventaire_pollution USING gist (geom)"
+  },
+  {
+    "schema": "infra",
+    "table": "rejet_abattoir_inventaire_pollution",
+    "index": "idx_rej_abat_inv_rej_id",
+    "def": "CREATE INDEX idx_rej_abat_inv_rej_id ON infra.rejet_abattoir_inventaire_pollution USING btree (rejet_abattoir_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "rejet_abattoir_inventaire_pollution",
+    "index": "rejet_abattoir_inventaire_pollution_pkey",
+    "def": "CREATE UNIQUE INDEX rejet_abattoir_inventaire_pollution_pkey ON infra.rejet_abattoir_inventaire_pollution USING btree (id)"
+  },
+  {
+    "schema": "infra",
+    "table": "rejet_abattoir_inventaire_pollution",
+    "index": "rejet_abattoir_inventaire_pollution_source_row_id_key",
+    "def": "CREATE UNIQUE INDEX rejet_abattoir_inventaire_pollution_source_row_id_key ON infra.rejet_abattoir_inventaire_pollution USING btree (source_row_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "rejet_domestique",
+    "index": "idx_infra_rejet_domestique_geom_gist_45f4f9a4",
+    "def": "CREATE INDEX idx_infra_rejet_domestique_geom_gist_45f4f9a4 ON infra.rejet_domestique USING gist (geom)"
+  },
+  {
+    "schema": "infra",
+    "table": "rejet_domestique",
+    "index": "rejets_domestiques_abhs_pkey",
+    "def": "CREATE UNIQUE INDEX rejets_domestiques_abhs_pkey ON infra.rejet_domestique USING btree (id)"
+  },
+  {
+    "schema": "infra",
+    "table": "rejet_industriel",
+    "index": "idx_infra_rejet_industriel_geom_gist_eb9cf191",
+    "def": "CREATE INDEX idx_infra_rejet_industriel_geom_gist_eb9cf191 ON infra.rejet_industriel USING gist (geom)"
+  },
+  {
+    "schema": "infra",
+    "table": "rejet_industriel",
+    "index": "rejets_ind_abhs_pkey",
+    "def": "CREATE UNIQUE INDEX rejets_ind_abhs_pkey ON infra.rejet_industriel USING btree (id)"
+  },
+  {
+    "schema": "infra",
+    "table": "rejet_inventaire_pollution",
+    "index": "idx_rejet_inv_pollution_code_rejet",
+    "def": "CREATE INDEX idx_rejet_inv_pollution_code_rejet ON infra.rejet_inventaire_pollution USING btree (code_rejet)"
+  },
+  {
+    "schema": "infra",
+    "table": "rejet_inventaire_pollution",
+    "index": "idx_rejet_inv_pollution_dom_id",
+    "def": "CREATE INDEX idx_rejet_inv_pollution_dom_id ON infra.rejet_inventaire_pollution USING btree (rejet_domestique_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "rejet_inventaire_pollution",
+    "index": "idx_rejet_inv_pollution_geom",
+    "def": "CREATE INDEX idx_rejet_inv_pollution_geom ON infra.rejet_inventaire_pollution USING gist (geom)"
+  },
+  {
+    "schema": "infra",
+    "table": "rejet_inventaire_pollution",
+    "index": "rejet_inventaire_pollution_pkey",
+    "def": "CREATE UNIQUE INDEX rejet_inventaire_pollution_pkey ON infra.rejet_inventaire_pollution USING btree (id)"
+  },
+  {
+    "schema": "infra",
+    "table": "rejet_inventaire_pollution",
+    "index": "rejet_inventaire_pollution_source_row_id_key",
+    "def": "CREATE UNIQUE INDEX rejet_inventaire_pollution_source_row_id_key ON infra.rejet_inventaire_pollution USING btree (source_row_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "stations",
+    "index": "idx_infra_stations_geom_gist_f7999a9c",
+    "def": "CREATE INDEX idx_infra_stations_geom_gist_f7999a9c ON infra.stations USING gist (geom)"
+  },
+  {
+    "schema": "infra",
+    "table": "stations",
+    "index": "stations_abhs_pkey",
+    "def": "CREATE UNIQUE INDEX stations_abhs_pkey ON infra.stations USING btree (ire_station)"
+  },
+  {
+    "schema": "infra",
+    "table": "stations_mesure",
+    "index": "idx_infra_station_commune",
+    "def": "CREATE INDEX idx_infra_station_commune ON infra.stations_mesure USING btree (commune_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "stations_mesure",
+    "index": "idx_infra_station_geom",
+    "def": "CREATE INDEX idx_infra_station_geom ON infra.stations_mesure USING gist (geom)"
+  },
+  {
+    "schema": "infra",
+    "table": "stations_mesure",
+    "index": "idx_infra_station_type_actif",
+    "def": "CREATE INDEX idx_infra_station_type_actif ON infra.stations_mesure USING btree (type_station, actif)"
+  },
+  {
+    "schema": "infra",
+    "table": "stations_mesure",
+    "index": "station_mesure_code_station_key",
+    "def": "CREATE UNIQUE INDEX station_mesure_code_station_key ON infra.stations_mesure USING btree (code_station)"
+  },
+  {
+    "schema": "infra",
+    "table": "stations_mesure",
+    "index": "station_mesure_pkey",
+    "def": "CREATE UNIQUE INDEX station_mesure_pkey ON infra.stations_mesure USING btree (id)"
+  },
+  {
+    "schema": "infra",
+    "table": "step",
+    "index": "idx_infra_step_geom_gist_bb6cceda",
+    "def": "CREATE INDEX idx_infra_step_geom_gist_bb6cceda ON infra.step USING gist (geom)"
+  },
+  {
+    "schema": "infra",
+    "table": "step",
+    "index": "step_abhs_pkey",
+    "def": "CREATE UNIQUE INDEX step_abhs_pkey ON infra.step USING btree (id)"
+  },
+  {
+    "schema": "infra",
+    "table": "step_industrielle",
+    "index": "idx_infra_step_ind_code_commune",
+    "def": "CREATE INDEX idx_infra_step_ind_code_commune ON infra.step_industrielle USING btree (code_commune)"
+  },
+  {
+    "schema": "infra",
+    "table": "step_industrielle",
+    "index": "idx_infra_step_ind_code_step",
+    "def": "CREATE INDEX idx_infra_step_ind_code_step ON infra.step_industrielle USING btree (code_step)"
+  },
+  {
+    "schema": "infra",
+    "table": "step_industrielle",
+    "index": "idx_infra_step_ind_geom",
+    "def": "CREATE INDEX idx_infra_step_ind_geom ON infra.step_industrielle USING gist (geom)"
+  },
+  {
+    "schema": "infra",
+    "table": "step_industrielle",
+    "index": "step_industrielle_legacy_step_ind_id_key",
+    "def": "CREATE UNIQUE INDEX step_industrielle_legacy_step_ind_id_key ON infra.step_industrielle USING btree (legacy_step_ind_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "step_industrielle",
+    "index": "step_industrielle_pkey",
+    "def": "CREATE UNIQUE INDEX step_industrielle_pkey ON infra.step_industrielle USING btree (id)"
+  },
+  {
+    "schema": "infra",
+    "table": "step_inventaire_pollution",
+    "index": "idx_step_inv_pollution_code_step",
+    "def": "CREATE INDEX idx_step_inv_pollution_code_step ON infra.step_inventaire_pollution USING btree (code_step)"
+  },
+  {
+    "schema": "infra",
+    "table": "step_inventaire_pollution",
+    "index": "idx_step_inv_pollution_geom",
+    "def": "CREATE INDEX idx_step_inv_pollution_geom ON infra.step_inventaire_pollution USING gist (geom)"
+  },
+  {
+    "schema": "infra",
+    "table": "step_inventaire_pollution",
+    "index": "idx_step_inv_pollution_step_id",
+    "def": "CREATE INDEX idx_step_inv_pollution_step_id ON infra.step_inventaire_pollution USING btree (step_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "step_inventaire_pollution",
+    "index": "step_inventaire_pollution_pkey",
+    "def": "CREATE UNIQUE INDEX step_inventaire_pollution_pkey ON infra.step_inventaire_pollution USING btree (id)"
+  },
+  {
+    "schema": "infra",
+    "table": "step_inventaire_pollution",
+    "index": "step_inventaire_pollution_source_row_id_key",
+    "def": "CREATE UNIQUE INDEX step_inventaire_pollution_source_row_id_key ON infra.step_inventaire_pollution USING btree (source_row_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "stm",
+    "index": "idx_infra_stm_code_commune",
+    "def": "CREATE INDEX idx_infra_stm_code_commune ON infra.stm USING btree (code_commune)"
+  },
+  {
+    "schema": "infra",
+    "table": "stm",
+    "index": "idx_infra_stm_code_stm",
+    "def": "CREATE INDEX idx_infra_stm_code_stm ON infra.stm USING btree (code_stm)"
+  },
+  {
+    "schema": "infra",
+    "table": "stm",
+    "index": "idx_infra_stm_geom",
+    "def": "CREATE INDEX idx_infra_stm_geom ON infra.stm USING gist (geom)"
+  },
+  {
+    "schema": "infra",
+    "table": "stm",
+    "index": "stm_legacy_stm_id_key",
+    "def": "CREATE UNIQUE INDEX stm_legacy_stm_id_key ON infra.stm USING btree (legacy_stm_id)"
+  },
+  {
+    "schema": "infra",
+    "table": "stm",
+    "index": "stm_pkey",
+    "def": "CREATE UNIQUE INDEX stm_pkey ON infra.stm USING btree (id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "api_view_catalog",
+    "index": "api_view_catalog_pkey",
+    "def": "CREATE UNIQUE INDEX api_view_catalog_pkey ON metadata.api_view_catalog USING btree (view_name)"
+  },
+  {
+    "schema": "metadata",
+    "table": "api_view_catalog",
+    "index": "idx_metadata_api_view_catalog_domain",
+    "def": "CREATE INDEX idx_metadata_api_view_catalog_domain ON metadata.api_view_catalog USING btree (domain)"
+  },
+  {
+    "schema": "metadata",
+    "table": "api_view_column_catalog",
+    "index": "api_view_column_catalog_pkey",
+    "def": "CREATE UNIQUE INDEX api_view_column_catalog_pkey ON metadata.api_view_column_catalog USING btree (view_name, ordinal_position)"
+  },
+  {
+    "schema": "metadata",
+    "table": "api_view_column_catalog",
+    "index": "idx_metadata_api_view_column_catalog_view_name",
+    "def": "CREATE INDEX idx_metadata_api_view_column_catalog_view_name ON metadata.api_view_column_catalog USING btree (view_name)"
+  },
+  {
+    "schema": "metadata",
+    "table": "catalogue_type_mesure",
+    "index": "types_mesures_pkey",
+    "def": "CREATE UNIQUE INDEX types_mesures_pkey ON metadata.catalogue_type_mesure USING btree (id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "dictionnaire_donnees",
+    "index": "dictionnaire_donnees_pkey",
+    "def": "CREATE UNIQUE INDEX dictionnaire_donnees_pkey ON metadata.dictionnaire_donnees USING btree (schema_name, table_name, column_name)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_abreviation_colonne_inventaire",
+    "index": "mapping_abreviation_colonne_i_source_schema_source_table_so_key",
+    "def": "CREATE UNIQUE INDEX mapping_abreviation_colonne_i_source_schema_source_table_so_key ON metadata.mapping_abreviation_colonne_inventaire USING btree (source_schema, source_table, source_column, raw_text, abreviation_ref_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_abreviation_colonne_inventaire",
+    "index": "mapping_abreviation_colonne_inventaire_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_abreviation_colonne_inventaire_pkey ON metadata.mapping_abreviation_colonne_inventaire USING btree (id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_abreviation_unresolved_sources",
+    "index": "mapping_abreviation_unresolved_sources_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_abreviation_unresolved_sources_pkey ON metadata.mapping_abreviation_unresolved_sources USING btree (source_schema, source_table)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_barrage",
+    "index": "idx_mapping_barrage_barrage_id",
+    "def": "CREATE INDEX idx_mapping_barrage_barrage_id ON metadata.mapping_barrage USING btree (barrage_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_barrage",
+    "index": "idx_mapping_barrage_legacy_id",
+    "def": "CREATE INDEX idx_mapping_barrage_legacy_id ON metadata.mapping_barrage USING btree (legacy_barrage_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_barrage",
+    "index": "mapping_barrage_barrage_id_key",
+    "def": "CREATE UNIQUE INDEX mapping_barrage_barrage_id_key ON metadata.mapping_barrage USING btree (barrage_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_barrage",
+    "index": "mapping_barrage_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_barrage_pkey ON metadata.mapping_barrage USING btree (legacy_ire_barrage)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_barrage_unresolved_suivi_qualite_brg_garde_hebdo",
+    "index": "mapping_barrage_unresolved_suivi_qualite_brg_garde_hebdo_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_barrage_unresolved_suivi_qualite_brg_garde_hebdo_pkey ON metadata.mapping_barrage_unresolved_suivi_qualite_brg_garde_hebdo USING btree (station_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_nappe_unresolved_qualite_nappes",
+    "index": "mapping_nappe_unresolved_qualite_nappes_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_nappe_unresolved_qualite_nappes_pkey ON metadata.mapping_nappe_unresolved_qualite_nappes USING btree (station_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_parametre_source",
+    "index": "mapping_parametre_source_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_parametre_source_pkey ON metadata.mapping_parametre_source USING btree (source_schema, source_table, source_column, source_value)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_parametre_unresolved_legacy_qualite_riviere",
+    "index": "mapping_parametre_unresolved_legacy_qualite_riviere_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_parametre_unresolved_legacy_qualite_riviere_pkey ON metadata.mapping_parametre_unresolved_legacy_qualite_riviere USING btree (parametre_qualite)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_parametre_unresolved_suivi_qualite_sebou",
+    "index": "mapping_parametre_unresolved_suivi_qualite_sebou_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_parametre_unresolved_suivi_qualite_sebou_pkey ON metadata.mapping_parametre_unresolved_suivi_qualite_sebou USING btree (parametre_qualite)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_point_eau",
+    "index": "mapping_point_eau_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_point_eau_pkey ON metadata.mapping_point_eau USING btree (legacy_point_eau_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_point_eau",
+    "index": "mapping_point_eau_point_eau_id_key",
+    "def": "CREATE UNIQUE INDEX mapping_point_eau_point_eau_id_key ON metadata.mapping_point_eau USING btree (point_eau_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_point_eau_unresolved_nappe",
+    "index": "mapping_point_eau_unresolved_nappe_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_point_eau_unresolved_nappe_pkey ON metadata.mapping_point_eau_unresolved_nappe USING btree (point_eau_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_point_eau_unresolved_station",
+    "index": "mapping_point_eau_unresolved_station_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_point_eau_unresolved_station_pkey ON metadata.mapping_point_eau_unresolved_station USING btree (point_eau_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_profil_station",
+    "index": "mapping_profil_station_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_profil_station_pkey ON metadata.mapping_profil_station USING btree (legacy_profil_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_profil_station",
+    "index": "mapping_profil_station_profil_station_id_key",
+    "def": "CREATE UNIQUE INDEX mapping_profil_station_profil_station_id_key ON metadata.mapping_profil_station USING btree (profil_station_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_profil_unresolved_nappe",
+    "index": "mapping_profil_unresolved_nappe_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_profil_unresolved_nappe_pkey ON metadata.mapping_profil_unresolved_nappe USING btree (profil_station_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_profil_unresolved_station",
+    "index": "mapping_profil_unresolved_station_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_profil_unresolved_station_pkey ON metadata.mapping_profil_unresolved_station USING btree (profil_station_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_source",
+    "index": "idx_mapping_source_legacy_id",
+    "def": "CREATE INDEX idx_mapping_source_legacy_id ON metadata.mapping_source USING btree (legacy_source_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_source",
+    "index": "idx_mapping_source_source_id",
+    "def": "CREATE INDEX idx_mapping_source_source_id ON metadata.mapping_source USING btree (source_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_source",
+    "index": "mapping_source_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_source_pkey ON metadata.mapping_source USING btree (legacy_ire_source)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_source",
+    "index": "mapping_source_source_id_key",
+    "def": "CREATE UNIQUE INDEX mapping_source_source_id_key ON metadata.mapping_source USING btree (source_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_station",
+    "index": "idx_mapping_station_legacy_code_station_uq",
+    "def": "CREATE UNIQUE INDEX idx_mapping_station_legacy_code_station_uq ON metadata.mapping_station USING btree (legacy_code_station) WHERE (legacy_code_station IS NOT NULL)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_station",
+    "index": "idx_mapping_station_station_id",
+    "def": "CREATE INDEX idx_mapping_station_station_id ON metadata.mapping_station USING btree (station_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_station",
+    "index": "mapping_station_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_station_pkey ON metadata.mapping_station USING btree (legacy_station_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_station",
+    "index": "mapping_station_station_id_key",
+    "def": "CREATE UNIQUE INDEX mapping_station_station_id_key ON metadata.mapping_station USING btree (station_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_station_unresolved_precip_ann_max",
+    "index": "mapping_station_unresolved_precip_ann_max_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_station_unresolved_precip_ann_max_pkey ON metadata.mapping_station_unresolved_precip_ann_max USING btree (ire_station)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_station_unresolved_qualite_barrages",
+    "index": "mapping_station_unresolved_qualite_barrages_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_station_unresolved_qualite_barrages_pkey ON metadata.mapping_station_unresolved_qualite_barrages USING btree (ire_station)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_station_unresolved_qualite_nappes",
+    "index": "mapping_station_unresolved_qualite_nappes_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_station_unresolved_qualite_nappes_pkey ON metadata.mapping_station_unresolved_qualite_nappes USING btree (ire_station)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_station_unresolved_suivi_qualite_brg_garde_hebdo",
+    "index": "mapping_station_unresolved_suivi_qualite_brg_garde_hebdo_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_station_unresolved_suivi_qualite_brg_garde_hebdo_pkey ON metadata.mapping_station_unresolved_suivi_qualite_brg_garde_hebdo USING btree (ire_station)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_step_ind",
+    "index": "mapping_step_ind_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_step_ind_pkey ON metadata.mapping_step_ind USING btree (legacy_step_ind_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_step_ind",
+    "index": "mapping_step_ind_step_ind_id_key",
+    "def": "CREATE UNIQUE INDEX mapping_step_ind_step_ind_id_key ON metadata.mapping_step_ind USING btree (step_ind_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_step_ind_unresolved_commune",
+    "index": "mapping_step_ind_unresolved_commune_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_step_ind_unresolved_commune_pkey ON metadata.mapping_step_ind_unresolved_commune USING btree (step_ind_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_stm",
+    "index": "mapping_stm_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_stm_pkey ON metadata.mapping_stm USING btree (legacy_stm_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_stm",
+    "index": "mapping_stm_stm_id_key",
+    "def": "CREATE UNIQUE INDEX mapping_stm_stm_id_key ON metadata.mapping_stm USING btree (stm_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mapping_stm_unresolved_commune",
+    "index": "mapping_stm_unresolved_commune_pkey",
+    "def": "CREATE UNIQUE INDEX mapping_stm_unresolved_commune_pkey ON metadata.mapping_stm_unresolved_commune USING btree (stm_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mv_obs_parametre_coverage",
+    "index": "idx_mv_obs_cov_param_entity",
+    "def": "CREATE INDEX idx_mv_obs_cov_param_entity ON metadata.mv_obs_parametre_coverage USING btree (parametre_code, entity_type)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mv_obs_parametre_entite_compat",
+    "index": "idx_mv_obs_compat_param_entity",
+    "def": "CREATE INDEX idx_mv_obs_compat_param_entity ON metadata.mv_obs_parametre_entite_compat USING btree (parametre_code, entity_type)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mv_obs_referentiel_parametre",
+    "index": "idx_mv_obs_ref_param_code",
+    "def": "CREATE INDEX idx_mv_obs_ref_param_code ON metadata.mv_obs_referentiel_parametre USING btree (parametre_code)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mv_obs_referentiel_parametre",
+    "index": "idx_mv_obs_ref_param_theme",
+    "def": "CREATE INDEX idx_mv_obs_ref_param_theme ON metadata.mv_obs_referentiel_parametre USING btree (theme, sous_theme)"
+  },
+  {
+    "schema": "metadata",
+    "table": "mv_refresh_status",
+    "index": "mv_refresh_status_pkey",
+    "def": "CREATE UNIQUE INDEX mv_refresh_status_pkey ON metadata.mv_refresh_status USING btree (mv_name)"
+  },
+  {
+    "schema": "metadata",
+    "table": "obs_parametre_coverage",
+    "index": "obs_parametre_coverage_pkey",
+    "def": "CREATE UNIQUE INDEX obs_parametre_coverage_pkey ON metadata.obs_parametre_coverage USING btree (parametre_code, entity_type)"
+  },
+  {
+    "schema": "metadata",
+    "table": "obs_parametre_entite_compat",
+    "index": "obs_parametre_entite_compat_pkey",
+    "def": "CREATE UNIQUE INDEX obs_parametre_entite_compat_pkey ON metadata.obs_parametre_entite_compat USING btree (parametre_code, entity_type)"
+  },
+  {
+    "schema": "metadata",
+    "table": "obs_referentiel_parametre",
+    "index": "obs_referentiel_parametre_pkey",
+    "def": "CREATE UNIQUE INDEX obs_referentiel_parametre_pkey ON metadata.obs_referentiel_parametre USING btree (parametre_code)"
+  },
+  {
+    "schema": "metadata",
+    "table": "popup_rules_config",
+    "index": "popup_rules_config_pkey",
+    "def": "CREATE UNIQUE INDEX popup_rules_config_pkey ON metadata.popup_rules_config USING btree (layer_key)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_classe_reglementaire",
+    "index": "ix_qualite_classe_ordre",
+    "def": "CREATE INDEX ix_qualite_classe_ordre ON metadata.qualite_classe_reglementaire USING btree (ordre_qualite, actif)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_classe_reglementaire",
+    "index": "qualite_classe_reglementaire_pkey",
+    "def": "CREATE UNIQUE INDEX qualite_classe_reglementaire_pkey ON metadata.qualite_classe_reglementaire USING btree (id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_classe_reglementaire",
+    "index": "uq_qualite_classe_reglementaire",
+    "def": "CREATE UNIQUE INDEX uq_qualite_classe_reglementaire ON metadata.qualite_classe_reglementaire USING btree (code_classe, version_reglementaire)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_mapping_canonique_reglementaire",
+    "index": "ix_qualite_mapping_canonique_id",
+    "def": "CREATE INDEX ix_qualite_mapping_canonique_id ON metadata.qualite_mapping_canonique_reglementaire USING btree (parametre_canonique_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_mapping_canonique_reglementaire",
+    "index": "ix_qualite_mapping_reg_canon",
+    "def": "CREATE INDEX ix_qualite_mapping_reg_canon ON metadata.qualite_mapping_canonique_reglementaire USING btree (code_reglementaire, code_canonique, statut_mapping)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_mapping_canonique_reglementaire",
+    "index": "qualite_mapping_canonique_reglementaire_pkey",
+    "def": "CREATE UNIQUE INDEX qualite_mapping_canonique_reglementaire_pkey ON metadata.qualite_mapping_canonique_reglementaire USING btree (id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_mapping_canonique_reglementaire",
+    "index": "uq_qualite_mapping_canonique_reg",
+    "def": "CREATE UNIQUE INDEX uq_qualite_mapping_canonique_reg ON metadata.qualite_mapping_canonique_reglementaire USING btree (code_reglementaire, COALESCE(code_canonique, ''::text), version_reglementaire)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_parametre_reglementaire",
+    "index": "ix_qualite_parametre_reg_canonique",
+    "def": "CREATE INDEX ix_qualite_parametre_reg_canonique ON metadata.qualite_parametre_reglementaire USING btree (code_canonique_cible, actif)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_parametre_reglementaire",
+    "index": "ix_qualite_parametre_reg_code",
+    "def": "CREATE INDEX ix_qualite_parametre_reg_code ON metadata.qualite_parametre_reglementaire USING btree (code_reglementaire, actif, validation_metier)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_parametre_reglementaire",
+    "index": "ix_qualite_parametre_reg_famille",
+    "def": "CREATE INDEX ix_qualite_parametre_reg_famille ON metadata.qualite_parametre_reglementaire USING btree (famille_parametre)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_parametre_reglementaire",
+    "index": "qualite_parametre_reglementaire_pkey",
+    "def": "CREATE UNIQUE INDEX qualite_parametre_reglementaire_pkey ON metadata.qualite_parametre_reglementaire USING btree (id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_parametre_reglementaire",
+    "index": "uq_qualite_parametre_reglementaire",
+    "def": "CREATE UNIQUE INDEX uq_qualite_parametre_reglementaire ON metadata.qualite_parametre_reglementaire USING btree (code_reglementaire, version_reglementaire)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_regle_classification",
+    "index": "ix_qualite_regle_type",
+    "def": "CREATE INDEX ix_qualite_regle_type ON metadata.qualite_regle_classification USING btree (type_regle, actif, ordre_execution)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_regle_classification",
+    "index": "qualite_regle_classification_pkey",
+    "def": "CREATE UNIQUE INDEX qualite_regle_classification_pkey ON metadata.qualite_regle_classification USING btree (id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_regle_classification",
+    "index": "uq_qualite_regle_classification",
+    "def": "CREATE UNIQUE INDEX uq_qualite_regle_classification ON metadata.qualite_regle_classification USING btree (code_regle, version_reglementaire)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_seuil_reglementaire",
+    "index": "ix_qualite_seuil_canonique_lookup",
+    "def": "CREATE INDEX ix_qualite_seuil_canonique_lookup ON metadata.qualite_seuil_reglementaire USING btree (code_canonique_cible, code_classe, actif, validation_metier)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_seuil_reglementaire",
+    "index": "ix_qualite_seuil_lookup",
+    "def": "CREATE INDEX ix_qualite_seuil_lookup ON metadata.qualite_seuil_reglementaire USING btree (code_reglementaire, code_classe, actif, validation_metier)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_seuil_reglementaire",
+    "index": "ix_qualite_seuil_param_type",
+    "def": "CREATE INDEX ix_qualite_seuil_param_type ON metadata.qualite_seuil_reglementaire USING btree (parametre_reglementaire_id, type_eau_id, classe_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_seuil_reglementaire",
+    "index": "qualite_seuil_reglementaire_pkey",
+    "def": "CREATE UNIQUE INDEX qualite_seuil_reglementaire_pkey ON metadata.qualite_seuil_reglementaire USING btree (id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_seuil_reglementaire",
+    "index": "uq_qualite_seuil_reglementaire",
+    "def": "CREATE UNIQUE INDEX uq_qualite_seuil_reglementaire ON metadata.qualite_seuil_reglementaire USING btree (code_reglementaire, code_classe, version_reglementaire, valeur_intervalle_originale)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_source_reglementaire",
+    "index": "ix_qualite_source_reglementaire_actif",
+    "def": "CREATE INDEX ix_qualite_source_reglementaire_actif ON metadata.qualite_source_reglementaire USING btree (actif, validation_metier)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_source_reglementaire",
+    "index": "qualite_source_reglementaire_pkey",
+    "def": "CREATE UNIQUE INDEX qualite_source_reglementaire_pkey ON metadata.qualite_source_reglementaire USING btree (id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_source_reglementaire",
+    "index": "uq_qualite_source_reglementaire",
+    "def": "CREATE UNIQUE INDEX uq_qualite_source_reglementaire ON metadata.qualite_source_reglementaire USING btree (code_source, version_reglementaire)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_type_eau",
+    "index": "ix_qualite_type_eau_code",
+    "def": "CREATE INDEX ix_qualite_type_eau_code ON metadata.qualite_type_eau USING btree (code_type_eau, actif)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_type_eau",
+    "index": "qualite_type_eau_pkey",
+    "def": "CREATE UNIQUE INDEX qualite_type_eau_pkey ON metadata.qualite_type_eau USING btree (id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "qualite_type_eau",
+    "index": "uq_qualite_type_eau",
+    "def": "CREATE UNIQUE INDEX uq_qualite_type_eau ON metadata.qualite_type_eau USING btree (code_type_eau, version_reglementaire)"
+  },
+  {
+    "schema": "metadata",
+    "table": "ref_categorie_pollution",
+    "index": "ref_categorie_pollution_pkey",
+    "def": "CREATE UNIQUE INDEX ref_categorie_pollution_pkey ON metadata.ref_categorie_pollution USING btree (pollution_category_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "ref_categorie_pollution",
+    "index": "ref_categorie_pollution_pollution_category_code_key",
+    "def": "CREATE UNIQUE INDEX ref_categorie_pollution_pollution_category_code_key ON metadata.ref_categorie_pollution USING btree (pollution_category_code)"
+  },
+  {
+    "schema": "metadata",
+    "table": "ref_type_source_pollution",
+    "index": "ref_type_source_pollution_pkey",
+    "def": "CREATE UNIQUE INDEX ref_type_source_pollution_pkey ON metadata.ref_type_source_pollution USING btree (source_type_id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "ref_type_source_pollution",
+    "index": "ref_type_source_pollution_source_type_code_key",
+    "def": "CREATE UNIQUE INDEX ref_type_source_pollution_source_type_code_key ON metadata.ref_type_source_pollution USING btree (source_type_code)"
+  },
+  {
+    "schema": "metadata",
+    "table": "referentiel_abreviation_inventaire",
+    "index": "referentiel_abreviation_inventaire_abreviation_code_key",
+    "def": "CREATE UNIQUE INDEX referentiel_abreviation_inventaire_abreviation_code_key ON metadata.referentiel_abreviation_inventaire USING btree (abreviation_code)"
+  },
+  {
+    "schema": "metadata",
+    "table": "referentiel_abreviation_inventaire",
+    "index": "referentiel_abreviation_inventaire_pkey",
+    "def": "CREATE UNIQUE INDEX referentiel_abreviation_inventaire_pkey ON metadata.referentiel_abreviation_inventaire USING btree (id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "referentiel_parametre",
+    "index": "referentiel_parametre_domaine_code_canonique_key",
+    "def": "CREATE UNIQUE INDEX referentiel_parametre_domaine_code_canonique_key ON metadata.referentiel_parametre USING btree (domaine, code_canonique)"
+  },
+  {
+    "schema": "metadata",
+    "table": "referentiel_parametre",
+    "index": "referentiel_parametre_pkey",
+    "def": "CREATE UNIQUE INDEX referentiel_parametre_pkey ON metadata.referentiel_parametre USING btree (id)"
+  },
+  {
+    "schema": "metadata",
+    "table": "referentiel_parametre_canonique",
+    "index": "idx_ref_param_canonique_domaine",
+    "def": "CREATE INDEX idx_ref_param_canonique_domaine ON metadata.referentiel_parametre_canonique USING btree (domaine, sous_domaine)"
+  },
+  {
+    "schema": "metadata",
+    "table": "referentiel_parametre_canonique",
+    "index": "idx_ref_param_canonique_geo",
+    "def": "CREATE INDEX idx_ref_param_canonique_geo ON metadata.referentiel_parametre_canonique USING btree (type_geo_supporte)"
+  },
+  {
+    "schema": "metadata",
+    "table": "referentiel_parametre_canonique",
+    "index": "idx_ref_param_canonique_type_metier",
+    "def": "CREATE INDEX idx_ref_param_canonique_type_metier ON metadata.referentiel_parametre_canonique USING btree (type_metier)"
+  },
+  {
+    "schema": "metadata",
+    "table": "referentiel_parametre_canonique",
+    "index": "referentiel_parametre_canonique_code_parametre_key",
+    "def": "CREATE UNIQUE INDEX referentiel_parametre_canonique_code_parametre_key ON metadata.referentiel_parametre_canonique USING btree (code_parametre)"
+  },
+  {
+    "schema": "metadata",
+    "table": "referentiel_parametre_canonique",
+    "index": "referentiel_parametre_canonique_pkey",
+    "def": "CREATE UNIQUE INDEX referentiel_parametre_canonique_pkey ON metadata.referentiel_parametre_canonique USING btree (parametre_ref_id)"
+  },
+  {
+    "schema": "meteo",
+    "table": "mesure_evaporation",
+    "index": "idx_meteo_evapo_station_tdesc",
+    "def": "CREATE INDEX idx_meteo_evapo_station_tdesc ON meteo.mesure_evaporation USING btree (station_id, temps DESC)"
+  },
+  {
+    "schema": "meteo",
+    "table": "mesure_evaporation",
+    "index": "idx_meteo_evapo_tdesc",
+    "def": "CREATE INDEX idx_meteo_evapo_tdesc ON meteo.mesure_evaporation USING btree (temps DESC)"
+  },
+  {
+    "schema": "meteo",
+    "table": "mesure_evaporation",
+    "index": "mesure_evaporation_pkey",
+    "def": "CREATE UNIQUE INDEX mesure_evaporation_pkey ON meteo.mesure_evaporation USING btree (temps, station_id)"
+  },
+  {
+    "schema": "meteo",
+    "table": "mesure_evaporation",
+    "index": "mesure_evaporation_temps_idx",
+    "def": "CREATE INDEX mesure_evaporation_temps_idx ON meteo.mesure_evaporation USING btree (temps DESC)"
+  },
+  {
+    "schema": "meteo",
+    "table": "mesure_precipitation",
+    "index": "idx_meteo_precip_tr_station_tdesc",
+    "def": "CREATE INDEX idx_meteo_precip_tr_station_tdesc ON meteo.mesure_precipitation USING btree (station_id, temps DESC)"
+  },
+  {
+    "schema": "meteo",
+    "table": "mesure_precipitation",
+    "index": "mesure_precipitation_traitee_pkey",
+    "def": "CREATE UNIQUE INDEX mesure_precipitation_traitee_pkey ON meteo.mesure_precipitation USING btree (temps, station_id)"
+  },
+  {
+    "schema": "meteo",
+    "table": "mesure_precipitation",
+    "index": "mesure_precipitation_traitee_temps_idx",
+    "def": "CREATE INDEX mesure_precipitation_traitee_temps_idx ON meteo.mesure_precipitation USING btree (temps DESC)"
+  },
+  {
+    "schema": "meteo",
+    "table": "mesure_precipitation_annuelle_max",
+    "index": "idx_meteo_precip_ann_max_date",
+    "def": "CREATE INDEX idx_meteo_precip_ann_max_date ON meteo.mesure_precipitation_annuelle_max USING btree (date_jr)"
+  },
+  {
+    "schema": "meteo",
+    "table": "mesure_precipitation_annuelle_max",
+    "index": "idx_meteo_precip_ann_max_ire_station",
+    "def": "CREATE INDEX idx_meteo_precip_ann_max_ire_station ON meteo.mesure_precipitation_annuelle_max USING btree (ire_station)"
+  },
+  {
+    "schema": "meteo",
+    "table": "mesure_precipitation_annuelle_max",
+    "index": "idx_meteo_precip_ann_max_station_year",
+    "def": "CREATE INDEX idx_meteo_precip_ann_max_station_year ON meteo.mesure_precipitation_annuelle_max USING btree (station_id, annee)"
+  },
+  {
+    "schema": "meteo",
+    "table": "mesure_precipitation_annuelle_max",
+    "index": "mesure_precipitation_annuelle_max_pkey",
+    "def": "CREATE UNIQUE INDEX mesure_precipitation_annuelle_max_pkey ON meteo.mesure_precipitation_annuelle_max USING btree (id)"
+  },
+  {
+    "schema": "meteo",
+    "table": "mesure_temperature",
+    "index": "idx_meteo_temp_station_temps",
+    "def": "CREATE INDEX idx_meteo_temp_station_temps ON meteo.mesure_temperature USING btree (station_id, temps DESC)"
+  },
+  {
+    "schema": "meteo",
+    "table": "mesure_temperature",
+    "index": "mesure_temperature_pkey",
+    "def": "CREATE UNIQUE INDEX mesure_temperature_pkey ON meteo.mesure_temperature USING btree (temps, station_id)"
+  },
+  {
+    "schema": "meteo",
+    "table": "mesure_temperature",
+    "index": "mesure_temperature_temps_idx",
+    "def": "CREATE INDEX mesure_temperature_temps_idx ON meteo.mesure_temperature USING btree (temps DESC)"
+  },
+  {
+    "schema": "meteo",
+    "table": "regle_qualite_evaporation_station",
+    "index": "regle_qualite_evaporation_station_pkey",
+    "def": "CREATE UNIQUE INDEX regle_qualite_evaporation_station_pkey ON meteo.regle_qualite_evaporation_station USING btree (station_id)"
+  },
+  {
+    "schema": "modeles",
+    "table": "resultat_swat",
+    "index": "resultat_swat_pkey",
+    "def": "CREATE UNIQUE INDEX resultat_swat_pkey ON modeles.resultat_swat USING btree (temps, scenario_id, sous_bassin_id)"
+  },
+  {
+    "schema": "modeles",
+    "table": "resultat_swat",
+    "index": "resultat_swat_temps_idx",
+    "def": "CREATE INDEX resultat_swat_temps_idx ON modeles.resultat_swat USING btree (temps DESC)"
+  },
+  {
+    "schema": "modeles",
+    "table": "resultat_wasp",
+    "index": "resultat_wasp_pkey",
+    "def": "CREATE UNIQUE INDEX resultat_wasp_pkey ON modeles.resultat_wasp USING btree (temps, scenario_id, cours_eau_id)"
+  },
+  {
+    "schema": "modeles",
+    "table": "resultat_wasp",
+    "index": "resultat_wasp_temps_idx",
+    "def": "CREATE INDEX resultat_wasp_temps_idx ON modeles.resultat_wasp USING btree (temps DESC)"
+  },
+  {
+    "schema": "modeles",
+    "table": "scenario_simulation",
+    "index": "scenario_simulation_pkey",
+    "def": "CREATE UNIQUE INDEX scenario_simulation_pkey ON modeles.scenario_simulation USING btree (id)"
+  },
+  {
+    "schema": "monitoring",
+    "table": "alerte_seuil",
+    "index": "alerte_seuil_pkey",
+    "def": "CREATE UNIQUE INDEX alerte_seuil_pkey ON monitoring.alerte_seuil USING btree (id)"
+  },
+  {
+    "schema": "monitoring",
+    "table": "flux_iot_brut",
+    "index": "flux_iot_brut_pkey",
+    "def": "CREATE UNIQUE INDEX flux_iot_brut_pkey ON monitoring.flux_iot_brut USING btree (id)"
+  },
+  {
+    "schema": "monitoring",
+    "table": "flux_iot_brut",
+    "index": "idx_flux_iot_traite",
+    "def": "CREATE INDEX idx_flux_iot_traite ON monitoring.flux_iot_brut USING btree (traite)"
+  },
+  {
+    "schema": "monitoring",
+    "table": "statut_capteur",
+    "index": "statut_capteur_pkey",
+    "def": "CREATE UNIQUE INDEX statut_capteur_pkey ON monitoring.statut_capteur USING btree (station_id)"
+  },
+  {
+    "schema": "public",
+    "table": "spatial_ref_sys",
+    "index": "spatial_ref_sys_pkey",
+    "def": "CREATE UNIQUE INDEX spatial_ref_sys_pkey ON public.spatial_ref_sys USING btree (srid)"
+  },
+  {
+    "schema": "qa",
+    "table": "spatial_identity_candidates",
+    "index": "ix_spatial_identity_candidates_geom",
+    "def": "CREATE INDEX ix_spatial_identity_candidates_geom ON qa.spatial_identity_candidates USING gist (source_geom)"
+  },
+  {
+    "schema": "qa",
+    "table": "spatial_identity_candidates",
+    "index": "ix_spatial_identity_candidates_master",
+    "def": "CREATE INDEX ix_spatial_identity_candidates_master ON qa.spatial_identity_candidates USING btree (candidate_master_site_id, match_score DESC)"
+  },
+  {
+    "schema": "qa",
+    "table": "spatial_identity_candidates",
+    "index": "ix_spatial_identity_candidates_run",
+    "def": "CREATE INDEX ix_spatial_identity_candidates_run ON qa.spatial_identity_candidates USING btree (run_id)"
+  },
+  {
+    "schema": "qa",
+    "table": "spatial_identity_candidates",
+    "index": "ix_spatial_identity_candidates_source",
+    "def": "CREATE INDEX ix_spatial_identity_candidates_source ON qa.spatial_identity_candidates USING btree (source_schema, source_table, source_pk)"
+  },
+  {
+    "schema": "qa",
+    "table": "spatial_identity_candidates",
+    "index": "spatial_identity_candidates_pkey",
+    "def": "CREATE UNIQUE INDEX spatial_identity_candidates_pkey ON qa.spatial_identity_candidates USING btree (candidate_id)"
+  },
+  {
+    "schema": "qa",
+    "table": "spatial_identity_conflicts",
+    "index": "ix_spatial_identity_conflicts_geom",
+    "def": "CREATE INDEX ix_spatial_identity_conflicts_geom ON qa.spatial_identity_conflicts USING gist (source_geom)"
+  },
+  {
+    "schema": "qa",
+    "table": "spatial_identity_conflicts",
+    "index": "ix_spatial_identity_conflicts_run",
+    "def": "CREATE INDEX ix_spatial_identity_conflicts_run ON qa.spatial_identity_conflicts USING btree (run_id, arbitration_status)"
+  },
+  {
+    "schema": "qa",
+    "table": "spatial_identity_conflicts",
+    "index": "ix_spatial_identity_conflicts_source",
+    "def": "CREATE INDEX ix_spatial_identity_conflicts_source ON qa.spatial_identity_conflicts USING btree (source_schema, source_table, source_pk)"
+  },
+  {
+    "schema": "qa",
+    "table": "spatial_identity_conflicts",
+    "index": "ix_spatial_identity_conflicts_type",
+    "def": "CREATE INDEX ix_spatial_identity_conflicts_type ON qa.spatial_identity_conflicts USING btree (conflict_type, arbitration_status)"
+  },
+  {
+    "schema": "qa",
+    "table": "spatial_identity_conflicts",
+    "index": "spatial_identity_conflicts_pkey",
+    "def": "CREATE UNIQUE INDEX spatial_identity_conflicts_pkey ON qa.spatial_identity_conflicts USING btree (conflict_id)"
+  },
+  {
+    "schema": "qa",
+    "table": "spatial_identity_decisions",
+    "index": "ix_spatial_identity_decisions_master",
+    "def": "CREATE INDEX ix_spatial_identity_decisions_master ON qa.spatial_identity_decisions USING btree (selected_master_site_id)"
+  },
+  {
+    "schema": "qa",
+    "table": "spatial_identity_decisions",
+    "index": "ix_spatial_identity_decisions_source",
+    "def": "CREATE INDEX ix_spatial_identity_decisions_source ON qa.spatial_identity_decisions USING btree (source_schema, source_table, source_pk)"
+  },
+  {
+    "schema": "qa",
+    "table": "spatial_identity_decisions",
+    "index": "spatial_identity_decisions_pkey",
+    "def": "CREATE UNIQUE INDEX spatial_identity_decisions_pkey ON qa.spatial_identity_decisions USING btree (decision_id)"
+  },
+  {
+    "schema": "qa",
+    "table": "spatial_identity_decisions_cartographic",
+    "index": "ix_spatial_identity_decisions_cartographic_code",
+    "def": "CREATE INDEX ix_spatial_identity_decisions_cartographic_code ON qa.spatial_identity_decisions_cartographic USING btree (decision_code, merge_future_allowed, status)"
+  },
+  {
+    "schema": "qa",
+    "table": "spatial_identity_decisions_cartographic",
+    "index": "ix_spatial_identity_decisions_cartographic_run",
+    "def": "CREATE INDEX ix_spatial_identity_decisions_cartographic_run ON qa.spatial_identity_decisions_cartographic USING btree (run_id, status)"
+  },
+  {
+    "schema": "qa",
+    "table": "spatial_identity_decisions_cartographic",
+    "index": "ix_spatial_identity_decisions_cartographic_source",
+    "def": "CREATE INDEX ix_spatial_identity_decisions_cartographic_source ON qa.spatial_identity_decisions_cartographic USING btree (source_layer, source_id)"
+  },
+  {
+    "schema": "qa",
+    "table": "spatial_identity_decisions_cartographic",
+    "index": "spatial_identity_decisions_cartographic_pkey",
+    "def": "CREATE UNIQUE INDEX spatial_identity_decisions_cartographic_pkey ON qa.spatial_identity_decisions_cartographic USING btree (decision_id)"
+  },
+  {
+    "schema": "qa",
+    "table": "spatial_identity_decisions_cartographic",
+    "index": "uq_spatial_identity_decisions_cartographic",
+    "def": "CREATE UNIQUE INDEX uq_spatial_identity_decisions_cartographic ON qa.spatial_identity_decisions_cartographic USING btree (run_id, source_layer, source_id, review_id)"
+  },
+  {
+    "schema": "qa",
+    "table": "spatial_identity_orphans",
+    "index": "ix_spatial_identity_orphans_geom",
+    "def": "CREATE INDEX ix_spatial_identity_orphans_geom ON qa.spatial_identity_orphans USING gist (source_geom)"
+  },
+  {
+    "schema": "qa",
+    "table": "spatial_identity_orphans",
+    "index": "ix_spatial_identity_orphans_run",
+    "def": "CREATE INDEX ix_spatial_identity_orphans_run ON qa.spatial_identity_orphans USING btree (run_id, review_status)"
+  },
+  {
+    "schema": "qa",
+    "table": "spatial_identity_orphans",
+    "index": "ix_spatial_identity_orphans_source",
+    "def": "CREATE INDEX ix_spatial_identity_orphans_source ON qa.spatial_identity_orphans USING btree (source_schema, source_table, source_pk)"
+  },
+  {
+    "schema": "qa",
+    "table": "spatial_identity_orphans",
+    "index": "spatial_identity_orphans_pkey",
+    "def": "CREATE UNIQUE INDEX spatial_identity_orphans_pkey ON qa.spatial_identity_orphans USING btree (orphan_id)"
+  },
+  {
+    "schema": "qa",
+    "table": "variable_thresholds",
+    "index": "uq_variable_thresholds_model_var_scenario",
+    "def": "CREATE UNIQUE INDEX uq_variable_thresholds_model_var_scenario ON qa.variable_thresholds USING btree (model, variable_name, COALESCE(scenario_id, '-1'::integer))"
+  },
+  {
+    "schema": "qa",
+    "table": "variable_thresholds",
+    "index": "variable_thresholds_pkey",
+    "def": "CREATE UNIQUE INDEX variable_thresholds_pkey ON qa.variable_thresholds USING btree (id)"
+  },
+  {
+    "schema": "qualite",
+    "table": "mesure_qualite_barrage",
+    "index": "idx_qbar_param_tdesc",
+    "def": "CREATE INDEX idx_qbar_param_tdesc ON qualite.mesure_qualite_barrage USING btree (parametre_qualite, temps DESC)"
+  },
+  {
+    "schema": "qualite",
+    "table": "mesure_qualite_barrage",
+    "index": "idx_qbar_station_tdesc",
+    "def": "CREATE INDEX idx_qbar_station_tdesc ON qualite.mesure_qualite_barrage USING btree (station_id, temps DESC)"
+  },
+  {
+    "schema": "qualite",
+    "table": "mesure_qualite_barrage",
+    "index": "mesure_qualite_barrage_pkey",
+    "def": "CREATE UNIQUE INDEX mesure_qualite_barrage_pkey ON qualite.mesure_qualite_barrage USING btree (temps, station_id, parametre_qualite, source_row_id)"
+  },
+  {
+    "schema": "qualite",
+    "table": "mesure_qualite_barrage",
+    "index": "mesure_qualite_barrage_temps_idx",
+    "def": "CREATE INDEX mesure_qualite_barrage_temps_idx ON qualite.mesure_qualite_barrage USING btree (temps DESC)"
+  },
+  {
+    "schema": "qualite",
+    "table": "mesure_qualite_nappe",
+    "index": "idx_qnap_nappe_tdesc",
+    "def": "CREATE INDEX idx_qnap_nappe_tdesc ON qualite.mesure_qualite_nappe USING btree (nappe_id, temps DESC)"
+  },
+  {
+    "schema": "qualite",
+    "table": "mesure_qualite_nappe",
+    "index": "idx_qnap_param_tdesc",
+    "def": "CREATE INDEX idx_qnap_param_tdesc ON qualite.mesure_qualite_nappe USING btree (parametre_qualite, temps DESC)"
+  },
+  {
+    "schema": "qualite",
+    "table": "mesure_qualite_nappe",
+    "index": "idx_qnap_station_tdesc",
+    "def": "CREATE INDEX idx_qnap_station_tdesc ON qualite.mesure_qualite_nappe USING btree (station_id, temps DESC)"
+  },
+  {
+    "schema": "qualite",
+    "table": "mesure_qualite_nappe",
+    "index": "mesure_qualite_nappe_pkey",
+    "def": "CREATE UNIQUE INDEX mesure_qualite_nappe_pkey ON qualite.mesure_qualite_nappe USING btree (temps, station_id, parametre_qualite, source_row_id)"
+  },
+  {
+    "schema": "qualite",
+    "table": "mesure_qualite_nappe",
+    "index": "mesure_qualite_nappe_temps_idx",
+    "def": "CREATE INDEX mesure_qualite_nappe_temps_idx ON qualite.mesure_qualite_nappe USING btree (temps DESC)"
+  },
+  {
+    "schema": "qualite",
+    "table": "mesure_qualite_riviere",
+    "index": "idx_qriv_param_tdesc",
+    "def": "CREATE INDEX idx_qriv_param_tdesc ON qualite.mesure_qualite_riviere USING btree (parametre_qualite, temps DESC)"
+  },
+  {
+    "schema": "qualite",
+    "table": "mesure_qualite_riviere",
+    "index": "idx_qriv_station_tdesc",
+    "def": "CREATE INDEX idx_qriv_station_tdesc ON qualite.mesure_qualite_riviere USING btree (station_id, temps DESC)"
+  },
+  {
+    "schema": "qualite",
+    "table": "mesure_qualite_riviere",
+    "index": "mesure_qualite_riviere_pkey",
+    "def": "CREATE UNIQUE INDEX mesure_qualite_riviere_pkey ON qualite.mesure_qualite_riviere USING btree (temps, station_id, parametre_qualite, source_row_id)"
+  },
+  {
+    "schema": "qualite",
+    "table": "mesure_qualite_riviere",
+    "index": "mesure_qualite_riviere_temps_idx",
+    "def": "CREATE INDEX mesure_qualite_riviere_temps_idx ON qualite.mesure_qualite_riviere USING btree (temps DESC)"
+  },
+  {
+    "schema": "qualite",
+    "table": "mesure_qualite_sebou",
+    "index": "idx_qseb_param_tdesc",
+    "def": "CREATE INDEX idx_qseb_param_tdesc ON qualite.mesure_qualite_sebou USING btree (parametre_qualite, temps DESC)"
+  },
+  {
+    "schema": "qualite",
+    "table": "mesure_qualite_sebou",
+    "index": "idx_qseb_station_tdesc",
+    "def": "CREATE INDEX idx_qseb_station_tdesc ON qualite.mesure_qualite_sebou USING btree (station_id, temps DESC)"
+  },
+  {
+    "schema": "qualite",
+    "table": "mesure_qualite_sebou",
+    "index": "mesure_qualite_sebou_pkey",
+    "def": "CREATE UNIQUE INDEX mesure_qualite_sebou_pkey ON qualite.mesure_qualite_sebou USING btree (temps, station_id, parametre_qualite, source_row_id)"
+  },
+  {
+    "schema": "qualite",
+    "table": "mesure_qualite_sebou",
+    "index": "mesure_qualite_sebou_temps_idx",
+    "def": "CREATE INDEX mesure_qualite_sebou_temps_idx ON qualite.mesure_qualite_sebou USING btree (temps DESC)"
+  },
+  {
+    "schema": "qualite",
+    "table": "resultat_mesure",
+    "index": "idx_resultat_mesure_batch",
+    "def": "CREATE INDEX idx_resultat_mesure_batch ON qualite.resultat_mesure USING btree (import_batch_id)"
+  },
+  {
+    "schema": "qualite",
+    "table": "resultat_mesure",
+    "index": "idx_resultat_mesure_geom",
+    "def": "CREATE INDEX idx_resultat_mesure_geom ON qualite.resultat_mesure USING gist (geom)"
+  },
+  {
+    "schema": "qualite",
+    "table": "resultat_mesure",
+    "index": "idx_resultat_mesure_geom_4326",
+    "def": "CREATE INDEX idx_resultat_mesure_geom_4326 ON qualite.resultat_mesure USING gist (geom_4326)"
+  },
+  {
+    "schema": "qualite",
+    "table": "resultat_mesure",
+    "index": "idx_resultat_mesure_param_date",
+    "def": "CREATE INDEX idx_resultat_mesure_param_date ON qualite.resultat_mesure USING btree (parameter_id, sample_date)"
+  },
+  {
+    "schema": "qualite",
+    "table": "resultat_mesure",
+    "index": "idx_resultat_mesure_raw_param",
+    "def": "CREATE INDEX idx_resultat_mesure_raw_param ON qualite.resultat_mesure USING btree (raw_parameter_code)"
+  },
+  {
+    "schema": "qualite",
+    "table": "resultat_mesure",
+    "index": "idx_resultat_mesure_site",
+    "def": "CREATE INDEX idx_resultat_mesure_site ON qualite.resultat_mesure USING btree (site_id)"
+  },
+  {
+    "schema": "qualite",
+    "table": "resultat_mesure",
+    "index": "resultat_mesure_pkey",
+    "def": "CREATE UNIQUE INDEX resultat_mesure_pkey ON qualite.resultat_mesure USING btree (resultat_id)"
+  },
+  {
+    "schema": "qualite",
+    "table": "resultat_mesure",
+    "index": "ux_resultat_mesure_source_param",
+    "def": "CREATE UNIQUE INDEX ux_resultat_mesure_source_param ON qualite.resultat_mesure USING btree (source_layer, source_feature_id, raw_parameter_code)"
+  },
+  {
+    "schema": "qualite",
+    "table": "source_pollution_mesure_param",
+    "index": "idx_sp_mesure_param_code",
+    "def": "CREATE INDEX idx_sp_mesure_param_code ON qualite.source_pollution_mesure_param USING btree (param_code_legacy)"
+  },
+  {
+    "schema": "qualite",
+    "table": "source_pollution_mesure_param",
+    "index": "idx_sp_mesure_param_prelevement",
+    "def": "CREATE INDEX idx_sp_mesure_param_prelevement ON qualite.source_pollution_mesure_param USING btree (prelevement_id)"
+  },
+  {
+    "schema": "qualite",
+    "table": "source_pollution_mesure_param",
+    "index": "idx_sp_mesure_param_ref",
+    "def": "CREATE INDEX idx_sp_mesure_param_ref ON qualite.source_pollution_mesure_param USING btree (parametre_ref_id)"
+  },
+  {
+    "schema": "qualite",
+    "table": "source_pollution_mesure_param",
+    "index": "source_pollution_mesure_param_pkey",
+    "def": "CREATE UNIQUE INDEX source_pollution_mesure_param_pkey ON qualite.source_pollution_mesure_param USING btree (id)"
+  },
+  {
+    "schema": "qualite",
+    "table": "source_pollution_mesure_param",
+    "index": "source_pollution_mesure_param_prelevement_id_param_code_leg_key",
+    "def": "CREATE UNIQUE INDEX source_pollution_mesure_param_prelevement_id_param_code_leg_key ON qualite.source_pollution_mesure_param USING btree (prelevement_id, param_code_legacy)"
+  },
+  {
+    "schema": "qualite",
+    "table": "source_pollution_prelevement",
+    "index": "idx_sp_prelevement_date",
+    "def": "CREATE INDEX idx_sp_prelevement_date ON qualite.source_pollution_prelevement USING btree (date_reception)"
+  },
+  {
+    "schema": "qualite",
+    "table": "source_pollution_prelevement",
+    "index": "idx_sp_prelevement_geom",
+    "def": "CREATE INDEX idx_sp_prelevement_geom ON qualite.source_pollution_prelevement USING gist (geom)"
+  },
+  {
+    "schema": "qualite",
+    "table": "source_pollution_prelevement",
+    "index": "source_pollution_prelevement_pkey",
+    "def": "CREATE UNIQUE INDEX source_pollution_prelevement_pkey ON qualite.source_pollution_prelevement USING btree (id)"
+  },
+  {
+    "schema": "qualite",
+    "table": "source_pollution_prelevement",
+    "index": "source_pollution_prelevement_source_row_id_key",
+    "def": "CREATE UNIQUE INDEX source_pollution_prelevement_source_row_id_key ON qualite.source_pollution_prelevement USING btree (source_row_id)"
+  },
+  {
+    "schema": "qualite",
+    "table": "source_pollution_prelevement_lien",
+    "index": "idx_sp_lien_type_id",
+    "def": "CREATE INDEX idx_sp_lien_type_id ON qualite.source_pollution_prelevement_lien USING btree (entite_type, entite_id)"
+  },
+  {
+    "schema": "qualite",
+    "table": "source_pollution_prelevement_lien",
+    "index": "source_pollution_prelevement_lien_pkey",
+    "def": "CREATE UNIQUE INDEX source_pollution_prelevement_lien_pkey ON qualite.source_pollution_prelevement_lien USING btree (prelevement_id, entite_type, entite_id)"
+  },
+  {
+    "schema": "qualite",
+    "table": "suivi_qualite_barrage_garde_hebdo",
+    "index": "idx_qbrghebdo_param_tdesc",
+    "def": "CREATE INDEX idx_qbrghebdo_param_tdesc ON qualite.suivi_qualite_barrage_garde_hebdo USING btree (parametre_qualite, temps DESC)"
+  },
+  {
+    "schema": "qualite",
+    "table": "suivi_qualite_barrage_garde_hebdo",
+    "index": "idx_qbrghebdo_station_tdesc",
+    "def": "CREATE INDEX idx_qbrghebdo_station_tdesc ON qualite.suivi_qualite_barrage_garde_hebdo USING btree (station_id, temps DESC)"
+  },
+  {
+    "schema": "qualite",
+    "table": "suivi_qualite_barrage_garde_hebdo",
+    "index": "suivi_qualite_barrage_hebdo_pkey",
+    "def": "CREATE UNIQUE INDEX suivi_qualite_barrage_hebdo_pkey ON qualite.suivi_qualite_barrage_garde_hebdo USING btree (temps, station_id, parametre_qualite, source_row_id)"
+  },
+  {
+    "schema": "qualite",
+    "table": "suivi_qualite_barrage_garde_hebdo",
+    "index": "suivi_qualite_barrage_hebdo_temps_idx",
+    "def": "CREATE INDEX suivi_qualite_barrage_hebdo_temps_idx ON qualite.suivi_qualite_barrage_garde_hebdo USING btree (temps DESC)"
+  },
+  {
+    "schema": "security",
+    "table": "activity_logs",
+    "index": "activity_logs_pkey",
+    "def": "CREATE UNIQUE INDEX activity_logs_pkey ON security.activity_logs USING btree (id)"
+  },
+  {
+    "schema": "security",
+    "table": "activity_logs",
+    "index": "idx_activity_logs_created_at",
+    "def": "CREATE INDEX idx_activity_logs_created_at ON security.activity_logs USING btree (created_at)"
+  },
+  {
+    "schema": "security",
+    "table": "activity_logs",
+    "index": "idx_activity_logs_user_id",
+    "def": "CREATE INDEX idx_activity_logs_user_id ON security.activity_logs USING btree (user_id)"
+  },
+  {
+    "schema": "security",
+    "table": "activity_logs",
+    "index": "idx_activity_logs_username",
+    "def": "CREATE INDEX idx_activity_logs_username ON security.activity_logs USING btree (username)"
+  },
+  {
+    "schema": "security",
+    "table": "auth_logs",
+    "index": "auth_logs_pkey",
+    "def": "CREATE UNIQUE INDEX auth_logs_pkey ON security.auth_logs USING btree (id)"
+  },
+  {
+    "schema": "security",
+    "table": "auth_logs",
+    "index": "idx_auth_logs_created_at",
+    "def": "CREATE INDEX idx_auth_logs_created_at ON security.auth_logs USING btree (created_at)"
+  },
+  {
+    "schema": "security",
+    "table": "auth_logs",
+    "index": "idx_auth_logs_user_id",
+    "def": "CREATE INDEX idx_auth_logs_user_id ON security.auth_logs USING btree (user_id)"
+  },
+  {
+    "schema": "security",
+    "table": "log_audit",
+    "index": "log_audit_pkey",
+    "def": "CREATE UNIQUE INDEX log_audit_pkey ON security.log_audit USING btree (id)"
+  },
+  {
+    "schema": "security",
+    "table": "password_history",
+    "index": "password_history_pkey",
+    "def": "CREATE UNIQUE INDEX password_history_pkey ON security.password_history USING btree (id)"
+  },
+  {
+    "schema": "security",
+    "table": "password_reset_requests",
+    "index": "idx_reset_requests_requested_at",
+    "def": "CREATE INDEX idx_reset_requests_requested_at ON security.password_reset_requests USING btree (requested_at)"
+  },
+  {
+    "schema": "security",
+    "table": "password_reset_requests",
+    "index": "idx_reset_requests_status",
+    "def": "CREATE INDEX idx_reset_requests_status ON security.password_reset_requests USING btree (status)"
+  },
+  {
+    "schema": "security",
+    "table": "password_reset_requests",
+    "index": "password_reset_requests_pkey",
+    "def": "CREATE UNIQUE INDEX password_reset_requests_pkey ON security.password_reset_requests USING btree (id)"
+  },
+  {
+    "schema": "security",
+    "table": "password_reset_tokens",
+    "index": "password_reset_tokens_pkey",
+    "def": "CREATE UNIQUE INDEX password_reset_tokens_pkey ON security.password_reset_tokens USING btree (id)"
+  },
+  {
+    "schema": "security",
+    "table": "permissions",
+    "index": "permissions_code_key",
+    "def": "CREATE UNIQUE INDEX permissions_code_key ON security.permissions USING btree (code)"
+  },
+  {
+    "schema": "security",
+    "table": "permissions",
+    "index": "permissions_pkey",
+    "def": "CREATE UNIQUE INDEX permissions_pkey ON security.permissions USING btree (id)"
+  },
+  {
+    "schema": "security",
+    "table": "refresh_tokens",
+    "index": "refresh_tokens_pkey",
+    "def": "CREATE UNIQUE INDEX refresh_tokens_pkey ON security.refresh_tokens USING btree (id)"
+  },
+  {
+    "schema": "security",
+    "table": "role_permissions",
+    "index": "role_permissions_pkey",
+    "def": "CREATE UNIQUE INDEX role_permissions_pkey ON security.role_permissions USING btree (role_id, permission_id)"
+  },
+  {
+    "schema": "security",
+    "table": "roles",
+    "index": "roles_code_key",
+    "def": "CREATE UNIQUE INDEX roles_code_key ON security.roles USING btree (code)"
+  },
+  {
+    "schema": "security",
+    "table": "roles",
+    "index": "roles_pkey",
+    "def": "CREATE UNIQUE INDEX roles_pkey ON security.roles USING btree (id)"
+  },
+  {
+    "schema": "security",
+    "table": "users",
+    "index": "idx_users_email",
+    "def": "CREATE INDEX idx_users_email ON security.users USING btree (email)"
+  },
+  {
+    "schema": "security",
+    "table": "users",
+    "index": "idx_users_username",
+    "def": "CREATE INDEX idx_users_username ON security.users USING btree (username)"
+  },
+  {
+    "schema": "security",
+    "table": "users",
+    "index": "users_email_key",
+    "def": "CREATE UNIQUE INDEX users_email_key ON security.users USING btree (email)"
+  },
+  {
+    "schema": "security",
+    "table": "users",
+    "index": "users_pkey",
+    "def": "CREATE UNIQUE INDEX users_pkey ON security.users USING btree (id)"
+  },
+  {
+    "schema": "security",
+    "table": "users",
+    "index": "users_username_key",
+    "def": "CREATE UNIQUE INDEX users_username_key ON security.users USING btree (username)"
+  },
+  {
+    "schema": "staging",
+    "table": "raw_idp_mesures_qualite_globale_2024",
+    "index": "idx_staging_raw_idp_mesures_qualite_globale_2024_batch",
+    "def": "CREATE INDEX idx_staging_raw_idp_mesures_qualite_globale_2024_batch ON staging.raw_idp_mesures_qualite_globale_2024 USING btree (import_batch_id)"
+  },
+  {
+    "schema": "staging",
+    "table": "raw_idp_mesures_qualite_globale_2024",
+    "index": "idx_staging_raw_idp_mesures_qualite_globale_2024_geom_4326",
+    "def": "CREATE INDEX idx_staging_raw_idp_mesures_qualite_globale_2024_geom_4326 ON staging.raw_idp_mesures_qualite_globale_2024 USING gist (geom_4326)"
+  },
+  {
+    "schema": "staging",
+    "table": "raw_idp_mesures_qualite_globale_2024",
+    "index": "idx_staging_raw_idp_mesures_qualite_globale_2024_geom_original",
+    "def": "CREATE INDEX idx_staging_raw_idp_mesures_qualite_globale_2024_geom_original ON staging.raw_idp_mesures_qualite_globale_2024 USING gist (geom_original)"
+  },
+  {
+    "schema": "staging",
+    "table": "raw_idp_mesures_qualite_globale_2024",
+    "index": "idx_staging_raw_idp_mesures_qualite_globale_2024_source_feature",
+    "def": "CREATE INDEX idx_staging_raw_idp_mesures_qualite_globale_2024_source_feature ON staging.raw_idp_mesures_qualite_globale_2024 USING btree (source_layer, source_feature_id)"
+  },
+  {
+    "schema": "staging",
+    "table": "raw_idp_mesures_qualite_globale_2024",
+    "index": "raw_idp_mesures_qualite_globale_2024_pkey",
+    "def": "CREATE UNIQUE INDEX raw_idp_mesures_qualite_globale_2024_pkey ON staging.raw_idp_mesures_qualite_globale_2024 USING btree (ogc_fid)"
+  },
+  {
+    "schema": "staging",
+    "table": "raw_idp_mesures_qualite_marche_cadre_2024",
+    "index": "idx_staging_raw_idp_mesures_qualite_marche_cadre_2024_batch",
+    "def": "CREATE INDEX idx_staging_raw_idp_mesures_qualite_marche_cadre_2024_batch ON staging.raw_idp_mesures_qualite_marche_cadre_2024 USING btree (import_batch_id)"
+  },
+  {
+    "schema": "staging",
+    "table": "raw_idp_mesures_qualite_marche_cadre_2024",
+    "index": "idx_staging_raw_idp_mesures_qualite_marche_cadre_2024_geom_4326",
+    "def": "CREATE INDEX idx_staging_raw_idp_mesures_qualite_marche_cadre_2024_geom_4326 ON staging.raw_idp_mesures_qualite_marche_cadre_2024 USING gist (geom_4326)"
+  },
+  {
+    "schema": "staging",
+    "table": "raw_idp_mesures_qualite_marche_cadre_2024",
+    "index": "idx_staging_raw_idp_mesures_qualite_marche_cadre_2024_geom_orig",
+    "def": "CREATE INDEX idx_staging_raw_idp_mesures_qualite_marche_cadre_2024_geom_orig ON staging.raw_idp_mesures_qualite_marche_cadre_2024 USING gist (geom_original)"
+  },
+  {
+    "schema": "staging",
+    "table": "raw_idp_mesures_qualite_marche_cadre_2024",
+    "index": "idx_staging_raw_idp_mesures_qualite_marche_cadre_2024_source_fe",
+    "def": "CREATE INDEX idx_staging_raw_idp_mesures_qualite_marche_cadre_2024_source_fe ON staging.raw_idp_mesures_qualite_marche_cadre_2024 USING btree (source_layer, source_feature_id)"
+  },
+  {
+    "schema": "staging",
+    "table": "raw_idp_mesures_qualite_marche_cadre_2024",
+    "index": "raw_idp_mesures_qualite_marche_cadre_2024_pkey",
+    "def": "CREATE UNIQUE INDEX raw_idp_mesures_qualite_marche_cadre_2024_pkey ON staging.raw_idp_mesures_qualite_marche_cadre_2024 USING btree (ogc_fid)"
+  },
+  {
+    "schema": "staging",
+    "table": "raw_idp_src_pollution_globale",
+    "index": "idx_staging_raw_idp_src_pollution_globale_batch",
+    "def": "CREATE INDEX idx_staging_raw_idp_src_pollution_globale_batch ON staging.raw_idp_src_pollution_globale USING btree (import_batch_id)"
+  },
+  {
+    "schema": "staging",
+    "table": "raw_idp_src_pollution_globale",
+    "index": "idx_staging_raw_idp_src_pollution_globale_geom_4326",
+    "def": "CREATE INDEX idx_staging_raw_idp_src_pollution_globale_geom_4326 ON staging.raw_idp_src_pollution_globale USING gist (geom_4326)"
+  },
+  {
+    "schema": "staging",
+    "table": "raw_idp_src_pollution_globale",
+    "index": "idx_staging_raw_idp_src_pollution_globale_geom_original",
+    "def": "CREATE INDEX idx_staging_raw_idp_src_pollution_globale_geom_original ON staging.raw_idp_src_pollution_globale USING gist (geom_original)"
+  },
+  {
+    "schema": "staging",
+    "table": "raw_idp_src_pollution_globale",
+    "index": "idx_staging_raw_idp_src_pollution_globale_source_feature",
+    "def": "CREATE INDEX idx_staging_raw_idp_src_pollution_globale_source_feature ON staging.raw_idp_src_pollution_globale USING btree (source_layer, source_feature_id)"
+  },
+  {
+    "schema": "staging",
+    "table": "raw_idp_src_pollution_globale",
+    "index": "raw_idp_src_pollution_globale_pkey",
+    "def": "CREATE UNIQUE INDEX raw_idp_src_pollution_globale_pkey ON staging.raw_idp_src_pollution_globale USING btree (ogc_fid)"
+  },
+  {
+    "schema": "staging",
+    "table": "raw_idp_src_pollution_marche_cadre",
+    "index": "idx_staging_raw_idp_src_pollution_marche_cadre_batch",
+    "def": "CREATE INDEX idx_staging_raw_idp_src_pollution_marche_cadre_batch ON staging.raw_idp_src_pollution_marche_cadre USING btree (import_batch_id)"
+  },
+  {
+    "schema": "staging",
+    "table": "raw_idp_src_pollution_marche_cadre",
+    "index": "idx_staging_raw_idp_src_pollution_marche_cadre_geom_4326",
+    "def": "CREATE INDEX idx_staging_raw_idp_src_pollution_marche_cadre_geom_4326 ON staging.raw_idp_src_pollution_marche_cadre USING gist (geom_4326)"
+  },
+  {
+    "schema": "staging",
+    "table": "raw_idp_src_pollution_marche_cadre",
+    "index": "idx_staging_raw_idp_src_pollution_marche_cadre_geom_original",
+    "def": "CREATE INDEX idx_staging_raw_idp_src_pollution_marche_cadre_geom_original ON staging.raw_idp_src_pollution_marche_cadre USING gist (geom_original)"
+  },
+  {
+    "schema": "staging",
+    "table": "raw_idp_src_pollution_marche_cadre",
+    "index": "idx_staging_raw_idp_src_pollution_marche_cadre_source_feature",
+    "def": "CREATE INDEX idx_staging_raw_idp_src_pollution_marche_cadre_source_feature ON staging.raw_idp_src_pollution_marche_cadre USING btree (source_layer, source_feature_id)"
+  },
+  {
+    "schema": "staging",
+    "table": "raw_idp_src_pollution_marche_cadre",
+    "index": "raw_idp_src_pollution_marche_cadre_pkey",
+    "def": "CREATE UNIQUE INDEX raw_idp_src_pollution_marche_cadre_pkey ON staging.raw_idp_src_pollution_marche_cadre USING btree (ogc_fid)"
+  },
+  {
+    "schema": "swat_output",
+    "table": "mesure_qualite_subbasin_ts",
+    "index": "idx_swat_q_run_param_tdesc",
+    "def": "CREATE INDEX idx_swat_q_run_param_tdesc ON swat_output.mesure_qualite_subbasin_ts USING btree (run_id, param_code, temps DESC)"
+  },
+  {
+    "schema": "swat_output",
+    "table": "mesure_qualite_subbasin_ts",
+    "index": "idx_swat_q_run_sub_tdesc",
+    "def": "CREATE INDEX idx_swat_q_run_sub_tdesc ON swat_output.mesure_qualite_subbasin_ts USING btree (run_id, subbasin_uid, temps DESC)"
+  },
+  {
+    "schema": "swat_output",
+    "table": "mesure_qualite_subbasin_ts",
+    "index": "idx_swat_q_sub_param_tdesc",
+    "def": "CREATE INDEX idx_swat_q_sub_param_tdesc ON swat_output.mesure_qualite_subbasin_ts USING btree (subbasin_uid, param_code, temps DESC)"
+  },
+  {
+    "schema": "swat_output",
+    "table": "mesure_qualite_subbasin_ts",
+    "index": "mesure_qualite_subbasin_ts_pkey",
+    "def": "CREATE UNIQUE INDEX mesure_qualite_subbasin_ts_pkey ON swat_output.mesure_qualite_subbasin_ts USING btree (run_id, subbasin_uid, temps, param_code)"
+  },
+  {
+    "schema": "swat_output",
+    "table": "mesure_qualite_subbasin_ts",
+    "index": "mesure_qualite_subbasin_ts_temps_idx",
+    "def": "CREATE INDEX mesure_qualite_subbasin_ts_temps_idx ON swat_output.mesure_qualite_subbasin_ts USING btree (temps DESC)"
+  },
+  {
+    "schema": "swat_output",
+    "table": "ref_bassin",
+    "index": "ref_bassin_pkey",
+    "def": "CREATE UNIQUE INDEX ref_bassin_pkey ON swat_output.ref_bassin USING btree (bassin_code)"
+  },
+  {
+    "schema": "swat_output",
+    "table": "ref_parametre_qualite",
+    "index": "ref_parametre_qualite_pkey",
+    "def": "CREATE UNIQUE INDEX ref_parametre_qualite_pkey ON swat_output.ref_parametre_qualite USING btree (param_code)"
+  },
+  {
+    "schema": "swat_output",
+    "table": "ref_run_modele",
+    "index": "ref_run_modele_pkey",
+    "def": "CREATE UNIQUE INDEX ref_run_modele_pkey ON swat_output.ref_run_modele USING btree (run_id)"
+  },
+  {
+    "schema": "swat_output",
+    "table": "ref_run_modele",
+    "index": "ref_run_modele_run_code_key",
+    "def": "CREATE UNIQUE INDEX ref_run_modele_run_code_key ON swat_output.ref_run_modele USING btree (run_code)"
+  },
+  {
+    "schema": "swat_output",
+    "table": "ref_scenario",
+    "index": "ref_scenario_pkey",
+    "def": "CREATE UNIQUE INDEX ref_scenario_pkey ON swat_output.ref_scenario USING btree (scenario_code)"
+  },
+  {
+    "schema": "swat_output",
+    "table": "ref_subbasin",
+    "index": "idx_ref_subbasin_geom",
+    "def": "CREATE INDEX idx_ref_subbasin_geom ON swat_output.ref_subbasin USING gist (geom)"
+  },
+  {
+    "schema": "swat_output",
+    "table": "ref_subbasin",
+    "index": "ref_subbasin_bassin_code_subbasin_local_id_key",
+    "def": "CREATE UNIQUE INDEX ref_subbasin_bassin_code_subbasin_local_id_key ON swat_output.ref_subbasin USING btree (bassin_code, subbasin_local_id)"
+  },
+  {
+    "schema": "swat_output",
+    "table": "ref_subbasin",
+    "index": "ref_subbasin_pkey",
+    "def": "CREATE UNIQUE INDEX ref_subbasin_pkey ON swat_output.ref_subbasin USING btree (subbasin_uid)"
+  },
+  {
+    "schema": "swat_output",
+    "table": "stg_swat_qualite_meta",
+    "index": "stg_swat_qualite_meta_pkey",
+    "def": "CREATE UNIQUE INDEX stg_swat_qualite_meta_pkey ON swat_output.stg_swat_qualite_meta USING btree (run_code, sheet_name, row_idx)"
+  },
+  {
+    "schema": "swat_sebou",
+    "table": "swat_models",
+    "index": "swat_models_pkey",
+    "def": "CREATE UNIQUE INDEX swat_models_pkey ON swat_sebou.swat_models USING btree (id)"
+  },
+  {
+    "schema": "swat_sebou",
+    "table": "swat_reach_results",
+    "index": "swat_reach_results_pkey",
+    "def": "CREATE UNIQUE INDEX swat_reach_results_pkey ON swat_sebou.swat_reach_results USING btree (id)"
+  },
+  {
+    "schema": "swat_sebou",
+    "table": "swat_scenarios",
+    "index": "swat_scenarios_pkey",
+    "def": "CREATE UNIQUE INDEX swat_scenarios_pkey ON swat_sebou.swat_scenarios USING btree (id)"
+  },
+  {
+    "schema": "swat_sebou",
+    "table": "swat_subbasin_results",
+    "index": "swat_subbasin_results_pkey",
+    "def": "CREATE UNIQUE INDEX swat_subbasin_results_pkey ON swat_sebou.swat_subbasin_results USING btree (id)"
+  },
+  {
+    "schema": "wasp_output",
+    "table": "mesure_qualite_segment_ts",
+    "index": "idx_wasp_mesure_segment_ts_bucket",
+    "def": "CREATE INDEX idx_wasp_mesure_segment_ts_bucket ON wasp_output.mesure_qualite_segment_ts USING btree (bucket_day)"
+  },
+  {
+    "schema": "wasp_output",
+    "table": "mesure_qualite_segment_ts",
+    "index": "idx_wasp_mesure_segment_ts_param",
+    "def": "CREATE INDEX idx_wasp_mesure_segment_ts_param ON wasp_output.mesure_qualite_segment_ts USING btree (code_parametre)"
+  },
+  {
+    "schema": "wasp_output",
+    "table": "mesure_qualite_segment_ts",
+    "index": "idx_wasp_mesure_segment_ts_run",
+    "def": "CREATE INDEX idx_wasp_mesure_segment_ts_run ON wasp_output.mesure_qualite_segment_ts USING btree (run_id)"
+  },
+  {
+    "schema": "wasp_output",
+    "table": "mesure_qualite_segment_ts",
+    "index": "idx_wasp_mesure_segment_ts_segment",
+    "def": "CREATE INDEX idx_wasp_mesure_segment_ts_segment ON wasp_output.mesure_qualite_segment_ts USING btree (reseau_id)"
+  },
+  {
+    "schema": "wasp_output",
+    "table": "mesure_qualite_segment_ts",
+    "index": "mesure_qualite_segment_ts_pkey",
+    "def": "CREATE UNIQUE INDEX mesure_qualite_segment_ts_pkey ON wasp_output.mesure_qualite_segment_ts USING btree (run_id, code_parametre, segment_local_id, ts_utc)"
+  },
+  {
+    "schema": "wasp_output",
+    "table": "mesure_qualite_segment_ts",
+    "index": "mesure_qualite_segment_ts_ts_utc_idx",
+    "def": "CREATE INDEX mesure_qualite_segment_ts_ts_utc_idx ON wasp_output.mesure_qualite_segment_ts USING btree (ts_utc DESC)"
+  },
+  {
+    "schema": "wasp_output",
+    "table": "ref_parametre_qualite",
+    "index": "ref_parametre_qualite_pkey",
+    "def": "CREATE UNIQUE INDEX ref_parametre_qualite_pkey ON wasp_output.ref_parametre_qualite USING btree (code_parametre)"
+  },
+  {
+    "schema": "wasp_output",
+    "table": "ref_run_modele",
+    "index": "ref_run_modele_pkey",
+    "def": "CREATE UNIQUE INDEX ref_run_modele_pkey ON wasp_output.ref_run_modele USING btree (run_id)"
+  },
+  {
+    "schema": "wasp_output",
+    "table": "ref_run_modele",
+    "index": "ref_run_modele_run_code_key",
+    "def": "CREATE UNIQUE INDEX ref_run_modele_run_code_key ON wasp_output.ref_run_modele USING btree (run_code)"
+  },
+  {
+    "schema": "wasp_output",
+    "table": "ref_segment_modele",
+    "index": "ref_segment_modele_pkey",
+    "def": "CREATE UNIQUE INDEX ref_segment_modele_pkey ON wasp_output.ref_segment_modele USING btree (bassin_code, segment_local_id)"
+  },
+  {
+    "schema": "wasp_sebou",
+    "table": "wasp_results",
+    "index": "wasp_results_pkey",
+    "def": "CREATE UNIQUE INDEX wasp_results_pkey ON wasp_sebou.wasp_results USING btree (id)"
+  },
+  {
+    "schema": "wasp_sebou",
+    "table": "wasp_scenarios",
+    "index": "wasp_scenarios_pkey",
+    "def": "CREATE UNIQUE INDEX wasp_scenarios_pkey ON wasp_sebou.wasp_scenarios USING btree (id)"
+  },
+  {
+    "schema": "wasp_sebou",
+    "table": "wasp_variables",
+    "index": "wasp_variables_code_key",
+    "def": "CREATE UNIQUE INDEX wasp_variables_code_key ON wasp_sebou.wasp_variables USING btree (code)"
+  },
+  {
+    "schema": "wasp_sebou",
+    "table": "wasp_variables",
+    "index": "wasp_variables_pkey",
+    "def": "CREATE UNIQUE INDEX wasp_variables_pkey ON wasp_sebou.wasp_variables USING btree (id)"
+  }
+]

@@ -1,0 +1,460 @@
+{
+  "exact": [
+    {
+      "station_source": "Aguelmam_Sidi_Ali",
+      "station_norm": "aguelmamsidiali",
+      "candidate_count": 1,
+      "station_id_candidate": "a963a9da-0441-4b33-b6aa-6ffbc1041125",
+      "candidate_nom": "aguelmam sidi ali",
+      "candidate_code": "1652/22",
+      "candidate_type": "pluviometrique",
+      "matched_field": "nom",
+      "matched_value": "aguelmam sidi ali"
+    },
+    {
+      "station_source": "Ain_aicha",
+      "station_norm": "ainaicha",
+      "candidate_count": 1,
+      "station_id_candidate": "5776b37c-48c8-41b2-8f3d-afadac7fd12e",
+      "candidate_nom": "ain aicha",
+      "candidate_code": "1217/9",
+      "candidate_type": "hydrologique",
+      "matched_field": "nom",
+      "matched_value": "ain aicha"
+    },
+    {
+      "station_source": "Ait_Khabbach",
+      "station_norm": "aitkhabbach",
+      "candidate_count": 1,
+      "station_id_candidate": "1b62f3e9-91a7-4c4a-9385-d3aa78eae978",
+      "candidate_nom": "ait khabbach",
+      "candidate_code": "585/22",
+      "candidate_type": "hydrologique",
+      "matched_field": "nom",
+      "matched_value": "ait khabbach"
+    },
+    {
+      "station_source": "Azzaba",
+      "station_norm": "azzaba",
+      "candidate_count": 1,
+      "station_id_candidate": "68d55282-7106-4a08-a074-0d8c92a609dd",
+      "candidate_nom": "azzaba",
+      "candidate_code": "583/22",
+      "candidate_type": "hydrologique",
+      "matched_field": "nom",
+      "matched_value": "azzaba"
+    },
+    {
+      "station_source": "Bab Chhoub",
+      "station_norm": "babchhoub",
+      "candidate_count": 1,
+      "station_id_candidate": "1230cd2c-2ca1-483a-8466-d6585fcfbd61",
+      "candidate_nom": "bab chhoub",
+      "candidate_code": "702/16",
+      "candidate_type": "hydrologique",
+      "matched_field": "nom",
+      "matched_value": "bab chhoub"
+    },
+    {
+      "station_source": "Bab Merzouka",
+      "station_norm": "babmerzouka",
+      "candidate_count": 1,
+      "station_id_candidate": "da925486-bca7-49e3-af60-ea5f2294a77a",
+      "candidate_nom": "bab merzouka",
+      "candidate_code": "551/16",
+      "candidate_type": "hydrologique",
+      "matched_field": "nom",
+      "matched_value": "bab merzouka"
+    },
+    {
+      "station_source": "Bab Ouender",
+      "station_norm": "babouender",
+      "candidate_count": 1,
+      "station_id_candidate": "517c713a-dda4-4dcb-a033-4143062487fd",
+      "candidate_nom": "bab ouender",
+      "candidate_code": "260/9",
+      "candidate_type": "hydrologique",
+      "matched_field": "nom",
+      "matched_value": "bab ouender"
+    },
+    {
+      "station_source": "Bab_Ouender",
+      "station_norm": "babouender",
+      "candidate_count": 1,
+      "station_id_candidate": "517c713a-dda4-4dcb-a033-4143062487fd",
+      "candidate_nom": "bab ouender",
+      "candidate_code": "260/9",
+      "candidate_type": "hydrologique",
+      "matched_field": "nom",
+      "matched_value": "bab ouender"
+    },
+    {
+      "station_source": "Bab_taza",
+      "station_norm": "babtaza",
+      "candidate_count": 1,
+      "station_id_candidate": "3b477290-57ad-4aff-bf46-9418e450dc8d",
+      "candidate_nom": "bab taza",
+      "candidate_code": "1586/600",
+      "candidate_type": "pluviometrique",
+      "matched_field": "nom",
+      "matched_value": "bab taza"
+    },
+    {
+      "station_source": "Beni Heitem",
+      "station_norm": "beniheitem",
+      "candidate_count": 1,
+      "station_id_candidate": "c9eda862-abf9-4375-b614-2e1b2eb84715",
+      "candidate_nom": "beni heitem",
+      "candidate_code": "672/16",
+      "candidate_type": "hydrologique",
+      "matched_field": "nom",
+      "matched_value": "beni heitem"
+    },
+    {
+      "station_source": "Boufellou",
+      "station_norm": "boufellou",
+      "candidate_count": 1,
+      "station_id_candidate": "8672b830-aff8-4fd3-87a7-a43ac966af68",
+      "candidate_nom": "boufellou",
+      "candidate_code": "1749/9",
+      "candidate_type": "hydrologique",
+      "matched_field": "nom",
+      "matched_value": "boufellou"
+    },
+    {
+      "station_source": "Boured",
+      "station_norm": "boured",
+      "candidate_count": 1,
+      "station_id_candidate": "7042849a-fb8a-4d37-9c74-94d910553723",
+      "candidate_nom": "boured",
+      "candidate_code": "295/10",
+      "candidate_type": "hydrologique",
+      "matched_field": "nom",
+      "matched_value": "boured"
+    },
+    {
+      "station_source": "Dar_El_Hamra",
+      "station_norm": "darelhamra",
+      "candidate_count": 1,
+      "station_id_candidate": "bc8e6d83-08d3-4bfa-8c78-daa754af79b7",
+      "candidate_nom": "dar el hamra",
+      "candidate_code": "1000/23",
+      "candidate_type": "hydrologique",
+      "matched_field": "nom",
+      "matched_value": "dar el hamra"
+    },
+    {
+      "station_source": "El_Malha",
+      "station_norm": "elmalha",
+      "candidate_count": 1,
+      "station_id_candidate": "fc8e8e8b-494c-46b7-aa72-d634d4c19cd2",
+      "candidate_nom": "el malha",
+      "candidate_code": "323/4",
+      "candidate_type": "hydrologique",
+      "matched_field": "nom",
+      "matched_value": "el malha"
+    },
+    {
+      "station_source": "El_Mers",
+      "station_norm": "elmers",
+      "candidate_count": 1,
+      "station_id_candidate": "2ad1ba50-cc7b-456a-8464-0dd4dd9058c7",
+      "candidate_nom": "el mers",
+      "candidate_code": "541/23",
+      "candidate_type": "hydrologique",
+      "matched_field": "nom",
+      "matched_value": "el mers"
+    },
+    {
+      "station_source": "Galaz",
+      "station_norm": "galaz",
+      "candidate_count": 1,
+      "station_id_candidate": "6f1bbf08-ce82-4dfe-ae44-6e26c9ef07e4",
+      "candidate_nom": "galaz",
+      "candidate_code": "1216/9",
+      "candidate_type": "hydrologique",
+      "matched_field": "nom",
+      "matched_value": "galaz"
+    },
+    {
+      "station_source": "Had_kourt",
+      "station_norm": "hadkourt",
+      "candidate_count": 1,
+      "station_id_candidate": "eecf0ca7-8e8b-45b1-b00c-ae8e75fd60ce",
+      "candidate_nom": "had kourt",
+      "candidate_code": "1436/8",
+      "candidate_type": "hydrologique",
+      "matched_field": "nom",
+      "matched_value": "had kourt"
+    },
+    {
+      "station_source": "Hajria",
+      "station_norm": "hajria",
+      "candidate_count": 1,
+      "station_id_candidate": "0436c345-452d-4239-a3e3-2842fd3ab7b1",
+      "candidate_nom": "hajria",
+      "candidate_code": "1508/9",
+      "candidate_type": "hydrologique",
+      "matched_field": "nom",
+      "matched_value": "hajria"
+    },
+    {
+      "station_source": "Jbel_oudka",
+      "station_norm": "jbeloudka",
+      "candidate_count": 1,
+      "station_id_candidate": "cfa0fcf9-82d2-4dae-be20-06b36bfe0fd3",
+      "candidate_nom": "jbel oudka",
+      "candidate_code": "4626/600",
+      "candidate_type": "pluviometrique",
+      "matched_field": "nom",
+      "matched_value": "jbel oudka"
+    },
+    {
+      "station_source": "Kharrouba",
+      "station_norm": "kharrouba",
+      "candidate_count": 1,
+      "station_id_candidate": "b1ba728c-f39b-4922-9a0c-3581390019e8",
+      "candidate_nom": "kharrouba",
+      "candidate_code": "454/9",
+      "candidate_type": "hydrologique",
+      "matched_field": "nom",
+      "matched_value": "kharrouba"
+    },
+    {
+      "station_source": "Lalla_Mimouna",
+      "station_norm": "lallamimouna",
+      "candidate_count": 1,
+      "station_id_candidate": "343b85cf-030e-46d8-b892-c4ce6cee7bd7",
+      "candidate_nom": "lalla mimouna",
+      "candidate_code": "1815/8",
+      "candidate_type": "hydrologique",
+      "matched_field": "nom",
+      "matched_value": "lalla mimouna"
+    },
+    {
+      "station_source": "Oulad_yaacoub",
+      "station_norm": "ouladyaacoub",
+      "candidate_count": 1,
+      "station_id_candidate": "05239150-c8b0-4925-be27-95c3fcd483da",
+      "candidate_nom": "oulad yaacoub",
+      "candidate_code": "6153/600",
+      "candidate_type": "pluviometrique",
+      "matched_field": "nom",
+      "matched_value": "oulad yaacoub"
+    },
+    {
+      "station_source": "Ratba",
+      "station_norm": "ratba",
+      "candidate_count": 1,
+      "station_id_candidate": "ddd6fea0-22b6-49b3-83c9-7533a1188a86",
+      "candidate_nom": "ratba",
+      "candidate_code": "1708/9",
+      "candidate_type": "hydrologique",
+      "matched_field": "nom",
+      "matched_value": "ratba"
+    },
+    {
+      "station_source": "Tabouda",
+      "station_norm": "tabouda",
+      "candidate_count": 1,
+      "station_id_candidate": "f88b46fe-ff1e-4b06-916d-8f3d465562ca",
+      "candidate_nom": "tabouda",
+      "candidate_code": "1215/9",
+      "candidate_type": "hydrologique",
+      "matched_field": "nom",
+      "matched_value": "tabouda"
+    },
+    {
+      "station_source": "Taghzout",
+      "station_norm": "taghzout",
+      "candidate_count": 1,
+      "station_id_candidate": "5b01a831-2781-4d2e-b60a-aaba6238d325",
+      "candidate_nom": "taghzout",
+      "candidate_code": "1707/9",
+      "candidate_type": "hydrologique",
+      "matched_field": "nom",
+      "matched_value": "taghzout"
+    },
+    {
+      "station_source": "Zrarda",
+      "station_norm": "zrarda",
+      "candidate_count": 1,
+      "station_id_candidate": "7e275775-8cc5-4644-8381-87b3b3663f64",
+      "candidate_nom": "zrarda",
+      "candidate_code": "891/16",
+      "candidate_type": "hydrologique",
+      "matched_field": "nom",
+      "matched_value": "zrarda"
+    }
+  ],
+  "ambiguous": [],
+  "absent": [
+    {
+      "station_source": "ABHS",
+      "station_norm": "abhs",
+      "suggestions": [
+        {
+          "norm": "fesabhs",
+          "station_id": "d4ba6716-3169-4af4-be47-042db7ba289e",
+          "nom": "fes (ABHS)",
+          "code_station": "3817/600",
+          "type_station": "pluviometrique",
+          "matched_field": "nom",
+          "matched_value": "fes (ABHS)",
+          "ratio": 0.727
+        }
+      ]
+    },
+    {
+      "station_source": "Azibe_Soltane",
+      "station_norm": "azibesoltane",
+      "suggestions": [
+        {
+          "norm": "azibsoltane",
+          "station_id": "b647955a-e26d-4564-8509-25cb40ef1404",
+          "nom": "azib soltane",
+          "code_station": "1540/15",
+          "type_station": "hydrologique",
+          "matched_field": "nom",
+          "matched_value": "azib soltane",
+          "ratio": 0.957
+        }
+      ]
+    },
+    {
+      "station_source": "Belksiri",
+      "station_norm": "belksiri",
+      "suggestions": [
+        {
+          "norm": "pontbelksiri",
+          "station_id": "475219d3-b07e-4a02-a189-1b4a743d04c7",
+          "nom": "pont bel ksiri  ",
+          "code_station": "3694/8",
+          "type_station": null,
+          "matched_field": "nom",
+          "matched_value": "pont bel ksiri",
+          "ratio": 0.8
+        }
+      ]
+    },
+    {
+      "station_source": "Dar_El_Arssa",
+      "station_norm": "darelarssa",
+      "suggestions": [
+        {
+          "norm": "darelarsa",
+          "station_id": "706fc2fe-3cee-4ec2-8e85-dbde9b672f89",
+          "nom": "dar el arsa",
+          "code_station": "2263/15",
+          "type_station": "hydrologique",
+          "matched_field": "nom",
+          "matched_value": "dar el arsa",
+          "ratio": 0.947
+        },
+        {
+          "norm": "darelhamra",
+          "station_id": "bc8e6d83-08d3-4bfa-8c78-daa754af79b7",
+          "nom": "dar el hamra",
+          "code_station": "1000/23",
+          "type_station": "hydrologique",
+          "matched_field": "nom",
+          "matched_value": "dar el hamra",
+          "ratio": 0.8
+        }
+      ]
+    },
+    {
+      "station_source": "ElHamam",
+      "station_norm": "elhamam",
+      "suggestions": [
+        {
+          "norm": "elhammam",
+          "station_id": "440fef7e-9048-4ec4-ac30-d94a20e4f562",
+          "nom": "el hammam",
+          "code_station": "2062/21",
+          "type_station": "hydrologique",
+          "matched_field": "nom",
+          "matched_value": "el hammam",
+          "ratio": 0.933
+        },
+        {
+          "norm": "elhammam",
+          "station_id": "d4831d6b-1b8f-4599-b54b-55bdc53a5675",
+          "nom": "el hammam",
+          "code_station": "Hammam/14",
+          "type_station": null,
+          "matched_field": "nom",
+          "matched_value": "el hammam",
+          "ratio": 0.933
+        }
+      ]
+    },
+    {
+      "station_source": "Khennichet",
+      "station_norm": "khennichet",
+      "suggestions": [
+        {
+          "norm": "khenichet",
+          "station_id": "9d9c6454-777b-455f-a927-da8e8d63b5ec",
+          "nom": "khenichet",
+          "code_station": "1359/8",
+          "type_station": "hydrologique",
+          "matched_field": "nom",
+          "matched_value": "khenichet",
+          "ratio": 0.947
+        }
+      ]
+    },
+    {
+      "station_source": "Moulay_Ali_Cherif",
+      "station_norm": "moulayalicherif",
+      "suggestions": [
+        {
+          "norm": "myalicherif",
+          "station_id": "d65b42a0-4871-4582-9950-1465e53adaaa",
+          "nom": "my ali cherif",
+          "code_station": "1545/8",
+          "type_station": "hydrologique",
+          "matched_field": "nom",
+          "matched_value": "my ali cherif",
+          "ratio": 0.846
+        }
+      ]
+    },
+    {
+      "station_source": "OuedIfrane",
+      "station_norm": "ouedifrane",
+      "suggestions": []
+    },
+    {
+      "station_source": "Rdom",
+      "station_norm": "rdom",
+      "suggestions": []
+    },
+    {
+      "station_source": "Route26",
+      "station_norm": "route26",
+      "suggestions": []
+    },
+    {
+      "station_source": "Tissa",
+      "station_norm": "tissa",
+      "suggestions": []
+    }
+  ],
+  "dangerous_source_similarities": [
+    {
+      "station_a": "Bab Ouender",
+      "station_b": "Bab_Ouender",
+      "norm_a": "babouender",
+      "norm_b": "babouender",
+      "ratio": 1.0
+    }
+  ],
+  "counts": {
+    "exact": 26,
+    "ambiguous": 0,
+    "absent": 11,
+    "source_stations": 37
+  }
+}

@@ -4,7 +4,7 @@
 
 | ID | Bloc | Volume | Cause | Impact | Decision | Action | Responsable |
 |---|---|---:|---|---|---|---|---|
-| REF-005 | unites manquantes referentiel | 39 | referentiel encore incomplet | labels/QA incomplets | `A_CORRIGER_C4E` | enrichir depuis dictionnaire C4E | C4E |
+| REF-005 | unites manquantes referentiel | 2 actifs residuels (`FM`, `F_M_MES`) | 37 unites validees et appliquees ; residuel client | exposition incomplete sur cas ambigus uniquement | `CLIENT_REQUIRED` | retour client sur `FM` / `F_M_MES`; `MD` reste suivi documentaire client | Client / C4E |
 | REF-006 | `table_cible` manquante | 65 | exposition cible non renseignee | gouvernance API/IA incomplete | `BACKLOG_TECHNIQUE` | renseigner table cible ou classer hors restitution | C4E |
 | REF-007 | mappings abreviations orphelins | 5 | sources non mappees | faible | `BACKLOG_TECHNIQUE` | analyser aliases restants | C4E |
 | REF-008 | legacy riviere non resolus | 39 | mappings historiques | faible apres REF-001 | `BACKLOG_TECHNIQUE` | nettoyer audit ou archiver | C4E |

@@ -1,0 +1,563 @@
+{
+  "objects": {
+    "meteo.mesure_temperature": {
+      "exists": true,
+      "type": "BASE TABLE",
+      "count": 437889
+    },
+    "metadata.qualite_source_reglementaire": {
+      "exists": true,
+      "type": "BASE TABLE",
+      "count": 1
+    },
+    "metadata.qualite_type_eau": {
+      "exists": true,
+      "type": "BASE TABLE",
+      "count": 4
+    },
+    "metadata.qualite_classe_reglementaire": {
+      "exists": true,
+      "type": "BASE TABLE",
+      "count": 5
+    },
+    "metadata.qualite_parametre_reglementaire": {
+      "exists": true,
+      "type": "BASE TABLE",
+      "count": 41
+    },
+    "metadata.qualite_mapping_canonique_reglementaire": {
+      "exists": true,
+      "type": "BASE TABLE",
+      "count": 41
+    },
+    "metadata.qualite_seuil_reglementaire": {
+      "exists": true,
+      "type": "BASE TABLE",
+      "count": 205
+    },
+    "metadata.qualite_regle_classification": {
+      "exists": true,
+      "type": "BASE TABLE",
+      "count": 5
+    },
+    "geo_work.reseau_hydro_edges_final": {
+      "exists": true,
+      "type": "BASE TABLE",
+      "count": 728
+    },
+    "qa.hydraulic_direction_validation": {
+      "exists": false,
+      "count": null
+    },
+    "api.v_pollution_sites": {
+      "exists": true,
+      "type": "VIEW",
+      "count": 1951
+    },
+    "api.v_pollution_latest_results": {
+      "exists": true,
+      "type": "VIEW",
+      "count": 1259
+    },
+    "api.v_barrage_dimension": {
+      "exists": true,
+      "type": "VIEW",
+      "count": 11
+    },
+    "api.v_station_dimension": {
+      "exists": true,
+      "type": "VIEW",
+      "count": 390
+    },
+    "api.v_qualite_metaux": {
+      "exists": true,
+      "type": "VIEW",
+      "count": 8565
+    },
+    "api.v_qualite_chimie_minerale": {
+      "exists": true,
+      "type": "VIEW",
+      "count": 40933
+    },
+    "api.v_qualite_physicochimie": {
+      "exists": true,
+      "type": "VIEW",
+      "count": 9806
+    },
+    "api.v_qualite_pollution_organique": {
+      "exists": true,
+      "type": "VIEW",
+      "count": 11481
+    },
+    "geo.ref_site_pollution": {
+      "exists": true,
+      "type": "BASE TABLE",
+      "count": 1951
+    },
+    "qualite.resultat_mesure": {
+      "exists": true,
+      "type": "BASE TABLE",
+      "count": 1409
+    },
+    "infra.stations_mesure": {
+      "exists": true,
+      "type": "BASE TABLE",
+      "count": 390
+    },
+    "infra.barrages": {
+      "exists": true,
+      "type": "BASE TABLE",
+      "count": 33
+    },
+    "hydro.mesure_debit": {
+      "exists": true,
+      "type": "BASE TABLE",
+      "count": 652446
+    },
+    "hydro.mesure_barrage_param": {
+      "exists": true,
+      "type": "BASE TABLE",
+      "count": 272652
+    },
+    "qualite.mesure_qualite_riviere": {
+      "exists": true,
+      "type": "BASE TABLE",
+      "count": 59534
+    },
+    "qualite.mesure_qualite_nappe": {
+      "exists": true,
+      "type": "BASE TABLE",
+      "count": 63047
+    },
+    "qualite.mesure_qualite_barrage": {
+      "exists": true,
+      "type": "BASE TABLE",
+      "count": 7820
+    },
+    "qualite.mesure_qualite_sebou": {
+      "exists": true,
+      "type": "BASE TABLE",
+      "count": 49954
+    }
+  },
+  "api_views": [
+    {
+      "name": "api.ca_hydro_barrage_day",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.ca_hydro_debit_day",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.ca_meteo_temp_day",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_barrage_bathymetrie_geo",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_barrage_dimension",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_barrage_parametres",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_barrage_qualite",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_bassin_geojson",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_hierarchie_metier_listing",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_hydro_barrage_param_compat_wide",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_hydro_barrage_param_journalier",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_hydro_debit_journalier_qa",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_hydro_debit_mensuel",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_hydro_debit_sources_timeseries",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_hydro_niveau_barrage_journalier",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_idp_points",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_idp_points_non_resolus",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_infra_fosses_septiques_geojson",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_inventaire_pollution_decharges_abandonnees_detail",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_inventaire_pollution_decharges_consolide",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_inventaire_pollution_decharges_detail",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_inventaire_pollution_huileries_detail",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_inventaire_pollution_mines_detail",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_inventaire_pollution_rejet_abattoir_detail",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_inventaire_pollution_rejets_bruts_detail",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_inventaire_pollution_sources_mesures_detail",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_inventaire_pollution_steps_detail",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_inventaire_pollution_steps_industrielles_detail",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_inventaire_pollution_stms_detail",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_meteo_evaporation",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_meteo_evaporation_journalier_qa",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_meteo_precipitation",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_meteo_precipitation_annuelle_max",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_meteo_precipitation_journalier_qa",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_meteo_temperature",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_meteo_temperature_journalier",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_nappes_geojson",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_points_eau",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_pollution_analyses_finales",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_pollution_by_parameter",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_pollution_constat_prealable",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_pollution_latest_results",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_pollution_sites",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_pollution_timeseries",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_profils_stations",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_qualite_barrages_mesures",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_qualite_base_multi_support",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_qualite_biologique",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_qualite_chimie_minerale",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_qualite_contexte_station",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_qualite_metaux",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_qualite_microbiologie",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_qualite_nappes_mesures",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_qualite_organoleptique",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_qualite_physicochimie",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_qualite_pollution_organique",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_qualite_riviere_mesures",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_qualite_sebou_mesures",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_qualite_terrain",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_source_pollution_prelevement",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_sources_geojson",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_sous_bassin_geojson",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_sous_bassin_swat_geojson",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_station_dimension",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_stm",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_suivi_qualite_barrage_garde_hebdo",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_swat_qualite_carto",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_swat_qualite_subbasin_consolide",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_wasp_qualite_segment_consolide",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_wasp_resultats_actifs",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_wasp_resultats_mensuel",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.v_wasp_snapshot_spatial",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.viz_carto_layers",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.viz_climat_timeseries",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.viz_hydro_timeseries",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.viz_pollution_timeseries",
+      "type": "VIEW",
+      "count": "not_counted"
+    },
+    {
+      "name": "api.viz_qualite_timeseries",
+      "type": "VIEW",
+      "count": "not_counted"
+    }
+  ],
+  "analytics_mviews": [
+    {
+      "name": "analytics.mv_dashboard_climat_meteo_menu",
+      "count": 110344
+    },
+    {
+      "name": "analytics.mv_dashboard_hydrologie_menu",
+      "count": 816081
+    },
+    {
+      "name": "analytics.mv_dashboard_pollution_menu",
+      "count": 165684
+    }
+  ],
+  "regulatory_active": {
+    "error": "column \"statut\" does not exist\nLINE 1: SELECT version_reglementaire, actif, statut, source_document...\n                                             ^\n"
+  },
+  "temperature": {
+    "batches": [
+      [
+        "2d67f599-7714-4712-ba1f-5f3584c4c961",
+        437889
+      ]
+    ],
+    "range_stations": [
+      "1983-01-01 00:00:00+00:00",
+      "2026-06-10 00:00:00+00:00",
+      36
+    ]
+  },
+  "hydraulic_qa": {
+    "error": "relation \"qa.hydraulic_direction_validation\" does not exist\nLINE 1: SELECT direction_status, COUNT(*) FROM qa.hydraulic_directio...\n                                               ^\n"
+  }
+}

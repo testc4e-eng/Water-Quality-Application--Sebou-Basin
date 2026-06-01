@@ -1,0 +1,1 @@
+review_id,run_id,source_layer,source_id,source_name,master_site_id_candidate,master_site_name,distance_m,score,review_bucket,suggested_decision,business_decision,reviewer,comments,requires_field_validation,requires_topology_validation,future_merge_allowed,future_master_site,final_status

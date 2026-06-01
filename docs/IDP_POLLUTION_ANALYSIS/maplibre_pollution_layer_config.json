@@ -1,0 +1,50 @@
+{
+  "apiBaseUrl": "http://localhost:8000/api/v1",
+  "sources": {
+    "pollution-sites": {
+      "type": "geojson",
+      "data": "http://localhost:8000/api/v1/pollution/sites.geojson?limit=5000"
+    }
+  },
+  "layers": [
+    {
+      "id": "pollution-sites-circle",
+      "type": "circle",
+      "source": "pollution-sites",
+      "paint": {
+        "circle-radius": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          7,
+          4,
+          12,
+          8
+        ],
+        "circle-color": [
+          "match",
+          ["get", "validation_status"],
+          "VALIDATED",
+          "#1b9e77",
+          "TO_VALIDATE",
+          "#d95f02",
+          "#7570b3"
+        ],
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 1.2,
+        "circle-opacity": 0.86
+      }
+    }
+  ],
+  "popupFields": [
+    "site_name",
+    "source_type_label",
+    "commune",
+    "validation_status",
+    "latest_results"
+  ],
+  "filters": {
+    "parameters": ["DBO5", "DCO", "NH4", "NO3", "MES"],
+    "queryParameters": ["parameter_code", "source_type_code", "commune", "limit"]
+  }
+}

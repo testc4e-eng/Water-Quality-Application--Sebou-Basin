@@ -1,0 +1,5 @@
+START 16_load_ref_site_pollution_dev.sql 2026-05-18T14:45:52.2723057+01:00
+BEGIN
+INSERT 0 1
+INSERT 0 94
+psql:C:/dev/WQDSS/repo_git/database/idp_pollution/16_load_ref_site_pollution_dev.sql:106: ERROR:  there is no unique or exclusion constraint matching the ON CONFLICT specification

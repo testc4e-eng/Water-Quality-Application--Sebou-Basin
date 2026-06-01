@@ -1,0 +1,200 @@
+[
+  {
+    "method": "GET",
+    "path": "/health",
+    "status_code": 200,
+    "payload": {
+      "status": "OK",
+      "db": "OK"
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/quality/regulatory-status",
+    "status_code": 200,
+    "payload": {
+      "status": "OK",
+      "version_reglementaire": "REGLEMENT_QUALITE_EAUX_SURFACE_TABLEAU_1_V1_DEV_2026_05_19",
+      "summary": {
+        "sources": 1,
+        "types_eau": 4,
+        "classes": 5,
+        "parameters": 41,
+        "parameters_classifiable": 36,
+        "mappings_active": 36,
+        "thresholds": 205,
+        "thresholds_active": 177,
+        "rules": 5
+      },
+      "issues": {
+        "parameters_without_mapping": [],
+        "true_absent_canonical": [
+          {
+            "code_reglementaire": "H_P_A_TOTAUX",
+            "parametre_pdf": "H.P.A. totaux",
+            "commentaire": "Vrai absent canonique, non utilisable moteur."
+          },
+          {
+            "code_reglementaire": "HYDROCARBURES",
+            "parametre_pdf": "Hydrocarbures",
+            "commentaire": "Vrai absent canonique, pas dâ€™assimilation automatique Ã  HCT/HUILES_GRAISSES."
+          },
+          {
+            "code_reglementaire": "OXYDABILITE_KMNO4",
+            "parametre_pdf": "OxydabilitÃ© KMnO4",
+            "commentaire": "Vrai absent canonique, non utilisable moteur."
+          },
+          {
+            "code_reglementaire": "PESTICIDES_PAR_SUBST",
+            "parametre_pdf": "Pesticides par subst",
+            "commentaire": "Vrai absent canonique, non utilisable moteur."
+          },
+          {
+            "code_reglementaire": "PESTICIDES_TOTAUX",
+            "parametre_pdf": "Pesticides totaux",
+            "commentaire": "Vrai absent canonique, non utilisable moteur."
+          }
+        ]
+      },
+      "rules": {
+        "scope": "Tableau n°1 uniquement",
+        "simplified_grids": "DOCUMENTAIRE_NON_OPERATIONNEL",
+        "global_index": "paramètre le plus pénalisant",
+        "case_sensitive": "MO != Mo"
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/quality/thresholds",
+    "status_code": 200,
+    "payload": {
+      "status": "OK",
+      "count": 177,
+      "filters": {
+        "parameter_code": null,
+        "type_eau": "surface_generale",
+        "version_reglementaire": "REGLEMENT_QUALITE_EAUX_SURFACE_TABLEAU_1_V1_DEV_2026_05_19",
+        "active_only": true
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/quality/classify",
+    "status_code": 200,
+    "request": {
+      "parameter_code": "DBO5",
+      "value": 4.2,
+      "unit": "mg/L",
+      "type_eau": "surface_generale"
+    },
+    "payload": {
+      "status": "CLASSIFIED",
+      "parameter_code": "DBO5",
+      "code_reglementaire": "DBO5",
+      "code_canonique": "DBO5",
+      "value": 4.2,
+      "unit": "mg/L",
+      "value_motor": 4.2,
+      "unit_motor": "mg/L",
+      "class_code": "bonne",
+      "class_label": "Bonne",
+      "severity_order": 2,
+      "color": "vert",
+      "threshold": {
+        "operator_min": ">=",
+        "borne_min": 3,
+        "operator_max": "<=",
+        "borne_max": 5,
+        "original": "3-5",
+        "unit_source": "mg/l",
+        "unit_motor": "mg/L",
+        "conversion_factor": null,
+        "specific_rule": null
+      },
+      "regulatory_trace": {
+        "source_document": "SystÃ¨me d'evaluation de la QualitÃ© des ressources en eau.pdf",
+        "version_reglementaire": "REGLEMENT_QUALITE_EAUX_SURFACE_TABLEAU_1_V1_DEV_2026_05_19",
+        "type_eau": "surface_generale",
+        "validation_metier": "VALIDATED_DEV"
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/quality/classify",
+    "status_code": 200,
+    "request": {
+      "parameter_code": "NO3",
+      "value": 20,
+      "unit": "mg/L",
+      "type_eau": "surface_generale"
+    },
+    "payload": {
+      "status": "CLASSIFIED",
+      "parameter_code": "NO3",
+      "code_reglementaire": "NO3",
+      "code_canonique": "NO3-",
+      "value": 20.0,
+      "unit": "mg/L",
+      "value_motor": 20.0,
+      "unit_motor": "mg/L",
+      "class_code": "bonne",
+      "class_label": "Bonne",
+      "severity_order": 2,
+      "color": "vert",
+      "threshold": {
+        "operator_min": ">=",
+        "borne_min": 10,
+        "operator_max": "<=",
+        "borne_max": 25,
+        "original": "10-25",
+        "unit_source": "mg/l",
+        "unit_motor": "mg/L",
+        "conversion_factor": null,
+        "specific_rule": null
+      },
+      "regulatory_trace": {
+        "source_document": "SystÃ¨me d'evaluation de la QualitÃ© des ressources en eau.pdf",
+        "version_reglementaire": "REGLEMENT_QUALITE_EAUX_SURFACE_TABLEAU_1_V1_DEV_2026_05_19",
+        "type_eau": "surface_generale",
+        "validation_metier": "VALIDATED_DEV"
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/quality/classify",
+    "status_code": 200,
+    "request": {
+      "parameter_code": "MO",
+      "value": 5,
+      "unit": "mg/L",
+      "type_eau": "surface_generale"
+    },
+    "payload": {
+      "status": "PARAMETRE_NON_REGLEMENTAIRE",
+      "message": "Paramètre absent du référentiel réglementaire actif.",
+      "parameter_code": "MO",
+      "version_reglementaire": "REGLEMENT_QUALITE_EAUX_SURFACE_TABLEAU_1_V1_DEV_2026_05_19"
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/quality/classify",
+    "status_code": 200,
+    "request": {
+      "parameter_code": "Mo",
+      "value": 0.01,
+      "unit": "mg/L",
+      "type_eau": "surface_generale"
+    },
+    "payload": {
+      "status": "PARAMETRE_NON_REGLEMENTAIRE",
+      "message": "Paramètre absent du référentiel réglementaire actif.",
+      "parameter_code": "Mo",
+      "version_reglementaire": "REGLEMENT_QUALITE_EAUX_SURFACE_TABLEAU_1_V1_DEV_2026_05_19"
+    }
+  }
+]

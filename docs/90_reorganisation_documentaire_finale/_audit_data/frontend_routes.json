@@ -1,0 +1,56 @@
+[
+  {
+    "path": "frontend/src/App.tsx",
+    "routes": [
+      "*",
+      "/",
+      "/change-password",
+      "/login",
+      "/register",
+      "about",
+      "admin/audit",
+      "admin/data-scan",
+      "admin/gestion-users",
+      "admin/ingestion",
+      "admin/password-resets",
+      "admin/popup-rules",
+      "admin/users",
+      "carte",
+      "contact",
+      "dashboard",
+      "dashboard-2",
+      "dashboard-analytique",
+      "dashboard-carto-metier",
+      "dashboard-cartographique",
+      "dashboard-pollution",
+      "dashboard-scenarios",
+      "data",
+      "decision-dashboard-test",
+      "pollution-idp-dev",
+      "qualite/metaux"
+    ]
+  },
+  {
+    "path": "frontend/src/router.tsx",
+    "routes": [
+      "*",
+      "/",
+      "/login",
+      "/register",
+      "about",
+      "admin/users",
+      "contact",
+      "dashboard",
+      "dashboard-2",
+      "dashboard-analytique",
+      "dashboard-carto-metier",
+      "dashboard-cartographique",
+      "dashboard-climate",
+      "dashboard-scenarios",
+      "data",
+      "decision-dashboard-test",
+      "pollution-idp-dev",
+      "qualite/metaux"
+    ]
+  }
+]

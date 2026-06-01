@@ -1,0 +1,8 @@
+BEGIN
+CREATE SCHEMA
+psql:C:/dev/WQDSS/repo_git/database/idp_pollution/13_build_quality_long_format.sql:7: NOTICE:  schema "staging" already exists, skipping
+psql:C:/dev/WQDSS/repo_git/database/idp_pollution/13_build_quality_long_format.sql:8: NOTICE:  schema "qualite" already exists, skipping
+CREATE SCHEMA
+CREATE VIEW
+psql:C:/dev/WQDSS/repo_git/database/idp_pollution/13_build_quality_long_format.sql:194: ERROR:  ON CONFLICT DO UPDATE command cannot affect row a second time
+ASTUCE : Ensure that no rows proposed for insertion within the same command have duplicate constrained values.

@@ -1,0 +1,107 @@
+{
+  "quality_reg_counts": [
+    {
+      "key": "active_version",
+      "value": "REGLEMENT_QUALITE_EAUX_SURFACE_TABLEAU_1_V1_DEV_2026_05_19"
+    },
+    {
+      "key": "sources",
+      "value": "1"
+    },
+    {
+      "key": "types_eau",
+      "value": "4"
+    },
+    {
+      "key": "classes",
+      "value": "5"
+    },
+    {
+      "key": "parameters",
+      "value": "41"
+    },
+    {
+      "key": "parameters_classifiable",
+      "value": "36"
+    },
+    {
+      "key": "thresholds",
+      "value": "205"
+    },
+    {
+      "key": "thresholds_active",
+      "value": "177"
+    },
+    {
+      "key": "rules",
+      "value": "5"
+    }
+  ],
+  "temperature_batch": [
+    {
+      "import_batch_id": "2d67f599-7714-4712-ba1f-5f3584c4c961",
+      "source_system": "TEMPERATURE_CSV",
+      "source_file": "timeseries_temperature_global.csv",
+      "domain": "meteo.temperature",
+      "batch_status": "COMMITTED",
+      "expected_rows": 445194,
+      "loaded_rows": 445194,
+      "committed_rows": 437889,
+      "rejected_rows": 7305,
+      "started_at": "2026-05-25 02:09:21.208224+00:00",
+      "committed_at": "2026-05-25 13:35:26.773500+00:00"
+    }
+  ],
+  "temperature_counts": [
+    {
+      "target_count": 437889,
+      "target_batch_count": 437889,
+      "date_min": "1983-01-01",
+      "date_max": "2026-06-10",
+      "station_count": 36,
+      "null_station": 0,
+      "null_values": 0,
+      "inversions": 0,
+      "missing_source_station": 0
+    }
+  ],
+  "temperature_dup": [
+    {
+      "duplicate_keys": 0
+    }
+  ],
+  "temperature_staging_counts": [
+    {
+      "staging_count": 445194,
+      "staging_batch_count": 445194,
+      "validated": 286757,
+      "manual_validated": 135913,
+      "alias_validated": 22524,
+      "blocked": 0
+    }
+  ],
+  "lineage_counts": [
+    {
+      "lineage_total": 437889,
+      "lineage_inserted": 437889
+    }
+  ],
+  "core_counts": [
+    {
+      "obj": "infra.stations_mesure",
+      "n": 390
+    },
+    {
+      "obj": "meteo.mesure_temperature",
+      "n": 437889
+    },
+    {
+      "obj": "geo.ref_site_pollution",
+      "n": 1951
+    },
+    {
+      "obj": "qualite.resultat_mesure",
+      "n": 1409
+    }
+  ]
+}

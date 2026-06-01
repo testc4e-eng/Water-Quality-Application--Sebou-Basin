@@ -13,30 +13,37 @@
 from fastapi import APIRouter, Query, HTTPException
 from sqlalchemy import text
 from app.db.database import engine
-import numpy as np
 
 router = APIRouter(prefix="/swat/analysis", tags=["SWAT-Analysis"])
 
 
-def _calc_nse(obs: np.ndarray, sim: np.ndarray) -> float:
-    denom = np.sum((obs - np.mean(obs)) ** 2)
+def _calc_nse(obs: list[float], sim: list[float]) -> float:
+    obs_mean = sum(obs) / len(obs)
+    denom = sum((value - obs_mean) ** 2 for value in obs)
     if denom == 0:
         return float("nan")
-    return float(1 - np.sum((sim - obs) ** 2) / denom)
+    return float(1 - sum((sim_value - obs_value) ** 2 for obs_value, sim_value in zip(obs, sim)) / denom)
 
 
-def _calc_r2(obs: np.ndarray, sim: np.ndarray) -> float:
+def _calc_r2(obs: list[float], sim: list[float]) -> float:
     if len(obs) < 2:
         return float("nan")
-    corr = np.corrcoef(obs, sim)[0, 1]
+    obs_mean = sum(obs) / len(obs)
+    sim_mean = sum(sim) / len(sim)
+    numerator = sum((obs_value - obs_mean) * (sim_value - sim_mean) for obs_value, sim_value in zip(obs, sim))
+    obs_var = sum((obs_value - obs_mean) ** 2 for obs_value in obs)
+    sim_var = sum((sim_value - sim_mean) ** 2 for sim_value in sim)
+    if obs_var == 0 or sim_var == 0:
+        return float("nan")
+    corr = numerator / ((obs_var * sim_var) ** 0.5)
     return float(corr ** 2)
 
 
-def _calc_pbias(obs: np.ndarray, sim: np.ndarray) -> float:
-    denom = np.sum(obs)
+def _calc_pbias(obs: list[float], sim: list[float]) -> float:
+    denom = sum(obs)
     if denom == 0:
         return float("nan")
-    return float(100 * np.sum(sim - obs) / denom)
+    return float(100 * sum(sim_value - obs_value for obs_value, sim_value in zip(obs, sim)) / denom)
 
 
 # ---------------------------------------------------------------------------
@@ -131,8 +138,8 @@ def compare_wasp_observed(
             "data":    [],
         }
 
-    obs = np.array([d["observed"] for d in data], dtype=float)
-    sim = np.array([d["simulated"] for d in data], dtype=float)
+    obs = [float(d["observed"]) for d in data]
+    sim = [float(d["simulated"]) for d in data]
 
     metrics = {
         "NSE":   round(_calc_nse(obs, sim), 4),

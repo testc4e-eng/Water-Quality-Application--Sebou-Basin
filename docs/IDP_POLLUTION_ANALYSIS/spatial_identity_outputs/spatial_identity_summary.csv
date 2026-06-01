@@ -1,0 +1,9 @@
+metric,value
+run_id,e60088e9-cf94-4e41-ae65-a5390866b4b8
+generated_at,2026-05-19T17:00:26.089667+00:00
+sources_total,14970
+candidates_total,14380
+conflicts_total,14366
+orphans_total,590
+distance_m,25.0
+dry_run,True

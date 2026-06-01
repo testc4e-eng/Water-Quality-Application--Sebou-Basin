@@ -1,0 +1,7 @@
+START 15_create_qa_views.sql 2026-05-18T14:39:51.0987991+01:00
+BEGIN
+CREATE SCHEMA
+psql:C:/dev/WQDSS/repo_git/database/idp_pollution/15_create_qa_views.sql:6: NOTICE:  schema "qa" already exists, skipping
+psql:C:/dev/WQDSS/repo_git/database/idp_pollution/15_create_qa_views.sql:27: ERROR:  relation "geo.v_idp_spatial_sources" does not exist
+LIGNE 9 : FROM geo.v_idp_spatial_sources
+               ^

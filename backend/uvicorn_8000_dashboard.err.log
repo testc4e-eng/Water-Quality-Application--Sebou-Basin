@@ -1,0 +1,7 @@
+2026-06-01 08:45:13,471 | WARNING | app.api.api_v1 | SWAT analysis disabled: optional router not loaded. Set SAD_ENABLE_SWAT_ANALYSIS=true after validating the scientific runtime.
+2026-06-01 08:45:13,472 | WARNING | app.api.api_v1 | Ingestion API disabled: optional router not loaded. Set SAD_ENABLE_INGESTION_API=true after validating pandas/numpy runtime.
+INFO:     Started server process [31036]
+INFO:     Waiting for application startup.
+2026-06-01 08:45:13,846 | INFO | app.db_raw | Initialisation pool PostgreSQL (min=1, max=10) via 127.0.0.1:5432/abh_sad
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)

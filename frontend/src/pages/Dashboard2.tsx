@@ -10,6 +10,7 @@ import { ArrowLeftRight, ArrowUpDown, Layers3, PanelLeft, X } from "lucide-react
 
 import SidebarFilters, { LayersState } from "@/components/Filters/SidebarFilters";
 import MapLegend from "@/components/Map/MapLegend";
+import ObservatoryMenuV2 from "@/components/observatory/ObservatoryMenuV2";
 import { QaBadge } from "@/components/ui/qa-badge";
 import { LAYER_STYLES } from "@/config/mapStyles";
 
@@ -561,6 +562,7 @@ export default function Dashboard2() {
   const [loadError, setLoadError] = useState<string | null>(null);
   const [basemapOpen, setBasemapOpen] = useState(false);
   const [layersPanelOpen, setLayersPanelOpen] = useState(false);
+  const [observatoryV2Open, setObservatoryV2Open] = useState(false);
   const [basemapId, setBasemapId] = useState("satellite");
   const [styleRevision, setStyleRevision] = useState(0);
   const [activeFilterSelection, setActiveFilterSelection] = useState<{
@@ -2076,6 +2078,22 @@ export default function Dashboard2() {
                 </button>
 
                 <div className="relative">
+                  <button
+                    type="button"
+                    onClick={() => setObservatoryV2Open((value) => !value)}
+                    className="mb-1 flex items-center gap-1.5 rounded-xl border border-emerald-200/20 bg-[linear-gradient(135deg,rgba(20,83,45,0.96),rgba(15,118,110,0.92),rgba(31,41,55,0.96))] px-2.5 py-1.5 text-emerald-50 shadow-[0_18px_45px_-20px_rgba(8,15,30,0.9)] backdrop-blur-md transition hover:border-amber-200/30 hover:bg-[linear-gradient(135deg,rgba(22,101,52,0.95),rgba(13,148,136,0.92),rgba(180,83,9,0.88))]"
+                    aria-label={observatoryV2Open ? "Masquer l'observatoire V2" : "Afficher l'observatoire V2"}
+                  >
+                    <PanelLeft className="h-3.5 w-3.5" />
+                    <span className="whitespace-nowrap text-[11px] font-semibold">Observatoire V2</span>
+                  </button>
+
+                  {observatoryV2Open && (
+                    <div className="mb-1.5 hidden w-[360px] max-w-[calc(100vw-7rem)] xl:block">
+                      <ObservatoryMenuV2 />
+                    </div>
+                  )}
+
                   <button
                     type="button"
                     onClick={() => setLayersPanelOpen((value) => !value)}

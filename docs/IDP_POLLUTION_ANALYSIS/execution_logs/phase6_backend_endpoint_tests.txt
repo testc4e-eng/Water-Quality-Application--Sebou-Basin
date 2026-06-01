@@ -1,0 +1,5 @@
+/api/v1/pollution/sites.geojson?limit=10|200|10
+/api/v1/pollution/sites.geojson?parameter_code=DBO5&limit=10|200|10
+/api/v1/pollution/sites.geojson?parameter_code=NH4&limit=10|200|10
+/api/v1/pollution/sites.geojson?parameter_code=NO3&limit=10|200|10
+/api/v1/pollution/latest-results?parameter_code=DBO5&limit=10|200|10

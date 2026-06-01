@@ -1,0 +1,64 @@
+<!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
+<qgis projectname="hydraulic_arbitration_sebou" version="3.34">
+  <title>Validation hydraulique scientifique - Sebou</title>
+  <projectCrs><spatialrefsys><authid>EPSG:26191</authid></spatialrefsys></projectCrs>
+  <layer-tree-group name="Hydraulic Arbitration Sebou" checked="Qt::Checked" expanded="1">
+    <layer-tree-group name="CONTEXTE" checked="Qt::Checked" expanded="1"/>
+    <layer-tree-group name="MNT" checked="Qt::Checked" expanded="1"/>
+    <layer-tree-group name="RESEAU_SOURCE_READONLY" checked="Qt::Unchecked" expanded="0"/>
+    <layer-tree-group name="QA_DIRECTION" checked="Qt::Checked" expanded="1"/>
+    <layer-tree-group name="A_ARBITRER" checked="Qt::Checked" expanded="1"/>
+    <layer-tree-group name="VALIDES" checked="Qt::Unchecked" expanded="0"/>
+  </layer-tree-group>
+  <projectlayers>
+
+    <maplayer type="vector" geometry="LineString" simplifyDrawingHints="1" readOnly="0">
+      <id>hydraulic_reversed_suspected_20260525</id>
+      <datasource>../exports/hydraulic_arbitration_package.gpkg|layername=hydraulic_reversed_suspected</datasource>
+      <layername>A_ARBITRER - inversions suspectees</layername>
+      <provider encoding="UTF-8">ogr</provider>
+    </maplayer>
+    <maplayer type="vector" geometry="LineString" simplifyDrawingHints="1" readOnly="0">
+      <id>hydraulic_flat_segments_20260525</id>
+      <datasource>../exports/hydraulic_arbitration_package.gpkg|layername=hydraulic_flat_segments</datasource>
+      <layername>A_ARBITRER - segments plats</layername>
+      <provider encoding="UTF-8">ogr</provider>
+    </maplayer>
+    <maplayer type="vector" geometry="LineString" simplifyDrawingHints="1" readOnly="0">
+      <id>hydraulic_flow_confirmed_20260525</id>
+      <datasource>../exports/hydraulic_arbitration_package.gpkg|layername=hydraulic_flow_confirmed</datasource>
+      <layername>VALIDES - flux confirmes</layername>
+      <provider encoding="UTF-8">ogr</provider>
+    </maplayer>
+    <maplayer type="vector" geometry="LineString" simplifyDrawingHints="1" readOnly="0">
+      <id>hydraulic_direction_validation_all_20260525</id>
+      <datasource>../exports/hydraulic_arbitration_package.gpkg|layername=hydraulic_direction_validation_all</datasource>
+      <layername>QA_DIRECTION - reseau complet QA</layername>
+      <provider encoding="UTF-8">ogr</provider>
+    </maplayer>
+    <maplayer type="vector" geometry="Point" simplifyDrawingHints="1" readOnly="0">
+      <id>hydraulic_nodes_20260525</id>
+      <datasource>../exports/hydraulic_arbitration_package.gpkg|layername=hydraulic_nodes</datasource>
+      <layername>CONTEXTE - noeuds reseau</layername>
+      <provider encoding="UTF-8">ogr</provider>
+    </maplayer>
+    <maplayer type="vector" geometry="LineString" simplifyDrawingHints="1" readOnly="0">
+      <id>reseau_hydrographique_source_readonly_20260525</id>
+      <datasource>../exports/hydraulic_arbitration_package.gpkg|layername=reseau_hydrographique_source_readonly</datasource>
+      <layername>RESEAU_SOURCE_READONLY</layername>
+      <provider encoding="UTF-8">ogr</provider>
+    </maplayer>
+    <maplayer type="vector" geometry="LineString" simplifyDrawingHints="1" readOnly="0">
+      <id>reseau_hydro_runtime_readonly_20260525</id>
+      <datasource>../exports/hydraulic_arbitration_package.gpkg|layername=reseau_hydro_runtime_readonly</datasource>
+      <layername>RESEAU_RUNTIME_READONLY</layername>
+      <provider encoding="UTF-8">ogr</provider>
+    </maplayer>
+    <maplayer type="raster" readOnly="1">
+      <id>mnt_sebou_30m_20260525</id>
+      <datasource>C:\dev\WQDSS\data\MNT SEBOU 30N 30M\seboureproj</datasource>
+      <layername>MNT - Sebou 30m</layername>
+      <provider>gdal</provider>
+    </maplayer>
+  </projectlayers>
+</qgis>

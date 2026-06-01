@@ -1,0 +1,2036 @@
+[
+  {
+    "schema": "admin",
+    "name": "cercle",
+    "type": "BASE TABLE",
+    "fq": "admin.cercle"
+  },
+  {
+    "schema": "admin",
+    "name": "communes",
+    "type": "BASE TABLE",
+    "fq": "admin.communes"
+  },
+  {
+    "schema": "admin",
+    "name": "localite",
+    "type": "BASE TABLE",
+    "fq": "admin.localite"
+  },
+  {
+    "schema": "admin",
+    "name": "provinces",
+    "type": "BASE TABLE",
+    "fq": "admin.provinces"
+  },
+  {
+    "schema": "admin",
+    "name": "regions",
+    "type": "BASE TABLE",
+    "fq": "admin.regions"
+  },
+  {
+    "schema": "api",
+    "name": "ca_hydro_barrage_day",
+    "type": "VIEW",
+    "fq": "api.ca_hydro_barrage_day"
+  },
+  {
+    "schema": "api",
+    "name": "ca_hydro_debit_day",
+    "type": "VIEW",
+    "fq": "api.ca_hydro_debit_day"
+  },
+  {
+    "schema": "api",
+    "name": "ca_meteo_temp_day",
+    "type": "VIEW",
+    "fq": "api.ca_meteo_temp_day"
+  },
+  {
+    "schema": "api",
+    "name": "v_barrage_bathymetrie_geo",
+    "type": "VIEW",
+    "fq": "api.v_barrage_bathymetrie_geo"
+  },
+  {
+    "schema": "api",
+    "name": "v_barrage_dimension",
+    "type": "VIEW",
+    "fq": "api.v_barrage_dimension"
+  },
+  {
+    "schema": "api",
+    "name": "v_barrage_parametres",
+    "type": "VIEW",
+    "fq": "api.v_barrage_parametres"
+  },
+  {
+    "schema": "api",
+    "name": "v_barrage_qualite",
+    "type": "VIEW",
+    "fq": "api.v_barrage_qualite"
+  },
+  {
+    "schema": "api",
+    "name": "v_bassin_geojson",
+    "type": "VIEW",
+    "fq": "api.v_bassin_geojson"
+  },
+  {
+    "schema": "api",
+    "name": "v_hierarchie_metier_listing",
+    "type": "VIEW",
+    "fq": "api.v_hierarchie_metier_listing"
+  },
+  {
+    "schema": "api",
+    "name": "v_hydro_barrage_param_compat_wide",
+    "type": "VIEW",
+    "fq": "api.v_hydro_barrage_param_compat_wide"
+  },
+  {
+    "schema": "api",
+    "name": "v_hydro_barrage_param_journalier",
+    "type": "VIEW",
+    "fq": "api.v_hydro_barrage_param_journalier"
+  },
+  {
+    "schema": "api",
+    "name": "v_hydro_debit_journalier_qa",
+    "type": "VIEW",
+    "fq": "api.v_hydro_debit_journalier_qa"
+  },
+  {
+    "schema": "api",
+    "name": "v_hydro_debit_mensuel",
+    "type": "VIEW",
+    "fq": "api.v_hydro_debit_mensuel"
+  },
+  {
+    "schema": "api",
+    "name": "v_hydro_debit_sources_timeseries",
+    "type": "VIEW",
+    "fq": "api.v_hydro_debit_sources_timeseries"
+  },
+  {
+    "schema": "api",
+    "name": "v_hydro_niveau_barrage_journalier",
+    "type": "VIEW",
+    "fq": "api.v_hydro_niveau_barrage_journalier"
+  },
+  {
+    "schema": "api",
+    "name": "v_idp_points",
+    "type": "VIEW",
+    "fq": "api.v_idp_points"
+  },
+  {
+    "schema": "api",
+    "name": "v_idp_points_non_resolus",
+    "type": "VIEW",
+    "fq": "api.v_idp_points_non_resolus"
+  },
+  {
+    "schema": "api",
+    "name": "v_infra_fosses_septiques_geojson",
+    "type": "VIEW",
+    "fq": "api.v_infra_fosses_septiques_geojson"
+  },
+  {
+    "schema": "api",
+    "name": "v_inventaire_pollution_decharges_abandonnees_detail",
+    "type": "VIEW",
+    "fq": "api.v_inventaire_pollution_decharges_abandonnees_detail"
+  },
+  {
+    "schema": "api",
+    "name": "v_inventaire_pollution_decharges_consolide",
+    "type": "VIEW",
+    "fq": "api.v_inventaire_pollution_decharges_consolide"
+  },
+  {
+    "schema": "api",
+    "name": "v_inventaire_pollution_decharges_detail",
+    "type": "VIEW",
+    "fq": "api.v_inventaire_pollution_decharges_detail"
+  },
+  {
+    "schema": "api",
+    "name": "v_inventaire_pollution_huileries_detail",
+    "type": "VIEW",
+    "fq": "api.v_inventaire_pollution_huileries_detail"
+  },
+  {
+    "schema": "api",
+    "name": "v_inventaire_pollution_mines_detail",
+    "type": "VIEW",
+    "fq": "api.v_inventaire_pollution_mines_detail"
+  },
+  {
+    "schema": "api",
+    "name": "v_inventaire_pollution_rejet_abattoir_detail",
+    "type": "VIEW",
+    "fq": "api.v_inventaire_pollution_rejet_abattoir_detail"
+  },
+  {
+    "schema": "api",
+    "name": "v_inventaire_pollution_rejets_bruts_detail",
+    "type": "VIEW",
+    "fq": "api.v_inventaire_pollution_rejets_bruts_detail"
+  },
+  {
+    "schema": "api",
+    "name": "v_inventaire_pollution_sources_mesures_detail",
+    "type": "VIEW",
+    "fq": "api.v_inventaire_pollution_sources_mesures_detail"
+  },
+  {
+    "schema": "api",
+    "name": "v_inventaire_pollution_steps_detail",
+    "type": "VIEW",
+    "fq": "api.v_inventaire_pollution_steps_detail"
+  },
+  {
+    "schema": "api",
+    "name": "v_inventaire_pollution_steps_industrielles_detail",
+    "type": "VIEW",
+    "fq": "api.v_inventaire_pollution_steps_industrielles_detail"
+  },
+  {
+    "schema": "api",
+    "name": "v_inventaire_pollution_stms_detail",
+    "type": "VIEW",
+    "fq": "api.v_inventaire_pollution_stms_detail"
+  },
+  {
+    "schema": "api",
+    "name": "v_meteo_evaporation",
+    "type": "VIEW",
+    "fq": "api.v_meteo_evaporation"
+  },
+  {
+    "schema": "api",
+    "name": "v_meteo_evaporation_journalier_qa",
+    "type": "VIEW",
+    "fq": "api.v_meteo_evaporation_journalier_qa"
+  },
+  {
+    "schema": "api",
+    "name": "v_meteo_precipitation",
+    "type": "VIEW",
+    "fq": "api.v_meteo_precipitation"
+  },
+  {
+    "schema": "api",
+    "name": "v_meteo_precipitation_annuelle_max",
+    "type": "VIEW",
+    "fq": "api.v_meteo_precipitation_annuelle_max"
+  },
+  {
+    "schema": "api",
+    "name": "v_meteo_precipitation_journalier_qa",
+    "type": "VIEW",
+    "fq": "api.v_meteo_precipitation_journalier_qa"
+  },
+  {
+    "schema": "api",
+    "name": "v_meteo_temperature",
+    "type": "VIEW",
+    "fq": "api.v_meteo_temperature"
+  },
+  {
+    "schema": "api",
+    "name": "v_meteo_temperature_journalier",
+    "type": "VIEW",
+    "fq": "api.v_meteo_temperature_journalier"
+  },
+  {
+    "schema": "api",
+    "name": "v_nappes_geojson",
+    "type": "VIEW",
+    "fq": "api.v_nappes_geojson"
+  },
+  {
+    "schema": "api",
+    "name": "v_points_eau",
+    "type": "VIEW",
+    "fq": "api.v_points_eau"
+  },
+  {
+    "schema": "api",
+    "name": "v_pollution_analyses_finales",
+    "type": "VIEW",
+    "fq": "api.v_pollution_analyses_finales"
+  },
+  {
+    "schema": "api",
+    "name": "v_pollution_by_parameter",
+    "type": "VIEW",
+    "fq": "api.v_pollution_by_parameter"
+  },
+  {
+    "schema": "api",
+    "name": "v_pollution_constat_prealable",
+    "type": "VIEW",
+    "fq": "api.v_pollution_constat_prealable"
+  },
+  {
+    "schema": "api",
+    "name": "v_pollution_latest_results",
+    "type": "VIEW",
+    "fq": "api.v_pollution_latest_results"
+  },
+  {
+    "schema": "api",
+    "name": "v_pollution_sites",
+    "type": "VIEW",
+    "fq": "api.v_pollution_sites"
+  },
+  {
+    "schema": "api",
+    "name": "v_pollution_timeseries",
+    "type": "VIEW",
+    "fq": "api.v_pollution_timeseries"
+  },
+  {
+    "schema": "api",
+    "name": "v_profils_stations",
+    "type": "VIEW",
+    "fq": "api.v_profils_stations"
+  },
+  {
+    "schema": "api",
+    "name": "v_qualite_barrages_mesures",
+    "type": "VIEW",
+    "fq": "api.v_qualite_barrages_mesures"
+  },
+  {
+    "schema": "api",
+    "name": "v_qualite_base_multi_support",
+    "type": "VIEW",
+    "fq": "api.v_qualite_base_multi_support"
+  },
+  {
+    "schema": "api",
+    "name": "v_qualite_biologique",
+    "type": "VIEW",
+    "fq": "api.v_qualite_biologique"
+  },
+  {
+    "schema": "api",
+    "name": "v_qualite_chimie_minerale",
+    "type": "VIEW",
+    "fq": "api.v_qualite_chimie_minerale"
+  },
+  {
+    "schema": "api",
+    "name": "v_qualite_contexte_station",
+    "type": "VIEW",
+    "fq": "api.v_qualite_contexte_station"
+  },
+  {
+    "schema": "api",
+    "name": "v_qualite_metaux",
+    "type": "VIEW",
+    "fq": "api.v_qualite_metaux"
+  },
+  {
+    "schema": "api",
+    "name": "v_qualite_microbiologie",
+    "type": "VIEW",
+    "fq": "api.v_qualite_microbiologie"
+  },
+  {
+    "schema": "api",
+    "name": "v_qualite_nappes_mesures",
+    "type": "VIEW",
+    "fq": "api.v_qualite_nappes_mesures"
+  },
+  {
+    "schema": "api",
+    "name": "v_qualite_organoleptique",
+    "type": "VIEW",
+    "fq": "api.v_qualite_organoleptique"
+  },
+  {
+    "schema": "api",
+    "name": "v_qualite_physicochimie",
+    "type": "VIEW",
+    "fq": "api.v_qualite_physicochimie"
+  },
+  {
+    "schema": "api",
+    "name": "v_qualite_pollution_organique",
+    "type": "VIEW",
+    "fq": "api.v_qualite_pollution_organique"
+  },
+  {
+    "schema": "api",
+    "name": "v_qualite_riviere_mesures",
+    "type": "VIEW",
+    "fq": "api.v_qualite_riviere_mesures"
+  },
+  {
+    "schema": "api",
+    "name": "v_qualite_sebou_mesures",
+    "type": "VIEW",
+    "fq": "api.v_qualite_sebou_mesures"
+  },
+  {
+    "schema": "api",
+    "name": "v_qualite_terrain",
+    "type": "VIEW",
+    "fq": "api.v_qualite_terrain"
+  },
+  {
+    "schema": "api",
+    "name": "v_source_pollution_prelevement",
+    "type": "VIEW",
+    "fq": "api.v_source_pollution_prelevement"
+  },
+  {
+    "schema": "api",
+    "name": "v_sources_geojson",
+    "type": "VIEW",
+    "fq": "api.v_sources_geojson"
+  },
+  {
+    "schema": "api",
+    "name": "v_sous_bassin_geojson",
+    "type": "VIEW",
+    "fq": "api.v_sous_bassin_geojson"
+  },
+  {
+    "schema": "api",
+    "name": "v_sous_bassin_swat_geojson",
+    "type": "VIEW",
+    "fq": "api.v_sous_bassin_swat_geojson"
+  },
+  {
+    "schema": "api",
+    "name": "v_station_dimension",
+    "type": "VIEW",
+    "fq": "api.v_station_dimension"
+  },
+  {
+    "schema": "api",
+    "name": "v_stm",
+    "type": "VIEW",
+    "fq": "api.v_stm"
+  },
+  {
+    "schema": "api",
+    "name": "v_suivi_qualite_barrage_garde_hebdo",
+    "type": "VIEW",
+    "fq": "api.v_suivi_qualite_barrage_garde_hebdo"
+  },
+  {
+    "schema": "api",
+    "name": "v_swat_qualite_carto",
+    "type": "VIEW",
+    "fq": "api.v_swat_qualite_carto"
+  },
+  {
+    "schema": "api",
+    "name": "v_swat_qualite_subbasin_consolide",
+    "type": "VIEW",
+    "fq": "api.v_swat_qualite_subbasin_consolide"
+  },
+  {
+    "schema": "api",
+    "name": "v_wasp_qualite_segment_consolide",
+    "type": "VIEW",
+    "fq": "api.v_wasp_qualite_segment_consolide"
+  },
+  {
+    "schema": "api",
+    "name": "v_wasp_resultats_actifs",
+    "type": "VIEW",
+    "fq": "api.v_wasp_resultats_actifs"
+  },
+  {
+    "schema": "api",
+    "name": "v_wasp_resultats_mensuel",
+    "type": "VIEW",
+    "fq": "api.v_wasp_resultats_mensuel"
+  },
+  {
+    "schema": "api",
+    "name": "v_wasp_snapshot_spatial",
+    "type": "VIEW",
+    "fq": "api.v_wasp_snapshot_spatial"
+  },
+  {
+    "schema": "api",
+    "name": "viz_carto_layers",
+    "type": "VIEW",
+    "fq": "api.viz_carto_layers"
+  },
+  {
+    "schema": "api",
+    "name": "viz_climat_timeseries",
+    "type": "VIEW",
+    "fq": "api.viz_climat_timeseries"
+  },
+  {
+    "schema": "api",
+    "name": "viz_hydro_timeseries",
+    "type": "VIEW",
+    "fq": "api.viz_hydro_timeseries"
+  },
+  {
+    "schema": "api",
+    "name": "viz_pollution_timeseries",
+    "type": "VIEW",
+    "fq": "api.viz_pollution_timeseries"
+  },
+  {
+    "schema": "api",
+    "name": "viz_qualite_timeseries",
+    "type": "VIEW",
+    "fq": "api.viz_qualite_timeseries"
+  },
+  {
+    "schema": "audit",
+    "name": "bkp_hydro_mesure_barrage_param_apport_20260508_075857_164913",
+    "type": "BASE TABLE",
+    "fq": "audit.bkp_hydro_mesure_barrage_param_apport_20260508_075857_164913"
+  },
+  {
+    "schema": "audit",
+    "name": "bkp_metadata_referentiel_parametre_20260507_145102_388030",
+    "type": "BASE TABLE",
+    "fq": "audit.bkp_metadata_referentiel_parametre_20260507_145102_388030"
+  },
+  {
+    "schema": "audit",
+    "name": "bkp_metadata_referentiel_parametre_canonique_apport_20260508_07",
+    "type": "BASE TABLE",
+    "fq": "audit.bkp_metadata_referentiel_parametre_canonique_apport_20260508_07"
+  },
+  {
+    "schema": "audit",
+    "name": "bkp_qualite_mo_metal_to_mo_case_20260508",
+    "type": "BASE TABLE",
+    "fq": "audit.bkp_qualite_mo_metal_to_mo_case_20260508"
+  },
+  {
+    "schema": "audit",
+    "name": "bkp_qualite_ref001_004_mapping_final_20260508",
+    "type": "BASE TABLE",
+    "fq": "audit.bkp_qualite_ref001_004_mapping_final_20260508"
+  },
+  {
+    "schema": "audit",
+    "name": "bkp_ref_param_canonique_enrich_final_20260508",
+    "type": "BASE TABLE",
+    "fq": "audit.bkp_ref_param_canonique_enrich_final_20260508"
+  },
+  {
+    "schema": "audit",
+    "name": "bkp_ref_param_hm3_unit_alias_20260508",
+    "type": "BASE TABLE",
+    "fq": "audit.bkp_ref_param_hm3_unit_alias_20260508"
+  },
+  {
+    "schema": "audit",
+    "name": "bkp_ref_param_mo_case_resolution_20260508",
+    "type": "BASE TABLE",
+    "fq": "audit.bkp_ref_param_mo_case_resolution_20260508"
+  },
+  {
+    "schema": "audit",
+    "name": "bkp_ref_table_cible_final_metier_20260513",
+    "type": "BASE TABLE",
+    "fq": "audit.bkp_ref_table_cible_final_metier_20260513"
+  },
+  {
+    "schema": "audit",
+    "name": "bkp_ref_unites_37_validees_20260512",
+    "type": "BASE TABLE",
+    "fq": "audit.bkp_ref_unites_37_validees_20260512"
+  },
+  {
+    "schema": "audit",
+    "name": "bkp_referentiel_parametre_sync_fk_20260508",
+    "type": "BASE TABLE",
+    "fq": "audit.bkp_referentiel_parametre_sync_fk_20260508"
+  },
+  {
+    "schema": "audit",
+    "name": "hydro_barrage_param_apport_harmonisation_audit",
+    "type": "BASE TABLE",
+    "fq": "audit.hydro_barrage_param_apport_harmonisation_audit"
+  },
+  {
+    "schema": "audit",
+    "name": "hydro_barrage_param_load_audit",
+    "type": "BASE TABLE",
+    "fq": "audit.hydro_barrage_param_load_audit"
+  },
+  {
+    "schema": "audit",
+    "name": "ingestion_audit_logs",
+    "type": "BASE TABLE",
+    "fq": "audit.ingestion_audit_logs"
+  },
+  {
+    "schema": "audit",
+    "name": "qualite_ref001_004_mapping_journal",
+    "type": "BASE TABLE",
+    "fq": "audit.qualite_ref001_004_mapping_journal"
+  },
+  {
+    "schema": "audit",
+    "name": "referentiel_parametre_sync_fk_journal",
+    "type": "BASE TABLE",
+    "fq": "audit.referentiel_parametre_sync_fk_journal"
+  },
+  {
+    "schema": "audit",
+    "name": "referentiel_unite_hm3_decision_journal",
+    "type": "BASE TABLE",
+    "fq": "audit.referentiel_unite_hm3_decision_journal"
+  },
+  {
+    "schema": "geo",
+    "name": "_bak_sous_bassin_swat_leben_innaouen_20260403",
+    "type": "BASE TABLE",
+    "fq": "geo._bak_sous_bassin_swat_leben_innaouen_20260403"
+  },
+  {
+    "schema": "geo",
+    "name": "bassin_versant",
+    "type": "BASE TABLE",
+    "fq": "geo.bassin_versant"
+  },
+  {
+    "schema": "geo",
+    "name": "nappe",
+    "type": "BASE TABLE",
+    "fq": "geo.nappe"
+  },
+  {
+    "schema": "geo",
+    "name": "ref_site_pollution",
+    "type": "BASE TABLE",
+    "fq": "geo.ref_site_pollution"
+  },
+  {
+    "schema": "geo",
+    "name": "ref_site_pollution_merge_history",
+    "type": "BASE TABLE",
+    "fq": "geo.ref_site_pollution_merge_history"
+  },
+  {
+    "schema": "geo",
+    "name": "ref_site_pollution_source_link",
+    "type": "BASE TABLE",
+    "fq": "geo.ref_site_pollution_source_link"
+  },
+  {
+    "schema": "geo",
+    "name": "reseau_hydrographique",
+    "type": "BASE TABLE",
+    "fq": "geo.reseau_hydrographique"
+  },
+  {
+    "schema": "geo",
+    "name": "source",
+    "type": "BASE TABLE",
+    "fq": "geo.source"
+  },
+  {
+    "schema": "geo",
+    "name": "sous_bassin_abh",
+    "type": "BASE TABLE",
+    "fq": "geo.sous_bassin_abh"
+  },
+  {
+    "schema": "geo",
+    "name": "sous_bassin_swat_bas_sebou",
+    "type": "BASE TABLE",
+    "fq": "geo.sous_bassin_swat_bas_sebou"
+  },
+  {
+    "schema": "geo",
+    "name": "sous_bassin_swat_bassin_cotier",
+    "type": "BASE TABLE",
+    "fq": "geo.sous_bassin_swat_bassin_cotier"
+  },
+  {
+    "schema": "geo",
+    "name": "sous_bassin_swat_beht",
+    "type": "BASE TABLE",
+    "fq": "geo.sous_bassin_swat_beht"
+  },
+  {
+    "schema": "geo",
+    "name": "sous_bassin_swat_haut_sebou",
+    "type": "BASE TABLE",
+    "fq": "geo.sous_bassin_swat_haut_sebou"
+  },
+  {
+    "schema": "geo",
+    "name": "sous_bassin_swat_leben_innaouen",
+    "type": "BASE TABLE",
+    "fq": "geo.sous_bassin_swat_leben_innaouen"
+  },
+  {
+    "schema": "geo",
+    "name": "sous_bassin_swat_moyen_sebou",
+    "type": "BASE TABLE",
+    "fq": "geo.sous_bassin_swat_moyen_sebou"
+  },
+  {
+    "schema": "geo",
+    "name": "sous_bassin_swat_ouergha",
+    "type": "BASE TABLE",
+    "fq": "geo.sous_bassin_swat_ouergha"
+  },
+  {
+    "schema": "geo",
+    "name": "v_existing_pollution_spatial_sources",
+    "type": "VIEW",
+    "fq": "geo.v_existing_pollution_spatial_sources"
+  },
+  {
+    "schema": "geo",
+    "name": "v_idp_spatial_sources",
+    "type": "VIEW",
+    "fq": "geo.v_idp_spatial_sources"
+  },
+  {
+    "schema": "geo_work",
+    "name": "reseau_hydro_edges_final",
+    "type": "BASE TABLE",
+    "fq": "geo_work.reseau_hydro_edges_final"
+  },
+  {
+    "schema": "geo_work",
+    "name": "reseau_hydro_edges_final_vertices_pgr",
+    "type": "BASE TABLE",
+    "fq": "geo_work.reseau_hydro_edges_final_vertices_pgr"
+  },
+  {
+    "schema": "geo_work",
+    "name": "reseau_hydro_edges_noded",
+    "type": "BASE TABLE",
+    "fq": "geo_work.reseau_hydro_edges_noded"
+  },
+  {
+    "schema": "geo_work",
+    "name": "reseau_hydro_edges_noded_preview",
+    "type": "BASE TABLE",
+    "fq": "geo_work.reseau_hydro_edges_noded_preview"
+  },
+  {
+    "schema": "geo_work",
+    "name": "reseau_hydro_edges_raw",
+    "type": "BASE TABLE",
+    "fq": "geo_work.reseau_hydro_edges_raw"
+  },
+  {
+    "schema": "geo_work",
+    "name": "reseau_hydro_nodes",
+    "type": "BASE TABLE",
+    "fq": "geo_work.reseau_hydro_nodes"
+  },
+  {
+    "schema": "geo_work",
+    "name": "v_topo_qa",
+    "type": "VIEW",
+    "fq": "geo_work.v_topo_qa"
+  },
+  {
+    "schema": "hydro",
+    "name": "barrage_bathymetrie",
+    "type": "BASE TABLE",
+    "fq": "hydro.barrage_bathymetrie"
+  },
+  {
+    "schema": "hydro",
+    "name": "mesure_barrage",
+    "type": "BASE TABLE",
+    "fq": "hydro.mesure_barrage"
+  },
+  {
+    "schema": "hydro",
+    "name": "mesure_barrage_param",
+    "type": "BASE TABLE",
+    "fq": "hydro.mesure_barrage_param"
+  },
+  {
+    "schema": "hydro",
+    "name": "mesure_debit",
+    "type": "BASE TABLE",
+    "fq": "hydro.mesure_debit"
+  },
+  {
+    "schema": "hydro",
+    "name": "mesure_debit_mensuel",
+    "type": "BASE TABLE",
+    "fq": "hydro.mesure_debit_mensuel"
+  },
+  {
+    "schema": "hydro",
+    "name": "mesure_debit_source",
+    "type": "BASE TABLE",
+    "fq": "hydro.mesure_debit_source"
+  },
+  {
+    "schema": "hydro",
+    "name": "regle_qualite_debit_source",
+    "type": "BASE TABLE",
+    "fq": "hydro.regle_qualite_debit_source"
+  },
+  {
+    "schema": "hydro",
+    "name": "regle_qualite_debit_station",
+    "type": "BASE TABLE",
+    "fq": "hydro.regle_qualite_debit_station"
+  },
+  {
+    "schema": "infra",
+    "name": "barrages",
+    "type": "BASE TABLE",
+    "fq": "infra.barrages"
+  },
+  {
+    "schema": "infra",
+    "name": "decharge",
+    "type": "BASE TABLE",
+    "fq": "infra.decharge"
+  },
+  {
+    "schema": "infra",
+    "name": "decharge_inventaire_pollution",
+    "type": "BASE TABLE",
+    "fq": "infra.decharge_inventaire_pollution"
+  },
+  {
+    "schema": "infra",
+    "name": "decharge_inventaire_pollution_general",
+    "type": "BASE TABLE",
+    "fq": "infra.decharge_inventaire_pollution_general"
+  },
+  {
+    "schema": "infra",
+    "name": "fosses_septiques_abhs",
+    "type": "BASE TABLE",
+    "fq": "infra.fosses_septiques_abhs"
+  },
+  {
+    "schema": "infra",
+    "name": "huilerie",
+    "type": "BASE TABLE",
+    "fq": "infra.huilerie"
+  },
+  {
+    "schema": "infra",
+    "name": "huilerie_inventaire_pollution",
+    "type": "BASE TABLE",
+    "fq": "infra.huilerie_inventaire_pollution"
+  },
+  {
+    "schema": "infra",
+    "name": "mine",
+    "type": "BASE TABLE",
+    "fq": "infra.mine"
+  },
+  {
+    "schema": "infra",
+    "name": "mine_inventaire_pollution",
+    "type": "BASE TABLE",
+    "fq": "infra.mine_inventaire_pollution"
+  },
+  {
+    "schema": "infra",
+    "name": "point_eau",
+    "type": "BASE TABLE",
+    "fq": "infra.point_eau"
+  },
+  {
+    "schema": "infra",
+    "name": "profil_station",
+    "type": "BASE TABLE",
+    "fq": "infra.profil_station"
+  },
+  {
+    "schema": "infra",
+    "name": "rejet_abattoir",
+    "type": "BASE TABLE",
+    "fq": "infra.rejet_abattoir"
+  },
+  {
+    "schema": "infra",
+    "name": "rejet_abattoir_inventaire_pollution",
+    "type": "BASE TABLE",
+    "fq": "infra.rejet_abattoir_inventaire_pollution"
+  },
+  {
+    "schema": "infra",
+    "name": "rejet_domestique",
+    "type": "BASE TABLE",
+    "fq": "infra.rejet_domestique"
+  },
+  {
+    "schema": "infra",
+    "name": "rejet_industriel",
+    "type": "BASE TABLE",
+    "fq": "infra.rejet_industriel"
+  },
+  {
+    "schema": "infra",
+    "name": "rejet_inventaire_pollution",
+    "type": "BASE TABLE",
+    "fq": "infra.rejet_inventaire_pollution"
+  },
+  {
+    "schema": "infra",
+    "name": "stations",
+    "type": "BASE TABLE",
+    "fq": "infra.stations"
+  },
+  {
+    "schema": "infra",
+    "name": "stations_mesure",
+    "type": "BASE TABLE",
+    "fq": "infra.stations_mesure"
+  },
+  {
+    "schema": "infra",
+    "name": "step",
+    "type": "BASE TABLE",
+    "fq": "infra.step"
+  },
+  {
+    "schema": "infra",
+    "name": "step_industrielle",
+    "type": "BASE TABLE",
+    "fq": "infra.step_industrielle"
+  },
+  {
+    "schema": "infra",
+    "name": "step_inventaire_pollution",
+    "type": "BASE TABLE",
+    "fq": "infra.step_inventaire_pollution"
+  },
+  {
+    "schema": "infra",
+    "name": "stm",
+    "type": "BASE TABLE",
+    "fq": "infra.stm"
+  },
+  {
+    "schema": "metadata",
+    "name": "api_view_catalog",
+    "type": "BASE TABLE",
+    "fq": "metadata.api_view_catalog"
+  },
+  {
+    "schema": "metadata",
+    "name": "api_view_column_catalog",
+    "type": "BASE TABLE",
+    "fq": "metadata.api_view_column_catalog"
+  },
+  {
+    "schema": "metadata",
+    "name": "catalogue_type_mesure",
+    "type": "BASE TABLE",
+    "fq": "metadata.catalogue_type_mesure"
+  },
+  {
+    "schema": "metadata",
+    "name": "dictionnaire_donnees",
+    "type": "BASE TABLE",
+    "fq": "metadata.dictionnaire_donnees"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_abreviation_colonne_inventaire",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_abreviation_colonne_inventaire"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_abreviation_unresolved_sources",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_abreviation_unresolved_sources"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_barrage",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_barrage"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_barrage_unresolved_suivi_qualite_brg_garde_hebdo",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_barrage_unresolved_suivi_qualite_brg_garde_hebdo"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_nappe_unresolved_qualite_nappes",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_nappe_unresolved_qualite_nappes"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_parametre_source",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_parametre_source"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_parametre_source_orphans_audit",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_parametre_source_orphans_audit"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_parametre_unresolved_legacy_qualite_riviere",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_parametre_unresolved_legacy_qualite_riviere"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_parametre_unresolved_suivi_qualite_sebou",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_parametre_unresolved_suivi_qualite_sebou"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_point_eau",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_point_eau"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_point_eau_unresolved_nappe",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_point_eau_unresolved_nappe"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_point_eau_unresolved_station",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_point_eau_unresolved_station"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_profil_station",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_profil_station"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_profil_unresolved_nappe",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_profil_unresolved_nappe"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_profil_unresolved_station",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_profil_unresolved_station"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_source",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_source"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_station",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_station"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_station_unresolved_precip_ann_max",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_station_unresolved_precip_ann_max"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_station_unresolved_qualite_barrages",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_station_unresolved_qualite_barrages"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_station_unresolved_qualite_nappes",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_station_unresolved_qualite_nappes"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_station_unresolved_suivi_qualite_brg_garde_hebdo",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_station_unresolved_suivi_qualite_brg_garde_hebdo"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_station_unresolved_suivi_qualite_brg_garde_hebdo_null_i",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_station_unresolved_suivi_qualite_brg_garde_hebdo_null_i"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_step_ind",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_step_ind"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_step_ind_unresolved_commune",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_step_ind_unresolved_commune"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_stm",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_stm"
+  },
+  {
+    "schema": "metadata",
+    "name": "mapping_stm_unresolved_commune",
+    "type": "BASE TABLE",
+    "fq": "metadata.mapping_stm_unresolved_commune"
+  },
+  {
+    "schema": "metadata",
+    "name": "mv_refresh_status",
+    "type": "BASE TABLE",
+    "fq": "metadata.mv_refresh_status"
+  },
+  {
+    "schema": "metadata",
+    "name": "obs_parametre_coverage",
+    "type": "BASE TABLE",
+    "fq": "metadata.obs_parametre_coverage"
+  },
+  {
+    "schema": "metadata",
+    "name": "obs_parametre_entite_compat",
+    "type": "BASE TABLE",
+    "fq": "metadata.obs_parametre_entite_compat"
+  },
+  {
+    "schema": "metadata",
+    "name": "obs_referentiel_parametre",
+    "type": "BASE TABLE",
+    "fq": "metadata.obs_referentiel_parametre"
+  },
+  {
+    "schema": "metadata",
+    "name": "popup_rules_config",
+    "type": "BASE TABLE",
+    "fq": "metadata.popup_rules_config"
+  },
+  {
+    "schema": "metadata",
+    "name": "qualite_classe_reglementaire",
+    "type": "BASE TABLE",
+    "fq": "metadata.qualite_classe_reglementaire"
+  },
+  {
+    "schema": "metadata",
+    "name": "qualite_mapping_canonique_reglementaire",
+    "type": "BASE TABLE",
+    "fq": "metadata.qualite_mapping_canonique_reglementaire"
+  },
+  {
+    "schema": "metadata",
+    "name": "qualite_parametre_reglementaire",
+    "type": "BASE TABLE",
+    "fq": "metadata.qualite_parametre_reglementaire"
+  },
+  {
+    "schema": "metadata",
+    "name": "qualite_regle_classification",
+    "type": "BASE TABLE",
+    "fq": "metadata.qualite_regle_classification"
+  },
+  {
+    "schema": "metadata",
+    "name": "qualite_seuil_reglementaire",
+    "type": "BASE TABLE",
+    "fq": "metadata.qualite_seuil_reglementaire"
+  },
+  {
+    "schema": "metadata",
+    "name": "qualite_source_reglementaire",
+    "type": "BASE TABLE",
+    "fq": "metadata.qualite_source_reglementaire"
+  },
+  {
+    "schema": "metadata",
+    "name": "qualite_type_eau",
+    "type": "BASE TABLE",
+    "fq": "metadata.qualite_type_eau"
+  },
+  {
+    "schema": "metadata",
+    "name": "ref_categorie_pollution",
+    "type": "BASE TABLE",
+    "fq": "metadata.ref_categorie_pollution"
+  },
+  {
+    "schema": "metadata",
+    "name": "ref_type_source_pollution",
+    "type": "BASE TABLE",
+    "fq": "metadata.ref_type_source_pollution"
+  },
+  {
+    "schema": "metadata",
+    "name": "referentiel_abreviation_inventaire",
+    "type": "BASE TABLE",
+    "fq": "metadata.referentiel_abreviation_inventaire"
+  },
+  {
+    "schema": "metadata",
+    "name": "referentiel_parametre",
+    "type": "BASE TABLE",
+    "fq": "metadata.referentiel_parametre"
+  },
+  {
+    "schema": "metadata",
+    "name": "referentiel_parametre_canonique",
+    "type": "BASE TABLE",
+    "fq": "metadata.referentiel_parametre_canonique"
+  },
+  {
+    "schema": "metadata",
+    "name": "v_api_dictionary",
+    "type": "VIEW",
+    "fq": "metadata.v_api_dictionary"
+  },
+  {
+    "schema": "metadata",
+    "name": "v_mapping_parametre_coverage",
+    "type": "VIEW",
+    "fq": "metadata.v_mapping_parametre_coverage"
+  },
+  {
+    "schema": "meteo",
+    "name": "mesure_evaporation",
+    "type": "BASE TABLE",
+    "fq": "meteo.mesure_evaporation"
+  },
+  {
+    "schema": "meteo",
+    "name": "mesure_precipitation",
+    "type": "BASE TABLE",
+    "fq": "meteo.mesure_precipitation"
+  },
+  {
+    "schema": "meteo",
+    "name": "mesure_precipitation_annuelle_max",
+    "type": "BASE TABLE",
+    "fq": "meteo.mesure_precipitation_annuelle_max"
+  },
+  {
+    "schema": "meteo",
+    "name": "mesure_temperature",
+    "type": "BASE TABLE",
+    "fq": "meteo.mesure_temperature"
+  },
+  {
+    "schema": "meteo",
+    "name": "regle_qualite_evaporation_station",
+    "type": "BASE TABLE",
+    "fq": "meteo.regle_qualite_evaporation_station"
+  },
+  {
+    "schema": "modeles",
+    "name": "resultat_swat",
+    "type": "BASE TABLE",
+    "fq": "modeles.resultat_swat"
+  },
+  {
+    "schema": "modeles",
+    "name": "resultat_wasp",
+    "type": "BASE TABLE",
+    "fq": "modeles.resultat_wasp"
+  },
+  {
+    "schema": "modeles",
+    "name": "scenario_simulation",
+    "type": "BASE TABLE",
+    "fq": "modeles.scenario_simulation"
+  },
+  {
+    "schema": "monitoring",
+    "name": "alerte_seuil",
+    "type": "BASE TABLE",
+    "fq": "monitoring.alerte_seuil"
+  },
+  {
+    "schema": "monitoring",
+    "name": "flux_iot_brut",
+    "type": "BASE TABLE",
+    "fq": "monitoring.flux_iot_brut"
+  },
+  {
+    "schema": "monitoring",
+    "name": "statut_capteur",
+    "type": "BASE TABLE",
+    "fq": "monitoring.statut_capteur"
+  },
+  {
+    "schema": "public",
+    "name": "geography_columns",
+    "type": "VIEW",
+    "fq": "public.geography_columns"
+  },
+  {
+    "schema": "public",
+    "name": "geometry_columns",
+    "type": "VIEW",
+    "fq": "public.geometry_columns"
+  },
+  {
+    "schema": "public",
+    "name": "spatial_ref_sys",
+    "type": "BASE TABLE",
+    "fq": "public.spatial_ref_sys"
+  },
+  {
+    "schema": "qa",
+    "name": "spatial_identity_candidates",
+    "type": "BASE TABLE",
+    "fq": "qa.spatial_identity_candidates"
+  },
+  {
+    "schema": "qa",
+    "name": "spatial_identity_conflicts",
+    "type": "BASE TABLE",
+    "fq": "qa.spatial_identity_conflicts"
+  },
+  {
+    "schema": "qa",
+    "name": "spatial_identity_decisions",
+    "type": "BASE TABLE",
+    "fq": "qa.spatial_identity_decisions"
+  },
+  {
+    "schema": "qa",
+    "name": "spatial_identity_decisions_cartographic",
+    "type": "BASE TABLE",
+    "fq": "qa.spatial_identity_decisions_cartographic"
+  },
+  {
+    "schema": "qa",
+    "name": "spatial_identity_orphans",
+    "type": "BASE TABLE",
+    "fq": "qa.spatial_identity_orphans"
+  },
+  {
+    "schema": "qa",
+    "name": "v_carto_review_base",
+    "type": "VIEW",
+    "fq": "qa.v_carto_review_base"
+  },
+  {
+    "schema": "qa",
+    "name": "v_carto_review_exact_0m",
+    "type": "VIEW",
+    "fq": "qa.v_carto_review_exact_0m"
+  },
+  {
+    "schema": "qa",
+    "name": "v_carto_review_orphans",
+    "type": "VIEW",
+    "fq": "qa.v_carto_review_orphans"
+  },
+  {
+    "schema": "qa",
+    "name": "v_carto_review_same_site_different_object",
+    "type": "VIEW",
+    "fq": "qa.v_carto_review_same_site_different_object"
+  },
+  {
+    "schema": "qa",
+    "name": "v_carto_review_simple_base",
+    "type": "VIEW",
+    "fq": "qa.v_carto_review_simple_base"
+  },
+  {
+    "schema": "qa",
+    "name": "v_carto_review_source_geometries",
+    "type": "VIEW",
+    "fq": "qa.v_carto_review_source_geometries"
+  },
+  {
+    "schema": "qa",
+    "name": "v_carto_review_valid_base",
+    "type": "VIEW",
+    "fq": "qa.v_carto_review_valid_base"
+  },
+  {
+    "schema": "qa",
+    "name": "v_carto_review_very_close_2m",
+    "type": "VIEW",
+    "fq": "qa.v_carto_review_very_close_2m"
+  },
+  {
+    "schema": "qa",
+    "name": "v_pollution_duplicate_exact",
+    "type": "VIEW",
+    "fq": "qa.v_pollution_duplicate_exact"
+  },
+  {
+    "schema": "qa",
+    "name": "v_pollution_duplicate_near",
+    "type": "VIEW",
+    "fq": "qa.v_pollution_duplicate_near"
+  },
+  {
+    "schema": "qa",
+    "name": "v_pollution_geometry_missing",
+    "type": "VIEW",
+    "fq": "qa.v_pollution_geometry_missing"
+  },
+  {
+    "schema": "qa",
+    "name": "v_pollution_measurements_without_geometry",
+    "type": "VIEW",
+    "fq": "qa.v_pollution_measurements_without_geometry"
+  },
+  {
+    "schema": "qa",
+    "name": "v_pollution_multi_source_conflicts",
+    "type": "VIEW",
+    "fq": "qa.v_pollution_multi_source_conflicts"
+  },
+  {
+    "schema": "qa",
+    "name": "v_pollution_param_unmapped",
+    "type": "VIEW",
+    "fq": "qa.v_pollution_param_unmapped"
+  },
+  {
+    "schema": "qa",
+    "name": "v_pollution_points_without_site",
+    "type": "VIEW",
+    "fq": "qa.v_pollution_points_without_site"
+  },
+  {
+    "schema": "qa",
+    "name": "v_pollution_qa_summary",
+    "type": "VIEW",
+    "fq": "qa.v_pollution_qa_summary"
+  },
+  {
+    "schema": "qa",
+    "name": "v_pollution_unit_unmapped",
+    "type": "VIEW",
+    "fq": "qa.v_pollution_unit_unmapped"
+  },
+  {
+    "schema": "qa",
+    "name": "v_spatial_review_base",
+    "type": "VIEW",
+    "fq": "qa.v_spatial_review_base"
+  },
+  {
+    "schema": "qa",
+    "name": "v_spatial_review_huileries",
+    "type": "VIEW",
+    "fq": "qa.v_spatial_review_huileries"
+  },
+  {
+    "schema": "qa",
+    "name": "v_spatial_review_idp_inventory_measurements",
+    "type": "VIEW",
+    "fq": "qa.v_spatial_review_idp_inventory_measurements"
+  },
+  {
+    "schema": "qa",
+    "name": "v_spatial_review_mines_decharges",
+    "type": "VIEW",
+    "fq": "qa.v_spatial_review_mines_decharges"
+  },
+  {
+    "schema": "qa",
+    "name": "v_spatial_review_orphans",
+    "type": "VIEW",
+    "fq": "qa.v_spatial_review_orphans"
+  },
+  {
+    "schema": "qa",
+    "name": "v_spatial_review_rejets",
+    "type": "VIEW",
+    "fq": "qa.v_spatial_review_rejets"
+  },
+  {
+    "schema": "qa",
+    "name": "v_spatial_review_step_stm",
+    "type": "VIEW",
+    "fq": "qa.v_spatial_review_step_stm"
+  },
+  {
+    "schema": "qa",
+    "name": "v_spatial_site_candidates",
+    "type": "VIEW",
+    "fq": "qa.v_spatial_site_candidates"
+  },
+  {
+    "schema": "qa",
+    "name": "variable_thresholds",
+    "type": "BASE TABLE",
+    "fq": "qa.variable_thresholds"
+  },
+  {
+    "schema": "qualite",
+    "name": "mesure_qualite_barrage",
+    "type": "BASE TABLE",
+    "fq": "qualite.mesure_qualite_barrage"
+  },
+  {
+    "schema": "qualite",
+    "name": "mesure_qualite_nappe",
+    "type": "BASE TABLE",
+    "fq": "qualite.mesure_qualite_nappe"
+  },
+  {
+    "schema": "qualite",
+    "name": "mesure_qualite_riviere",
+    "type": "BASE TABLE",
+    "fq": "qualite.mesure_qualite_riviere"
+  },
+  {
+    "schema": "qualite",
+    "name": "mesure_qualite_sebou",
+    "type": "BASE TABLE",
+    "fq": "qualite.mesure_qualite_sebou"
+  },
+  {
+    "schema": "qualite",
+    "name": "resultat_mesure",
+    "type": "BASE TABLE",
+    "fq": "qualite.resultat_mesure"
+  },
+  {
+    "schema": "qualite",
+    "name": "source_pollution_mesure_param",
+    "type": "BASE TABLE",
+    "fq": "qualite.source_pollution_mesure_param"
+  },
+  {
+    "schema": "qualite",
+    "name": "source_pollution_prelevement",
+    "type": "BASE TABLE",
+    "fq": "qualite.source_pollution_prelevement"
+  },
+  {
+    "schema": "qualite",
+    "name": "source_pollution_prelevement_lien",
+    "type": "BASE TABLE",
+    "fq": "qualite.source_pollution_prelevement_lien"
+  },
+  {
+    "schema": "qualite",
+    "name": "suivi_qualite_barrage_garde_hebdo",
+    "type": "BASE TABLE",
+    "fq": "qualite.suivi_qualite_barrage_garde_hebdo"
+  },
+  {
+    "schema": "security",
+    "name": "activity_logs",
+    "type": "BASE TABLE",
+    "fq": "security.activity_logs"
+  },
+  {
+    "schema": "security",
+    "name": "auth_logs",
+    "type": "BASE TABLE",
+    "fq": "security.auth_logs"
+  },
+  {
+    "schema": "security",
+    "name": "log_audit",
+    "type": "BASE TABLE",
+    "fq": "security.log_audit"
+  },
+  {
+    "schema": "security",
+    "name": "password_history",
+    "type": "BASE TABLE",
+    "fq": "security.password_history"
+  },
+  {
+    "schema": "security",
+    "name": "password_reset_requests",
+    "type": "BASE TABLE",
+    "fq": "security.password_reset_requests"
+  },
+  {
+    "schema": "security",
+    "name": "password_reset_tokens",
+    "type": "BASE TABLE",
+    "fq": "security.password_reset_tokens"
+  },
+  {
+    "schema": "security",
+    "name": "permissions",
+    "type": "BASE TABLE",
+    "fq": "security.permissions"
+  },
+  {
+    "schema": "security",
+    "name": "refresh_tokens",
+    "type": "BASE TABLE",
+    "fq": "security.refresh_tokens"
+  },
+  {
+    "schema": "security",
+    "name": "role_permissions",
+    "type": "BASE TABLE",
+    "fq": "security.role_permissions"
+  },
+  {
+    "schema": "security",
+    "name": "roles",
+    "type": "BASE TABLE",
+    "fq": "security.roles"
+  },
+  {
+    "schema": "security",
+    "name": "users",
+    "type": "BASE TABLE",
+    "fq": "security.users"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_adm_cercles_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_adm_cercles_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_adm_communes_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_adm_communes_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_adm_douars_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_adm_douars_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_adm_provinces_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_adm_provinces_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_adm_regions_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_adm_regions_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_adm_villes_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_adm_villes_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_barrages_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_barrages_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_bassin_sebou",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_bassin_sebou"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_bathymetries_barrages_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_bathymetries_barrages_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_capteurs_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_capteurs_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_decharges_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_decharges_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_fosses_septiques_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_fosses_septiques_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_huileries_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_huileries_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_idp_2024_mesures_qualite_globale",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_idp_2024_mesures_qualite_globale"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_idp_2024_mesures_qualite_marche_cadre",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_idp_2024_mesures_qualite_marche_cadre"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_idp_2024_src_pollution_globale",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_idp_2024_src_pollution_globale"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_idp_2024_src_pollution_marche_cadre",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_idp_2024_src_pollution_marche_cadre"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_idp_mesures_qualite_globale_2024",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_idp_mesures_qualite_globale_2024"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_idp_mesures_qualite_marche_cadre_2024",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_idp_mesures_qualite_marche_cadre_2024"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_idp_src_pollution_globale",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_idp_src_pollution_globale"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_idp_src_pollution_marche_cadre",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_idp_src_pollution_marche_cadre"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_mesures_debit_jr",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_mesures_debit_jr"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_mesures_debit_m",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_mesures_debit_m"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_mesures_debit_sources",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_mesures_debit_sources"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_mesures_evaporation_jr",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_mesures_evaporation_jr"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_mesures_niv_eau_barrages",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_mesures_niv_eau_barrages"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_mesures_precipitations_jr",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_mesures_precipitations_jr"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_mesures_precipitations_jr_max",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_mesures_precipitations_jr_max"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_mesures_precipitations_jr_traitees",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_mesures_precipitations_jr_traitees"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_mesures_qualite_barrages",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_mesures_qualite_barrages"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_mesures_qualite_nappes",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_mesures_qualite_nappes"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_mesures_qualite_rivieres",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_mesures_qualite_rivieres"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_mesures_temperatures_jr",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_mesures_temperatures_jr"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_mines_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_mines_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_nappes_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_nappes_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_points_eau_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_points_eau_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_profils_stations",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_profils_stations"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_rejets_abattoirs_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_rejets_abattoirs_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_rejets_domestiques_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_rejets_domestiques_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_rejets_ind_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_rejets_ind_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_reseau_hydro_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_reseau_hydro_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_sources_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_sources_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_sous_bassin_sebou",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_sous_bassin_sebou"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_stations_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_stations_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_step_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_step_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_step_ind_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_step_ind_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_stm_abhs",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_stm_abhs"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_suivi_qualite_brg_garde_hebdo",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_suivi_qualite_brg_garde_hebdo"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_suivi_qualite_sebou_jr",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_suivi_qualite_sebou_jr"
+  },
+  {
+    "schema": "staging",
+    "name": "raw_types_mesures",
+    "type": "BASE TABLE",
+    "fq": "staging.raw_types_mesures"
+  },
+  {
+    "schema": "staging",
+    "name": "v_idp_quality_long_format",
+    "type": "VIEW",
+    "fq": "staging.v_idp_quality_long_format"
+  },
+  {
+    "schema": "swat_output",
+    "name": "mesure_qualite_subbasin_ts",
+    "type": "BASE TABLE",
+    "fq": "swat_output.mesure_qualite_subbasin_ts"
+  },
+  {
+    "schema": "swat_output",
+    "name": "ref_bassin",
+    "type": "BASE TABLE",
+    "fq": "swat_output.ref_bassin"
+  },
+  {
+    "schema": "swat_output",
+    "name": "ref_parametre_qualite",
+    "type": "BASE TABLE",
+    "fq": "swat_output.ref_parametre_qualite"
+  },
+  {
+    "schema": "swat_output",
+    "name": "ref_run_modele",
+    "type": "BASE TABLE",
+    "fq": "swat_output.ref_run_modele"
+  },
+  {
+    "schema": "swat_output",
+    "name": "ref_scenario",
+    "type": "BASE TABLE",
+    "fq": "swat_output.ref_scenario"
+  },
+  {
+    "schema": "swat_output",
+    "name": "ref_subbasin",
+    "type": "BASE TABLE",
+    "fq": "swat_output.ref_subbasin"
+  },
+  {
+    "schema": "swat_output",
+    "name": "stg_swat_qualite_long",
+    "type": "BASE TABLE",
+    "fq": "swat_output.stg_swat_qualite_long"
+  },
+  {
+    "schema": "swat_output",
+    "name": "stg_swat_qualite_meta",
+    "type": "BASE TABLE",
+    "fq": "swat_output.stg_swat_qualite_meta"
+  },
+  {
+    "schema": "swat_sebou",
+    "name": "swat_models",
+    "type": "BASE TABLE",
+    "fq": "swat_sebou.swat_models"
+  },
+  {
+    "schema": "swat_sebou",
+    "name": "swat_reach_results",
+    "type": "BASE TABLE",
+    "fq": "swat_sebou.swat_reach_results"
+  },
+  {
+    "schema": "swat_sebou",
+    "name": "swat_scenarios",
+    "type": "BASE TABLE",
+    "fq": "swat_sebou.swat_scenarios"
+  },
+  {
+    "schema": "swat_sebou",
+    "name": "swat_subbasin_results",
+    "type": "BASE TABLE",
+    "fq": "swat_sebou.swat_subbasin_results"
+  },
+  {
+    "schema": "wasp_output",
+    "name": "mesure_qualite_segment_ts",
+    "type": "BASE TABLE",
+    "fq": "wasp_output.mesure_qualite_segment_ts"
+  },
+  {
+    "schema": "wasp_output",
+    "name": "ref_parametre_qualite",
+    "type": "BASE TABLE",
+    "fq": "wasp_output.ref_parametre_qualite"
+  },
+  {
+    "schema": "wasp_output",
+    "name": "ref_run_modele",
+    "type": "BASE TABLE",
+    "fq": "wasp_output.ref_run_modele"
+  },
+  {
+    "schema": "wasp_output",
+    "name": "ref_segment_modele",
+    "type": "BASE TABLE",
+    "fq": "wasp_output.ref_segment_modele"
+  },
+  {
+    "schema": "wasp_output",
+    "name": "stg_wasp_qualite_long",
+    "type": "BASE TABLE",
+    "fq": "wasp_output.stg_wasp_qualite_long"
+  },
+  {
+    "schema": "wasp_sebou",
+    "name": "wasp_results",
+    "type": "BASE TABLE",
+    "fq": "wasp_sebou.wasp_results"
+  },
+  {
+    "schema": "wasp_sebou",
+    "name": "wasp_scenarios",
+    "type": "BASE TABLE",
+    "fq": "wasp_sebou.wasp_scenarios"
+  },
+  {
+    "schema": "wasp_sebou",
+    "name": "wasp_variables",
+    "type": "BASE TABLE",
+    "fq": "wasp_sebou.wasp_variables"
+  }
+]

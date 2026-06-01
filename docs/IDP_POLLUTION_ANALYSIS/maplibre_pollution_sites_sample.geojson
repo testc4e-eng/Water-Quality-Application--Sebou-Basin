@@ -1,0 +1,3591 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "04c1f26c-1364-4dad-9439-b730d10a9bff",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.950087561,
+          34.285614877
+        ]
+      },
+      "properties": {
+        "site_id": "04c1f26c-1364-4dad-9439-b730d10a9bff",
+        "site_code": "180-817-2-11_Loulja_541268_409668",
+        "site_name": "LOJ_DOM_R1",
+        "commune": "Loulja",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "A sec sauf le jour du souk Lundi",
+        "source_type_label": "A sec sauf le jour du souk Lundi",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.950087560665331,
+        "latitude": 34.28561487727808,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "5ab0bfb5-4895-4504-8196-04323c79437a",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.286607357,
+          34.617711428
+        ]
+      },
+      "properties": {
+        "site_id": "5ab0bfb5-4895-4504-8196-04323c79437a",
+        "site_code": "180-817-6-11_Lamjaara_510250_446418",
+        "site_name": "LMJ_DOM_R2",
+        "commune": "Lamjaara",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "A sec sauf le jour du souk Mardi",
+        "source_type_label": "A sec sauf le jour du souk Mardi",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.286607356563657,
+        "latitude": 34.61771142830271,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "c8caeaba-d675-4e3f-9c56-902b2567eb9a",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.595434502,
+          33.644121041
+        ]
+      },
+      "properties": {
+        "site_id": "c8caeaba-d675-4e3f-9c56-902b2567eb9a",
+        "site_code": "180-1171-28-12_Agourai_481728_338461",
+        "site_name": "REJET ABATTOIR AGOURAI",
+        "commune": "Agourai",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Abattoir",
+        "source_type_label": "Abattoir",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.5954345023568095,
+        "latitude": 33.64412104106057,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "17bc2482-5eb8-4c82-a244-7fdcab0949bd",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.136068182,
+          34.209872464
+        ]
+      },
+      "properties": {
+        "site_id": "17bc2482-5eb8-4c82-a244-7fdcab0949bd",
+        "site_code": "180-1272-3-9_Bab Marzouka_616301_401884",
+        "site_name": "REJET ABATTOIR BAB MARZOUKA",
+        "commune": "Bab Marzouka",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Abattoir",
+        "source_type_label": "Abattoir",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.1360681823515435,
+        "latitude": 34.20987246381246,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "7270988d-1c75-49e2-b838-8a8ce26cd05d",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.038318159,
+          34.500425997
+        ]
+      },
+      "properties": {
+        "site_id": "7270988d-1c75-49e2-b838-8a8ce26cd05d",
+        "site_code": "180-1171-24-9_Bni Ftah_624886_434219",
+        "site_name": "REJET ABATTOIR BNI FTAH",
+        "commune": "Bni Ftah",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Abattoir",
+        "source_type_label": "Abattoir",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.038318158912368,
+        "latitude": 34.500425996785815,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cd85d98c-cec3-42e3-8729-0ba471d6ecc4",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.948012523,
+          34.134692693
+        ]
+      },
+      "properties": {
+        "site_id": "cd85d98c-cec3-42e3-8729-0ba471d6ecc4",
+        "site_code": "180-1171-23-9_Galdmane_633742_393773",
+        "site_name": "REJET ABATTOIR GALDMANE",
+        "commune": "Galdmane",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Abattoir",
+        "source_type_label": "Abattoir",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -3.948012522851707,
+        "latitude": 34.13469269277397,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "7f418eae-3549-4457-a84c-274089294d7a",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.826093642,
+          33.380471538
+        ]
+      },
+      "properties": {
+        "site_id": "7f418eae-3549-4457-a84c-274089294d7a",
+        "site_code": "180-1272-6-12_Guigou_553234_309359",
+        "site_name": "REJET ABATTOIR GUIGOU",
+        "commune": "Guigou",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Abattoir",
+        "source_type_label": "Abattoir",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.8260936420598,
+        "latitude": 33.38047153817007,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "a9a27172-5fb7-434a-bbd8-281930de12dc",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.711865145,
+          34.779601155
+        ]
+      },
+      "properties": {
+        "site_id": "a9a27172-5fb7-434a-bbd8-281930de12dc",
+        "site_code": "180-1171-30-9_Masmouda_471307_464413",
+        "site_name": "REJET ABATTOIR MASMOUDA",
+        "commune": "Masmouda",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Abattoir",
+        "source_type_label": "Abattoir",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.711865144722249,
+        "latitude": 34.7796011546577,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "b3f1a322-5d2d-4ca4-aaa8-f5825f9f392b",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.527521031,
+          34.1165592
+        ]
+      },
+      "properties": {
+        "site_id": "b3f1a322-5d2d-4ca4-aaa8-f5825f9f392b",
+        "site_code": "180-1171-26-9_Matmata_580323_391167",
+        "site_name": "REJET ABATTOIR MATMATA",
+        "commune": "Matmata",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Abattoir",
+        "source_type_label": "Abattoir",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.527521030918258,
+        "latitude": 34.11655919994284,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "4fda5fdd-52b5-4748-a0f3-ed9f739a57fa",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.351256225,
+          34.918693485
+        ]
+      },
+      "properties": {
+        "site_id": "4fda5fdd-52b5-4748-a0f3-ed9f739a57fa",
+        "site_code": "180-1171-21-9_Mokrisset_504306_479802",
+        "site_name": "REJET ABATTOIR MOQRISSET",
+        "commune": "Mokrisset",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Abattoir",
+        "source_type_label": "Abattoir",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.351256225428844,
+        "latitude": 34.91869348494729,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ad22e384-505d-4a3b-bac2-bda89e7ff0c6",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.511950134,
+          34.056239018
+        ]
+      },
+      "properties": {
+        "site_id": "ad22e384-505d-4a3b-bac2-bda89e7ff0c6",
+        "site_code": "180-1272-2-12_Moulay Driss Zrhoun _489519_384147",
+        "site_name": "REJET ABATTOIR MOULAY DRISS ZRHOUN",
+        "commune": "Moulay Driss Zrhoun",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Abattoir",
+        "source_type_label": "Abattoir",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.5119501341218395,
+        "latitude": 34.05623901762753,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cdeba395-2532-48cb-a510-ffc271ea38cc",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.271709232,
+          34.188655865
+        ]
+      },
+      "properties": {
+        "site_id": "cdeba395-2532-48cb-a510-ffc271ea38cc",
+        "site_code": "180-1171-20-11_Oued Amlil_603830_399388",
+        "site_name": "REJET ABATTOIR OUED AMLIL",
+        "commune": "Oued Amlil",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Abattoir",
+        "source_type_label": "Abattoir",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.271709232363124,
+        "latitude": 34.18865586450902,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "4b8718d2-04e7-4646-8c74-6b0d3a16bba6",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.317689166,
+          34.287640357
+        ]
+      },
+      "properties": {
+        "site_id": "4b8718d2-04e7-4646-8c74-6b0d3a16bba6",
+        "site_code": "180-1272-5-12_Ouled Zbair_599479_410320",
+        "site_name": "REJET ABATTOIR OULED ZBAIR",
+        "commune": "Ouled Zbair",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Abattoir",
+        "source_type_label": "Abattoir",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.317689166253627,
+        "latitude": 34.28764035676321,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "0c7c2533-ebef-41ec-b590-851216fa1170",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.356523315,
+          34.566186499
+        ]
+      },
+      "properties": {
+        "site_id": "0c7c2533-ebef-41ec-b590-851216fa1170",
+        "site_code": "180-1171-27-9_Sidi Bousber_503841_440698",
+        "site_name": "REJET ABATTOIR SIDI BOUSBER",
+        "commune": "Sidi Bousber",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Abattoir",
+        "source_type_label": "Abattoir",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.356523315385967,
+        "latitude": 34.56618649916817,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "52e7b1b7-1dfe-430a-a7ee-354b6883e28c",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.451965311,
+          34.681885577
+        ]
+      },
+      "properties": {
+        "site_id": "52e7b1b7-1dfe-430a-a7ee-354b6883e28c",
+        "site_code": "180-1171-29-9_Sidi Redouane_495090_453532",
+        "site_name": "REJET ABATTOIR SIDI REDOUANE",
+        "commune": "Sidi Redouane",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Abattoir",
+        "source_type_label": "Abattoir",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.451965310649964,
+        "latitude": 34.68188557730263,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "accf308d-14a7-4ea9-aa9a-853e4bfa815e",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.545431694,
+          33.518638177
+        ]
+      },
+      "properties": {
+        "site_id": "accf308d-14a7-4ea9-aa9a-853e4bfa815e",
+        "site_code": "180-1171-25-9_Skoura Mdaz_579214_324856",
+        "site_name": "REJET ABATTOIR SKOURA MDAZ",
+        "commune": "Skoura Mdaz",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Abattoir",
+        "source_type_label": "Abattoir",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.5454316938975,
+        "latitude": 33.51863817737084,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "71c6e739-da34-4e34-a6ea-5fd91f4a9e52",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.446764755,
+          34.059482798
+        ]
+      },
+      "properties": {
+        "site_id": "71c6e739-da34-4e34-a6ea-5fd91f4a9e52",
+        "site_code": "180-1272-4-12_Tahla_587829_384903",
+        "site_name": "REJET ABATTOIR TAHLA",
+        "commune": "Tahla",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Abattoir",
+        "source_type_label": "Abattoir",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.44676475521233,
+        "latitude": 34.059482797828615,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "3252a511-9fa4-4c62-aca9-c694fae36388",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.347203636,
+          34.800022463
+        ]
+      },
+      "properties": {
+        "site_id": "3252a511-9fa4-4c62-aca9-c694fae36388",
+        "site_code": "180-1171-18-8_Zoumi_504683_466637",
+        "site_name": "REJET ABATTOIR ZOUMI",
+        "commune": "Zoumi",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Abattoir",
+        "source_type_label": "Abattoir",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.347203635698986,
+        "latitude": 34.800022462624504,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "957e72c9-0374-4342-8f96-6b268ddf99da",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.69168804,
+          34.441545377
+        ]
+      },
+      "properties": {
+        "site_id": "957e72c9-0374-4342-8f96-6b268ddf99da",
+        "site_code": "180-811-29-12_Khnichet_473049_426910",
+        "site_name": "S16 (Aval_Conf_Rejet_KHN (Khnichet)",
+        "commune": "Khnichet",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Aval Rejet",
+        "source_type_label": "Aval Rejet",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.691688039830187,
+        "latitude": 34.44154537691005,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2024-09-22",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 0.2,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2024-09-22",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 49.375,
+            "parameter_code": "MES",
+            "parameter_label": "MES"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "d3306e6f-bcac-4082-8259-286e7d6164ca",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.553614601,
+          34.470109025
+        ]
+      },
+      "properties": {
+        "site_id": "d3306e6f-bcac-4082-8259-286e7d6164ca",
+        "site_code": "180-811-12-12_Jorf El Malha_485741_430051",
+        "site_name": "S23 (Aval_Conf_Rejet_JEM (Jorf el MALHA )",
+        "commune": "Jorf El Malha",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Aval Rejet",
+        "source_type_label": "Aval Rejet",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.553614600574872,
+        "latitude": 34.47010902487854,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2024-09-20",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 64.5,
+            "parameter_code": "MES",
+            "parameter_label": "MES"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "989b4478-29a4-44cc-a05e-d2e2ea7e5ac8",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.930662397,
+          34.209736985
+        ]
+      },
+      "properties": {
+        "site_id": "989b4478-29a4-44cc-a05e-d2e2ea7e5ac8",
+        "site_code": "180-811-10-12_Louadaine_543094_401261",
+        "site_name": "S27 (Aval_Conf_Rejet_LOD (Louadaine)",
+        "commune": "Louadaine",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Aval Rejet",
+        "source_type_label": "Aval Rejet",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.930662397349024,
+        "latitude": 34.209736985398216,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2024-09-20",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 11.91,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2024-09-20",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 69.12,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2024-09-20",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 62.25,
+            "parameter_code": "MES",
+            "parameter_label": "MES"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "c2f8884f-1a73-4e39-a14c-7152f5a46464",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.916262845,
+          34.082688657
+        ]
+      },
+      "properties": {
+        "site_id": "c2f8884f-1a73-4e39-a14c-7152f5a46464",
+        "site_code": "180-811-11-12_Ain Kansra_544486_387178",
+        "site_name": "S20 (Aval STEP Fes)",
+        "commune": "Ain Kansra",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Aval STEP Fes",
+        "source_type_label": "Aval STEP Fes",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.916262845075013,
+        "latitude": 34.08268865696357,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2024-09-20",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 11.41,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2024-09-20",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 63.36,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2024-09-20",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 64,
+            "parameter_code": "MES",
+            "parameter_label": "MES"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "9e9e8557-6a7e-4633-8811-ed9560dc29b3",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.56608142,
+          34.27654003
+        ]
+      },
+      "properties": {
+        "site_id": "9e9e8557-6a7e-4633-8811-ed9560dc29b3",
+        "site_code": "180-999-28-12_Kenitra_392500_409172",
+        "site_name": "AMONT KENITRA",
+        "commune": "Kenitra",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Cobalt",
+        "source_type_label": "Cobalt",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -6.5660814202620355,
+        "latitude": 34.27654003041398,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-10",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 2.02,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": "192 (*)",
+            "sample_date": "2025-10-10",
+            "quality_flag": "VALUE_NON_NUMERIC",
+            "value_numeric": null,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ab6917b7-ff1f-4bac-a22e-a33d5888c27f",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.915732583,
+          34.57285746
+        ]
+      },
+      "properties": {
+        "site_id": "ab6917b7-ff1f-4bac-a22e-a33d5888c27f",
+        "site_code": "180-999-17-11_Bel Ksiri_452534_441554",
+        "site_name": "AMONT STEP MECHRAA BEL KSIRI",
+        "commune": "Bel Ksiri",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DBO5",
+        "source_type_label": "DBO5",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.915732583377374,
+        "latitude": 34.572857460224846,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-08",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 1.85,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ca119ed1-bfaa-408f-96c7-f6b97cd1cec4",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.848766473,
+          34.4847761
+        ]
+      },
+      "properties": {
+        "site_id": "ca119ed1-bfaa-408f-96c7-f6b97cd1cec4",
+        "site_code": "180-999-16-9_El Houafat_458636_431756",
+        "site_name": "AVAL CONFLUENCE SEBOU-RDAT",
+        "commune": "El Houafat",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DBO5",
+        "source_type_label": "DBO5",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.848766473292537,
+        "latitude": 34.484776099695424,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-08",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 1.06,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "acafa21b-5fa8-44c1-8981-5583c7f88621",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.915732583,
+          34.57285746
+        ]
+      },
+      "properties": {
+        "site_id": "acafa21b-5fa8-44c1-8981-5583c7f88621",
+        "site_code": "180-999-18-11_Bel Ksiri_452534_441554",
+        "site_name": "AVAL STEP MECHRAA BEL KSIRI",
+        "commune": "Bel Ksiri",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DBO5",
+        "source_type_label": "DBO5",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.915732583377374,
+        "latitude": 34.572857460224846,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "9b865f1c-7978-4711-9f60-f5596697298f",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.76585821,
+          34.251294977
+        ]
+      },
+      "properties": {
+        "site_id": "9b865f1c-7978-4711-9f60-f5596697298f",
+        "site_code": "180-1075-4-11_Tissa_558250_405950",
+        "site_name": "PONT RS 302",
+        "commune": "Tissa",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DBO5",
+        "source_type_label": "DBO5",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.765858210291638,
+        "latitude": 34.25129497725705,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-28",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 15.36,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-28",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 28.4,
+            "parameter_code": "MES",
+            "parameter_label": "MES"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "04f093d3-5a20-4e0c-aee9-288a4d642467",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.141098209,
+          34.200598526
+        ]
+      },
+      "properties": {
+        "site_id": "04f093d3-5a20-4e0c-aee9-288a4d642467",
+        "site_code": "180-1075-8-11_Bab Marzouka_615850_400850",
+        "site_name": "STATION BAB MARZOUKA",
+        "commune": "Bab Marzouka",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DBO5",
+        "source_type_label": "DBO5",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.141098209337064,
+        "latitude": 34.20059852561428,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "eabf5e52-fa0a-40eb-8b75-37ec0743dede",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.365103641,
+          34.523390906
+        ]
+      },
+      "properties": {
+        "site_id": "eabf5e52-fa0a-40eb-8b75-37ec0743dede",
+        "site_code": "180-1028-20-10_Ben Mansour_411255_436360",
+        "site_name": "AMONT BARRAGE DE GARDE",
+        "commune": "Ben Mansour",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -6.365103640734095,
+        "latitude": 34.52339090589183,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-15",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 1.745,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-15",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 19.2,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "21cb9fce-0de5-4d3b-a6e4-307d5cf2571f",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.565844494,
+          34.296064965
+        ]
+      },
+      "properties": {
+        "site_id": "21cb9fce-0de5-4d3b-a6e4-307d5cf2571f",
+        "site_code": "180-999-27-11_Kenitra_392546_411337",
+        "site_name": "AMONT STEP KENITRA",
+        "commune": "Kenitra",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -6.565844493647716,
+        "latitude": 34.29606496529511,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-10",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 3.02,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": "288 (*)",
+            "sample_date": "2025-10-10",
+            "quality_flag": "VALUE_NON_NUMERIC",
+            "value_numeric": null,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "785d5ed7-c827-4d46-952a-71a1d389e4c9",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.04860096,
+          33.83773047
+        ]
+      },
+      "properties": {
+        "site_id": "785d5ed7-c827-4d46-952a-71a1d389e4c9",
+        "site_code": "180-1028-15-11_Khemisset (Mun.)_439837_360098",
+        "site_name": "AMONT STEP KHEMISSET",
+        "commune": "Khemisset (Mun.)",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -6.048600960233017,
+        "latitude": 33.83773046955094,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-14",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 516,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-14",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 979,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "bea7373a-d4c2-4f26-9957-c8ebf373f3c0",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.616763841,
+          34.519061126
+        ]
+      },
+      "properties": {
+        "site_id": "bea7373a-d4c2-4f26-9957-c8ebf373f3c0",
+        "site_code": "180-1142-25-11_Bouhouda_571757_435740",
+        "site_name": "AMONT STEP TAOUNATE",
+        "commune": "Bouhouda",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.616763841049083,
+        "latitude": 34.51906112611525,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-11-20",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 1.58,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-11-20",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 13.1,
+            "parameter_code": "MES",
+            "parameter_label": "MES"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "63bd5edc-ae03-4986-a764-7de82b9a7f2b",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.57912792,
+          33.958343494
+        ]
+      },
+      "properties": {
+        "site_id": "63bd5edc-ae03-4986-a764-7de82b9a7f2b",
+        "site_code": "180-1028-18-12_Meknes_483300_373300",
+        "site_name": "AVAL REJET MEKNES",
+        "commune": "Meknes",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.579127920327337,
+        "latitude": 33.958343493999635,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-15",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 30.1,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "a39cb910-be34-4bd3-8aa1-19fae6017afc",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.305268291,
+          33.901990545
+        ]
+      },
+      "properties": {
+        "site_id": "a39cb910-be34-4bd3-8aa1-19fae6017afc",
+        "site_code": "180-1028-14-11_Ait Bouyahya Lahjama_416150_367400",
+        "site_name": "AVAL REJET TIFELT",
+        "commune": "Ait Bouyahya Lahjama",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -6.305268291470026,
+        "latitude": 33.901990544802715,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-14",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 63.4,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "a7b0d69f-ddae-44d1-8520-fc4601285e54",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.349067965,
+          33.736698024
+        ]
+      },
+      "properties": {
+        "site_id": "a7b0d69f-ddae-44d1-8520-fc4601285e54",
+        "site_code": "180-1041-6-11_Ait Naamane_504570_348710",
+        "site_name": "AVAL STEP EL HAJEB",
+        "commune": "Ait Naamane",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.349067965466873,
+        "latitude": 33.736698024234826,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-20",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 556,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-20",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 700,
+            "parameter_code": "MES",
+            "parameter_label": "MES"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "2ab09f79-f23c-4d0c-95ae-1d1a960a75c4",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.92424351,
+          34.081961694
+        ]
+      },
+      "properties": {
+        "site_id": "2ab09f79-f23c-4d0c-95ae-1d1a960a75c4",
+        "site_code": "180-1041-30-11_Fes_543750_387094",
+        "site_name": "AVAL STEP FES",
+        "commune": "Fes",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.924243509559376,
+        "latitude": 34.08196169426101,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-27",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 16,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-27",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 136,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "1507fda1-e75f-478f-8919-17b23bd78f4b",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.145850286,
+          33.583253682
+        ]
+      },
+      "properties": {
+        "site_id": "1507fda1-e75f-478f-8919-17b23bd78f4b",
+        "site_code": "180-1041-29-11_Tizguit_523437_331724",
+        "site_name": "AVAL STEP IFRANE",
+        "commune": "Tizguit",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.145850285601275,
+        "latitude": 33.58325368249821,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-24",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 4.855,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-24",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 44.16,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-24",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 23.3,
+            "parameter_code": "MES",
+            "parameter_label": "MES"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "37920fa2-ec41-45d5-9620-a0367ce4b9ec",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.319961381,
+          33.423081302
+        ]
+      },
+      "properties": {
+        "site_id": "37920fa2-ec41-45d5-9620-a0367ce4b9ec",
+        "site_code": "180-1142-21-11_ Imouzzer Marmoucha_600262_314456",
+        "site_name": "AVAL STEP IMOUZZER MARMOUCHA",
+        "commune": "Imouzzer Marmoucha",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.319961381015054,
+        "latitude": 33.42308130184404,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "329b1382-3497-4da5-aa10-8d8ed3572b8c",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.184365661,
+          34.363327985
+        ]
+      },
+      "properties": {
+        "site_id": "329b1382-3497-4da5-aa10-8d8ed3572b8c",
+        "site_code": "180-1041-3-11_Kariat Ba Mohamed_519684_418218",
+        "site_name": "AVAL STEP KARIAT BA MOHAMED",
+        "commune": "Kariat Ba Mohamed",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.184365660877511,
+        "latitude": 34.36332798505241,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-17",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 26.9,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-17",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 92.2,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "334a6b68-6c54-496d-9086-81362cdc6834",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.044766478,
+          33.84240391
+        ]
+      },
+      "properties": {
+        "site_id": "334a6b68-6c54-496d-9086-81362cdc6834",
+        "site_code": "180-1028-16-11_Khemisset (Mun.)_440195_360614",
+        "site_name": "AVAL STEP KHEMISSET",
+        "commune": "Khemisset (Mun.)",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -6.044766478164972,
+        "latitude": 33.84240391027965,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-14",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 76.8,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-14",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 25,
+            "parameter_code": "MES",
+            "parameter_label": "MES"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "7e86d89a-a8c0-4819-839d-5250a3d14ec9",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.75049422,
+          34.265913951
+        ]
+      },
+      "properties": {
+        "site_id": "7e86d89a-a8c0-4819-839d-5250a3d14ec9",
+        "site_code": "180-999-20-11_Zirara_467580_407448",
+        "site_name": "AVAL STEP SIDI KACEM",
+        "commune": "Zirara",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.7504942195809,
+        "latitude": 34.26591395133478,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-08",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 319,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "08f51ba2-dec4-42fc-b804-a7bffa7065be",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.961467559,
+          34.296455782
+        ]
+      },
+      "properties": {
+        "site_id": "08f51ba2-dec4-42fc-b804-a7bffa7065be",
+        "site_code": "180-999-15-9_Boumaiz_448173_410920",
+        "site_name": "AVAL STEP SIDI SLIMANE",
+        "commune": "Boumaiz",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.961467559173381,
+        "latitude": 34.29645578151702,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-07",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 60.8,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-07",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 225,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "fd853ff9-9c48-4daa-9a02-db9100a57a85",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.302740552,
+          34.346398142
+        ]
+      },
+      "properties": {
+        "site_id": "fd853ff9-9c48-4daa-9a02-db9100a57a85",
+        "site_code": "180-999-26-11_Amer Chamlia_416810_416679",
+        "site_name": "AVAL STEP SIDI YAHYA EL GHARB",
+        "commune": "Amer Chamlia",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -6.302740551996523,
+        "latitude": 34.34639814215203,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-10",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 75.7,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-10",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 303,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "3a0da027-d2d0-469e-bc56-a8c1149a0758",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.449765719,
+          34.041694741
+        ]
+      },
+      "properties": {
+        "site_id": "3a0da027-d2d0-469e-bc56-a8c1149a0758",
+        "site_code": "180-1075-9-11_Tahal_587570_382928",
+        "site_name": "AVAL STEP TAHLA",
+        "commune": "Tahal",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.449765719114757,
+        "latitude": 34.04169474121174,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-30",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 267,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "16be1b61-63c6-44c9-b719-871dc3872615",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.615322961,
+          34.515797363
+        ]
+      },
+      "properties": {
+        "site_id": "16be1b61-63c6-44c9-b719-871dc3872615",
+        "site_code": "180-1142-26-11_Taounate_571892_435379",
+        "site_name": "AVAL STEP TAOUNATE",
+        "commune": "Taounate",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.61532296140464,
+        "latitude": 34.51579736319425,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-11-20",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 69.1,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "c3a4a9fe-55fa-40ee-bd2e-52f46a91fbb7",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.060273858,
+          34.233579419
+        ]
+      },
+      "properties": {
+        "site_id": "c3a4a9fe-55fa-40ee-bd2e-52f46a91fbb7",
+        "site_code": "180-1075-7-12_Bab Marzouka_623250_404600",
+        "site_name": "POINT RP1 AVAL TAZA",
+        "commune": "Bab Marzouka",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.060273858212535,
+        "latitude": 34.23357941851162,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "66de1b70-4ba7-4aa2-b590-cc600b07a6c0",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.685286628,
+          34.440838738
+        ]
+      },
+      "properties": {
+        "site_id": "66de1b70-4ba7-4aa2-b590-cc600b07a6c0",
+        "site_code": "180-999-19-12_Khenichet_473637_426830",
+        "site_name": "PONT KHENICHET",
+        "commune": "Khenichet",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.685286627666338,
+        "latitude": 34.44083873778944,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-08",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 11.5,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "c7d50ef3-6e31-41bb-8946-a722d4068edc",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.707882125,
+          34.10237931
+        ]
+      },
+      "properties": {
+        "site_id": "c7d50ef3-6e31-41bb-8946-a722d4068edc",
+        "site_code": "180-1028-17-9_Ain Karma_471450_389300",
+        "site_name": "PONT KROUMAN",
+        "commune": "Ain Karma",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.707882124915676,
+        "latitude": 34.102379309503846,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-15",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 6.84,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-15",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 61.4,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "1d7ba744-a48b-43c0-9684-f4fa76ab3ea0",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.919024663,
+          34.069325915
+        ]
+      },
+      "properties": {
+        "site_id": "1d7ba744-a48b-43c0-9684-f4fa76ab3ea0",
+        "site_code": "180-1075-3-9_Fes_544238_385695",
+        "site_name": "PONT PORTUGAIS",
+        "commune": "Fes",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.919024662670937,
+        "latitude": 34.06932591498435,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "92f42b26-68eb-40f9-8bef-47b2043589b9",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.499403379,
+          33.800160271
+        ]
+      },
+      "properties": {
+        "site_id": "92f42b26-68eb-40f9-8bef-47b2043589b9",
+        "site_code": "180-1041-4-9_Boufekrane_490650_355750",
+        "site_name": "PT RP 21 (OUED BOUFEKRANE)",
+        "commune": "Boufekrane",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.499403378792014,
+        "latitude": 33.80016027069355,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-20",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 710,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ce03bc1d-6035-4794-9cef-cc215b1845a5",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.316678013,
+          33.403784158
+        ]
+      },
+      "properties": {
+        "site_id": "ce03bc1d-6035-4794-9cef-cc215b1845a5",
+        "site_code": "180-1041-11-11_Sidi Mokhfi_507600_311800",
+        "site_name": "SIDI MOKHFI",
+        "commune": "Sidi Mokhfi",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.31667801312764,
+        "latitude": 33.40378415813225,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-22",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 0.839,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-22",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 10.6,
+            "parameter_code": "MES",
+            "parameter_label": "MES"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "e86eafeb-b5f2-4b42-995c-90fac05609e3",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.931240788,
+          34.612582467
+        ]
+      },
+      "properties": {
+        "site_id": "e86eafeb-b5f2-4b42-995c-90fac05609e3",
+        "site_code": "180-1142-13-9_Ghafsai_542840_445940",
+        "site_name": "STATION AVAL GHAFSAI",
+        "commune": "Ghafsai",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.931240788325432,
+        "latitude": 34.61258246654213,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-11-13",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 123,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "21d98a79-1a32-4648-956d-b117bd2f39c1",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.485333294,
+          34.324550134
+        ]
+      },
+      "properties": {
+        "site_id": "21d98a79-1a32-4648-956d-b117bd2f39c1",
+        "site_code": "180-1041-2-12_Mkansa_492000_413900",
+        "site_name": "STATION AZIB SOLTANE",
+        "commune": "Mkansa",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.485333294244439,
+        "latitude": 34.32455013367434,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-17",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 1.83,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-17",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 17.3,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "4a07b4d2-ee38-4fff-bc3f-12ce4f6a0b3d",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.532031028,
+          34.557816132
+        ]
+      },
+      "properties": {
+        "site_id": "4a07b4d2-ee38-4fff-bc3f-12ce4f6a0b3d",
+        "site_code": "180-1075-14-9_Bouhouda_579500_440100",
+        "site_name": "STATION BAB OUENDER",
+        "commune": "Bouhouda",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.5320310279197,
+        "latitude": 34.55781613241394,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "39c6f63c-3af2-4982-99a1-ff23658b3221",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.928503121,
+          34.1956529
+        ]
+      },
+      "properties": {
+        "site_id": "39c6f63c-3af2-4982-99a1-ff23658b3221",
+        "site_code": "180-1028-10-12_Ain Bou Ali_543300_399700",
+        "site_name": "STATION DAR EL ARSA",
+        "commune": "Ain Bou Ali",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.9285031210990065,
+        "latitude": 34.19565290018216,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-13",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 7.56,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-13",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 71,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "9706e5a5-c766-4691-9520-8f569ee02659",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.822835021,
+          34.491015154
+        ]
+      },
+      "properties": {
+        "site_id": "9706e5a5-c766-4691-9520-8f569ee02659",
+        "site_code": "180-1142-14-9_Galaz_552856_432506",
+        "site_name": "STATION HAJRIA",
+        "commune": "Galaz",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.822835020766524,
+        "latitude": 34.4910151543056,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-11-14",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 8.1,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "e9f1a465-59ab-497d-adaf-1f02dc96313b",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.824572949,
+          33.542717406
+        ]
+      },
+      "properties": {
+        "site_id": "e9f1a465-59ab-497d-adaf-1f02dc96313b",
+        "site_code": "180-1142-6-9_Ait Mimoune_460433_327281",
+        "site_name": "STATION HAMMAM",
+        "commune": "Ait Mimoune",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.824572949242617,
+        "latitude": 33.542717405743765,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-11-12",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 1.04,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "60dd8c30-fa8f-4b39-835f-099e4d347cda",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.962683369,
+          34.567220353
+        ]
+      },
+      "properties": {
+        "site_id": "60dd8c30-fa8f-4b39-835f-099e4d347cda",
+        "site_code": "180-999-21-12_Bel Ksiri_448223_440951",
+        "site_name": "STATION PONT MECHRAA BEL KSIRI",
+        "commune": "Bel Ksiri",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.96268336892746,
+        "latitude": 34.567220352844906,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "13c3ce5e-6e21-4285-9b39-c089280da915",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.145753738,
+          34.308542678
+        ]
+      },
+      "properties": {
+        "site_id": "13c3ce5e-6e21-4285-9b39-c089280da915",
+        "site_code": "180-1028-13-9_Beni Snous_523250_412150",
+        "site_name": "STATION RP 26",
+        "commune": "Beni Snous",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_marche_cadre",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "DCO",
+        "source_type_label": "DCO",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.145753738343944,
+        "latitude": 34.30854267803694,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "09f72c35-26b6-4746-97a3-1f20ebec5a1d",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.637647497,
+          34.476858297
+        ]
+      },
+      "properties": {
+        "site_id": "09f72c35-26b6-4746-97a3-1f20ebec5a1d",
+        "site_code": "180-1171-8-8_Ain Aicha_569874_431045",
+        "site_name": "ACH_PDE(PUITS CARRIERE)",
+        "commune": "Ain Aicha",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux souterraines",
+        "source_type_label": "Eaux souterraines",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.637647496920307,
+        "latitude": 34.476858296702176,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "07876b5d-0321-4d37-b016-0940fd429cd2",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.350126589,
+          33.301421002
+        ]
+      },
+      "properties": {
+        "site_id": "07876b5d-0321-4d37-b016-0940fd429cd2",
+        "site_code": "180-1101-13-8_Ain Leuh_504495_300449",
+        "site_name": "ALH_PDOM1_PE1 (LAHCEN BIZIZI)",
+        "commune": "Ain Leuh",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux souterraines",
+        "source_type_label": "Eaux souterraines",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.3501265887127865,
+        "latitude": 33.30142100248612,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "d2fc2302-2903-47a0-a60b-e790fc59f158",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.197916104,
+          33.877919943
+        ]
+      },
+      "properties": {
+        "site_id": "d2fc2302-2903-47a0-a60b-e790fc59f158",
+        "site_code": "180-1063-3-8_Ain Taoujdate_518542_364386",
+        "site_name": "ATJ_DECH_PE1",
+        "commune": "Ain Taoujdate",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux souterraines",
+        "source_type_label": "Eaux souterraines",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.19791610443825,
+        "latitude": 33.87791994255717,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "2de9ca5b-c820-44f0-b549-4161527f52ec",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.033360381,
+          33.870962479
+        ]
+      },
+      "properties": {
+        "site_id": "2de9ca5b-c820-44f0-b549-4161527f52ec",
+        "site_code": "180-1101-11-8_Ain Cheggag_533764_363656",
+        "site_name": "CHG_DEC_PE1 (EL HOUD)",
+        "commune": "Ain Cheggag",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux souterraines",
+        "source_type_label": "Eaux souterraines",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.033360380957287,
+        "latitude": 33.870962479222435,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "227c1070-f864-4f48-be37-7f2024222c38",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.928974989,
+          34.628134613
+        ]
+      },
+      "properties": {
+        "site_id": "227c1070-f864-4f48-be37-7f2024222c38",
+        "site_code": "180-1101-23-8_Ghafsai_543040_447666",
+        "site_name": "GHF_PDE_P1",
+        "commune": "Ghafsai",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux souterraines",
+        "source_type_label": "Eaux souterraines",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.92897498940795,
+        "latitude": 34.62813461253783,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ea1493fc-76bd-49c0-98bd-8e82982e2834",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.931973745,
+          34.630237329
+        ]
+      },
+      "properties": {
+        "site_id": "ea1493fc-76bd-49c0-98bd-8e82982e2834",
+        "site_code": "180-1101-24-8_Ghafsai_542764_447898",
+        "site_name": "GHF_PDE_P1 (PUITS MRIZIEK)",
+        "commune": "Ghafsai",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux souterraines",
+        "source_type_label": "Eaux souterraines",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.931973744677117,
+        "latitude": 34.630237328603116,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "25b96e75-86b2-4bc4-821f-3c0bee40cb1e",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.818696403,
+          33.380554445
+        ]
+      },
+      "properties": {
+        "site_id": "25b96e75-86b2-4bc4-821f-3c0bee40cb1e",
+        "site_code": "_Guiguo_553922_309372",
+        "site_name": "GIG_DECH_PE1 (Puits LOUPARIS)",
+        "commune": "Guiguo",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux souterraines",
+        "source_type_label": "Eaux souterraines",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.818696403396484,
+        "latitude": 33.38055444451334,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ce39a80d-2551-4114-889d-c913d842aedf",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.458197243,
+          33.663371679
+        ]
+      },
+      "properties": {
+        "site_id": "ce39a80d-2551-4114-889d-c913d842aedf",
+        "site_code": "_Iqaddar_494456_340580",
+        "site_name": "HJB_DECH_PE1 (COOPERATIVE SIDI EL ALI)",
+        "commune": "Iqaddar",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux souterraines",
+        "source_type_label": "Eaux souterraines",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.4581972426846495,
+        "latitude": 33.66337167940241,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "72f1ff73-b3cc-4e3d-befb-9497a4694d76",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.45639679,
+          33.664544967
+        ]
+      },
+      "properties": {
+        "site_id": "72f1ff73-b3cc-4e3d-befb-9497a4694d76",
+        "site_code": "_Iqaddar_494623_340710",
+        "site_name": "HJB_DECH_PE2 (COOPERATIVE ANNAKHLA)",
+        "commune": "Iqaddar",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux souterraines",
+        "source_type_label": "Eaux souterraines",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.456396790337515,
+        "latitude": 33.66454496709178,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "7fa00972-e37a-4c79-a8a7-aacda794407a",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.355893046,
+          33.731181145
+        ]
+      },
+      "properties": {
+        "site_id": "7fa00972-e37a-4c79-a8a7-aacda794407a",
+        "site_code": "_Ait Naamane_503938_348098",
+        "site_name": "HJB_PDOM1_PE1 (COOPERATIVE AIT NAAMANE)",
+        "commune": "Ait Naamane",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux souterraines",
+        "source_type_label": "Eaux souterraines",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.355893046287977,
+        "latitude": 33.731181144502756,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "55138ebd-98ba-4a3f-a0d1-0c6b740fc243",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.028099002,
+          33.725828175
+        ]
+      },
+      "properties": {
+        "site_id": "55138ebd-98ba-4a3f-a0d1-0c6b740fc243",
+        "site_code": "180-1171-7-8_Imozzar Kander_534308_347565",
+        "site_name": "IMK_DEC_PE1 (AMHAOUCHE ISMAIL)",
+        "commune": "Imozzar Kander",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux souterraines",
+        "source_type_label": "Eaux souterraines",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.028099002051751,
+        "latitude": 33.72582817457064,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "5e2d36e5-0405-4da9-ab59-35f5aef40986",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.279645865,
+          33.478494987
+        ]
+      },
+      "properties": {
+        "site_id": "5e2d36e5-0405-4da9-ab59-35f5aef40986",
+        "site_code": "180-1171-2-8_ Imouzzer Marmoucha_603944_320639",
+        "site_name": "IMM_DECH_PE1 (FORAGE ONEE-BO)",
+        "commune": "Imouzzer Marmoucha",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux souterraines",
+        "source_type_label": "Eaux souterraines",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.279645864596095,
+        "latitude": 33.47849498736319,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "0901fa81-698b-4330-8a86-9a59b52f1db9",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.229899978,
+          34.386218533
+        ]
+      },
+      "properties": {
+        "site_id": "0901fa81-698b-4330-8a86-9a59b52f1db9",
+        "site_code": "_Kariat Ba Mhamed_515492_420749",
+        "site_name": "KRB_PDE_P1",
+        "commune": "Kariat Ba Mhamed",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux souterraines",
+        "source_type_label": "Eaux souterraines",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.229899978451055,
+        "latitude": 34.386218533438864,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "4249667b-ca83-4590-aa22-b2903701d2b8",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.567039784,
+          34.091875353
+        ]
+      },
+      "properties": {
+        "site_id": "4249667b-ca83-4590-aa22-b2903701d2b8",
+        "site_code": "180-1171-17-8_Matmata_576700_388400",
+        "site_name": "M_DECH_PE1 (FORAGE IRE 2153/15)",
+        "commune": "Matmata",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux souterraines",
+        "source_type_label": "Eaux souterraines",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.567039784107605,
+        "latitude": 34.09187535334763,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "7a4f8687-6d68-4d4c-8c76-413f36304d42",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.564928448,
+          34.085999665
+        ]
+      },
+      "properties": {
+        "site_id": "7a4f8687-6d68-4d4c-8c76-413f36304d42",
+        "site_code": "_Matmata_576900_387750",
+        "site_name": "M_DECH_PE3 (Forage IRE 3224/15)",
+        "commune": "Matmata",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux souterraines",
+        "source_type_label": "Eaux souterraines",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.564928448111697,
+        "latitude": 34.08599966466458,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "8674e26f-453f-4547-b8da-d4d3dd9c4970",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.237853608,
+          34.390196264
+        ]
+      },
+      "properties": {
+        "site_id": "8674e26f-453f-4547-b8da-d4d3dd9c4970",
+        "site_code": "180-1101-1-8_Kariat Ba Mhamed_514760_421189",
+        "site_name": "R-KRB_PDE_P2",
+        "commune": "Kariat Ba Mhamed",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux souterraines",
+        "source_type_label": "Eaux souterraines",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.237853608390174,
+        "latitude": 34.390196263563325,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "1a0bda5b-f66b-4f84-9194-46424e0468cc",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.717316722,
+          33.997850994
+        ]
+      },
+      "properties": {
+        "site_id": "1a0bda5b-f66b-4f84-9194-46424e0468cc",
+        "site_code": "180-1101-6-8_Ras Tabouda_562904_377873",
+        "site_name": "RAT_DOM_PE1 (TAIBI HASSAN)",
+        "commune": "Ras Tabouda",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux souterraines",
+        "source_type_label": "Eaux souterraines",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.7173167220029075,
+        "latitude": 33.99785099438501,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "de62332a-cee4-40e3-ac6c-03bae86bc061",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.522293348,
+          34.088846795
+        ]
+      },
+      "properties": {
+        "site_id": "de62332a-cee4-40e3-ac6c-03bae86bc061",
+        "site_code": "180-1063-9-8_Metmata_580831_388098",
+        "site_name": "TAHLA_DECH_PE1 (FORAGE IRE 1/509)",
+        "commune": "Metmata",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux souterraines",
+        "source_type_label": "Eaux souterraines",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.522293348453664,
+        "latitude": 34.08884679547741,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "6c7bd1ca-62ff-4d80-8b20-95ff5e661233",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.672018047,
+          34.284420407
+        ]
+      },
+      "properties": {
+        "site_id": "6c7bd1ca-62ff-4d80-8b20-95ff5e661233",
+        "site_code": "180-1063-7-8_Tissa_566866_409680",
+        "site_name": "TIS_DEC_PE1 (MEHDI OUAZZANI)",
+        "commune": "Tissa",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux souterraines",
+        "source_type_label": "Eaux souterraines",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.672018047451682,
+        "latitude": 34.28442040685988,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "9d164532-c134-4430-b637-b4cb895bb024",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.406929355,
+          33.969865348
+        ]
+      },
+      "properties": {
+        "site_id": "9d164532-c134-4430-b637-b4cb895bb024",
+        "site_code": "180-1171-15-8_Zerarda_591600_375000",
+        "site_name": "Z_DECH_PE1 (FORAGE IRE 898/16 AIN BOUCHIBA)",
+        "commune": "Zerarda",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux souterraines",
+        "source_type_label": "Eaux souterraines",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.406929354605118,
+        "latitude": 33.96986534798486,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "307009c4-8185-4ae9-beb2-7037e2b44729",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.426954721,
+          33.944662559
+        ]
+      },
+      "properties": {
+        "site_id": "307009c4-8185-4ae9-beb2-7037e2b44729",
+        "site_code": "180-1171-16-8_Zerarda_589776_372188",
+        "site_name": "Z_DECH_PE2 (FORAGE IRE 12/517 AIN BOUCHIBA)",
+        "commune": "Zerarda",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux souterraines",
+        "source_type_label": "Eaux souterraines",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.426954720795237,
+        "latitude": 33.944662558757635,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "b0a440d1-d7f9-422e-a3f1-fbd10d220848",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.876034922,
+          33.825463064
+        ]
+      },
+      "properties": {
+        "site_id": "b0a440d1-d7f9-422e-a3f1-fbd10d220848",
+        "site_code": "180-1101-2-9_Bhalil_548341_358673",
+        "site_name": "AMONT SEFROU",
+        "commune": "Bhalil",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux superficielles",
+        "source_type_label": "Eaux superficielles",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.876034921811755,
+        "latitude": 33.82546306356696,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-11-03",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 0.75,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-11-03",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 8.1,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-11-03",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 3.11,
+            "parameter_code": "MES",
+            "parameter_label": "MES"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "fd4a0ec7-bc56-4745-bcf2-8c34a9fc5b6a",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.76773043,
+          34.288993213
+        ]
+      },
+      "properties": {
+        "site_id": "fd4a0ec7-bc56-4745-bcf2-8c34a9fc5b6a",
+        "site_code": "180-1027-15-9_Echebanate_466002_410013",
+        "site_name": "AMONT SOUK ELAHAD CHEBANATE",
+        "commune": "Echebanate",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux superficielles",
+        "source_type_label": "Eaux superficielles",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.767730429927699,
+        "latitude": 34.28899321280185,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-15",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 35.8,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-15",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 110,
+            "parameter_code": "MES",
+            "parameter_label": "MES"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "1256ff24-1388-487e-93ba-bf641e9ed446",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.341564543,
+          33.722183544
+        ]
+      },
+      "properties": {
+        "site_id": "1256ff24-1388-487e-93ba-bf641e9ed446",
+        "site_code": "_Ait Naamane_505266_347101",
+        "site_name": "AMONT STEP El Hajeb",
+        "commune": "Ait Naamane",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux superficielles",
+        "source_type_label": "Eaux superficielles",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.341564542515437,
+        "latitude": 33.72218354367923,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "5b48acdb-b0f3-4203-8dbb-2b4eec1a5471",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.04860096,
+          33.83773047
+        ]
+      },
+      "properties": {
+        "site_id": "5b48acdb-b0f3-4203-8dbb-2b4eec1a5471",
+        "site_code": "180-1028-15_Khémisset_439837_360098",
+        "site_name": "Amont STEP Khémisset",
+        "commune": "Khémisset",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux superficielles",
+        "source_type_label": "Eaux superficielles",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -6.048600960233017,
+        "latitude": 33.83773046955094,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-14",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 979.2,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "86b1dae3-dbbf-4f96-bc91-ad8b94cea159",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.310304632,
+          34.250271481
+        ]
+      },
+      "properties": {
+        "site_id": "86b1dae3-dbbf-4f96-bc91-ad8b94cea159",
+        "site_code": "180-1063-11-9_Oued Amlil_600202_406183",
+        "site_name": "AMONT STEP OUED AMLIL",
+        "commune": "Oued Amlil",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux superficielles",
+        "source_type_label": "Eaux superficielles",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.310304632081373,
+        "latitude": 34.25027148100988,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "634a81c2-7672-4198-a2af-01f888d575ea",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.616763841,
+          34.519061126
+        ]
+      },
+      "properties": {
+        "site_id": "634a81c2-7672-4198-a2af-01f888d575ea",
+        "site_code": "180-1142-26_Bouhouda_571757_435740",
+        "site_name": "Amont STEP Taounate",
+        "commune": "Bouhouda",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux superficielles",
+        "source_type_label": "Eaux superficielles",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.616763841049083,
+        "latitude": 34.51906112611525,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-11-20",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 1.577,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "bda23e66-ffa1-4e95-aa04-633e3de3ebf6",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.562192579,
+          34.603323841
+        ]
+      },
+      "properties": {
+        "site_id": "bda23e66-ffa1-4e95-aa04-633e3de3ebf6",
+        "site_code": "_Ain Dfali_484976_444828",
+        "site_name": "AVAL AIN DFALI",
+        "commune": "Ain Dfali",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux superficielles",
+        "source_type_label": "Eaux superficielles",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.56219257863669,
+        "latitude": 34.60332384077719,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "66bd0f3f-f69e-4101-98db-e7c34c9f17a8",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.631386192,
+          34.026524096
+        ]
+      },
+      "properties": {
+        "site_id": "66bd0f3f-f69e-4101-98db-e7c34c9f17a8",
+        "site_code": "180-1027-13-12_Ain Karma_478488_380870",
+        "site_name": "AVAL AIN KARMA",
+        "commune": "Ain Karma",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux superficielles",
+        "source_type_label": "Eaux superficielles",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.631386191770558,
+        "latitude": 34.02652409590109,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "6d95f42f-64f4-400c-950a-f1733fc732c5",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.345948019,
+          33.301852198
+        ]
+      },
+      "properties": {
+        "site_id": "6d95f42f-64f4-400c-950a-f1733fc732c5",
+        "site_code": "180-1101-15-12_Ain Leuh_504884_300497",
+        "site_name": "AVAL AIN LEUH",
+        "commune": "Ain Leuh",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux superficielles",
+        "source_type_label": "Eaux superficielles",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.345948018926167,
+        "latitude": 33.30185219818171,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-11-10",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 1.14,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-11-10",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 34.6,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-11-10",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 26.3,
+            "parameter_code": "MES",
+            "parameter_label": "MES"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "6572903e-6233-47d1-9a48-01620ccdb2a0",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.743649069,
+          33.371197467
+        ]
+      },
+      "properties": {
+        "site_id": "6572903e-6233-47d1-9a48-01620ccdb2a0",
+        "site_code": "180-1171-1-12_Boulmane_560909_308376",
+        "site_name": "AVAL BOULEMANE",
+        "commune": "Boulmane",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux superficielles",
+        "source_type_label": "Eaux superficielles",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.74364906895851,
+        "latitude": 33.37119746663433,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "3d60224e-b985-4274-b349-7ad176da9d4a",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.493983717,
+          33.302378614
+        ]
+      },
+      "properties": {
+        "site_id": "3d60224e-b985-4274-b349-7ad176da9d4a",
+        "site_code": "180-1101-14-9_Oued Ifrane_491102_300558",
+        "site_name": "AVAL OUED IFRANE",
+        "commune": "Oued Ifrane",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux superficielles",
+        "source_type_label": "Eaux superficielles",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.493983716720008,
+        "latitude": 33.30237861399383,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-11-10",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 1.39,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-11-10",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 3.11,
+            "parameter_code": "MES",
+            "parameter_label": "MES"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "bd271be9-cbfc-42a6-b6b8-82d253082af6",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.043750979,
+          33.894548506
+        ]
+      },
+      "properties": {
+        "site_id": "bd271be9-cbfc-42a6-b6b8-82d253082af6",
+        "site_code": "180-1101-12-12_Ain Cheggag_532794_366268",
+        "site_name": "AVAL REJET AIN CHEGGAG",
+        "commune": "Ain Cheggag",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux superficielles",
+        "source_type_label": "Eaux superficielles",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.043750978606247,
+        "latitude": 33.894548505849635,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "72fa692e-9bed-4567-9555-df18668f450e",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.498682483,
+          33.802704079
+        ]
+      },
+      "properties": {
+        "site_id": "72fa692e-9bed-4567-9555-df18668f450e",
+        "site_code": "180-1027-23-12_Boufekrane_490717_356032",
+        "site_name": "AVAL REJET BOUFEKRANE",
+        "commune": "Boufekrane",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux superficielles",
+        "source_type_label": "Eaux superficielles",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.498682483364171,
+        "latitude": 33.802704079032296,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-20",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 369.425,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-20",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 547.2,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-20",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 90,
+            "parameter_code": "MES",
+            "parameter_label": "MES"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "b8db02c3-c17b-4870-9ffb-d9ed392977bf",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.562608994,
+          33.844373679
+        ]
+      },
+      "properties": {
+        "site_id": "b8db02c3-c17b-4870-9ffb-d9ed392977bf",
+        "site_code": "180-1101-8-12_El Menzel_577329_360959",
+        "site_name": "AVAL REJET EL MENZEL",
+        "commune": "El Menzel",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux superficielles",
+        "source_type_label": "Eaux superficielles",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.562608994222657,
+        "latitude": 33.84437367932676,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-11-05",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 5.17,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-11-05",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 8.1,
+            "parameter_code": "MES",
+            "parameter_label": "MES"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "e7164886-2735-4331-a39d-e59ac84afcaa",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.542532095,
+          34.060545531
+        ]
+      },
+      "properties": {
+        "site_id": "e7164886-2735-4331-a39d-e59ac84afcaa",
+        "site_code": "180-1027-17-12_Moulay Driss Zarhoun_486697_384628",
+        "site_name": "AVAL REJET MOULAY DRISS ZARHOUN",
+        "commune": "Moulay Driss Zarhoun",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux superficielles",
+        "source_type_label": "Eaux superficielles",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.542532095050394,
+        "latitude": 34.0605455307673,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-16",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 0.9545,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-16",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 9.6,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-16",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 98,
+            "parameter_code": "MES",
+            "parameter_label": "MES"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "eaac7bad-2dfd-469a-b97f-6077c2e0b6ec",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.186605716,
+          34.094288281
+        ]
+      },
+      "properties": {
+        "site_id": "eaac7bad-2dfd-469a-b97f-6077c2e0b6ec",
+        "site_code": "180-1063-15-12_Moulay Yaacoub_519539_388381",
+        "site_name": "AVAL REJET MOULAY YAACOUB",
+        "commune": "Moulay Yaacoub",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux superficielles",
+        "source_type_label": "Eaux superficielles",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.186605715768655,
+        "latitude": 34.09428828113747,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-31",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 192,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-31",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 69.5,
+            "parameter_code": "MES",
+            "parameter_label": "MES"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "d686c755-3b5e-44bb-aefe-bb2e5306d858",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.817723472,
+          33.853352149
+        ]
+      },
+      "properties": {
+        "site_id": "d686c755-3b5e-44bb-aefe-bb2e5306d858",
+        "site_code": "180-1101-3-9_Sefrou_553720_361794",
+        "site_name": "AVAL REJET SEFROU",
+        "commune": "Sefrou",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux superficielles",
+        "source_type_label": "Eaux superficielles",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -4.817723471625536,
+        "latitude": 33.853352149464634,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-11-04",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 15.1,
+            "parameter_code": "MES",
+            "parameter_label": "MES"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "2d3bf0cd-764e-4fa0-9479-6b80bf3629ba",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.924313599,
+          34.304163342
+        ]
+      },
+      "properties": {
+        "site_id": "2d3bf0cd-764e-4fa0-9479-6b80bf3629ba",
+        "site_code": "_Sidi Slimane_451597_411757",
+        "site_name": "AVAL SIDI SLIMANE",
+        "commune": "Sidi Slimane",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux superficielles",
+        "source_type_label": "Eaux superficielles",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.924313598573372,
+        "latitude": 34.3041633416763,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "9cfd7806-f79e-44dc-b30d-c87fa76fdd85",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.76975744,
+          34.29812138
+        ]
+      },
+      "properties": {
+        "site_id": "9cfd7806-f79e-44dc-b30d-c87fa76fdd85",
+        "site_code": "_Echebanate_465819_411026",
+        "site_name": "AVAL SOUK ELAHAD CHEBANATE",
+        "commune": "Echebanate",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux superficielles",
+        "source_type_label": "Eaux superficielles",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -5.769757439691138,
+        "latitude": 34.29812138013264,
+        "latest_results": null
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "d4482b77-b866-417e-9514-3c235a9ebf83",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.309472896,
+          33.92553462
+        ]
+      },
+      "properties": {
+        "site_id": "d4482b77-b866-417e-9514-3c235a9ebf83",
+        "site_code": "180-1027-8-12_Ait Bouyahya Lahjama_415784_370014",
+        "site_name": "Aval STEP (Aval Conf. Chaaba avec Oued Tiflet)",
+        "commune": "Ait Bouyahya Lahjama",
+        "province": null,
+        "bassin": null,
+        "source_origin": "staging.raw_idp_src_pollution_globale",
+        "validation_status": "TO_VALIDATE",
+        "source_type_code": "Eaux superficielles",
+        "source_type_label": "Eaux superficielles",
+        "pollution_category_code": "POLLUTION_SOURCE",
+        "pollution_category_label": "Source de pollution",
+        "longitude": -6.309472895790548,
+        "latitude": 33.92553462009213,
+        "latest_results": [
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-14",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 25.815,
+            "parameter_code": "DBO5",
+            "parameter_label": "DBO5"
+          },
+          {
+            "unit": null,
+            "value_text": null,
+            "sample_date": "2025-10-14",
+            "quality_flag": "UNIT_UNMAPPED",
+            "value_numeric": 205.44,
+            "parameter_code": "DCO",
+            "parameter_label": "DCO"
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "source_view": "api.v_pollution_sites",
+    "latest_results_view": "api.v_pollution_latest_results",
+    "p0_parameters": [
+      "DBO5",
+      "DCO",
+      "NH4",
+      "NO3",
+      "MES"
+    ],
+    "count": 100
+  }
+}

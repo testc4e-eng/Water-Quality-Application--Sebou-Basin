@@ -1,4 +1,4 @@
-import { ArrowRight, BarChart3, FlaskConical, Waves } from "lucide-react";
+import { ArrowRight, BarChart3, FlaskConical, Waves, AlertTriangle } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const scenarioCards = [
@@ -28,6 +28,15 @@ const scenarioCards = [
     accent: "from-amber-500 to-orange-700",
     cta: "Comparer",
     to: "/dashboard-analytique",
+  },
+  {
+    title: "Pollutions",
+    subtitle: "Gestion & Déclaration",
+    description: "Déclarer une pollution accidentelle et simuler sa propagation vers l'aval (prototype).",
+    icon: AlertTriangle,
+    accent: "from-red-500 to-rose-700",
+    cta: "Simuler",
+    to: "/dashboard-pollution",
   },
 ];
 

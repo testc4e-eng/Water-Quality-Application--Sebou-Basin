@@ -1,0 +1,16 @@
+before|duplicate_exact|1316
+before|duplicate_near|69
+before|geometry_missing|0
+before|measurements_without_geometry|71
+before|multi_source_conflicts|299
+before|param_unmapped|837
+before|points_without_site|71
+before|unit_unmapped|572
+before_flag|GEOMETRY_MISSING|71
+before_flag|PARAM_UNMAPPED|813
+before_flag|UNIT_UNMAPPED|520
+before_flag|VALUE_NON_NUMERIC|5
+before_param|DBO5|202
+before_param|DCO|207
+before_param|MES|163
+before_param|UNMAPPED|837

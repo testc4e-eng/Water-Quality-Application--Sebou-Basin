@@ -1,0 +1,123 @@
+# Plan de déplacement des fichiers
+
+| Champ | Valeur |
+|---|---|
+| Statut | Actif |
+| Type | rapport de réorganisation documentaire |
+| Source de vérité | Non - rapport d'audit et de consolidation |
+| Date | 2026-05-22 |
+
+## Principe
+
+Aucun fichier supprimé. Déplacement uniquement avec mapping ancien -> nouveau et mise à jour des références.
+
+## Lots
+
+| Lot | Action | Statut |
+|---|---|---|
+| A | Fichiers historiques racine vers `12_historique_et_archives/root_legacy/` | exécutable |
+| B | Dossiers historiques `32_*` à `89_*` | différé, risque élevé |
+| C | Chantiers actifs P0 vers catégories métier | différé, arbitrage requis |
+| D | `99_legacy_archive` | laisser en place |
+
+## Mapping proposé
+
+| Ancien | Nouveau | Raison | Risque | Refs |
+|---|---|---|---|---|
+| docs/12_historique_et_archives/root_legacy/04_migrations_bloc3_recap.md | docs/12_historique_et_archives/root_legacy/04_migrations_bloc3_recap.md | Document racine historique de migration/audit à archiver | low | 0 |
+| docs/12_historique_et_archives/root_legacy/05_bloc4_plan_implementation.md | docs/12_historique_et_archives/root_legacy/05_bloc4_plan_implementation.md | Document racine historique de migration/audit à archiver | low | 0 |
+| docs/12_historique_et_archives/root_legacy/06_audit_idp_qualite.md | docs/12_historique_et_archives/root_legacy/06_audit_idp_qualite.md | Document racine historique de migration/audit à archiver | medium | 2 |
+| docs/12_historique_et_archives/root_legacy/10_master_plan_convergence_abh_sad.md | docs/12_historique_et_archives/root_legacy/10_master_plan_convergence_abh_sad.md | Document racine historique de migration/audit à archiver | low | 0 |
+| docs/12_historique_et_archives/root_legacy/11_catalogue_decision_tables.md | docs/12_historique_et_archives/root_legacy/11_catalogue_decision_tables.md | Document racine historique de migration/audit à archiver | medium | 2 |
+| docs/12_historique_et_archives/root_legacy/12_lot1_barrages_audit_ab.md | docs/12_historique_et_archives/root_legacy/12_lot1_barrages_audit_ab.md | Document racine historique de migration/audit à archiver | medium | 1 |
+| docs/12_historique_et_archives/root_legacy/12_lot2_stations_audit_ab.md | docs/12_historique_et_archives/root_legacy/12_lot2_stations_audit_ab.md | Document racine historique de migration/audit à archiver | medium | 1 |
+| docs/12_historique_et_archives/root_legacy/12_lot3a2_mensuels_debug.md | docs/12_historique_et_archives/root_legacy/12_lot3a2_mensuels_debug.md | Document racine historique de migration/audit à archiver | medium | 1 |
+| docs/12_historique_et_archives/root_legacy/12_lot3a_debits_audit_ab.md | docs/12_historique_et_archives/root_legacy/12_lot3a_debits_audit_ab.md | Document racine historique de migration/audit à archiver | medium | 1 |
+| docs/12_historique_et_archives/root_legacy/12_lot3b_meteo_audit_ab.md | docs/12_historique_et_archives/root_legacy/12_lot3b_meteo_audit_ab.md | Document racine historique de migration/audit à archiver | medium | 1 |
+| docs/12_historique_et_archives/root_legacy/12_lot4a1b_dictionnaire_parametres_valide.md | docs/12_historique_et_archives/root_legacy/12_lot4a1b_dictionnaire_parametres_valide.md | Document racine historique de migration/audit à archiver | low | 0 |
+| docs/12_historique_et_archives/root_legacy/12_lot4a1_dictionnaire_parametres.md | docs/12_historique_et_archives/root_legacy/12_lot4a1_dictionnaire_parametres.md | Document racine historique de migration/audit à archiver | medium | 1 |
+| docs/12_historique_et_archives/root_legacy/12_lot4a3_barrages_audit_ab.md | docs/12_historique_et_archives/root_legacy/12_lot4a3_barrages_audit_ab.md | Document racine historique de migration/audit à archiver | medium | 1 |
+| docs/12_historique_et_archives/root_legacy/12_lot4a4_idp_audit_ab.md | docs/12_historique_et_archives/root_legacy/12_lot4a4_idp_audit_ab.md | Document racine historique de migration/audit à archiver | medium | 2 |
+| docs/12_historique_et_archives/root_legacy/12_lot4a_qualite_audit_ab.md | docs/12_historique_et_archives/root_legacy/12_lot4a_qualite_audit_ab.md | Document racine historique de migration/audit à archiver | medium | 1 |
+| docs/12_historique_et_archives/root_legacy/12_plan_execution_par_lots.md | docs/12_historique_et_archives/root_legacy/12_plan_execution_par_lots.md | Document racine historique de migration/audit à archiver | medium | 9 |
+| docs/12_historique_et_archives/root_legacy/13_lot1_barrages_mapping.md | docs/12_historique_et_archives/root_legacy/13_lot1_barrages_mapping.md | Document racine historique de migration/audit à archiver | low | 0 |
+| docs/12_historique_et_archives/root_legacy/13_lot2_stations_mapping.md | docs/12_historique_et_archives/root_legacy/13_lot2_stations_mapping.md | Document racine historique de migration/audit à archiver | low | 0 |
+| docs/12_historique_et_archives/root_legacy/13_lot3a_debits_mapping.md | docs/12_historique_et_archives/root_legacy/13_lot3a_debits_mapping.md | Document racine historique de migration/audit à archiver | low | 0 |
+| docs/12_historique_et_archives/root_legacy/13_lot3b_meteo_mapping.md | docs/12_historique_et_archives/root_legacy/13_lot3b_meteo_mapping.md | Document racine historique de migration/audit à archiver | low | 0 |
+| docs/12_historique_et_archives/root_legacy/13_lot4a2_qualite_mapping.md | docs/12_historique_et_archives/root_legacy/13_lot4a2_qualite_mapping.md | Document racine historique de migration/audit à archiver | low | 0 |
+| docs/12_historique_et_archives/root_legacy/13_lot4a3_barrages_mapping.md | docs/12_historique_et_archives/root_legacy/13_lot4a3_barrages_mapping.md | Document racine historique de migration/audit à archiver | low | 0 |
+| docs/12_historique_et_archives/root_legacy/13_lot4a4b_idp_structuration_logique.md | docs/12_historique_et_archives/root_legacy/13_lot4a4b_idp_structuration_logique.md | Document racine historique de migration/audit à archiver | low | 0 |
+| docs/12_historique_et_archives/root_legacy/14_lot1_barrages_dry_run_resultats.md | docs/12_historique_et_archives/root_legacy/14_lot1_barrages_dry_run_resultats.md | Document racine historique de migration/audit à archiver | medium | 1 |
+| docs/12_historique_et_archives/root_legacy/14_lot2_stations_dry_run_resultats.md | docs/12_historique_et_archives/root_legacy/14_lot2_stations_dry_run_resultats.md | Document racine historique de migration/audit à archiver | medium | 1 |
+| docs/12_historique_et_archives/root_legacy/14_lot3a2_debits_mensuels_dry_run_fix_resultats.md | docs/12_historique_et_archives/root_legacy/14_lot3a2_debits_mensuels_dry_run_fix_resultats.md | Document racine historique de migration/audit à archiver | medium | 1 |
+| docs/12_historique_et_archives/root_legacy/14_lot3a_debits_dry_run_resultats.md | docs/12_historique_et_archives/root_legacy/14_lot3a_debits_dry_run_resultats.md | Document racine historique de migration/audit à archiver | medium | 1 |
+| docs/12_historique_et_archives/root_legacy/14_lot3b_meteo_dry_run_resultats.md | docs/12_historique_et_archives/root_legacy/14_lot3b_meteo_dry_run_resultats.md | Document racine historique de migration/audit à archiver | medium | 1 |
+| docs/12_historique_et_archives/root_legacy/14_lot4a2_qualite_dry_run_resultats.md | docs/12_historique_et_archives/root_legacy/14_lot4a2_qualite_dry_run_resultats.md | Document racine historique de migration/audit à archiver | medium | 1 |
+| docs/12_historique_et_archives/root_legacy/14_lot4a2_updates_detail.md | docs/12_historique_et_archives/root_legacy/14_lot4a2_updates_detail.md | Document racine historique de migration/audit à archiver | medium | 1 |
+| docs/12_historique_et_archives/root_legacy/14_lot4a3_barrages_dry_run_resultats.md | docs/12_historique_et_archives/root_legacy/14_lot4a3_barrages_dry_run_resultats.md | Document racine historique de migration/audit à archiver | medium | 1 |
+| docs/12_historique_et_archives/root_legacy/14_lot4a3_barrages_updates_detail.md | docs/12_historique_et_archives/root_legacy/14_lot4a3_barrages_updates_detail.md | Document racine historique de migration/audit à archiver | medium | 1 |
+| docs/12_historique_et_archives/root_legacy/14_lot4a3_garde_sebou_station_resolution.md | docs/12_historique_et_archives/root_legacy/14_lot4a3_garde_sebou_station_resolution.md | Document racine historique de migration/audit à archiver | medium | 1 |
+| docs/12_historique_et_archives/root_legacy/15_registre_anomalies_metier.md | docs/12_historique_et_archives/root_legacy/15_registre_anomalies_metier.md | Document racine historique de migration/audit à archiver | medium | 2 |
+| docs/12_historique_et_archives/root_legacy/16_rapport_validation_client_parametres_qualite.md | docs/12_historique_et_archives/root_legacy/16_rapport_validation_client_parametres_qualite.md | Document racine historique de migration/audit à archiver | low | 0 |
+| docs/12_historique_et_archives/root_legacy/17_synthese_interne_equipe_parametres_qualite.md | docs/12_historique_et_archives/root_legacy/17_synthese_interne_equipe_parametres_qualite.md | Document racine historique de migration/audit à archiver | low | 0 |
+| docs/12_historique_et_archives/root_legacy/18_rapport_validation_client_idp.md | docs/12_historique_et_archives/root_legacy/18_rapport_validation_client_idp.md | Document racine historique de migration/audit à archiver | medium | 2 |
+| docs/12_historique_et_archives/root_legacy/19_synthese_interne_idp.md | docs/12_historique_et_archives/root_legacy/19_synthese_interne_idp.md | Document racine historique de migration/audit à archiver | medium | 2 |
+| docs/12_historique_et_archives/root_legacy/20_blocages_validation_client.md | docs/12_historique_et_archives/root_legacy/20_blocages_validation_client.md | Document racine historique de migration/audit à archiver | medium | 1 |
+| docs/12_historique_et_archives/root_legacy/21_blocages_validation_interne.md | docs/12_historique_et_archives/root_legacy/21_blocages_validation_interne.md | Document racine historique de migration/audit à archiver | medium | 1 |
+| docs/12_historique_et_archives/root_legacy/22_rapport_global_blocages_interne.md | docs/12_historique_et_archives/root_legacy/22_rapport_global_blocages_interne.md | Document racine historique de migration/audit à archiver | low | 0 |
+| docs/12_historique_et_archives/root_legacy/23_rapport_global_blocages_client.md | docs/12_historique_et_archives/root_legacy/23_rapport_global_blocages_client.md | Document racine historique de migration/audit à archiver | low | 0 |
+| docs/12_historique_et_archives/root_legacy/24_dossier_detaille_blocages_interne.md | docs/12_historique_et_archives/root_legacy/24_dossier_detaille_blocages_interne.md | Document racine historique de migration/audit à archiver | low | 0 |
+| docs/12_historique_et_archives/root_legacy/25_annexes_blocages_et_incoherences.md | docs/12_historique_et_archives/root_legacy/25_annexes_blocages_et_incoherences.md | Document racine historique de migration/audit à archiver | medium | 4 |
+| docs/12_historique_et_archives/root_legacy/25_limites_audit_techniques.md | docs/12_historique_et_archives/root_legacy/25_limites_audit_techniques.md | Document racine historique de migration/audit à archiver | medium | 3 |
+| docs/12_historique_et_archives/root_legacy/26_dossier_blocages_client_filtre.md | docs/12_historique_et_archives/root_legacy/26_dossier_blocages_client_filtre.md | Document racine historique de migration/audit à archiver | low | 0 |
+| docs/12_historique_et_archives/root_legacy/30_audit_incoherences_global.md | docs/12_historique_et_archives/root_legacy/30_audit_incoherences_global.md | Document racine historique de migration/audit à archiver | medium | 5 |
+| docs/12_historique_et_archives/root_legacy/31_plan_correction_documentaire.md | docs/12_historique_et_archives/root_legacy/31_plan_correction_documentaire.md | Document racine historique de migration/audit à archiver | medium | 5 |
+| docs/12_historique_et_archives/root_legacy/40_revue_critique_transversale_finale.md | docs/12_historique_et_archives/root_legacy/40_revue_critique_transversale_finale.md | Document racine historique de migration/audit à archiver | medium | 1 |
+| docs/12_historique_et_archives/root_legacy/41_plan_stabilisation_preindustrialisation.md | docs/12_historique_et_archives/root_legacy/41_plan_stabilisation_preindustrialisation.md | Document racine historique de migration/audit à archiver | low | 0 |
+| docs/32_revue_metier_anomalies/ | docs/12_historique_et_archives/32_revue_metier_anomalies/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/33_annexes_anomalies_detaillees/ | docs/12_historique_et_archives/33_annexes_anomalies_detaillees/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/34_synthese_strategique_anomalies/ | docs/12_historique_et_archives/34_synthese_strategique_anomalies/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/35_donnees_problematiques_par_bloc/ | docs/12_historique_et_archives/35_donnees_problematiques_par_bloc/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/36_nettoyage_idp_2024_securise/ | docs/12_historique_et_archives/36_nettoyage_idp_2024_securise/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/37_fiches_arbitrage_idp_2024/ | docs/12_historique_et_archives/37_fiches_arbitrage_idp_2024/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/38_reunion_arbitrage_IDP/ | docs/12_historique_et_archives/38_reunion_arbitrage_IDP/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/39_inventaire_parametres_metier/ | docs/12_historique_et_archives/39_inventaire_parametres_metier/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/39_inventaire_parametres_metier_REGEN/ | docs/12_historique_et_archives/39_inventaire_parametres_metier_REGEN/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/40_enrichissement_normes_seuils_ABH/ | docs/12_historique_et_archives/40_enrichissement_normes_seuils_ABH/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/41_inventaire_parametres_abh_sebou_ismail/ | docs/12_historique_et_archives/41_inventaire_parametres_abh_sebou_ismail/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/42_analyse_parametres_valeurs_migration/ | docs/12_historique_et_archives/42_analyse_parametres_valeurs_migration/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/44_validation_migration_par_cas/ | docs/12_historique_et_archives/44_validation_migration_par_cas/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/46_migration_par_table/ | docs/12_historique_et_archives/46_migration_par_table/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/47_migration_depuis_abh_sebou_ismail/ | docs/12_historique_et_archives/47_migration_depuis_abh_sebou_ismail/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/48_plan_execution_migration_corrige/ | docs/12_historique_et_archives/48_plan_execution_migration_corrige/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/49_audit_geo_rattachement_final/ | docs/12_historique_et_archives/49_audit_geo_rattachement_final/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/50_geo_corr_plan_avant_E0/ | docs/12_historique_et_archives/50_geo_corr_plan_avant_E0/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/51_geo_ready_partial_E0/ | docs/12_historique_et_archives/51_geo_ready_partial_E0/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/52_lot_E0_execution/ | docs/12_historique_et_archives/52_lot_E0_execution/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/53_lot_E1_preparation_migration_reelle/ | docs/12_historique_et_archives/53_lot_E1_preparation_migration_reelle/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/54_lot_E1_execution_reelle/ | docs/12_historique_et_archives/54_lot_E1_execution_reelle/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/55_lot_IDP_GEO_traitement_specifique/ | docs/12_historique_et_archives/55_lot_IDP_GEO_traitement_specifique/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/56_lot_E1_execution_reelle/ | docs/12_historique_et_archives/56_lot_E1_execution_reelle/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/57_lot_E1_correction_immediate/ | docs/12_historique_et_archives/57_lot_E1_correction_immediate/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/58_reset_remigration_qualite_sebou/ | docs/12_historique_et_archives/58_reset_remigration_qualite_sebou/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/59_E1_1_reprise_par_table/ | docs/12_historique_et_archives/59_E1_1_reprise_par_table/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/60_E1_1_qualite_barrage/ | docs/12_historique_et_archives/60_E1_1_qualite_barrage/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/61_E1_1_qualite_nappe/ | docs/12_historique_et_archives/61_E1_1_qualite_nappe/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/62_E1_1_qualite_riviere/ | docs/12_historique_et_archives/62_E1_1_qualite_riviere/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/63_E1_1_suivi_qualite_barrage_garde_hebdo/ | docs/12_historique_et_archives/63_E1_1_suivi_qualite_barrage_garde_hebdo/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/64_diagnostic_hydro_debit/ | docs/12_historique_et_archives/64_diagnostic_hydro_debit/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/65_hydro_debit_reconstruction_stable/ | docs/12_historique_et_archives/65_hydro_debit_reconstruction_stable/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/66_E1_1_hydro_mesure_debit/ | docs/12_historique_et_archives/66_E1_1_hydro_mesure_debit/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/68_diagnostic_meteo_precipitation/ | docs/12_historique_et_archives/68_diagnostic_meteo_precipitation/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/69_diagnostic_hydro_mesure_barrage/ | docs/12_historique_et_archives/69_diagnostic_hydro_mesure_barrage/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/72_mapping_parametre_entite_geo_final/ | docs/12_historique_et_archives/72_mapping_parametre_entite_geo_final/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/74_resolution_finale_geo/ | docs/12_historique_et_archives/74_resolution_finale_geo/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/75_hydro_barrage_param_model/ | docs/12_historique_et_archives/75_hydro_barrage_param_model/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/76_referentiel_parametre_canonique/ | docs/12_historique_et_archives/76_referentiel_parametre_canonique/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/77_validation_finale_migration/ | docs/12_historique_et_archives/77_validation_finale_migration/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/84_hydro_barrage_param_deploiement/ | docs/12_historique_et_archives/84_hydro_barrage_param_deploiement/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/85_validation_finale_post_barrage/ | docs/12_historique_et_archives/85_validation_finale_post_barrage/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/86_rapport_anomalies_client/ | docs/12_historique_et_archives/86_rapport_anomalies_client/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/87_cloture_migration_donnees_client/ | docs/12_historique_et_archives/87_cloture_migration_donnees_client/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/88_swat_wasp_legacy_transition/ | docs/12_historique_et_archives/88_swat_wasp_legacy_transition/ | Dossier historique/audit/lot conservé comme preuve | high | many |
+| docs/89_modele_ingestion_futures_donnees/ | docs/12_historique_et_archives/89_modele_ingestion_futures_donnees/ | Dossier historique/audit/lot conservé comme preuve | high | many |

@@ -1,0 +1,354 @@
+{
+  "objects": {
+    "geo.reseau_hydrographique": {
+      "exists": true,
+      "type": "BASE TABLE",
+      "count": 697
+    },
+    "geo_work.reseau_hydro_edges_final": {
+      "exists": true,
+      "type": "BASE TABLE",
+      "count": 728
+    },
+    "geo_work.reseau_hydro_edges_final_vertices_pgr": {
+      "exists": true,
+      "type": "BASE TABLE",
+      "count": 740
+    },
+    "geo_work.reseau_hydro_nodes": {
+      "exists": true,
+      "type": "BASE TABLE",
+      "count": 732
+    },
+    "geo_work.v_topo_qa": {
+      "exists": true,
+      "type": "VIEW",
+      "count": null
+    }
+  },
+  "network_qa": {
+    "edge_count": [
+      [
+        728
+      ]
+    ],
+    "null_geom": [
+      [
+        0
+      ]
+    ],
+    "invalid_geom": [
+      [
+        0
+      ]
+    ],
+    "srid": [
+      [
+        26191,
+        728
+      ]
+    ],
+    "length_min_max_avg": [
+      [
+        6.494608749446885,
+        27286.14875848938,
+        5486.926773418119
+      ]
+    ],
+    "null_source_target": [
+      [
+        0
+      ]
+    ],
+    "self_loops": [
+      [
+        0
+      ]
+    ],
+    "node_degree_summary": [
+      [
+        83,
+        600,
+        57,
+        1,
+        4,
+        "1.9675675675675676"
+      ]
+    ],
+    "undirected_components": [
+      [
+        13,
+        740
+      ]
+    ],
+    "mnt_bbox_coverage": [
+      [
+        728,
+        728,
+        0
+      ]
+    ]
+  },
+  "columns": {
+    "geo.reseau_hydrographique": [
+      {
+        "column": "id",
+        "data_type": "integer",
+        "udt_name": "int4"
+      },
+      {
+        "column": "geom",
+        "data_type": "USER-DEFINED",
+        "udt_name": "geometry"
+      },
+      {
+        "column": "waterway",
+        "data_type": "character varying",
+        "udt_name": "varchar"
+      },
+      {
+        "column": "name",
+        "data_type": "character varying",
+        "udt_name": "varchar"
+      },
+      {
+        "column": "Shape_Leng",
+        "data_type": "numeric",
+        "udt_name": "numeric"
+      },
+      {
+        "column": "Z_Min",
+        "data_type": "numeric",
+        "udt_name": "numeric"
+      },
+      {
+        "column": "Z_Max",
+        "data_type": "numeric",
+        "udt_name": "numeric"
+      },
+      {
+        "column": "SLength",
+        "data_type": "numeric",
+        "udt_name": "numeric"
+      },
+      {
+        "column": "Pente",
+        "data_type": "numeric",
+        "udt_name": "numeric"
+      },
+      {
+        "column": "AvgWidth",
+        "data_type": "numeric",
+        "udt_name": "numeric"
+      },
+      {
+        "column": "SegID",
+        "data_type": "numeric",
+        "udt_name": "numeric"
+      },
+      {
+        "column": "sous_bassi",
+        "data_type": "character varying",
+        "udt_name": "varchar"
+      },
+      {
+        "column": "Shape_Le_1",
+        "data_type": "numeric",
+        "udt_name": "numeric"
+      },
+      {
+        "column": "ID",
+        "data_type": "integer",
+        "udt_name": "int4"
+      },
+      {
+        "column": "ORIG_SEQ",
+        "data_type": "bigint",
+        "udt_name": "int8"
+      },
+      {
+        "column": "IDD",
+        "data_type": "numeric",
+        "udt_name": "numeric"
+      },
+      {
+        "column": "ORIG_FID",
+        "data_type": "bigint",
+        "udt_name": "int8"
+      },
+      {
+        "column": "full_id",
+        "data_type": "character varying",
+        "udt_name": "varchar"
+      },
+      {
+        "column": "osm_id",
+        "data_type": "character varying",
+        "udt_name": "varchar"
+      },
+      {
+        "column": "osm_type",
+        "data_type": "character varying",
+        "udt_name": "varchar"
+      },
+      {
+        "column": "SegD\u00e9ch",
+        "data_type": "numeric",
+        "udt_name": "numeric"
+      },
+      {
+        "column": "layer",
+        "data_type": "character varying",
+        "udt_name": "varchar"
+      },
+      {
+        "column": "path",
+        "data_type": "character varying",
+        "udt_name": "varchar"
+      }
+    ],
+    "geo_work.reseau_hydro_edges_final": [
+      {
+        "column": "edge_id",
+        "data_type": "integer",
+        "udt_name": "int4"
+      },
+      {
+        "column": "source",
+        "data_type": "integer",
+        "udt_name": "int4"
+      },
+      {
+        "column": "target",
+        "data_type": "integer",
+        "udt_name": "int4"
+      },
+      {
+        "column": "geom",
+        "data_type": "USER-DEFINED",
+        "udt_name": "geometry"
+      },
+      {
+        "column": "length_m",
+        "data_type": "double precision",
+        "udt_name": "float8"
+      },
+      {
+        "column": "flow_status",
+        "data_type": "text",
+        "udt_name": "text"
+      },
+      {
+        "column": "component_id",
+        "data_type": "integer",
+        "udt_name": "int4"
+      },
+      {
+        "column": "qa_status",
+        "data_type": "text",
+        "udt_name": "text"
+      },
+      {
+        "column": "is_cycle",
+        "data_type": "boolean",
+        "udt_name": "bool"
+      },
+      {
+        "column": "is_micro_segment",
+        "data_type": "boolean",
+        "udt_name": "bool"
+      }
+    ],
+    "geo_work.reseau_hydro_edges_final_vertices_pgr": [
+      {
+        "column": "id",
+        "data_type": "bigint",
+        "udt_name": "int8"
+      },
+      {
+        "column": "cnt",
+        "data_type": "integer",
+        "udt_name": "int4"
+      },
+      {
+        "column": "chk",
+        "data_type": "integer",
+        "udt_name": "int4"
+      },
+      {
+        "column": "ein",
+        "data_type": "integer",
+        "udt_name": "int4"
+      },
+      {
+        "column": "eout",
+        "data_type": "integer",
+        "udt_name": "int4"
+      },
+      {
+        "column": "the_geom",
+        "data_type": "USER-DEFINED",
+        "udt_name": "geometry"
+      }
+    ],
+    "geo_work.reseau_hydro_nodes": [
+      {
+        "column": "node_id",
+        "data_type": "integer",
+        "udt_name": "int4"
+      },
+      {
+        "column": "geom",
+        "data_type": "USER-DEFINED",
+        "udt_name": "geometry"
+      }
+    ],
+    "geo_work.v_topo_qa": [
+      {
+        "column": "edge_id",
+        "data_type": "integer",
+        "udt_name": "int4"
+      },
+      {
+        "column": "source",
+        "data_type": "integer",
+        "udt_name": "int4"
+      },
+      {
+        "column": "target",
+        "data_type": "integer",
+        "udt_name": "int4"
+      },
+      {
+        "column": "length_m",
+        "data_type": "numeric",
+        "udt_name": "numeric"
+      },
+      {
+        "column": "flow_status",
+        "data_type": "character varying",
+        "udt_name": "varchar"
+      },
+      {
+        "column": "z_max",
+        "data_type": "double precision",
+        "udt_name": "float8"
+      },
+      {
+        "column": "z_min",
+        "data_type": "double precision",
+        "udt_name": "float8"
+      },
+      {
+        "column": "drop_m",
+        "data_type": "double precision",
+        "udt_name": "float8"
+      },
+      {
+        "column": "geom",
+        "data_type": "USER-DEFINED",
+        "udt_name": "geometry"
+      }
+    ]
+  }
+}

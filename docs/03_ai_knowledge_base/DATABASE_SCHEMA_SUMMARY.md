@@ -7,7 +7,68 @@
 | Perimetre | synthese optimisee pour agents IA : schemas applicatifs reels, cardinalites et points d'entree SQL verifies |
 | Source de verite | Non |
 | Documents lies | [DATABASE_SCHEMA](../01_project_reference/data/DATABASE_SCHEMA.md), [API_DATA_MAPPING](../01_project_reference/data/API_DATA_MAPPING.md), [00_SOURCE_OF_TRUTH_MASTER](../00_SOURCE_OF_TRUTH_MASTER.md) |
-| Derniere mise a jour | 2026-05-08 |
+| Derniere mise a jour | 2026-05-22 |
+
+## 0. Snapshot consolidé 2026-05-22
+
+Inspection read-only de `abh_sad` réalisée pendant la réorganisation documentaire :
+
+| Indicateur | Valeur |
+|---|---:|
+| Objets tables/vues inspectés | 339 |
+| Vues matérialisées inspectées | 31 |
+| Colonnes inspectées | 4554 |
+
+Objets par schéma :
+
+| Schéma | Objets |
+|---|---:|
+| `admin` | 5 |
+| `api` | 77 |
+| `audit` | 17 |
+| `geo` | 18 |
+| `geo_work` | 7 |
+| `hydro` | 8 |
+| `infra` | 22 |
+| `metadata` | 49 |
+| `meteo` | 5 |
+| `modeles` | 3 |
+| `monitoring` | 3 |
+| `public` | 3 |
+| `qa` | 31 |
+| `qualite` | 9 |
+| `security` | 11 |
+| `staging` | 51 |
+| `swat_output` | 8 |
+| `swat_sebou` | 4 |
+| `wasp_output` | 5 |
+| `wasp_sebou` | 3 |
+
+Cardinalités critiques observées :
+
+| Objet | Cardinalité |
+|---|---:|
+| `infra.stations_mesure` | 390 |
+| `infra.barrages` | 33 |
+| `hydro.mesure_debit` | 652446 |
+| `hydro.mesure_debit_mensuel` | 19316 |
+| `hydro.mesure_barrage_param` | 272652 |
+| `meteo.mesure_precipitation` | 546007 |
+| `meteo.mesure_evaporation` | 48900 |
+| `meteo.mesure_temperature` | 0 |
+| `qualite.mesure_qualite_riviere` | 59534 |
+| `qualite.mesure_qualite_nappe` | 63047 |
+| `qualite.mesure_qualite_barrage` | 7820 |
+| `qualite.mesure_qualite_sebou` | 49954 |
+| `qualite.suivi_qualite_barrage_garde_hebdo` | 1780 |
+| `qualite.source_pollution_prelevement` | 141 |
+| `qualite.source_pollution_mesure_param` | 7191 |
+| `geo.ref_site_pollution` | 1951 |
+| `qualite.resultat_mesure` | 1409 |
+| `security.activity_logs` | 86671 |
+| `wasp_sebou.wasp_results` | 931770 |
+
+Ce snapshot prime sur les anciennes cardinalités de ce fichier lorsque les valeurs diffèrent. Le rapport complet est `docs/90_reorganisation_documentaire_finale/07_ecarts_documentation_vs_bd.md`.
 
 ## 1. Snapshot DB verifie le 2026-04-17
 
@@ -99,6 +160,13 @@
 
 - `metadata.referentiel_parametre`
 - `metadata.referentiel_parametre_canonique`
+- `metadata.qualite_source_reglementaire`
+- `metadata.qualite_type_eau`
+- `metadata.qualite_classe_reglementaire`
+- `metadata.qualite_parametre_reglementaire`
+- `metadata.qualite_mapping_canonique_reglementaire`
+- `metadata.qualite_seuil_reglementaire`
+- `metadata.qualite_regle_classification`
 - `metadata.api_view_catalog`
 - `metadata.api_view_column_catalog`
 - `metadata.popup_rules_config`
@@ -109,6 +177,59 @@
 - `security.role_permissions`
 - `security.activity_logs`
 - `audit.ingestion_audit_logs`
+
+## Mise a jour 2026-05-19 - Referentiel reglementaire qualite DEV
+
+Le DDL DEV du referentiel reglementaire qualite SAD a ete applique dans `metadata` sans chargement de donnees. Les 7 tables suivantes existent et sont vides apres DDL :
+
+| Table | Role |
+|---|---|
+| `metadata.qualite_source_reglementaire` | documents sources et versions reglementaires |
+| `metadata.qualite_type_eau` | types d'eau et statut operationnel |
+| `metadata.qualite_classe_reglementaire` | classes, scores et palette SAD |
+| `metadata.qualite_parametre_reglementaire` | parametres du Tableau n°1 officiel |
+| `metadata.qualite_mapping_canonique_reglementaire` | mapping vers `metadata.referentiel_parametre_canonique(parametre_ref_id)` |
+| `metadata.qualite_seuil_reglementaire` | seuils reglementaires, unites source/moteur et regles specifiques |
+| `metadata.qualite_regle_classification` | regles versionnees du moteur qualite |
+
+Statut : `DDL_DEV_APPLIQUE__SEUILS_NON_CHARGES`. Aucune donnee reglementaire n'est encore inseree.
+
+## Mise a jour 2026-05-19 - Identite spatiale maitre pollution/qualite
+
+`geo.ref_site_pollution` est la table pivot DEV existante pour 1951 sites pollution IDP. La cible PREPROD ajoute une gouvernance d'identite spatiale sans supprimer les sources :
+
+| Objet cible | Role |
+|---|---|
+| `geo.ref_site_pollution` | referentiel spatial maitre actif |
+| `geo.ref_site_pollution_source_link` | lineage source -> master |
+| `geo.ref_site_pollution_merge_history` | historique fusions/rattachements |
+| `qa.spatial_identity_candidates` | candidats produits par dry-run |
+| `qa.spatial_identity_conflicts` | conflits a arbitrer |
+| `qa.spatial_identity_decisions` | decisions metier tracees |
+| `qa.spatial_identity_orphans` | sources sans rattachement |
+
+SQL : `database/idp_pollution/20_create_ref_site_pollution_master.sql` et `21_create_spatial_identity_qa.sql`.
+
+Mise a jour execution DEV du 2026-05-19 :
+
+- DDL applique en DEV.
+- `geo.ref_site_pollution` conserve 1951 sites et passe a 26 colonnes de gouvernance.
+- Tables QA chargees pour le run `e60088e9-cf94-4e41-ae65-a5390866b4b8` :
+  - `qa.spatial_identity_candidates` : 14380 lignes ;
+  - `qa.spatial_identity_conflicts` : 14366 lignes ;
+  - `qa.spatial_identity_orphans` : 590 lignes ;
+  - `qa.spatial_identity_decisions` : 0 ligne.
+- Vues de revue creees : `qa.v_spatial_review_step_stm`, `qa.v_spatial_review_rejets`, `qa.v_spatial_review_huileries`, `qa.v_spatial_review_mines_decharges`, `qa.v_spatial_review_idp_inventory_measurements`, `qa.v_spatial_review_orphans`.
+- Aucune fusion, suppression ou decision metier automatique n'a ete appliquee.
+
+Mise a jour arbitrage cartographique DEV :
+
+- Workflow simplifie par buckets : `qa.v_carto_review_exact_0m`, `qa.v_carto_review_very_close_2m`, `qa.v_carto_review_same_site_different_object`, `qa.v_carto_review_orphans`.
+- Table de decisions future : `qa.spatial_identity_decisions_cartographic`.
+- Les vues cartographiques reconstruisent la geometrie source/master pour QGIS/GeoJSON et excluent les coordonnees invalides du rendu cartographique.
+- Les distances > 2 m sont exclues du workflow principal et restent dans les tables QA completes.
+- Volumes observes apres simplification : `EXACT_0M` 8771, `VERY_CLOSE_2M` 126, `DIFFERENT_OBJECT` 5438, `ORPHAN` 102.
+- Aucune decision cartographique n'est chargee a ce stade.
 
 ## 4. Points d'entree SQL verifies
 
@@ -224,3 +345,70 @@ Si un routeur ou une doc cite encore ces objets comme tables actives, il faut le
 - Les dashboards/API barrage consomment `hydro.mesure_barrage_param` via `api.v_hydro_barrage_param_journalier` et `analytics.mv_dashboard_hydrologie_menu`.
 - `VOLUME` est un stock barrage en `Mm3`.
 - `lacher_m3s` est une colonne legacy technique qui ne doit plus etre exposee comme flux metier barrage.
+
+## 9. Vues API specialisees et `table_cible` referentiel
+
+Mise a jour du 2026-05-13 :
+
+- 19 vues SQL specialisees existent dans le schema `api` pour l'exposition meteo, hydro, qualite, pollution et IDP.
+- `metadata.referentiel_parametre_canonique.table_cible` a ete renseigne pour 63 parametres actifs valides.
+- Backup logique de l'operation : `audit.bkp_ref_table_cible_final_metier_20260513` avec 65 lignes.
+- `FM` et `F_M_MES` restent volontairement sans `table_cible` avec statut hors restitution / client required.
+- `MD` reste backlog client documentaire.
+- `api.v_qualite_dashboard_global` est un agregateur potentiel, pas une cible primaire du referentiel.
+
+Vues specialisees disponibles :
+
+- Meteo : `api.v_meteo_temperature`, `api.v_meteo_precipitation`, `api.v_meteo_evaporation`.
+- Hydro/barrage : `api.v_barrage_parametres`, `api.v_barrage_qualite`.
+- Qualite : `api.v_qualite_base_multi_support`, `api.v_qualite_physicochimie`, `api.v_qualite_chimie_minerale`, `api.v_qualite_metaux`, `api.v_qualite_pollution_organique`, `api.v_qualite_microbiologie`, `api.v_qualite_biologique`, `api.v_qualite_terrain`, `api.v_qualite_contexte_station`, `api.v_qualite_organoleptique`.
+- Pollution/IDP : `api.v_pollution_constat_prealable`, `api.v_pollution_analyses_finales`, `api.v_idp_points`, `api.v_idp_points_non_resolus`.
+
+## 10. Runtime topologique pollution
+
+Mise a jour du 2026-05-14 :
+
+Le dashboard pollution utilise un schema de travail `geo_work` pour le routage topologique visuel.
+
+| Objet | Role | Statut |
+|---|---|---|
+| `geo.reseau_hydrographique` | source hydrographique brute | ne pas modifier |
+| `geo_work.reseau_hydro_edges_raw` | table de reconstruction initiale | audit / fallback degrade |
+| `geo_work.reseau_hydro_edges_noded` | sortie nodification | reconstruction, non routable seule |
+| `geo_work.reseau_hydro_edges_final` | table runtime officielle | active |
+| `geo_work.reseau_hydro_edges_final_vertices_pgr` | noeuds runtime officiels | active |
+| `geo_work.reseau_hydro_nodes` | noeuds legacy/raw | audit / fallback degrade |
+
+Regles :
+
+- Le runtime courant doit consommer `edges_final` + `edges_final_vertices_pgr`.
+- Les tables `raw`, `noded` et `noded_preview` ne doivent pas etre melangees avec le runtime courant.
+- `hydraulic_direction_validated=false` tant qu'une validation MNT/source-target n'existe pas.
+
+## 11. Pollution IDP DEV
+
+Mise a jour du 2026-05-18 :
+
+- `geo.ref_site_pollution` est la couche canonique DEV des sites pollution.
+- `qualite.resultat_mesure` est la table longue DEV des resultats IDP pollution P0.
+- `api.v_pollution_sites` expose les sites MapLibre.
+- `api.v_pollution_latest_results` expose les derniers resultats qualite rattaches aux sites.
+- `qa.v_spatial_site_candidates` et les vues `qa.v_pollution_*` portent les controles d'arbitrage et de blocage.
+
+Cardinalites DEV observees :
+
+| Objet | Cardinalite |
+|---|---:|
+| `geo.ref_site_pollution` | 1951 |
+| `qualite.resultat_mesure` | 1409 |
+| `api.v_pollution_sites` | 1951 |
+| `api.v_pollution_latest_results` | 517 |
+
+Phase 6 du 2026-05-18 :
+
+- mappings P0 parametres/unites appliques en DEV ;
+- `PARAM_UNMAPPED` passe de 837 a 0 ;
+- `UNIT_UNMAPPED` passe de 572 a 0 ;
+- `NH4` et `NO3-` sont maintenant exposes dans `api.v_pollution_latest_results`.
+
+Points bloquants avant pre-production : mesures sans geometrie/site, doublons exacts/proches et conflits multi-sources a arbitrer.

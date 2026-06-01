@@ -1,0 +1,38 @@
+station_source,mapping_status,station_id_candidate,candidate_nom,candidate_code,candidate_type,matched_field,suggestions,decision_required
+Aguelmam_Sidi_Ali,EXACT,a963a9da-0441-4b33-b6aa-6ffbc1041125,aguelmam sidi ali,1652/22,pluviometrique,nom,,NO
+Ain_aicha,EXACT,5776b37c-48c8-41b2-8f3d-afadac7fd12e,ain aicha,1217/9,hydrologique,nom,,NO
+Ait_Khabbach,EXACT,1b62f3e9-91a7-4c4a-9385-d3aa78eae978,ait khabbach,585/22,hydrologique,nom,,NO
+Azzaba,EXACT,68d55282-7106-4a08-a074-0d8c92a609dd,azzaba,583/22,hydrologique,nom,,NO
+Bab Chhoub,EXACT,1230cd2c-2ca1-483a-8466-d6585fcfbd61,bab chhoub,702/16,hydrologique,nom,,NO
+Bab Merzouka,EXACT,da925486-bca7-49e3-af60-ea5f2294a77a,bab merzouka,551/16,hydrologique,nom,,NO
+Bab Ouender,EXACT,517c713a-dda4-4dcb-a033-4143062487fd,bab ouender,260/9,hydrologique,nom,,NO
+Bab_Ouender,EXACT,517c713a-dda4-4dcb-a033-4143062487fd,bab ouender,260/9,hydrologique,nom,,NO
+Bab_taza,EXACT,3b477290-57ad-4aff-bf46-9418e450dc8d,bab taza,1586/600,pluviometrique,nom,,NO
+Beni Heitem,EXACT,c9eda862-abf9-4375-b614-2e1b2eb84715,beni heitem,672/16,hydrologique,nom,,NO
+Boufellou,EXACT,8672b830-aff8-4fd3-87a7-a43ac966af68,boufellou,1749/9,hydrologique,nom,,NO
+Boured,EXACT,7042849a-fb8a-4d37-9c74-94d910553723,boured,295/10,hydrologique,nom,,NO
+Dar_El_Hamra,EXACT,bc8e6d83-08d3-4bfa-8c78-daa754af79b7,dar el hamra,1000/23,hydrologique,nom,,NO
+El_Malha,EXACT,fc8e8e8b-494c-46b7-aa72-d634d4c19cd2,el malha,323/4,hydrologique,nom,,NO
+El_Mers,EXACT,2ad1ba50-cc7b-456a-8464-0dd4dd9058c7,el mers,541/23,hydrologique,nom,,NO
+Galaz,EXACT,6f1bbf08-ce82-4dfe-ae44-6e26c9ef07e4,galaz,1216/9,hydrologique,nom,,NO
+Had_kourt,EXACT,eecf0ca7-8e8b-45b1-b00c-ae8e75fd60ce,had kourt,1436/8,hydrologique,nom,,NO
+Hajria,EXACT,0436c345-452d-4239-a3e3-2842fd3ab7b1,hajria,1508/9,hydrologique,nom,,NO
+Jbel_oudka,EXACT,cfa0fcf9-82d2-4dae-be20-06b36bfe0fd3,jbel oudka,4626/600,pluviometrique,nom,,NO
+Kharrouba,EXACT,b1ba728c-f39b-4922-9a0c-3581390019e8,kharrouba,454/9,hydrologique,nom,,NO
+Lalla_Mimouna,EXACT,343b85cf-030e-46d8-b892-c4ce6cee7bd7,lalla mimouna,1815/8,hydrologique,nom,,NO
+Oulad_yaacoub,EXACT,05239150-c8b0-4925-be27-95c3fcd483da,oulad yaacoub,6153/600,pluviometrique,nom,,NO
+Ratba,EXACT,ddd6fea0-22b6-49b3-83c9-7533a1188a86,ratba,1708/9,hydrologique,nom,,NO
+Tabouda,EXACT,f88b46fe-ff1e-4b06-916d-8f3d465562ca,tabouda,1215/9,hydrologique,nom,,NO
+Taghzout,EXACT,5b01a831-2781-4d2e-b60a-aaba6238d325,taghzout,1707/9,hydrologique,nom,,NO
+Zrarda,EXACT,7e275775-8cc5-4644-8381-87b3b3663f64,zrarda,891/16,hydrologique,nom,,NO
+ABHS,UNMAPPED_OR_TO_VALIDATE,,,,,,fes (ABHS) [3817/600] ratio=0.727,YES
+Azibe_Soltane,UNMAPPED_OR_TO_VALIDATE,,,,,,azib soltane [1540/15] ratio=0.957,YES
+Belksiri,UNMAPPED_OR_TO_VALIDATE,,,,,,pont bel ksiri   [3694/8] ratio=0.8,YES
+Dar_El_Arssa,UNMAPPED_OR_TO_VALIDATE,,,,,,dar el arsa [2263/15] ratio=0.947; dar el hamra [1000/23] ratio=0.8,YES
+ElHamam,UNMAPPED_OR_TO_VALIDATE,,,,,,el hammam [2062/21] ratio=0.933; el hammam [Hammam/14] ratio=0.933,YES
+Khennichet,UNMAPPED_OR_TO_VALIDATE,,,,,,khenichet [1359/8] ratio=0.947,YES
+Moulay_Ali_Cherif,UNMAPPED_OR_TO_VALIDATE,,,,,,my ali cherif [1545/8] ratio=0.846,YES
+OuedIfrane,UNMAPPED_OR_TO_VALIDATE,,,,,,,YES
+Rdom,UNMAPPED_OR_TO_VALIDATE,,,,,,,YES
+Route26,UNMAPPED_OR_TO_VALIDATE,,,,,,,YES
+Tissa,UNMAPPED_OR_TO_VALIDATE,,,,,,,YES
