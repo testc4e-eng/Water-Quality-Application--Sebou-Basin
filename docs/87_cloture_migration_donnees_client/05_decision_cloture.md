@@ -9,10 +9,18 @@
 - barrage parametrique valide
 - `APPORT` harmonise
 - aucune incoherence unite barrage
-- aucune anomalie BLOQUANT restante
+- aucune anomalie ne remet en cause la cloture technique de la migration
 - API/dashboard SQL operationnels
 - backlogs restants classes et documentes
 - SWAT/WASP sortis du perimetre client definitif
+
+## Lecture de responsabilite
+
+Les ecarts restants relevent :
+
+- soit de traitements documentes cote C4E ;
+- soit d'arbitrages metier client ;
+- soit de chantiers separes hors cloture migration.
 
 ## Regles d'usage
 
@@ -21,4 +29,3 @@
 - traiter `APPORT`, `LACHER`, `TRANSFERT` comme volumes journaliers en `Mm3/j`
 - filtrer ou signaler les lignes qualite sans `parametre_ref_id` pour analyses avancees
 - ne pas presenter SWAT/WASP courant comme referentiel final
-

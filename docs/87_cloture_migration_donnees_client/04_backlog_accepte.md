@@ -17,8 +17,15 @@
 
 Ces backlogs ne remettent pas en cause la migration client car :
 
-- aucune anomalie bloquante active n'est detectee
+- aucun obstacle technique actif n'est detecte sur la mission de migration
 - les donnees migrees principales sont consultables
 - les dashboards/API prioritaires sont alignes
-- le barrage, ancien blocage principal, est stabilise
+- le barrage, ancien sujet de stabilisation principal, est stabilise
 
+## Lecture de pilotage
+
+Les cas residuels ne traduisent pas un retard de migration. Ils correspondent soit :
+
+- a des actions de finition C4E deja identifiees ;
+- a des donnees non fournies a ce stade ;
+- a des arbitrages metier client explicitement prepares.

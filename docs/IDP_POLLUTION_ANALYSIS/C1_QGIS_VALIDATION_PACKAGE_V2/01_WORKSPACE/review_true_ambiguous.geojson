@@ -1,0 +1,90 @@
+{
+  "type": "FeatureCollection",
+  "name": "review_true_ambiguous",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:26191"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "review_id": "002e3749-2bf1-5b72-b3cd-d1988aeb348d",
+        "review_bucket": "TRUE_AMBIGUOUS",
+        "source_layer": "infra.huilerie",
+        "source_id": "534",
+        "source_object_name": "H.mostapha bakir",
+        "source_type": "HUILERIE",
+        "candidate_master_site_id": "ac6176c6-6cf1-4264-97bc-436dda75cc16",
+        "candidate_site_name": "Bakir Mustafa",
+        "distance_m": "10.18949439372149",
+        "match_score": "0.4492",
+        "issue_type": "POSSIBLE_WRONG_MATCH",
+        "suggested_action": "WAIT_BUSINESS_DECISION",
+        "reviewer_decision": "",
+        "reviewer_comment": "",
+        "reason": "distance=10.19m; nom=0.33; commune=0.00; priorite=4",
+        "allowed_decisions": "ACCEPT_MATCH|KEEP_SEPARATE|SAME_SITE_DIFFERENT_OBJECT|NEED_FIELD_VALIDATION|WAIT_BUSINESS_DECISION"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          443750.0,
+          355201.0
+        ]
+      },
+      "properties": {
+        "review_id": "f55ea2f8-9847-5f90-8a6f-4a8fe0803f7d",
+        "review_bucket": "TRUE_AMBIGUOUS",
+        "source_layer": "infra.mine",
+        "source_id": "17",
+        "source_object_name": "",
+        "source_type": "MINE",
+        "candidate_master_site_id": "53d41cac-403b-486a-a01f-03d44d66cdbb",
+        "candidate_site_name": "343189.00000000000",
+        "distance_m": "0.36055512754317015",
+        "match_score": "0.54",
+        "issue_type": "GEOMETRY_SUSPICIOUS",
+        "suggested_action": "NEED_FIELD_VALIDATION",
+        "reviewer_decision": "",
+        "reviewer_comment": "",
+        "reason": "distance=0.36m; nom=0.00; commune=0.00; priorite=4",
+        "allowed_decisions": "ACCEPT_MATCH|KEEP_SEPARATE|SAME_SITE_DIFFERENT_OBJECT|NEED_FIELD_VALIDATION|WAIT_BUSINESS_DECISION"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          464268.99,
+          353702.42
+        ]
+      },
+      "properties": {
+        "review_id": "2a1128de-ed65-540c-8a4a-18dfd986a717",
+        "review_bucket": "TRUE_AMBIGUOUS",
+        "source_layer": "infra.decharge",
+        "source_id": "14",
+        "source_object_name": "",
+        "source_type": "DECHARGE",
+        "candidate_master_site_id": "38f7c930-8351-4b4e-9adc-b4c99b38ebe7",
+        "candidate_site_name": "ATM-DECH",
+        "distance_m": "0.42011903073592827",
+        "match_score": "0.54",
+        "issue_type": "GEOMETRY_SUSPICIOUS",
+        "suggested_action": "NEED_FIELD_VALIDATION",
+        "reviewer_decision": "",
+        "reviewer_comment": "",
+        "reason": "distance=0.42m; nom=0.00; commune=0.00; priorite=4",
+        "allowed_decisions": "ACCEPT_MATCH|KEEP_SEPARATE|SAME_SITE_DIFFERENT_OBJECT|NEED_FIELD_VALIDATION|WAIT_BUSINESS_DECISION"
+      }
+    }
+  ]
+}

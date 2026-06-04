@@ -43,6 +43,7 @@ Depuis le 2026-05-22, le pilotage projet passe aussi par une couche de gouvernan
 | `09_modeles_swat_wasp/` | espace cible modèles SWAT/WASP officiels ou sandbox |
 | `10_dashboards_et_api/` | espace cible dashboards, API et contrats de restitution |
 | `11_execution_technique/` | espace cible runbooks, exécution et exploitation |
+| `105_ml_experiments/` | documentation officielle des expérimentations ML, du benchmark tabulaire, des limites identifiées et de la transition vers Graph Snapshot / Graph Analytics |
 | `12_historique_et_archives/` | espace cible historique non legacy |
 | `90_reorganisation_documentaire_finale/` | audit de réorganisation, mapping, écarts documentation/BD et rapport final |
 | `99_legacy_archive/` | archives techniques, snapshots, anciens doublons et historiques non maîtres |

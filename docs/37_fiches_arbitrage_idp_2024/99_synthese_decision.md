@@ -1,6 +1,6 @@
 # Synthèse arbitrage IDP 2024
 
-## 1. Problèmes critiques
+## 1. Cas structurants necessitant arbitrage
 
 Top 10 des problèmes les plus structurants :
 
@@ -50,3 +50,7 @@ Phase 3 : nettoyage
 
 Phase 4 : intégration SAD  
 - intégrer uniquement des données validées, tracées et harmonisées
+
+## 5. Lecture de pilotage
+
+Le pipeline IDP n'est pas en echec. Les cas ambigus residuels ont ete identifies, traces et regroupes dans des supports d'arbitrage. La suite releve d'une validation metier sur l'identite et le traitement de certaines entites.

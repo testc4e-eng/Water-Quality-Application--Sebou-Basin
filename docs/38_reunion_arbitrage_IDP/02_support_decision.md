@@ -7,7 +7,7 @@
 | Recouvrement sources globale / marché | `5` cas de recouvrement pollution | garder séparé / fusion avec origine / priorité source | arbitrer avant intégration | à décider |
 | Tables IDP absentes dans abh_sad | `4` tables absentes de la cible | rester source / intégrer / intégrer partiellement | clarifier le statut cible des tables | à décider |
 | Paramètres non mappés | `4 755` lignes non reliées au dictionnaire | exclure / conserver en attente / mapping progressif | conserver en attente puis mapper | à décider |
-| Paramètres ambigus | `27` cas explicites plus cas dérivés | bloquer / conserver sans usage / définir officiellement | définir officiellement | à décider |
+| Paramètres ambigus | `27` cas explicites plus cas dérivés | mise en attente sans usage / conserver sans usage / définir officiellement | définir officiellement | à décider |
 | Variantes et unités | plusieurs variantes et familles concernées | garder l’existant / normaliser / exclure les cas non clairs | normaliser avec dictionnaire officiel | à décider |
 | Valeurs non numériques | `2 035` cas | exclure / quarantaine / conversion selon règle | définir une règle métier unique | à décider |
 | Valeurs labo spéciales | plusieurs cas inclus dans les valeurs non numériques | exclure / règle spécifique / conversion standardisée | valider une règle spécifique | à décider |
@@ -15,3 +15,7 @@
 | Sources non rattachées | `240` points non intégrés | exclure / quarantaine / rattachement manuel | quarantaine puis rattachement manuel | à décider |
 | Codes pollution ambigus | plusieurs codes opérationnels | garder tous / liste officielle / regroupement | publier une liste officielle | à décider |
 | Points amont / aval | `1 806` lignes à qualifier | sources / points de contrôle / exclusion temporaire | les traiter comme points de contrôle par défaut | à décider |
+
+## Lecture de pilotage
+
+Ce support sert a cadrer des decisions client/metier. Il ne signifie pas que le pipeline IDP est techniquement bloque ; il signifie que les cas residuels ont ete isoles pour validation.

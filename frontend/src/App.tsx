@@ -13,6 +13,7 @@ import {
 } from "react-router-dom";
 
 import Layout from "./components/Layout/Layout";
+import AccueilSadPage from "./pages/AccueilSadPage";
 import LandingPage from "./pages/LandingPage";
 import AuthPage from "./pages/Login";
 import About from "./pages/About";
@@ -48,7 +49,9 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<Layout />}>
-        <Route index element={<LandingPage />} />
+        <Route index element={<AccueilSadPage />} />
+        <Route path="accueil-sad" element={<AccueilSadPage />} />
+        <Route path="landing" element={<LandingPage />} />
         <Route path="dashboard" element={<Dashboard1 />} />
         <Route path="dashboard-cartographique" element={<DashboardCartographique />} />
         <Route path="dashboard-carto-metier" element={<DashboardCartoMetier />} />
@@ -56,8 +59,10 @@ const router = createBrowserRouter(
         <Route path="dashboard-2" element={<Dashboard2 />} />
         <Route path="carte" element={<Dashboard2 />} />
         <Route path="dashboard-analytique" element={<DashboardAnalytique />} />
+        <Route path="analyses" element={<DashboardAnalytique />} />
         <Route path="dashboard-scenarios" element={<DashboardScenarios />} />
         <Route path="dashboard-pollution" element={<DashboardPollution />} />
+        <Route path="pollution" element={<DashboardPollution />} />
         <Route path="pollution-idp-dev" element={<PollutionIdpDevPage />} />
         <Route path="qualite/metaux" element={<MetauxPage />} />
         <Route
@@ -68,6 +73,15 @@ const router = createBrowserRouter(
             </Suspense>
           }
         />
+        <Route
+          path="expert"
+          element={
+            <Suspense fallback={<div className="p-6 text-sm text-slate-600">Chargement de l'espace expert...</div>}>
+              <DecisionDashboardTest />
+            </Suspense>
+          }
+        />
+        <Route path="administration" element={<Navigate to="/admin/data-scan" replace />} />
         <Route path="admin/data-scan" element={<DataScanPage />} />
         <Route
           path="admin/gestion-users"

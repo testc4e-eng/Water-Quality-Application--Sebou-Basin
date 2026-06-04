@@ -63,6 +63,17 @@ export interface PollutionSiteProperties {
 
 export type PollutionSitesGeoJson = FeatureCollection<Point, PollutionSiteProperties>;
 
+export function parseLatestResults(value: PollutionSiteProperties["latest_results"]): PollutionLatestResult[] {
+  if (!value) return [];
+  if (Array.isArray(value)) return value;
+  try {
+    const parsed = JSON.parse(value);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
 export async function getPollutionIdpSites(
   filters: PollutionIdpFilters
 ): Promise<PollutionSitesGeoJson> {

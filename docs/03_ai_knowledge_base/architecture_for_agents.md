@@ -222,6 +222,118 @@ Mise a jour du 2026-05-14 :
 
 Statut : `RUNTIME_TOPOLOGY_STABILIZED__HYDRAULIC_DIRECTION_NOT_VALIDATED`.
 
+## MVP backend propagation pollution
+
+Mise à jour du 2026-06-02 :
+
+- Un service dédié `backend/app/services/propagation/propagation_pollution_service.py` implémente un premier MVP séparé de `routing_service.py`.
+- Le service charge un graphe dirigé dédié depuis `geo_work.reseau_hydro_edges_final_candidate_20260602`.
+- La cible MVP est la garde métier actuelle : station `legacy_station_id = 52`.
+- Le router `backend/app/api/v1/propagation.py` expose `GET /api/v1/propagation/source-to-garde`.
+- Le même router expose aussi `GET /api/v1/propagation/snap-diagnostic`, `GET /api/v1/propagation/source-to-stations`, `GET /api/v1/propagation/source-to-barrages` et `GET /api/v1/propagation/source-to-exutoires`.
+- Le contrat impose un diagnostic de snap systématique et un temps de transfert constant non scientifique.
+- Le mode `site_id` lit `api.v_pollution_sites` via `longitude` / `latitude`, car la colonne `geometry` de cette vue est exposée en `jsonb`.
+- Le mode stations charge `api.v_station_dimension` en lecture seule et calcule un diagnostic de snap cible par station.
+- Le mode barrages charge `api.v_barrage_dimension` en lecture seule, avec `includes_garde=false` tant qu’aucun barrage réel ne correspond à la garde station `52`.
+- Le mode exutoires charge `geo_work.reseau_hydro_nodes_final_candidate_20260602` et applique la règle validée `eout=0 AND ein>=1`.
+
+Statut : `BACKEND_PROPAGATION_MVP_READY`.
+
+## Sprint 1 decision-first dashboards
+
+Mise à jour du 2026-06-03 :
+
+- la route frontend `/` devient `Accueil SAD` via `frontend/src/pages/AccueilSadPage.tsx` ;
+- `/dashboard-carto-metier` reste la base cartographique métier, enrichie d'un `PanneauActionMetier` sans recréer de moteur cartographique ;
+- `/dashboard-qualite-reglementaire` reste le socle qualité P0, enrichi d'une lecture DG/métier et d'un centre d'alertes ;
+- `/dashboard-pollution` consomme désormais directement les endpoints `/api/v1/propagation/*` existants ;
+- les alias de navigation `/analyses`, `/expert`, `/administration` structurent le parcours cible sans casser les routes historiques.
+
+Statut : `SPRINT_1_DECISION_FIRST_FRONTEND_IMPLEMENTED`.
+
+## Sprint 1.5 intelligence metier
+
+Mise à jour du 2026-06-03 :
+
+- une couche backend d'intelligence métier alimente désormais les écrans Sprint 1 sans changer l'architecture de navigation ;
+- le `KPI Engine` centralise les agrégats DG pour `Accueil SAD`, `Qualité`, `Carte Métier` et `Pollution` ;
+- le `Alert Engine` transforme les signaux métier en alertes lisibles DG ;
+- le `Recommendation Engine` transforme les alertes et KPI en actions recommandées ;
+- la propagation MVP V1 n'est pas réimplémentée : elle est seulement consommée comme dépendance de l'`IPP` et des alertes pollution ;
+- la couche frontend consomme ces moteurs via `frontend/src/api/decisionIntelligence.ts` et `frontend/src/hooks/useDecisionIntelligence.ts`.
+
+Statut : `SPRINT_1_5_KPI_ALERT_RECOMMENDATION_READY`.
+
+## Dashboard home V2 backend
+
+Mise à jour du 2026-06-03 :
+
+- un agrégateur backend dédié `backend/app/services/dashboard/home_service.py` alimente désormais le futur home opérationnel V2 ;
+- le router `backend/app/api/v1/dashboard.py` expose `GET /api/v1/dashboard/home` ;
+- l’agrégateur compose les familles opérationnelles `barrages`, `hydro`, `pluvio`, `quality_daily` avec les moteurs existants KPI, alertes et recommandations ;
+- aucune table, aucune vue et aucun moteur scientifique n’est recréé ;
+- le contrat maintient explicitement `AIR_TEMPERATURE != WATER_TEMPERATURE` et conserve SWAT/WASP hors du home.
+
+Statut : `BACKEND_HOME_V2_READY`.
+
+Mise à jour du 2026-06-04 :
+
+- `home_service.py` ajoute une couche de cache mémoire court au niveau de l’agrégateur, sans changer le contrat API ;
+- les dates et counts partagés sont mutualisés dans un runtime interne par requête ;
+- le fallback `partial` reste isolé section par section ;
+- le premier appel reste dépendant de la chauffe du moteur alertes/KPI, mais les appels suivants sont fortement accélérés.
+
+Statut : `BACKEND_HOME_V2_PERFORMANCE_OPTIMIZED`.
+
+## Dashboard home V2 frontend
+
+Mise à jour du 2026-06-03 :
+
+- `frontend/src/pages/DashboardHomeV2.tsx` devient le rendu réel du Home opérationnel V2 ;
+- `frontend/src/pages/AccueilSadPage.tsx` délègue désormais à ce composant pour `/` et `/accueil-sad` ;
+- le Home consomme exclusivement `GET /api/v1/dashboard/home` via `frontend/src/api/dashboardHome.ts` et `frontend/src/hooks/useDashboardHome.ts` ;
+- `BusinessMap` est réutilisé en mode `home` comme enveloppe cartographique dominante ;
+- `PanneauActionMetier` reste réutilisé sans nouveau moteur cartographique ;
+- les KPI DG sont maintenus en zone secondaire, hors du hero principal ;
+- les règles métier visibles restent :
+  - `Données pluie disponibles`
+  - `Stations sentinelles qualité`
+  - `AIR_TEMPERATURE != WATER_TEMPERATURE`
+
+Statut : `FRONTEND_HOME_V2_READY`.
+
+## Dashboard home V2 — Alignement design maquette
+
+Mise à jour du 2026-06-03 :
+
+- le Home V2 n'est plus rendu comme un écran KPI-first simple ; il adopte un shell institutionnel dense proche de la maquette DG ;
+- `Header.tsx` et `Sidebar.tsx` disposent d’un mode opérationnel sombre spécifique aux routes `/` et `/accueil-sad` ;
+- `DashboardHomeV2.tsx` est restructuré autour de 4 lignes : état global, carte métier, recommandations/qualité/confiance, tendances ;
+- les KPI DG restent alimentés par `secondary_kpis`, mais sont affichés en bande `État global du bassin` ;
+- `BusinessMap` reste réutilisé tel quel, en mode `home`, sans recréation de moteur cartographique.
+
+Statut : `FRONTEND_HOME_V2_DESIGN_ALIGNED`.
+
+## Shell institutionnel unifié
+
+Mise à jour du 2026-06-03 :
+
+- le shell institutionnel sombre n’est plus limité au Home ;
+- `Header`, `Sidebar`, `Footer` et `Layout` appliquent désormais une lecture commune aux routes principales métier et administration ;
+- les routes concernées sont :
+  - `/`
+  - `/accueil-sad`
+  - `/dashboard-carto-metier`
+  - `/dashboard-qualite-reglementaire`
+  - `/dashboard-pollution`
+  - `/analyses`
+  - `/expert`
+  - `/administration`
+  - `/admin/*`
+- le Home V2 utilise aussi un cache session du dernier payload valide pour éviter un skeleton prolongé après première réponse backend réussie.
+
+Statut : `UI_SHELL_UNIFIED__HOME_CONTENT_STABILIZED`.
+
 ## Réorganisation documentaire consolidée
 
 Mise a jour du 2026-05-22 :

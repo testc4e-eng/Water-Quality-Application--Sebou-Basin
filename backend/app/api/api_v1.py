@@ -14,6 +14,10 @@ from app.api.v1.raw import router as raw_router
 from app.api.v1.qualite_specialized import router as qualite_specialized_router
 from app.api.v1.pollution import router as pollution_router
 from app.api.v1.map import router as map_router
+from app.api.v1.propagation import router as propagation_router
+from app.api.v1.kpi import router as kpi_router
+from app.api.v1.recommendations import router as recommendations_router
+from app.api.v1.dashboard import router as dashboard_router
 
 from app.api.v1 import swat
 
@@ -127,6 +131,10 @@ api_router.include_router(quality.router, prefix="/quality", tags=["Quality"])
 api_router.include_router(qualite_specialized_router)
 api_router.include_router(pollution_router)
 api_router.include_router(map_router)
+api_router.include_router(propagation_router)
+api_router.include_router(kpi_router)
+api_router.include_router(recommendations_router)
+api_router.include_router(dashboard_router)
 api_router.include_router(observatory.router)
 api_router.include_router(analytics.router, prefix="/analytics", tags=["Analytics"])
 

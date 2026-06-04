@@ -1,6 +1,6 @@
 /* frontend/src/components/Layout/Header.tsx */
-import { NavLink, useNavigate } from "react-router-dom";
-import { Menu, PanelLeftClose, PanelLeftOpen, User, X } from "lucide-react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Menu, PanelLeftClose, PanelLeftOpen, SunMedium, User, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 
@@ -13,7 +13,18 @@ type HeaderProps = {
 
 const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const isInstitutionalRoute =
+    location.pathname === "/" ||
+    location.pathname === "/accueil-sad" ||
+    location.pathname === "/dashboard-carto-metier" ||
+    location.pathname === "/dashboard-qualite-reglementaire" ||
+    location.pathname === "/dashboard-pollution" ||
+    location.pathname === "/analyses" ||
+    location.pathname === "/expert" ||
+    location.pathname === "/administration" ||
+    location.pathname.startsWith("/admin/");
 
   const isAdmin = localStorage.getItem("is_superuser") === "true";
   const isAuthenticated = !!localStorage.getItem("access_token");
@@ -118,6 +129,78 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
     localStorage.removeItem("is_superuser");
     navigate("/login");
   };
+
+  const operationalDateTime = useMemo(
+    () =>
+      new Intl.DateTimeFormat("fr-MA", {
+        weekday: "short",
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      }).format(new Date()),
+    []
+  );
+
+  if (isInstitutionalRoute) {
+    return (
+      <header className="sticky top-0 z-40 border-b border-[#18396d] bg-[linear-gradient(90deg,#071E41_0%,#0A2B5F_45%,#0C3778_100%)] shadow-lg">
+        <div className="px-4 py-3 sm:px-6">
+          <div className="flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between">
+            <div className="flex items-center gap-3">
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="hidden h-9 w-9 border border-white/10 bg-white/5 text-white hover:bg-white/10 hover:text-white lg:inline-flex"
+                onClick={onToggleSidebar}
+                aria-label={sidebarCollapsed ? "Afficher la sidebar" : "Masquer la sidebar"}
+              >
+                {sidebarCollapsed ? <PanelLeftOpen className="h-5 w-5" /> : <PanelLeftClose className="h-5 w-5" />}
+              </Button>
+              <NavLink to="/" className="flex items-center gap-3 rounded-2xl px-1 py-1 text-white transition-opacity hover:opacity-90">
+                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#0B4FD8] shadow-[0_12px_28px_rgba(11,79,216,0.35)]">
+                  <img src="/logo.jpg" alt="Logo" className="h-6 w-6 rounded-full object-cover" />
+                </div>
+                <div>
+                  <h1 className="text-[1.7rem] font-bold tracking-tight text-white">
+                    WaterQuality <span className="text-[#4EA2FF]">SEBOU</span>
+                  </h1>
+                  <p className="text-[10px] uppercase tracking-[0.16em] text-slate-200/90">
+                    Plateforme intégrée de gestion du bassin du Sebou
+                  </p>
+                </div>
+              </NavLink>
+            </div>
+
+            <div className="flex-1 px-0 text-left xl:px-4 xl:text-center">
+              <div className="text-2xl font-bold tracking-tight text-white xl:text-[1.95rem]">
+                PILOTER AUJOURD’HUI, PRÉSERVER DEMAIN
+              </div>
+              <div className="mt-0.5 text-xs text-slate-200 xl:text-sm">
+                Système d’Aide à la Décision pour une gestion durable des ressources en eau
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2 xl:justify-end">
+              <div className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/8 px-3 py-2 text-xs text-white backdrop-blur xl:text-sm">
+                <span>{operationalDateTime}</span>
+              </div>
+              <div className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/8 px-3 py-2 text-xs text-white backdrop-blur xl:text-sm">
+                <SunMedium className="h-4 w-4 text-amber-300" />
+                <span>24°C</span>
+                <span className="text-slate-300">Rabat</span>
+              </div>
+              <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/10 text-xs font-semibold text-white xl:h-10 xl:w-10 xl:text-sm">
+                DG
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    );
+  }
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur">

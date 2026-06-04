@@ -5,6 +5,7 @@
 Donner une lecture rapide et directement exploitable par la direction, le chef de projet et les parties prenantes métier.
 
 Cette synthèse ne reprend pas chaque anomalie en détail. Elle regroupe les sujets par problèmes racines afin de préparer les arbitrages.
+Cette synthese ne qualifie pas le projet comme bloque. Elle structure les ecarts documentes afin de preparer les arbitrages metier.
 
 ## Nombre total d'anomalies
 
@@ -38,3 +39,8 @@ Le point principal pour la réunion n'est donc pas de revoir 15 cas séparés, m
 - quel périmètre pollution est retenu ;
 - quelles données peuvent être utilisées immédiatement ;
 - quel référentiel devient la référence officielle.
+
+## Lecture de responsabilite
+
+- mission projet : identifier, tracer, qualifier et documenter les ecarts ;
+- responsabilite metier/client : arbitrer les cas ambigus et confirmer les references officielles.

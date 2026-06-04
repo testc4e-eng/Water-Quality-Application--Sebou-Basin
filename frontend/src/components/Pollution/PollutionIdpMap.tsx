@@ -15,6 +15,8 @@ interface PollutionIdpMapProps {
   loading?: boolean;
   error?: Error | null;
   symbologyMode?: PollutionSymbologyMode;
+  selectedSiteId?: string | null;
+  onSiteSelect?: (properties: PollutionSiteProperties) => void;
 }
 
 const QUALITY_CLASS_COLORS: Record<string, string> = {
@@ -83,6 +85,8 @@ export default function PollutionIdpMap({
   loading,
   error,
   symbologyMode = "validation_status",
+  selectedSiteId,
+  onSiteSelect,
 }: PollutionIdpMapProps) {
   const [viewState, setViewState] = useState({
     longitude: -4.8,
@@ -107,11 +111,13 @@ export default function PollutionIdpMap({
   const onClick = (event: MapLayerMouseEvent) => {
     const feature = event.features?.[0];
     if (!feature) return;
+    const properties = feature.properties as PollutionSiteProperties;
     setSelected({
       longitude: event.lngLat.lng,
       latitude: event.lngLat.lat,
-      properties: feature.properties as PollutionSiteProperties,
+      properties,
     });
+    onSiteSelect?.(properties);
   };
 
   return (
@@ -158,7 +164,18 @@ export default function PollutionIdpMap({
                         "#7570b3",
                       ],
                 "circle-stroke-color": "#ffffff",
-                "circle-stroke-width": 1.2,
+                "circle-stroke-width": [
+                  "case",
+                  ["==", ["get", "site_id"], selectedSiteId ?? ""],
+                  2.6,
+                  1.2,
+                ],
+                "circle-stroke-opacity": [
+                  "case",
+                  ["==", ["get", "site_id"], selectedSiteId ?? ""],
+                  1,
+                  0.9,
+                ],
                 "circle-opacity": 0.86,
               }}
             />

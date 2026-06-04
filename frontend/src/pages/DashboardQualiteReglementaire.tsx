@@ -1,6 +1,7 @@
 import { AlertTriangle, CheckCircle2, Info } from "lucide-react";
 import { useMemo, useState } from "react";
 
+import { QualityAlertCenter } from "@/components/quality-regulatory/QualityAlertCenter";
 import { KPIQualiteCards } from "@/components/quality-regulatory/KPIQualiteCards";
 import { ObservationalParametersPanel } from "@/components/quality-regulatory/ObservationalParametersPanel";
 import { QualityParametersTable } from "@/components/quality-regulatory/QualityParametersTable";
@@ -44,9 +45,28 @@ export default function DashboardQualiteReglementaire() {
   const hasError = statusQuery.isError || thresholdsQuery.isError || stationsQuery.isError;
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-950">
+    <main className="min-h-screen bg-[#EEF5FF] text-slate-950">
       <RegulatoryHeader status={statusQuery.data} />
       <div className="mx-auto flex max-w-[1600px] flex-col gap-5 px-4 py-5 sm:px-6 lg:px-8">
+        <section className="rounded-md border border-slate-200 bg-white px-4 py-4">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+            <div className="max-w-4xl">
+              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">Qualité des eaux · lecture DG / métier</div>
+              <h2 className="mt-2 text-2xl font-semibold text-slate-950">Pilotage qualité</h2>
+              <p className="mt-2 text-sm leading-7 text-slate-600">
+                L'écran conserve le contrat réglementaire existant, mais met désormais en avant les stations à surveiller,
+                les stations critiques, les alertes et la fraîcheur des données. Les seuils détaillés, alias et référentiels
+                restent visibles plus bas ou dans l'espace expert.
+              </p>
+            </div>
+            <div className="rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+              `WATER_TEMPERATURE` seulement via <strong>T_EAU</strong> / <strong>api.v_qualite_terrain</strong>.
+              <br />
+              Aucun indicateur climat ne doit être dérivé de cet écran.
+            </div>
+          </div>
+        </section>
+
         <section className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-blue-200 bg-blue-50 px-4 py-3 text-sm">
           <div className="flex items-center gap-2 text-blue-950"><Info className="h-4 w-4" />Contrat API officiel : <strong>type_eau=surface_generale</strong>. Aucun fallback silencieux.</div>
           <div className="flex flex-wrap gap-2"><QualityStatusBadge status="NON_CLASSIFIABLE" /><QualityStatusBadge status="HORS_PERIMETRE_REGLEMENTAIRE" /><QualityStatusBadge status="TYPE_EAU_NON_OPERATIONNEL" /></div>
@@ -67,6 +87,8 @@ export default function DashboardQualiteReglementaire() {
           nonClassifiableCount={(summary.parameters ?? 0) - (summary.parameters_classifiable ?? 0)}
           lastUpdate={lastUpdate}
         />
+
+        <QualityAlertCenter />
 
         <QualityStationsPanel
           stations={stations}

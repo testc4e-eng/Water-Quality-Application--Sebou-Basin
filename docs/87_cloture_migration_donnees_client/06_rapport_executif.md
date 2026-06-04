@@ -21,7 +21,10 @@ La migration des donnees client vers `abh_sad` est cloturee avec backlog accepte
 - remplacement SWAT/WASP
 - multi-scenarios modelisation
 
+## Lecture executive
+
+La mission de migration est realisee cote C4E. Les suites ouvertes relevent de la gouvernance continue, des arbitrages client et des futurs chantiers d'enrichissement.
+
 ## Decision
 
 `MIGRATION_CLIENT_CLOTUREE_AVEC_BACKLOG`
-

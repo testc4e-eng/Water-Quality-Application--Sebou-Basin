@@ -51,9 +51,13 @@ Attention : ces groupes existent côté montage FastAPI, mais une partie d’ent
 - `/api/v1/climate/*`
 - `/api/v1/hydro/*`
 - `/api/v1/quality/*`
+- `/api/v1/dashboard/*`
+- `/api/v1/kpi/*`
+- `/api/v1/propagation/*`
 - `/api/v1/observatory/*`
 - `/api/v1/analytics/*`
 - `/api/v1/alerts/*`
+- `/api/v1/recommendations/*`
 
 ### Modèles et ingestion
 
@@ -211,6 +215,77 @@ Mise a jour du 2026-05-14 :
 - `direction_validated=false` et `hydraulic_direction_validated=false` en Phase E.
 - Le fallback non oriente reste autorise pour la continuite visuelle, mais doit etre affiche comme `used_fallback=true`.
 - Les ETA, scores et impacts stations/barrages restent non scientifiques.
+
+## MVP propagation pollution
+
+Mise à jour du 2026-06-02 :
+
+| Endpoint | Rôle | Statut |
+|---|---|---|
+| `GET /api/v1/propagation/source-to-garde` | propagation topologique MVP d'une source vers la garde | `DEV_READY_MVP` |
+| `GET /api/v1/propagation/snap-diagnostic` | diagnostic pur de snap d'une source sur le réseau validé | `DEV_READY_MVP` |
+| `GET /api/v1/propagation/source-to-stations` | propagation topologique MVP d'une source vers des stations | `DEV_READY_MVP` |
+| `GET /api/v1/propagation/source-to-barrages` | propagation topologique MVP d'une source vers des barrages | `DEV_READY_MVP` |
+| `GET /api/v1/propagation/source-to-exutoires` | propagation topologique MVP d'une source vers des exutoires | `DEV_READY_MVP` |
+
+Règles :
+
+- un seul mode d'entrée autorisé : `site_id`, `prelevement_id` ou `lng+lat` ;
+- le diagnostic de snap est toujours renvoyé ;
+- `snap_confidence` : `HIGH <= 50 m`, `MEDIUM <= 250 m`, `LOW > 250 m` ;
+- `transfer_time_hours` est un temps indicatif calculé à vitesse constante ;
+- `metadata.scientific_mode=false` tant que SWAT/WASP ne sont pas intégrés ;
+- le service lit le réseau validé `geo_work.reseau_hydro_edges_final_candidate_20260602`, pas encore le runtime officiel promu.
+- `source-to-stations` lit les cibles depuis `api.v_station_dimension` et expose un diagnostic de snap cible par station.
+- `source-to-barrages` lit les cibles depuis `api.v_barrage_dimension` et conserve la séparation entre barrage géographique et garde fonctionnelle station `52`.
+- `source-to-exutoires` lit les cibles depuis `geo_work.reseau_hydro_nodes_final_candidate_20260602` avec la règle `eout=0 AND ein>=1`.
+
+## Sprint 1.5 — KPI / Alert / Recommendation Engine
+
+Mise à jour du 2026-06-03 :
+
+| Endpoint | Rôle | Statut |
+|---|---|---|
+| `GET /api/v1/kpi/overview` | KPI globaux DG `IQGB`, `IFD`, `ICD`, `ICH`, `IPP`, `ISR` | `SPRINT_1_5_READY` |
+| `GET /api/v1/kpi/stations` | synthèse stations `conforme/surveillance/critique/inconnu` et top stations | `SPRINT_1_5_READY` |
+| `GET /api/v1/kpi/subbasins` | synthèse de risque par sous-bassin | `SPRINT_1_5_READY` |
+| `GET /api/v1/kpi/pollution` | synthèse pression pollution et top sites | `SPRINT_1_5_READY` |
+| `GET /api/v1/alerts` | alertes qualité, pollution, données, hydro lecture seule | `SPRINT_1_5_READY` |
+| `GET /api/v1/recommendations` | recommandations métier actionnables | `SPRINT_1_5_READY` |
+
+Règles :
+
+- le moteur KPI réutilise le backend qualité existant et la propagation MVP V1 déjà validée ;
+- `ICH` est dérivé du réseau validé en lecture seule, sans recalcul hydraulique ;
+- `IPP` reste un indice MVP topologique non scientifique ;
+- `ALERT_HYDRO` reste purement informatif ;
+- `AIR_TEMPERATURE` et `WATER_TEMPERATURE` ne doivent jamais être mélangées dans les futurs dashboards.
+
+## Dashboard home V2 opérationnel
+
+Mise à jour du 2026-06-03 :
+
+| Endpoint | Rôle | Statut |
+|---|---|---|
+| `GET /api/v1/dashboard/home` | agrégateur backend du home opérationnel V2 | `BACKEND_HOME_V2_READY` |
+
+Règles :
+
+- le payload racine expose `status`, `generated_at`, `data_freshness`, `hero`, `map`, `basin_status`, `alerts`, `recommended_actions`, `trends`, `secondary_kpis`, `metadata` ;
+- `hero.cards` contient exactement `barrages_suivis`, `donnees_pluie_disponibles`, `stations_hydro_actives`, `stations_sentinelles_qualite` ;
+- les KPI DG `IQGB`, `IFD`, `ICD`, `ICH`, `IPP`, `ISR` restent dans `secondary_kpis` uniquement ;
+- la pluie est exposée sous le libellé prudent `Données pluie disponibles` tant que la typologie n’est pas consolidée ;
+- la qualité journalière est exposée sous le libellé `Stations sentinelles qualité` ;
+- `metadata.temperature_rule = AIR_TEMPERATURE != WATER_TEMPERATURE` ;
+- le service réutilise les moteurs existants KPI / alertes / recommandations et ne recalcule pas l’hydraulique.
+
+Mise à jour du 2026-06-04 :
+
+- `backend/app/services/dashboard/home_service.py` ajoute un cache mémoire court de payload complet ;
+- variable d’environnement : `SAD_DASHBOARD_HOME_CACHE_SECONDS` ;
+- valeur par défaut : `120 s`, désactivation avec `0` ;
+- le contrat JSON HTTP reste inchangé ;
+- le cache ne masque pas `status=partial` et n’enregistre pas d’exception.
 
 ## Pollution IDP DEV
 

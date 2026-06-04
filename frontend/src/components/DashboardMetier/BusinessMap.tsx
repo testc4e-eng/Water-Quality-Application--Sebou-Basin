@@ -22,6 +22,10 @@ interface BusinessMapProps {
   entitiesVisible?: boolean;
   symbologyMode?: "classification" | "metadata";
   onFeatureSelect?: (feature: MapBusinessFeature | null) => void;
+  mode?: "default" | "home";
+  overlayTitle?: string;
+  overlaySubtitle?: string;
+  emptyMessage?: string;
 }
 
 type EnrichedProperties = MapBusinessEntityProperties & {
@@ -115,6 +119,10 @@ export function BusinessMap({
   entitiesVisible = true,
   symbologyMode = "classification",
   onFeatureSelect,
+  mode = "default",
+  overlayTitle = "Carte metier P0",
+  overlaySubtitle,
+  emptyMessage = "Selectionner un support metier puis cliquer sur Afficher.",
 }: BusinessMapProps) {
   const mapRef = useRef<MapRef | null>(null);
   const [viewState, setViewState] = useState({
@@ -191,8 +199,10 @@ export function BusinessMap({
       </Map>
 
       <div className="pointer-events-none absolute left-4 top-4 rounded-lg border border-slate-200 bg-white/95 px-3 py-2 text-sm shadow">
-        <div className="font-medium text-slate-900">Carte metier P0</div>
-        <div className="text-xs text-slate-600">{featureCount.toLocaleString("fr-MA")} entites affichees</div>
+        <div className="font-medium text-slate-900">{overlayTitle}</div>
+        <div className="text-xs text-slate-600">
+          {overlaySubtitle || `${featureCount.toLocaleString("fr-MA")} entites affichees`}
+        </div>
       </div>
 
       <div className="pointer-events-none absolute bottom-4 left-4 w-56">
@@ -214,7 +224,7 @@ export function BusinessMap({
       {!loading && !mapData && (
         <div className="absolute inset-0 grid place-items-center">
           <div className="max-w-sm rounded-lg border border-slate-200 bg-white px-5 py-4 text-center text-sm text-slate-600 shadow-sm">
-            Selectionner un support metier puis cliquer sur Afficher.
+            {emptyMessage}
           </div>
         </div>
       )}

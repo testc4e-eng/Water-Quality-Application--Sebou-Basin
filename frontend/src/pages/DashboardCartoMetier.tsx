@@ -10,7 +10,7 @@ import {
 } from "@/api/mapBusiness";
 import { BusinessMap } from "@/components/DashboardMetier/BusinessMap";
 import { BusinessSidebar } from "@/components/DashboardMetier/BusinessSidebar";
-import { EntityDetailsPanel } from "@/components/DashboardMetier/EntityDetailsPanel";
+import { PanneauActionMetier } from "@/components/DashboardMetier/PanneauActionMetier";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useMapCatalog, useMapEntities } from "@/hooks/useMapBusiness";
@@ -31,6 +31,7 @@ function resolveDefaultSelection(catalog: MapBusinessCatalog): { group_code: str
 }
 
 export default function DashboardCartoMetier() {
+  const [viewMode, setViewMode] = useState<"bassin" | "sous-bassin" | "station">("bassin");
   const [selectedGroupCode, setSelectedGroupCode] = useState<string>();
   const [selectedSupportCode, setSelectedSupportCode] = useState<string>();
   const [selectedParameterCode, setSelectedParameterCode] = useState("");
@@ -96,7 +97,7 @@ export default function DashboardCartoMetier() {
   const endpointCalled = submittedFilters ? buildMapEntitiesEndpoint(submittedFilters) : "/api/v1/map/catalog";
 
   return (
-    <div className="flex h-[calc(100vh-72px)] min-h-[760px] bg-slate-100">
+    <div className="flex h-[calc(100vh-72px)] min-h-[760px] bg-[#EEF5FF]">
       <div className="w-[330px] shrink-0">
         <BusinessSidebar
           catalog={catalogQuery.data}
@@ -120,17 +121,32 @@ export default function DashboardCartoMetier() {
         <header className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white px-4 py-3">
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-lg font-semibold text-slate-950">Carte metier qualite / pollution</h2>
+              <h2 className="text-lg font-semibold text-slate-950">Carte métier opérationnelle du bassin</h2>
               <Badge variant="outline">P0</Badge>
-              <Badge className="bg-amber-500 text-white hover:bg-amber-500">donnees en validation</Badge>
+              <Badge className="bg-amber-500 text-white hover:bg-amber-500">données en validation</Badge>
             </div>
             <div className="mt-1 text-sm text-slate-600">
               {selectedSupport
                 ? `${selectedSupport.label} - ${selectedSupport.source_backend || "source non renseignee"}`
-                : "Selectionner un support metier pour demarrer."}
+                : "Sélectionner un support métier pour démarrer."}
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-2">
+            <div className="rounded-lg border border-slate-200 bg-slate-50 p-1">
+              {(["bassin", "sous-bassin", "station"] as const).map((mode) => (
+                <button
+                  key={mode}
+                  type="button"
+                  onClick={() => setViewMode(mode)}
+                  className={[
+                    "rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                    viewMode === mode ? "bg-slate-950 text-white" : "text-slate-600 hover:bg-white",
+                  ].join(" ")}
+                >
+                  {mode === "bassin" ? "Vue Bassin" : mode === "sous-bassin" ? "Vue Sous-Bassin" : "Vue Station"}
+                </button>
+              ))}
+            </div>
             <select
               className="h-9 rounded-md border border-slate-300 bg-white px-3 text-sm outline-none focus:border-sky-500"
               value={symbologyMode}
@@ -164,6 +180,10 @@ export default function DashboardCartoMetier() {
               {(catalogQuery.isError || entitiesQuery.isError) && <AlertTriangle className="h-4 w-4 text-red-600" />}
             </div>
           </div>
+        </div>
+
+        <div className="rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600">
+          <span className="font-semibold text-slate-900">Panneau d'action métier :</span> l'écran met en avant l'état, le risque, la tendance et les actions, sans afficher QA détaillée, debug ou identifiants techniques dans le niveau métier.
         </div>
 
         {apiErrorDetails && (
@@ -203,7 +223,7 @@ export default function DashboardCartoMetier() {
       </main>
 
       <div className="w-[360px] shrink-0">
-        <EntityDetailsPanel feature={selectedFeature} />
+        <PanneauActionMetier feature={selectedFeature} viewMode={viewMode} />
       </div>
     </div>
   );

@@ -4,7 +4,7 @@
 
 `MIGRATION_HISTORIQUE_CLOTUREE_AVEC_BACKLOG`
 
-La base consolidee `abh_sad` est exploitable pour les domaines client deja migres. Aucun blocage technique actif ne justifie de maintenir la migration historique ouverte.
+La base consolidee `abh_sad` est exploitable pour les domaines client deja migres. Aucun obstacle technique actif ne justifie de maintenir la migration historique ouverte.
 
 ## Volumetrie finale verifiee
 
@@ -28,10 +28,15 @@ La base consolidee `abh_sad` est exploitable pour les domaines client deja migre
 
 ## Lecture strategique
 
-La migration historique est terminee. Les restes ne sont pas des blocages de migration :
+La migration historique est terminee. Les restes ne sont pas des echec de migration :
 
 - les gaps referentiels restants sont de la gouvernance continue ;
 - les lacunes meteo/pollution sont des lacunes source ou QA ;
 - les sujets GEO/IDP demandent un retour client ;
 - SWAT/WASP actuels sont des jeux temporaires a remplacer ;
 - les schemas `public` et `staging` restent hors couche production.
+
+## Lecture de responsabilite
+
+- mission C4E : migration, controle, qualification, documentation, traçabilite ;
+- responsabilite client : arbitrage metier, confirmation de source, correction ou completude des donnees source.

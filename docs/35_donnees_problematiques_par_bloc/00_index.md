@@ -4,7 +4,7 @@
 |---|---|---|---:|---|---|---|
 | Paramètres | [01_donnees_problematiques_parametres.md](./01_donnees_problematiques_parametres.md) | A01, A02, A11, A13 | 19 | `qualite.*`, `metadata.referentiel_parametre`, `metadata.mapping_parametre_source`, `metadata.mapping_parametre_unresolved_*`, `staging.*qualite*` | Critique | figer le dictionnaire officiel des paramètres |
 | Pollution | [02_donnees_problematiques_pollution.md](./02_donnees_problematiques_pollution.md) | A05, A06, A07 | 13 | `qualite.source_pollution_*`, `infra.rejet_*`, `infra.*inventaire_pollution*`, `staging.rejets_brutes`, `staging.rejet_abattoir` | Critique | valider le référentiel officiel des rejets et le traitement des cas non rattachés |
-| Données | [03_donnees_problematiques_donnees.md](./03_donnees_problematiques_donnees.md) | A08, A09, A10, A14 | 13 | `qualite.*`, `meteo.*`, `hydro.mesure_debit`, `hydro.mesure_debit_mensuel` | Critique | décider quelles données sont exploitables, partielles ou à exclure |
+| Données | [03_donnees_problematiques_donnees.md](./03_donnees_problematiques_donnees.md) | A08, A09, A10, A14 | 13 | `qualite.*`, `meteo.*`, `hydro.mesure_debit`, `hydro.mesure_debit_mensuel` | Critique | confirmer quelles données sont exploitables, partielles ou à exclure |
 | Référentiels | [04_donnees_problematiques_referentiels.md](./04_donnees_problematiques_referentiels.md) | A04, A12, A15 | 12 | `infra.stations_mesure`, `infra.barrages`, `metadata.mapping_*`, `staging.*` | Élevée | figer les référentiels stations / barrages et la hiérarchie des sources |
 
 ## Synthèse des extractions
@@ -27,3 +27,4 @@
 - Tous les chiffres ci-dessus proviennent soit d'une requête SQL en lecture seule, soit d'une fiche documentaire citée.
 - La catégorie "paramètres non mappés" regroupe les paramètres présents dans les tables d'écarts `metadata.mapping_parametre_unresolved_*`.
 - La catégorie "données absentes" correspond ici à la température, confirmée à `0` ligne dans `meteo.mesure_temperature`.
+- Ces tableaux décrivent des resultats de controle qualite et des cas a arbitrer ; ils ne signifient pas que la migration ou le projet sont techniquement en echec.
