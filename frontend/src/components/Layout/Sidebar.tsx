@@ -2,24 +2,20 @@ import { NavLink, useLocation } from "react-router-dom";
 import {
   AlertTriangle,
   Database,
-  LineChart,
   Home,
-  Info,
   Map,
-  Mail,
-  Search,
-  Sparkles,
-  Users,
-  CloudUpload,
-  MessageSquare,
   ShieldCheck,
+  BriefcaseBusiness,
 } from "lucide-react";
+import { getAuthSession, hasPermission } from "@/lib/authz";
+import { StatusBadge, type DashboardStatus } from "@/components/ui/status-badge";
 
 type NavItem = {
   to: string;
   label: string;
   icon: typeof Home;
-  group?: "decision" | "analyse" | "expert" | "modeles" | "administration" | "support";
+  status: DashboardStatus;
+  group?: "decision" | "administration";
 };
 
 type SidebarProps = {
@@ -28,82 +24,40 @@ type SidebarProps = {
 
 const Sidebar = ({ collapsed }: SidebarProps) => {
   const location = useLocation();
-  const isAdmin = localStorage.getItem("is_superuser") === "true";
-  const accessToken = localStorage.getItem("access_token");
+  const auth = getAuthSession();
+  const isAdmin = auth.isSuperuser;
   const isInstitutionalRoute =
     location.pathname === "/" ||
     location.pathname === "/accueil-sad" ||
     location.pathname === "/dashboard-carto-metier" ||
     location.pathname === "/dashboard-qualite-reglementaire" ||
     location.pathname === "/dashboard-pollution" ||
-    location.pathname === "/analyses" ||
-    location.pathname === "/expert" ||
+    location.pathname === "/dashboard-data-qa" ||
     location.pathname === "/administration" ||
     location.pathname.startsWith("/admin/");
 
-  const decodeTokenPayload = (token: string | null) => {
-    if (!token) return null;
-    const parts = token.split(".");
-    if (parts.length < 2) return null;
-    try {
-      const payload = parts[1].replace(/-/g, "+").replace(/_/g, "/");
-      const padded = payload.padEnd(payload.length + (4 - (payload.length % 4)) % 4, "=");
-      const json = atob(padded);
-      return JSON.parse(json);
-    } catch {
-      return null;
-    }
-  };
-
-  const roleFromToken = (() => {
-    if (isAdmin) return "admin";
-    const payload = decodeTokenPayload(accessToken);
-    const role = payload?.role ?? payload?.user?.role ?? payload?.type ?? null;
-    return role ? String(role).toLowerCase() : null;
-  })();
-
+  const canViewDataAdmin = hasPermission("data_admin.audit.read", auth.permissions);
   const canSeeAdmin = isAdmin;
-  const isManager =
-    roleFromToken === "manager" || roleFromToken === "gestionnaire";
   const allNavItems: NavItem[] = [
-    { to: "/", label: "Accueil SAD", icon: Home, group: "decision" },
-    { to: "/dashboard-carto-metier", label: "Carte Métier", icon: Map, group: "decision" },
-    { to: "/dashboard-qualite-reglementaire", label: "Qualité des Eaux", icon: ShieldCheck, group: "decision" },
-    { to: "/dashboard-pollution", label: "Pollution", icon: AlertTriangle, group: "decision" },
-    { to: "/analyses", label: "Analyses", icon: LineChart, group: "analyse" },
-    { to: "/expert", label: "Expert", icon: Sparkles, group: "expert" },
-    { to: "/dashboard-scenarios", label: "Scénarios SWAT / WASP", icon: Sparkles, group: "modeles" },
-    { to: "/administration", label: "Administration", icon: Database, group: "administration" },
-    { to: "/data", label: "Données & référentiels", icon: Database, group: "administration" },
-    { to: "/admin/data-scan", label: "Couverture & qualité data", icon: Search, group: "administration" },
-    { to: "/admin/gestion-users", label: "Utilisateurs & audit", icon: Users, group: "administration" },
-    { to: "/admin/ingestion", label: "Ingestion modèles", icon: CloudUpload, group: "administration" },
-    { to: "/admin/popup-rules", label: "Popups & symbologie", icon: MessageSquare, group: "administration" },
-    { to: "/about", label: "A propos", icon: Info, group: "support" },
-    { to: "/contact", label: "Contact", icon: Mail, group: "support" },
+    { to: "/", label: "Accueil DG", icon: Home, status: "OPERATIONNEL", group: "decision" },
+    { to: "/dashboard-qualite-reglementaire", label: "Qualité des eaux", icon: ShieldCheck, status: "PREPROD_CONDITIONNEL", group: "decision" },
+    { to: "/dashboard-carto-metier", label: "Carte Métier", icon: Map, status: "PARTIEL", group: "decision" },
+    { to: "/dashboard-pollution", label: "Pollution", icon: AlertTriangle, status: "DEV", group: "decision" },
+    { to: "/dashboard-data-qa", label: "Données / QA", icon: Database, status: "OPERATIONNEL", group: "decision" },
+    { to: "/administration", label: "Administration", icon: BriefcaseBusiness, status: "OPERATIONNEL", group: "administration" },
   ];
 
   const primaryItems = allNavItems.filter((item) => {
     if (canSeeAdmin) return true;
-    if (isManager) {
-      const managerAdminAllowed = [
-        "/data",
-        "/admin/data-scan",
-        "/admin/ingestion",
-        "/admin/popup-rules",
-      ];
+    if (canViewDataAdmin) {
+      const managerAdminAllowed = ["/administration"];
       return item.group !== "administration" || managerAdminAllowed.includes(item.to);
     }
-    // Utilisateur: pas d'accès aux sections Administration
-    return item.group !== "administration";
+    return item.to !== "/administration";
   });
 
-  const supportItems = primaryItems.filter((item) => item.group === "support");
   const navigationSections = [
     { title: "Décision", items: primaryItems.filter((item) => item.group === "decision") },
-    { title: "Analyse", items: primaryItems.filter((item) => item.group === "analyse") },
-    { title: "Expert", items: primaryItems.filter((item) => item.group === "expert") },
-    { title: "Modèles", items: primaryItems.filter((item) => item.group === "modeles") },
     { title: "Administration", items: primaryItems.filter((item) => item.group === "administration") },
   ].filter((section) => section.items.length > 0);
 
@@ -111,11 +65,10 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
     const homeItems = allNavItems.filter((item) =>
       [
         "/",
-        "/dashboard-carto-metier",
         "/dashboard-qualite-reglementaire",
+        "/dashboard-carto-metier",
         "/dashboard-pollution",
-        "/analyses",
-        "/expert",
+        "/dashboard-data-qa",
         "/administration",
       ].includes(item.to)
     );
@@ -124,25 +77,25 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
       <aside
         className={[
           "hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-50 lg:flex lg:flex-col lg:border-r lg:border-[#12305f] lg:bg-[linear-gradient(180deg,#071E41_0%,#092956_55%,#0B234A_100%)]",
-          collapsed ? "lg:w-20" : "lg:w-60",
+          collapsed ? "lg:w-[56px]" : "lg:w-[188px]",
         ].join(" ")}
       >
-        <div className={["flex items-center border-b border-white/10 py-4", collapsed ? "justify-center px-3" : "px-4"].join(" ")}>
+        <div className={["flex items-center border-b border-white/10 py-2", collapsed ? "justify-center px-1.5" : "px-2.5"].join(" ")}>
           <NavLink to="/" className="flex items-center gap-3 text-white">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#0B4FD8] shadow-[0_14px_28px_rgba(11,79,216,0.35)]">
-              <img src="/logo.jpg" alt="Logo" className="h-6 w-6 rounded-full object-cover" />
+            <div className="flex h-8 w-8 items-center justify-center rounded-2xl bg-[#0B4FD8] shadow-[0_14px_28px_rgba(11,79,216,0.35)]">
+              <img src="/logo.jpg" alt="Logo" className="h-4.5 w-4.5 rounded-full object-cover" />
             </div>
             {!collapsed && (
               <div>
-                <div className="text-xl font-bold tracking-tight">WaterQuality</div>
-                <div className="text-lg font-bold tracking-tight text-[#4EA2FF]">SEBOU</div>
-              </div>
-            )}
+                    <div className="text-[15px] font-bold tracking-tight">WaterQuality</div>
+                    <div className="text-[13px] font-bold tracking-tight text-[#4EA2FF]">SEBOU</div>
+                  </div>
+                )}
           </NavLink>
         </div>
 
-        <div className={["flex flex-1 flex-col justify-between py-4", collapsed ? "px-2" : "px-3"].join(" ")}>
-          <nav className="space-y-1.5">
+        <div className={["flex flex-1 flex-col justify-between py-1.5", collapsed ? "px-1" : "px-2"].join(" ")}>
+          <nav className="space-y-0.5">
             {homeItems.map((item) => {
               const Icon = item.icon;
               return (
@@ -151,45 +104,48 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
                   to={item.to}
                   className={({ isActive }) =>
                     [
-                      "flex items-center rounded-2xl py-2.5 text-sm font-medium transition-all",
-                      collapsed ? "justify-center px-2" : "gap-3 px-4",
+                      "flex items-center rounded-2xl py-1.5 text-[13px] font-medium transition-all",
+                      collapsed ? "justify-center px-1.5" : "gap-2.5 px-3",
                       isActive
                         ? "bg-[#0B4FD8] text-white shadow-[0_12px_30px_rgba(11,79,216,0.35)]"
                         : "text-slate-200 hover:bg-white/8 hover:text-white",
                     ].join(" ")
                   }
                 >
-                  <Icon className="h-5 w-5" />
-                  {!collapsed && <span>{item.label}</span>}
+                  <Icon className="h-4 w-4" />
+                  {!collapsed && (
+                    <div className="flex min-w-0 items-center justify-between gap-2">
+                      <span className="truncate">{item.label}</span>
+                    </div>
+                  )}
                 </NavLink>
               );
             })}
           </nav>
 
-          <div className="space-y-3">
+          <div className="space-y-2 max-[900px]:space-y-0">
             {collapsed ? (
               <>
                 <div className="flex justify-center">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white">
+                  <div className="flex h-6 w-6 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-[10px] text-white">
                     ↻
                   </div>
                 </div>
                 <div className="flex justify-center">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-xs font-bold text-white">
+                  <div className="flex h-6 w-6 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-[8px] font-bold text-white">
                     ABH
                   </div>
                 </div>
               </>
             ) : (
               <>
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-slate-200">
-                  <div className="text-xs uppercase tracking-[0.18em] text-slate-300">Données actualisées</div>
-                  <div className="mt-1.5 text-sm font-semibold text-white">Il y a 30 min</div>
-                  <div className="mt-1 text-[11px] text-slate-300">Flux opérationnel en supervision continue.</div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-2 text-slate-200 max-[950px]:hidden">
+                  <div className="text-[10px] uppercase tracking-[0.16em] text-slate-300">Données actualisées</div>
+                  <div className="mt-1 text-xs font-semibold text-white">Il y a 30 min</div>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-white">
-                  <div className="text-base font-bold tracking-tight">ABH</div>
-                  <div className="mt-1 text-[11px] uppercase tracking-[0.18em] text-slate-300">
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-2 text-white max-[950px]:hidden">
+                  <div className="text-xs font-bold tracking-tight">ABH</div>
+                  <div className="mt-1 text-[9px] uppercase tracking-[0.16em] text-slate-300">
                     Agence du Bassin Hydraulique du Sebou
                   </div>
                 </div>
@@ -253,41 +209,18 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
                       }
                     >
                       <Icon className="h-4 w-4" />
-                      {!collapsed && <span>{item.label}</span>}
+                      {!collapsed && (
+                        <div className="flex min-w-0 flex-1 items-center justify-between gap-2">
+                          <span className="truncate">{item.label}</span>
+                          <StatusBadge status={item.status} className="shrink-0 text-[10px]" />
+                        </div>
+                      )}
                     </NavLink>
                   );
                 })}
               </nav>
             </div>
           ))}
-
-          <div>
-            {!collapsed && <p className="px-3 text-xs font-medium text-slate-500">Support</p>}
-            <nav className="mt-3 space-y-1">
-              {supportItems.map((item) => {
-                const Icon = item.icon;
-
-                return (
-                  <NavLink
-                    key={item.to}
-                    to={item.to}
-                    className={({ isActive }) =>
-                      [
-                        "flex items-center rounded-xl py-3 text-sm font-medium transition-colors",
-                        collapsed ? "justify-center px-2" : "gap-3 px-3",
-                        isActive
-                          ? "bg-slate-100 text-slate-900"
-                          : "text-slate-700 hover:bg-slate-50 hover:text-slate-900",
-                      ].join(" ")
-                    }
-                  >
-                    <Icon className="h-4 w-4" />
-                    {!collapsed && <span>{item.label}</span>}
-                  </NavLink>
-                );
-              })}
-            </nav>
-          </div>
         </div>
 
       </div>

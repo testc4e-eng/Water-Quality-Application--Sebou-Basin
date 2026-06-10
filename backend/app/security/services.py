@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
+import ipaddress
 import secrets
 from typing import Iterable
 
@@ -24,6 +25,10 @@ from app.security.jwt_service import create_access_token, create_refresh_token
 
 class SecurityError(Exception):
     pass
+
+
+RBAC_REAL = "RBAC_REAL"
+RBAC_SIMULATED = "RBAC_SIMULATED"
 
 
 def log_event(
@@ -50,6 +55,15 @@ def log_event(
     db.commit()
 
 
+def normalize_ip_address(ip_address: str | None) -> str | None:
+    if not ip_address:
+        return None
+    try:
+        return str(ipaddress.ip_address(ip_address))
+    except ValueError:
+        return None
+
+
 def get_role_by_code(db: Session, code: str) -> Role | None:
     return db.query(Role).filter(Role.code == code).first()
 
@@ -62,6 +76,28 @@ def get_permissions_for_role(db: Session, role_id: int) -> list[str]:
         .all()
     )
     return [r[0] for r in rows]
+
+
+def get_user_role(db: Session, user: SecurityUser) -> Role | None:
+    return db.query(Role).filter(Role.id == user.role_id).first()
+
+
+def get_user_role_code(db: Session, user: SecurityUser, default: str = "viewer") -> str:
+    role = get_user_role(db, user)
+    return role.code if role else default
+
+
+def get_user_permissions(db: Session, user: SecurityUser) -> list[str]:
+    if not user.role_id:
+        return []
+    return get_permissions_for_role(db, user.role_id)
+
+
+def is_superuser_role(role_code: str, permissions: Iterable[str] | None = None) -> bool:
+    normalized = role_code.upper()
+    if normalized in {"ADMIN", "ROLE_SYS_ADMIN"}:
+        return True
+    return "security.users.manage" in set(permissions or [])
 
 
 def create_user(
@@ -112,6 +148,7 @@ def authenticate_user(
     ip_address: str | None,
     user_agent: str | None,
 ) -> tuple[SecurityUser, str, str]:
+    safe_ip_address = normalize_ip_address(ip_address)
     user = (
         db.query(SecurityUser)
         .filter((SecurityUser.email == username_or_email) | (SecurityUser.username == username_or_email))
@@ -123,7 +160,7 @@ def authenticate_user(
             action="LOGIN_FAILED",
             status="FAIL",
             username_attempted=username_or_email,
-            ip_address=ip_address,
+            ip_address=safe_ip_address,
             user_agent=user_agent,
             details="Utilisateur introuvable",
         )
@@ -136,7 +173,7 @@ def authenticate_user(
             status="FAIL",
             user_id=user.id,
             username_attempted=username_or_email,
-            ip_address=ip_address,
+            ip_address=safe_ip_address,
             user_agent=user_agent,
             details="Compte désactivé",
         )
@@ -151,7 +188,7 @@ def authenticate_user(
             status="FAIL",
             user_id=user.id,
             username_attempted=username_or_email,
-            ip_address=ip_address,
+            ip_address=safe_ip_address,
             user_agent=user_agent,
             details="Mot de passe incorrect",
         )
@@ -159,7 +196,7 @@ def authenticate_user(
 
     user.failed_login_attempts = 0
     user.last_login_at = datetime.now(timezone.utc)
-    user.last_login_ip = ip_address
+    user.last_login_ip = safe_ip_address
     db.commit()
 
     role = get_role_by_code(db, "viewer")
@@ -185,7 +222,7 @@ def authenticate_user(
         status="SUCCESS",
         user_id=user.id,
         username_attempted=username_or_email,
-        ip_address=ip_address,
+        ip_address=safe_ip_address,
         user_agent=user_agent,
     )
 
@@ -196,7 +233,7 @@ def authenticate_user(
             status="SUCCESS",
             user_id=user.id,
             username_attempted=username_or_email,
-            ip_address=ip_address,
+            ip_address=safe_ip_address,
             user_agent=user_agent,
             details="Mot de passe temporaire / changement requis",
         )

@@ -7,7 +7,7 @@
 | Compilation Vite | OK | `npm run build` exécuté le 2026-05-13. |
 | Type-check global | BLOQUE_EXISTANT | `npx tsc --noEmit` échoue sur des erreurs legacy hors pilote. |
 | Route `/qualite/metaux` | A_VALIDER_NAVIGATEUR | Validation manuelle après démarrage Vite. |
-| Chargement API | A_VALIDER_BACKEND | Nécessite backend disponible sur `VITE_API_BASE_URL` ou `127.0.0.1:8011/api/v1`. |
+| Chargement API | A_VALIDER_BACKEND | Nécessite backend disponible sur `VITE_API_BASE_URL` ou `127.0.0.1:8000/api/v1` (`8011` obsolète). |
 | Filtres | A_VALIDER_NAVIGATEUR | Date, support, paramètre, QA, limite. |
 | Pagination | A_VALIDER_NAVIGATEUR | Boutons précédent/suivant. |
 | Graphique | A_VALIDER_NAVIGATEUR | Séries visibles si données disponibles. |

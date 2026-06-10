@@ -8,7 +8,8 @@ from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 
-EXCLUDED_PARAMETER_CODES = ("FM", "F_M_MES", "MO_METAL")
+EXCLUDED_PARAMETER_CODES = ("H_G", "PTD", "PTP", "MD", "FM", "F_M_MES", "MO_METAL")
+EXCLUDED_PARAMETER_CODES_SQL = ", ".join(f"'{code}'" for code in EXCLUDED_PARAMETER_CODES)
 
 
 @dataclass(frozen=True)
@@ -77,7 +78,7 @@ class ApiViewsRepository:
         safe_offset = max(offset, 0)
 
         where_clauses = [
-            "code_parametre NOT IN ('FM', 'F_M_MES', 'MO_METAL')",
+            f"code_parametre NOT IN ({EXCLUDED_PARAMETER_CODES_SQL})",
         ]
         params: dict[str, Any] = {
             "limit": safe_limit,

@@ -5,7 +5,7 @@
 | Hydro | avancé | validation hydraulique scientifique ciblée | X |  | socle exploitable ; usages avancés conditionnés |
 | Météo | avancé | complétude et validation métier minimale | X |  | température désormais intégrée, vigilance historique sur certains jeux |
 | Qualité | partiellement qualifié | D2 + D4 | X |  | go possible avec règles validées |
-| IDP | qualifié en partie | D1 |  | X | préproduction conditionnée par arbitrage spatial |
+| IDP | C1-B clôturé | D1 résiduel global | X |  | C1-B = COMPLETED_DEV_DB_CONFIRMED ; résiduel global gouverné hors chemin critique |
 | Cartographie | prête DEV/P0 | D1 + validation métier finale | X |  | go partiel possible hors cas IDP non validés |
 | API | stable en grande partie | dette legacy restante | X |  | vigilance sur certains segments legacy |
 | Dashboards | partiellement qualifiés | validation métier des écrans P0 | X |  | go conditionné selon périmètre retenu |

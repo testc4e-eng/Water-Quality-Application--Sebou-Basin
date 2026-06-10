@@ -20,7 +20,7 @@ SELECT count(*) FROM metadata.referentiel_parametre_canonique WHERE statut='ACTI
 ```
 
 ```sql
-SELECT count(*) FROM meteo.mesure_temperature; -- 0
+SELECT count(*) FROM meteo.mesure_temperature; -- 437889 (ingestion commitée le 2026-05-25, batch 2d67f599-7714-4712-ba1f-5f3584c4c961)
 SELECT count(*) FROM staging.raw_mesures_temperatures_jr; -- 0
 SELECT count(*) FROM meteo.mesure_evaporation WHERE valeur IS NULL; -- 10308
 SELECT count(*) FROM qualite.source_pollution_mesure_param WHERE valeur_num IS NULL; -- 3447

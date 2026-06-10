@@ -1,16 +1,18 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from app.security.deps import get_db, require_roles
+from app.security.deps import get_db, require_permissions
 from app.security.models import AuthLog, SecurityUser, ActivityLog
 router = APIRouter(prefix="/security", tags=["Security"])
+
+SECURITY_LOGS_PERMISSION = "security.logs.read"
 
 
 @router.get("/logs/auth")
 def list_auth_logs(
     limit: int = 200,
     db: Session = Depends(get_db),
-    _: SecurityUser = Depends(require_roles("admin")),
+    _: SecurityUser = Depends(require_permissions(SECURITY_LOGS_PERMISSION)),
 ):
     logs = (
         db.query(AuthLog)
@@ -28,7 +30,7 @@ def list_activity_logs(
     username: str | None = None,
     method: str | None = None,
     db: Session = Depends(get_db),
-    _: SecurityUser = Depends(require_roles("admin")),
+    _: SecurityUser = Depends(require_permissions(SECURITY_LOGS_PERMISSION)),
 ):
     limit = max(1, min(limit, 1000))
     offset = max(0, offset)

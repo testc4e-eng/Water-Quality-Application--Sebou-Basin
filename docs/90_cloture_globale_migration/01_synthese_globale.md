@@ -15,7 +15,7 @@ La base consolidee `abh_sad` est exploitable pour les domaines client deja migre
 | Hydro | `hydro.mesure_debit` | 652446 | `MIGRE_AVEC_BACKLOG_QA` |
 | Meteo | `meteo.mesure_precipitation` | 546007 | `MIGRE_OK` |
 | Meteo | `meteo.mesure_evaporation` | 48900 | `MIGRE_AVEC_BACKLOG_QA` |
-| Meteo | `meteo.mesure_temperature` | 0 | `DONNEE_NON_FOURNIE` |
+| Meteo | `meteo.mesure_temperature` | 437889 | `COMMITTED` |
 | Qualite | `qualite.mesure_qualite_riviere` | 59534 | `CLOTURE_C4E` |
 | Qualite | `qualite.mesure_qualite_nappe` | 63047 | `MIGRE_AVEC_LEGACY_IGNORE` |
 | Qualite | `qualite.mesure_qualite_barrage` | 7820 | `MIGRE_OK` |

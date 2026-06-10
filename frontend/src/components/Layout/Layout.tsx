@@ -18,8 +18,7 @@ const Layout = () => {
       path === "/dashboard-carto-metier" ||
       path === "/dashboard-qualite-reglementaire" ||
       path === "/dashboard-pollution" ||
-      path === "/analyses" ||
-      path === "/expert" ||
+      path === "/dashboard-data-qa" ||
       path === "/administration" ||
       path.startsWith("/admin/")
     );
@@ -27,7 +26,7 @@ const Layout = () => {
 
   useEffect(() => {
     const updateSidebarMode = () => {
-      setAutoCompactSidebar(window.innerWidth < 1400);
+      setAutoCompactSidebar(window.innerWidth < 1400 || window.innerHeight < 900);
     };
 
     updateSidebarMode();
@@ -43,7 +42,7 @@ const Layout = () => {
       <div
         className={[
           "flex min-h-screen min-w-0 flex-1 flex-col",
-          effectiveSidebarCollapsed ? "lg:pl-20" : "lg:pl-60",
+          effectiveSidebarCollapsed ? "lg:pl-[56px]" : "lg:pl-[188px]",
         ].join(" ")}
       >
         <Header

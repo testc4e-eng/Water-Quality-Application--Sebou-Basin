@@ -1,0 +1,2 @@
+code_station,nom,type_station,altitude_m,date_mise_service,geom_wkt,srid
+CODX-INFRA-20260605-BAD,Station Geom Invalide,pluviometrique,812.5,2026-06-05,"POINT(",4326

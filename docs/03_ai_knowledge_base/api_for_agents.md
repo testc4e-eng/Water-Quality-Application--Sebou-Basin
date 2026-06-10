@@ -7,7 +7,7 @@
 | Périmètre | synthèse agent de l'API FastAPI réellement observée |
 | Source de vérité | Non, résumé contrôlé |
 | Documents liés | [../00_SOURCE_OF_TRUTH_MASTER.md](../00_SOURCE_OF_TRUTH_MASTER.md), [../01_project_reference/backend/backend_overview.md](../01_project_reference/backend/backend_overview.md), [../01_project_reference/backend/api_contracts.md](../01_project_reference/backend/api_contracts.md) |
-| Dernière mise à jour | 2026-05-08 |
+| Dernière mise à jour | 2026-06-05 |
 
 ## Base
 
@@ -45,6 +45,7 @@ Attention : ces groupes existent côté montage FastAPI, mais une partie d’ent
 - `/api/v1/admin/password-reset-requests/*`
 - `/api/v1/admin/users/*`
 - `/api/v1/raw/*`
+- `/api/v1/data-admin/*`
 
 ### Dashboards métier
 
@@ -63,6 +64,111 @@ Attention : ces groupes existent côté montage FastAPI, mais une partie d’ent
 
 - `/api/v1/swat/*`
 - `/api/v1/ingestion/*`
+
+## Module 114 — data-admin
+
+Mise a jour du 2026-06-05 :
+
+| Endpoint | Role | Statut |
+|---|---|---|
+| `GET /api/v1/data-admin/classes` | liste des classes enregistrees | `ACTIVE` |
+| `GET /api/v1/data-admin/classes/{class_code}` | detail d'une classe | `ACTIVE` |
+| `GET /api/v1/data-admin/classes/{class_code}/schema` | schema de lecture de la classe | `ACTIVE` |
+| `GET /api/v1/data-admin/classes/{class_code}/count` | compteur runtime de la source | `ACTIVE` |
+| `GET /api/v1/data-admin/classes/{class_code}/records` | pagination lecture seule | `ACTIVE` |
+| `GET /api/v1/data-admin/classes/{class_code}/template/spec` | specification JSON du canevas metier | `ACTIVE` |
+| `POST /api/v1/data-admin/classes/{class_code}/template/generate` | generation du canevas `.xlsx` ou `.csv` | `ACTIVE` |
+| `POST /api/v1/data-admin/classes/{class_code}/ingestion/upload` | upload, validation et staging sans promotion | `ACTIVE_MVP2C` |
+| `GET /api/v1/data-admin/ingestion/runs` | historique des runs d'ingestion | `ACTIVE_MVP2C` |
+| `GET /api/v1/data-admin/ingestion/runs/{run_id}` | detail d'un run | `ACTIVE_MVP2C` |
+| `GET /api/v1/data-admin/ingestion/runs/{run_id}/errors` | erreurs de validation d'un run | `ACTIVE_MVP2C` |
+| `GET /api/v1/data-admin/ingestion/runs/{run_id}/staging-preview` | apercu des lignes stagees | `ACTIVE_MVP2C` |
+| `GET /api/v1/data-admin/validation-rules` | inventaire global des regles dynamiques | `ACTIVE_MVP2D` |
+| `GET /api/v1/data-admin/classes/{class_code}/validation-rules` | regles dynamiques appliquees par classe | `ACTIVE_MVP2D` |
+| `POST /api/v1/data-admin/ingestion/runs/{run_id}/change-request` | creation d'une demande de promotion | `ACTIVE_MVP3` |
+| `GET /api/v1/data-admin/change-requests` | liste des demandes de promotion | `ACTIVE_MVP3` |
+| `GET /api/v1/data-admin/change-requests/{change_request_id}` | detail d'une demande | `ACTIVE_MVP3` |
+| `POST /api/v1/data-admin/change-requests/{change_request_id}/submit` | soumission de la demande | `ACTIVE_MVP3` |
+| `POST /api/v1/data-admin/change-requests/{change_request_id}/approve` | approbation de la demande | `ACTIVE_MVP3` |
+| `POST /api/v1/data-admin/change-requests/{change_request_id}/reject` | rejet de la demande | `ACTIVE_MVP3` |
+| `POST /api/v1/data-admin/change-requests/{change_request_id}/apply` | application `INSERT_ONLY` controlee | `ACTIVE_MVP3` |
+| `GET /api/v1/data-admin/change-requests/{change_request_id}/audit-log` | trace create/submit/approve/apply | `ACTIVE_MVP3` |
+
+Regles :
+
+- aucune ecriture dans les tables metier ;
+- `template/generate` ne fait que produire un fichier, sans upload ni staging ;
+- `data_admin.field_registry` est la source prioritaire des champs sur les classes MVP2 ;
+- l'ingestion est maintenant active pour `HYDRO_DEBIT`, `METEO_PRECIPITATION`, `QUALITE_RIVIERE`, `INFRA_STATION`, `POLLUTION_SITE` ;
+- le flux s'arrete a `upload -> validation -> staging` ;
+- si une erreur bloquante existe, le run est persisté en `VALIDATION_FAILED` avec erreurs, sans insertion en staging ;
+- la validation dynamique ajoute des erreurs/warnings `GEOSPATIAL`, `REFERENTIAL`, `DUPLICATE` et `TEMPORAL` dans `data_admin.ingestion_validation_error` ;
+- `error_scope` permet au frontend de distinguer erreurs structurelles, métier, géospatiales, référentielles et doublons potentiels ;
+- `MVP3` autorise une promotion controlee `INSERT_ONLY` pour `HYDRO_DEBIT`, `METEO_PRECIPITATION`, `QUALITE_RIVIERE`, `INFRA_STATION`, `POLLUTION_SITE` ;
+- aucune promotion automatique n'est autorisee ;
+- les runs `VALIDATION_FAILED` ne peuvent jamais creer de change request ;
+- les lignes `INVALID` ne deviennent jamais des `change_request_item` ;
+- un warning doublon peut etre soumis et approuve, mais l'`apply` echoue proprement si la ligne existe deja en cible ;
+- `MVP4` protege maintenant les routes `data-admin` par permissions reelles lues depuis `security.role_permissions` ;
+- mode courant : `RBAC_REAL` ;
+- roles cibles de demonstration :
+  - `ROLE_DECIDEUR`
+  - `ROLE_EXPERT`
+  - `ROLE_CONSULTANT`
+  - `ROLE_DATA_ADMIN`
+  - `ROLE_SYS_ADMIN`
+  - `ROLE_AI_AGENT`
+- regles principales :
+  - `ROLE_DECIDEUR` : lecture seulement ;
+  - `ROLE_EXPERT` : approbation possible, `apply` interdit ;
+  - `ROLE_CONSULTANT` : upload/create/submit sans approbation ;
+  - `ROLE_DATA_ADMIN` : apply et rollback autorises ;
+  - `ROLE_SYS_ADMIN` : data-admin complet + gestion utilisateurs ;
+  - `ROLE_AI_AGENT` : audit/canevas/upload/soumission sans approbation ;
+- les acteurs HTTP traces cote backend sont `user:{id}:{email}` ;
+- erreurs de transition attendues :
+  - `CHANGE_REQUEST_NOT_APPROVED`
+  - `CHANGE_REQUEST_ALREADY_APPLIED`
+  - `CHANGE_REQUEST_REJECTED`
+  - `INVALID_CHANGE_REQUEST_TRANSITION`
+- erreurs de promotion attendues :
+  - `PROMOTION_INSERT_WOULD_DUPLICATE_EXISTING_ROW`
+  - `PROMOTION_TARGET_TABLE_UNAVAILABLE`
+  - `PROMOTION_TARGET_COLUMN_INVALID`
+  - `PROMOTION_MAPPING_MISSING_COLUMN`
+  - `PROMOTION_ITEM_FAILED`
+  - `PROMOTION_TRANSACTION_ROLLED_BACK`
+- endpoints rollback actifs :
+  - `POST /api/v1/data-admin/change-requests/{change_request_id}/rollback/prepare`
+  - `POST /api/v1/data-admin/change-requests/{change_request_id}/rollback/request`
+  - `POST /api/v1/data-admin/change-requests/{change_request_id}/rollback/approve`
+  - `POST /api/v1/data-admin/change-requests/{change_request_id}/rollback/apply`
+  - `GET /api/v1/data-admin/change-requests/{change_request_id}/rollback/status`
+- regles rollback :
+  - `INSERT_ONLY` uniquement ;
+  - `request_status` source doit etre `APPLIED` ;
+  - `rollback_available = true` ;
+  - `rollback_status` suit `NOT_PREPARED -> READY -> REQUESTED -> APPROVED -> APPLIED/FAILED`
+- erreurs rollback attendues :
+  - `ROLLBACK_NOT_AVAILABLE`
+  - `ROLLBACK_NOT_APPROVED`
+  - `ROLLBACK_TARGET_NOT_FOUND`
+  - `ROLLBACK_TARGET_NOT_UNIQUE`
+  - `ROLLBACK_ALREADY_APPLIED`
+  - `ROLLBACK_REQUEST_NOT_APPLIED`
+  - `ROLLBACK_TRANSACTION_FAILED`
+- extension `MVP3-D` :
+  - `INFRA_STATION` accepte `geom_wkt` + `srid`, transforme vers `infra.stations_mesure.geom` en `4326` ;
+  - `POLLUTION_SITE` accepte `geom_wkt` + `srid`, transforme vers `geo.ref_site_pollution.geom` en `26191` et `geom_4326` en `4326` ;
+  - les erreurs geospatiales attendues incluent :
+    - `GEOM_WKT_VALID`
+    - `GEOM_SRID_ALLOWED`
+    - `GEOM_NOT_EMPTY`
+    - `GEOM_WITHIN_MOROCCO_BOUNDS`
+    - `POLLUTION_GEOMETRY_DUPLICATE_WARNING`
+  - garde pollution :
+    - `site_code LIKE 'IDP-C1B-%'` refuse
+    - aucune ecriture dans `geo.ref_site_pollution_source_link`
 
 ### SWAT analysis
 
@@ -286,6 +392,7 @@ Mise à jour du 2026-06-04 :
 - valeur par défaut : `120 s`, désactivation avec `0` ;
 - le contrat JSON HTTP reste inchangé ;
 - le cache ne masque pas `status=partial` et n’enregistre pas d’exception.
+- `app.main` lance aussi un prewarm asynchrone du cache Home au startup via `ClimateSessionLocal` pour réduire le coût du premier affichage.
 
 ## Pollution IDP DEV
 
@@ -333,7 +440,7 @@ Mise a jour Phase 6 du 2026-05-18 :
 - Les alias P0 `NH4+`, `NH4+ Spect`, `NH4+ Titri`, `NO3-`, `NO3-_Spectro` et `MEST Filtr` sont mappes en DEV via `metadata.mapping_parametre_source`.
 - Les filtres API acceptent `NO3` et le resolvent vers le code canonique existant `NO3-`.
 - La route frontend isolee `/pollution-idp-dev` consomme `GET /api/v1/pollution/sites.geojson`.
-- Statut : `GO_DEV_DEMO`, `NOGO_PREPROD` avant arbitrage spatial.
+- Statut : `C1B_CLOSED__GLOBAL_RESIDUAL_OPEN`.
 
 Mise a jour du 2026-05-19 :
 
@@ -359,7 +466,8 @@ Règles agents :
 
 - vérifier `docs/90_reorganisation_documentaire_finale/09_ecarts_documentation_vs_dashboards.md` avant de considérer un endpoint comme officiellement connecté ;
 - garder la distinction `/api/v1/quality` legacy et `/api/v1/qualite` P0 ;
-- considérer `/api/v1/pollution/*` et `/api/v1/map/*` comme DEV/P0 tant que les arbitrages IDP ne sont pas validés ;
+- considérer `/api/v1/pollution/*` et `/api/v1/map/*` comme DEV/P0 avec `C1-B` clos mais backlog global IDP encore gouverné séparément ;
+- exclure de tout usage opérationnel les objets `WAIT_SOURCE_FIX` et ne jamais les réintroduire via frontend, KPI, analytics, propagation, scénarios ou datasets ML ;
 - ne pas promouvoir SWAT analysis ou ingestion API comme obligatoires : ces modules peuvent être optionnels au runtime ;
 - toute référence API basée sur `public.*` doit être traitée comme legacy ou dette à corriger.
 

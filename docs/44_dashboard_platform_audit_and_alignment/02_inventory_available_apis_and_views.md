@@ -8,7 +8,7 @@
 | `GET /api/v1/map/catalog` | OK | Catalogue métier P0 disponible |
 | `GET /api/v1/map/entities?group_code=stations&support_code=barrage&limit=5` | OK | GeoJSON barrages disponible |
 | `GET /api/v1/pollution/sites.geojson?parameter_code=DBO5&limit=5` | OK | Classification réglementaire intégrée |
-| `GET /health` sur `127.0.0.1:8011` | non accessible | Port 8011 non démarré au moment de l’audit |
+| `GET /health` sur `127.0.0.1:8000` | HTTP 200 | Backend DEV actif sur le port officiel |
 
 ## Objets DB critiques
 | API/Vue/Table | Rôle | Données | Statut | Dashboard cible |

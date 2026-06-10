@@ -1,0 +1,3 @@
+station_id,temps,valeur,est_valide
+,2026-06-01T08:00:00Z,-1,true
+2cfef513-1111-4aa2-9555-111111111111,not-a-date,abc,maybe

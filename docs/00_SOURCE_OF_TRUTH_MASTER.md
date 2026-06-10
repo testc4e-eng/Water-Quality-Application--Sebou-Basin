@@ -7,7 +7,7 @@
 | Perimetre | vue consolidee et verifiee du projet WQDSS : architecture, DB, API, frontend, lots et blocages |
 | Source de verite | Oui |
 | Documents lies | [SOURCE_OF_TRUTH](./01_project_reference/SOURCE_OF_TRUTH.md), [DOCUMENT_MAP](./01_project_reference/DOCUMENT_MAP.md), [30_audit_incoherences_global](./12_historique_et_archives/root_legacy/30_audit_incoherences_global.md) |
-| Derniere mise a jour | 2026-05-22 |
+| Derniere mise a jour | 2026-06-04 |
 
 ## 1. Finalite
 
@@ -40,33 +40,35 @@ La regle de precedence est simple :
 - dashboards cartographiques et analytiques ;
 - observatoire et hierarchies metier ;
 - administration utilisateurs, audit, password reset, data-scan ;
-- ingestion et QA SWAT/WASP ;
+- contrats d'integration futurs SWAT/WASP et consommation sandbox legacy ;
 - couches SIG et configuration de couches ;
 - data viewer CRUD generique ;
 - scenarios et resultats WASP/SWAT.
 
 ## 3. Base reelle `abh_sad`
 
-### Schemas applicatifs verifies le 2026-04-17
+### Schemas applicatifs verifies le 2026-06-04
 
 | Schema | Tables | Vues | Vues materialisees |
 |---|---:|---:|---:|
 | `admin` | 5 | 0 | 0 |
 | `analytics` | 0 | 0 | 3 |
 | `api` | 0 | 52 | 25 |
-| `audit` | 1 | 0 | 0 |
-| `geo` | 13 | 0 | 0 |
-| `hydro` | 7 | 0 | 0 |
+| `audit` | 17 | 0 | 0 |
+| `geo` | 18 | 2 | 0 |
+| `geo_work` | 26 | 1 | 0 |
+| `hydro` | 8 | 0 | 0 |
 | `infra` | 22 | 0 | 0 |
-| `metadata` | 37 | 2 | 3 |
+| `metadata` | 52 | 2 | 3 |
 | `meteo` | 5 | 0 | 0 |
 | `modeles` | 3 | 0 | 0 |
 | `monitoring` | 3 | 0 | 0 |
-| `public` | 1 | 2 | 0 |
-| `qa` | 1 | 0 | 0 |
-| `qualite` | 8 | 0 | 0 |
+| `public` | 1 | 4 | 0 |
+| `qa` | 9 | 0 | 0 |
+| `qa_dry_run` | 7 | 0 | 0 |
+| `qualite` | 9 | 0 | 0 |
 | `security` | 11 | 0 | 0 |
-| `staging` | 35 | 0 | 0 |
+| `staging` | 51 | 1 | 0 |
 | `swat_output` | 8 | 0 | 0 |
 | `swat_sebou` | 4 | 0 | 0 |
 | `wasp_output` | 5 | 0 | 0 |
@@ -77,20 +79,22 @@ La regle de precedence est simple :
 | Objet | Cardinalite exacte |
 |---|---:|
 | `infra.stations_mesure` | 390 |
-| `infra.barrages` | 34 |
-| `hydro.mesure_debit` | 521433 |
+| `infra.barrages` | 33 |
+| `hydro.mesure_debit` | 652446 |
 | `hydro.mesure_debit_mensuel` | 19316 |
+| `hydro.mesure_barrage_param` | 272652 |
 | `meteo.mesure_precipitation` | 546007 |
 | `meteo.mesure_evaporation` | 48900 |
-| `meteo.mesure_temperature` | 0 |
-| `qualite.mesure_qualite_riviere` | 60097 |
-| `qualite.mesure_qualite_nappe` | 63088 |
-| `qualite.mesure_qualite_barrage` | 15808 |
-| `qualite.mesure_qualite_sebou` | 51402 |
-| `qualite.suivi_qualite_barrage_garde_hebdo` | 7094 |
+| `meteo.mesure_temperature` | 437889 |
+| `qualite.mesure_qualite_riviere` | 59534 |
+| `qualite.mesure_qualite_nappe` | 63047 |
+| `qualite.mesure_qualite_barrage` | 7820 |
+| `qualite.mesure_qualite_sebou` | 49954 |
+| `qualite.suivi_qualite_barrage_garde_hebdo` | 1780 |
 | `qualite.source_pollution_prelevement` | 141 |
 | `qualite.source_pollution_mesure_param` | 7191 |
-| `security.activity_logs` | 74935 |
+| `geo.ref_site_pollution` | 2026 |
+| `security.activity_logs` | 87346 |
 | `wasp_sebou.wasp_results` | 931770 |
 
 ### Fait critique
@@ -127,15 +131,15 @@ Les objets suivants ne sont pas presents dans `abh_sad` et ne doivent plus etre 
 | Quality | `/api/v1/quality/*` | legacy / a verifier |
 | Observatory | `/api/v1/observatory/*` | stable |
 | Analytics | `/api/v1/analytics/*` | stable |
-| SWAT / WASP | `/api/v1/swat/*` | stable |
+| SWAT / WASP | `/api/v1/swat/*` | sandbox legacy / non decisionnel |
 | Ingestion | `/api/v1/ingestion/*` | stable |
 
 ### Zones API a risque
 
-- `app.routers.quality` requete encore `public.mesures_qualite_rivieres`, absent de `abh_sad`.
-- `app.routers.entities` expose des routes barrage/alertes basees sur `public.stations_abhs` et `public.barrages_abhs`, absents de `abh_sad`.
-- `app.api.v1.stations` et `app.api.v1.measurements` restent partiellement configures via `TBL_* = public.*` dans `backend/.env`.
-- `app.api.v1.swat_analysis.py` declare `prefix="/api/v1/swat/analysis"` et est inclus sous `/api/v1` ; le chemin final est donc a normaliser avant de le considerer comme contrat stable.
+- le routeur principal monte (`backend/app/api/api_v1.py`) n'expose pas de dependance runtime critique a `public.*` ;
+- plusieurs routeurs legacy non montes dans `backend/app/routers/*` ciblent encore `public.*` et doivent etre purges ;
+- `app.api.v1.stations` et `app.api.v1.measurements` resolvent maintenant `api.v_station_dimension`, `hydro.mesure_debit`, `meteo.mesure_temperature` et `qualite.mesure_qualite_riviere`.
+- `app.api.v1.swat_analysis.py` reste optionnel via `SAD_ENABLE_SWAT_ANALYSIS` et ne fait pas partie du chemin critique court vers la preproduction.
 
 ### Regle documentaire
 
@@ -167,10 +171,47 @@ Pour l'API deployee reelle, ce document et `backend_overview.md` font foi.
 
 ### Faits critiques frontend
 
-- `frontend/src/api/client.ts` utilise encore `127.0.0.1:8000/api/v1` comme fallback, alors que la documentation de lancement normalise `8011`.
-- `frontend/src/api/climate.ts` hardcode `http://localhost:8000/api/v1/climate` au lieu d'utiliser `BASE_URL`.
+- la source de verite frontend pour l'URL backend est `frontend/src/config/api.ts` ;
+- la variable d'environnement cible est `VITE_API_BASE_URL` ;
+- le fallback runtime unique est `http://127.0.0.1:8000/api/v1` ;
+- `frontend/src/api/client.ts` et `frontend/src/lib/api.ts` sont maintenant aligns sur cette base unique ;
 - les composants qualite consomment `/quality/*`, famille actuellement legacy cote backend ;
 - le client SWAT analysis consomme `/swat/analysis/compare`, alors que le backend doit etre normalise sur ce prefixe avant d'etre considere stable.
+
+## 5ter. Nouveau chantier prioritaire 2026-06-05
+
+- le nouveau centre de gravite operationnel devient le `Module Administration & Ingestion Metier des Donnees` ;
+- le dossier de cadrage actif est `docs/114_data_admin_ingestion/` ;
+- le module doit industrialiser l'audit lecture seule, l'ingestion, les canevas, les validations, les changements controles et la preparation temps reel ;
+- le `data viewer` `/data` reste un outil expert secondaire et ne doit pas etre promu comme canal officiel de modification metier ;
+- l'existant reutilisable immediate est :
+  - `/api/v1/admin/data-availability` ;
+  - `/api/v1/ingestion/*` ;
+  - `audit.ingestion_audit_logs` ;
+  - les pages frontend `/admin/data-scan` et `/admin/ingestion` ;
+- le module 114 doit remplacer progressivement les corrections SQL manuelles, imports non traces et scripts ponctuels par un workflow gouverne.
+
+## 5bis. Rebaselining chemin critique 2026-06-04
+
+Decision de gouvernance basee prioritairement sur code + BD :
+
+- `IDP` sort du chemin critique avec statut `CLOSED_WITH_GOVERNED_BACKLOG` ;
+- `SWAT` et `WASP` ne sont plus des blocages techniques internes ;
+- `SWAT` et `WASP` deviennent des dependances metier externes a integrer par contrat apres validation scientifique ;
+- les anciens routeurs backend cibles `public.*` non montes ont ete places en quarantaine dans `backend/app/routers_legacy_public/` ;
+- le chemin critique plateforme devient :
+  1. purge des dependances `public.*` encore presentes dans le code legacy ;
+  2. qualification PREPROD backend/frontend/API/DB ;
+  3. consolidation du referentiel reglementaire `C3` ;
+  4. preparation des contrats d'integration SWAT/WASP ;
+  5. preparation du socle IA/ML.
+
+Documents de preuve associes :
+
+- `docs/111_cloture_officielle_IDP/01_decision_cloture_IDP.md`
+- `docs/112_c3_referentiel_reglementaire_final/05_decision_go_nogo_c3.md`
+- `docs/113_preproduction_readiness/01_public_schema_dependency_report.md`
+- `docs/113_preproduction_readiness/02_preprod_readiness_report.md`
 
 ## 6. Statut reel des lots
 
@@ -185,7 +226,7 @@ Taxonomie de statut appliquee : `SYNCED`, `SYNCED_WITH_QA_FLAGS`, `BLOCKED_BY_BU
 | Lot 4A-1 Dictionnaire qualite | `BLOCKED_BY_MAPPING` | `N/A` | `MAJEURE` | `Metier` : arbitrer les alias ; `Data` : figer le mapping parametrique final | le socle dictionnaire reste bloque par 9 groupes d'alias a arbitrer, impactant deja 3751 lignes gelees en aval sur le lot 4A-2 | `12_lot4a1b_*`, `16_*`, `17_*` | arbitrages sur 9 groupes d'alias ambigus et validation du mapping parametrique final | passer a `READY_FOR_INGESTION` lorsque le dictionnaire de mapping est fige et valide |
 | Lot 4A-2 Rivieres / nappes | `SYNCED_WITH_QA_FLAGS` | `NEGATIVE_VALUE` (2 lignes), `PARAM_UNMAPPED` (3751 lignes) | `MAJEURE` | `Data` : traiter les 27 mutations ; `Metier` : valider ou resorber les 3751 cas `PARAM_UNMAPPED` | dry-run abouti mais presence de mutations residuelles et de `qa_flag_param_unmapped` encore assumes en QA | `12_lot4a_qualite_*`, `14_lot4a2_*` | traitement des 27 mutations restantes et resolution des flags parametres non mappes | passer a `SYNCED` lorsque les flags QA sont leves ou explicitement acceptes |
 | Lot 4A-3 Barrages / Garde | `BLOCKED_BY_BUSINESS` | `PARAM_UNMAPPED` (251 lignes), `STATION_INFERRED` (3515 lignes sur Garde Sebou) | `CRITIQUE` | `Metier` : trancher l'overwrite ; `Data` : preparer l'application ou l'abandon des 609 updates ; `Backend` : conserver la compatibilite analytique tant que la decision n'est pas prise | la chaine technique existe mais la decision metier d'overwrite des 609 updates n'est pas tranchee | `12_lot4a3_*`, `14_lot4a3_*` | arbitrage metier sur la politique d'overwrite des 609 updates et validation associee | passer a `READY_FOR_INGESTION` lorsque la regle metier de mise a jour est approuvee |
-| Lot 4A-4 IDP | `BLOCKED_BY_INFRA` | `NULL_VALUE`, `MISSING_SOURCE`, `ORPHAN_INFRA_REJET_REFERENCE` | `CRITIQUE` | `Client` : decider la topographie cible ; `SIG` : definir le support geospatial ; `Data` : formaliser la cle de fusion ; `Backend` : preparer la chaine d'ingestion et d'exposition IDP | audit disponible mais impossibilite de lancer un dry-run final tant que 2 decisions d'infrastructure logique ne sont pas stabilisees sur 8508 mesures qualite et 391 lignes source pollution | `12_lot4a4_*`, `18_*`, `19_*` | topographie des rejets, logique de fusion 2024 et preconditions d'execution du dry-run final | passer a `READY_FOR_INGESTION` lorsque l'infrastructure logique de rejet est stabilisee et le dry-run final executable |
+| Lot 4A-4 IDP | `C1B_CLOSED__GLOBAL_RESIDUAL_OPEN` | `WAIT_SOURCE_FIX`, `DUPLICATE_EXACT`, `POSSIBLE_MATCH` | `CRITIQUE` | `Data` : separer le lot ferme du backlog global ; `Client` : corriger les sources sans geometrie ; `Backend` : maintenir l'exclusion operationnelle des objets hors perimetre | `C1-B` est cloture en DEV avec decisions chargees, sites crees et liens source -> site materialises ; le residuel global restant est soit technique, soit client, soit hors perimetre de cloture C1-B | `docs/04_etat_avancement/01_note_cloture_c1_idp_2026_06_04.md` | consolidation des doublons exacts, revue des `POSSIBLE_MATCH`, traitement client des `WAIT_SOURCE_FIX` | passer a `READY_FOR_INGESTION` lorsque le backlog global non C1-B est gouverne sans reouvrir le lot ferme |
 
 ### ETAT GLOBAL PROJET
 
@@ -195,7 +236,8 @@ Taxonomie de statut appliquee : `SYNCED`, `SYNCED_WITH_QA_FLAGS`, `BLOCKED_BY_BU
 | `SYNCED_WITH_QA_FLAGS` | 2 |
 | `BLOCKED_BY_BUSINESS` | 1 |
 | `BLOCKED_BY_MAPPING` | 1 |
-| `BLOCKED_BY_INFRA` | 1 |
+| `BLOCKED_BY_INFRA` | 0 |
+| `C1B_CLOSED__GLOBAL_RESIDUAL_OPEN` | 1 |
 | `LEGACY_COMPAT_REQUIRED` | 0 |
 | `READY_FOR_INGESTION` | 0 |
 | `DO_NOT_INGEST` | 0 |
@@ -223,29 +265,30 @@ Taxonomie de statut appliquee : `SYNCED`, `SYNCED_WITH_QA_FLAGS`, `BLOCKED_BY_BU
 
 ### Lot 4A-4 - DECISION REQUISE
 
-- Trancher les 2 decisions structurantes ouvertes :
-  1. les points de prelevement IDP existent-ils deja dans `infra.rejet_*` ou faut-il les creer ;
-  2. les 4 tables 2024 (`globale` vs `marche_cadre`, qualite vs source pollution) sont-elles a fusionner, dedoublonner ou conserver comme couches distinctes.
+- Ne pas reouvrir `C1-B`, considere clos en DEV.
+- Gouverner le residuel global dans 3 chantiers distincts :
+  1. `IDP_DUPLICATE_CONSOLIDATION` pour `14239` `DUPLICATE_EXACT` ;
+  2. `IDP_POSSIBLE_MATCH_REVIEW` pour `124` `POSSIBLE_MATCH` ;
+  3. `CLIENT_REQUIRED_DATA_FIX` pour `488` `WAIT_SOURCE_FIX` sans geometrie.
 - PRIORITE : `CRITIQUE`.
-- ACTION_REQUISE : `Client` + `SIG` + `Data` doivent fixer la topographie cible, la cle de fusion et la strategie de dedoublonnage avant tout dry-run.
-- Detail des `5618` conflits IDP :
-  - `3067` conflits de doublons metier sur `mesures_idp_2024_qualite_globale` pour la cle (`code_commune`, `date_jr_prelevement`, `parametre_qualite`)
-  - `2297` conflits de doublons metier sur `mesures_idp_2024_qualite_marche_cadre` pour la meme cle
-  - `139` conflits de doublons metier sur `mesures_idp_2024_src_pollution_globale` pour la cle (`code_commune`, `date_jr_prelevement`, `parametre`)
-  - `115` conflits de doublons metier sur `mesures_idp_2024_src_pollution_marche_cadre` pour la meme cle
-  - soit `5618` anomalies de duplication/fragmentation semantique a resoudre avant ingestion fiable
+- ACTION_REQUISE :
+  - `Data` : isoler le backlog global du lot ferme ;
+  - `Client` : corriger les objets sans geometrie ;
+  - `Backend` : maintenir l'exclusion runtime des objets `WAIT_SOURCE_FIX`.
+- Decision de gouvernance : le residuel global IDP ne bloque plus la preproduction du perimetre `C1-B`.
 
 ### Lot 4A-4 - IMPACT SI NON TRAITE
 
-- le dry-run final reste impossible sur `8508` mesures qualite IDP et `391` lignes source pollution ;
-- le rattachement topographique de `434` rejets infra existants ne peut pas etre fiabilise ;
-- le flux conserve un risque de `WOULD_CONFLICT` massif par identite spatiale orpheline et de duplication semantique sur `5618` conflits metier detectes dans l'audit IDP 2024.
+- le lot `C1-B` ne doit pas etre requalifie a tort comme ouvert ;
+- les `14239` doublons exacts continueront de polluer les tables QA et les analyses internes ;
+- les `124` `POSSIBLE_MATCH` resteront non qualifies metier ;
+- les `488` `WAIT_SOURCE_FIX` resteront non arbitrables sans correction source client.
 
 ### RISQUES PROJET
 
 | Risque | PRIORITE | Impact | Action requise |
 |---|---|---|---|
-| Blocage IDP Lot 4A-4 non tranche | `CRITIQUE` | empeche tout dry-run final et toute fiabilisation du flux pollution ponctuelle | `Client` + `SIG` + `Data` : trancher la topographie cible, la cle de fusion et la logique de dedoublonnage |
+| Residuel global IDP mal gouverne apres cloture C1-B | `CRITIQUE` | risque de reouvrir artificiellement un lot ferme et de contaminer les indicateurs QA/analytics | `Data` + `Backend` + `Client` : separer `C1-B` ferme du backlog `IDP_DUPLICATE_CONSOLIDATION` / `IDP_POSSIBLE_MATCH_REVIEW` / `CLIENT_REQUIRED_DATA_FIX` |
 | Arbitrage metier absent sur Lot 4A-3 | `CRITIQUE` | bloque l'application ou l'abandon de `609` updates et laisse `251` lignes hors analytique | `Metier` + `Data` : valider la politique d'overwrite et le traitement des `PARAM_UNMAPPED` |
 | Dette backend legacy sur references absentes | `MAJEURE` | maintient un risque de divergence entre documentation, DB reelle et API exposee | `Backend` + `Data` : purger les references `public.*`, fiabiliser les routeurs `quality`, `entities`, `stations`, `measurements` |
 
@@ -254,15 +297,16 @@ Taxonomie de statut appliquee : `SYNCED`, `SYNCED_WITH_QA_FLAGS`, `BLOCKED_BY_BU
 ### Metier / client
 
 - arbitrage chimique sur `H_G`, `sat`, `PTD`, `PTP`, `RS105`, `RS185`, `F_M_mes`, `IP(mgO2/l)` ;
-- decision client sur la topographie / creation des rejets IDP ;
-- decision client sur la fragmentation IDP 2024 (`globale` vs `marche cadre`).
+- correction client des sources IDP sans geometrie (`WAIT_SOURCE_FIX`) hors chemin critique plateforme ;
+- validation de la trajectoire de traitement du backlog `POSSIBLE_MATCH`.
 
 ### Interne technique
 
 - politique d'overwrite a figer pour les `609` updates barrages ;
-- normalisation des segments backend encore relies a `public.*` absent ;
-- normalisation du prefixe SWAT analysis ;
-- unification de la configuration frontend backend (`8000` vs `8011`).
+- purge des segments backend legacy encore relies a `public.*` absent ;
+- maintien en quarantaine de `backend/app/routers_legacy_public/` tant qu'aucun audit de reactivation n'est decide ;
+- stabilisation front/back PREPROD avant livraison scientifique SWAT/WASP ;
+- unification de la configuration frontend backend (port `8000` normalisé, `8011` obsolète).
 
 ## 8. Pipeline SAD Sebou - Gouvernance scientifique, Model Build et IA
 
@@ -409,8 +453,8 @@ Roadmap Graph :
 | Model Build | specifie |
 | Feature Store | specifie |
 | Graph readiness | preparation avancee |
-| SWAT industrialisation | en cours, depend Reda |
-| WASP industrialisation | en cours, depend Anas |
+| SWAT industrialisation | dependance metier externe, depend Reda |
+| WASP industrialisation | dependance metier externe, depend Anas |
 | ML readiness | bonne |
 | Deep Learning readiness | limitee |
 | Graph AI readiness | preparation |

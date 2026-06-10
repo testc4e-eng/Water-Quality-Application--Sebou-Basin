@@ -11,7 +11,7 @@ Cette reclassification acte que les sujets ci-dessous ne relèvent plus de la mi
 | Sujet | Ancien statut | Nouveau statut | Justification | Action |
 |---|---|---|---|---|
 | Evaporation nulles | `QA_WARNING` | `QA_ACCEPTED_SOURCE_GAP` | donnees client, aucune interpolation validee, non bloquant | conserver nulls, filtrer/afficher warning |
-| Temperature absente | `DONNEE_NON_FOURNIE` | `PIPELINE_TO_IMPLEMENT` | fichier temperature maintenant disponible, pipeline a construire | chantier ingestion meteo |
+| Temperature | `DONNEE_NON_FOURNIE` → **RÉSOLU** | `COMMITTED` | ingestion exécutée le 2026-05-25 (437 889 lignes, 36 stations) | maintenance et QA continue |
 | Nappes non resolues | `CLIENT_REQUIRED` | `OPTIONAL_GEO_ENRICHMENT` | donnees exploitables sans rattachement complet | enrichissement spatial progressif |
 | Profils nappe | `CLIENT_REQUIRED` | `CONSULTATION_ONLY` | faible usage analytique, usage documentaire | exposition consultation si utile |
 | Unites manquantes | `BACKLOG_REFERENTIEL` | `BACKLOG_GOUVERNANCE` | gouvernance continue du referentiel | validation Yassine/C4E |

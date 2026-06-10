@@ -1,0 +1,47 @@
+INSERT INTO data_admin.data_class_registry (
+    class_code,
+    class_label,
+    domain,
+    target_schema,
+    target_table,
+    exposure_view_schema,
+    exposure_view_name,
+    staging_schema,
+    staging_table,
+    geometry_required,
+    temporal_required,
+    validation_level,
+    editable,
+    ingestable,
+    realtime_capable,
+    owner_role,
+    status
+)
+VALUES
+    ('INFRA_STATION', 'Stations de mesure', 'INFRA', 'infra', 'stations_mesure', 'api', 'v_station_dimension', 'staging', 'raw_stations_abhs', true, false, 'STANDARD', false, true, false, 'DATA_MANAGER', 'ACTIVE'),
+    ('INFRA_BARRAGE', 'Barrages', 'INFRA', 'infra', 'barrages', 'api', 'v_barrage_dimension', 'staging', 'raw_barrages_abhs', true, false, 'STANDARD', false, true, false, 'DATA_MANAGER', 'ACTIVE'),
+    ('HYDRO_DEBIT', 'Mesures de debit', 'HYDRO', 'hydro', 'mesure_debit', NULL, NULL, 'staging', 'raw_mesures_debit_jr', false, true, 'STANDARD', false, true, true, 'DATA_MANAGER', 'ACTIVE'),
+    ('METEO_PRECIPITATION', 'Mesures de precipitation', 'METEO', 'meteo', 'mesure_precipitation', NULL, NULL, 'staging', 'raw_mesures_precipitations_jr_traitees', false, true, 'STANDARD', false, true, true, 'DATA_MANAGER', 'ACTIVE'),
+    ('QUALITE_RIVIERE', 'Qualite riviere', 'QUALITE', 'qualite', 'mesure_qualite_riviere', NULL, NULL, 'staging', 'raw_mesures_qualite_rivieres', false, true, 'STANDARD', false, true, false, 'DATA_MANAGER', 'ACTIVE'),
+    ('QUALITE_NAPPE', 'Qualite nappe', 'QUALITE', 'qualite', 'mesure_qualite_nappe', NULL, NULL, 'staging', 'raw_mesures_qualite_nappes', false, true, 'STANDARD', false, true, false, 'DATA_MANAGER', 'ACTIVE'),
+    ('QUALITE_BARRAGE', 'Qualite barrage', 'QUALITE', 'qualite', 'mesure_qualite_barrage', NULL, NULL, 'staging', 'raw_mesures_qualite_barrages', false, true, 'STANDARD', false, true, false, 'DATA_MANAGER', 'ACTIVE'),
+    ('POLLUTION_SITE', 'Sites pollution', 'POLLUTION', 'geo', 'ref_site_pollution', 'api', 'v_pollution_sites', 'staging', 'raw_idp_2024_src_pollution_globale', true, false, 'STRICT', false, true, false, 'SIG', 'ACTIVE')
+ON CONFLICT (class_code) DO UPDATE
+SET
+    class_label = EXCLUDED.class_label,
+    domain = EXCLUDED.domain,
+    target_schema = EXCLUDED.target_schema,
+    target_table = EXCLUDED.target_table,
+    exposure_view_schema = EXCLUDED.exposure_view_schema,
+    exposure_view_name = EXCLUDED.exposure_view_name,
+    staging_schema = EXCLUDED.staging_schema,
+    staging_table = EXCLUDED.staging_table,
+    geometry_required = EXCLUDED.geometry_required,
+    temporal_required = EXCLUDED.temporal_required,
+    validation_level = EXCLUDED.validation_level,
+    editable = EXCLUDED.editable,
+    ingestable = EXCLUDED.ingestable,
+    realtime_capable = EXCLUDED.realtime_capable,
+    owner_role = EXCLUDED.owner_role,
+    status = EXCLUDED.status,
+    updated_at = now();

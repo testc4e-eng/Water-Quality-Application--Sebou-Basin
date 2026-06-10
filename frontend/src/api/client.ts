@@ -1,12 +1,13 @@
 import axios from "axios";
 import type { FeatureCollection, Geometry, GeoJsonProperties } from "geojson";
+import { API_BASE_URL } from "@/config/api";
+import { clearAuthSession } from "@/lib/authz";
 
 /* ================================
    1) CONFIG AXIOS (base unique)
    ================================ */
 
-export const BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000/api/v1";
+export const BASE_URL = API_BASE_URL;
 
 export const api = axios.create({
   baseURL: BASE_URL, // <- pointe déjà sur /api/v1
@@ -30,10 +31,7 @@ api.interceptors.response.use(
   async (error) => {
     if (error.response?.status === 401) {
       console.warn("Session expirée ou invalide. Redirection vers /login");
-      localStorage.removeItem("access_token");
-      localStorage.removeItem("auth_email");
-      localStorage.removeItem("is_superuser");
-      localStorage.removeItem("must_change_password");
+      clearAuthSession();
       // On redirige uniquement si on n'est pas déjà sur la page de login
       if (!window.location.pathname.includes("/login")) {
         window.location.href = "/login?expired=true";
@@ -230,8 +228,32 @@ export async function getGeoJSON(
 export async function postLoginForm(
   username: string,
   password: string
-): Promise<{ access_token: string; token_type: string; email: string; is_superuser: boolean; must_change_password?: boolean }> {
-  const { data } = await api.post<{ access_token: string; token_type: string; email: string; is_superuser: boolean; must_change_password?: boolean }>(
+): Promise<{
+  access_token: string;
+  token_type: string;
+  refresh_token?: string | null;
+  email: string;
+  username: string;
+  role: string;
+  role_label?: string | null;
+  permissions: string[];
+  rbac_status: string;
+  is_superuser: boolean;
+  must_change_password?: boolean;
+}> {
+  const { data } = await api.post<{
+    access_token: string;
+    token_type: string;
+    refresh_token?: string | null;
+    email: string;
+    username: string;
+    role: string;
+    role_label?: string | null;
+    permissions: string[];
+    rbac_status: string;
+    is_superuser: boolean;
+    must_change_password?: boolean;
+  }>(
     "/auth/login",
     { email: username, password }
   );
@@ -243,7 +265,7 @@ export interface RegisterPayload {
   password: string;
   firstName: string;
   lastName: string;
-  role: "viewer" | "manager" | "admin";
+  role: string;
 }
 
 export async function postRegister(

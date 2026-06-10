@@ -28,3 +28,4 @@ geojson
 requests
 click
 colorama
+python-multipart

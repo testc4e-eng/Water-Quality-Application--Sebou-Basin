@@ -16,6 +16,7 @@ import {
   useQualityTimeseries,
   useRegulatoryStatus,
 } from "@/hooks/useQualityRegulatory";
+import { StatusBadge } from "@/components/ui/status-badge";
 
 const SERIES_KEY: Record<string, "dbo5" | "dco" | "no3" | "ph" | "o2" | "mes"> = {
   DBO5: "dbo5", DCO: "dco", NO3: "no3", pH: "ph", O2_DISSOUS: "o2", MES: "mes",
@@ -43,6 +44,14 @@ export default function DashboardQualiteReglementaire() {
   const measuresCount = stations.reduce((total, station) => total + station.n_mesures, 0);
   const lastUpdate = stations.map((station) => station.dt_max).sort().reverse()[0];
   const hasError = statusQuery.isError || thresholdsQuery.isError || stationsQuery.isError;
+  const apiSources = [
+    "GET /api/v1/quality/regulatory-status",
+    "GET /api/v1/quality/thresholds",
+    "GET /api/v1/quality/stations",
+    "GET /api/v1/quality/timeseries",
+    "POST /api/v1/quality/classify",
+  ];
+  const regulatoryBadge = statusQuery.data?.status === "success" ? "PREPROD_CONDITIONNEL" : "DEV_PARTIAL";
 
   return (
     <main className="min-h-screen bg-[#EEF5FF] text-slate-950">
@@ -51,7 +60,10 @@ export default function DashboardQualiteReglementaire() {
         <section className="rounded-md border border-slate-200 bg-white px-4 py-4">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
             <div className="max-w-4xl">
-              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">Qualité des eaux · lecture DG / métier</div>
+              <div className="flex flex-wrap items-center gap-2">
+                <StatusBadge status={regulatoryBadge} />
+                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">Qualité des eaux · lecture DG / métier</span>
+              </div>
               <h2 className="mt-2 text-2xl font-semibold text-slate-950">Pilotage qualité</h2>
               <p className="mt-2 text-sm leading-7 text-slate-600">
                 L'écran conserve le contrat réglementaire existant, mais met désormais en avant les stations à surveiller,
@@ -59,10 +71,20 @@ export default function DashboardQualiteReglementaire() {
                 restent visibles plus bas ou dans l'espace expert.
               </p>
             </div>
-            <div className="rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-              `WATER_TEMPERATURE` seulement via <strong>T_EAU</strong> / <strong>api.v_qualite_terrain</strong>.
-              <br />
-              Aucun indicateur climat ne doit être dérivé de cet écran.
+            <div className="space-y-3">
+              <div className="rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+                `WATER_TEMPERATURE` seulement via <strong>T_EAU</strong> / <strong>api.v_qualite_terrain</strong>.
+                <br />
+                Aucun indicateur climat ne doit être dérivé de cet écran.
+              </div>
+              <div className="rounded-md border border-slate-200 bg-slate-50 px-4 py-3 text-xs text-slate-700">
+                <div className="font-semibold text-slate-900">Source API</div>
+                <div className="mt-2 space-y-1 font-mono">
+                  {apiSources.map((source) => (
+                    <div key={source}>{source}</div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -87,6 +109,12 @@ export default function DashboardQualiteReglementaire() {
           nonClassifiableCount={(summary.parameters ?? 0) - (summary.parameters_classifiable ?? 0)}
           lastUpdate={lastUpdate}
         />
+
+        {!stationsQuery.isLoading && stations.length === 0 ? (
+          <section className="rounded-md border border-dashed border-slate-300 bg-white px-4 py-4 text-sm text-slate-500">
+            Aucune station n'a été remontée par <code>/api/v1/quality/stations</code>.
+          </section>
+        ) : null}
 
         <QualityAlertCenter />
 

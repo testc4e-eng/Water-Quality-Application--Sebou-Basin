@@ -31,6 +31,7 @@ PostgreSQL + PostGIS + TimescaleDB
 - `backend/app/api/api_v1.py`: routeur principal riche
 - `backend/app/routers/*` et `backend/app/api/v1/*`: routes métier et couches historiques
 - `backend/sql/2026_04_mv_perf_pack.sql`: industrialisation SQL des MVs
+- `backend/app/api/v1/data_admin/*`: gouvernance lecture seule et canevas metier
 
 ## Lecture Mission IV
 - Collecte et intégration: couverte par `raw`, `meta`, `admin/data-scan`, `ingestion`
@@ -46,6 +47,55 @@ PostgreSQL + PostGIS + TimescaleDB
 - utiliser `metadata.referentiel_parametre_canonique` comme dictionnaire cible unique des paramètres métier dès qu’il est disponible
 - traiter `hydro.mesure_barrage_param` comme la couche cible de production pour les flux barrage journaliers (`LACHER`, `APPORT`, `TRANSFERT`) en `Mm3/j`
 - exposer les donnees barrage via les vues `api.v_hydro_barrage_param_journalier`, `api.v_hydro_barrage_param_compat_wide` et la MV `analytics.mv_dashboard_hydrologie_menu`
+
+## Module 114 — gouvernance et canevas
+
+Mise a jour du 2026-06-05 :
+
+- le domaine `data_admin` suit une separation `api / services / repositories / schemas` ;
+- `ClassRegistryRepository` reste la whitelist d'acces aux classes et sources lisibles ;
+- `TemplateGenerationService` construit les canevas metier sans ecrire dans les schemas metier ;
+- `DataAdminIngestionService` orchestre `upload -> validation -> staging` sans promotion ;
+- `DynamicValidationService` ajoute une passe de validation referentielle dynamique avant staging ;
+- `ChangeRequestService` orchestre `DRAFT -> SUBMITTED -> APPROVED -> APPLIED/FAILED` ;
+- `PromotionMappingService` porte les mappings whitelistes et l'audit cible `INSERT_ONLY` ;
+- `ingestion_file_parser.py` parse `.csv` et `.xlsx` en lecture controlee, feuille `DONNEES` uniquement pour Excel ;
+- le frontend `/admin/data-governance/audit` consomme uniquement `/api/v1/data-admin/*` ;
+- l'onglet frontend `Ingestion` consomme uniquement les endpoints `data-admin/ingestion/*` ;
+- la persistance d'ingestion est isolee dans le schema `data_admin` :
+  - `ingestion_run`
+  - `ingestion_file`
+  - `ingestion_validation_error`
+  - `ingestion_staging_row`
+- la persistance des regles dynamiques est isolee dans :
+  - `validation_rule_registry`
+- la persistance du workflow de promotion est isolee dans :
+  - `change_request`
+  - `change_request_item`
+  - `promotion_audit_log`
+- `ingestion_validation_error.error_scope` distingue `STRUCTURAL`, `BUSINESS`, `REFERENTIAL`, `DUPLICATE`, `TEMPORAL`
+- `MVP3-D` etend `error_scope` a `GEOSPATIAL` pour les classes `INFRA_STATION` et `POLLUTION_SITE`
+- `MVP3` active une promotion controlee `INSERT_ONLY` pour `HYDRO_DEBIT`, `METEO_PRECIPITATION`, `QUALITE_RIVIERE` ;
+- `MVP3-D` etend la promotion controlee `INSERT_ONLY` a `INFRA_STATION` et `POLLUTION_SITE` ;
+- aucune promotion automatique ni `UPSERT` n'est activee ;
+- les doublons exacts detectes a l'apply echouent proprement et laissent la demande en `FAILED` sans ecriture supplementaire ;
+- `MVP3-B` a ajoute un garde `rbac_guard.py` au-dessus des routes `data_admin` ;
+- `MVP4` remplace ce mode simule par une resolution de permissions reelles depuis `security.role_permissions` ;
+- les roles cibles actifs de demonstration sont `ROLE_DECIDEUR`, `ROLE_EXPERT`, `ROLE_CONSULTANT`, `ROLE_DATA_ADMIN`, `ROLE_SYS_ADMIN`, `ROLE_AI_AGENT` ;
+- les acteurs applicatifs sont derives de l'utilisateur authentifie, plus d'un `actor` libre passe par le frontend ;
+- les transitions de `change_request` sont verrouillees explicitement ;
+- `PromotionMappingService` audite aussi les colonnes `NOT NULL` sans defaut et injecte les valeurs statiques minimales requises pour `METEO_PRECIPITATION` et `QUALITE_RIVIERE` ;
+- `MVP3-C` ajoute une couche `RollbackService` sans nouveau schema metier ;
+- le rollback lit `rollback_reference` depuis `data_admin.change_request` et s'appuie sur `promotion_audit_log` comme preuve d'origine ;
+- le rollback supprime uniquement les lignes cible identifiees de maniere univoque par `target_pk` ;
+- si la cible est absente ou non unique, le rollback echoue et la demande passe en `rollback_status = FAILED` ;
+- `MVP3-D` ajoute une branche geospatiale controlee :
+  - `INFRA_STATION` normalise `geom_wkt + srid` vers `infra.stations_mesure.geom` en `4326`
+  - `POLLUTION_SITE` normalise `geom_wkt + srid` vers `geo.ref_site_pollution.geom` en `26191` et `geom_4326` en `4326`
+  - `POLLUTION_SITE` interdit `site_code LIKE 'IDP-C1B-%'`
+  - aucune creation de `geo.ref_site_pollution_source_link`
+  - aucune fusion automatique IDP
+- l'etape suivante attendue est l'extension a d'autres classes si le mode `INSERT_ONLY` reste stable.
 
 ## Couche d'exposition SQL specialisee
 
@@ -117,14 +167,14 @@ Mise a jour du 2026-05-18 :
 - Le router FastAPI `/api/v1/pollution` expose une couche GeoJSON MapLibre et les derniers resultats P0.
 - Le test MapLibre autonome est documente dans `docs/IDP_POLLUTION_ANALYSIS/maplibre_pollution_first_layer.html`.
 - La route React isolee `/pollution-idp-dev` integre la couche IDP pollution sans remplacer les dashboards existants.
-- Les mappings P0 parametres/unites sont corriges en DEV ; les blocages restants sont spatiaux/metier.
-- Statut : `GO_DEV_DEMO__PREPROD_BLOCKED_BY_SPATIAL_ARBITRAGE`.
+- Les mappings P0 parametres/unites sont corriges en DEV ; le lot `C1-B` est clos, mais le residuel global IDP reste ouvert hors du lot ferme.
+- Statut : `C1B_CLOSED__GLOBAL_RESIDUAL_OPEN`.
 
 ## Identite spatiale maitre pollution/qualite
 
 Mise a jour du 2026-05-19 :
 
-- `geo.ref_site_pollution` est stabilise comme pivot spatial DEV, mais la PREPROD reste bloquee par arbitrage.
+- `geo.ref_site_pollution` est stabilise comme pivot spatial DEV ; le lot `C1-B` est clos en DEV et le residuel global est gouverne separement.
 - Les tables `qa.spatial_identity_candidates`, `qa.spatial_identity_conflicts`, `qa.spatial_identity_decisions` et `qa.spatial_identity_orphans` structurent la gouvernance des fusions sans modifier les sources.
 - Les vues `qa.v_spatial_review_*` fournissent les lots de revue metier.
 - Le chargement QA est idempotent par `run_id` via `scripts/idp_pollution/load_spatial_identity_qa.py`.
@@ -132,7 +182,7 @@ Mise a jour du 2026-05-19 :
 - La revue cartographique metier est preparee via les vues simplifiees `qa.v_carto_review_exact_0m`, `qa.v_carto_review_very_close_2m`, `qa.v_carto_review_same_site_different_object`, `qa.v_carto_review_orphans`, la table `qa.spatial_identity_decisions_cartographic` et le workspace QGIS `docs/IDP_POLLUTION_ANALYSIS/cartographic_review_workspace`.
 - Les decisions cartographiques sont chargeables plus tard via `scripts/idp_pollution/load_cartographic_decisions.py`, sans fusion automatique. Le template par defaut est `cartographic_review_decision_template_light.csv`.
 
-Statut : `GO_REVUE_METIER_DEV__NOGO_PREPROD_AVANT_DECISIONS_SPATIALES`.
+Statut : `C1B_COMPLETED_DEV_DB_CONFIRMED`.
 
 ## Auto-validation identite spatiale QA-first
 
@@ -156,8 +206,14 @@ Mise a jour du 2026-05-22 :
 - Le template de retour est `final_review_decision_template.csv`; seules les colonnes `reviewer_decision` et `reviewer_comment` doivent etre modifiees.
 - Le script `scripts/idp_pollution/load_cartographic_decisions.py` supporte `--final-template`, valide les colonnes/codes et reste dry-run par defaut.
 - Aucun SHP, endpoint ou objet metier final n'est modifie par ce workspace.
+- Au 2026-06-04, les preuves DB validees sont :
+  - `105` decisions metier chargees ;
+  - `75` sites maitres `IDP-C1B-*` crees ;
+  - `105` liens source -> site actifs ;
+  - `3` conflits restants deja decides mais non reconcilies en statut QA brut ;
+  - `488` `WAIT_SOURCE_FIX` sans geometrie, hors perimetre C4E.
 
-Statut : `WORKSPACE_FINAL_READY_FOR_IMANE`.
+Statut : `C1B_COMPLETED__GLOBAL_RESIDUAL_GOVERNED`.
 
 ## Dashboard cartographique metier P0
 

@@ -7,7 +7,7 @@
 | Périmètre | noyau de mémoire projet pour agents IA |
 | Source de vérité | Oui sur le périmètre IA |
 | Documents liés | [QUICK_REFERENCE](./QUICK_REFERENCE.md), [AGENT_RULES](./AGENT_RULES.md), [../00_SOURCE_OF_TRUTH_MASTER.md](../00_SOURCE_OF_TRUTH_MASTER.md), [SOURCE_OF_TRUTH](../01_project_reference/SOURCE_OF_TRUTH.md) |
-| Dernière mise à jour | 2026-05-22 |
+| Dernière mise à jour | 2026-06-05 |
 
 ## 1. Mission du projet
 
@@ -16,7 +16,7 @@ Le projet met en place un système d’aide à la décision web pour la gestion 
 - données métier et SIG ;
 - dashboards analytiques et cartographiques ;
 - administration, audit et gouvernance ;
-- intégration des résultats de modèles SWAT/WASP.
+- intégration future des résultats de modèles SWAT/WASP via contrat versionné.
 
 ## 2. Ce qu’un agent doit lire en priorité
 
@@ -98,7 +98,12 @@ Le projet met en place un système d’aide à la décision web pour la gestion 
 - Le pipeline DEV IDP pollution charge les SHP en staging, consolide `geo.ref_site_pollution`, pivote les mesures P0 dans `qualite.resultat_mesure` et expose `api.v_pollution_sites` / `api.v_pollution_latest_results`.
 - Le router `/api/v1/pollution` est lecture seule et sert la premiere couche MapLibre DEV.
 - Les mappings P0 `NH4`/`NO3` et unites sont corriges en DEV depuis les referentiels existants.
-- Avant pre-production, traiter les mesures sans geometrie/site et les arbitrages doublons/conflits ; ne pas dedoublonner automatiquement.
+- `C1-B` est cloture en DEV : `105` decisions metier chargees, `75` sites maitres `IDP-C1B-*` crees et `105` liens source -> site materialises.
+- Ne pas confondre le lot ferme `C1-B` avec le residuel global IDP :
+  - `IDP_DUPLICATE_CONSOLIDATION` reste ouvert pour les `DUPLICATE_EXACT` ;
+  - `IDP_POSSIBLE_MATCH_REVIEW` reste ouvert pour les `POSSIBLE_MATCH` ;
+  - `WAIT_SOURCE_FIX = CLIENT_REQUIRED_DATA_FIX` pour les objets sans geometrie.
+- Les objets `WAIT_SOURCE_FIX` ne doivent pas etre utilises dans les dashboards, KPI, analyses spatiales, graphes de propagation, scenarios, datasets ML ou validations scientifiques.
 
 ## 12. Pipeline SAD Sebou - Model Build, Feature Store et IA
 
@@ -125,8 +130,137 @@ Mise a jour du 2026-05-22 :
 - Le projet est maintenant piloté par cinq documents maîtres : état global, MVP/périmètre, problèmes racines, registre des décisions et data landscape.
 - Les audits et lots historiques restent des preuves, mais ne doivent plus être le niveau principal de pilotage.
 - Les anomalies doivent être classées en `ANOMALIE`, `AMBIGUITE`, `DONNEE_ABSENTE`, `FUTURE_DONNEE`, `EXPERIMENTAL` ou `STABILISE`.
-- Le statut global est : migration historique clôturée avec backlog, dashboard cartographique métier P0 prêt DEV, IDP pollution GO DEV mais NOGO préproduction, SWAT/WASP sandbox legacy.
+- Le statut global est : migration historique clôturée avec backlog, dashboard cartographique métier P0 prêt DEV, `C1-B` IDP fermé en DEV avec résiduel global séparé, SWAT/WASP hors blocage technique court.
 - Avant toute évolution, vérifier le document maître de gouvernance concerné puis `docs/00_SOURCE_OF_TRUTH_MASTER.md`.
+
+## 13bis. Nouveau chemin critique 2026-06-04
+
+- `IDP` est clôturé avec backlog gouverné ; il ne doit plus être traité comme un blocage PREPROD.
+- `SWAT` et `WASP` restent des dépendances métier externes tant qu'aucun run validé scientifiquement n'est livré.
+- les anciens routeurs backend ciblant `public.*` non montés sont archivés dans `backend/app/routers_legacy_public/` et ne doivent pas être réactivés sans audit.
+- la source de verite frontend pour l'URL API est `frontend/src/config/api.ts` via `VITE_API_BASE_URL`, fallback `http://127.0.0.1:8000/api/v1`.
+- Le chemin critique court devient :
+  1. qualification PREPROD backend/frontend/API/DB ;
+  2. consolidation `C3` réglementaire ;
+  3. industrialisation du module `114_data_admin_ingestion` ;
+  4. préparation des contrats d'intégration SWAT/WASP ;
+  5. préparation du socle IA/ML.
+- Pour les agents, cela signifie :
+  - ne pas bloquer une décision plateforme sur l'absence actuelle de résultats SWAT/WASP ;
+  - distinguer clairement runtime officiel, sandbox legacy et backlog scientifique externe.
+
+## 13ter. Module 114 administration & ingestion
+
+- le module cible de gouvernance operationnelle des donnees est documente dans `docs/114_data_admin_ingestion/` ;
+- il doit unifier audit lecture seule, canevas, upload, validation, staging, promotion et `change_request` ;
+- l'existant reutilisable est :
+  - `/api/v1/admin/data-availability` ;
+  - `/api/v1/ingestion/*` ;
+  - `/api/v1/raw/*` uniquement comme outil expert secondaire ;
+  - `audit.ingestion_audit_logs` et `security.activity_logs` ;
+- aucune modification frontend ne doit ecrire directement dans `geo`, `infra`, `hydro`, `meteo`, `qualite` ou `metadata` ;
+- toute ingestion cible passe par `staging + validation + review + promotion` ;
+- toute modification cible passe par `change_request + approbation + audit`.
+- `114_MVP1_A_STATUS = DEV_DB_ACTIVE` :
+  - routeur backend `/api/v1/data-admin` actif ;
+  - registre `data_admin.data_class_registry` materialise en base runtime ;
+  - `8` classes seedees ;
+  - fallback `code_seed` desactive sur les endpoints actifs.
+- `114_MVP1_B_STATUS = FRONTEND_AUDIT_ACTIVE` :
+  - route frontend `/admin/data-governance/audit` active ;
+  - consommation frontend exclusivement via `/api/v1/data-admin/*` ;
+  - composants reutilisables prepares pour `MVP2` :
+    - `DataClassCard`
+    - `DataClassTable`
+    - `DataHealthBadge`
+    - `DataSchemaViewer`
+    - `DataRecordGrid`
+  - la route exige une session authentifiee pour eviter un shell vide hors contexte utilisateur.
+- `114_MVP2_A_STATUS = TEMPLATE_GENERATION_ACTIVE` :
+  - endpoints backend actifs :
+    - `GET /api/v1/data-admin/classes/{class_code}/template/spec`
+    - `POST /api/v1/data-admin/classes/{class_code}/template/generate`
+  - onglet frontend `Canevas` actif dans `/admin/data-governance/audit` ;
+  - les fichiers generes contiennent `DONNEES`, `INSTRUCTIONS`, `DICTIONNAIRE_CHAMPS`, `METADATA` ;
+- `114_MVP2_B_STATUS = FIELD_REGISTRY_ENRICHED` :
+  - `data_admin.field_registry` contient `41` lignes seedes ;
+  - colonnes enrichies materialisees :
+    - `example_value`
+    - `unit_expected`
+    - `allowed_values_source`
+    - `description`
+  - les classes prioritaires `HYDRO_DEBIT`, `METEO_PRECIPITATION`, `QUALITE_RIVIERE`, `POLLUTION_SITE`, `INFRA_STATION` lisent maintenant leurs specs depuis `data_admin.field_registry` ;
+  - `field_registry_incomplete = false` pour ces classes dans `template/spec`.
+- `114_MVP2_C_STATUS = UPLOAD_VALIDATION_STAGING_ACTIVE` :
+  - les tables `data_admin.ingestion_run`, `data_admin.ingestion_file`, `data_admin.ingestion_validation_error` et `data_admin.ingestion_staging_row` sont materialisees ;
+  - les endpoints actifs sont :
+    - `POST /api/v1/data-admin/classes/{class_code}/ingestion/upload`
+    - `GET /api/v1/data-admin/ingestion/runs`
+    - `GET /api/v1/data-admin/ingestion/runs/{run_id}`
+    - `GET /api/v1/data-admin/ingestion/runs/{run_id}/errors`
+    - `GET /api/v1/data-admin/ingestion/runs/{run_id}/staging-preview`
+  - les classes pilotes actives sont `HYDRO_DEBIT`, `METEO_PRECIPITATION`, `QUALITE_RIVIERE` ;
+  - aucune promotion automatique n'est permise ;
+  - aucune ecriture dans les schemas metier n'est autorisee ;
+  - `QUALITE_RIVIERE` autorise `station_id` ou `ire_station` au niveau validation/staging.
+- `114_MVP2_D_STATUS = DYNAMIC_REFERENTIAL_VALIDATION_ACTIVE` :
+  - `data_admin.validation_rule_registry` contient `24` regles actives ;
+  - les endpoints `validation-rules` sont actifs ;
+  - `error_scope` distingue `STRUCTURAL`, `BUSINESS`, `REFERENTIAL`, `DUPLICATE`, `TEMPORAL` ;
+  - les classes pilotes valident dynamiquement l'existence station/code station/parametre, les doublons potentiels, les dates futures et les valeurs hors plage raisonnable ;
+  - aucune promotion metier n'est encore activee.
+- `114_MVP3_STATUS = CHANGE_REQUEST_PROMOTION_ACTIVE` :
+  - `data_admin.change_request`, `data_admin.change_request_item` et `data_admin.promotion_audit_log` sont materialisees ;
+  - les endpoints `change-request`, `approve`, `reject`, `apply` et `audit-log` sont actifs ;
+  - la promotion reste `INSERT_ONLY` et limitee a `HYDRO_DEBIT`, `METEO_PRECIPITATION`, `QUALITE_RIVIERE` ;
+  - les runs `VALIDATION_FAILED` ne peuvent pas creer de demande ;
+  - les lignes `INVALID` ne sont jamais candidates ;
+  - un cas warning doublon peut etre approuve, mais echoue proprement a l'apply si la ligne existe deja en cible ;
+- `114_MVP3_B_STATUS = RBAC_PROMOTION_HARDENED` :
+    - les routes `data-admin` sont protegees par capacites derivees des roles existants `viewer`, `manager`, `admin` ;
+    - a ce stade historique, le mode etait `RBAC_SIMULATED`, pas encore RBAC cible complet ;
+    - les acteurs traces cote backend sont `user:{id}:{email}` ;
+    - `approve` exige `manager` ou `admin` ;
+    - `apply` exige `admin` ;
+    - les transitions invalides remontent `CHANGE_REQUEST_NOT_APPROVED`, `CHANGE_REQUEST_ALREADY_APPLIED`, `CHANGE_REQUEST_REJECTED` ou `INVALID_CHANGE_REQUEST_TRANSITION` ;
+    - les promotions E2E `METEO_PRECIPITATION` et `QUALITE_RIVIERE` sont maintenant validees en plus de `HYDRO_DEBIT`.
+- `114_MVP3_C_STATUS = ROLLBACK_LOGIQUE_ACTIVE` :
+    - rollback limite au mode `INSERT_ONLY` ;
+    - rollback exige une demande appliquee, une preparation, une approbation et une cible univoque ;
+    - `rollback_reference` porte `target_schema`, `target_table`, `target_pk`, `audit_id` et items rollbackables ;
+    - l'operation applique un `DELETE` strictement borne par `target_pk` et preuve d'audit ;
+    - refus attendus : `ROLLBACK_NOT_AVAILABLE`, `ROLLBACK_NOT_APPROVED`, `ROLLBACK_ALREADY_APPLIED`, `ROLLBACK_REQUEST_NOT_APPLIED`, `ROLLBACK_TARGET_NOT_FOUND`, `ROLLBACK_TARGET_NOT_UNIQUE` ;
+    - campagne de preuve : `HYDRO_DEBIT +2 puis -2`, delta net nul.
+- `114_MVP3_D_STATUS = INFRA_POLLUTION_EXTENSION_ACTIVE` :
+  - `INFRA_STATION` et `POLLUTION_SITE` sont des classes actives du flux complet `upload -> validation -> staging -> change_request -> apply -> rollback` ;
+  - les champs geospatiaux normalises sont `geom_wkt` + `srid` ;
+  - la validation dynamique ajoute `GEOSPATIAL`, `DUPLICATE` et controles de bornes Maroc ;
+  - `INFRA_STATION` ecrit dans `infra.stations_mesure.geom` en `4326` via transformation explicite ;
+  - `POLLUTION_SITE` ecrit dans `geo.ref_site_pollution.geom` en `26191` et `geom_4326` en `4326` ;
+  - `POLLUTION_SITE` refuse `site_code LIKE 'IDP-C1B-%'` ;
+  - aucune ecriture n'est autorisee dans `geo.ref_site_pollution_source_link` ;
+  - campagnes prouvees :
+    - `INFRA_STATION` : `390 -> 392 -> 390`
+    - `POLLUTION_SITE` : `2026 -> 2028 -> 2026`
+  - invariants :
+    - `NO_IDP_REGRESSION = CONFIRMED`
+    - `NO_AUTO_MERGE = CONFIRMED`
+    - `NO_AUTOMATIC_SOURCE_LINK = CONFIRMED`
+- `114_MVP4_STATUS = RBAC_REAL_ACTIVE` :
+  - le module 114 ne fonctionne plus en `RBAC_SIMULATED` ;
+  - les permissions sont resolues depuis `security.role_permissions` via l'utilisateur authentifie ;
+  - les roles de demonstration actifs sont :
+    - `ROLE_DECIDEUR`
+    - `ROLE_EXPERT`
+    - `ROLE_CONSULTANT`
+    - `ROLE_DATA_ADMIN`
+    - `ROLE_SYS_ADMIN`
+    - `ROLE_AI_AGENT`
+  - `/api/v1/auth/login` et `/api/v1/auth/me` exposent `role_label`, `permissions`, `rbac_status` ;
+  - `approve` exige une permission d'approbation reelle ;
+  - `apply` et `rollback/apply` exigent une permission d'application reelle ;
+  - les ecrans frontend `Data Governance` masquent ou desactivent les actions selon permissions reelles ;
+  - les comptes `demo_*` servent uniquement en DEV/demo client et ne doivent jamais etre reutilises en production.
 
 ## 14. Réorganisation documentaire 2026-05-22
 

@@ -83,7 +83,7 @@ export const observatoryCatalog: ObservatoryDomain[] = [
         ],
         defaultParameter: "Mo",
         displayModes: ["table", "chart"],
-        rules: ["MO != Mo", "FM/F_M_MES/MO_METAL exclus"],
+        rules: ["MO != Mo", "Paramètres hors périmètre exclus de l'exposition"],
         status: "active",
       },
       {

@@ -32,12 +32,14 @@ export function DataFreshnessBadge({ freshness, compact = false }: DataFreshness
   return (
     <div
       className={[
-        "inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium",
+        compact
+          ? "inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[9px] font-medium"
+          : "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] font-medium",
         meta.className,
       ].join(" ")}
       title={freshness.note}
     >
-      <Icon className="h-3.5 w-3.5" />
+      <Icon className={compact ? "h-2.5 w-2.5" : "h-3 w-3"} />
       <span>{meta.label}</span>
       {!compact && freshness.age_days !== null ? <span>· {freshness.age_days} j</span> : null}
     </div>

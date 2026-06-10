@@ -9,7 +9,7 @@
 | points eau station non resolus | 46 | mapping ou coordonnees |
 | profils nappe non resolus | 1204 | correspondance profil/nappe |
 | station null I | 1 | arbitrage identifiant |
-| temperature absente | 0 ligne | confirmer absence ou fournir donnees |
+| ~~temperature absente~~ | ~~0 ligne~~ | **RÉSOLU** — ingestion commitée le 2026-05-25 (437 889 lignes, 36 stations, 1983-2026) |
 
 ## Message
 

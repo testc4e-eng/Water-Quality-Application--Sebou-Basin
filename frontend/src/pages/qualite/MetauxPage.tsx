@@ -75,8 +75,6 @@ export default function MetauxPage() {
   const { data, error, isFetching, isLoading, refetch } = useQualiteMetaux(filters);
   const moQuery = useQualiteMetaux({ code_parametre: "MO", limit: 1, offset: 0 });
   const molybdeneQuery = useQualiteMetaux({ code_parametre: "Mo", limit: 1, offset: 0 });
-  const fmQuery = useQualiteMetaux({ code_parametre: "FM", limit: 1, offset: 0 });
-  const fMesQuery = useQualiteMetaux({ code_parametre: "F_M_MES", limit: 1, offset: 0 });
   const moMetalQuery = useQualiteMetaux({ code_parametre: "MO_METAL", limit: 1, offset: 0 });
 
   const rows = data?.data ?? [];
@@ -244,8 +242,6 @@ export default function MetauxPage() {
             <CardContent className="space-y-2">
               {validationBadge("Mo visible dans métaux", molybdeneQuery.data?.count)}
               {validationBadge("MO absent des métaux", moQuery.data?.count, true)}
-              {validationBadge("FM exclu", fmQuery.data?.count, true)}
-              {validationBadge("F_M_MES exclu", fMesQuery.data?.count, true)}
               {validationBadge("MO_METAL exclu", moMetalQuery.data?.count, true)}
             </CardContent>
           </Card>

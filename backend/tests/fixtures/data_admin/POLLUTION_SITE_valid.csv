@@ -1,0 +1,3 @@
+site_code,site_name,commune,province,bassin,validation_status,geom_wkt,srid
+CODX-POLL-20260605-A,Site Pollution Test A,Ait Ouribel,Khemisset,Sebou,VALIDATED,"POINT(-6.10000 33.70000)",4326
+CODX-POLL-20260605-B,Site Pollution Test B,Tiflet,Khemisset,Sebou,TO_VALIDATE,"POINT(-6.12000 33.71000)",4326

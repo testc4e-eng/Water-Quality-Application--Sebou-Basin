@@ -75,6 +75,20 @@ export interface MapBusinessEntityProperties {
   commune?: string | null;
   province?: string | null;
   bassin?: string | null;
+  sous_bassin?: string | null;
+  sous_bassin_nom?: string | null;
+  station_name?: string | null;
+  station_code?: string | null;
+  longitude?: number | null;
+  latitude?: number | null;
+  entity_kind?: string | null;
+  last_measure_date?: string | null;
+  date_min?: string | null;
+  date_max?: string | null;
+  measure_count?: number | null;
+  parameter_count?: number | null;
+  data_status_label?: string | null;
+  detail_route?: string | null;
   validation_status?: string | null;
   qa_status?: string | null;
   latest_values?: MapLatestValue[] | string | null;
@@ -99,6 +113,7 @@ export type MapBusinessFeatureCollection = FeatureCollection<Geometry, MapBusine
 };
 
 export interface MapEntitiesFilters {
+  support?: string;
   group_code?: string;
   support_code?: string;
   parameter_code?: string;
@@ -127,6 +142,13 @@ export interface MapClassificationRequest {
   unit?: string | null;
 }
 
+export interface MapEntityDetailFilters {
+  entityId: string;
+  support?: string;
+  group_code?: string;
+  support_code?: string;
+}
+
 function compactParams<T extends Record<string, unknown>>(params: T): Partial<T> {
   return Object.fromEntries(
     Object.entries(params).filter(([, value]) => value !== undefined && value !== null && value !== "")
@@ -141,6 +163,15 @@ export async function getCatalog(): Promise<MapBusinessCatalog> {
 export async function getEntities(filters: MapEntitiesFilters): Promise<MapBusinessFeatureCollection> {
   const { data } = await api.get<MapBusinessFeatureCollection>("/map/entities", {
     params: compactParams(filters),
+    timeout: MAP_TIMEOUT_MS,
+  });
+  return data;
+}
+
+export async function getEntityDetail(filters: MapEntityDetailFilters): Promise<MapBusinessFeature> {
+  const { entityId, ...params } = filters;
+  const { data } = await api.get<MapBusinessFeature>(`/map/entities/${entityId}`, {
+    params: compactParams(params),
     timeout: MAP_TIMEOUT_MS,
   });
   return data;

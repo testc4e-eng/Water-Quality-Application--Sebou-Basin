@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 import ObservatoryDataPanel from "@/components/observatory/ObservatoryDataPanel";
 import ObservatoryStatusBar from "@/components/observatory/ObservatoryStatusBar";
@@ -27,11 +27,6 @@ export default function ObservatoryMenuV2() {
   const parameterOptions = family?.parameters ?? [];
   const endpointLabel = family?.endpoint ?? "Module à venir";
   const canDisplay = Boolean(family?.status === "active" && selectedParameter);
-
-  const forbiddenVisible = useMemo(
-    () => parameterOptions.some((item) => ["FM", "F_M_MES", "MO_METAL"].includes(item.code)),
-    [parameterOptions]
-  );
 
   const submit = () => {
     if (!canDisplay) return;
@@ -152,11 +147,6 @@ export default function ObservatoryMenuV2() {
           ) : (
             <div className="rounded-lg border border-emerald-200/15 bg-slate-950/25 p-2 text-[11px] text-emerald-100/75">
               Module à venir. Aucun appel API n'est déclenché.
-            </div>
-          )}
-          {forbiddenVisible && (
-            <div className="mt-1 rounded border border-red-300/30 bg-red-950/30 p-1.5 text-[10px] text-red-100">
-              Paramètre interdit détecté dans le catalogue. Corriger la configuration.
             </div>
           )}
         </section>

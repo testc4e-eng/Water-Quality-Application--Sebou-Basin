@@ -1,8 +1,14 @@
-# Rapport d'exécution ingestion température
+# ⚠️ DOCUMENT OBSOLÈTE — NE PAS UTILISER POUR LE PILOTAGE
+
+> Ce document a été supplanté par [`11_temperature_ingestion_commit_report.md`](./11_temperature_ingestion_commit_report.md) (2026-05-25) et par [`../../41_project_global_status/03_temperature_ingestion_status.md`](../../41_project_global_status/03_temperature_ingestion_status.md) (2026-06-04).
+> L'insertion a finalement été exécutée avec succès (`GO_TEMPERATURE_INGESTION_COMMITTED`) : 437 889 lignes insérées dans `meteo.mesure_temperature`.
+> Le présent fichier est conservé uniquement à des fins d'archive historique.
+
+# Rapport d'exécution ingestion température (ARCHIVE)
 
 Date d'exécution : 2026-05-25  
 Batch ID : `2d67f599-7714-4712-ba1f-5f3584c4c961`  
-Statut final : `ROLLBACK_REQUIRED` / `TARGET_INSERT_BLOCKED_BY_QA`
+Statut final historique : `ROLLBACK_REQUIRED` / `TARGET_INSERT_BLOCKED_BY_QA` → **RÉSOLU ET SUPPLANTÉ**
 
 ## Scripts exécutés
 

@@ -18,6 +18,10 @@ from app.api.v1.propagation import router as propagation_router
 from app.api.v1.kpi import router as kpi_router
 from app.api.v1.recommendations import router as recommendations_router
 from app.api.v1.dashboard import router as dashboard_router
+from app.api.v1.data_admin.router import router as data_admin_router
+from app.api.v1.data_admin.ingestion import router as data_admin_ingestion_router
+from app.api.v1.data_admin.templates import router as data_admin_templates_router
+from app.api.v1.data_admin.change_requests import router as data_admin_change_requests_router
 
 from app.api.v1 import swat
 
@@ -104,6 +108,10 @@ api_router.include_router(meas_router, tags=["measurements"])
 api_router.include_router(alerts_router, tags=["alerts"])
 api_router.include_router(meta_router, tags=["meta"])
 api_router.include_router(raw_router, tags=["raw"])
+api_router.include_router(data_admin_router)
+api_router.include_router(data_admin_ingestion_router)
+api_router.include_router(data_admin_templates_router)
+api_router.include_router(data_admin_change_requests_router)
 api_router.include_router(entities.router, tags=["entities"])
 
 # =========================

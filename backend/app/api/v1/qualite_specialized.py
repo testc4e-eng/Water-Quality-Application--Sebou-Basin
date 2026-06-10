@@ -16,7 +16,7 @@ BUSINESS_RULES = [
     "MO = matieres organiques",
     "Mo = molybdene",
     "MO != Mo",
-    "FM/F_M_MES/MO_METAL excluded",
+    "Parametres hors perimetre exclus de l'exposition",
 ]
 
 
@@ -58,7 +58,7 @@ def _response_for_view(
             "limit": filters.limit,
             "offset": filters.offset,
             "has_more": filters.offset + len(result.rows) < result.total_count,
-            "excluded_parameters": list(EXCLUDED_PARAMETER_CODES),
+            "excluded_parameters_count": len(EXCLUDED_PARAMETER_CODES),
             "business_rules": BUSINESS_RULES,
             "elapsed_ms": result.elapsed_ms,
         },

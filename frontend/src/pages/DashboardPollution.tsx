@@ -7,9 +7,10 @@ import PageHeader from "@/components/Layout/PageHeader";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { StatusBadge } from "@/components/ui/status-badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useDecisionRecommendations } from "@/hooks/useDecisionIntelligence";
-import { usePollutionIdp } from "@/hooks/usePollutionIdp";
+import { usePollutionIdp, usePollutionLatestResults } from "@/hooks/usePollutionIdp";
 import {
   usePropagationToBarrages,
   usePropagationToExutoires,
@@ -24,6 +25,7 @@ export default function DashboardPollution() {
   const [symbologyMode, setSymbologyMode] = useState<"validation_status" | "regulatory_status">("regulatory_status");
 
   const pollutionQuery = usePollutionIdp({ limit: 500 });
+  const latestResultsQuery = usePollutionLatestResults({ limit: 250 });
   const pollutionFeatures = pollutionQuery.data?.features ?? [];
   const selectedFeature = pollutionFeatures.find((feature) => feature.properties.site_id === selectedSiteId);
   const selectedSite = selectedFeature?.properties;
@@ -68,6 +70,15 @@ export default function DashboardPollution() {
     limit: 5,
   });
   const recommendations = recommendationsQuery.data?.map((item) => item.action) ?? [];
+  const latestResults = latestResultsQuery.data?.data ?? [];
+  const sourceTypeSummary = useMemo(() => {
+    const counter = new Map<string, number>();
+    for (const feature of pollutionFeatures) {
+      const label = feature.properties.source_type_label || feature.properties.source_type_code || "Non renseigné";
+      counter.set(label, (counter.get(label) ?? 0) + 1);
+    }
+    return Array.from(counter.entries()).sort((a, b) => b[1] - a[1]).slice(0, 4);
+  }, [pollutionFeatures]);
 
   const impactedAssets = [
     ...(stationsQuery.data?.targets ?? []).map((target) => ({
@@ -112,10 +123,58 @@ export default function DashboardPollution() {
 
       <div className="mx-auto flex max-w-[1600px] flex-col gap-5 px-4 py-5 sm:px-6 lg:px-8">
         <section className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-950">
-          <div className="font-semibold">Propagation topologique</div>
+          <div className="flex flex-wrap items-center gap-2">
+            <StatusBadge status="DEV" />
+            <Badge variant="outline" className="border-amber-300 text-amber-900">TOPOLOGIQUE</Badge>
+            <Badge variant="outline" className="border-amber-300 text-amber-900">NON HYDRAULIQUE SCIENTIFIQUE</Badge>
+          </div>
+          <div className="mt-3 font-semibold">Propagation topologique</div>
           <div className="mt-1">Aide à la décision préliminaire.</div>
           <div className="mt-1">Validation hydraulique avancée future.</div>
         </section>
+
+        <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <Card className="border-slate-200">
+            <CardContent className="p-4">
+              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Sites recensés</div>
+              <div className="mt-2 text-2xl font-semibold text-slate-950">{pollutionFeatures.length}</div>
+              <div className="mt-1 text-sm text-slate-600">Sources issues de `/api/v1/pollution/sites.geojson`.</div>
+            </CardContent>
+          </Card>
+          <Card className="border-slate-200">
+            <CardContent className="p-4">
+              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Résultats récents</div>
+              <div className="mt-2 text-2xl font-semibold text-slate-950">{latestResultsQuery.data?.count ?? 0}</div>
+              <div className="mt-1 text-sm text-slate-600">Dernières analyses issues de `/api/v1/pollution/latest-results`.</div>
+            </CardContent>
+          </Card>
+          <Card className="border-slate-200">
+            <CardContent className="p-4">
+              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Types de rejets</div>
+              <div className="mt-2 text-2xl font-semibold text-slate-950">{sourceTypeSummary.length}</div>
+              <div className="mt-1 text-sm text-slate-600">Synthèse des typologies visibles sur la carte.</div>
+            </CardContent>
+          </Card>
+          <Card className="border-slate-200">
+            <CardContent className="p-4">
+              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Source API</div>
+              <div className="mt-2 font-mono text-xs text-slate-700">/api/v1/pollution/* + /api/v1/propagation/*</div>
+              <div className="mt-1 text-sm text-slate-600">Recommandations assistées via `/api/v1/recommendations`.</div>
+            </CardContent>
+          </Card>
+        </section>
+
+        {pollutionQuery.isError || latestResultsQuery.isError ? (
+          <section className="rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-800">
+            L'API pollution n'a pas pu être chargée. Vérifier les endpoints <code>/api/v1/pollution/*</code>.
+          </section>
+        ) : null}
+
+        {!pollutionQuery.isLoading && pollutionFeatures.length === 0 ? (
+          <section className="rounded-2xl border border-dashed border-slate-300 bg-white p-4 text-sm text-slate-500">
+            Aucun site pollution n'a été remonté. L'écran reste stable mais la restitution est vide.
+          </section>
+        ) : null}
 
         <div className="grid gap-5 xl:grid-cols-[minmax(0,1.35fr)_420px]">
           <div className="space-y-5">
@@ -167,6 +226,26 @@ export default function DashboardPollution() {
                         </div>
                       </div>
                     ))}
+                  </CardContent>
+                </Card>
+
+                <Card className="border-slate-200">
+                  <CardHeader>
+                    <CardTitle>Typologies de rejets visibles</CardTitle>
+                  </CardHeader>
+                  <CardContent className="grid gap-3 md:grid-cols-2">
+                    {sourceTypeSummary.length > 0 ? (
+                      sourceTypeSummary.map(([label, count]) => (
+                        <div key={label} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                          <div className="font-semibold text-slate-950">{label}</div>
+                          <div className="mt-1 text-sm text-slate-600">{count} site(s) recensé(s)</div>
+                        </div>
+                      ))
+                    ) : (
+                      <div className="rounded-2xl border border-dashed border-slate-300 p-4 text-sm text-slate-500">
+                        Aucune typologie de rejet disponible.
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               </TabsContent>
@@ -369,6 +448,15 @@ export default function DashboardPollution() {
                 <div className="flex items-start gap-2">
                   <AlertTriangle className="mt-1 h-4 w-4 text-red-600" />
                   <span>Un snap faible impose une vérification experte avant toute décision terrain.</span>
+                </div>
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-3 font-mono text-xs text-slate-700">
+                  Sources API : <br />
+                  GET /api/v1/pollution/sites.geojson<br />
+                  GET /api/v1/pollution/latest-results<br />
+                  GET /api/v1/propagation/source-to-garde<br />
+                  GET /api/v1/propagation/source-to-stations<br />
+                  GET /api/v1/propagation/source-to-barrages<br />
+                  GET /api/v1/recommendations
                 </div>
               </CardContent>
             </Card>

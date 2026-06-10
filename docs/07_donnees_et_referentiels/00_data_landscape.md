@@ -54,7 +54,7 @@ Sources brutes
 | Débits | mesures journalières/mensuelles | `staging.*` | `hydro.mesure_debit`, `hydro.mesure_debit_mensuel` | hydro/observatory/analytics | hydro | `STABLE_AVEC_QA` |
 | Météo pluie | mesures historiques | `staging.*` | `meteo.mesure_precipitation` | climate/analytics | climat | `STABILISE` |
 | Météo évaporation | mesures historiques | `staging.*` | `meteo.mesure_evaporation` | climate/analytics | climat | `STABLE_AVEC_QA` |
-| Météo température | non fournie | n/a | `meteo.mesure_temperature` vide | climate | non officiel | `DONNEE_ABSENTE` |
+| Météo température | `timeseries_temperature_global.csv` | `staging.temperature_daily_raw` | `meteo.mesure_temperature` | climate | température air | `COMMITTED` |
 | Qualité historique | campagnes ABH | `staging.*` | `qualite.mesure_qualite_*` | `/api/v1/qualite/*`, vues `api.v_qualite_*` | qualité P0, observatoire | `STABLE_AVEC_FLAGS` |
 | Pollution historique | inventaires pollution | `staging.*` | `qualite.source_pollution_prelevement`, `qualite.source_pollution_mesure_param` | pollution/map | pollution | `PARTIEL_QA` |
 | Pollution IDP DEV | SHP / inventaires IDP | `staging.*`, `qa.*` | `geo.ref_site_pollution`, `qualite.resultat_mesure` | `/api/v1/pollution/*`, `/api/v1/map/*` | `/pollution-idp-dev`, `/dashboard-carto-metier` | `GO_DEV__NOGO_PREPROD` |

@@ -25,14 +25,14 @@ export type CreateUserPayload = {
   email: string;
   full_name?: string;
   password: string;
-  role_code: "viewer" | "manager" | "admin";
+  role_code: string;
 };
 
 export type UpdateUserPayload = {
   username?: string;
   email?: string;
   full_name?: string;
-  role_code?: "viewer" | "manager" | "admin";
+  role_code?: string;
 };
 
 export async function listUsers(): Promise<UserItem[]> {

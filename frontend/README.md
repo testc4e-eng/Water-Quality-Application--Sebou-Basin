@@ -18,7 +18,7 @@ npm run build
 
 ## Configuration `.env`
 Variables utilisées par le client API :
-- `VITE_API_BASE_URL` (ex: `http://127.0.0.1:8011/api/v1`)
+- `VITE_API_BASE_URL` (ex: `http://127.0.0.1:8000/api/v1`)
 - `VITE_API_BASE`
 - `VITE_API_PROXY`
 

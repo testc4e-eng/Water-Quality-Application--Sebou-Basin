@@ -18,7 +18,7 @@
 | `meteo.mesure_precipitation` | 546007 |
 | `meteo.mesure_precipitation_annuelle_max` | 2085 |
 | `meteo.mesure_evaporation` | 48900 |
-| `meteo.mesure_temperature` | 0 |
+| `meteo.mesure_temperature` | 437889 |
 
 ## Qualite et pollution
 

@@ -34,7 +34,7 @@ cd backend
 python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
-uvicorn app.main:app --host 127.0.0.1 --port 8011 --reload
+uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
 ### Frontend
@@ -47,11 +47,33 @@ npm run dev -- --port 3001
 
 ## Variables frontend importantes
 
-`frontend/.env` :
+`frontend/.env` (valeur effective au 2026-06-04) :
 
-- `VITE_API_BASE_URL=http://127.0.0.1:8011/api/v1`
-- `VITE_API_BASE=http://127.0.0.1:8011/api/v1`
-- `VITE_API_PROXY=http://127.0.0.1:8011`
+- `VITE_API_BASE_URL=http://127.0.0.1:8000/api/v1`
+- `VITE_API_BASE=http://127.0.0.1:8000/api/v1`
+- `VITE_API_PROXY=http://127.0.0.1:8000`
+
+> Note : le port backend est normalisé sur `8000` (`.env`, Docker Compose, et `config.py`). Toute référence à `8011` dans la documentation est obsolète.
+
+## Convention Docker multi-plateformes
+
+Les ports Docker publiés par défaut pour cette plateforme sont volontairement distincts du mode local natif afin d'éviter les collisions avec d'autres stacks présentes sur la même machine :
+
+- backend Docker : `8010 -> 8000`
+- frontend Docker : `5174 -> 5173`
+- PostgreSQL Docker optionnel : `5434 -> 5432`
+
+Le mode local natif reste inchangé :
+
+- backend natif : `8000`
+- frontend natif : `3001`
+
+Exemple :
+
+```bash
+docker compose up -d sad-backend sad-frontend
+docker compose --profile docker-db up -d sad-db
+```
 
 ## Refresh des materialized views
 

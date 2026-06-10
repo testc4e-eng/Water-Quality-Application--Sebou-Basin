@@ -7,7 +7,7 @@
 | Perimetre | synthese optimisee pour agents IA : schemas applicatifs reels, cardinalites et points d'entree SQL verifies |
 | Source de verite | Non |
 | Documents lies | [DATABASE_SCHEMA](../01_project_reference/data/DATABASE_SCHEMA.md), [API_DATA_MAPPING](../01_project_reference/data/API_DATA_MAPPING.md), [00_SOURCE_OF_TRUTH_MASTER](../00_SOURCE_OF_TRUTH_MASTER.md) |
-| Derniere mise a jour | 2026-05-22 |
+| Derniere mise a jour | 2026-06-05 |
 
 ## 0. Snapshot consolidé 2026-05-22
 
@@ -50,13 +50,13 @@ Cardinalités critiques observées :
 |---|---:|
 | `infra.stations_mesure` | 390 |
 | `infra.barrages` | 33 |
-| `hydro.mesure_debit` | 652446 |
+| `hydro.mesure_debit` | 652451 |
 | `hydro.mesure_debit_mensuel` | 19316 |
 | `hydro.mesure_barrage_param` | 272652 |
-| `meteo.mesure_precipitation` | 546007 |
+| `meteo.mesure_precipitation` | 546008 |
 | `meteo.mesure_evaporation` | 48900 |
-| `meteo.mesure_temperature` | 0 |
-| `qualite.mesure_qualite_riviere` | 59534 |
+| `meteo.mesure_temperature` | 437889 |
+| `qualite.mesure_qualite_riviere` | 59535 |
 | `qualite.mesure_qualite_nappe` | 63047 |
 | `qualite.mesure_qualite_barrage` | 7820 |
 | `qualite.mesure_qualite_sebou` | 49954 |
@@ -65,7 +65,7 @@ Cardinalités critiques observées :
 | `qualite.source_pollution_mesure_param` | 7191 |
 | `geo.ref_site_pollution` | 1951 |
 | `qualite.resultat_mesure` | 1409 |
-| `security.activity_logs` | 86671 |
+| `security.activity_logs` | 87346 |
 | `wasp_sebou.wasp_results` | 931770 |
 
 Ce snapshot prime sur les anciennes cardinalités de ce fichier lorsque les valeurs diffèrent. Le rapport complet est `docs/90_reorganisation_documentaire_finale/07_ecarts_documentation_vs_bd.md`.
@@ -112,20 +112,21 @@ Ce snapshot prime sur les anciennes cardinalités de ce fichier lorsque les vale
 |---|---:|
 | `infra.stations_mesure` | 390 |
 | `infra.barrages` | 34 |
-| `hydro.mesure_debit` | 521433 |
+| `hydro.mesure_debit` | 652448 |
 | `hydro.mesure_debit_mensuel` | 19316 |
 | `hydro.mesure_barrage_param` | 272652 |
 | `meteo.mesure_precipitation` | 546007 |
 | `meteo.mesure_evaporation` | 48900 |
-| `meteo.mesure_temperature` | 0 |
-| `qualite.mesure_qualite_riviere` | 60097 |
-| `qualite.mesure_qualite_nappe` | 63088 |
-| `qualite.mesure_qualite_barrage` | 15808 |
-| `qualite.mesure_qualite_sebou` | 51402 |
-| `qualite.suivi_qualite_barrage_garde_hebdo` | 7094 |
+| `meteo.mesure_temperature` | 437889 |
+| `qualite.mesure_qualite_riviere` | 59534 |
+| `qualite.mesure_qualite_nappe` | 63047 |
+| `qualite.mesure_qualite_barrage` | 7820 |
+| `qualite.mesure_qualite_sebou` | 49954 |
+| `qualite.suivi_qualite_barrage_garde_hebdo` | 1780 |
 | `qualite.source_pollution_prelevement` | 141 |
 | `qualite.source_pollution_mesure_param` | 7191 |
-| `security.activity_logs` | 74935 |
+| `geo.ref_site_pollution` | 2026 |
+| `security.activity_logs` | 87346 |
 | `wasp_sebou.wasp_results` | 931770 |
 | `swat_sebou.swat_scenarios` | 1 |
 | `wasp_sebou.wasp_scenarios` | 1 |
@@ -178,6 +179,81 @@ Ce snapshot prime sur les anciennes cardinalités de ce fichier lorsque les vale
 - `security.activity_logs`
 - `audit.ingestion_audit_logs`
 
+## Mise a jour 2026-06-05 - Schema `data_admin`
+
+Le schema `data_admin` est maintenant materialise et alimente pour le module 114.
+
+Objets verifies :
+
+| Objet | Role |
+|---|---|
+| `data_admin.data_class_registry` | registre officiel des classes metier SAD |
+| `data_admin.field_registry` | dictionnaire de champs pour canevas, validation et UI |
+| `data_admin.ingestion_run` | suivi des runs d'upload/validation |
+| `data_admin.ingestion_file` | trace fichier, hash et preview |
+| `data_admin.ingestion_validation_error` | erreurs structurelles, metier, referentielles et doublons |
+| `data_admin.ingestion_staging_row` | staging JSON des lignes valides ou warning |
+| `data_admin.validation_rule_registry` | registre des regles de validation dynamique |
+| `data_admin.change_request` | workflow de demande de promotion controlee |
+| `data_admin.change_request_item` | items candidats derives du staging |
+| `data_admin.promotion_audit_log` | tracabilite create/submit/approve/apply |
+
+Etat verifie au 2026-06-05 :
+
+- `data_admin.data_class_registry` : `8` classes ;
+- `data_admin.field_registry` : `41` champs ;
+- `data_admin.validation_rule_registry` : `24` regles ;
+- `data_admin.ingestion_validation_error` contient `error_scope` ;
+- les classes pilotes `HYDRO_DEBIT`, `METEO_PRECIPITATION`, `QUALITE_RIVIERE` supportent `upload -> validation -> staging` sans promotion.
+- `data_admin.change_request`, `data_admin.change_request_item` et `data_admin.promotion_audit_log` supportent maintenant la promotion `INSERT_ONLY` controlee ;
+- `MVP3-B` durcit la couche sans nouveau schema metier :
+  - roles existants `viewer`, `manager`, `admin` mappes a des capacites `data_admin` ;
+  - transitions `change_request` verrouillees ;
+  - traces acteur HTTP de type `user:{id}:{email}` ;
+- `MVP3-C` etend `data_admin.change_request` avec :
+  - `rollback_available`
+  - `rollback_status`
+  - `rollback_reference`
+  - `rollback_requested_by`
+  - `rollback_requested_at`
+  - `rollback_approved_by`
+  - `rollback_approved_at`
+  - `rollback_applied_by`
+  - `rollback_applied_at`
+- `hydro.mesure_debit` a ete verifie a `652451` apres campagnes controlees `HYDRO_DEBIT` ;
+- `meteo.mesure_precipitation` a ete verifie a `546008` apres campagne controlee `METEO_PRECIPITATION` ;
+- `qualite.mesure_qualite_riviere` a ete verifie a `59535` apres campagne controlee `QUALITE_RIVIERE` ;
+- un cas doublon exact `HYDRO_DEBIT_duplicate_candidate.csv` echoue proprement en `FAILED` sans ecriture metier supplementaire.
+- un rollback logique `HYDRO_DEBIT` a ete verifie avec `+2` puis `-2`, sans variation nette finale des cardinalites metier.
+- `MVP3-D` etend maintenant le schema `data_admin` aux classes geospatiales controlees :
+  - `INFRA_STATION` :
+    - champs `geom_wkt`, `srid`
+    - validation geospatiale dynamique
+    - promotion `INSERT_ONLY` vers `infra.stations_mesure`
+    - rollback prouve `390 -> 392 -> 390`
+  - `POLLUTION_SITE` :
+    - champs `bassin`, `geom_wkt`, `srid`
+    - validation geospatiale dynamique
+    - promotion `INSERT_ONLY` vers `geo.ref_site_pollution`
+    - rollback prouve `2026 -> 2028 -> 2026`
+  - garde-fous verifies :
+    - `geo.ref_site_pollution_source_link` reste `105`
+    - `site_code LIKE 'IDP-C1B-%'` reste `75`
+    - aucune fusion IDP automatique
+- `MVP4` ne cree pas de nouveau schema de securite, mais reutilise le schema `security` existant :
+  - `security.users`
+  - `security.roles`
+  - `security.permissions`
+  - `security.role_permissions`
+- roles cibles de demonstration verifies en base :
+  - `ROLE_DECIDEUR`
+  - `ROLE_EXPERT`
+  - `ROLE_CONSULTANT`
+  - `ROLE_DATA_ADMIN`
+  - `ROLE_SYS_ADMIN`
+  - `ROLE_AI_AGENT`
+- comptes `demo_*` verifies en base pour DEV/demo uniquement.
+
 ## Mise a jour 2026-05-19 - Referentiel reglementaire qualite DEV
 
 Le DDL DEV du referentiel reglementaire qualite SAD a ete applique dans `metadata` sans chargement de donnees. Les 7 tables suivantes existent et sont vides apres DDL :
@@ -192,11 +268,23 @@ Le DDL DEV du referentiel reglementaire qualite SAD a ete applique dans `metadat
 | `metadata.qualite_seuil_reglementaire` | seuils reglementaires, unites source/moteur et regles specifiques |
 | `metadata.qualite_regle_classification` | regles versionnees du moteur qualite |
 
-Statut : `DDL_DEV_APPLIQUE__SEUILS_NON_CHARGES`. Aucune donnee reglementaire n'est encore inseree.
+Statut : `GO_PREPROD_CONDITIONNEL_DB_CONFIRMED`.
+
+Mise a jour read-only verifiee au 2026-06-04 :
+
+- `metadata.qualite_source_reglementaire` : `1` ;
+- `metadata.qualite_type_eau` : `4` ;
+- `metadata.qualite_classe_reglementaire` : `5` ;
+- `metadata.qualite_parametre_reglementaire` : `41` ;
+- `metadata.qualite_mapping_canonique_reglementaire` : `41` ;
+- `metadata.qualite_seuil_reglementaire` : `205` ;
+- `177` seuils actifs ;
+- `36` parametres classifiables actifs ;
+- `5` parametres observationnels non classifiables actifs.
 
 ## Mise a jour 2026-05-19 - Identite spatiale maitre pollution/qualite
 
-`geo.ref_site_pollution` est la table pivot DEV existante pour 1951 sites pollution IDP. La cible PREPROD ajoute une gouvernance d'identite spatiale sans supprimer les sources :
+`geo.ref_site_pollution` est la table pivot DEV existante pour `2026` sites pollution IDP. La cible PREPROD ajoute une gouvernance d'identite spatiale sans supprimer les sources :
 
 | Objet cible | Role |
 |---|---|
@@ -213,14 +301,17 @@ SQL : `database/idp_pollution/20_create_ref_site_pollution_master.sql` et `21_cr
 Mise a jour execution DEV du 2026-05-19 :
 
 - DDL applique en DEV.
-- `geo.ref_site_pollution` conserve 1951 sites et passe a 26 colonnes de gouvernance.
+- `geo.ref_site_pollution` contient `2026` sites apres materialisation de `75` sites maitres `IDP-C1B-*`.
 - Tables QA chargees pour le run `e60088e9-cf94-4e41-ae65-a5390866b4b8` :
   - `qa.spatial_identity_candidates` : 14380 lignes ;
   - `qa.spatial_identity_conflicts` : 14366 lignes ;
   - `qa.spatial_identity_orphans` : 590 lignes ;
-  - `qa.spatial_identity_decisions` : 0 ligne.
+  - `qa.spatial_identity_decisions_cartographic` : `105` lignes (`102 CREATE_NEW_MASTER_SITE`, `3 ACCEPT_MATCH`).
 - Vues de revue creees : `qa.v_spatial_review_step_stm`, `qa.v_spatial_review_rejets`, `qa.v_spatial_review_huileries`, `qa.v_spatial_review_mines_decharges`, `qa.v_spatial_review_idp_inventory_measurements`, `qa.v_spatial_review_orphans`.
-- Aucune fusion, suppression ou decision metier automatique n'a ete appliquee.
+- `geo.ref_site_pollution_source_link` contient `105` liens source -> site actifs.
+- La vue `qa.v_true_ambiguous_cases` reduit le residuel operationnel reel a `491` cas :
+  - `3` conflits `TO_VALIDATE` deja decides en cartographie mais non reconcilies en statut QA brut ;
+  - `488` `WAIT_SOURCE_FIX` sans geometrie, classes `CLIENT_REQUIRED_DATA_FIX`.
 
 Mise a jour arbitrage cartographique DEV :
 
@@ -229,7 +320,16 @@ Mise a jour arbitrage cartographique DEV :
 - Les vues cartographiques reconstruisent la geometrie source/master pour QGIS/GeoJSON et excluent les coordonnees invalides du rendu cartographique.
 - Les distances > 2 m sont exclues du workflow principal et restent dans les tables QA completes.
 - Volumes observes apres simplification : `EXACT_0M` 8771, `VERY_CLOSE_2M` 126, `DIFFERENT_OBJECT` 5438, `ORPHAN` 102.
-- Aucune decision cartographique n'est chargee a ce stade.
+- Le lot `C1-B` est clos en DEV :
+  - `105` decisions metier chargees ;
+  - `75` sites maitres crees ;
+  - `105` liens materialises ;
+  - `C1-B = COMPLETED_DEV_DB_CONFIRMED`.
+- Le residuel global IDP reste ouvert hors du lot ferme :
+  - `IDP_DUPLICATE_CONSOLIDATION = OPEN` ;
+  - `IDP_POSSIBLE_MATCH_REVIEW = OPEN` ;
+  - `WAIT_SOURCE_FIX = CLIENT_REQUIRED_DATA_FIX` ;
+  - `C1_GLOBAL = PARTIAL_DB_CONFIRMED`.
 
 ## 4. Points d'entree SQL verifies
 

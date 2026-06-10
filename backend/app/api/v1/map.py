@@ -53,11 +53,19 @@ def get_map_entities(
 @router.get("/entities/{entity_id}")
 def get_map_entity(
     entity_id: str,
-    support: str = Query("idp_pollution"),
+    support: str | None = Query(None),
+    group_code: str | None = Query(None),
+    support_code: str | None = Query(None),
     db: Session = Depends(get_climate_db),
 ) -> dict[str, Any]:
     try:
-        result = entity_detail(db, support=support, entity_id=entity_id)
+        result = entity_detail(
+            db,
+            support=support,
+            group_code=group_code,
+            support_code=support_code,
+            entity_id=entity_id,
+        )
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
     if not result:

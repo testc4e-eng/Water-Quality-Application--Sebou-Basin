@@ -6,6 +6,7 @@ from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from app.db.climate_database import get_climate_db
+from app.services.dashboard import list_quality_stations_with_timeseries
 
 router = APIRouter()
 
@@ -674,6 +675,18 @@ def get_quality_stations(
         query,
         {"include_invalid": include_invalid, "include_flagged": include_flagged},
     ).mappings().all()
+
+
+@router.get("/stations-with-timeseries")
+def get_quality_stations_with_timeseries(
+    limit: int = Query(6, ge=1, le=20),
+    db: Session = Depends(get_climate_db),
+):
+    """
+    Retourne les stations qualité réellement actives dans qualite.mesure_qualite_sebou,
+    enrichies avec couverture temporelle, dernières valeurs et statut réglementaire simplifié.
+    """
+    return list_quality_stations_with_timeseries(db, limit=limit)
 
 
 @router.get("/parameters")

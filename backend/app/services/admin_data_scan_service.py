@@ -45,6 +45,7 @@ def _safe_count(db: Session, schema: str, table: str) -> int:
     try:
         return int(db.execute(text(f'SELECT COUNT(*) FROM "{schema}"."{table}"')).scalar() or 0)
     except Exception as e:
+        db.rollback()
         logger.warning(f"Count failed for {schema}.{table}: {e}")
         return 0
 
@@ -57,6 +58,7 @@ def _safe_distinct_count(db: Session, schema: str, table: str, col: Optional[str
             or 0
         )
     except Exception as e:
+        db.rollback()
         logger.warning(f"Distinct count failed for {schema}.{table}.{col}: {e}")
         return 0
 
@@ -74,6 +76,7 @@ def _fetch_full_table(
         rows = db.execute(text(f'SELECT {col_sql} FROM "{schema}"."{table}"')).mappings().all()
         return [dict(r) for r in rows]
     except Exception as e:
+        db.rollback()
         logger.error(f"Fetch failed for {schema}.{table}: {e}")
         return []
 
@@ -153,7 +156,7 @@ def _legacy_data_scan(db: Session, include_time_stats: bool = False) -> Dict[str
 
     station_id_col = "station_id"
     station_join_expr = 'COALESCE(s."legacy_code_station", s."code_station")'
-    station_name_col = "nom_station"
+    station_name_col = "station_nom"
     station_type_col = "type_station"
 
     union_sql = _build_legacy_station_union(db, station_id_col)
@@ -188,13 +191,15 @@ def _legacy_data_scan(db: Session, include_time_stats: bool = False) -> Dict[str
             summary["stations_with_data"] = int(stats_res[1] or 0)
             summary["total_variables"] = int(stats_res[2] or 0)
     except Exception as e:
+        db.rollback()
         logger.error(f"Erreur calcul stats union : {e}")
 
     # 2. Variables disponibles
     try:
         var_rows = db.execute(text(f"SELECT DISTINCT variable_name FROM ({union_sql}) AS u WHERE variable_name IS NOT NULL ORDER BY 1")).fetchall()
         summary["available_variables"] = [{"name": r[0]} for r in var_rows]
-    except: pass
+    except Exception:
+        db.rollback()
 
     # 3. Répartition par type de station
     station_type_expr = f'COALESCE("{station_type_col}", \'Inconnu\')'
@@ -222,6 +227,7 @@ def _legacy_data_scan(db: Session, include_time_stats: bool = False) -> Dict[str
         ).mappings().all()
         stations_by_type = [dict(r) for r in stations_by_type]
     except Exception as e:
+        db.rollback()
         logger.error(f"Erreur stations_by_type : {e}")
 
     # 4. Entités Stations (Détail)
@@ -268,6 +274,7 @@ def _legacy_data_scan(db: Session, include_time_stats: bool = False) -> Dict[str
         for e in station_map.values():
             e["variable_count"] = len(e["variables"])
     except Exception as e:
+        db.rollback()
         logger.error(f"Erreur hydration stations : {e}")
 
     # 5. Données géographiques pour la carte
@@ -294,7 +301,8 @@ def _legacy_data_scan(db: Session, include_time_stats: bool = False) -> Dict[str
                 FROM ordered WHERE step_seconds IS NOT NULL
                 GROUP BY variable_name ORDER BY record_count DESC
             """)).mappings().all()
-        except: pass
+        except Exception:
+            db.rollback()
 
     return {
         "stations": stations_by_type,

@@ -245,6 +245,7 @@ ponctuelle_mesures AS (
     FROM api.v_qualite_riviere_mesures r
     WHERE r.station_id IS NOT NULL
       AND r.valeur IS NOT NULL
+      AND COALESCE(r.parametre_code_canonique, r.parametre_qualite, 'param_inconnu') NOT IN ('H_G', 'PTD', 'PTP', 'MD', 'FM', 'F_M_MES')
 
     UNION ALL
 
@@ -286,6 +287,7 @@ ponctuelle_mesures AS (
     FROM api.v_qualite_sebou_mesures s
     WHERE s.station_id IS NOT NULL
       AND s.valeur IS NOT NULL
+      AND COALESCE(s.parametre_code_canonique, s.parametre_qualite, 'param_inconnu') NOT IN ('H_G', 'PTD', 'PTP', 'MD', 'FM', 'F_M_MES')
 
     UNION ALL
 
@@ -328,6 +330,7 @@ ponctuelle_mesures AS (
     FROM api.v_suivi_qualite_barrage_garde_hebdo b
     WHERE COALESCE(b.barrage_id::text, b.station_id::text) IS NOT NULL
       AND b.valeur IS NOT NULL
+      AND COALESCE(b.parametre_code_canonique, b.parametre_qualite, 'param_inconnu') NOT IN ('H_G', 'PTD', 'PTP', 'MD', 'FM', 'F_M_MES')
 
     UNION ALL
 
@@ -371,6 +374,7 @@ ponctuelle_mesures AS (
     FROM api.v_inventaire_pollution_sources_mesures_detail sm
     WHERE sm.prelevement_id IS NOT NULL
       AND sm.valeur_num IS NOT NULL
+      AND COALESCE(sm.parametre_code_canonique, sm.param_code_legacy, 'param_inconnu') NOT IN ('H_G', 'PTD', 'PTP', 'MD', 'FM', 'F_M_MES')
 
     UNION ALL
 

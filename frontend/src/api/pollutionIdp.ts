@@ -41,6 +41,22 @@ export interface PollutionLatestResult {
   non_classifiable_reason?: string | null;
 }
 
+export interface PollutionLatestResultsRow extends PollutionLatestResult {
+  site_id: string;
+  site_code?: string | null;
+  site_name?: string | null;
+  commune?: string | null;
+  campagne_code?: string | null;
+}
+
+export interface PollutionLatestResultsResponse {
+  status: string;
+  count: number;
+  filters: Record<string, string | number | null>;
+  data: PollutionLatestResultsRow[];
+  metadata?: Record<string, unknown>;
+}
+
 export interface PollutionSiteProperties {
   site_id: string;
   site_code?: string | null;
@@ -86,6 +102,20 @@ export async function getPollutionIdpSites(
   if (filters.commune) params.commune = filters.commune;
 
   const { data } = await api.get<PollutionSitesGeoJson>("/pollution/sites.geojson", {
+    params,
+  });
+  return data;
+}
+
+export async function getPollutionLatestResults(filters: PollutionIdpFilters = {}): Promise<PollutionLatestResultsResponse> {
+  const params: Record<string, string | number> = {
+    limit: filters.limit ?? 1000,
+  };
+
+  if (filters.parameter_code) params.parameter_code = filters.parameter_code;
+  if (filters.commune) params.commune = filters.commune;
+
+  const { data } = await api.get<PollutionLatestResultsResponse>("/pollution/latest-results", {
     params,
   });
   return data;

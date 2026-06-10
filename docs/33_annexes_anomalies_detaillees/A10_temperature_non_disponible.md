@@ -1,4 +1,11 @@
-# [A10] Température non disponible
+# ⚠️ ANOMALIE RÉSOLUE — DOCUMENT D'ARCHIVE
+
+> **Résolution** : L'ingestion température a été exécutée avec succès le 2026-05-25 (`GO_TEMPERATURE_INGESTION_COMMITTED`).  
+> `meteo.mesure_temperature` contient désormais **437 889 lignes** (période 1983-01-01 à 2026-06-10, 36 stations).  
+> Ce fichier est conservé à des fins historiques uniquement.  
+> Référence de résolution : [`docs/41_project_global_status/03_temperature_ingestion_status.md`](../../41_project_global_status/03_temperature_ingestion_status.md)
+
+# [A10] Température non disponible (ARCHIVE)
 
 ---
 

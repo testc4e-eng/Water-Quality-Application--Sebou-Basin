@@ -19,12 +19,25 @@ from app.security.services import (
     change_password,
     create_user,
     create_password_reset_request,
+    get_user_permissions,
+    get_user_role,
+    get_user_role_code,
+    is_superuser_role,
     log_event,
 )
 from app.security.jwt_service import create_access_token, decode_token
 from app.security.passwords import verify_password
 
 router = APIRouter(prefix="/auth", tags=["Auth"])
+
+
+def _attach_user_auth_context(user: SecurityUser, db: Session) -> SecurityUser:
+    role = get_user_role(db, user)
+    permissions = get_user_permissions(db, user)
+    user.role = role  # type: ignore[attr-defined]
+    user.permissions = permissions  # type: ignore[attr-defined]
+    user.rbac_status = "RBAC_REAL"  # type: ignore[attr-defined]
+    return user
 
 # ---------- REGISTER ----------
 @router.post("/register", response_model=UserOut, status_code=status.HTTP_201_CREATED)
@@ -44,9 +57,7 @@ def register(user_in: UserCreate, db: Session = Depends(get_db)):
         log_event(db, action="USER_CREATED", status="FAIL", user_id=None, details=str(exc))
         raise HTTPException(status_code=400, detail=str(exc))
 
-    role = db.query(Role).filter(Role.id == user.role_id).first()
-    user.role = role  # type: ignore[attr-defined]
-    return user
+    return _attach_user_auth_context(user, db)
 # ---------- LOGIN ----------
 @router.post("/login")
 async def login(request: Request, db: Session = Depends(get_db)):
@@ -82,7 +93,8 @@ async def login(request: Request, db: Session = Depends(get_db)):
     except SecurityError as exc:
         raise HTTPException(status_code=400, detail=str(exc))
 
-    role = db.query(Role).filter(Role.id == user.role_id).first()
+    role = get_user_role(db, user)
+    permissions = get_user_permissions(db, user)
     role_code = role.code if role else "viewer"
     return TokenResponse(
         access_token=access_token,
@@ -91,7 +103,10 @@ async def login(request: Request, db: Session = Depends(get_db)):
         email=user.email,
         username=user.username,
         role=role_code,
-        is_superuser=role_code == "admin",
+        role_label=role.label if role else None,
+        permissions=permissions,
+        rbac_status="RBAC_REAL",
+        is_superuser=is_superuser_role(role_code, permissions),
         must_change_password=user.must_change_password,
     )
 
@@ -123,9 +138,7 @@ def logout(
 
 @router.get("/me", response_model=UserOut)
 def me(current_user: SecurityUser = Depends(get_current_user), db: Session = Depends(get_db)):
-    role = db.query(Role).filter(Role.id == current_user.role_id).first()
-    current_user.role = role  # type: ignore[attr-defined]
-    return current_user
+    return _attach_user_auth_context(current_user, db)
 
 
 @router.post("/change-password")
@@ -191,7 +204,6 @@ def refresh_token(token: str = Body(embed=True), db: Session = Depends(get_db)):
     if not any(verify_password(token, t.token_hash) for t in stored):
         raise HTTPException(status_code=401, detail="Refresh token invalide")
 
-    role = db.query(Role).filter(Role.id == user.role_id).first()
-    role_code = role.code if role else "viewer"
+    role_code = get_user_role_code(db, user)
     access_token = create_access_token(subject=user.email, role=role_code)
     return {"access_token": access_token, "token_type": "bearer"}

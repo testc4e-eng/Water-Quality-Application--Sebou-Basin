@@ -30,4 +30,4 @@ Le modèle backend utilise `type_eau` avec valeur par défaut `surface_generale`
 
 
 ## Disponibilité HTTP DEV
-Le serveur HTTP `127.0.0.1:8011` n'était pas démarré au moment du contrôle final (`connection refused`). Les tests ci-dessus ont été réalisés via FastAPI `TestClient`, donc ils valident les routes et la logique backend en lecture seule, mais pas le binding réseau local.
+Le serveur HTTP `127.0.0.1:8000` n'était pas démarré au moment du contrôle final (`connection refused`) — le port officiel est désormais `8000` (`8011` est obsolète). Les tests ci-dessus ont été réalisés via FastAPI `TestClient`, donc ils valident les routes et la logique backend en lecture seule, mais pas le binding réseau local.

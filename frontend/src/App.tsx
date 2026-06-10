@@ -22,27 +22,53 @@ import DataViewer from "./pages/DataViewer";
 import NotFound from "./pages/NotFound";
 import Dashboard1 from "./pages/Dashboard1";
 import Dashboard2 from "./pages/Dashboard2";
-import DashboardAnalytique from "./pages/DashboardAnalytique";
 import DashboardCartographique from "./pages/DashboardCartographique";
 import DashboardCartoMetier from "./pages/DashboardCartoMetier";
 import DashboardQualiteReglementaire from "./pages/DashboardQualiteReglementaire";
 import DashboardScenarios from "./pages/DashboardScenarios";
 import DashboardPollution from "./pages/DashboardPollution";
+import DashboardDataQuality from "./pages/DashboardDataQuality";
+import DashboardAdministration from "./pages/DashboardAdministration";
 import PollutionIdpDevPage from "./pages/PollutionIdpDevPage";
 import DataScanPage from "./pages/admin/DataScanPage";
+import DataGovernanceAuditPage from "./pages/admin/DataGovernanceAuditPage";
 import PasswordResetRequestsPage from "./pages/admin/PasswordResetRequestsPage";
 import UsersAuditHubPage from "./pages/admin/UsersAuditHubPage";
 import IngestionPage from "./pages/admin/IngestionPage";
 import PopupRulesPage from "./pages/admin/PopupRulesPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import MetauxPage from "./pages/qualite/MetauxPage";
+import { getAuthSession, hasAnyPermission } from "./lib/authz";
 
 const queryClient = new QueryClient();
 const DecisionDashboardTest = React.lazy(() => import("./pages/DecisionDashboardTest"));
 
 function AdminOnly({ children }: { children: JSX.Element }) {
-  const isAdmin = localStorage.getItem("is_superuser") === "true";
-  return isAdmin ? children : <Navigate to="/" replace />;
+  const auth = getAuthSession();
+  const canManageUsers = hasAnyPermission(
+    ["security.users.manage", "security.password_reset.manage", "security.logs.read"],
+    auth.permissions,
+  );
+  return canManageUsers ? children : <Navigate to="/" replace />;
+}
+
+function AuthenticatedOnly({ children }: { children: JSX.Element }) {
+  const isAuthenticated = !!getAuthSession().accessToken;
+  return isAuthenticated ? children : <Navigate to="/login" replace />;
+}
+
+function PermissionOnly({
+  permissions,
+  children,
+}: {
+  permissions: string[];
+  children: JSX.Element;
+}) {
+  const auth = getAuthSession();
+  if (!auth.accessToken) {
+    return <Navigate to="/login" replace />;
+  }
+  return hasAnyPermission(permissions, auth.permissions) ? children : <Navigate to="/" replace />;
 }
 
 const router = createBrowserRouter(
@@ -56,10 +82,11 @@ const router = createBrowserRouter(
         <Route path="dashboard-cartographique" element={<DashboardCartographique />} />
         <Route path="dashboard-carto-metier" element={<DashboardCartoMetier />} />
         <Route path="dashboard-qualite-reglementaire" element={<DashboardQualiteReglementaire />} />
-        <Route path="dashboard-2" element={<Dashboard2 />} />
+        <Route path="dashboard-data-qa" element={<DashboardDataQuality />} />
+        <Route path="dashboard-2" element={<Navigate to="/dashboard-carto-metier" replace />} />
         <Route path="carte" element={<Dashboard2 />} />
-        <Route path="dashboard-analytique" element={<DashboardAnalytique />} />
-        <Route path="analyses" element={<DashboardAnalytique />} />
+        <Route path="dashboard-analytique" element={<Navigate to="/dashboard-carto-metier" replace />} />
+        <Route path="analyses" element={<Navigate to="/dashboard-carto-metier" replace />} />
         <Route path="dashboard-scenarios" element={<DashboardScenarios />} />
         <Route path="dashboard-pollution" element={<DashboardPollution />} />
         <Route path="pollution" element={<DashboardPollution />} />
@@ -73,15 +100,16 @@ const router = createBrowserRouter(
             </Suspense>
           }
         />
+        <Route path="expert" element={<Navigate to="/dashboard-data-qa" replace />} />
+        <Route path="administration" element={<DashboardAdministration />} />
         <Route
-          path="expert"
+          path="admin/data-governance/audit"
           element={
-            <Suspense fallback={<div className="p-6 text-sm text-slate-600">Chargement de l'espace expert...</div>}>
-              <DecisionDashboardTest />
-            </Suspense>
+            <PermissionOnly permissions={["data_admin.audit.read"]}>
+              <DataGovernanceAuditPage />
+            </PermissionOnly>
           }
         />
-        <Route path="administration" element={<Navigate to="/admin/data-scan" replace />} />
         <Route path="admin/data-scan" element={<DataScanPage />} />
         <Route
           path="admin/gestion-users"

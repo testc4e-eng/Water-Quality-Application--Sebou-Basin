@@ -1,7 +1,5 @@
 import { api } from "@/api/client";
 import type { QualiteExposureResponse, QualiteFilters } from "@/types/qualite";
-
-export const QUALITE_METAUX_EXCLUDED_CODES = ["FM", "F_M_MES", "MO_METAL"] as const;
 export type QualiteFamilyId = "metaux" | "chimie-minerale" | "physicochimie" | "pollution-organique";
 
 const QUALITE_FAMILY_ENDPOINTS: Record<QualiteFamilyId, string> = {

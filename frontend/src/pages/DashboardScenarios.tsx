@@ -1,42 +1,39 @@
-import { ArrowRight, BarChart3, FlaskConical, Waves, AlertTriangle } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { AlertTriangle, BarChart3, FlaskConical, Waves } from "lucide-react";
+
+import { StatusBadge } from "@/components/ui/status-badge";
 
 const scenarioCards = [
   {
     title: "SWAT",
-    subtitle: "Hydrologie et débits simulés",
-    description: "Consulter les scénarios hydrologiques, les sous-bassins et les sorties débit.",
+    subtitle: "Validation scientifique externe requise",
+    description:
+      "Module maintenu en statut 'en construction'. Les scénarios et résultats ne doivent pas être présentés comme décisionnels avant validation métier.",
     icon: Waves,
     accent: "from-sky-500 to-blue-700",
-    cta: "Explorer SWAT",
-    to: "/dashboard-cartographique",
   },
   {
     title: "WASP",
-    subtitle: "Qualité des eaux et polluants",
-    description: "Préparer l'analyse qualité et la lecture des scénarios liés aux paramètres physico-chimiques.",
+    subtitle: "Sandbox legacy à contractualiser",
+    description:
+      "Les résultats WASP restent hors restitution officielle tant que la validation scientifique et le contrat d'intégration ne sont pas stabilisés.",
     icon: FlaskConical,
     accent: "from-emerald-500 to-teal-700",
-    cta: "Préparer WASP",
-    to: "/dashboard-analytique",
   },
   {
-    title: "Comparaison",
-    subtitle: "Réel vs scénario",
-    description: "Comparer les chroniques observées et simulées pour appuyer la décision métier.",
+    title: "Prédiction pollution",
+    subtitle: "Modèle à venir",
+    description:
+      "Le moteur prédictif dépend encore de la qualité des données, des arbitrages pollution et des contrats SWAT/WASP.",
     icon: BarChart3,
     accent: "from-amber-500 to-orange-700",
-    cta: "Comparer",
-    to: "/dashboard-analytique",
   },
   {
-    title: "Pollutions",
-    subtitle: "Gestion & Déclaration",
-    description: "Déclarer une pollution accidentelle et simuler sa propagation vers l'aval (prototype).",
+    title: "Recommandations autonomes",
+    subtitle: "Non exposé comme module autonome",
+    description:
+      "Les recommandations restent intégrées aux dashboards opérationnels et ne doivent pas être présentées comme moteur autonome finalisé.",
     icon: AlertTriangle,
     accent: "from-red-500 to-rose-700",
-    cta: "Simuler",
-    to: "/dashboard-pollution",
   },
 ];
 
@@ -51,12 +48,23 @@ export default function DashboardScenarios() {
             </p>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight">Scénarios SWAT / WASP</h1>
             <p className="mt-3 max-w-3xl text-sm leading-6 text-white/75">
-              Point d'entrée métier pour orienter l'analyse des scénarios, sans modifier les flux existants.
-              Les cartes ci-dessous réutilisent les dashboards opérationnels déjà connectés.
+              Les modules modèles restent volontairement hors restitution opérationnelle. Cet écran sert uniquement
+              de panneau de statut pour éviter toute interprétation de résultats non validés.
             </p>
           </div>
 
-          <div className="grid gap-4 p-6 lg:grid-cols-3">
+          <div className="border-b border-slate-200 bg-amber-50 px-6 py-4 text-sm text-amber-950">
+            <div className="flex flex-wrap items-center gap-2">
+              <StatusBadge status="EN_CONSTRUCTION" />
+              <StatusBadge status="PARTIEL" />
+            </div>
+            <div className="mt-2">
+              Les modules SWAT, WASP, Prédiction pollution et Recommandations autonomes restent absents ou en construction
+              tant que les validations métier et scientifiques ne sont pas obtenues.
+            </div>
+          </div>
+
+          <div className="grid gap-4 p-6 lg:grid-cols-2">
             {scenarioCards.map((card) => {
               const Icon = card.icon;
 
@@ -72,14 +80,10 @@ export default function DashboardScenarios() {
                     </div>
                     <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">{card.subtitle}</p>
                     <h2 className="mt-2 text-2xl font-bold text-slate-900">{card.title}</h2>
-                    <p className="mt-3 min-h-[72px] text-sm leading-6 text-slate-600">{card.description}</p>
-                    <NavLink
-                      to={card.to}
-                      className="mt-5 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition group-hover:bg-slate-800"
-                    >
-                      {card.cta}
-                      <ArrowRight className="h-4 w-4" />
-                    </NavLink>
+                    <p className="mt-3 min-h-[88px] text-sm leading-6 text-slate-600">{card.description}</p>
+                    <div className="mt-5">
+                      <StatusBadge status="EN_CONSTRUCTION" />
+                    </div>
                   </div>
                 </article>
               );

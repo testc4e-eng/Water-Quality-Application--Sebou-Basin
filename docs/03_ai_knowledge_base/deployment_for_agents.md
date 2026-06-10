@@ -40,14 +40,14 @@ Mise à jour 2026-06-02 :
   - `database/docker_init/03_minimal_seed_demo.sql`
 - validation API Docker :
   - `scripts/test_docker_api.ps1`
-- convention Docker retenue :
-  - PostgreSQL/PostGIS `5432`
-  - FastAPI `8000`
-  - React/Vite `5173`
+- convention Docker retenue pour coexistence multi-stacks :
+  - PostgreSQL/PostGIS `5434`
+  - FastAPI `8010`
+  - React/Vite `5174`
 - mode de connexion DB ajoute :
   - mode par defaut recommande pour la plateforme complete : `sad-backend` Docker -> PostgreSQL locale Windows `abh_sad` via `host.docker.internal`
   - mode optionnel interne Compose : service `sad-db` lance uniquement avec le profil `docker-db`
-- cette chaîne Docker ne remplace pas encore le mode local historique documenté en `8011/3001`
+- cette chaîne Docker coexiste maintenant avec d'autres plateformes locales ; les ports par défaut sont `8010/5174/5434` en Docker Compose, tandis que le mode local historique reste `8000/3001`
 - aucun dump base n'est importé automatiquement dans cette première version
 - aucune suppression de volume ne doit être faite sans validation explicite
 - l'initialisation SQL Docker doit rester explicite et manuelle tant qu'elle n'a pas été validée

@@ -23,7 +23,7 @@ Le MVP actuel est une plateforme SAD DEV/P0 avec :
 | Domaine | Périmètre supporté | Limite |
 |---|---|---|
 | Données hydro | débits, barrages, paramètres barrage | QA résiduelle à signaler |
-| Données météo | précipitation, évaporation | température absente |
+| Données météo | précipitation, évaporation, température | température intégrée (437 889 lignes) |
 | Données qualité | familles P0 et vues spécialisées | paramètres restants à arbitrer |
 | Stations/barrages | référentiels infra et cartographie | barrages observés : 33 |
 | Administration | auth, users, logs, reset, data scan | DEV/stable |

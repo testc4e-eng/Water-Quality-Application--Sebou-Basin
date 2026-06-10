@@ -49,6 +49,8 @@ class HomeDashboardRuntime:
 _RUNTIME: ContextVar[HomeDashboardRuntime | None] = ContextVar("dashboard_home_runtime", default=None)
 _HOME_CACHE_LOCK = threading.Lock()
 _HOME_CACHE: dict[str, dict[str, Any]] = {}
+_HOME_WARM_LOCK = threading.Lock()
+_HOME_WARMING = False
 
 
 def get_dashboard_home(db: Session) -> dict[str, Any]:
@@ -217,6 +219,32 @@ def _cache_set(key: str, payload: dict[str, Any]) -> None:
 def _clear_home_cache() -> None:
     with _HOME_CACHE_LOCK:
         _HOME_CACHE.clear()
+
+
+def warm_dashboard_home_cache(session_factory: Callable[[], Session], *, force: bool = False) -> bool:
+    global _HOME_WARMING
+    if not force and _cache_get(HOME_CACHE_KEY) is not None:
+        return False
+
+    with _HOME_WARM_LOCK:
+        if _HOME_WARMING:
+            return False
+        _HOME_WARMING = True
+
+    try:
+        db = session_factory()
+        try:
+            if force:
+                _clear_home_cache()
+            get_dashboard_home(db)
+            return True
+        finally:
+            db.close()
+    except Exception:
+        return False
+    finally:
+        with _HOME_WARM_LOCK:
+            _HOME_WARMING = False
 
 
 def _query_scalar(db: Session, sql: str, params: dict[str, Any] | None = None) -> Any:

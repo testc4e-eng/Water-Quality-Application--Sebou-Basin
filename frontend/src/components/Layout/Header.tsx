@@ -3,6 +3,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Menu, PanelLeftClose, PanelLeftOpen, SunMedium, User, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { clearAuthSession, getAuthSession, getRoleDisplayName, hasPermission } from "@/lib/authz";
 
 type NavItem = { to: string; label: string };
 
@@ -21,58 +22,22 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
     location.pathname === "/dashboard-carto-metier" ||
     location.pathname === "/dashboard-qualite-reglementaire" ||
     location.pathname === "/dashboard-pollution" ||
-    location.pathname === "/analyses" ||
-    location.pathname === "/expert" ||
+    location.pathname === "/dashboard-data-qa" ||
     location.pathname === "/administration" ||
     location.pathname.startsWith("/admin/");
 
-  const isAdmin = localStorage.getItem("is_superuser") === "true";
-  const isAuthenticated = !!localStorage.getItem("access_token");
-  const accessToken = localStorage.getItem("access_token");
-
-  const decodeTokenPayload = (token: string | null) => {
-    if (!token) return null;
-    const parts = token.split(".");
-    if (parts.length < 2) return null;
-    try {
-      const payload = parts[1].replace(/-/g, "+").replace(/_/g, "/");
-      const padded = payload.padEnd(payload.length + (4 - (payload.length % 4)) % 4, "=");
-      const json = atob(padded);
-      return JSON.parse(json);
-    } catch {
-      return null;
-    }
-  };
-
-  const getRoleLabel = (role?: string | null) => {
-    switch ((role ?? "").toLowerCase()) {
-      case "admin":
-        return "Admin";
-      case "manager":
-      case "gestionnaire":
-        return "Gestionnaire";
-      case "user":
-        return "Utilisateur";
-      default:
-        return "Utilisateur";
-    }
-  };
+  const auth = getAuthSession();
+  const isAdmin = auth.isSuperuser;
+  const isAuthenticated = !!auth.accessToken;
 
   const roleLabel = useMemo(() => {
     if (!isAuthenticated) return null;
-    if (isAdmin) return "Admin";
-    const payload = decodeTokenPayload(accessToken);
-    const role = payload?.role ?? payload?.user?.role ?? payload?.type ?? null;
-    if (!role) return "Utilisateur";
-    return getRoleLabel(String(role));
-  }, [accessToken, isAdmin, isAuthenticated]);
+    return getRoleDisplayName(auth);
+  }, [auth, isAuthenticated]);
 
   const roleLower = useMemo(() => {
-    if (isAdmin) return "admin";
-    const payload = decodeTokenPayload(accessToken);
-    const role = payload?.role ?? payload?.user?.role ?? payload?.type ?? null;
-    return role ? String(role).toLowerCase() : null;
-  }, [accessToken, isAdmin]);
+    return auth.role ? String(auth.role).toLowerCase() : null;
+  }, [auth.role]);
 
   const roleBadgeClass = useMemo(() => {
     switch ((roleLabel ?? "").toLowerCase()) {
@@ -86,47 +51,37 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
   }, [roleLabel]);
 
   const allNavItems: NavItem[] = [
-    { to: "/", label: "Accueil" },
-    { to: "/dashboard-cartographique", label: "Dashboard Cartographique" },
-    { to: "/dashboard-analytique", label: "Dashboard Analytique" },
-    { to: "/data", label: "Gestion Données" },
-    { to: "/admin/data-scan", label: "Scan de données" },
-    { to: "/about", label: "A propos" },
-    { to: "/contact", label: "Contact" },
+    { to: "/", label: "Accueil DG" },
+    { to: "/dashboard-qualite-reglementaire", label: "Qualité des eaux" },
+    { to: "/dashboard-carto-metier", label: "Carte Métier" },
+    { to: "/dashboard-pollution", label: "Pollution" },
+    { to: "/dashboard-data-qa", label: "Données / QA" },
+    { to: "/administration", label: "Administration" },
   ];
 
   const navItems = useMemo(
     () =>
       allNavItems.filter((item) => {
         if (isAdmin) return true;
-        if (roleLower === "manager" || roleLower === "gestionnaire") {
+        const canUseDataAdmin = hasPermission("data_admin.audit.read", auth.permissions);
+        const canUseLegacyData = hasPermission("security.users.manage", auth.permissions);
+        if (canUseDataAdmin) {
           return [
             "/",
-            "/dashboard-cartographique",
-            "/dashboard-analytique",
-            "/about",
-            "/contact",
-            "/data",
-            "/admin/data-scan",
-            "/admin/ingestion",
-            "/admin/popup-rules",
+            "/dashboard-qualite-reglementaire",
+            "/dashboard-carto-metier",
+            "/dashboard-pollution",
+            "/dashboard-data-qa",
+            ...(canUseLegacyData ? ["/administration"] : []),
           ].includes(item.to);
         }
-        return [
-          "/",
-          "/dashboard-cartographique",
-          "/dashboard-analytique",
-          "/about",
-          "/contact",
-        ].includes(item.to);
+        return ["/", "/dashboard-qualite-reglementaire", "/dashboard-carto-metier", "/dashboard-pollution", "/dashboard-data-qa"].includes(item.to);
       }),
-    [isAdmin, roleLower]
+    [auth.permissions, isAdmin, roleLower]
   );
 
   const handleLogout = () => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("auth_email");
-    localStorage.removeItem("is_superuser");
+    clearAuthSession();
     navigate("/login");
   };
 
@@ -146,28 +101,28 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
   if (isInstitutionalRoute) {
     return (
       <header className="sticky top-0 z-40 border-b border-[#18396d] bg-[linear-gradient(90deg,#071E41_0%,#0A2B5F_45%,#0C3778_100%)] shadow-lg">
-        <div className="px-4 py-3 sm:px-6">
-          <div className="flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between">
+        <div className="px-3 py-1 sm:px-4">
+          <div className="flex flex-col gap-0.5 xl:flex-row xl:items-center xl:justify-between">
             <div className="flex items-center gap-3">
               <Button
                 type="button"
                 variant="ghost"
                 size="icon"
-                className="hidden h-9 w-9 border border-white/10 bg-white/5 text-white hover:bg-white/10 hover:text-white lg:inline-flex"
+                className="hidden h-6 w-6 border border-white/10 bg-white/5 text-white hover:bg-white/10 hover:text-white lg:inline-flex"
                 onClick={onToggleSidebar}
                 aria-label={sidebarCollapsed ? "Afficher la sidebar" : "Masquer la sidebar"}
               >
-                {sidebarCollapsed ? <PanelLeftOpen className="h-5 w-5" /> : <PanelLeftClose className="h-5 w-5" />}
+                {sidebarCollapsed ? <PanelLeftOpen className="h-4 w-4" /> : <PanelLeftClose className="h-4 w-4" />}
               </Button>
-              <NavLink to="/" className="flex items-center gap-3 rounded-2xl px-1 py-1 text-white transition-opacity hover:opacity-90">
-                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#0B4FD8] shadow-[0_12px_28px_rgba(11,79,216,0.35)]">
-                  <img src="/logo.jpg" alt="Logo" className="h-6 w-6 rounded-full object-cover" />
+              <NavLink to="/" className="flex items-center gap-2 rounded-2xl px-1 py-0.5 text-white transition-opacity hover:opacity-90">
+                <div className="flex h-6 w-6 items-center justify-center rounded-xl bg-[#0B4FD8] shadow-[0_10px_20px_rgba(11,79,216,0.35)]">
+                  <img src="/logo.jpg" alt="Logo" className="h-4 w-4 rounded-full object-cover" />
                 </div>
                 <div>
-                  <h1 className="text-[1.7rem] font-bold tracking-tight text-white">
+                  <h1 className="text-[1rem] font-bold tracking-tight text-white">
                     WaterQuality <span className="text-[#4EA2FF]">SEBOU</span>
                   </h1>
-                  <p className="text-[10px] uppercase tracking-[0.16em] text-slate-200/90">
+                  <p className="hidden text-[7px] uppercase tracking-[0.08em] text-slate-200/90 2xl:block">
                     Plateforme intégrée de gestion du bassin du Sebou
                   </p>
                 </div>
@@ -175,24 +130,24 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
             </div>
 
             <div className="flex-1 px-0 text-left xl:px-4 xl:text-center">
-              <div className="text-2xl font-bold tracking-tight text-white xl:text-[1.95rem]">
+              <div className="text-[0.95rem] font-bold tracking-tight text-white xl:text-[1.12rem]">
                 PILOTER AUJOURD’HUI, PRÉSERVER DEMAIN
               </div>
-              <div className="mt-0.5 text-xs text-slate-200 xl:text-sm">
+              <div className="hidden text-[9px] text-slate-200 2xl:block">
                 Système d’Aide à la Décision pour une gestion durable des ressources en eau
               </div>
             </div>
 
             <div className="flex flex-wrap items-center gap-2 xl:justify-end">
-              <div className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/8 px-3 py-2 text-xs text-white backdrop-blur xl:text-sm">
+              <div className="inline-flex items-center gap-1 rounded-xl border border-white/10 bg-white/8 px-2 py-0.5 text-[10px] text-white backdrop-blur">
                 <span>{operationalDateTime}</span>
               </div>
-              <div className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/8 px-3 py-2 text-xs text-white backdrop-blur xl:text-sm">
-                <SunMedium className="h-4 w-4 text-amber-300" />
+              <div className="inline-flex items-center gap-1 rounded-xl border border-white/10 bg-white/8 px-2 py-0.5 text-[10px] text-white backdrop-blur">
+                <SunMedium className="h-2.5 w-2.5 text-amber-300" />
                 <span>24°C</span>
                 <span className="text-slate-300">Rabat</span>
               </div>
-              <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/10 text-xs font-semibold text-white xl:h-10 xl:w-10 xl:text-sm">
+              <div className="flex h-6 w-6 items-center justify-center rounded-full border border-white/15 bg-white/10 text-[10px] font-semibold text-white">
                 DG
               </div>
             </div>

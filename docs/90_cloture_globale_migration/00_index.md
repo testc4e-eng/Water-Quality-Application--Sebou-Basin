@@ -28,7 +28,7 @@ La migration historique de `abh_sebou_ismail` vers `abh_sad` est cloturee sans o
 |---|---|
 | REF-001 a REF-004 | `CLOTURE_C4E_COMPLETE` |
 | REF-005 a REF-009 | `BACKLOG_TECHNIQUE` / `A_CORRIGER_C4E` sans remise en cause de la cloture |
-| Temperature | `DONNEE_NON_FOURNIE` |
+| Temperature | `COMMITTED` |
 | Pollution `valeur_num` | `BACKLOG_TECHNIQUE_QA` |
 | Evaporation nulles | `CLIENT_REQUIRED_SI_COMPLEMENT` + `QA_WARNING` |
 | GEO / IDP | `CLIENT_REQUIRED` |

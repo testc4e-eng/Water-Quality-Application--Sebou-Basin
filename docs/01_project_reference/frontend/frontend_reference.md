@@ -102,7 +102,7 @@ Ils présentaient aussi `/admin/users` et `/admin/audit` comme des pages autonom
 
 ### 5.2 Dette de configuration backend URL
 
-La normalisation documentaire du projet pointe le backend local vers `http://127.0.0.1:8011/api/v1`, mais certains clients frontend restent configurés ou codés avec le port `8000`, notamment :
+Le backend local est désormais normalisé sur le port `8000` (`http://127.0.0.1:8000/api/v1`). Tout document ou module frontend pointant encore vers `8011` doit être considéré comme obsolète. Les clients suivants ont été alignés :
 
 - `frontend/src/api/client.ts`
 - `frontend/src/api/climate.ts`

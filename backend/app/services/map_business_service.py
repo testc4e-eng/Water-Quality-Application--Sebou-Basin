@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import date, datetime
 from typing import Any
 
 from sqlalchemy import text
@@ -10,6 +11,19 @@ from app.services.regulatory_quality import classify_measurement, load_regulator
 
 
 P0_PARAMETERS = ("DBO5", "DCO", "NH4", "NO3", "NO3-", "O2_DISS", "pH", "Cond")
+POPUP_STALE_AFTER_DAYS = 90
+MAP_QUALITY_PARAM_REGULATORY_MAP: dict[str, tuple[str, str, str | None]] = {
+    "ammonium": ("NH4", "Ammonium", "mg/L"),
+    "dbo5": ("DBO5", "DBO5", "mg/L"),
+    "dco": ("DCO", "DCO", "mg/L"),
+    "nitrates": ("NO3", "Nitrates", "mg/L"),
+    "o2_dissous": ("O2_DISS", "O2 dissous", "mg/L"),
+    "ph": ("pH", "pH", None),
+    "conductivité": ("Cond", "Conductivité", "µS/cm"),
+    "conductivite": ("Cond", "Conductivité", "µS/cm"),
+    "t_eau": ("T_EAU", "Température eau", "°C"),
+    "t_air": ("T_AIR", "Température air", "°C"),
+}
 
 
 @dataclass(frozen=True)
@@ -76,14 +90,14 @@ SUPPORTS: dict[str, MapSupportConfig] = {
     "stations_qualite": MapSupportConfig(
         support="stations_qualite",
         label="Stations qualite",
-        source="infra.stations_mesure",
-        id_column="id",
-        name_column="nom",
+        source="api.v_station_dimension",
+        id_column="station_id::text",
+        name_column="station_nom",
         geom_column="geom",
         entity_type="station_qualite",
         category="qualite",
-        extra_columns=("code_station", "type_station"),
-        source_backend="infra.stations_mesure",
+        extra_columns=("code_station", "type_station", "bassin_nom", "sous_bassin_nom", "commune_fr", "province_fr"),
+        source_backend="api.v_station_dimension",
         display_label="Stations qualite",
         description="Support technique legacy conservé pour compatibilité.",
         available_parameters=("DBO5", "DCO", "NH4", "NO3", "O2_DISS", "pH", "Cond"),
@@ -405,6 +419,47 @@ def _db_parameter_code(parameter_code: str | None) -> str | None:
     return parameter_code
 
 
+def _iso_date(value: Any) -> str | None:
+    if value is None:
+        return None
+    if isinstance(value, datetime):
+        return value.date().isoformat()
+    if isinstance(value, date):
+        return value.isoformat()
+    return str(value)
+
+
+def _age_days(value: Any) -> int | None:
+    if value is None:
+        return None
+    if isinstance(value, datetime):
+        value = value.date()
+    if isinstance(value, date):
+        return max(0, (date.today() - value).days)
+    return None
+
+
+def _detail_data_status(last_measure_date: Any, *, has_data: bool, needs_validation: bool = False) -> str:
+    if needs_validation:
+        return "A_VALIDER"
+    if not has_data or last_measure_date is None:
+        return "A_VALIDER"
+    age = _age_days(last_measure_date)
+    if age is None:
+        return "A_VALIDER"
+    if age > POPUP_STALE_AFTER_DAYS:
+        return "SANS_MESURE_RECENTE"
+    return "ACTIF"
+
+
+def _point_coordinates(geometry: Any) -> tuple[float | None, float | None]:
+    if isinstance(geometry, dict) and geometry.get("type") == "Point":
+        coordinates = geometry.get("coordinates") or []
+        if len(coordinates) >= 2:
+            return float(coordinates[0]), float(coordinates[1])
+    return None, None
+
+
 def _extra_json(cfg: MapSupportConfig) -> str:
     parts = []
     for col in cfg.extra_columns:
@@ -589,8 +644,18 @@ def _classify_latest_values(db: Session, rows: list[dict[str, Any]]) -> None:
         row["latest_values"] = enriched
 
 
-def entity_detail(db: Session, *, support: str, entity_id: str) -> dict[str, Any] | None:
-    cfg = _safe_config(support)
+def entity_detail(
+    db: Session,
+    *,
+    support: str | None = None,
+    group_code: str | None = None,
+    support_code: str | None = None,
+    entity_id: str,
+) -> dict[str, Any] | None:
+    cfg_or_missing = _resolve_config(support=support, group_code=group_code, support_code=support_code)
+    if isinstance(cfg_or_missing, dict):
+        return None
+    cfg = cfg_or_missing
     sql = text(
         f"""
         SELECT to_jsonb(t) - :geom_col AS properties,
@@ -603,13 +668,350 @@ def entity_detail(db: Session, *, support: str, entity_id: str) -> dict[str, Any
     row = db.execute(sql, {"entity_id": entity_id, "geom_col": cfg.geom_column}).mappings().first()
     if not row:
         return None
+    properties = dict(row["properties"] or {})
+    properties.update(
+        {
+            "entity_id": entity_id,
+            "support": cfg.support,
+            "support_group": cfg.support_group,
+            "support_type": cfg.support_type or cfg.support,
+            "source_backend": cfg.source_backend or cfg.source,
+            "display_label": cfg.display_label or cfg.label,
+            "data_status": cfg.data_status,
+            "geometry_status": cfg.geometry_status,
+            "legacy_support": cfg.legacy_support,
+        }
+    )
+    _enrich_entity_properties(db, cfg=cfg, entity_id=entity_id, properties=properties, geometry=row["geometry"])
     return {
         "type": "Feature",
         "id": entity_id,
         "geometry": row["geometry"],
-        "properties": row["properties"],
-        "metadata": {"support": cfg.support, "source": cfg.source},
+        "properties": properties,
+        "metadata": {
+            "support": cfg.support,
+            "group_code": cfg.support_group,
+            "support_code": cfg.support_type,
+            "source": cfg.source,
+        },
     }
+
+
+def _location_from_point(db: Session, longitude: float | None, latitude: float | None) -> dict[str, Any]:
+    if longitude is None or latitude is None:
+        return {}
+    row = db.execute(
+        text(
+            """
+            SELECT commune_fr, province_fr
+            FROM admin.communes
+            WHERE ST_Contains(
+                ST_Transform(geom, 4326),
+                ST_SetSRID(ST_MakePoint(:longitude, :latitude), 4326)
+            )
+            LIMIT 1
+            """
+        ),
+        {"longitude": longitude, "latitude": latitude},
+    ).mappings().first()
+    return dict(row) if row else {}
+
+
+def _quality_latest_values_for_station(db: Session, entity_id: str) -> list[dict[str, Any]]:
+    rows = db.execute(
+        text(
+            """
+            WITH ranked AS (
+                SELECT
+                    trim(m.parametre_qualite) AS raw_parameter,
+                    m.valeur,
+                    m.temps::date AS sample_date,
+                    row_number() OVER (
+                        PARTITION BY trim(m.parametre_qualite)
+                        ORDER BY m.temps DESC, m.created_at DESC NULLS LAST
+                    ) AS rn
+                FROM qualite.mesure_qualite_sebou m
+                WHERE m.station_id::text = :entity_id
+                  AND m.valeur IS NOT NULL
+                  AND coalesce(m.est_valide, true) = true
+            )
+            SELECT raw_parameter, valeur, sample_date
+            FROM ranked
+            WHERE rn = 1
+            ORDER BY raw_parameter
+            """
+        ),
+        {"entity_id": entity_id},
+    ).mappings().all()
+    if not rows:
+        rows = db.execute(
+            text(
+                """
+                WITH ranked AS (
+                    SELECT
+                        trim(m.parametre_qualite) AS raw_parameter,
+                        m.valeur,
+                        m.temps::date AS sample_date,
+                        row_number() OVER (
+                            PARTITION BY trim(m.parametre_qualite)
+                            ORDER BY m.temps DESC
+                        ) AS rn
+                    FROM qualite.mesure_qualite_riviere m
+                    WHERE (m.station_id::text = :entity_id OR m.ire_station = :entity_id)
+                      AND m.valeur IS NOT NULL
+                      AND coalesce(m.est_valide, true) = true
+                )
+                SELECT raw_parameter, valeur, sample_date
+                FROM ranked
+                WHERE rn = 1
+                ORDER BY raw_parameter
+                """
+            ),
+            {"entity_id": entity_id},
+        ).mappings().all()
+    regulatory_context = load_regulatory_context(db)
+    latest_values: list[dict[str, Any]] = []
+    for row in rows:
+        raw_parameter = str(row["raw_parameter"] or "").strip()
+        canonical = MAP_QUALITY_PARAM_REGULATORY_MAP.get(raw_parameter.lower())
+        parameter_code = canonical[0] if canonical else raw_parameter
+        parameter_label = canonical[1] if canonical else raw_parameter
+        unit = canonical[2] if canonical else None
+        item = {
+            "parameter_code": parameter_code,
+            "parameter_label": parameter_label,
+            "value_numeric": float(row["valeur"]) if row["valeur"] is not None else None,
+            "unit": unit,
+            "sample_date": _iso_date(row["sample_date"]),
+        }
+        if canonical and canonical[0] in {"NH4", "DBO5", "DCO", "NO3", "O2_DISS", "pH", "Cond"}:
+            item["classification"] = classify_measurement(
+                regulatory_context,
+                parameter_code=canonical[0],
+                value_numeric=item["value_numeric"],
+                unit=unit,
+            )
+        latest_values.append(item)
+    return latest_values
+
+
+def _quality_station_metrics(db: Session, entity_id: str) -> dict[str, Any]:
+    row = db.execute(
+        text(
+            """
+            SELECT
+                count(*)::int AS measure_count,
+                count(distinct trim(parametre_qualite))::int AS parameter_count,
+                min(temps)::date AS date_min,
+                max(temps)::date AS date_max
+            FROM qualite.mesure_qualite_sebou
+            WHERE station_id::text = :entity_id
+              AND coalesce(est_valide, true) = true
+            """
+        ),
+        {"entity_id": entity_id},
+    ).mappings().first()
+    if row and row["measure_count"]:
+        return dict(row)
+    fallback = db.execute(
+        text(
+            """
+            SELECT
+                count(*)::int AS measure_count,
+                count(distinct trim(parametre_qualite))::int AS parameter_count,
+                min(temps)::date AS date_min,
+                max(temps)::date AS date_max
+            FROM qualite.mesure_qualite_riviere
+            WHERE (station_id::text = :entity_id OR ire_station = :entity_id)
+              AND coalesce(est_valide, true) = true
+            """
+        ),
+        {"entity_id": entity_id},
+    ).mappings().first()
+    return dict(fallback) if fallback else {"measure_count": 0, "parameter_count": 0, "date_min": None, "date_max": None}
+
+
+def _latest_signal_for_station(
+    db: Session,
+    *,
+    table_name: str,
+    entity_id: str,
+    value_expression: str,
+    label: str,
+    unit: str,
+) -> dict[str, Any] | None:
+    row = db.execute(
+        text(
+            f"""
+            SELECT
+                {value_expression} AS value_numeric,
+                temps::date AS sample_date
+            FROM {table_name}
+            WHERE station_id::text = :entity_id
+              AND {value_expression.split(' AS ')[0] if ' AS ' in value_expression else value_expression} IS NOT NULL
+            ORDER BY temps DESC
+            LIMIT 1
+            """
+        ),
+        {"entity_id": entity_id},
+    ).mappings().first()
+    if not row:
+        return None
+    return {
+        "parameter_code": label.upper().replace(" ", "_"),
+        "parameter_label": label,
+        "value_numeric": float(row["value_numeric"]) if row["value_numeric"] is not None else None,
+        "unit": unit,
+        "sample_date": _iso_date(row["sample_date"]),
+    }
+
+
+def _station_signal_metrics(db: Session, entity_id: str, *, table_name: str, value_column: str) -> dict[str, Any]:
+    row = db.execute(
+        text(
+            f"""
+            SELECT
+                count(*)::int AS measure_count,
+                min(temps)::date AS date_min,
+                max(temps)::date AS date_max
+            FROM {table_name}
+            WHERE station_id::text = :entity_id
+              AND {value_column} IS NOT NULL
+            """
+        ),
+        {"entity_id": entity_id},
+    ).mappings().first()
+    return dict(row) if row else {"measure_count": 0, "date_min": None, "date_max": None}
+
+
+def _enrich_entity_properties(
+    db: Session,
+    *,
+    cfg: MapSupportConfig,
+    entity_id: str,
+    properties: dict[str, Any],
+    geometry: Any,
+) -> None:
+    longitude = properties.get("longitude")
+    latitude = properties.get("latitude")
+    if longitude is None or latitude is None:
+        point_longitude, point_latitude = _point_coordinates(geometry)
+        longitude = point_longitude if longitude is None else longitude
+        latitude = point_latitude if latitude is None else latitude
+    if longitude is not None:
+        properties["longitude"] = float(longitude)
+    if latitude is not None:
+        properties["latitude"] = float(latitude)
+
+    if not properties.get("commune") and not properties.get("province"):
+        location = _location_from_point(db, properties.get("longitude"), properties.get("latitude"))
+        properties["commune"] = properties.get("commune") or location.get("commune_fr")
+        properties["province"] = properties.get("province") or location.get("province_fr")
+
+    support_type = cfg.support_type or cfg.support
+    properties["entity_kind"] = {
+        "stations_qualite": "Station qualité",
+        "hydro": "Station hydrologique",
+        "pluvio": "Station pluie",
+        "barrage": "Barrage",
+        "point_prelevement": "Point de prélèvement",
+        "point_mesures": "Source pollution",
+    }.get(support_type, cfg.display_label or cfg.label)
+    properties["detail_route"] = {
+        "stations_qualite": "/dashboard-qualite-reglementaire",
+        "hydro": "/dashboard-carto-metier",
+        "pluvio": "/dashboard-carto-metier",
+        "barrage": "/dashboard-carto-metier",
+        "point_prelevement": "/dashboard-pollution",
+        "point_mesures": "/dashboard-pollution",
+    }.get(support_type)
+
+    if cfg.support == "stations_qualite":
+        metrics = _quality_station_metrics(db, entity_id)
+        latest_values = _quality_latest_values_for_station(db, entity_id)
+        properties.update(
+            {
+                "measure_count": metrics.get("measure_count") or 0,
+                "parameter_count": metrics.get("parameter_count") or 0,
+                "date_min": _iso_date(metrics.get("date_min")),
+                "date_max": _iso_date(metrics.get("date_max")),
+                "last_measure_date": _iso_date(metrics.get("date_max")),
+                "latest_values": latest_values,
+                "data_status_label": _detail_data_status(metrics.get("date_max"), has_data=bool(metrics.get("measure_count"))),
+            }
+        )
+        return
+
+    if cfg.support_group == "stations" and cfg.support_type == "hydro":
+        metrics = _station_signal_metrics(db, entity_id, table_name="hydro.mesure_debit", value_column="valeur")
+        latest_values = []
+        flow_value = _latest_signal_for_station(
+            db,
+            table_name="hydro.mesure_debit",
+            entity_id=entity_id,
+            value_expression="valeur",
+            label="Débit",
+            unit="m3/s",
+        )
+        if flow_value:
+            latest_values.append(flow_value)
+        temperature_value = _latest_signal_for_station(
+            db,
+            table_name="meteo.mesure_temperature",
+            entity_id=entity_id,
+            value_expression="val_moy",
+            label="Température air",
+            unit="°C",
+        )
+        if temperature_value:
+            latest_values.append(temperature_value)
+        properties.update(
+            {
+                "measure_count": metrics.get("measure_count") or 0,
+                "parameter_count": len(latest_values),
+                "date_min": _iso_date(metrics.get("date_min")),
+                "date_max": _iso_date(metrics.get("date_max")),
+                "last_measure_date": _iso_date(metrics.get("date_max")),
+                "latest_values": latest_values,
+                "data_status_label": _detail_data_status(metrics.get("date_max"), has_data=bool(metrics.get("measure_count"))),
+            }
+        )
+        return
+
+    if cfg.support_group == "stations" and cfg.support_type == "pluvio":
+        metrics = _station_signal_metrics(db, entity_id, table_name="meteo.mesure_precipitation", value_column="coalesce(val_remplies, val_observees, val_power_nasa)")
+        latest_values = []
+        rainfall_value = _latest_signal_for_station(
+            db,
+            table_name="meteo.mesure_precipitation",
+            entity_id=entity_id,
+            value_expression="coalesce(val_remplies, val_observees, val_power_nasa)",
+            label="Pluie",
+            unit="mm",
+        )
+        if rainfall_value:
+            latest_values.append(rainfall_value)
+        temperature_value = _latest_signal_for_station(
+            db,
+            table_name="meteo.mesure_temperature",
+            entity_id=entity_id,
+            value_expression="val_moy",
+            label="Température air",
+            unit="°C",
+        )
+        if temperature_value:
+            latest_values.append(temperature_value)
+        properties.update(
+            {
+                "measure_count": metrics.get("measure_count") or 0,
+                "parameter_count": len(latest_values),
+                "date_min": _iso_date(metrics.get("date_min")),
+                "date_max": _iso_date(metrics.get("date_max")),
+                "last_measure_date": _iso_date(metrics.get("date_max")),
+                "latest_values": latest_values,
+                "data_status_label": _detail_data_status(metrics.get("date_max"), has_data=bool(metrics.get("measure_count"))),
+            }
+        )
 
 
 def entity_parameters(db: Session, *, support: str, entity_id: str) -> dict[str, Any]:

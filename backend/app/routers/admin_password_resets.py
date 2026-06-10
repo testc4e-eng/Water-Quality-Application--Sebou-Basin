@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from app.security.deps import get_db, require_roles
+from app.security.deps import get_db, require_permissions
 from app.security.models import PasswordResetRequest, SecurityUser
 from app.security.schemas import PasswordResetDecision, PasswordResetRequestOut
 from app.security.services import (
@@ -13,12 +13,14 @@ from app.security.services import (
 
 router = APIRouter(prefix="/password-reset-requests", tags=["admin"])
 
+PASSWORD_RESET_MANAGE_PERMISSION = "security.password_reset.manage"
+
 
 @router.get("", response_model=list[PasswordResetRequestOut])
 def list_requests(
     status: str | None = None,
     db: Session = Depends(get_db),
-    _: SecurityUser = Depends(require_roles("admin")),
+    _: SecurityUser = Depends(require_permissions(PASSWORD_RESET_MANAGE_PERMISSION)),
 ):
     return list_password_reset_requests(db, status=status)
 
@@ -28,7 +30,7 @@ def approve_request(
     request_id: int,
     payload: PasswordResetDecision,
     db: Session = Depends(get_db),
-    admin_user: SecurityUser = Depends(require_roles("admin")),
+    admin_user: SecurityUser = Depends(require_permissions(PASSWORD_RESET_MANAGE_PERMISSION)),
 ):
     req = db.query(PasswordResetRequest).filter(PasswordResetRequest.id == request_id).first()
     if not req:
@@ -45,7 +47,7 @@ def reject_request(
     request_id: int,
     payload: PasswordResetDecision,
     db: Session = Depends(get_db),
-    admin_user: SecurityUser = Depends(require_roles("admin")),
+    admin_user: SecurityUser = Depends(require_permissions(PASSWORD_RESET_MANAGE_PERMISSION)),
 ):
     req = db.query(PasswordResetRequest).filter(PasswordResetRequest.id == request_id).first()
     if not req:

@@ -1,3 +1,6 @@
+# LEGACY / NON-RUNTIME ROUTER ASSEMBLER
+# This file is not mounted by backend/app/main.py or backend/app/api/api_v1.py.
+# It must not be used for preproduction without a full DB/code audit.
 # backend/app/api/v1/api_router.py
 from fastapi import APIRouter
 

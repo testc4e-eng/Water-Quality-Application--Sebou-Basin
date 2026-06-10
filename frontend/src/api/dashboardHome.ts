@@ -1,6 +1,7 @@
 import { api } from "@/api/client";
 
 const DASHBOARD_HOME_CACHE_KEY = "dashboard-home-v2:last-payload";
+const DASHBOARD_HOME_PREVIOUS_CACHE_KEY = "dashboard-home-v2:previous-payload";
 
 export type HomeSectionStatus = "OK" | "SURVEILLANCE" | "CRITIQUE" | "UNKNOWN";
 export type HomeTrendStatus = "UP" | "DOWN" | "STABLE" | "UNKNOWN";
@@ -198,10 +199,26 @@ export function readDashboardHomeCache(): DashboardHomePayload | undefined {
   }
 }
 
+export function readPreviousDashboardHomeCache(): DashboardHomePayload | undefined {
+  if (typeof window === "undefined") return undefined;
+
+  try {
+    const raw = window.sessionStorage.getItem(DASHBOARD_HOME_PREVIOUS_CACHE_KEY);
+    if (!raw) return undefined;
+    return JSON.parse(raw) as DashboardHomePayload;
+  } catch {
+    return undefined;
+  }
+}
+
 export async function getDashboardHome() {
   const { data } = await api.get<DashboardHomePayload>("/dashboard/home");
   if (typeof window !== "undefined") {
     try {
+      const current = window.sessionStorage.getItem(DASHBOARD_HOME_CACHE_KEY);
+      if (current) {
+        window.sessionStorage.setItem(DASHBOARD_HOME_PREVIOUS_CACHE_KEY, current);
+      }
       window.sessionStorage.setItem(DASHBOARD_HOME_CACHE_KEY, JSON.stringify(data));
     } catch {
       // noop

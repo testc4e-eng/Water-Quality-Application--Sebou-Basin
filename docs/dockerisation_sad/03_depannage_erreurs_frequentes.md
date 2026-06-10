@@ -161,7 +161,7 @@ docker compose down -v
 
 Le projet contient déjà des incohérences historiques de ports :
 
-- backend documenté en `8011`
+- backend (obsolète) : `8011`
 - frontend documenté en `3001`
 - frontend `.env` local pointant en `8000`
 - CORS backend acceptant aussi `5173`
@@ -178,7 +178,7 @@ Convention retenue pour Docker :
 
 Convention historique hors Docker :
 
-- backend : souvent `8011`
+- backend (obsolète) : `8011`
 - frontend : souvent `3001`
 
 Documenter explicitement quel mode de lancement est utilisé.

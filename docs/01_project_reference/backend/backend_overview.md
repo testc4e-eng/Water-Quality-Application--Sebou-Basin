@@ -133,10 +133,10 @@ cd backend
 python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
-uvicorn app.main:app --reload --port 8011
+uvicorn app.main:app --reload --port 8000
 ```
 
-L’usage documentaire normalisé dans le projet est le port `8011` pour le backend local. Tout document ou module frontend pointant encore par défaut vers `8000` doit être considéré comme dette de configuration.
+L’usage documentaire normalisé dans le projet est le port `8000` pour le backend local (aligné avec `BACKEND_PORT=8000` dans `.env` et Docker Compose).
 
 ## 7. Règle documentaire
 

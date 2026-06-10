@@ -9,13 +9,13 @@
 Commande:
 
 ```powershell
-python c:\dev\WQDSS\repo_git\backend\scripts\smoke_observatory_popup_rules.py --base-url http://127.0.0.1:8011/api/v1
+python c:\dev\WQDSS\repo_git\backend\scripts\smoke_observatory_popup_rules.py --base-url http://127.0.0.1:8000/api/v1
 ```
 
 Option avec token:
 
 ```powershell
-python c:\dev\WQDSS\repo_git\backend\scripts\smoke_observatory_popup_rules.py --base-url http://127.0.0.1:8011/api/v1 --token <JWT>
+python c:\dev\WQDSS\repo_git\backend\scripts\smoke_observatory_popup_rules.py --base-url http://127.0.0.1:8000/api/v1 --token <JWT>
 ```
 
 Validation attendue:

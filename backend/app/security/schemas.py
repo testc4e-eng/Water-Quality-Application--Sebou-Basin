@@ -20,6 +20,8 @@ class UserOut(BaseModel):
     failed_login_attempts: int
     last_login_at: datetime | None = None
     last_login_ip: str | None = None
+    permissions: list[str] = Field(default_factory=list)
+    rbac_status: str = "RBAC_REAL"
 
     class Config:
         from_attributes = True
@@ -61,6 +63,9 @@ class TokenResponse(BaseModel):
     email: EmailStr
     username: str
     role: str
+    role_label: str | None = None
+    permissions: list[str] = Field(default_factory=list)
+    rbac_status: str = "RBAC_REAL"
     is_superuser: bool
     must_change_password: bool | None = None
 

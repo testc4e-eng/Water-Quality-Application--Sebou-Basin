@@ -27,11 +27,11 @@ Optionnel :
 ## Lancement
 ```bash
 cd backend
-uvicorn app.main:app --host 127.0.0.1 --port 8011 --reload
+uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
 Documentation Swagger :
-- `http://127.0.0.1:8011/docs`
+- `http://127.0.0.1:8000/docs`
 
 ## Routes principales
 Préfixe global : `/api/v1`

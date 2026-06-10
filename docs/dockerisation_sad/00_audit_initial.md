@@ -162,14 +162,14 @@ Variables clés détectées :
 Ports observés dans le code et la documentation :
 
 - PostgreSQL : `5432`
-- backend documenté : `8011`
+- backend (convention actuelle) : `8000`
 - backend effectivement référencé aussi en `8000`
 - frontend Vite documenté/configuré : `3001`
 - backend CORS autorise aussi `5173`
 
 Incohérences constatées :
 
-- `README.md` et une partie de la doc normalisent le backend en `8011`
+- `README.md` et la doc ont été harmonisés sur le port `8000` pour le backend (l'ancien `8011` est obsolète)
 - `frontend/.env` pointe vers `8000`
 - `frontend/vite.config.ts` fixe le port Vite à `3001`
 - `backend/app/main.py` prévoit aussi le cas `5173`
@@ -207,7 +207,7 @@ Commandes documentées actuellement :
 
 ```powershell
 cd backend
-uvicorn app.main:app --host 127.0.0.1 --port 8011 --reload
+uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
 #### Frontend
@@ -219,7 +219,7 @@ npm run dev -- --port 3001
 
 Tests documentés ou implicites :
 
-- `http://127.0.0.1:8011/docs`
+- `http://127.0.0.1:8000/docs`
 - `GET /health`
 
 ### 10. Risques et contraintes pour la dockerisation
@@ -252,7 +252,7 @@ Décisions d'implémentation :
 
 L'audit met en évidence un écart entre documentation et réalité courante :
 
-- documentation locale : backend `8011`, frontend `3001`
+- documentation locale (harmonisée) : backend `8000`, frontend `3001` (l'ancien `8011` est obsolète)
 - configuration frontend locale : backend `8000`
 - backend CORS : `5173` et `3001`
 

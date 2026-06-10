@@ -2,6 +2,7 @@
 
 import asyncio
 import os
+import threading
 from urllib.parse import urlencode
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -201,11 +202,19 @@ def health():
 def test_db_connection():
     try:
         from app.db_raw import connection
+        from app.db.climate_database import ClimateSessionLocal
+        from app.services.dashboard.home_service import warm_dashboard_home_cache
         with connection() as cx:
             with cx.cursor() as cur:
                 cur.execute("SELECT 1;")
                 cur.fetchone()
         print("Connexion PostgreSQL OK")
+        threading.Thread(
+            target=warm_dashboard_home_cache,
+            args=(ClimateSessionLocal,),
+            kwargs={"force": False},
+            daemon=True,
+        ).start()
     except Exception as e:
         print("ERREUR CONNEXION POSTGRESQL :", e)
 

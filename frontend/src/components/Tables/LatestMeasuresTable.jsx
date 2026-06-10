@@ -19,7 +19,7 @@ export default function LatestMeasuresTable({ stationId, range }) {
     if (range?.dateFrom) params.from = range.dateFrom;
     if (range?.dateTo) params.to = range.dateTo;
 
-    // ✅ Appel via Axios (baseURL = http://127.0.0.1:8000/api/v1)
+    // ✅ Appel via l'instance Axios partagée
     api
       .get(`/stations/${stationId}/measurements`, { params })
       .then((res) => {

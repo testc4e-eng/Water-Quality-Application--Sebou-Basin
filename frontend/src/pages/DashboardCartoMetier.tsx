@@ -13,7 +13,7 @@ import { BusinessSidebar } from "@/components/DashboardMetier/BusinessSidebar";
 import { PanneauActionMetier } from "@/components/DashboardMetier/PanneauActionMetier";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { useMapCatalog, useMapEntities } from "@/hooks/useMapBusiness";
+import { useMapCatalog, useMapEntities, useMapEntityDetail } from "@/hooks/useMapBusiness";
 
 function resolveDefaultSelection(catalog: MapBusinessCatalog): { group_code: string; support_code: string } | null {
   const preferredGroup = catalog.groups.find((group) => group.group_code === "stations");
@@ -43,6 +43,21 @@ export default function DashboardCartoMetier() {
 
   const catalogQuery = useMapCatalog();
   const entitiesQuery = useMapEntities(submittedFilters, Boolean(submittedFilters));
+  const selectedFeatureDetailQuery = useMapEntityDetail(
+    selectedFeature
+      ? {
+          entityId: String(selectedFeature.properties.entity_id ?? selectedFeature.id),
+          support:
+            selectedFeature.properties.support_group && selectedFeature.properties.support_type
+              ? undefined
+              : (selectedFeature.properties.support as string | undefined),
+          group_code: selectedFeature.properties.support_group as string | undefined,
+          support_code: selectedFeature.properties.support_type as string | undefined,
+        }
+      : null,
+    Boolean(selectedFeature),
+  );
+  const selectedFeatureForPanels = selectedFeatureDetailQuery.data ?? selectedFeature;
 
   const selectedSupport = useMemo(() => {
     return catalogQuery.data?.groups
@@ -223,7 +238,7 @@ export default function DashboardCartoMetier() {
       </main>
 
       <div className="w-[360px] shrink-0">
-        <PanneauActionMetier feature={selectedFeature} viewMode={viewMode} />
+        <PanneauActionMetier feature={selectedFeatureForPanels} viewMode={viewMode} />
       </div>
     </div>
   );

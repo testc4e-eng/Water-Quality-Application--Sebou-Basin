@@ -168,6 +168,7 @@ Mise à jour 2026-06-02 :
 - `scripts/test_docker_api.ps1` : script PowerShell de validation rapide des endpoints Docker
 - `docs/dockerisation_sad/05_audit_objets_sql_attendus.md` à `09_plan_tests_api_docker.md` : audit SQL backend, audit base Docker, matrice de tests, stratégie d'initialisation et plan de tests
 - `docs/dockerisation_sad/11_connexion_backend_docker_postgresql_local.md` : mode recommandé `sad-backend` Docker vers PostgreSQL local Windows `abh_sad` via `host.docker.internal`
+- `docs/dockerisation_sad/12_multi_stack_ports.md` : convention de ports réservés pour coexistence avec d'autres plateformes Docker locales
 
 ## Dashboard qualité réglementaire P0
 

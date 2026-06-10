@@ -136,9 +136,8 @@ docker compose logs --no-color sad-frontend
 Commandes de test HTTP exécutées :
 
 ```powershell
-Invoke-WebRequest http://localhost:8011/docs
-Invoke-WebRequest http://localhost:8011/openapi.json
-Invoke-WebRequest http://localhost:8011/health
+# Les anciens tests sur le port 8011 ont été supprimés car obsolètes.
+# Commandes de test actuelles sur le port officiel 8000 :
 Invoke-WebRequest http://localhost:8000/docs
 Invoke-WebRequest http://localhost:8000/openapi.json
 Invoke-RestMethod http://localhost:8000/health
@@ -159,9 +158,6 @@ Invoke-WebRequest http://localhost:5174
 
 | Endpoint | Résultat | Code HTTP | Observation |
 |---|---|---|---|
-| `http://localhost:8011/docs` | échec | n/a | port non utilisé par la stack Docker actuelle |
-| `http://localhost:8011/openapi.json` | échec | n/a | port non utilisé par la stack Docker actuelle |
-| `http://localhost:8011/health` | échec | n/a | port non utilisé par la stack Docker actuelle |
 | `http://localhost:8000/docs` | OK | `200` | Swagger accessible |
 | `http://localhost:8000/openapi.json` | OK | `200` | OpenAPI accessible |
 | `http://localhost:8000/health` | OK | `200` | réponse `{\"status\":\"OK\",\"db\":\"OK\"}` |
@@ -184,12 +180,12 @@ Invoke-WebRequest http://localhost:5174
   - `relation "api.v_pollution_sites" does not exist`
   - `relation "api.v_hierarchie_metier_listing" does not exist`
 - le backend fonctionne techniquement, mais il n'est pas encore pleinement exploitable fonctionnellement sans stratégie d'initialisation de schéma/données adaptée
-- la stack Docker actuelle utilise `8000` pour le backend, pas `8011`
+- la stack Docker utilise `8000` pour le backend (port officiel normalisé)
 - le frontend Docker est sur `5173`; `5174` répond aussi sur la machine, mais ce port n'est pas publié par cette stack Docker
 
 ## 8. Prochaine étape recommandée
 
-1. stabiliser explicitement la convention de ports Docker versus hors Docker (`8000/5173` contre `8011/3001`)
+1. la convention de ports est stabilisée : Docker `8000/5173`, hors Docker `8000/3001` (`8011` est obsolète)
 2. ajouter un healthcheck backend Docker explicite, distinct du seul healthcheck PostgreSQL
 3. préparer ensuite une variante frontend production `build + nginx`
 4. définir plus tard une stratégie d'initialisation/migration DB non destructive, sans import automatique de dump et sans toucher à la base officielle

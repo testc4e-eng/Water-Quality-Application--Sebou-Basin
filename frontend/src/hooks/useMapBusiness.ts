@@ -2,8 +2,10 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
 import {
   getCatalog,
+  getEntityDetail,
   getEntities,
   getLatestValues,
+  type MapEntityDetailFilters,
   type MapEntitiesFilters,
   type MapLatestValuesFilters,
 } from "@/api/mapBusiness";
@@ -35,5 +37,14 @@ export function useLatestValues(filters: MapLatestValuesFilters | null, enabled 
     enabled: enabled && Boolean(filters),
     staleTime: STALE_TIME_MS,
     placeholderData: keepPreviousData,
+  });
+}
+
+export function useMapEntityDetail(filters: MapEntityDetailFilters | null, enabled = false) {
+  return useQuery({
+    queryKey: ["map-business", "entity-detail", filters],
+    queryFn: () => getEntityDetail(filters as MapEntityDetailFilters),
+    enabled: enabled && Boolean(filters?.entityId),
+    staleTime: STALE_TIME_MS,
   });
 }
