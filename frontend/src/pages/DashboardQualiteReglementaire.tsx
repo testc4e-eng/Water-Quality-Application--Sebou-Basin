@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { QualityGlobalFilters } from "@/components/quality-dashboard/QualityGlobalFilters";
 import { QualityOverviewTab } from "@/components/quality-dashboard/QualityOverviewTab";
 import { QualityRealtimeTab } from "@/components/quality-dashboard/QualityRealtimeTab";
+import { QualityHistoriqueTab } from "@/components/quality-dashboard/QualityHistoriqueTab";
 import { Calendar, Download } from "lucide-react";
 
 export default function DashboardQualiteReglementaire() {
@@ -65,7 +66,8 @@ export default function DashboardQualiteReglementaire() {
         <div className="flex-1 overflow-y-auto p-6">
           {activeTab === "VUE_DENSEMBLE" && <QualityOverviewTab />}
           {activeTab === "TEMPS_REEL" && <QualityRealtimeTab />}
-          {activeTab !== "VUE_DENSEMBLE" && activeTab !== "TEMPS_REEL" && (
+          {activeTab === "HISTORIQUE_RIVIERES" && <QualityHistoriqueTab />}
+          {activeTab !== "VUE_DENSEMBLE" && activeTab !== "TEMPS_REEL" && activeTab !== "HISTORIQUE_RIVIERES" && (
             <div className="bg-white p-8 rounded-md border border-slate-200 shadow-sm flex flex-col items-center justify-center text-center h-full">
               <h2 className="text-xl font-semibold text-slate-800 mb-2">Contenu en cours de construction</h2>
               <p className="text-slate-500 max-w-md">Cet onglet sera implémenté dans la prochaine itération. La vue d'ensemble sert de référence pour l'architecture globale.</p>

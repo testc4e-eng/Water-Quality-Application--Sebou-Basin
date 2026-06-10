@@ -9,9 +9,15 @@ export function QualityRealtimeTab() {
     queryFn: () => getQualityStations('SENTINELLE')
   });
 
+
+  // 1. Filtrer les 6 IREs métiers validés
+  const VALID_IRES = ['3695/8', '1541/15', '1540/15', '1355/8', '3738/8', '2263/15'];
+  const filteredStations = stations.filter(s => VALID_IRES.includes(s.ire_station || s.station_id));
+
   // Fetch timeseries for each station to get latest values and sparklines
   const timeseriesQueries = useQueries({
-    queries: stations.map(station => ({
+    queries: filteredStations.map(station => ({
+
       queryKey: ['unified-timeseries', 'SENTINELLE', station.ire_station || station.station_id],
       queryFn: () => getQualityTimeseries('SENTINELLE', station.ire_station || station.station_id),
       enabled: !!(station.ire_station || station.station_id)
@@ -22,9 +28,9 @@ export function QualityRealtimeTab() {
 
   // Group and format the data
   const stationsData = useMemo(() => {
-    if (!stations.length) return [];
+    if (!filteredStations.length) return [];
     
-    return stations.map((station, index) => {
+    return filteredStations.map((station, index) => {
       const tsData = timeseriesQueries[index]?.data || [];
       
       // tsData is an array of rows: { date_mesure, parametre_qualite, valeur }
@@ -50,23 +56,24 @@ export function QualityRealtimeTab() {
       
       const sparklineData = Object.values(pivotByDate).sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime());
       
+
       // Calculate freshness
       let freshness = "Inconnu";
       let freshnessColor = "bg-slate-100 text-slate-600";
       const dtMax = station.dt_max || (station as any).date_max;
       if (dtMax) {
+        const formattedDate = new Date(dtMax).toLocaleDateString('fr-FR');
+        freshness = `Dernière donnée : ${formattedDate}`;
         const daysOld = Math.floor((new Date().getTime() - new Date(dtMax).getTime()) / (1000 * 3600 * 24));
         if (daysOld <= 2) {
-          freshness = "Très récent";
           freshnessColor = "bg-green-100 text-green-700";
         } else if (daysOld <= 7) {
-          freshness = "Récent";
           freshnessColor = "bg-blue-100 text-blue-700";
         } else {
-          freshness = `Il y a ${daysOld} jours`;
           freshnessColor = "bg-amber-100 text-amber-700";
         }
       }
+
 
       return {
         id: station.ire_station || station.station_id,
@@ -80,7 +87,7 @@ export function QualityRealtimeTab() {
         sparklineData
       };
     });
-  }, [stations, timeseriesQueries]);
+  }, [filteredStations, timeseriesQueries]);
 
   if (isLoading) {
     return <div className="p-8 text-center text-slate-500">Chargement des stations sentinelles...</div>;
@@ -138,9 +145,13 @@ export function QualityRealtimeTab() {
                         <div className="text-xs text-slate-500 font-medium truncate" title={actualParam || paramKey}>
                           {actualParam || paramKey}
                         </div>
+
                         {valObj ? (
                           <div className="mt-1 flex items-end justify-between">
-                            <span className="font-bold text-slate-900">{valObj.value.toLocaleString('fr-FR')}</span>
+                            <div>
+                              <span className="font-bold text-slate-900">{valObj.value.toLocaleString('fr-FR')}</span>
+                              <div className="text-[10px] text-slate-400 italic leading-tight mt-0.5">unité à confirmer</div>
+                            </div>
                             <div className="h-6 w-12 ml-2">
                               {station.sparklineData.length > 1 && (
                                 <ResponsiveContainer width="100%" height="100%">
