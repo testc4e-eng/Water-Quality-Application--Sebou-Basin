@@ -63,6 +63,7 @@ export interface ThresholdsResponse {
 }
 
 export interface QualityStation {
+  support_type?: string;
   station_id: string;
   station_name: string;
   dt_min: string;
@@ -76,6 +77,8 @@ export interface QualityParameter {
 }
 
 export interface QualityTimeseriesRow {
+  support_type?: string;
+  source_table?: string;
   date: string;
   no3: number | null;
   ph: number | null;
@@ -114,25 +117,28 @@ export async function getActiveThresholds(): Promise<ThresholdsResponse> {
   return data;
 }
 
-export async function getQualityStations(): Promise<QualityStation[]> {
-  const { data } = await api.get<QualityStation[]>("/quality/stations");
+export async function getQualityStations(supportType?: string): Promise<QualityStation[]> {
+  const { data } = await api.get<QualityStation[]>("/quality/unified/stations", {
+    params: supportType ? { support_type: supportType } : undefined,
+  });
   return Array.isArray(data) ? data : [];
 }
 
-export async function getQualityParameters(stationId?: string): Promise<QualityParameter[]> {
-  const { data } = await api.get<QualityParameter[]>("/quality/parameters", {
-    params: stationId ? { station_id: stationId } : undefined,
+export async function getQualityParameters(supportType?: string, stationId?: string): Promise<QualityParameter[]> {
+  const { data } = await api.get<QualityParameter[]>("/quality/unified/parameters", {
+    params: { support_type: supportType || undefined, station_id: stationId || undefined },
   });
   return Array.isArray(data) ? data : [];
 }
 
 export async function getQualityTimeseries(
+  supportType: string | undefined,
   stationId: string,
   dateStart?: string,
   dateEnd?: string
 ): Promise<QualityTimeseriesRow[]> {
-  const { data } = await api.get<QualityTimeseriesRow[]>("/quality/timeseries", {
-    params: { station_id: stationId, date_start: dateStart || undefined, date_end: dateEnd || undefined },
+  const { data } = await api.get<QualityTimeseriesRow[]>("/quality/unified/timeseries", {
+    params: { support_type: supportType || undefined, ire_station: stationId, date_start: dateStart || undefined, date_end: dateEnd || undefined },
   });
   return Array.isArray(data) ? data : [];
 }

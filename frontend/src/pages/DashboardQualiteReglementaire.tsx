@@ -23,6 +23,7 @@ const SERIES_KEY: Record<string, "dbo5" | "dco" | "no3" | "ph" | "o2" | "mes"> =
 };
 
 export default function DashboardQualiteReglementaire() {
+  const [supportType, setSupportType] = useState<string>("SENTINELLE");
   const [stationId, setStationId] = useState<string>();
   const [parameter, setParameter] = useState("DBO5");
   const [dateStart, setDateStart] = useState("");
@@ -30,8 +31,8 @@ export default function DashboardQualiteReglementaire() {
 
   const statusQuery = useRegulatoryStatus();
   const thresholdsQuery = useActiveThresholds();
-  const stationsQuery = useQualityStations();
-  const timeseriesQuery = useQualityTimeseries(stationId, dateStart, dateEnd);
+  const stationsQuery = useQualityStations(supportType);
+  const timeseriesQuery = useQualityTimeseries(supportType, stationId, dateStart, dateEnd);
   const latestPoint = useMemo(() => {
     const key = SERIES_KEY[parameter];
     return [...(timeseriesQuery.data ?? [])].reverse().find((row) => row[key] !== null && row[key] !== undefined);
@@ -101,6 +102,31 @@ export default function DashboardQualiteReglementaire() {
         ) : (
           <section className="flex items-center gap-2 text-sm text-emerald-800"><CheckCircle2 className="h-4 w-4" />API réglementaire lecture seule connectée.</section>
         )}
+
+        
+        <section className="flex flex-wrap items-center gap-2 rounded-md bg-white p-2 border border-slate-200">
+          {[
+            { id: "SENTINELLE", label: "Temps réel (Sentinelles)" },
+            { id: "RIVIERE", label: "Historique Rivières" },
+            { id: "BARRAGE", label: "Barrages" },
+            { id: "BARRAGE_GARDE", label: "Barrage de Garde" },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => {
+                setSupportType(tab.id);
+                setStationId(undefined);
+              }}
+              className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                supportType === tab.id
+                  ? "bg-blue-600 text-white shadow-sm"
+                  : "bg-slate-50 text-slate-700 hover:bg-slate-100"
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </section>
 
         <KPIQualiteCards
           stationsCount={stations.length}
