@@ -36,6 +36,42 @@ class QualityGlobalIndexRequest(BaseModel):
     version_reglementaire: str | None = None
 
 
+
+from typing import Optional, List, Dict
+from datetime import datetime
+from pydantic import BaseModel, Field
+
+class UnifiedQualityStationResponse(BaseModel):
+    ire_station: Optional[str] = None
+    station_id: Optional[str] = None
+    station_nom: Optional[str] = None
+    code_station: Optional[str] = None
+    bassin_nom: Optional[str] = None
+    sous_bassin_nom: Optional[str] = None
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
+    support_type: str
+    measure_count: int
+    parameter_count: int
+    date_min: Optional[datetime] = None
+    date_max: Optional[datetime] = None
+
+class UnifiedQualityParameterResponse(BaseModel):
+    parametre_qualite: str
+    measure_count: int
+    station_count: int
+    date_min: Optional[datetime] = None
+    date_max: Optional[datetime] = None
+
+class UnifiedQualityTimeseriesResponse(BaseModel):
+    date_mesure: datetime
+    ire_station: Optional[str] = None
+    station_nom: Optional[str] = None
+    parametre_qualite: str
+    valeur: Optional[float] = None
+    support_type: str
+    source_table: str
+
 def _row_to_dict(row: Any) -> dict[str, Any] | None:
     if row is None:
         return None
@@ -946,3 +982,74 @@ def get_quality_latest(
             "include_flagged": include_flagged,
         },
     ).mappings().all()
+
+
+@router.get("/unified/stations", response_model=List[UnifiedQualityStationResponse], tags=["Quality Unified"])
+def get_unified_stations(
+    support_type: Optional[str] = None,
+    db: Session = Depends(get_climate_db)
+):
+    """Liste les stations avec métadonnées depuis la vue unifiée."""
+    sql = """
+        SELECT 
+            v.ire_station, v.station_id::text, v.support_type,
+            MIN(v.date_mesure) as date_min, MAX(v.date_mesure) as date_max,
+            COUNT(v.valeur) as measure_count,
+            COUNT(DISTINCT v.parametre_qualite) as parameter_count,
+            s.station_nom, s.code_station, s.bassin_nom, s.sous_bassin_nom, s.latitude, s.longitude
+        FROM api.v_qualite_dashboard_unifiee v
+        LEFT JOIN api.v_station_dimension s ON v.station_id = s.station_id::text
+        WHERE (:support_type IS NULL OR v.support_type = :support_type)
+        GROUP BY v.ire_station, v.station_id::text, v.support_type, s.station_nom, s.code_station, s.bassin_nom, s.sous_bassin_nom, s.latitude, s.longitude
+    """
+    rows = db.execute(text(sql), {"support_type": support_type}).fetchall()
+    return _rows_to_dicts(rows)
+
+@router.get("/unified/parameters", response_model=List[UnifiedQualityParameterResponse], tags=["Quality Unified"])
+def get_unified_parameters(
+    support_type: Optional[str] = None,
+    db: Session = Depends(get_climate_db)
+):
+    """Liste les paramètres disponibles depuis la vue unifiée."""
+    sql = """
+        SELECT 
+            v.parametre_qualite,
+            COUNT(v.valeur) as measure_count,
+            COUNT(DISTINCT v.ire_station) as station_count,
+            MIN(v.date_mesure) as date_min, MAX(v.date_mesure) as date_max
+        FROM api.v_qualite_dashboard_unifiee v
+        WHERE (:support_type IS NULL OR v.support_type = :support_type)
+        GROUP BY v.parametre_qualite
+    """
+    rows = db.execute(text(sql), {"support_type": support_type}).fetchall()
+    return _rows_to_dicts(rows)
+
+@router.get("/unified/timeseries", response_model=List[UnifiedQualityTimeseriesResponse], tags=["Quality Unified"])
+def get_unified_timeseries(
+    support_type: Optional[str] = None,
+    ire_station: Optional[str] = None,
+    parametre_qualite: Optional[str] = None,
+    limit: int = 100,
+    db: Session = Depends(get_climate_db)
+):
+    """Liste les séries temporelles depuis la vue unifiée."""
+    sql = """
+        SELECT 
+            v.date_mesure, v.ire_station, v.parametre_qualite, v.valeur, v.support_type, v.source_table,
+            s.station_nom
+        FROM api.v_qualite_dashboard_unifiee v
+        LEFT JOIN api.v_station_dimension s ON v.station_id = s.station_id::text
+        WHERE (:support_type IS NULL OR v.support_type = :support_type)
+          AND (:ire_station IS NULL OR v.ire_station = :ire_station)
+          AND (:parametre_qualite IS NULL OR v.parametre_qualite = :parametre_qualite)
+        ORDER BY v.date_mesure DESC
+        LIMIT :limit
+    """
+    rows = db.execute(text(sql), {
+        "support_type": support_type,
+        "ire_station": ire_station,
+        "parametre_qualite": parametre_qualite,
+        "limit": limit
+    }).fetchall()
+    return _rows_to_dicts(rows)
+
