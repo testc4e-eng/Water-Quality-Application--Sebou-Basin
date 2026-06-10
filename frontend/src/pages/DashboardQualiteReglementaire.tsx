@@ -1,176 +1,75 @@
-import { AlertTriangle, CheckCircle2, Info } from "lucide-react";
-import { useMemo, useState } from "react";
-
-import { QualityAlertCenter } from "@/components/quality-regulatory/QualityAlertCenter";
-import { KPIQualiteCards } from "@/components/quality-regulatory/KPIQualiteCards";
-import { ObservationalParametersPanel } from "@/components/quality-regulatory/ObservationalParametersPanel";
-import { QualityParametersTable } from "@/components/quality-regulatory/QualityParametersTable";
-import { QualityStationsPanel } from "@/components/quality-regulatory/QualityStationsPanel";
-import { QualityTimeSeries } from "@/components/quality-regulatory/QualityTimeSeries";
-import { RegulatoryHeader } from "@/components/quality-regulatory/RegulatoryHeader";
-import { QualityStatusBadge } from "@/components/quality-regulatory/QualityStatusBadge";
-import {
-  useActiveThresholds,
-  useQualityClassification,
-  useQualityStations,
-  useQualityTimeseries,
-  useRegulatoryStatus,
-} from "@/hooks/useQualityRegulatory";
-import { StatusBadge } from "@/components/ui/status-badge";
-
-const SERIES_KEY: Record<string, "dbo5" | "dco" | "no3" | "ph" | "o2" | "mes"> = {
-  DBO5: "dbo5", DCO: "dco", NO3: "no3", pH: "ph", O2_DISSOUS: "o2", MES: "mes",
-};
+import React, { useState } from "react";
+import { QualityGlobalFilters } from "@/components/quality-dashboard/QualityGlobalFilters";
+import { QualityOverviewTab } from "@/components/quality-dashboard/QualityOverviewTab";
+import { Calendar, Download } from "lucide-react";
 
 export default function DashboardQualiteReglementaire() {
-  const [supportType, setSupportType] = useState<string>("SENTINELLE");
-  const [stationId, setStationId] = useState<string>();
-  const [parameter, setParameter] = useState("DBO5");
-  const [dateStart, setDateStart] = useState("");
-  const [dateEnd, setDateEnd] = useState("");
+  const [activeTab, setActiveTab] = useState("VUE_DENSEMBLE");
 
-  const statusQuery = useRegulatoryStatus();
-  const thresholdsQuery = useActiveThresholds();
-  const stationsQuery = useQualityStations(supportType);
-  const timeseriesQuery = useQualityTimeseries(supportType, stationId, dateStart, dateEnd);
-  const latestPoint = useMemo(() => {
-    const key = SERIES_KEY[parameter];
-    return [...(timeseriesQuery.data ?? [])].reverse().find((row) => row[key] !== null && row[key] !== undefined);
-  }, [parameter, timeseriesQuery.data]);
-  const latestValue = latestPoint?.[SERIES_KEY[parameter]] as number | null | undefined;
-  const classificationQuery = useQualityClassification(parameter, latestValue, parameter === "pH" ? "" : "mg/L");
-
-  const summary = statusQuery.data?.summary ?? {};
-  const stations = stationsQuery.data ?? [];
-  const measuresCount = stations.reduce((total, station) => total + station.n_mesures, 0);
-  const lastUpdate = stations.map((station) => station.dt_max).sort().reverse()[0];
-  const hasError = statusQuery.isError || thresholdsQuery.isError || stationsQuery.isError;
-  const apiSources = [
-    "GET /api/v1/quality/regulatory-status",
-    "GET /api/v1/quality/thresholds",
-    "GET /api/v1/quality/stations",
-    "GET /api/v1/quality/timeseries",
-    "POST /api/v1/quality/classify",
+  const tabs = [
+    { id: "VUE_DENSEMBLE", label: "Vue d'ensemble" },
+    { id: "TEMPS_REEL", label: "Temps réel (Sentinelles)" },
+    { id: "HISTORIQUE_RIVIERES", label: "Historique Rivières" },
+    { id: "BARRAGES", label: "Barrages" },
+    { id: "BARRAGE_GARDE", label: "Barrage de Garde" },
+    { id: "ALERTES_QA", label: "Alertes & QA" },
+    { id: "PARAMETRES", label: "Paramètres" },
   ];
-  const regulatoryBadge = statusQuery.data?.status === "success" ? "PREPROD_CONDITIONNEL" : "DEV_PARTIAL";
 
   return (
-    <main className="min-h-screen bg-[#EEF5FF] text-slate-950">
-      <RegulatoryHeader status={statusQuery.data} />
-      <div className="mx-auto flex max-w-[1600px] flex-col gap-5 px-4 py-5 sm:px-6 lg:px-8">
-        <section className="rounded-md border border-slate-200 bg-white px-4 py-4">
-          <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
-            <div className="max-w-4xl">
-              <div className="flex flex-wrap items-center gap-2">
-                <StatusBadge status={regulatoryBadge} />
-                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">Qualité des eaux · lecture DG / métier</span>
-              </div>
-              <h2 className="mt-2 text-2xl font-semibold text-slate-950">Pilotage qualité</h2>
-              <p className="mt-2 text-sm leading-7 text-slate-600">
-                L'écran conserve le contrat réglementaire existant, mais met désormais en avant les stations à surveiller,
-                les stations critiques, les alertes et la fraîcheur des données. Les seuils détaillés, alias et référentiels
-                restent visibles plus bas ou dans l'espace expert.
-              </p>
-            </div>
-            <div className="space-y-3">
-              <div className="rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-                `WATER_TEMPERATURE` seulement via <strong>T_EAU</strong> / <strong>api.v_qualite_terrain</strong>.
-                <br />
-                Aucun indicateur climat ne doit être dérivé de cet écran.
-              </div>
-              <div className="rounded-md border border-slate-200 bg-slate-50 px-4 py-3 text-xs text-slate-700">
-                <div className="font-semibold text-slate-900">Source API</div>
-                <div className="mt-2 space-y-1 font-mono">
-                  {apiSources.map((source) => (
-                    <div key={source}>{source}</div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-blue-200 bg-blue-50 px-4 py-3 text-sm">
-          <div className="flex items-center gap-2 text-blue-950"><Info className="h-4 w-4" />Contrat API officiel : <strong>type_eau=surface_generale</strong>. Aucun fallback silencieux.</div>
-          <div className="flex flex-wrap gap-2"><QualityStatusBadge status="NON_CLASSIFIABLE" /><QualityStatusBadge status="HORS_PERIMETRE_REGLEMENTAIRE" /><QualityStatusBadge status="TYPE_EAU_NON_OPERATIONNEL" /></div>
-        </section>
-
-        {hasError ? (
-          <section className="flex items-center gap-2 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900">
-            <AlertTriangle className="h-4 w-4" />API qualité indisponible. Vérifiez le backend sur `/api/v1/quality/*`.
-          </section>
-        ) : (
-          <section className="flex items-center gap-2 text-sm text-emerald-800"><CheckCircle2 className="h-4 w-4" />API réglementaire lecture seule connectée.</section>
-        )}
-
-        
-        <section className="flex flex-wrap items-center gap-2 rounded-md bg-white p-2 border border-slate-200">
-          {[
-            { id: "SENTINELLE", label: "Temps réel (Sentinelles)" },
-            { id: "RIVIERE", label: "Historique Rivières" },
-            { id: "BARRAGE", label: "Barrages" },
-            { id: "BARRAGE_GARDE", label: "Barrage de Garde" },
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => {
-                setSupportType(tab.id);
-                setStationId(undefined);
-              }}
-              className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                supportType === tab.id
-                  ? "bg-blue-600 text-white shadow-sm"
-                  : "bg-slate-50 text-slate-700 hover:bg-slate-100"
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </section>
-
-        <KPIQualiteCards
-          stationsCount={stations.length}
-          measuresCount={measuresCount}
-          classifiableCount={summary.parameters_classifiable ?? 0}
-          nonClassifiableCount={(summary.parameters ?? 0) - (summary.parameters_classifiable ?? 0)}
-          lastUpdate={lastUpdate}
-        />
-
-        {!stationsQuery.isLoading && stations.length === 0 ? (
-          <section className="rounded-md border border-dashed border-slate-300 bg-white px-4 py-4 text-sm text-slate-500">
-            Aucune station n'a été remontée par <code>/api/v1/quality/stations</code>.
-          </section>
-        ) : null}
-
-        <QualityAlertCenter />
-
-        <QualityStationsPanel
-          stations={stations}
-          selectedStationId={stationId}
-          onSelectStation={(value) => setStationId(value || undefined)}
-          dateStart={dateStart}
-          dateEnd={dateEnd}
-          onDateStartChange={setDateStart}
-          onDateEndChange={setDateEnd}
-          selectedParameter={parameter}
-          onParameterChange={setParameter}
-          classification={classificationQuery.data}
-          latestValue={latestValue}
-          latestDate={latestPoint?.date}
-        />
-
-        <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_360px]">
-          <QualityTimeSeries rows={timeseriesQuery.data ?? []} parameter={parameter} />
-          <ObservationalParametersPanel />
+    <main className="h-screen flex flex-col bg-[#F8FAFC] text-slate-950 overflow-hidden">
+      {/* Header global */}
+      <header className="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between shrink-0">
+        <div>
+          <h1 className="text-xl font-bold uppercase tracking-wide text-slate-900">Qualité des Eaux</h1>
+          <p className="text-sm text-slate-500">Piloter aujourd'hui, préserver demain</p>
         </div>
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 bg-white border border-slate-200 rounded-md px-3 py-1.5 text-sm text-slate-700 shadow-sm">
+            <Calendar className="w-4 h-4 text-slate-400" />
+            01/01/2020 &rarr; 10/07/2026
+          </div>
+          <button className="flex items-center gap-2 bg-white border border-slate-200 rounded-md px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50 shadow-sm">
+            <Download className="w-4 h-4" />
+            Exporter
+          </button>
+        </div>
+      </header>
 
-        <QualityParametersTable thresholds={thresholdsQuery.data?.data ?? []} version={statusQuery.data?.version_reglementaire} />
+      {/* Tabs */}
+      <div className="bg-white border-b border-slate-200 px-6 flex gap-1 overflow-x-auto shrink-0">
+        {tabs.map(tab => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`px-4 py-3 text-sm font-medium border-b-2 whitespace-nowrap transition-colors ${
+              activeTab === tab.id 
+                ? "border-blue-600 text-blue-600" 
+                : "border-transparent text-slate-600 hover:text-slate-900 hover:border-slate-300"
+            }`}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
 
-        <section className="grid gap-3 rounded-md border bg-white p-4 text-sm md:grid-cols-3">
-          <div><p className="font-semibold text-slate-900">Codes sensibles</p><p className="mt-1 text-slate-600">MO — Matières organiques ≠ Mo — Molybdène. La casse est conservée.</p></div>
-          <div><p className="font-semibold text-slate-900">Alias validé</p><p className="mt-1 text-slate-600">NO3 → NO3- uniquement. Aucun fuzzy matching automatique.</p></div>
-          <div><p className="font-semibold text-slate-900">Oxygène dissous</p><p className="mt-1 text-slate-600">O2_DISSOUS → O2_DISS. Ne pas confondre avec la saturation oxygène.</p></div>
-        </section>
+      {/* Main Content Area */}
+      <div className="flex flex-1 overflow-hidden">
+        {/* Sidebar Filtres Globaux */}
+        <div className="shrink-0">
+          <QualityGlobalFilters />
+        </div>
+        
+        {/* Tab Content */}
+        <div className="flex-1 overflow-y-auto p-6">
+          {activeTab === "VUE_DENSEMBLE" && <QualityOverviewTab />}
+          {activeTab !== "VUE_DENSEMBLE" && (
+            <div className="bg-white p-8 rounded-md border border-slate-200 shadow-sm flex flex-col items-center justify-center text-center h-full">
+              <h2 className="text-xl font-semibold text-slate-800 mb-2">Contenu en cours de construction</h2>
+              <p className="text-slate-500 max-w-md">Cet onglet sera implémenté dans la prochaine itération. La vue d'ensemble sert de référence pour l'architecture globale.</p>
+            </div>
+          )}
+        </div>
       </div>
     </main>
   );
