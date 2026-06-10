@@ -4,7 +4,7 @@ import { getQualityStations, getQualityTimeseries } from '@/api/qualityRegulator
 import { LineChart, Line, ResponsiveContainer, YAxis } from 'recharts';
 
 export function QualityRealtimeTab() {
-  const { data: stations = [], isLoading: isLoadingStations } = useQuery({
+  const { data: stations = [], isLoading: isLoadingStations, error: stationsError } = useQuery({
     queryKey: ['unified-stations', 'SENTINELLE'],
     queryFn: () => getQualityStations('SENTINELLE')
   });
@@ -24,14 +24,18 @@ export function QualityRealtimeTab() {
     }))
   });
 
-  const isLoading = isLoadingStations || timeseriesQueries.some(q => q.isLoading);
+  const isLoading = isLoadingStations;
 
   // Group and format the data
   const stationsData = useMemo(() => {
     if (!filteredStations.length) return [];
     
-    return filteredStations.map((station, index) => {
-      const tsData = timeseriesQueries[index]?.data || [];
+        return filteredStations.map((station, index) => {
+      const tsQuery = timeseriesQueries[index];
+      const tsData = tsQuery?.data || [];
+      const isLoadingTs = tsQuery?.isLoading;
+      const isErrorTs = tsQuery?.isError;
+
       
       // tsData is an array of rows: { date_mesure, parametre_qualite, valeur }
       // We need to pivot this to get the latest values and sparklines
@@ -84,13 +88,23 @@ export function QualityRealtimeTab() {
         freshness,
         freshnessColor,
         latestValues,
-        sparklineData
+        sparklineData,
+        isLoadingTs,
+        isErrorTs
       };
     });
   }, [filteredStations, timeseriesQueries]);
 
   if (isLoading) {
     return <div className="p-8 text-center text-slate-500">Chargement des stations sentinelles...</div>;
+  }
+
+  if (stationsError) {
+    return (
+      <div className="p-8 text-center bg-red-50 text-red-600 rounded-md border border-red-200">
+        Erreur lors du chargement des stations.
+      </div>
+    );
   }
 
   if (!stationsData.length) {
@@ -133,7 +147,15 @@ export function QualityRealtimeTab() {
             </div>
 
             <div className="flex-1">
-              {Object.keys(station.latestValues).length > 0 ? (
+              {station.isLoadingTs ? (
+                <div className="h-24 flex items-center justify-center text-slate-500 text-sm">
+                  Chargement mesures...
+                </div>
+              ) : station.isErrorTs ? (
+                <div className="h-24 flex items-center justify-center text-red-500 italic text-sm border border-dashed border-red-200 rounded bg-red-50">
+                  Mesures indisponibles
+                </div>
+              ) : Object.keys(station.latestValues).length > 0 ? (
                 <div className="grid grid-cols-3 gap-3">
                   {TARGET_PARAMS.map(paramKey => {
                     // Try to find exact or partial match for parameter (e.g., O2, O2 DISSOUS)

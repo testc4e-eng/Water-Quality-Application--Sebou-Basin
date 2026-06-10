@@ -7,7 +7,7 @@ export function QualityHistoriqueTab() {
   const [selectedStation, setSelectedStation] = useState<string>('');
   const [selectedParam, setSelectedParam] = useState<string>('');
 
-  const { data: stations = [], isLoading: isLoadingStations } = useQuery({
+  const { data: stations = [], isLoading: isLoadingStations, error: stationsError } = useQuery({
     queryKey: ['unified-stations', 'RIVIERE'],
     queryFn: () => getQualityStations('RIVIERE')
   });
@@ -17,7 +17,7 @@ export function QualityHistoriqueTab() {
     queryFn: () => getQualityParameters('RIVIERE', selectedStation)
   });
 
-  const { data: timeseries = [], isLoading: isLoadingTimeseries } = useQuery({
+  const { data: timeseries = [], isLoading: isLoadingTimeseries, error: timeseriesError } = useQuery({
     queryKey: ['unified-timeseries', 'RIVIERE', selectedStation],
     queryFn: () => getQualityTimeseries('RIVIERE', selectedStation),
     enabled: !!selectedStation
@@ -63,6 +63,14 @@ export function QualityHistoriqueTab() {
 
   if (isLoadingStations) {
     return <div className="p-8 text-center text-slate-500">Chargement des stations (Rivières)...</div>;
+  }
+
+  if (stationsError) {
+    return (
+      <div className="p-8 text-center bg-red-50 text-red-600 rounded-md border border-red-200">
+        Erreur lors du chargement des stations.
+      </div>
+    );
   }
 
   return (
@@ -123,6 +131,8 @@ export function QualityHistoriqueTab() {
         </div>
       ) : isLoadingTimeseries ? (
         <div className="p-8 text-center text-slate-500 bg-white border border-slate-200 rounded-md shadow-sm">Chargement de l'historique...</div>
+      ) : timeseriesError ? (
+        <div className="p-8 text-center text-red-600 bg-red-50 border border-red-200 rounded-md shadow-sm">Mesures indisponibles</div>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           
