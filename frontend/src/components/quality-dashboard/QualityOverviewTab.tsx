@@ -191,6 +191,9 @@ export function QualityOverviewTab() {
           </div>
         </div>
       </div>
+      <div className="mt-8 text-center text-xs text-slate-400">
+        Source : API Qualité unifiée — vue api.v_qualite_dashboard_unifiee
+      </div>
     </div>
   );
 }
