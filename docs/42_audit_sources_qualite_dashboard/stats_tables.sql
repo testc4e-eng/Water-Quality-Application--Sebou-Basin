@@ -1,0 +1,9 @@
+﻿SELECT 'qualite.mesure_qualite_riviere' AS table_name, count(*) AS nb_lignes, count(distinct ire_station) AS nb_ire, count(distinct station_id) as nb_station, count(distinct parametre_qualite) AS nb_param, min(temps) AS date_min, max(temps) AS date_max, sum(case when valeur is null then 1 else 0 end) AS val_null FROM qualite.mesure_qualite_riviere
+UNION ALL
+SELECT 'qualite.mesure_qualite_sebou' AS table_name, count(*) AS nb_lignes, count(distinct ire_station) AS nb_ire, count(distinct station_id) as nb_station, count(distinct parametre_qualite) AS nb_param, min(temps) AS date_min, max(temps) AS date_max, sum(case when valeur is null then 1 else 0 end) AS val_null FROM qualite.mesure_qualite_sebou
+UNION ALL
+SELECT 'qualite.mesure_qualite_barrage' AS table_name, count(*) AS nb_lignes, count(distinct ire_station) AS nb_ire, count(distinct station_id) as nb_station, count(distinct parametre_qualite) AS nb_param, min(temps) AS date_min, max(temps) AS date_max, sum(case when valeur is null then 1 else 0 end) AS val_null FROM qualite.mesure_qualite_barrage
+UNION ALL
+SELECT 'qualite.mesure_qualite_nappe' AS table_name, count(*) AS nb_lignes, count(distinct ire_station) AS nb_ire, count(distinct station_id) as nb_station, count(distinct parametre_qualite) AS nb_param, min(temps) AS date_min, max(temps) AS date_max, sum(case when valeur is null then 1 else 0 end) AS val_null FROM qualite.mesure_qualite_nappe
+UNION ALL
+SELECT 'qualite.suivi_qualite_barrage_garde_hebdo' AS table_name, count(*) AS nb_lignes, count(distinct code_station) AS nb_ire, count(distinct code_station) as nb_station, count(distinct parametre_qualite) AS nb_param, min(date_prelevement) AS date_min, max(date_prelevement) AS date_max, sum(case when valeur is null then 1 else 0 end) AS val_null FROM qualite.suivi_qualite_barrage_garde_hebdo;
