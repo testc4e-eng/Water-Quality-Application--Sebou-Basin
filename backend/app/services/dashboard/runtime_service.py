@@ -165,6 +165,7 @@ def list_quality_stations_with_timeseries(db: Session, limit: int = HOME_QUALITY
             LEFT JOIN infra.stations_mesure sm
               ON sm.id = m.station_id
             WHERE m.station_id IS NOT NULL
+              AND m.ire_station IN ('3695/8', '1541/15', '1540/15', '1355/8', '3738/8', '2263/15')
               AND coalesce(m.est_valide, true) = true
             GROUP BY
                 m.station_id,

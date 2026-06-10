@@ -3,6 +3,7 @@ import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "rec
 
 import type { RuntimeDashboardTrendsPayload, RuntimeTrendSeries } from "@/api/dashboardRuntime";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { KpiTooltip } from "@/components/home-v2/KpiTooltip";
 
 interface TrendPanelProps {
   trends: RuntimeDashboardTrendsPayload;
@@ -18,10 +19,58 @@ export function TrendPanel({ trends }: TrendPanelProps) {
         </CardTitle>
       </CardHeader>
       <CardContent className="grid gap-1.5 sm:grid-cols-2 xl:grid-cols-4">
-        <TrendCard title="Pluie" series={trends.rainfall} color="#059669" compact emptyMessage={trends.rainfall.message || "Série pluie indisponible"} />
-        <TrendCard title="Débit" series={trends.flow} color="#2563eb" compact emptyMessage={trends.flow.message || "Série débit indisponible"} />
-        <TrendCard title="Température" series={trends.temperature} color="#f97316" compact emptyMessage={trends.temperature.message || "Température non disponible en base"} />
-        <TrendCard title="Qualité" series={trends.quality} color="#7c3aed" compact emptyMessage={trends.quality.message || "Série qualité indisponible"} />
+        <TrendCard
+          title="Pluie"
+          series={trends.rainfall}
+          color="#059669"
+          compact
+          emptyMessage={trends.rainfall.message || "Série pluie indisponible"}
+          info={{
+            title: "Pluie",
+            definition: "Précipitations journalières.",
+            calculation: "Moyenne journalière des stations actives sur les 30 derniers jours.",
+            source: "meteo.mesure_precipitation",
+          }}
+        />
+        <TrendCard
+          title="Débit"
+          series={trends.flow}
+          color="#2563eb"
+          compact
+          emptyMessage={trends.flow.message || "Série débit indisponible"}
+          info={{
+            title: "Débit",
+            definition: "Débit d'eau mesuré.",
+            calculation: "Moyenne des stations hydro actives sur les 30 derniers jours.",
+            source: "hydro.mesure_debit",
+          }}
+        />
+        <TrendCard
+          title="Température"
+          series={trends.temperature}
+          color="#f97316"
+          compact
+          emptyMessage={trends.temperature.message || "Température non disponible en base"}
+          info={{
+            title: "Température",
+            definition: "Température moyenne journalière.",
+            calculation: "Moyenne des stations actives sur les 30 derniers jours.",
+            source: "meteo.mesure_temperature",
+          }}
+        />
+        <TrendCard
+          title="Qualité"
+          series={trends.quality}
+          color="#7c3aed"
+          compact
+          emptyMessage={trends.quality.message || "Série qualité indisponible"}
+          info={{
+            title: "Qualité",
+            definition: "Indice global qualité.",
+            calculation: "Score calculé à partir des stations sentinelles. Basé sur IFD + ICD + ISR.",
+            source: "qualite.mesure_qualite_sebou",
+          }}
+        />
       </CardContent>
     </Card>
   );
@@ -33,12 +82,14 @@ function TrendCard({
   color,
   compact = false,
   emptyMessage = "Tendance indisponible pour cette série.",
+  info,
 }: {
   title: string;
   series: RuntimeTrendSeries;
   color: string;
   compact?: boolean;
   emptyMessage?: string;
+  info?: { title: string; definition: string; calculation: string; source: string; thresholds?: string };
 }) {
   const rows = series.points.map((point) => ({
     ...point,
@@ -48,9 +99,14 @@ function TrendCard({
   return (
     <div className="rounded-2xl border border-slate-200 bg-slate-50 p-2">
       <div className="mb-1.5 flex items-center justify-between gap-3">
-        <div>
-          <div className="text-[12px] font-semibold text-slate-950">{title}</div>
-          <div className="text-[9px] uppercase tracking-[0.12em] text-slate-500">{series.unit}</div>
+        <div className="flex items-center gap-1.5">
+          <div>
+            <div className="text-[12px] font-semibold text-slate-950">{title}</div>
+            <div className="text-[9px] uppercase tracking-[0.12em] text-slate-500">{series.unit}</div>
+          </div>
+          {info && (
+            <KpiTooltip title={info.title} definition={info.definition} calculation={info.calculation} source={info.source} thresholds={info.thresholds} />
+          )}
         </div>
         <div className="text-right text-[9px] text-slate-500">{series.count} pts</div>
       </div>
@@ -75,7 +131,7 @@ function TrendCard({
         )}
       </div>
       <div className="mt-1 text-[9px] text-slate-500">
-        {series.date_min && series.date_max ? `${series.date_min} -> ${series.date_max}` : series.source}
+        Dernière donnée traitée : {series.date_max ?? "N/D"}
       </div>
     </div>
   );
