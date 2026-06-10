@@ -991,18 +991,29 @@ def get_unified_stations(
 ):
     """Liste les stations avec métadonnées depuis la vue unifiée."""
     sql = """
+        WITH stats AS MATERIALIZED (
+            SELECT 
+                ire_station, station_id::text as sid, support_type,
+                MIN(date_mesure) as date_min, MAX(date_mesure) as date_max,
+                COUNT(valeur) as measure_count,
+                COUNT(DISTINCT parametre_qualite) as parameter_count
+            FROM api.v_qualite_dashboard_unifiee
+            {where_clause}
+            GROUP BY ire_station, station_id::text, support_type
+        ),
+        dim AS MATERIALIZED (
+            SELECT * FROM api.v_station_dimension
+        )
         SELECT 
-            v.ire_station, v.station_id::text, v.support_type,
-            MIN(v.date_mesure) as date_min, MAX(v.date_mesure) as date_max,
-            COUNT(v.valeur) as measure_count,
-            COUNT(DISTINCT v.parametre_qualite) as parameter_count,
+            stats.ire_station, stats.sid as station_id, stats.support_type,
+            stats.date_min, stats.date_max, stats.measure_count, stats.parameter_count,
             s.station_nom, s.code_station, s.bassin_nom, s.sous_bassin_nom, s.latitude, s.longitude
-        FROM api.v_qualite_dashboard_unifiee v
-        LEFT JOIN api.v_station_dimension s ON v.station_id = s.station_id::text
-        WHERE (:support_type IS NULL OR v.support_type = :support_type)
-        GROUP BY v.ire_station, v.station_id::text, v.support_type, s.station_nom, s.code_station, s.bassin_nom, s.sous_bassin_nom, s.latitude, s.longitude
+        FROM stats
+        LEFT JOIN dim s ON stats.sid = s.station_id::text
     """
-    rows = db.execute(text(sql), {"support_type": support_type}).fetchall()
+    where_clause = "WHERE support_type = :support_type" if support_type else ""
+    sql = sql.format(where_clause=where_clause)
+    rows = db.execute(text(sql), {"support_type": support_type} if support_type else {}).fetchall()
     return _rows_to_dicts(rows)
 
 @router.get("/unified/parameters", response_model=List[UnifiedQualityParameterResponse], tags=["Quality Unified"])
@@ -1021,7 +1032,9 @@ def get_unified_parameters(
         WHERE (:support_type IS NULL OR v.support_type = :support_type)
         GROUP BY v.parametre_qualite
     """
-    rows = db.execute(text(sql), {"support_type": support_type}).fetchall()
+    where_clause = "WHERE support_type = :support_type" if support_type else ""
+    sql = sql.format(where_clause=where_clause)
+    rows = db.execute(text(sql), {"support_type": support_type} if support_type else {}).fetchall()
     return _rows_to_dicts(rows)
 
 @router.get("/unified/timeseries", response_model=List[UnifiedQualityTimeseriesResponse], tags=["Quality Unified"])
@@ -1034,16 +1047,23 @@ def get_unified_timeseries(
 ):
     """Liste les séries temporelles depuis la vue unifiée."""
     sql = """
+        WITH ts AS MATERIALIZED (
+            SELECT 
+                date_mesure, ire_station, station_id, parametre_qualite, valeur, support_type, source_table
+            FROM api.v_qualite_dashboard_unifiee v
+            {where_clause}
+            ORDER BY date_mesure DESC
+            LIMIT :limit
+        ),
+        dim AS MATERIALIZED (
+            SELECT * FROM api.v_station_dimension
+        )
         SELECT 
-            v.date_mesure, v.ire_station, v.parametre_qualite, v.valeur, v.support_type, v.source_table,
+            ts.date_mesure, ts.ire_station, ts.parametre_qualite, ts.valeur, ts.support_type, ts.source_table,
             s.station_nom
-        FROM api.v_qualite_dashboard_unifiee v
-        LEFT JOIN api.v_station_dimension s ON v.station_id = s.station_id::text
-        WHERE (:support_type IS NULL OR v.support_type = :support_type)
-          AND (:ire_station IS NULL OR v.ire_station = :ire_station)
-          AND (:parametre_qualite IS NULL OR v.parametre_qualite = :parametre_qualite)
-        ORDER BY v.date_mesure DESC
-        LIMIT :limit
+        FROM ts
+        LEFT JOIN dim s ON ts.station_id::text = s.station_id::text
+        ORDER BY ts.date_mesure DESC
     """
     rows = db.execute(text(sql), {
         "support_type": support_type,
