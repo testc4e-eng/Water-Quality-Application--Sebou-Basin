@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { useQuery, useQueries } from '@tanstack/react-query';
 import { getQualityStations, getQualityTimeseries } from '@/api/qualityRegulatory';
 import { LineChart, Line, ResponsiveContainer, YAxis } from 'recharts';
@@ -6,7 +6,10 @@ import { LineChart, Line, ResponsiveContainer, YAxis } from 'recharts';
 export function QualityRealtimeTab() {
   const { data: stations = [], isLoading: isLoadingStations, error: stationsError } = useQuery({
     queryKey: ['unified-stations', 'SENTINELLE'],
-    queryFn: () => getQualityStations('SENTINELLE')
+    queryFn: () => getQualityStations('SENTINELLE'),
+    retry: false,
+    staleTime: 30_000,
+    refetchOnWindowFocus: false
   });
 
 
@@ -95,7 +98,28 @@ export function QualityRealtimeTab() {
     });
   }, [filteredStations, timeseriesQueries]);
 
+    const [tooLong, setTooLong] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setTooLong(true), 8000);
+    return () => clearTimeout(t);
+  }, []);
+
   if (isLoading) {
+    if (tooLong) {
+      return (
+        <div className="p-8 text-center bg-amber-50 text-amber-700 rounded-md border border-amber-200">
+          <div className="font-semibold mb-2">Le chargement est très long...</div>
+          <div className="text-sm">L'API /quality/unified/stations met trop de temps à répondre. Veuillez vérifier les performances du serveur.</div>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="mt-4 px-4 py-2 bg-white border border-amber-300 text-amber-700 rounded-md shadow-sm text-sm font-medium hover:bg-amber-50"
+          >
+            Réessayer
+          </button>
+        </div>
+      );
+    }
     return <div className="p-8 text-center text-slate-500">Chargement des stations sentinelles...</div>;
   }
 

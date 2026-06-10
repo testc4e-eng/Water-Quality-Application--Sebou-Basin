@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getQualityStations, getQualityParameters, getQualityTimeseries } from '@/api/qualityRegulatory';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, Legend } from 'recharts';
@@ -9,7 +9,10 @@ export function QualityHistoriqueTab() {
 
   const { data: stations = [], isLoading: isLoadingStations, error: stationsError } = useQuery({
     queryKey: ['unified-stations', 'RIVIERE'],
-    queryFn: () => getQualityStations('RIVIERE')
+    queryFn: () => getQualityStations('RIVIERE'),
+    retry: false,
+    staleTime: 30_000,
+    refetchOnWindowFocus: false
   });
 
   const { data: parameters = [], isLoading: isLoadingParams } = useQuery({
@@ -61,7 +64,28 @@ export function QualityHistoriqueTab() {
     return Object.values(latestMap).sort((a, b) => a.param.localeCompare(b.param));
   }, [timeseries]);
 
+    const [tooLong, setTooLong] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setTooLong(true), 8000);
+    return () => clearTimeout(t);
+  }, []);
+
   if (isLoadingStations) {
+    if (tooLong) {
+      return (
+        <div className="p-8 text-center bg-amber-50 text-amber-700 rounded-md border border-amber-200">
+          <div className="font-semibold mb-2">Le chargement est très long...</div>
+          <div className="text-sm">L'API /quality/unified/stations met trop de temps à répondre. Veuillez vérifier les performances du serveur.</div>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="mt-4 px-4 py-2 bg-white border border-amber-300 text-amber-700 rounded-md shadow-sm text-sm font-medium hover:bg-amber-50"
+          >
+            Réessayer
+          </button>
+        </div>
+      );
+    }
     return <div className="p-8 text-center text-slate-500">Chargement des stations (Rivières)...</div>;
   }
 
