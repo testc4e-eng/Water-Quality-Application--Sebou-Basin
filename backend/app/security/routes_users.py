@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
-from app.security.deps import get_db, require_roles
+from app.security.deps import get_db, require_permissions
 from app.security.models import Role, SecurityUser
 from app.security.schemas import (
     ResetPasswordRequest,
@@ -24,9 +24,11 @@ from app.security.services import (
 
 router = APIRouter(prefix="/users", tags=["Users"])
 
+USER_MANAGE_PERMISSION = "security.users.manage"
+
 
 @router.get("", response_model=list[UserOut])
-def list_users(db: Session = Depends(get_db), _: SecurityUser = Depends(require_roles("admin"))):
+def list_users(db: Session = Depends(get_db), _: SecurityUser = Depends(require_permissions(USER_MANAGE_PERMISSION))):
     users = db.query(SecurityUser).all()
     roles = {r.id: r for r in db.query(Role).all()}
     for u in users:
@@ -35,7 +37,7 @@ def list_users(db: Session = Depends(get_db), _: SecurityUser = Depends(require_
 
 
 @router.get("/{user_id}", response_model=UserOut)
-def get_user(user_id: int, db: Session = Depends(get_db), _: SecurityUser = Depends(require_roles("admin"))):
+def get_user(user_id: int, db: Session = Depends(get_db), _: SecurityUser = Depends(require_permissions(USER_MANAGE_PERMISSION))):
     user = db.query(SecurityUser).filter(SecurityUser.id == user_id).first()
     if not user:
         raise HTTPException(status_code=404, detail="Utilisateur introuvable")
@@ -47,7 +49,7 @@ def get_user(user_id: int, db: Session = Depends(get_db), _: SecurityUser = Depe
 def create_user_endpoint(
     payload: UserCreate,
     db: Session = Depends(get_db),
-    current_user: SecurityUser = Depends(require_roles("admin")),
+    current_user: SecurityUser = Depends(require_permissions(USER_MANAGE_PERMISSION)),
 ):
     try:
         user = create_user(
@@ -72,7 +74,7 @@ def update_user_endpoint(
     user_id: int,
     payload: UserUpdate,
     db: Session = Depends(get_db),
-    current_user: SecurityUser = Depends(require_roles("admin")),
+    current_user: SecurityUser = Depends(require_permissions(USER_MANAGE_PERMISSION)),
 ):
     user = db.query(SecurityUser).filter(SecurityUser.id == user_id).first()
     if not user:
@@ -100,7 +102,7 @@ def update_status(
     user_id: int,
     payload: UserStatusUpdate,
     db: Session = Depends(get_db),
-    current_user: SecurityUser = Depends(require_roles("admin")),
+    current_user: SecurityUser = Depends(require_permissions(USER_MANAGE_PERMISSION)),
 ):
     user = db.query(SecurityUser).filter(SecurityUser.id == user_id).first()
     if not user:
@@ -122,7 +124,7 @@ def reset_password_endpoint(
     user_id: int,
     payload: ResetPasswordRequest,
     db: Session = Depends(get_db),
-    current_user: SecurityUser = Depends(require_roles("admin")),
+    current_user: SecurityUser = Depends(require_permissions(USER_MANAGE_PERMISSION)),
 ):
     user = db.query(SecurityUser).filter(SecurityUser.id == user_id).first()
     if not user:
@@ -140,7 +142,7 @@ def reset_password_endpoint(
 def delete_user(
     user_id: int,
     db: Session = Depends(get_db),
-    current_user: SecurityUser = Depends(require_roles("admin")),
+    current_user: SecurityUser = Depends(require_permissions(USER_MANAGE_PERMISSION)),
 ):
     user = db.query(SecurityUser).filter(SecurityUser.id == user_id).first()
     if not user:

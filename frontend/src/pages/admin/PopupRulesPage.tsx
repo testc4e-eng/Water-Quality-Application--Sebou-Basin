@@ -1,117 +1,88 @@
 import { useEffect, useMemo, useState } from "react";
-import { api } from "@/api/client";
 import { Link } from "react-router-dom";
 
-type PopupRuleRow = {
-  layer_key: string;
-  title: string | null;
-  name_fields: string[] | null;
-  type_fields: string[] | null;
-  class_fields: string[] | null;
-  code_fields: string[] | null;
-  point_style?: Record<string, any> | null;
-  line_style?: Record<string, any> | null;
-  polygon_style?: Record<string, any> | null;
-  point_popup_fields?: string[] | null;
-  line_popup_fields?: string[] | null;
-  polygon_popup_fields?: string[] | null;
-  actif: boolean;
+import { layerConfigApi } from "@/services/layerConfigApi";
+import { validateLayerConfigDraft } from "@/lib/layerConfigValidation";
+import type {
+  GeometryType,
+  LayerConfig,
+  LayerConfigCreate,
+  LayerConfigUpdate,
+  PopupField,
+  StyleConfig,
+} from "@/types/layerConfig";
+
+const DEFAULT_STYLE: Record<GeometryType, StyleConfig> = {
+  point: {
+    type: "simple",
+    point: {
+      color: "#3498db",
+      radius: 6,
+      opacity: 0.85,
+      strokeColor: "#ffffff",
+      strokeWidth: 1,
+    },
+  },
+  line: {
+    type: "simple",
+    line: {
+      color: "#2980b9",
+      width: 2,
+      opacity: 0.9,
+    },
+  },
+  polygon: {
+    type: "simple",
+    polygon: {
+      fillColor: "#3498db",
+      fillOpacity: 0.4,
+      strokeColor: "#2c3e50",
+      strokeWidth: 1,
+    },
+  },
 };
 
-type LayerGeometryType = "point" | "line" | "polygon" | "unknown";
-
-const POINT_LAYER_KEYS = new Set<string>([
-  "barrages_abhs",
-  "stations_abhs",
-  "points_eau",
-  "sources",
-  "decharges_abhs",
-  "huileries_abhs",
-  "mines_abhs",
-  "rejets_industriels_abhs",
-  "rejets_domestiques_abhs",
-  "step_abhs",
-  "step_industrielles",
-  "stm",
-  "fosses_septiques_abhs",
-  "adm_villes_abhs",
-  "adm_douars_abhs",
-]);
-
-const LINE_LAYER_KEYS = new Set<string>([
-  "reseau_hydro_abhs",
-]);
-
-const POLYGON_LAYER_KEYS = new Set<string>([
-  "bassin_sebou",
-  "sous_bassin_sebou",
-  "sous_bassins_swat",
-  "nappes",
-  "adm_regions_abhs",
-  "adm_provinces_abhs",
-  "adm_cercles_abhs",
-  "adm_communes_abhs",
-]);
-
-function getLayerGeometryType(layerKey?: string | null): LayerGeometryType {
-  if (!layerKey) return "unknown";
-  if (POINT_LAYER_KEYS.has(layerKey)) return "point";
-  if (LINE_LAYER_KEYS.has(layerKey)) return "line";
-  if (POLYGON_LAYER_KEYS.has(layerKey)) return "polygon";
-  return "unknown";
-}
-
-function toCsvList(v?: string[] | null): string {
-  return (v || []).join(", ");
-}
-
-function fromCsvList(v: string): string[] {
-  return v
-    .split(",")
-    .map((x) => x.trim())
-    .filter(Boolean);
+function makeDefaultPopupFields(): PopupField[] {
+  return [
+    { name: "name", alias: "Nom", order: 1, visible: true, format: null },
+    { name: "value", alias: "Valeur", order: 2, visible: true, format: "number", formatOptions: { decimals: 2 } },
+  ];
 }
 
 export default function PopupRulesPage() {
-  const [rows, setRows] = useState<PopupRuleRow[]>([]);
+  const [rows, setRows] = useState<LayerConfig[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [selected, setSelected] = useState<PopupRuleRow | null>(null);
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const [formTitle, setFormTitle] = useState("");
-  const [formNameFields, setFormNameFields] = useState("");
-  const [formTypeFields, setFormTypeFields] = useState("");
-  const [formClassFields, setFormClassFields] = useState("");
-  const [formCodeFields, setFormCodeFields] = useState("");
+  const [selectedLayerName, setSelectedLayerName] = useState<string | null>(null);
 
-  const [formPointColor, setFormPointColor] = useState("#0ea5e9");
-  const [formPointSize, setFormPointSize] = useState("5");
-  const [formPointPopupFields, setFormPointPopupFields] = useState("");
+  const [layerName, setLayerName] = useState("");
+  const [geometryType, setGeometryType] = useState<GeometryType>("point");
+  const [styleConfig, setStyleConfig] = useState<StyleConfig>(DEFAULT_STYLE.point);
+  const [popupFields, setPopupFields] = useState<PopupField[]>(makeDefaultPopupFields());
 
-  const [formLineColor, setFormLineColor] = useState("#2563eb");
-  const [formLineWidth, setFormLineWidth] = useState("1.4");
-  const [formLineStyle, setFormLineStyle] = useState<"simple" | "dashed" | "gradient">("simple");
-  const [formLineGradientTo, setFormLineGradientTo] = useState("#0ea5e9");
-  const [formLinePopupFields, setFormLinePopupFields] = useState("");
+  const selected = useMemo(
+    () => rows.find((row) => row.layer_name === selectedLayerName) || null,
+    [rows, selectedLayerName]
+  );
 
-  const [formPolygonColor, setFormPolygonColor] = useState("#1d4ed8");
-  const [formPolygonGradientTo, setFormPolygonGradientTo] = useState("#bfdbfe");
-  const [formPolygonOpacity, setFormPolygonOpacity] = useState("0.28");
-  const [formPolygonContourMode, setFormPolygonContourMode] = useState<"simple" | "gradue">("simple");
-  const [formPolygonContourColor, setFormPolygonContourColor] = useState("#1e293b");
-  const [formPolygonPopupFields, setFormPolygonPopupFields] = useState("");
-
-  const [formActif, setFormActif] = useState(true);
+  const resetForm = (geom: GeometryType = "point") => {
+    setLayerName("");
+    setGeometryType(geom);
+    setStyleConfig(JSON.parse(JSON.stringify(DEFAULT_STYLE[geom])));
+    setPopupFields(makeDefaultPopupFields());
+    setSelectedLayerName(null);
+  };
 
   const loadRows = async () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await api.get<{ rows: PopupRuleRow[] }>("/observatory/popup-rules/list");
-      setRows(res.data?.rows || []);
-    } catch (e: any) {
-      setError(e?.message || "Erreur chargement");
+      const data = await layerConfigApi.list(false);
+      setRows(data);
+    } catch (err: any) {
+      setError(err?.response?.data?.detail || err?.message || "Erreur chargement");
     } finally {
       setLoading(false);
     }
@@ -122,115 +93,92 @@ export default function PopupRulesPage() {
   }, []);
 
   useEffect(() => {
-    if (!selected) {
-      setFormTitle("");
-      setFormNameFields("");
-      setFormTypeFields("");
-      setFormClassFields("");
-      setFormCodeFields("");
-      setFormPointColor("#0ea5e9");
-      setFormPointSize("5");
-      setFormPointPopupFields("");
-      setFormLineColor("#2563eb");
-      setFormLineWidth("1.4");
-      setFormLineStyle("simple");
-      setFormLineGradientTo("#0ea5e9");
-      setFormLinePopupFields("");
-      setFormPolygonColor("#1d4ed8");
-      setFormPolygonGradientTo("#bfdbfe");
-      setFormPolygonOpacity("0.28");
-      setFormPolygonContourMode("simple");
-      setFormPolygonContourColor("#1e293b");
-      setFormPolygonPopupFields("");
-      setFormActif(true);
-      return;
-    }
-
-    setFormTitle(selected.title || "");
-    setFormNameFields(toCsvList(selected.name_fields));
-    setFormTypeFields(toCsvList(selected.type_fields));
-    setFormClassFields(toCsvList(selected.class_fields));
-    setFormCodeFields(toCsvList(selected.code_fields));
-
-    const pointStyle = selected.point_style || {};
-    const lineStyle = selected.line_style || {};
-    const polygonStyle = selected.polygon_style || {};
-
-    setFormPointColor(String(pointStyle.color || "#0ea5e9"));
-    setFormPointSize(String(pointStyle.size ?? 5));
-    setFormPointPopupFields(toCsvList(selected.point_popup_fields));
-
-    setFormLineColor(String(lineStyle.color || "#2563eb"));
-    setFormLineWidth(String(lineStyle.width ?? 1.4));
-    setFormLineStyle((lineStyle.style || "simple") as "simple" | "dashed" | "gradient");
-    setFormLineGradientTo(String(lineStyle.gradient_to || "#0ea5e9"));
-    setFormLinePopupFields(toCsvList(selected.line_popup_fields));
-
-    setFormPolygonColor(String(polygonStyle.color || "#1d4ed8"));
-    setFormPolygonGradientTo(String(polygonStyle.gradient_to || "#bfdbfe"));
-    setFormPolygonOpacity(String(polygonStyle.opacity ?? 0.28));
-    setFormPolygonContourMode((polygonStyle.contour_mode || "simple") as "simple" | "gradue");
-    setFormPolygonContourColor(String(polygonStyle.contour_color || "#1e293b"));
-    setFormPolygonPopupFields(toCsvList(selected.polygon_popup_fields));
-
-    setFormActif(!!selected.actif);
+    if (!selected) return;
+    setLayerName(selected.layer_name);
+    setGeometryType(selected.geometry_type);
+    setStyleConfig(selected.style_config);
+    setPopupFields(selected.popup_config?.fields || []);
   }, [selected]);
 
-  const hasSelection = useMemo(() => !!selected?.layer_key, [selected]);
-  const selectedGeometryType = useMemo(
-    () => getLayerGeometryType(selected?.layer_key),
-    [selected?.layer_key]
-  );
+  const updatePopupField = (index: number, updates: Partial<PopupField>) => {
+    setPopupFields((prev) => prev.map((field, i) => (i === index ? { ...field, ...updates } : field)));
+  };
 
-  const saveRule = async () => {
-    if (!selected?.layer_key) return;
+  const addPopupField = () => {
+    setPopupFields((prev) => [
+      ...prev,
+      {
+        name: "",
+        alias: "",
+        order: prev.length + 1,
+        visible: true,
+        format: null,
+      },
+    ]);
+  };
+
+  const removePopupField = (index: number) => {
+    setPopupFields((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const saveConfig = async () => {
     setSaving(true);
+    setError(null);
+
     try {
-      await api.post("/observatory/popup-rules/upsert", {
-        layer_key: selected.layer_key,
-        title: formTitle || null,
-        name_fields: fromCsvList(formNameFields),
-        type_fields: fromCsvList(formTypeFields),
-        class_fields: fromCsvList(formClassFields),
-        code_fields: fromCsvList(formCodeFields),
-        point_style: {
-          color: formPointColor,
-          size: Number(formPointSize) || 5,
+      if (!layerName.trim()) {
+        throw new Error("Le nom de couche est requis");
+      }
+
+      const payloadBase = {
+        geometry_type: geometryType,
+        style_config: styleConfig,
+        popup_config: {
+          fields: popupFields,
         },
-        line_style: {
-          color: formLineColor,
-          width: Number(formLineWidth) || 1.4,
-          style: formLineStyle,
-          gradient_to: formLineGradientTo,
-        },
-        polygon_style: {
-          color: formPolygonColor,
-          gradient_to: formPolygonGradientTo,
-          opacity: Number(formPolygonOpacity) || 0.28,
-          contour_mode: formPolygonContourMode,
-          contour_color: formPolygonContourColor,
-        },
-        point_popup_fields: fromCsvList(formPointPopupFields),
-        line_popup_fields: fromCsvList(formLinePopupFields),
-        polygon_popup_fields: fromCsvList(formPolygonPopupFields),
-        actif: formActif,
+      };
+
+      const validationErrors = validateLayerConfigDraft({
+        geometry_type: geometryType,
+        style_config: styleConfig,
+        popup_fields: popupFields,
       });
-      await api.post("/observatory/cache/clear");
+      if (validationErrors.length > 0) {
+        throw new Error(validationErrors.join(" | "));
+      }
+
+      if (selected) {
+        const payload: LayerConfigUpdate = payloadBase;
+        await layerConfigApi.update(selected.layer_name, payload);
+      } else {
+        const payload: LayerConfigCreate = {
+          layer_name: layerName.trim(),
+          ...payloadBase,
+        };
+        await layerConfigApi.create(payload);
+      }
+
       await loadRows();
+      setSelectedLayerName(layerName.trim());
+    } catch (err: any) {
+      setError(err?.response?.data?.detail || err?.message || "Erreur enregistrement");
     } finally {
       setSaving(false);
     }
   };
 
-  const deleteRule = async () => {
-    if (!selected?.layer_key) return;
-    if (!confirm(`Supprimer la regle ${selected.layer_key} ?`)) return;
+  const deleteConfig = async () => {
+    if (!selected) return;
+    if (!window.confirm(`Supprimer la config de ${selected.layer_name} ?`)) return;
+
     setSaving(true);
+    setError(null);
     try {
-      await api.delete(`/observatory/popup-rules/${encodeURIComponent(selected.layer_key)}`);
-      await api.post("/observatory/cache/clear");
-      setSelected(null);
+      await layerConfigApi.remove(selected.layer_name);
       await loadRows();
+      resetForm();
+    } catch (err: any) {
+      setError(err?.response?.data?.detail || err?.message || "Erreur suppression");
     } finally {
       setSaving(false);
     }
@@ -240,190 +188,226 @@ export default function PopupRulesPage() {
     <div className="space-y-6 p-4 lg:p-6">
       <div>
         <h1 className="text-2xl font-semibold text-slate-900">Administration - Gestion des couches</h1>
-        <p className="text-sm text-slate-500">
-          Configure les regles popup existantes et la symbologie des couches (point, ligne, polygone).
-        </p>
-        <div className="mt-3 flex flex-wrap gap-2">
+        <p className="text-sm text-slate-500">Symbologie simple + configuration des popups par couche (MVP).</p>
+        <div className="mt-3 flex gap-2">
           <Link
             to="/dashboard-cartographique"
             className="inline-flex items-center rounded border border-emerald-300 bg-emerald-50 px-3 py-1.5 text-sm text-emerald-700 hover:bg-emerald-100"
           >
-            Ouvrir Dashboard Cartographique (test popup)
+            Ouvrir Dashboard Cartographique
           </Link>
           <button
             type="button"
-            className="inline-flex items-center rounded border border-slate-300 bg-white px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50"
-            onClick={() => void api.post("/observatory/cache/clear")}
+            onClick={() => resetForm()}
+            className="rounded border border-slate-300 bg-white px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50"
           >
-            Clear cache observatory
+            Nouvelle config
           </button>
         </div>
       </div>
 
       {error && <div className="rounded border border-rose-300 bg-rose-50 px-3 py-2 text-sm text-rose-700">{error}</div>}
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[420px_1fr]">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[380px_1fr]">
         <div className="rounded border border-slate-200 bg-white">
           <div className="border-b border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700">Couches ({rows.length})</div>
-          <div className="max-h-[560px] overflow-auto">
+          <div className="max-h-[620px] overflow-auto">
             {loading ? (
               <div className="px-3 py-3 text-sm text-slate-500">Chargement...</div>
+            ) : rows.length === 0 ? (
+              <div className="px-3 py-3 text-sm text-slate-500">Aucune configuration.</div>
             ) : (
-              rows.map((r) => (
+              rows.map((row) => (
                 <button
-                  key={r.layer_key}
+                  key={row.layer_name}
                   type="button"
-                  onClick={() => setSelected(r)}
-                  className={`flex w-full items-center justify-between border-b border-slate-100 px-3 py-2 text-left text-sm hover:bg-slate-50 ${selected?.layer_key === r.layer_key ? "bg-blue-50" : ""}`}
+                  onClick={() => setSelectedLayerName(row.layer_name)}
+                  className={`flex w-full items-center justify-between border-b border-slate-100 px-3 py-2 text-left text-sm hover:bg-slate-50 ${selectedLayerName === row.layer_name ? "bg-blue-50" : ""}`}
                 >
-                  <span className="font-medium text-slate-800">{r.layer_key}</span>
-                  <span className={`rounded px-1.5 py-0.5 text-xs ${r.actif ? "bg-emerald-100 text-emerald-700" : "bg-slate-100 text-slate-500"}`}>
-                    {r.actif ? "actif" : "off"}
-                  </span>
+                  <span className="font-medium text-slate-800">{row.layer_name}</span>
+                  <span className="rounded bg-slate-100 px-2 py-0.5 text-xs text-slate-600">{row.geometry_type}</span>
                 </button>
               ))
             )}
           </div>
         </div>
 
-        <div className="rounded border border-slate-200 bg-white p-4">
-          {!hasSelection ? (
-            <div className="text-sm text-slate-500">Selectionne une couche a droite pour editer la regle.</div>
-          ) : (
-            <div className="space-y-3">
-              <div className="text-sm font-semibold text-slate-800">layer_key: {selected?.layer_key}</div>
-              <label className="block text-sm">
-                <span className="mb-1 block text-slate-600">Titre</span>
-                <input className="w-full rounded border border-slate-300 px-2 py-1.5" value={formTitle} onChange={(e) => setFormTitle(e.target.value)} />
-              </label>
-              <label className="block text-sm">
-                <span className="mb-1 block text-slate-600">name_fields (csv)</span>
-                <input className="w-full rounded border border-slate-300 px-2 py-1.5" value={formNameFields} onChange={(e) => setFormNameFields(e.target.value)} />
-              </label>
-              <label className="block text-sm">
-                <span className="mb-1 block text-slate-600">type_fields (csv)</span>
-                <input className="w-full rounded border border-slate-300 px-2 py-1.5" value={formTypeFields} onChange={(e) => setFormTypeFields(e.target.value)} />
-              </label>
-              <label className="block text-sm">
-                <span className="mb-1 block text-slate-600">class_fields (csv)</span>
-                <input className="w-full rounded border border-slate-300 px-2 py-1.5" value={formClassFields} onChange={(e) => setFormClassFields(e.target.value)} />
-              </label>
-              <label className="block text-sm">
-                <span className="mb-1 block text-slate-600">code_fields (csv)</span>
-                <input className="w-full rounded border border-slate-300 px-2 py-1.5" value={formCodeFields} onChange={(e) => setFormCodeFields(e.target.value)} />
-              </label>
+        <div className="space-y-4 rounded border border-slate-200 bg-white p-4">
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+            <label className="block text-sm">
+              <span className="mb-1 block text-slate-600">Nom couche</span>
+              <input
+                className="w-full rounded border border-slate-300 px-2 py-1.5"
+                value={layerName}
+                disabled={!!selected}
+                onChange={(e) => setLayerName(e.target.value)}
+                placeholder="ex: stations_pluvio"
+              />
+            </label>
 
-              {(selectedGeometryType === "point" || selectedGeometryType === "unknown") && (
-                <div className="mt-2 rounded border border-slate-200 p-3">
-                  <div className="mb-2 text-sm font-semibold text-slate-800">Symbologie points</div>
-                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                    <label className="block text-sm">
-                      <span className="mb-1 block text-slate-600">Couleur</span>
-                      <input type="color" className="h-9 w-full rounded border border-slate-300" value={formPointColor} onChange={(e) => setFormPointColor(e.target.value)} />
-                    </label>
-                    <label className="block text-sm">
-                      <span className="mb-1 block text-slate-600">Taille</span>
-                      <input type="number" min={1} max={30} step="0.5" className="w-full rounded border border-slate-300 px-2 py-1.5" value={formPointSize} onChange={(e) => setFormPointSize(e.target.value)} />
-                    </label>
-                  </div>
-                  <label className="mt-2 block text-sm">
-                    <span className="mb-1 block text-slate-600">Infos popup point (csv)</span>
-                    <input className="w-full rounded border border-slate-300 px-2 py-1.5" value={formPointPopupFields} onChange={(e) => setFormPointPopupFields(e.target.value)} />
-                  </label>
-                </div>
-              )}
+            <label className="block text-sm">
+              <span className="mb-1 block text-slate-600">Type géométrie</span>
+              <select
+                className="w-full rounded border border-slate-300 px-2 py-1.5"
+                value={geometryType}
+                onChange={(e) => {
+                  const next = e.target.value as GeometryType;
+                  setGeometryType(next);
+                  setStyleConfig(DEFAULT_STYLE[next]);
+                }}
+              >
+                <option value="point">Point</option>
+                <option value="line">Ligne</option>
+                <option value="polygon">Polygone</option>
+              </select>
+            </label>
+          </div>
 
-              {(selectedGeometryType === "line" || selectedGeometryType === "unknown") && (
-                <div className="mt-2 rounded border border-slate-200 p-3">
-                  <div className="mb-2 text-sm font-semibold text-slate-800">Symbologie lignes</div>
-                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                    <label className="block text-sm">
-                      <span className="mb-1 block text-slate-600">Couleur</span>
-                      <input type="color" className="h-9 w-full rounded border border-slate-300" value={formLineColor} onChange={(e) => setFormLineColor(e.target.value)} />
-                    </label>
-                    <label className="block text-sm">
-                      <span className="mb-1 block text-slate-600">Taille de ligne</span>
-                      <input type="number" min={0.5} max={20} step="0.2" className="w-full rounded border border-slate-300 px-2 py-1.5" value={formLineWidth} onChange={(e) => setFormLineWidth(e.target.value)} />
-                    </label>
-                    <label className="block text-sm">
-                      <span className="mb-1 block text-slate-600">Style ligne</span>
-                      <select className="w-full rounded border border-slate-300 px-2 py-1.5" value={formLineStyle} onChange={(e) => setFormLineStyle(e.target.value as "simple" | "dashed" | "gradient")}>
-                        <option value="simple">Simple</option>
-                        <option value="dashed">Trait</option>
-                        <option value="gradient">Degrade</option>
-                      </select>
-                    </label>
-                    <label className="block text-sm">
-                      <span className="mb-1 block text-slate-600">Couleur degrade vers</span>
-                      <input type="color" className="h-9 w-full rounded border border-slate-300" value={formLineGradientTo} onChange={(e) => setFormLineGradientTo(e.target.value)} />
-                    </label>
-                  </div>
-                  <label className="mt-2 block text-sm">
-                    <span className="mb-1 block text-slate-600">Infos popup ligne (csv)</span>
-                    <input className="w-full rounded border border-slate-300 px-2 py-1.5" value={formLinePopupFields} onChange={(e) => setFormLinePopupFields(e.target.value)} />
-                  </label>
-                </div>
-              )}
-
-              {(selectedGeometryType === "polygon" || selectedGeometryType === "unknown") && (
-                <div className="mt-2 rounded border border-slate-200 p-3">
-                  <div className="mb-2 text-sm font-semibold text-slate-800">Symbologie polygones</div>
-                  <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                    <label className="block text-sm">
-                      <span className="mb-1 block text-slate-600">Couleur</span>
-                      <input type="color" className="h-9 w-full rounded border border-slate-300" value={formPolygonColor} onChange={(e) => setFormPolygonColor(e.target.value)} />
-                    </label>
-                    <label className="block text-sm">
-                      <span className="mb-1 block text-slate-600">Degrade vers</span>
-                      <input type="color" className="h-9 w-full rounded border border-slate-300" value={formPolygonGradientTo} onChange={(e) => setFormPolygonGradientTo(e.target.value)} />
-                    </label>
-                    <label className="block text-sm">
-                      <span className="mb-1 block text-slate-600">Opacite</span>
-                      <input type="number" min={0} max={1} step="0.05" className="w-full rounded border border-slate-300 px-2 py-1.5" value={formPolygonOpacity} onChange={(e) => setFormPolygonOpacity(e.target.value)} />
-                    </label>
-                    <label className="block text-sm">
-                      <span className="mb-1 block text-slate-600">Contour</span>
-                      <select className="w-full rounded border border-slate-300 px-2 py-1.5" value={formPolygonContourMode} onChange={(e) => setFormPolygonContourMode(e.target.value as "simple" | "gradue")}>
-                        <option value="simple">Simple</option>
-                        <option value="gradue">Gradue</option>
-                      </select>
-                    </label>
-                    <label className="block text-sm">
-                      <span className="mb-1 block text-slate-600">Couleur contour</span>
-                      <input type="color" className="h-9 w-full rounded border border-slate-300" value={formPolygonContourColor} onChange={(e) => setFormPolygonContourColor(e.target.value)} />
-                    </label>
-                  </div>
-                  <label className="mt-2 block text-sm">
-                    <span className="mb-1 block text-slate-600">Infos popup polygone (csv)</span>
-                    <input className="w-full rounded border border-slate-300 px-2 py-1.5" value={formPolygonPopupFields} onChange={(e) => setFormPolygonPopupFields(e.target.value)} />
-                  </label>
-                </div>
-              )}
-
-              <label className="flex items-center gap-2 text-sm text-slate-700">
-                <input type="checkbox" checked={formActif} onChange={(e) => setFormActif(e.target.checked)} />
-                Regle active
-              </label>
-              <div className="flex gap-2">
-                <button
-                  type="button"
-                  disabled={saving}
-                  onClick={() => void saveRule()}
-                  className="rounded border border-blue-300 bg-blue-50 px-3 py-1.5 text-sm text-blue-700 disabled:opacity-60"
-                >
-                  Enregistrer
-                </button>
-                <button
-                  type="button"
-                  disabled={saving}
-                  onClick={() => void deleteRule()}
-                  className="rounded border border-rose-300 bg-rose-50 px-3 py-1.5 text-sm text-rose-700 disabled:opacity-60"
-                >
-                  Supprimer
-                </button>
+          {geometryType === "point" && styleConfig.point && (
+            <div className="rounded border border-slate-200 p-3">
+              <div className="mb-2 text-sm font-semibold text-slate-800">Symbologie point</div>
+              <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
+                <label className="block text-sm">
+                  <span className="mb-1 block text-slate-600">Couleur</span>
+                  <input type="color" value={styleConfig.point.color} onChange={(e) => setStyleConfig({ ...styleConfig, point: { ...styleConfig.point!, color: e.target.value } })} />
+                </label>
+                <label className="block text-sm">
+                  <span className="mb-1 block text-slate-600">Rayon</span>
+                  <input type="number" min={1} max={50} className="w-full rounded border border-slate-300 px-2 py-1.5" value={styleConfig.point.radius} onChange={(e) => setStyleConfig({ ...styleConfig, point: { ...styleConfig.point!, radius: Number(e.target.value) } })} />
+                </label>
+                <label className="block text-sm">
+                  <span className="mb-1 block text-slate-600">Opacité</span>
+                  <input type="number" min={0} max={1} step={0.05} className="w-full rounded border border-slate-300 px-2 py-1.5" value={styleConfig.point.opacity} onChange={(e) => setStyleConfig({ ...styleConfig, point: { ...styleConfig.point!, opacity: Number(e.target.value) } })} />
+                </label>
               </div>
             </div>
           )}
+
+          {geometryType === "line" && styleConfig.line && (
+            <div className="rounded border border-slate-200 p-3">
+              <div className="mb-2 text-sm font-semibold text-slate-800">Symbologie ligne</div>
+              <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
+                <label className="block text-sm">
+                  <span className="mb-1 block text-slate-600">Couleur</span>
+                  <input type="color" value={styleConfig.line.color} onChange={(e) => setStyleConfig({ ...styleConfig, line: { ...styleConfig.line!, color: e.target.value } })} />
+                </label>
+                <label className="block text-sm">
+                  <span className="mb-1 block text-slate-600">Largeur</span>
+                  <input type="number" min={1} max={20} className="w-full rounded border border-slate-300 px-2 py-1.5" value={styleConfig.line.width} onChange={(e) => setStyleConfig({ ...styleConfig, line: { ...styleConfig.line!, width: Number(e.target.value) } })} />
+                </label>
+                <label className="block text-sm">
+                  <span className="mb-1 block text-slate-600">Opacité</span>
+                  <input type="number" min={0} max={1} step={0.05} className="w-full rounded border border-slate-300 px-2 py-1.5" value={styleConfig.line.opacity} onChange={(e) => setStyleConfig({ ...styleConfig, line: { ...styleConfig.line!, opacity: Number(e.target.value) } })} />
+                </label>
+              </div>
+            </div>
+          )}
+
+          {geometryType === "polygon" && styleConfig.polygon && (
+            <div className="rounded border border-slate-200 p-3">
+              <div className="mb-2 text-sm font-semibold text-slate-800">Symbologie polygone</div>
+              <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                <label className="block text-sm">
+                  <span className="mb-1 block text-slate-600">Couleur remplissage</span>
+                  <input type="color" value={styleConfig.polygon.fillColor} onChange={(e) => setStyleConfig({ ...styleConfig, polygon: { ...styleConfig.polygon!, fillColor: e.target.value } })} />
+                </label>
+                <label className="block text-sm">
+                  <span className="mb-1 block text-slate-600">Opacité remplissage</span>
+                  <input type="number" min={0} max={1} step={0.05} className="w-full rounded border border-slate-300 px-2 py-1.5" value={styleConfig.polygon.fillOpacity} onChange={(e) => setStyleConfig({ ...styleConfig, polygon: { ...styleConfig.polygon!, fillOpacity: Number(e.target.value) } })} />
+                </label>
+                <label className="block text-sm">
+                  <span className="mb-1 block text-slate-600">Couleur contour</span>
+                  <input type="color" value={styleConfig.polygon.strokeColor} onChange={(e) => setStyleConfig({ ...styleConfig, polygon: { ...styleConfig.polygon!, strokeColor: e.target.value } })} />
+                </label>
+                <label className="block text-sm">
+                  <span className="mb-1 block text-slate-600">Épaisseur contour</span>
+                  <input type="number" min={0} max={10} className="w-full rounded border border-slate-300 px-2 py-1.5" value={styleConfig.polygon.strokeWidth} onChange={(e) => setStyleConfig({ ...styleConfig, polygon: { ...styleConfig.polygon!, strokeWidth: Number(e.target.value) } })} />
+                </label>
+              </div>
+            </div>
+          )}
+
+          <div className="rounded border border-slate-200 p-3">
+            <div className="mb-2 text-sm font-semibold text-slate-800">Champs popup</div>
+            <div className="space-y-2">
+              {popupFields.map((field, index) => (
+                <div key={`${index}-${field.name}`} className="grid grid-cols-1 gap-2 rounded border border-slate-200 p-2 md:grid-cols-[1.2fr_1.2fr_80px_120px_100px_60px]">
+                  <input
+                    className="rounded border border-slate-300 px-2 py-1.5 text-sm"
+                    placeholder="name"
+                    value={field.name}
+                    onChange={(e) => updatePopupField(index, { name: e.target.value })}
+                  />
+                  <input
+                    className="rounded border border-slate-300 px-2 py-1.5 text-sm"
+                    placeholder="alias"
+                    value={field.alias}
+                    onChange={(e) => updatePopupField(index, { alias: e.target.value })}
+                  />
+                  <input
+                    type="number"
+                    min={1}
+                    className="rounded border border-slate-300 px-2 py-1.5 text-sm"
+                    value={field.order}
+                    onChange={(e) => updatePopupField(index, { order: Number(e.target.value) })}
+                  />
+                  <select
+                    className="rounded border border-slate-300 px-2 py-1.5 text-sm"
+                    value={field.format || ""}
+                    onChange={(e) => updatePopupField(index, { format: (e.target.value || null) as PopupField["format"] })}
+                  >
+                    <option value="">Texte</option>
+                    <option value="number">Nombre</option>
+                    <option value="date">Date</option>
+                  </select>
+                  <label className="flex items-center gap-2 text-xs text-slate-600">
+                    <input
+                      type="checkbox"
+                      checked={field.visible}
+                      onChange={(e) => updatePopupField(index, { visible: e.target.checked })}
+                    />
+                    Visible
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => removePopupField(index)}
+                    className="rounded border border-rose-300 bg-rose-50 px-2 py-1 text-xs text-rose-700"
+                  >
+                    X
+                  </button>
+                </div>
+              ))}
+              <button
+                type="button"
+                onClick={addPopupField}
+                className="rounded border border-slate-300 bg-white px-3 py-1.5 text-sm text-slate-700"
+              >
+                Ajouter champ
+              </button>
+            </div>
+          </div>
+
+          <div className="flex gap-2">
+            <button
+              type="button"
+              disabled={saving}
+              onClick={() => void saveConfig()}
+              className="rounded border border-blue-300 bg-blue-50 px-3 py-1.5 text-sm text-blue-700 disabled:opacity-60"
+            >
+              {selected ? "Mettre à jour" : "Créer"}
+            </button>
+
+            {selected && (
+              <button
+                type="button"
+                disabled={saving}
+                onClick={() => void deleteConfig()}
+                className="rounded border border-rose-300 bg-rose-50 px-3 py-1.5 text-sm text-rose-700 disabled:opacity-60"
+              >
+                Supprimer
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>

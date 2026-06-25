@@ -2,8 +2,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
-// ⚠️ adapte si ton back écoute ailleurs
-const API_TARGET = process.env.VITE_API_PROXY ?? "http://127.0.0.1:8000";
+// Fallback aligné sur la stack SAD Docker locale publiée sur 8010.
+const API_TARGET = process.env.VITE_API_PROXY ?? "http://127.0.0.1:8010";
 
 export default defineConfig({
   plugins: [react()],
@@ -13,7 +13,7 @@ export default defineConfig({
     },
   },
   server: {
-    port: 5173,
+    port: 3001,
     strictPort: true,
     proxy: {
       "/api": {

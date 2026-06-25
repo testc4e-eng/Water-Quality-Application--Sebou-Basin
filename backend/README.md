@@ -1,70 +1,59 @@
-# FastAPI + PostgreSQL (sans Docker)
+# Backend SAD Sebou (FastAPI)
+
+## Prérequis
+- Python 3.10+
+- PostgreSQL/PostGIS accessible
 
 ## Installation
-1. Créer un environnement virtuel et installer les dépendances :
 ```bash
-
-# SUPPRIMER le venv existant s’il a été partiellement créé :
-Remove-Item -Recurse -Force .\venv -ErrorAction SilentlyContinue
-
+cd backend
 python -m venv venv
-venv\Scripts\activate   # Windows
-source venv/bin/activate  # Linux/Mac
-
+venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-2. Copier `.env.example` en `.env` et configurer si besoin.
+## Configuration
+Créer/adapter `backend/.env` avec au minimum :
+- `DB_HOST`
+- `DB_PORT`
+- `DB_NAME`
+- `DB_USER`
+- `DB_PASS`
+- `SECRET_KEY`
 
-3. Créer la base PostgreSQL :
-```sql
-CREATE DATABASE appdb;
-```
+Optionnel :
+- `BACKEND_CORS_ORIGINS=http://localhost:3001,http://127.0.0.1:3001`
 
-4. Lancer les migrations :
+## Lancement
 ```bash
-alembic upgrade head
-```
-
-5. Démarrer le serveur :
-```bash
-uvicorn app.main:app --reload
-```
-
-## API Docs
-http://localhost:8000/docs
-
-
- 
-
-# Commande pour creer l environement :
-micromamba create -f sad_backend.yml
-
-# Commande pour activer l environement :
-micromamba activate "C:\micromba_envs\sad_backend"
-micromamba activate sad_backend
-
-# Commande pour excuter le backend :
-micromamba activate "C:\micromba_envs\sad_backend"
-micromamba activate sad_backend
 cd backend
-uvicorn app.main:app --reload --port 8000
+uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
+```
 
-# Commande pour activer l environement :
-micromamba activate "C:\micromba_envs\sad_backend"
-micromamba activate sad_backend
-cd frontend
-npm run dev -- --port 3001
+Documentation Swagger :
+- `http://127.0.0.1:8000/docs`
 
+## Routes principales
+Préfixe global : `/api/v1`
 
+- `GET /analytics/*` : options/sites/séries pour climat, hydrologie et pollution
+- `GET|POST /observatory/*` : hiérarchie métier, cache, popup-rules, statut/refresh MVs
+- `GET /layers/{layer_key}` : couches carto GeoJSON avec filtres `ids`, `bbox`, `max_features`
+- `GET|POST /ingestion/*` : upload, validation structure, mapping, doublons, QA, audit
+- `GET /admin/*` : modules administration (data-scan, users, password resets)
 
+## Scripts ops utiles
+- `scripts/refresh_mviews.py` : refresh manuel des materialized views
+- `scripts/register_mv_refresh_task.ps1` : création de la tâche Windows périodique
+- `sql/2026_04_mv_perf_pack.sql` : pack SQL de performance MV
 
+## Notes techniques récentes
+- Middleware de journalisation d'activité avec masquage des paramètres sensibles.
+- Compression GZip activée côté API.
+- Priorité des sources matérialisées sur plusieurs endpoints (layers/observatory/analytics).
 
-
-
-le dernier commande pour lancer le backend :
-
-micromamba create -f sad_backend.yml
-# micromamba activate sad_backend
-# cd backend
-# uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+## Documentation backend associée
+- `docs/01_project_reference/backend/backend_overview.md`
+- `docs/01_project_reference/backend/api_contracts.md`
+- `docs/01_project_reference/backend/traceability_matrix.md`
+- `docs/01_project_reference/deployment_operations/deployment_and_operations.md`

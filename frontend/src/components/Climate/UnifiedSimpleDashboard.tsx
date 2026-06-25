@@ -21,9 +21,6 @@ type Selection = {
     name: string;
     code?: string;
   };
-  aggregation?: string;
-  dateStart?: string;
-  dateEnd?: string;
 };
 
 type TimeseriesRow = {
@@ -63,6 +60,8 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
   const [series, setSeries] = useState<TimeseriesRow[]>([]);
   const [loading, setLoading] = useState(false);
   const [seriesUnit, setSeriesUnit] = useState<string>("");
+  const [dateStart, setDateStart] = useState<string | undefined>(undefined);
+  const [dateEnd, setDateEnd] = useState<string | undefined>(undefined);
   
   const chartRef = useRef<HTMLDivElement | null>(null);
 
@@ -78,25 +77,16 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
     selection.submenu ||
     "Choisir une variable";
   const varIcon = varLabel.toLowerCase().includes("températ") ? "🌡️" : varLabel.toLowerCase().includes("précipit") ? "☔" : "📊";
+  const hydroTheme = isHydroTheme(theme);
   const sourceLabel = selection.parameter
     ? `${selection.parameter.source_schema}.${selection.parameter.source_table}`
     : selection.scenario
     ? `analytics:${selection.scenario}`
     : "Source non sélectionnée";
   const periodLabel =
-    selection.dateStart || selection.dateEnd
-      ? `${selection.dateStart || "debut"} -> ${selection.dateEnd || "fin"}`
+    dateStart || dateEnd
+      ? `${dateStart || "début"} → ${dateEnd || "fin"}`
       : "Toutes les périodes disponibles";
-  const aggregationLabel =
-    selection.aggregation === "raw"
-      ? "Donnees brutes"
-      : selection.aggregation === "daily"
-      ? "Journaliere"
-      : selection.aggregation === "monthly"
-      ? "Mensuelle"
-      : selection.aggregation === "yearly"
-      ? "Annuelle"
-      : "Non defini";
   const contextQaStatus: QaStatus = loading
     ? "FLAGGED"
     : series.length > 0
@@ -105,24 +95,20 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
     ? "MISSING"
     : "FLAGGED";
 
-  const aggregateSeries = (rows: TimeseriesRow[], aggregation?: string): TimeseriesRow[] => {
-    if (!aggregation || aggregation === "raw" || aggregation === "daily") return rows;
-    const buckets = new Map<string, { sum: number; count: number }>();
-    for (const row of rows) {
-      const d = new Date(row.datetime);
-      if (Number.isNaN(d.getTime())) continue;
-      const key =
-        aggregation === "yearly"
-          ? `${d.getFullYear()}-01-01`
-          : `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-01`;
-      const prev = buckets.get(key) || { sum: 0, count: 0 };
-      prev.sum += Number(row.value);
-      prev.count += 1;
-      buckets.set(key, prev);
+  const applyHydroPreset = (preset: "30d" | "3m" | "1y" | "clear") => {
+    if (preset === "clear") {
+      setDateStart(undefined);
+      setDateEnd(undefined);
+      return;
     }
-    return Array.from(buckets.entries())
-      .sort((a, b) => a[0].localeCompare(b[0]))
-      .map(([datetime, v]) => ({ datetime, value: v.count ? v.sum / v.count : 0 }));
+    const now = new Date();
+    const end = now.toISOString().slice(0, 10);
+    const start = new Date(now);
+    if (preset === "30d") start.setDate(start.getDate() - 30);
+    if (preset === "3m") start.setMonth(start.getMonth() - 3);
+    if (preset === "1y") start.setFullYear(start.getFullYear() - 1);
+    setDateStart(start.toISOString().slice(0, 10));
+    setDateEnd(end);
   };
 
   useEffect(() => {
@@ -132,19 +118,11 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
     const analyticsTheme = climateTheme || hydroThemeInner || pollutionTheme;
     const needsVariable = !!selection.variableEnabled;
     const hasRequiredVariable = !needsVariable || !!selection.parameter?.param_code;
-    const hasPeriod = !!selection.dateStart && !!selection.dateEnd && selection.dateStart <= selection.dateEnd;
-    const hasHydroFilters = !!selection.parameter?.param_code && !!selection.scenario && !!selection.aggregation && hasPeriod;
-    const hasClimateFilters = !!selection.scenario && !!selection.aggregation && hasPeriod;
-    const canLoadClimate = climateTheme
-      ? !!selection.stationId && !!selection.submenu && hasRequiredVariable && hasClimateFilters
-      : hydroThemeInner
-      ? !!selection.stationId && !!selection.submenu && hasRequiredVariable && hasHydroFilters
-      : !!selection.stationId && !!selection.submenu && hasRequiredVariable;
+    const canLoadClimate = !!selection.stationId && !!selection.submenu && hasRequiredVariable;
     const canLoadGeneric = !!selection.stationId && !!selection.submenu && !!selection.parameter;
     if ((analyticsTheme && !canLoadClimate) || (!analyticsTheme && !canLoadGeneric)) {
       setSeries([]);
       setSeriesUnit("");
-      setLoading(false);
       return;
     }
 
@@ -165,13 +143,11 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
             scenario: selection.scenario || "actuel",
             submenu: selection.submenu!,
             site: selection.stationId!,
-            parameter: hydroThemeInner ? selection.parameter?.param_code : undefined,
-            variable: climateTheme ? selection.parameter?.param_code : undefined,
-            aggregation: hydroThemeInner ? selection.aggregation : undefined,
-            date_start: selection.dateStart,
-            date_end: selection.dateEnd,
+            variable: selection.parameter?.param_code,
+            date_start: dateStart,
+            date_end: dateEnd,
           });
-          data = aggregateSeries(res.series, selection.aggregation);
+          data = res.series;
           if (!cancelled) setSeriesUnit(res?.metadata?.unit || "");
         } else {
           data = await getParameterTimeseries({
@@ -179,11 +155,10 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
             sous_menu: selection.submenu!,
             param_code: selection.parameter!.param_code,
             entity_id: selection.stationId!,
-            date_start: selection.dateStart,
-            date_end: selection.dateEnd,
+            date_start: dateStart,
+            date_end: dateEnd,
           });
           if (!cancelled) setSeriesUnit(selection.parameter?.unite || "");
-          data = aggregateSeries(data, selection.aggregation);
         }
         if (!cancelled) setSeries(Array.isArray(data) ? data : []);
       } catch (err) {
@@ -200,7 +175,7 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
     return () => {
       cancelled = true;
     };
-  }, [theme, selection.stationId, selection.parameter, selection.submenu, selection.scenario, selection.dateStart, selection.dateEnd, selection.aggregation]);
+  }, [theme, selection.stationId, selection.parameter, selection.submenu, selection.scenario, dateStart, dateEnd]);
 
   return (
     <div className="space-y-6 animate-in fade-in duration-500">
@@ -216,6 +191,67 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
             </div>
             <div className="p-5">
               <UnifiedFilters theme={theme} onChange={setSelection} />
+              {hydroTheme && (
+                <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3">
+                  <div className="mb-2 text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                    Période (Hydrologie)
+                  </div>
+                  <div className="mb-2 flex flex-wrap gap-2">
+                    <button
+                      type="button"
+                      onClick={() => applyHydroPreset("30d")}
+                      className="rounded-md border border-slate-200 bg-white px-2 py-1 text-[11px] font-medium text-slate-700 hover:bg-slate-100"
+                    >
+                      30j
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => applyHydroPreset("3m")}
+                      className="rounded-md border border-slate-200 bg-white px-2 py-1 text-[11px] font-medium text-slate-700 hover:bg-slate-100"
+                    >
+                      3 mois
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => applyHydroPreset("1y")}
+                      className="rounded-md border border-slate-200 bg-white px-2 py-1 text-[11px] font-medium text-slate-700 hover:bg-slate-100"
+                    >
+                      1 an
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => applyHydroPreset("clear")}
+                      className="rounded-md border border-slate-200 bg-white px-2 py-1 text-[11px] font-medium text-slate-700 hover:bg-slate-100"
+                    >
+                      Tout
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-slate-500">
+                        Début
+                      </label>
+                      <input
+                        type="date"
+                        value={dateStart || ""}
+                        onChange={(e) => setDateStart(e.target.value || undefined)}
+                        className="w-full rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-xs text-slate-700 outline-none focus:border-blue-400"
+                      />
+                    </div>
+                    <div>
+                      <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-slate-500">
+                        Fin
+                      </label>
+                      <input
+                        type="date"
+                        value={dateEnd || ""}
+                        onChange={(e) => setDateEnd(e.target.value || undefined)}
+                        className="w-full rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-xs text-slate-700 outline-none focus:border-blue-400"
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -237,7 +273,7 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
               </span>
               <QaBadge status={contextQaStatus} />
             </div>
-            <div className="grid grid-cols-1 gap-3 text-xs md:grid-cols-5">
+            <div className="grid grid-cols-1 gap-3 text-xs md:grid-cols-4">
               <div className="rounded-xl bg-slate-50 px-3 py-2">
                 <div className="font-semibold uppercase tracking-wide text-slate-400">Thème</div>
                 <div className="mt-1 font-semibold text-slate-800">{theme}</div>
@@ -247,16 +283,14 @@ export default function UnifiedSimpleDashboard({ theme }: { theme: string }) {
                 <div className="mt-1 font-semibold text-slate-800">{varLabel}</div>
               </div>
               <div className="rounded-xl bg-slate-50 px-3 py-2">
-                <div className="font-semibold uppercase tracking-wide text-slate-400">Scénario</div>
-                <div className="mt-1 font-semibold text-slate-800">{selection.scenario || "Non défini"}</div>
-              </div>
-              <div className="rounded-xl bg-slate-50 px-3 py-2">
-                <div className="font-semibold uppercase tracking-wide text-slate-400">Agrégation</div>
-                <div className="mt-1 font-semibold text-slate-800">{aggregationLabel}</div>
-              </div>
-              <div className="rounded-xl bg-slate-50 px-3 py-2">
                 <div className="font-semibold uppercase tracking-wide text-slate-400">Période</div>
                 <div className="mt-1 font-semibold text-slate-800">{periodLabel}</div>
+              </div>
+              <div className="rounded-xl bg-slate-50 px-3 py-2">
+                <div className="font-semibold uppercase tracking-wide text-slate-400">Source</div>
+                <div className="mt-1 truncate font-semibold text-slate-800" title={sourceLabel}>
+                  {sourceLabel}
+                </div>
               </div>
             </div>
           </div>

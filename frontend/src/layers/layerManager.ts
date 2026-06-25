@@ -94,14 +94,25 @@ export async function buildBusinessLayer(
   let params: Record<string, string> = {};
 
   if (businessKey === "temperature_stations") latestEndpoint = "/observatory/temperature/latest";
-  if (businessKey === "niveau_barrage") latestEndpoint = "/observatory/barrage/latest";
+  if (businessKey === "niveau_barrage") {
+    latestEndpoint = "/observatory/barrage/latest";
+    params.metric = "niveau_barrage";
+  }
   if (businessKey === "volume_barrage") {
     latestEndpoint = "/observatory/barrage/latest";
-    params.metric = "volume_mm3";
+    params.metric = "volume_barrage";
   }
   if (businessKey === "lacher_barrage") {
     latestEndpoint = "/observatory/barrage/latest";
-    params.metric = "lacher_m3s";
+    params.metric = "lacher_barrage";
+  }
+  if (businessKey === "apport" || businessKey === "apports_hm3") {
+    latestEndpoint = "/observatory/barrage/latest";
+    params.metric = "apport";
+  }
+  if (businessKey === "transfert") {
+    latestEndpoint = "/observatory/barrage/latest";
+    params.metric = "transfert";
   }
   if (businessKey === "debit_stations") {
     latestEndpoint = "/hydro/latest";

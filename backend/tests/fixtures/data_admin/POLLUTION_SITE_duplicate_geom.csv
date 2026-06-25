@@ -1,0 +1,2 @@
+site_code,site_name,commune,province,bassin,validation_status,geom_wkt,srid
+CODX-POLL-20260605-DUP,Site Pollution Doublon,Ait Ouribel,Khemisset,Sebou,VALIDATED,"POINT(-6.055261596974545 33.75053838245019)",4326

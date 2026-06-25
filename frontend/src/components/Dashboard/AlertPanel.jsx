@@ -13,7 +13,7 @@
 //       setLoading(true);
 //       setError(null);
 //       try {
-//         // baseURL = http://127.0.0.1:8000/api/v1 => on appelle juste "/alerts"
+//         // baseURL centralisée => on appelle juste "/alerts"
 //         const res = await api.get("/alerts");
 //         if (!alive) return;
 //         setItems(Array.isArray(res.data) ? res.data : []);

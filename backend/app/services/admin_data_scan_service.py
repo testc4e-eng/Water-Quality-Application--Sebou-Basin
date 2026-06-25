@@ -45,6 +45,7 @@ def _safe_count(db: Session, schema: str, table: str) -> int:
     try:
         return int(db.execute(text(f'SELECT COUNT(*) FROM "{schema}"."{table}"')).scalar() or 0)
     except Exception as e:
+        db.rollback()
         logger.warning(f"Count failed for {schema}.{table}: {e}")
         return 0
 
@@ -57,6 +58,7 @@ def _safe_distinct_count(db: Session, schema: str, table: str, col: Optional[str
             or 0
         )
     except Exception as e:
+        db.rollback()
         logger.warning(f"Distinct count failed for {schema}.{table}.{col}: {e}")
         return 0
 
@@ -74,6 +76,7 @@ def _fetch_full_table(
         rows = db.execute(text(f'SELECT {col_sql} FROM "{schema}"."{table}"')).mappings().all()
         return [dict(r) for r in rows]
     except Exception as e:
+        db.rollback()
         logger.error(f"Fetch failed for {schema}.{table}: {e}")
         return []
 
@@ -141,20 +144,19 @@ def _build_legacy_station_union(db: Session, station_col: str) -> str:
 
 def get_data_availability(db: Session, include_time_stats: bool = False) -> Dict[str, Any]:
     """Point d'entrée principal pour l'audit de disponibilité des données."""
-    # Heuristique : Si on a infra.stations ou public.stations_abhs, on est en mode "legacy"
-    if (_table_exists(db, "infra", "stations") or _table_exists(db, "public", "stations_abhs")) and not _table_exists(db, "geo", "station"):
-        return _legacy_data_scan(db, include_time_stats)
-
-    # ... (code pour le nouveau schéma geo/ts s'il était présent - omis pour brièveté car on est en mode legacy) ...
-    return _legacy_data_scan(db, include_time_stats) # Repli par défaut sur Sebou
+    # Le projet Sebou exploite le pivot canonique api.v_station_dimension.
+    # Le service reste "legacy" au sens fonctionnel (scan de disponibilité),
+    # mais il ne doit plus dépendre des anciennes tables public.*.
+    return _legacy_data_scan(db, include_time_stats)
 
 def _legacy_data_scan(db: Session, include_time_stats: bool = False) -> Dict[str, Any]:
     """Scan adapté à l'infrastructure réelle du Sebou (infra/staging/qualite)."""
-    station_schema = "infra" if _table_exists(db, "infra", "stations") else "public"
-    station_table = "stations" if station_schema == "infra" else "stations_abhs"
-    
-    station_id_col = "ire_station"
-    station_name_col = "nom_station"
+    station_schema = "api"
+    station_table = "v_station_dimension"
+
+    station_id_col = "station_id"
+    station_join_expr = 'COALESCE(s."legacy_code_station", s."code_station")'
+    station_name_col = "station_nom"
     station_type_col = "type_station"
 
     union_sql = _build_legacy_station_union(db, station_id_col)
@@ -164,7 +166,7 @@ def _legacy_data_scan(db: Session, include_time_stats: bool = False) -> Dict[str
     # 1. Résumé global
     summary = {
         "total_stations": _safe_count(db, station_schema, station_table),
-        "total_basins": _safe_count(db, "geo", "bassin_versant_sebou") or _safe_count(db, "public", "bassin_sebou") or 1,
+        "total_basins": _safe_count(db, "geo", "bassin_versant") or _safe_count(db, "api", "v_bassin_geojson") or 1,
         "total_variables": 0,
         "total_sources": 0,
         "total_records": 0,
@@ -189,13 +191,15 @@ def _legacy_data_scan(db: Session, include_time_stats: bool = False) -> Dict[str
             summary["stations_with_data"] = int(stats_res[1] or 0)
             summary["total_variables"] = int(stats_res[2] or 0)
     except Exception as e:
+        db.rollback()
         logger.error(f"Erreur calcul stats union : {e}")
 
     # 2. Variables disponibles
     try:
         var_rows = db.execute(text(f"SELECT DISTINCT variable_name FROM ({union_sql}) AS u WHERE variable_name IS NOT NULL ORDER BY 1")).fetchall()
         summary["available_variables"] = [{"name": r[0]} for r in var_rows]
-    except: pass
+    except Exception:
+        db.rollback()
 
     # 3. Répartition par type de station
     station_type_expr = f'COALESCE("{station_type_col}", \'Inconnu\')'
@@ -214,7 +218,8 @@ def _legacy_data_scan(db: Session, include_time_stats: bool = False) -> Dict[str
                     MIN(sm.ts) AS first_record,
                     MAX(sm.ts) AS last_record
                 FROM "{station_schema}"."{station_table}" s
-                LEFT JOIN station_measurements sm ON sm.station_id = s."{station_id_col}"::text
+                LEFT JOIN station_measurements sm ON sm.station_id = {station_join_expr}::text
+                WHERE {station_join_expr} IS NOT NULL
                 GROUP BY {station_type_expr}
                 ORDER BY station_type
                 """
@@ -222,16 +227,30 @@ def _legacy_data_scan(db: Session, include_time_stats: bool = False) -> Dict[str
         ).mappings().all()
         stations_by_type = [dict(r) for r in stations_by_type]
     except Exception as e:
+        db.rollback()
         logger.error(f"Erreur stations_by_type : {e}")
 
     # 4. Entités Stations (Détail)
     station_map: Dict[str, Any] = {}
     try:
-        station_rows = db.execute(text(f'SELECT "{station_id_col}", "{station_name_col}", {station_type_expr} AS type FROM "{station_schema}"."{station_table}"')).fetchall()
-        for sid, sname, stype in station_rows:
-            station_map[str(sid)] = {
-                "station_id": sid,
-                "station_name": sname or sid,
+        station_rows = db.execute(
+            text(
+                f'''
+                SELECT
+                    "{station_id_col}"::text AS station_uuid,
+                    COALESCE("legacy_code_station", "code_station")::text AS station_ref,
+                    "{station_name_col}" AS station_name,
+                    {station_type_expr} AS type
+                FROM "{station_schema}"."{station_table}"
+                WHERE COALESCE("legacy_code_station", "code_station") IS NOT NULL
+                '''
+            )
+        ).fetchall()
+        for station_uuid, station_ref, sname, stype in station_rows:
+            station_map[str(station_ref)] = {
+                "station_id": station_uuid,
+                "station_code": station_ref,
+                "station_name": sname or station_ref,
                 "station_type": stype,
                 "total_records": 0, "variable_count": 0, "source_count": 0,
                 "first_record": None, "last_record": None, "variables": [],
@@ -255,6 +274,7 @@ def _legacy_data_scan(db: Session, include_time_stats: bool = False) -> Dict[str
         for e in station_map.values():
             e["variable_count"] = len(e["variables"])
     except Exception as e:
+        db.rollback()
         logger.error(f"Erreur hydration stations : {e}")
 
     # 5. Données géographiques pour la carte
@@ -281,7 +301,8 @@ def _legacy_data_scan(db: Session, include_time_stats: bool = False) -> Dict[str
                 FROM ordered WHERE step_seconds IS NOT NULL
                 GROUP BY variable_name ORDER BY record_count DESC
             """)).mappings().all()
-        except: pass
+        except Exception:
+            db.rollback()
 
     return {
         "stations": stations_by_type,

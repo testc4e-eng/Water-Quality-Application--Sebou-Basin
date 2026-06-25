@@ -407,6 +407,7 @@ import {
 import { NavLink, useNavigate } from "react-router-dom";
 import { postLoginForm, postRegister } from "@/api/client";
 import type { RegisterPayload } from "@/api/client";
+import { storeAuthSession } from "@/lib/authz";
 import { forgotPassword } from "@/services/passwordResetService";
 
 /** ---- Helpers erreur (sans dépendre de AxiosError) ---- */
@@ -451,7 +452,7 @@ const AuthPage = () => {
   const [registerConfirmPassword, setRegisterConfirmPassword] = useState("");
   const [registerFirstName, setRegisterFirstName] = useState("");
   const [registerLastName, setRegisterLastName] = useState("");
-  const [registerRole, setRegisterRole] = useState<"viewer" | "manager" | "admin">("viewer");
+  const [registerRole, setRegisterRole] = useState<string>("ROLE_CONSULTANT");
   const [forgotOpen, setForgotOpen] = useState(false);
   const [forgotEmail, setForgotEmail] = useState("");
 
@@ -461,10 +462,7 @@ const AuthPage = () => {
     setLoginError(null);
     try {
       const data = await postLoginForm(loginEmail, loginPassword);
-      localStorage.setItem("access_token", data.access_token);
-      localStorage.setItem("auth_email", data.email);
-      localStorage.setItem("is_superuser", String(!!data.is_superuser));
-      localStorage.setItem("must_change_password", String(!!data.must_change_password));
+      storeAuthSession(data);
       if (data.must_change_password) {
         navigate("/change-password");
       } else {
@@ -806,12 +804,15 @@ const AuthPage = () => {
                         id="role"
                         name="role"
                         value={registerRole}
-                        onChange={(e) => setRegisterRole(e.target.value as "viewer" | "manager" | "admin")}
+                        onChange={(e) => setRegisterRole(e.target.value)}
                         className="h-11 w-full rounded-md border-2 border-gray-200 bg-white pl-10 pr-3 text-sm text-gray-700 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20"
                       >
-                        <option value="viewer">Utilisateur (viewer)</option>
-                        <option value="manager">Gestionnaire (manager)</option>
-                        <option value="admin">Administrateur (admin)</option>
+                        <option value="ROLE_CONSULTANT">Consultant</option>
+                        <option value="ROLE_EXPERT">Expert</option>
+                        <option value="ROLE_DATA_ADMIN">Data Admin</option>
+                        <option value="ROLE_SYS_ADMIN">System Admin</option>
+                        <option value="ROLE_DECIDEUR">Décideur</option>
+                        <option value="ROLE_AI_AGENT">AI Agent</option>
                       </select>
                     </div>
                   </div>

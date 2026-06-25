@@ -1,0 +1,2 @@
+site_code,site_name,commune,province,bassin,validation_status,geom_wkt,srid
+CODX-POLL-20260605-SRID,Site Pollution SRID Invalide,Ait Ouribel,Khemisset,Sebou,VALIDATED,"POINT(-6.10000 33.70000)",9999

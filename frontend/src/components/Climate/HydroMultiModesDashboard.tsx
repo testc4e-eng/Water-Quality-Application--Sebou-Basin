@@ -14,7 +14,7 @@ import {
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
-import { fetchHydroStations, fetchHydroStats, fetchHydroTimeseries } from "@/api/hydro";
+import { fetchHydroStations, fetchHydroStats, fetchHydroTimeseries, type HydroIdentifier } from "@/api/hydro";
 import { getBarrages } from "@/api/client";
 
 type SeriesTypeId =
@@ -26,17 +26,17 @@ type SeriesTypeId =
   | "suivi_qualite"
   | "qualite_eau_surface";
 
-type HydroStation = { station_id: number; station_name: string };
+type HydroStation = { station_id: HydroIdentifier; station_name: string };
 type BarrageItem = { id: number; nom_barrage: string };
 type HydroStat = {
-  station_id: number;
+  station_id: HydroIdentifier;
   source_type: string;
   scenario_code?: string;
   scenario_name?: string;
   run_id?: number;
   property_name?: string;
   time_step: string;
-  ts_id: number;
+  ts_id: HydroIdentifier;
   dt_min?: string;
   dt_max?: string;
 };
@@ -487,7 +487,7 @@ export default function HydroMultiModesDashboard() {
     );
 
     stationIds.forEach((stationId) => {
-      fetchHydroStats(Number(stationId))
+      fetchHydroStats(stationId)
         .then((rows) => setStatsCache((prev) => ({ ...prev, [stationId]: rows || [] })))
         .catch(() => setStatsCache((prev) => ({ ...prev, [stationId]: [] })));
     });
@@ -827,4 +827,3 @@ export default function HydroMultiModesDashboard() {
     </div>
   );
 }
-

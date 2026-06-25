@@ -1,8 +1,12 @@
 # backend/app/main.py
 
+import asyncio
 import os
-from fastapi import FastAPI, Request, BackgroundTasks
+import threading
+from urllib.parse import urlencode
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.gzip import GZipMiddleware
 from dotenv import load_dotenv
 import time
 from app.security.jwt_service import decode_token
@@ -45,6 +49,60 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.add_middleware(GZipMiddleware, minimum_size=1024, compresslevel=6)
+
+def _sanitize_query_params(request: Request) -> str:
+    masked_pairs = []
+    for key, value in request.query_params.multi_items():
+        lowered = key.lower()
+        if any(token in lowered for token in ("password", "passwd", "token", "secret", "auth")):
+            masked_pairs.append((key, "***"))
+        else:
+            masked_pairs.append((key, value[:256]))
+    return urlencode(masked_pairs, doseq=True)
+
+
+def _schedule_activity_log(
+    *,
+    method: str,
+    path: str,
+    status_code: int,
+    duration_ms: int,
+    username: str | None,
+    ip_address: str | None,
+    user_agent: str | None,
+    query_params: str,
+) -> None:
+    from app.db.session import SessionLocal
+
+    def finalize_log() -> None:
+        db = SessionLocal()
+        try:
+            log_activity(
+                db=db,
+                method=method,
+                path=path,
+                status_code=status_code,
+                duration_ms=duration_ms,
+                user_id=None,
+                username=username,
+                ip_address=ip_address,
+                user_agent=user_agent,
+                query_params=query_params,
+                request_payload=None,
+            )
+        except Exception:
+            # Éviter de faire planter le worker si le log échoue
+            pass
+        finally:
+            db.close()
+
+    try:
+        loop = asyncio.get_running_loop()
+        loop.run_in_executor(None, finalize_log)
+    except RuntimeError:
+        # Fallback si aucun event loop n'est disponible
+        finalize_log()
 
 # =========================
 # ACTIVITY LOGGING MIDDLEWARE
@@ -76,41 +134,38 @@ async def activity_log_middleware(request: Request, call_next):
             # Token invalide, on continue sans username
             pass
 
-    response = await call_next(request)
-    
-    duration_ms = int((time.perf_counter() - start_time) * 1000)
-    
-    # Enregistrement asynchrone (non-bloquant)
-    from app.db.session import SessionLocal
-    def finalize_log():
-        db = SessionLocal()
-        try:
-            log_activity(
-                db=db,
-                method=request.method,
-                path=request.url.path,
-                status_code=response.status_code,
-                duration_ms=duration_ms,
-                user_id=None,
-                username=username,
-                ip_address=request.client.host if request.client else None,
-                user_agent=request.headers.get("user-agent"),
-                query_params=str(request.query_params),
-                request_payload=None
-            )
-        except Exception:
-            # Éviter de faire planter le worker si le log échoue
-            pass
-        finally:
-            db.close()
+    ip_address = request.client.host if request.client else None
+    user_agent = request.headers.get("user-agent")
+    safe_query_params = _sanitize_query_params(request)
 
-    # On utilise BackgroundTasks si possible, ou on exécute simplement après
-    # Dans un middleware FastAPI "http", les BackgroundTasks de l'endpoint ne sont pas encore là.
-    # On peut les ajouter à la réponse
-    if (not hasattr(response, "background")) or (getattr(response, "background", None) is None):
-        response.background = BackgroundTasks()
-    response.background.add_task(finalize_log)
-    
+    try:
+        response = await call_next(request)
+        status_code = getattr(response, "status_code", 500)
+    except Exception:
+        duration_ms = int((time.perf_counter() - start_time) * 1000)
+        _schedule_activity_log(
+            method=request.method,
+            path=request.url.path,
+            status_code=500,
+            duration_ms=duration_ms,
+            username=username,
+            ip_address=ip_address,
+            user_agent=user_agent,
+            query_params=safe_query_params,
+        )
+        raise
+
+    duration_ms = int((time.perf_counter() - start_time) * 1000)
+    _schedule_activity_log(
+        method=request.method,
+        path=request.url.path,
+        status_code=status_code,
+        duration_ms=duration_ms,
+        username=username,
+        ip_address=ip_address,
+        user_agent=user_agent,
+        query_params=safe_query_params,
+    )
     return response
 
 
@@ -147,11 +202,19 @@ def health():
 def test_db_connection():
     try:
         from app.db_raw import connection
+        from app.db.climate_database import ClimateSessionLocal
+        from app.services.dashboard.home_service import warm_dashboard_home_cache
         with connection() as cx:
             with cx.cursor() as cur:
                 cur.execute("SELECT 1;")
                 cur.fetchone()
         print("Connexion PostgreSQL OK")
+        threading.Thread(
+            target=warm_dashboard_home_cache,
+            args=(ClimateSessionLocal,),
+            kwargs={"force": False},
+            daemon=True,
+        ).start()
     except Exception as e:
         print("ERREUR CONNEXION POSTGRESQL :", e)
 

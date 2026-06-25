@@ -2,6 +2,20 @@
 __pycache__/
 *.pyc
 .env
+.env.local
+
+# SAD Sebou E1 sandbox generated artifacts
+sandbox/ml_hydro_baseline/datasets/*.csv
+sandbox/ml_hydro_baseline/datasets/*.part
+sandbox/ml_hydro_baseline/runs/*
+sandbox/ml_hydro_baseline/reports/*.json
+sandbox/ml_hydro_baseline/metrics/*.json
+sandbox/ml_hydro_baseline/feature_importance/*.json
+!sandbox/ml_hydro_baseline/datasets/.gitkeep
+!sandbox/ml_hydro_baseline/runs/.gitkeep
+!sandbox/ml_hydro_baseline/reports/.gitkeep
+!sandbox/ml_hydro_baseline/metrics/.gitkeep
+!sandbox/ml_hydro_baseline/feature_importance/.gitkeep
 .venv/
 venv/
 TxtInOut/
@@ -11,12 +25,12 @@ Dictionnaire_donnees_ABH_Sebou.xlsx/
 requirements.txt/
 # Node
 node_modules/
-backend/node_modules/
-frontend/node_modules/
-backend/.mypy_cache/
-backend/.pytest_cache/
 dist/
 build/
+
+# Ignorer les anciens documents
+docs/99_legacy_archive
+CPS & note method
 
 # Logs
 *.log
@@ -42,15 +56,41 @@ Thumbs.db
 # Garder fichiers utiles à la racine
 !.gitignore
 !README.md
+!docs/
+!docs/**
+
+!sandbox/
+!sandbox/ml_hydro_baseline/
+!sandbox/ml_hydro_baseline/README.md
+!sandbox/ml_hydro_baseline/*.md
+!sandbox/ml_hydro_baseline/configs/
+!sandbox/ml_hydro_baseline/configs/**
+!sandbox/ml_hydro_baseline/sql/
+!sandbox/ml_hydro_baseline/sql/**
+!sandbox/ml_hydro_baseline/scripts/
+!sandbox/ml_hydro_baseline/scripts/**
+!sandbox/ml_hydro_baseline/datasets/
+!sandbox/ml_hydro_baseline/datasets/.gitkeep
+!sandbox/ml_hydro_baseline/runs/
+!sandbox/ml_hydro_baseline/runs/.gitkeep
+!sandbox/ml_hydro_baseline/reports/
+!sandbox/ml_hydro_baseline/reports/*.md
+!sandbox/ml_hydro_baseline/reports/.gitkeep
+!sandbox/ml_hydro_baseline/metrics/
+!sandbox/ml_hydro_baseline/metrics/.gitkeep
+!sandbox/ml_hydro_baseline/feature_importance/
+!sandbox/ml_hydro_baseline/feature_importance/.gitkeep
+
+sandbox/ml_hydro_baseline/datasets/*.csv
+sandbox/ml_hydro_baseline/datasets/*.part
+sandbox/ml_hydro_baseline/runs/*
+!sandbox/ml_hydro_baseline/runs/.gitkeep
+sandbox/ml_hydro_baseline/reports/*.json
+sandbox/ml_hydro_baseline/metrics/*.json
+sandbox/ml_hydro_baseline/feature_importance/*.json
 
 # Re-ignore Python cache artifacts under backend
 backend/**/__pycache__/
 backend/**/*.pyc
 backend/**/*.pyo
 backend/**/*.pyd
-
-# Re-ignore sensitive/generated files after whitelist rules
-backend/.env
-frontend/.env
-backend/node_modules/
-frontend/node_modules/

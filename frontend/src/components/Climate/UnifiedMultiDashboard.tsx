@@ -32,15 +32,14 @@ type Selection = {
     name?: string;
     code?: string;
   };
-  aggregation?: string;
-  dateStart?: string;
-  dateEnd?: string;
 };
 
 type ConfigCard = {
   id: string;
   color: string;
   selection: Selection;
+  dateStart?: string;
+  dateEnd?: string;
 };
 
 type LoadedSeries = {
@@ -148,41 +147,13 @@ function formatYearTick(value: string | number) {
   return String(value);
 }
 
-function selectionIsReady(selection: Selection, climateTheme: boolean, hydroTheme: boolean, analyticsTheme: boolean): boolean {
+function selectionIsReady(selection: Selection, climateTheme: boolean): boolean {
   const baseReady = !!selection.stationId && !!selection.submenu;
   if (!baseReady) return false;
   if (climateTheme) {
-    const hasVariable = !selection.variableEnabled || !!selection.parameter?.param_code;
-    const hasPeriod = !!selection.aggregation && !!selection.dateStart && !!selection.dateEnd && selection.dateStart <= selection.dateEnd;
-    return hasVariable && hasPeriod;
+    return !selection.variableEnabled || !!selection.parameter?.param_code;
   }
-  if (hydroTheme) {
-    const hasCore = !!selection.parameter?.param_code && !!selection.scenario;
-    const hasPeriod = !!selection.aggregation && !!selection.dateStart && !!selection.dateEnd && selection.dateStart <= selection.dateEnd;
-    return hasCore && hasPeriod;
-  }
-  if (analyticsTheme) return true;
   return !!selection.parameter;
-}
-
-function aggregatePoints(points: Array<{ datetime: string; value: number }>, aggregation?: string) {
-  if (!aggregation || aggregation === "raw" || aggregation === "daily") return points;
-  const buckets = new Map<string, { sum: number; count: number }>();
-  for (const row of points) {
-    const d = new Date(row.datetime);
-    if (Number.isNaN(d.getTime())) continue;
-    const key =
-      aggregation === "yearly"
-        ? `${d.getFullYear()}-01-01`
-        : `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-01`;
-    const prev = buckets.get(key) || { sum: 0, count: 0 };
-    prev.sum += Number(row.value);
-    prev.count += 1;
-    buckets.set(key, prev);
-  }
-  return Array.from(buckets.entries())
-    .sort((a, b) => a[0].localeCompare(b[0]))
-    .map(([datetime, v]) => ({ datetime, value: v.count ? v.sum / v.count : 0 }));
 }
 
 function escapeCsv(value: unknown): string {
@@ -201,6 +172,8 @@ export default function UnifiedMultiDashboard({ theme }: { theme: string }) {
       id: `multi-${index + 1}`,
       color,
       selection: {},
+      dateStart: undefined,
+      dateEnd: undefined,
     }))
   );
   const [multiSeries, setMultiSeries] = useState<LoadedSeries[]>([]);
@@ -214,23 +187,11 @@ export default function UnifiedMultiDashboard({ theme }: { theme: string }) {
       const hydroTheme = isHydroTheme(theme);
       const pollutionTheme = isPollutionTheme(theme);
       const analyticsTheme = climateTheme || hydroTheme || pollutionTheme;
-      const readyConfigs = multiConfigs.filter((config) =>
-        selectionIsReady(config.selection, climateTheme, hydroTheme, analyticsTheme)
-      );
-
-      if (readyConfigs.length === 0) {
-        if (!cancelled) {
-          setMultiSeries([]);
-          setMultiLoading(false);
-        }
-        return;
-      }
-
       if (!cancelled) setMultiLoading(true);
       const nextSeries = await Promise.all(
         multiConfigs.map(async (config, index) => {
           const sel = config.selection;
-          if (!selectionIsReady(sel, climateTheme, hydroTheme, analyticsTheme)) return null;
+          if (!selectionIsReady(sel, analyticsTheme)) return null;
 
           try {
             let data: Array<{ datetime: string; value: number }> = [];
@@ -245,13 +206,11 @@ export default function UnifiedMultiDashboard({ theme }: { theme: string }) {
                 scenario: sel.scenario || "actuel",
                 submenu: sel.submenu!,
                 site: sel.stationId!,
-                parameter: hydroTheme ? sel.parameter?.param_code : undefined,
-                variable: climateTheme ? sel.parameter?.param_code : undefined,
-                aggregation: hydroTheme ? sel.aggregation : undefined,
-                date_start: sel.dateStart,
-                date_end: sel.dateEnd,
+                variable: sel.parameter?.param_code,
+                date_start: config.dateStart,
+                date_end: config.dateEnd,
               });
-              data = Array.isArray(resp.series) ? aggregatePoints(resp.series, sel.aggregation) : [];
+              data = Array.isArray(resp.series) ? resp.series : [];
               unit = resp?.metadata?.unit ?? unit;
             } else {
               const raw = await getParameterTimeseries({
@@ -259,10 +218,10 @@ export default function UnifiedMultiDashboard({ theme }: { theme: string }) {
                 sous_menu: sel.submenu!,
                 param_code: sel.parameter!.param_code,
                 entity_id: sel.stationId!,
-                date_start: sel.dateStart,
-                date_end: sel.dateEnd,
+                date_start: config.dateStart,
+                date_end: config.dateEnd,
               });
-              data = Array.isArray(raw) ? aggregatePoints(raw, sel.aggregation) : [];
+              data = Array.isArray(raw) ? raw : [];
             }
 
             if (cancelled) return null;
@@ -275,7 +234,7 @@ export default function UnifiedMultiDashboard({ theme }: { theme: string }) {
               color: config.color,
               label: `${name} • ${variableLabel}`,
               variable: variableLabel,
-              aggregation: sel.aggregation || sel.parameter?.frequence || (analyticsTheme ? "Serie" : "Brut"),
+              aggregation: sel.parameter?.frequence || (analyticsTheme ? "Série" : "Brut"),
               unit,
               points: data.map((entry: any) => ({ date: entry.datetime, value: Number(entry.value) })),
             } as LoadedSeries;
@@ -381,17 +340,71 @@ export default function UnifiedMultiDashboard({ theme }: { theme: string }) {
                   onChange={(sel) => setMultiConfigs((prev) => prev.map((item) => (item.id === config.id ? { ...item, selection: sel } : item)))} 
                   compact={true}
                 />
+                <div className="mt-2 grid grid-cols-2 gap-2">
+                  <div>
+                    <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-slate-500">
+                      Début
+                    </label>
+                    <input
+                      type="date"
+                      value={config.dateStart || ""}
+                      onChange={(e) => {
+                        const value = e.target.value || undefined;
+                        setMultiConfigs((prev) =>
+                          prev.map((item) =>
+                            item.id === config.id ? { ...item, dateStart: value } : item
+                          )
+                        );
+                      }}
+                      className="w-full rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-xs text-slate-700 outline-none focus:border-blue-400"
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-slate-500">
+                      Fin
+                    </label>
+                    <input
+                      type="date"
+                      value={config.dateEnd || ""}
+                      onChange={(e) => {
+                        const value = e.target.value || undefined;
+                        setMultiConfigs((prev) =>
+                          prev.map((item) =>
+                            item.id === config.id ? { ...item, dateEnd: value } : item
+                          )
+                        );
+                      }}
+                      className="w-full rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-xs text-slate-700 outline-none focus:border-blue-400"
+                    />
+                  </div>
+                </div>
+                {(config.dateStart || config.dateEnd) && (
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setMultiConfigs((prev) =>
+                        prev.map((item) =>
+                          item.id === config.id
+                            ? { ...item, dateStart: undefined, dateEnd: undefined }
+                            : item
+                        )
+                      )
+                    }
+                    className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-[11px] font-medium text-slate-600 hover:bg-slate-50"
+                  >
+                    Réinitialiser période
+                  </button>
+                )}
                 <div className="mt-2 rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-[11px] text-slate-600">
                   {(() => {
                     const analyticsTheme = isClimateTheme(theme) || isHydroTheme(theme) || isPollutionTheme(theme);
-                    const ready = selectionIsReady(config.selection, isClimateTheme(theme), isHydroTheme(theme), analyticsTheme);
+                    const ready = selectionIsReady(config.selection, analyticsTheme);
                     const serie = multiSeriesById.get(config.id);
-                    const sel = config.selection;
                     if (!ready) return "Etat: sélection incomplète";
                     if (multiLoading) return "Etat: chargement...";
                     if (!serie) return "Etat: aucune donnée";
-                    const rangeTxt = sel.dateStart || sel.dateEnd
-                      ? ` • ${sel.dateStart || "…"} -> ${sel.dateEnd || "…"}`
+                    const rangeTxt = config.dateStart || config.dateEnd
+                      ? ` • ${config.dateStart || "…"} -> ${config.dateEnd || "…"}`
                       : "";
                     return `Etat: ${serie.points.length} point(s) • ${serie.unit || "u."}${rangeTxt}`;
                   })()}
@@ -466,7 +479,7 @@ export default function UnifiedMultiDashboard({ theme }: { theme: string }) {
             <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
               {multiConfigs.map((config, idx) => {
                 const analyticsTheme = isClimateTheme(theme) || isHydroTheme(theme) || isPollutionTheme(theme);
-                const ready = selectionIsReady(config.selection, isClimateTheme(theme), isHydroTheme(theme), analyticsTheme);
+                const ready = selectionIsReady(config.selection, analyticsTheme);
                 const serie = multiSeriesById.get(config.id);
                 const values = serie?.points?.map((p) => p.value).filter((v) => !Number.isNaN(v)) || [];
                 const min = values.length ? Math.min(...values) : null;

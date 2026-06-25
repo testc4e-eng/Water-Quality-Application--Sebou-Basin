@@ -5,12 +5,22 @@ import { NavLink, useLocation } from "react-router-dom";
 const Footer = () => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+  const isInstitutionalRoute =
+    location.pathname === "/" ||
+    location.pathname === "/accueil-sad" ||
+    location.pathname === "/dashboard-carto-metier" ||
+    location.pathname === "/dashboard-qualite-reglementaire" ||
+    location.pathname === "/dashboard-pollution" ||
+    location.pathname === "/analyses" ||
+    location.pathname === "/expert" ||
+    location.pathname === "/administration" ||
+    location.pathname.startsWith("/admin/");
   const isFullScreenDashboard =
     location.pathname === "/dashboard-2" ||
     location.pathname === "/dashboard" ||
     location.pathname === "/dashboard-cartographique";
 
-  if (isFullScreenDashboard) {
+  if (isFullScreenDashboard || isInstitutionalRoute) {
     return null;
   }
 

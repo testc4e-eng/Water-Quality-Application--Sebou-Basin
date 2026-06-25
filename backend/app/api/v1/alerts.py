@@ -1,21 +1,25 @@
-#backend/app/api/v1/alerts.py
-from fastapi import APIRouter
-from app.db_raw import connection
-from app.util_dbmeta import table_exists
-import psycopg2.extras
+from fastapi import APIRouter, Depends, Query
+from sqlalchemy.orm import Session
+
+from app.db.climate_database import get_climate_db
+from app.services.alerts import list_alerts
+
 
 router = APIRouter(prefix="/alerts")
 
-@router.get("")
-def list_alerts(limit: int = 50):
-    if table_exists("alerts"):
-        with connection() as cx, cx.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
-            cur.execute("""
-                SELECT id, station_id, date, type, message
-                FROM alerts
-                ORDER BY date DESC
-                LIMIT %s
-            """, (limit,))
-            return cur.fetchall()  # -> liste de dicts déjà prête pour JSON
 
-    return []  # pas de table alerts → liste vide
+@router.get("")
+def get_alerts(
+    alert_type: str | None = Query(None, alias="type"),
+    limit: int = Query(50, ge=1, le=200),
+    entity_name: str | None = Query(None),
+    site_id: str | None = Query(None),
+    db: Session = Depends(get_climate_db),
+):
+    return list_alerts(
+        db,
+        alert_type=alert_type,
+        limit=limit,
+        entity_name=entity_name,
+        site_id=site_id,
+    )

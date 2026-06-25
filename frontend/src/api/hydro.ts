@@ -108,6 +108,8 @@
 // };
 import { api } from "@/api/client";
 
+export type HydroIdentifier = string | number;
+
 /* =====================================================
    STATIONS
 ===================================================== */
@@ -129,7 +131,7 @@ export const fetchPointWaterDetails = async (point_id: string) => {
 /* =====================================================
    STATS
 ===================================================== */
-export const fetchHydroStats = async (station_id: number) => {
+export const fetchHydroStats = async (station_id: HydroIdentifier) => {
   const { data } = await api.get("/hydro/stats", { params: { station_id } });
   return data ?? [];
 };
@@ -138,14 +140,14 @@ export const fetchHydroStats = async (station_id: number) => {
    TIME SERIES
 ===================================================== */
 export const fetchHydroTimeseries = async (p: {
-  ts_id: number;
+  ts_id: HydroIdentifier;
   aggregation: string;
   date_start: string;
   date_end: string;
 }) => {
   const { data } = await api.get("/hydro/timeseries", {
     params: {
-      ts_id: p.ts_id,
+      ts_id: String(p.ts_id),
       aggregation: p.aggregation,
       date_start: p.date_start,
       date_end: p.date_end,
@@ -183,14 +185,14 @@ export const fetchBarrageQualitySeries = async (p: {
    KPIS
 ===================================================== */
 export const fetchHydroKPIs = async (p: {
-  ts_id: number;
+  ts_id: HydroIdentifier;
   aggregation: string;
   date_start: string;
   date_end: string;
 }) => {
   const { data } = await api.get("/hydro/kpis", {
     params: {
-      ts_id: p.ts_id,
+      ts_id: String(p.ts_id),
       aggregation: p.aggregation,
       date_start: p.date_start,
       date_end: p.date_end,

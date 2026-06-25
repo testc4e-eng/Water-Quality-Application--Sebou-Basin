@@ -84,30 +84,24 @@
 //   };
 // };
 
-
-
-// frontend/src/api/climate.ts
-
-const API_BASE = "http://localhost:8000/api/v1/climate";
+import { api } from "@/api/client";
 
 /* =====================================================
    STATIONS
 ===================================================== */
 export const listClimateStations = async () => {
-  const res = await fetch(`${API_BASE}/stations`);
-  if (!res.ok) throw new Error("Erreur stations");
-  return res.json();
+  const { data } = await api.get("/climate/stations");
+  return data;
 };
 
 /* =====================================================
    STATION STATS
 ===================================================== */
 export const getClimateStationStats = async (stationId: string) => {
-  const res = await fetch(
-    `${API_BASE}/station-stats?station_id=${encodeURIComponent(stationId)}`
-  );
-  if (!res.ok) throw new Error("Erreur station stats");
-  return res.json();
+  const { data } = await api.get("/climate/station-stats", {
+    params: { station_id: stationId },
+  });
+  return data;
 };
 
 /* =====================================================
@@ -119,17 +113,15 @@ export const getClimateTimeseries = async (params: {
   date_start?: string;
   date_end?: string;
 }) => {
-  const query = new URLSearchParams({
-    ts_id: String(params.ts_id),
-    time_step: params.time_step,
+  const { data } = await api.get("/climate/timeseries", {
+    params: {
+      ts_id: String(params.ts_id),
+      time_step: params.time_step,
+      date_start: params.date_start,
+      date_end: params.date_end,
+    },
   });
-
-  if (params.date_start) query.append("date_start", params.date_start);
-  if (params.date_end) query.append("date_end", params.date_end);
-
-  const res = await fetch(`${API_BASE}/timeseries?${query}`);
-  if (!res.ok) throw new Error("Erreur timeseries");
-  return res.json();
+  return data;
 };
 
 
@@ -137,7 +129,11 @@ export const getClimateTimeseries = async (params: {
    KPIs
 ===================================================== */
 export const getClimateKPIs = async (ts_id: string | number, time_step = "annual") => {
-  const res = await fetch(`${API_BASE}/kpis?ts_id=${encodeURIComponent(String(ts_id))}&time_step=${encodeURIComponent(time_step)}`);
-  if (!res.ok) throw new Error("Erreur KPIs");
-  return res.json();
+  const { data } = await api.get("/climate/kpis", {
+    params: {
+      ts_id: String(ts_id),
+      time_step,
+    },
+  });
+  return data;
 };

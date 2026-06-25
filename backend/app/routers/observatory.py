@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Query, Body, HTTPException, Request
+from fastapi import APIRouter, Depends, Query, Body, HTTPException
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 import time
@@ -7,15 +7,48 @@ from typing import Any
 
 from app.db.climate_database import get_climate_db
 from app.util_dbmeta import table_exists
-from app.services.ingestion_audit_service import AuditResultInfo, log_ingestion_action
-from app.security.deps import get_current_user
-from app.security.models import SecurityUser
 
 router = APIRouter(prefix="/observatory", tags=["observatory"])
 
 
 CACHE_TTL_SECONDS = 45
 _OBS_CACHE: dict[str, tuple[float, Any]] = {}
+
+
+BARRAGE_METRIC_TO_PARAM = {
+    "niveau_barrage": "NIVEAU_EAU",
+    "cote_m": "NIVEAU_EAU",
+    "volume_barrage": "VOLUME",
+    "volume_mm3": "VOLUME",
+    "lacher_barrage": "LACHER",
+    "apport": "APPORT",
+    "apports_hm3": "APPORT",
+    "transfert": "TRANSFERT",
+}
+
+BARRAGE_LEGACY_REJECTED_METRICS = {"lacher_m3s"}
+
+
+def _resolve_barrage_param(metric: str) -> str | None:
+    m = (metric or "").strip().lower()
+    if m in BARRAGE_LEGACY_REJECTED_METRICS:
+        return None
+    return BARRAGE_METRIC_TO_PARAM.get(m)
+
+
+def _resolve_barrage_param_code(param_code: str) -> str | None:
+    p = (param_code or "").strip().upper()
+    if p in ("NIVEAU_BARRAGE", "NIVEAU_EAU"):
+        return "NIVEAU_EAU"
+    if p in ("VOLUME_BARRAGE", "VOLUME"):
+        return "VOLUME"
+    if p in ("LACHER_BARRAGE", "LACHER"):
+        return "LACHER"
+    if p in ("APPORT", "APPORTS_HM3"):
+        return "APPORT"
+    if p == "TRANSFERT":
+        return "TRANSFERT"
+    return None
 
 
 def _ensure_popup_rules_config_columns(db: Session) -> None:
@@ -718,20 +751,20 @@ def parameter_latest(
             """
         )
     elif source_schema == "hydro" and source_table_name == "mesure_barrage":
-        metric_col = "cote_m"
-        if param_code == "VOLUME_BARRAGE":
-            metric_col = "volume_mm3"
-        elif param_code == "LACHER_BARRAGE":
-            metric_col = "lacher_m3s"
+        barrage_param_code = _resolve_barrage_param_code(param_code)
+        if barrage_param_code is None:
+            return []
+        params["param_code"] = barrage_param_code
         sql = text(
             f"""
             select barrage_id::text as entity_id,
-                   {agg_expr(metric_col)} as value,
+                   {agg_expr("valeur")} as value,
                    min(temps)::date as dt_min,
                    max(temps)::date as dt_max,
                    count(*)::int as n_values
-            from hydro.mesure_barrage
-            where {metric_col} is not null
+            from hydro.mesure_barrage_param
+            where parametre_code = :param_code
+              and valeur is not null
               and (:date_start is null or temps >= CAST(:date_start AS date))
               and (:date_end is null or temps <= CAST(:date_end AS date) + interval '1 day')
             group by barrage_id
@@ -991,16 +1024,33 @@ def hierarchy_timeline(
             """
         )
     elif source_schema == "hydro" and source_table_name in ("mesure_debit", "mesure_debit_source", "mesure_barrage"):
-        sql = text(
-            f"""
-            select distinct temps::date as d
-            from hydro.{source_table_name}
-            where (:date_start is null or temps >= CAST(:date_start AS date))
-              and (:date_end is null or temps <= CAST(:date_end AS date) + interval '1 day')
-            order by d
-            limit :limit
-            """
-        )
+        if source_table_name == "mesure_barrage":
+            barrage_param_code = _resolve_barrage_param_code(param_code)
+            if barrage_param_code is None:
+                return payload
+            params["param_code"] = barrage_param_code
+            sql = text(
+                """
+                select distinct temps::date as d
+                from hydro.mesure_barrage_param
+                where parametre_code = :param_code
+                  and (:date_start is null or temps >= CAST(:date_start AS date))
+                  and (:date_end is null or temps <= CAST(:date_end AS date) + interval '1 day')
+                order by d
+                limit :limit
+                """
+            )
+        else:
+            sql = text(
+                f"""
+                select distinct temps::date as d
+                from hydro.{source_table_name}
+                where (:date_start is null or temps >= CAST(:date_start AS date))
+                  and (:date_end is null or temps <= CAST(:date_end AS date) + interval '1 day')
+                order by d
+                limit :limit
+                """
+            )
     elif source_schema == "hydro" and source_table_name == "mesure_debit_mensuel":
         sql = text(
             """
@@ -1093,23 +1143,9 @@ def hierarchy_timeline(
 
 
 @router.post("/cache/clear")
-def clear_observatory_cache(
-    request: Request,
-    db: Session = Depends(get_climate_db),
-    current_user: SecurityUser = Depends(get_current_user),
-):
+def clear_observatory_cache():
     size = len(_OBS_CACHE)
     _OBS_CACHE.clear()
-    log_ingestion_action(
-        db=db,
-        action="VIDER_CACHE",
-        request=request,
-        user_identifier=current_user.email,
-        scenario_id=None,
-        file_info=None,
-        result=AuditResultInfo(statut="OK", nb_erreurs=0, nb_lignes=size, duree_ms=0),
-        message_lisible=f"Cache observatoire vide ({size} entrees supprimees).",
-    )
     return {"ok": True, "cleared": size}
 
 
@@ -1241,17 +1277,17 @@ def parameter_timeseries(
             """
         )
     elif source_schema == "hydro" and source_table_name == "mesure_barrage":
-        metric_col = "cote_m"
-        if param_code == "VOLUME_BARRAGE":
-            metric_col = "volume_mm3"
-        elif param_code == "LACHER_BARRAGE":
-            metric_col = "lacher_m3s"
+        barrage_param_code = _resolve_barrage_param_code(param_code)
+        if barrage_param_code is None:
+            return []
+        params["param_code"] = barrage_param_code
         sql = text(
-            f"""
-            select temps as datetime, {metric_col}::double precision as value
-            from hydro.mesure_barrage
+            """
+            select temps as datetime, valeur::double precision as value, unite
+            from hydro.mesure_barrage_param
             where barrage_id::text = :entity_id
-              and {metric_col} is not null
+              and parametre_code = :param_code
+              and valeur is not null
               and (:date_start is null or temps >= CAST(:date_start AS date))
               and (:date_end is null or temps <= CAST(:date_end AS date))
             order by temps
@@ -1334,6 +1370,7 @@ def parameter_entities(
 
     # Map entity types to the corresponding dimension table
     entities_sql = None
+    entities_params: dict[str, Any] = {}
     if entity_type == "station" or source_schema == "meteo":
         entities_sql = text(
             f"""
@@ -1346,16 +1383,33 @@ def parameter_entities(
             """
         )
     elif entity_type == "barrage":
-        entities_sql = text(
-            f"""
-            select distinct
-                b.barrage_id::text as id,
-                coalesce(b.barrage_nom, b.barrage_id::text) as name
-            from {source_schema}.{source_table_name} s
-            join api.v_barrage_dimension b on b.barrage_id = s.barrage_id
-            order by name
-            """
-        )
+        if source_schema == "hydro" and source_table_name == "mesure_barrage":
+            barrage_param_code = _resolve_barrage_param_code(param_code)
+            if barrage_param_code is None:
+                return []
+            entities_params["param_code"] = barrage_param_code
+            entities_sql = text(
+                """
+                select distinct
+                    b.barrage_id::text as id,
+                    coalesce(b.barrage_nom, b.barrage_id::text) as name
+                from hydro.mesure_barrage_param s
+                join api.v_barrage_dimension b on b.barrage_id = s.barrage_id
+                where s.parametre_code = :param_code
+                order by name
+                """
+            )
+        else:
+            entities_sql = text(
+                f"""
+                select distinct
+                    b.barrage_id::text as id,
+                    coalesce(b.barrage_nom, b.barrage_id::text) as name
+                from {source_schema}.{source_table_name} s
+                join api.v_barrage_dimension b on b.barrage_id = s.barrage_id
+                order by name
+                """
+            )
     elif entity_type == "segment":
          entities_sql = text(
             f"""
@@ -1380,7 +1434,7 @@ def parameter_entities(
     if not entities_sql:
         return []
 
-    return db.execute(entities_sql).mappings().all()
+    return db.execute(entities_sql, entities_params).mappings().all()
 
 
 @router.get("/temperature/stations")
@@ -1453,10 +1507,10 @@ def temperature_latest(
 def barrage_stations(db: Session = Depends(get_climate_db)):
     query = text(
         """
-        select distinct
+        select
           b.barrage_id::text as barrage_id,
           coalesce(b.barrage_nom, b.nom_oued, b.barrage_id::text) as barrage_name
-        from api.v_hydro_niveau_barrage_journalier b
+        from api.v_barrage_dimension b
         where b.barrage_id is not null
         order by barrage_name
         """
@@ -1467,51 +1521,60 @@ def barrage_stations(db: Session = Depends(get_climate_db)):
 @router.get("/barrage/timeseries")
 def barrage_timeseries(
     barrage_id: str,
-    metric: str = Query("cote_m", pattern="^(cote_m|volume_mm3|lacher_m3s)$"),
+    metric: str = Query("niveau_barrage", pattern="^(niveau_barrage|volume_barrage|lacher_barrage|apport|apports_hm3|transfert|cote_m|volume_mm3|lacher_m3s)$"),
     date_start: str | None = Query(None),
     date_end: str | None = Query(None),
     db: Session = Depends(get_climate_db),
 ):
+    param_code = _resolve_barrage_param(metric)
+    if param_code is None:
+        return []
     query = text(
-        f"""
+        """
         select
           bucket_day as datetime,
-          {metric}::double precision as value
-        from api.v_hydro_niveau_barrage_journalier
+          valeur::double precision as value,
+          unite
+        from api.v_hydro_barrage_param_journalier
         where barrage_id::text = :barrage_id
-          and {metric} is not null
+          and parametre_code = :param_code
+          and valeur is not null
           and (:date_start is null or bucket_day >= CAST(:date_start AS date))
           and (:date_end is null or bucket_day <= CAST(:date_end AS date))
         order by bucket_day
         """
     )
     return db.execute(
-        query, {"barrage_id": barrage_id, "date_start": date_start, "date_end": date_end}
+        query, {"barrage_id": barrage_id, "param_code": param_code, "date_start": date_start, "date_end": date_end}
     ).mappings().all()
 
 
 @router.get("/barrage/latest")
 def barrage_latest(
-    metric: str = Query("cote_m", pattern="^(cote_m|volume_mm3|lacher_m3s)$"),
+    metric: str = Query("niveau_barrage", pattern="^(niveau_barrage|volume_barrage|lacher_barrage|apport|apports_hm3|transfert|cote_m|volume_mm3|lacher_m3s)$"),
     date_start: str | None = Query(None),
     date_end: str | None = Query(None),
     db: Session = Depends(get_climate_db),
 ):
+    param_code = _resolve_barrage_param(metric)
+    if param_code is None:
+        return []
     query = text(
-        f"""
+        """
         select
           barrage_id::text as entity_id,
-          avg({metric})::double precision as value,
+          avg(valeur)::double precision as value,
           min(bucket_day)::date as dt_min,
           max(bucket_day)::date as dt_max
-        from api.v_hydro_niveau_barrage_journalier
-        where {metric} is not null
+        from api.v_hydro_barrage_param_journalier
+        where parametre_code = :param_code
+          and valeur is not null
           and (:date_start is null or bucket_day >= CAST(:date_start AS date))
           and (:date_end is null or bucket_day <= CAST(:date_end AS date))
         group by barrage_id
         """
     )
-    return db.execute(query, {"date_start": date_start, "date_end": date_end}).mappings().all()
+    return db.execute(query, {"param_code": param_code, "date_start": date_start, "date_end": date_end}).mappings().all()
 
 
 @router.get("/precipitation/latest")

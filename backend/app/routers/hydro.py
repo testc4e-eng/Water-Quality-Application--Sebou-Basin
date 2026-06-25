@@ -7,19 +7,29 @@ from app.db.climate_database import get_climate_db
 router = APIRouter(tags=["hydro"])
 
 
+def _station_match_clause(param_name: str = "station_token") -> str:
+    return f"""
+        (
+            station_id::text = :{param_name}
+            OR legacy_station_id::text = :{param_name}
+        )
+    """
+
+
 @router.get("/stations")
 def stations(db: Session = Depends(get_climate_db)):
     query = text(
         """
         select distinct
+            sd.station_id::text as station_uuid,
             sd.legacy_station_id::int as station_id,
             coalesce(sd.code_station, sd.legacy_code_station) as station_code,
             sd.station_nom as station_name
         from api.v_station_dimension sd
         inner join api.v_hydro_debit_mensuel hm
-            on hm.legacy_station_id = sd.legacy_station_id
-        where sd.legacy_station_id is not null
-          and hm.legacy_station_id is not null
+            on hm.station_id = sd.station_id
+        where sd.station_id is not null
+          and hm.station_id is not null
           and lower(coalesce(sd.type_station, hm.type_station, '')) like '%hydrolog%'
         order by sd.station_nom
         """
@@ -105,20 +115,22 @@ def point_eau_details(point_id: str, db: Session = Depends(get_climate_db)):
 
 
 @router.get("/stats")
-def station_stats(station_id: int, db: Session = Depends(get_climate_db)):
+def station_stats(station_id: str, db: Session = Depends(get_climate_db)):
     query = text(
-        """
+        f"""
         with base as (
             select
-                legacy_station_id::int as station_id,
+                station_id::text as station_uuid,
+                max(legacy_station_id)::int as station_id,
                 min(bucket_month)::date as dt_min,
                 max(bucket_month)::date as dt_max
             from api.v_hydro_debit_mensuel
-            where legacy_station_id = :station_id
-            group by legacy_station_id
+            where {_station_match_clause("station_token")}
+            group by station_id
         )
         select
             station_id,
+            station_uuid,
             'observed'::text as source_type,
             'OBS'::text as scenario_code,
             'Mesures ABH'::text as scenario_name,
@@ -126,6 +138,7 @@ def station_stats(station_id: int, db: Session = Depends(get_climate_db)):
             'Débit'::text as property_name,
             'monthly'::text as time_step,
             station_id::int as ts_id,
+            station_uuid as ts_uuid,
             dt_min,
             dt_max
         from base
@@ -134,6 +147,7 @@ def station_stats(station_id: int, db: Session = Depends(get_climate_db)):
 
         select
             station_id,
+            station_uuid,
             'observed'::text as source_type,
             'OBS'::text as scenario_code,
             'Mesures ABH'::text as scenario_name,
@@ -141,13 +155,14 @@ def station_stats(station_id: int, db: Session = Depends(get_climate_db)):
             'Débit'::text as property_name,
             'annual'::text as time_step,
             station_id::int as ts_id,
+            station_uuid as ts_uuid,
             dt_min,
             dt_max
         from base
         order by time_step
         """
     )
-    return db.execute(query, {"station_id": station_id}).mappings().all()
+    return db.execute(query, {"station_token": station_id}).mappings().all()
 
 
 def _aggregation_sql(aggregation: str) -> tuple[str, str]:
@@ -166,7 +181,7 @@ def _aggregation_sql(aggregation: str) -> tuple[str, str]:
 
 @router.get("/timeseries")
 def hydro_timeseries(
-    ts_id: int,
+    ts_id: str,
     aggregation: str,
     date_start: str,
     date_end: str,
@@ -181,7 +196,7 @@ def hydro_timeseries(
             {datetime_sql},
             {value_sql}
         from api.v_hydro_debit_mensuel
-        where legacy_station_id = :station_id
+        where {_station_match_clause("station_token")}
           and (:date_start = '' or bucket_month >= cast(:date_start as date))
           and (:date_end = '' or bucket_month <= cast(:date_end as date))
         {group_by}
@@ -192,7 +207,7 @@ def hydro_timeseries(
     return db.execute(
         query,
         {
-            "station_id": ts_id,
+            "station_token": ts_id,
             "date_start": date_start or "",
             "date_end": date_end or "",
         },
@@ -202,7 +217,7 @@ def hydro_timeseries(
 
 @router.get("/kpis")
 def hydro_kpis(
-    ts_id: int,
+    ts_id: str,
     aggregation: str,
     date_start: str,
     date_end: str,
@@ -212,20 +227,20 @@ def hydro_kpis(
         value_expr = "valeur_moy_m3s"
         cte = ""
         from_source = "api.v_hydro_debit_mensuel"
-        where_clause = """
-        where legacy_station_id = :station_id
+        where_clause = f"""
+        where {_station_match_clause("station_token")}
           and (:date_start = '' or bucket_month >= cast(:date_start as date))
           and (:date_end = '' or bucket_month <= cast(:date_end as date))
         """
     elif aggregation == "annual":
         value_expr = "value"
-        cte = """
+        cte = f"""
         with annual_values as (
             select
                 date_trunc('year', bucket_month)::date as year_date,
                 avg(valeur_moy_m3s)::double precision as value
             from api.v_hydro_debit_mensuel
-            where legacy_station_id = :station_id
+            where {_station_match_clause("station_token")}
               and (:date_start = '' or bucket_month >= cast(:date_start as date))
               and (:date_end = '' or bucket_month <= cast(:date_end as date))
             group by date_trunc('year', bucket_month)::date
@@ -251,7 +266,7 @@ def hydro_kpis(
     return db.execute(
         query,
         {
-            "station_id": ts_id,
+            "station_token": ts_id,
             "date_start": date_start or "",
             "date_end": date_end or "",
         },
@@ -272,13 +287,14 @@ def hydro_latest(
         query = text(
             """
             select
-              legacy_station_id::text as entity_id,
+              station_id::text as entity_id,
+              max(legacy_station_id)::text as legacy_entity_id,
               avg(valeur_moy_m3s)::double precision as value
             from api.v_hydro_debit_mensuel
-            where legacy_station_id is not null
+            where station_id is not null
               and (:date_start = '' or bucket_month >= cast(:date_start as date))
               and (:date_end = '' or bucket_month <= cast(:date_end as date))
-            group by legacy_station_id
+            group by station_id
             """
         )
     else:
@@ -286,14 +302,14 @@ def hydro_latest(
             """
             with annual as (
               select
-                legacy_station_id::text as entity_id,
+                station_id::text as entity_id,
                 date_trunc('year', bucket_month)::date as y,
                 avg(valeur_moy_m3s)::double precision as v
               from api.v_hydro_debit_mensuel
-              where legacy_station_id is not null
+              where station_id is not null
                 and (:date_start = '' or bucket_month >= cast(:date_start as date))
                 and (:date_end = '' or bucket_month <= cast(:date_end as date))
-              group by legacy_station_id, date_trunc('year', bucket_month)::date
+              group by station_id, date_trunc('year', bucket_month)::date
             )
             select entity_id, avg(v)::double precision as value
             from annual

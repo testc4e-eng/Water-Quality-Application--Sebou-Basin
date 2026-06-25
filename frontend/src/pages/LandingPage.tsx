@@ -187,63 +187,6 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <section className="bg-background py-16">
-        <div className="container mx-auto px-6">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-roboto font-bold text-primary md:text-4xl">
-              Notre Equipe
-            </h2>
-            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-              Des experts passionnes au service de l'environnement
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            <Card className="border-border transition-shadow hover:shadow-card">
-              <CardContent className="p-6 text-center">
-                <div className="mx-auto mb-4 flex h-28 w-28 items-center justify-center rounded-full bg-gradient-primary text-4xl">
-                  👩‍💼
-                </div>
-                <h3 className="mb-1 text-lg font-semibold">Mr. Driss Ennaanay</h3>
-                <p className="mb-3 font-medium text-primary">Directeur General</p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border transition-shadow hover:shadow-card">
-              <CardContent className="p-6 text-center">
-                <div className="mx-auto mb-4 flex h-28 w-28 items-center justify-center rounded-full bg-gradient-primary text-4xl">
-                  👨‍💻
-                </div>
-                <h3 className="mb-1 text-lg font-semibold">Yassine</h3>
-                <p className="mb-3 font-medium text-primary">Chef de projet</p>
-                <p className="text-sm text-muted-foreground">Developpeur fullstack</p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border transition-shadow hover:shadow-card">
-              <CardContent className="p-6 text-center">
-                <div className="mx-auto mb-4 flex h-28 w-28 items-center justify-center rounded-full bg-gradient-primary text-4xl">
-                  👩‍💻
-                </div>
-                <h3 className="mb-1 text-lg font-semibold">Ilham</h3>
-                <p className="mb-3 font-medium text-primary">Developpeur fullstack</p>
-                <p className="text-sm text-muted-foreground">Architecture web et visualisation</p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-border transition-shadow hover:shadow-card md:col-span-3 md:mx-auto md:w-[320px]">
-              <CardContent className="p-6 text-center">
-                <div className="mx-auto mb-4 flex h-28 w-28 items-center justify-center rounded-full bg-gradient-primary text-4xl">
-                  👩‍💻
-                </div>
-                <h3 className="mb-1 text-lg font-semibold">Imane</h3>
-                <p className="mb-3 font-medium text-primary">Developpeur fullstack</p>
-                <p className="text-sm text-muted-foreground">Systemes d'information geographique</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

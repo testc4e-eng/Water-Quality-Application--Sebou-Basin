@@ -16,6 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import ColumnSelector, { ColumnOption } from "./ColumnSelector";
 
 type EntitySource = {
   source_id: string | number | null;
@@ -55,9 +56,20 @@ type Props = {
   entityLabel: "station" | "bassin";
   typeLabel: string;
   typeKey?: "station_type" | "basin_group";
+  displayLimit?: number;
 };
 
 const defaultTypeKey = "station_type";
+
+const fieldOptions: ColumnOption[] = [
+  { key: "name", label: "Nom", required: true },
+  { key: "type", label: "Type" },
+  { key: "records", label: "Enregistrements" },
+  { key: "variables", label: "Variables" },
+  { key: "sources", label: "Sources" },
+  { key: "period", label: "P?riode" },
+  { key: "details", label: "D?tails variables" },
+];
 
 const EntityAccordion = ({
   title,
@@ -65,10 +77,20 @@ const EntityAccordion = ({
   entityLabel,
   typeLabel,
   typeKey = defaultTypeKey,
+  displayLimit,
 }: Props) => {
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
+  const [visibleFields, setVisibleFields] = useState<string[]>([
+    "name",
+    "type",
+    "records",
+    "variables",
+    "sources",
+    "period",
+    "details",
+  ]);
 
   const typeOptions = useMemo(() => {
     const unique = new Set<string>();
@@ -94,12 +116,24 @@ const EntityAccordion = ({
     });
   }, [entities, entityLabel, search, statusFilter, typeFilter, typeKey]);
 
+  const visibleEntities =
+    displayLimit && filtered.length ? filtered.slice(0, displayLimit) : filtered;
+
+  const showField = (key: string) => visibleFields.includes(key);
+
   return (
     <Card className="border-slate-200 shadow-sm">
       <CardHeader>
-        <CardTitle className="text-base font-semibold text-slate-700">
-          {title}
-        </CardTitle>
+        <div className="flex items-center justify-between gap-3">
+          <CardTitle className="text-base font-semibold text-slate-700">
+            {title}
+          </CardTitle>
+          <ColumnSelector
+            options={fieldOptions}
+            selectedKeys={visibleFields}
+            onChange={setVisibleFields}
+          />
+        </div>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           <Input
             placeholder={`Rechercher une ${entityLabel}`}
@@ -125,16 +159,16 @@ const EntityAccordion = ({
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">Tous</SelectItem>
-              <SelectItem value="with">Avec données</SelectItem>
-              <SelectItem value="without">Sans données</SelectItem>
+              <SelectItem value="with">Avec donn?es</SelectItem>
+              <SelectItem value="without">Sans donn?es</SelectItem>
             </SelectContent>
           </Select>
         </div>
       </CardHeader>
       <CardContent>
-        {filtered.length ? (
+        {visibleEntities.length ? (
           <Accordion type="multiple" className="space-y-2">
-            {filtered.map((entity) => {
+            {visibleEntities.map((entity) => {
               const name = entityLabel === "station" ? entity.station_name : entity.basin_name;
               const typeValue = String((entity as any)[typeKey] ?? "Inconnu");
               const entityId = entityLabel === "station" ? entity.station_id : entity.basin_id;
@@ -150,69 +184,79 @@ const EntityAccordion = ({
                         <p className="text-sm font-semibold text-slate-900">
                           {name ?? "Sans nom"}
                         </p>
-                        <p className="text-xs text-slate-500">{typeLabel}: {typeValue}</p>
+                        {showField("type") && (
+                          <p className="text-xs text-slate-500">
+                            {typeLabel}: {typeValue}
+                          </p>
+                        )}
                       </div>
                       <div className="flex flex-wrap items-center gap-2">
-                        <Badge variant="outline">
-                          {entity.total_records.toLocaleString()} enregistrements
-                        </Badge>
-                        <Badge variant="outline">
-                          {entity.variable_count} variables
-                        </Badge>
-                        <Badge variant="outline">
-                          {entity.source_count} sources
-                        </Badge>
+                        {showField("records") && (
+                          <Badge variant="outline">
+                            {entity.total_records.toLocaleString()} enregistrements
+                          </Badge>
+                        )}
+                        {showField("variables") && (
+                          <Badge variant="outline">{entity.variable_count} variables</Badge>
+                        )}
+                        {showField("sources") && (
+                          <Badge variant="outline">{entity.source_count} sources</Badge>
+                        )}
                       </div>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="space-y-4 pb-4">
-                    <div className="text-sm text-slate-600">
-                      Période: {entity.first_record ?? "-"} → {entity.last_record ?? "-"}
-                    </div>
-                    <div className="space-y-4">
-                      {entity.variables.length ? (
-                        entity.variables.map((variable) => (
-                          <div key={`${entityId}-${variable.variable_id}`} className="rounded-lg border border-slate-100 p-3">
-                            <div className="flex flex-wrap items-center justify-between gap-2">
-                              <p className="text-sm font-semibold text-slate-800">
-                                {variable.variable_name ?? variable.variable_id ?? "Variable"}
+                    {showField("period") && (
+                      <div className="text-sm text-slate-600">
+                        P?riode: {entity.first_record ?? "-"} ? {entity.last_record ?? "-"}
+                      </div>
+                    )}
+                    {showField("details") && (
+                      <div className="space-y-4">
+                        {entity.variables.length ? (
+                          entity.variables.map((variable) => (
+                            <div key={`${entityId}-${variable.variable_id}`} className="rounded-lg border border-slate-100 p-3">
+                              <div className="flex flex-wrap items-center justify-between gap-2">
+                                <p className="text-sm font-semibold text-slate-800">
+                                  {variable.variable_name ?? variable.variable_id ?? "Variable"}
+                                </p>
+                                <Badge variant="outline">
+                                  {variable.record_count.toLocaleString()} enregistrements
+                                </Badge>
+                              </div>
+                              <p className="text-xs text-slate-500">
+                                P?riode: {variable.first_record ?? "-"} ? {variable.last_record ?? "-"}
                               </p>
-                              <Badge variant="outline">
-                                {variable.record_count.toLocaleString()} enregistrements
-                              </Badge>
-                            </div>
-                            <p className="text-xs text-slate-500">
-                              Période: {variable.first_record ?? "-"} → {variable.last_record ?? "-"}
-                            </p>
-                            <div className="mt-3 space-y-2">
-                              {variable.sources.length ? (
-                                variable.sources.map((source) => (
-                                  <div
-                                    key={`${entityId}-${variable.variable_id}-${source.source_id}`}
-                                    className="flex flex-wrap items-center justify-between gap-2 rounded-md bg-slate-50 px-3 py-2"
-                                  >
-                                    <div className="text-sm text-slate-700">
-                                      {source.source_name ?? source.source_id ?? "Source"}
+                              <div className="mt-3 space-y-2">
+                                {variable.sources.length ? (
+                                  variable.sources.map((source) => (
+                                    <div
+                                      key={`${entityId}-${variable.variable_id}-${source.source_id}`}
+                                      className="flex flex-wrap items-center justify-between gap-2 rounded-md bg-slate-50 px-3 py-2"
+                                    >
+                                      <div className="text-sm text-slate-700">
+                                        {source.source_name ?? source.source_id ?? "Source"}
+                                      </div>
+                                      <div className="flex items-center gap-2 text-xs text-slate-500">
+                                        <span>{source.record_count.toLocaleString()} enregistrements</span>
+                                        <span>{source.first_record ?? "-"} ? {source.last_record ?? "-"}</span>
+                                      </div>
                                     </div>
-                                    <div className="flex items-center gap-2 text-xs text-slate-500">
-                                      <span>{source.record_count.toLocaleString()} enregistrements</span>
-                                      <span>{source.first_record ?? "-"} → {source.last_record ?? "-"}</span>
-                                    </div>
-                                  </div>
-                                ))
-                              ) : (
-                                <p className="text-xs text-slate-500">Aucune source disponible.</p>
-                              )}
+                                  ))
+                                ) : (
+                                  <p className="text-xs text-slate-500">Aucune source disponible.</p>
+                                )}
+                              </div>
                             </div>
-                          </div>
-                        ))
-                      ) : (
-                        <p className="text-sm text-slate-500">Aucune donnée disponible.</p>
-                      )}
-                    </div>
+                          ))
+                        ) : (
+                          <p className="text-sm text-slate-500">Aucune donn?e disponible.</p>
+                        )}
+                      </div>
+                    )}
                     <div className="flex justify-end">
                       <Button variant="outline" size="sm" disabled>
-                        Supprimer des données
+                        Supprimer des donn?es
                       </Button>
                     </div>
                   </AccordionContent>
@@ -221,7 +265,9 @@ const EntityAccordion = ({
             })}
           </Accordion>
         ) : (
-          <p className="text-sm text-slate-500">Aucune entité disponible.</p>
+          <p className="text-sm text-slate-500">
+            {entityLabel === "station" ? "Aucune station trouv?e." : "Aucun bassin trouv?."}
+          </p>
         )}
       </CardContent>
     </Card>

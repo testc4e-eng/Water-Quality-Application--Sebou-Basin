@@ -5,7 +5,7 @@ export default function DashboardAnalytique() {
   const [tab, setTab] = useState<"climat" | "hydro" | "qualite">("climat");
 
   return (
-    <div className="space-y-4 p-6 animate-in fade-in duration-500">
+    <div className="min-h-screen space-y-4 bg-[#EEF5FF] p-6 animate-in fade-in duration-500">
       <div className="grid grid-cols-1 gap-3 p-1 md:grid-cols-3">
         <button
           onClick={() => setTab("climat")}

@@ -1,10 +1,16 @@
 import React, { useEffect, useRef } from "react";
-//import maplibregl from "maplibre-gl";
+import maplibregl from "maplibre-gl";
+import { LAYER_STYLES } from "@/config/mapStyles";
 
 // ⚠️ Pense à importer la CSS une seule fois dans ton app :
 // import "maplibre-gl/dist/maplibre-gl.css";
 
-export default function InteractiveMap({ stations = [], selectedId, onSelect }) {
+export default function InteractiveMap({
+  stations = [],
+  selectedId,
+  onSelect,
+  geoLayers = {},
+}) {
   const ref = useRef(null);
   const mapRef = useRef(null);
 
@@ -95,6 +101,109 @@ export default function InteractiveMap({ stations = [], selectedId, onSelect }) 
       map.setZoom(5);
     }
   }, [stations, selectedId, onSelect]);
+
+  // GeoJSON layers with explicit visual hierarchy:
+  // polygons (basin/subbasin) -> lines (hydro) -> points (pollution/station)
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+
+    const ensureLayer = (sourceId, layerId, type, data, paint) => {
+      if (!data) return;
+
+      if (map.getSource(sourceId)) {
+        map.getSource(sourceId).setData(data);
+      } else {
+        map.addSource(sourceId, { type: "geojson", data });
+      }
+
+      if (map.getLayer(layerId)) map.removeLayer(layerId);
+
+      map.addLayer({
+        id: layerId,
+        type,
+        source: sourceId,
+        paint,
+      });
+    };
+
+    const applyAll = () => {
+      // 1) Polygons
+      ensureLayer(
+        "src-basin",
+        "lyr-basin",
+        "line",
+        geoLayers.basin,
+        {
+          "line-color": LAYER_STYLES.basin.color,
+          "line-width": LAYER_STYLES.basin.weight,
+          "line-opacity": LAYER_STYLES.basin.opacity,
+        }
+      );
+
+      ensureLayer(
+        "src-subbasin-swat",
+        "lyr-subbasin-swat",
+        "line",
+        geoLayers.subbasin_swat,
+        {
+          "line-color": LAYER_STYLES.subbasin_swat.color,
+          "line-width": LAYER_STYLES.subbasin_swat.weight,
+          "line-opacity": LAYER_STYLES.subbasin_swat.opacity,
+        }
+      );
+
+      // 2) Lines
+      ensureLayer(
+        "src-hydro-network",
+        "lyr-hydro-network",
+        "line",
+        geoLayers.hydro_network,
+        {
+          "line-color": LAYER_STYLES.hydro_network.color,
+          "line-width": LAYER_STYLES.hydro_network.weight,
+          "line-opacity": LAYER_STYLES.hydro_network.opacity,
+        }
+      );
+
+      // 3) Points (always on top)
+      ensureLayer(
+        "src-pollution",
+        "lyr-pollution",
+        "circle",
+        geoLayers.pollution,
+        {
+          "circle-color": LAYER_STYLES.pollution.color,
+          "circle-radius": LAYER_STYLES.pollution.radius,
+          "circle-opacity": 0.95,
+          "circle-stroke-color": "#ffffff",
+          "circle-stroke-width": 1.5,
+        }
+      );
+
+      if (geoLayers.station) {
+        ensureLayer(
+          "src-station",
+          "lyr-station",
+          "circle",
+          geoLayers.station,
+          {
+            "circle-color": LAYER_STYLES.station.color,
+            "circle-radius": LAYER_STYLES.station.radius,
+            "circle-opacity": 0.95,
+            "circle-stroke-color": "#ffffff",
+            "circle-stroke-width": 1.5,
+          }
+        );
+      }
+    };
+
+    if (!map.isStyleLoaded()) {
+      map.once("load", applyAll);
+      return;
+    }
+    applyAll();
+  }, [geoLayers]);
 
   return (
     <div

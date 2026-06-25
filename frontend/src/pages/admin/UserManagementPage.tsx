@@ -26,9 +26,15 @@ import { Shield, UserPlus, RefreshCw, Trash2, Pencil } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const ROLE_OPTIONS = [
-  { value: "viewer", label: "Utilisateur" },
-  { value: "manager", label: "Gestionnaire" },
-  { value: "admin", label: "Administrateur" },
+  { value: "ROLE_DECIDEUR", label: "Décideur" },
+  { value: "ROLE_EXPERT", label: "Expert" },
+  { value: "ROLE_CONSULTANT", label: "Consultant" },
+  { value: "ROLE_DATA_ADMIN", label: "Data Admin" },
+  { value: "ROLE_SYS_ADMIN", label: "System Admin" },
+  { value: "ROLE_AI_AGENT", label: "AI Agent" },
+  { value: "viewer", label: "Legacy Viewer" },
+  { value: "manager", label: "Legacy Manager" },
+  { value: "admin", label: "Legacy Admin" },
 ];
 
 type UserFormState = {
@@ -36,7 +42,7 @@ type UserFormState = {
   email: string;
   full_name: string;
   password: string;
-  role_code: "viewer" | "manager" | "admin";
+  role_code: string;
 };
 
 const emptyForm: UserFormState = {
@@ -44,7 +50,7 @@ const emptyForm: UserFormState = {
   email: "",
   full_name: "",
   password: "",
-  role_code: "viewer",
+  role_code: "ROLE_CONSULTANT",
 };
 
 export default function UserManagementPage() {
@@ -315,7 +321,7 @@ export default function UserManagementPage() {
                       </td>
                       <td className="px-4 py-3">
                         <Badge variant="outline" className="text-xs">
-                          {user.role?.code || "viewer"}
+                          {user.role?.label || user.role?.code || "viewer"}
                         </Badge>
                       </td>
                       <td className="px-4 py-3">
@@ -340,7 +346,7 @@ export default function UserManagementPage() {
                                 email: user.email,
                                 full_name: user.full_name || "",
                                 password: "",
-                                role_code: (user.role?.code as UserFormState["role_code"]) || "viewer",
+                                role_code: user.role?.code || "ROLE_CONSULTANT",
                               });
                               setEditOpen(true);
                             }}

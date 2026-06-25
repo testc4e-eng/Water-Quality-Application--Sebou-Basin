@@ -13,19 +13,19 @@ import {
 import { getClimateStationStats, getClimateTimeseries, listClimateStations } from "@/api/climate";
 
 type StationItem = {
-  station_id: number;
+  station_id: string | number;
   station_name: string;
 };
 
 type ClimateStat = {
-  station_id: number;
+  station_id: string | number;
   source_type: string;
   scenario_code: string;
   scenario_name?: string;
   run_id: number;
   property_name: string;
   time_step: string;
-  ts_id: number;
+  ts_id: string | number;
   dt_min?: string;
   dt_max?: string;
 };
@@ -99,7 +99,7 @@ function mergeSeries(series: ScenarioSerie[]) {
 
 export default function ClimateScenarioComparisonDashboard() {
   const [stations, setStations] = useState<StationItem[]>([]);
-  const [stationId, setStationId] = useState<number | null>(null);
+  const [stationId, setStationId] = useState<string | null>(null);
   const [rowsStats, setRowsStats] = useState<ClimateStat[]>([]);
   const [sourceType, setSourceType] = useState<string>();
   const [variable, setVariable] = useState<string>();
@@ -279,7 +279,7 @@ export default function ClimateScenarioComparisonDashboard() {
                 <label className="text-xs font-semibold uppercase tracking-wider text-slate-500">Station</label>
                 <Select
                   value={stationId ?? undefined}
-                  onChange={(value) => setStationId(value ? Number(value) : null)}
+                  onChange={(value) => setStationId(value || null)}
                   placeholder="Choisir une station..."
                 >
                   {stations.map((station) => (

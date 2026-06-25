@@ -3,11 +3,15 @@ fastapi
 uvicorn
 pydantic
 python-dotenv
+python-jose[cryptography]
+passlib[bcrypt]
+email-validator
 
 # === Data science ===
 numpy
 pandas
 scipy
+networkx
 
 # === Database ===
 sqlalchemy
@@ -24,3 +28,4 @@ geojson
 requests
 click
 colorama
+python-multipart

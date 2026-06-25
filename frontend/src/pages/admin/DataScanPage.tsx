@@ -32,11 +32,38 @@ const DataScanPage = () => {
     setToastIntent(null);
   }, [toastIntent]);
 
+  const fetchInitialData = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const url = `${BASE_URL}/admin/data-availability?include_time_stats=false`;
+      console.log("[DataScan] GET", url);
+      const response = await runDataScan(false);
+      console.log("[DataScan] response", response);
+      setData(response);
+    } catch (err: any) {
+      const message =
+        err?.response?.data?.detail ||
+        err?.message ||
+        "Erreur lors du chargement initial.";
+      setError(message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchInitialData();
+  }, []);
+
   const handleScan = async () => {
     setLoading(true);
     setError(null);
     try {
+      const url = `${BASE_URL}/admin/data-availability?include_time_stats=${includeTimeStats}`;
+      console.log("[DataScan] GET", url);
       const response = await runDataScan(includeTimeStats);
+      console.log("[DataScan] response", response);
       setData(response);
       setLastScan(new Date().toLocaleString());
       setToastIntent({
@@ -128,7 +155,11 @@ const DataScanPage = () => {
       </section>
 
       <div className="container mx-auto px-6 py-10">
-        {data ? (
+        {loading && !data ? (
+          <div className="rounded-xl border border-dashed border-slate-300 bg-white px-6 py-12 text-center text-sm text-slate-500">
+            Chargement...
+          </div>
+        ) : data ? (
           <DataScanDashboard data={data} />
         ) : (
           <div className="rounded-xl border border-dashed border-slate-300 bg-white px-6 py-12 text-center text-sm text-slate-500">

@@ -5,7 +5,7 @@ import {
   Droplets,
   Factory,
   Layers,
-  Map,
+  Map as MapIcon,
   MapPin,
   Radar,
   Search,
@@ -13,7 +13,7 @@ import {
   Square,
   SlidersHorizontal,
 } from "lucide-react";
-import { DEFAULT_TOGGLES, DEFAULT_FILL_MODES } from "@/layers/config";
+import { DEFAULT_TOGGLES, DEFAULT_FILL_MODES, GEO_LAYERS, type GeoLayerType } from "@/layers/config";
 import { api } from "@/api/client";
 
 /* ─────────────────────────────────────────────
@@ -70,7 +70,7 @@ const LAYER_GROUPS: GroupDef[] = [
     id: "geo",
     title: "Géographie du bassin",
     iconColor: "bg-teal-400",
-    Icon: Map,
+    Icon: MapIcon,
     layers: [
       { key: "bassin_sebou", label: "Bassin versant du Sebou" },
       { key: "sous_bassin_sebou", label: "Sous-bassins ABH" },
@@ -135,6 +135,13 @@ const LAYER_GROUPS: GroupDef[] = [
   },
 ];
 
+const GEO_LAYER_BY_KEY = new Map(GEO_LAYERS.map((layer) => [layer.key, layer]));
+const GEOMETRY_LABELS: Record<GeoLayerType, string> = {
+  point: "Point",
+  line: "Ligne",
+  polygon: "Polygone",
+};
+
 /* ─────────────────────────────────────────────
    SUB-COMPONENTS
 ───────────────────────────────────────────── */
@@ -195,6 +202,7 @@ function LayerCheckbox({
   onToggleFillMode,
   onToggleFilter,
   hasFilter,
+  geometryType,
 }: {
   checked: boolean;
   label: string;
@@ -204,6 +212,7 @@ function LayerCheckbox({
   onToggleFillMode?: () => void;
   onToggleFilter?: () => void;
   hasFilter?: boolean;
+  geometryType?: GeoLayerType;
 }) {
   return (
     <div className="group flex items-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-[11px] text-slate-100 transition hover:border-emerald-200/10 hover:bg-emerald-300/[0.08]">
@@ -216,6 +225,11 @@ function LayerCheckbox({
         />
         <span className="font-medium text-slate-100/95">{label}</span>
       </label>
+      {geometryType && (
+        <span className="hidden rounded-full border border-white/10 bg-white/[0.06] px-1.5 py-0.5 text-[8px] font-semibold uppercase tracking-wide text-slate-300 sm:inline-flex">
+          {GEOMETRY_LABELS[geometryType]}
+        </span>
+      )}
       
       {onToggleFillMode && (
         <button
@@ -444,8 +458,7 @@ export default function SidebarFilters({
   const setAndSyncLayers = (updater: (prev: LayersState) => LayersState) => {
     setLocalLayers((prev) => {
       const next = updater(prev);
-      // Defer parent update to avoid setState during render warnings in React strict/dev mode.
-      queueMicrotask(() => setLayers(next));
+      setLayers(next);
       return next;
     });
   };
@@ -503,6 +516,21 @@ export default function SidebarFilters({
   return (
     <aside className="overflow-hidden rounded-[20px] border border-emerald-100/15 bg-[radial-gradient(circle_at_top_left,rgba(52,211,153,0.18),transparent_22%),radial-gradient(circle_at_bottom_right,rgba(251,191,36,0.14),transparent_28%),linear-gradient(180deg,#083344_0%,#115e59_42%,#1f2937_100%)] shadow-[0_28px_90px_-34px_rgba(8,15,30,0.96)] backdrop-blur-xl">
       <div className="max-h-[calc(100vh-140px)] space-y-1.5 overflow-y-auto p-2">
+        <div className="mb-2 rounded-2xl border border-emerald-100/10 bg-slate-950/25 px-3 py-2">
+          <div className="flex items-center justify-between gap-3">
+            <div>
+              <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-100/70">
+                Couches métier
+              </div>
+              <div className="mt-0.5 text-xs text-emerald-50/90">
+                Observation, infrastructures et pressions
+              </div>
+            </div>
+            <span className="rounded-full border border-emerald-300/20 bg-emerald-400/15 px-2 py-1 text-[10px] font-bold text-emerald-100">
+              {totalVisible} active{totalVisible > 1 ? "s" : ""}
+            </span>
+          </div>
+        </div>
 
         {/* ──────────── GROUPES COUCHES ──────────── */}
         {LAYER_GROUPS.map((group) => (
@@ -538,6 +566,7 @@ export default function SidebarFilters({
                     }
                     onZoom={() => onZoomLayer?.(layerDef.key)}
                     hasFilter
+                    geometryType={GEO_LAYER_BY_KEY.get(layerDef.key)?.type}
                     onToggleFilter={() => {
                       void toggleLayerFilter(layerDef.key);
                     }}
