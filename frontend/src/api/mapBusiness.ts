@@ -198,6 +198,23 @@ export function describeMapApiError(error: unknown) {
   return { status: undefined, message: "Erreur inconnue" };
 }
 
+export function getMapErrorLabel(error: unknown): string {
+  if (isAxiosError(error)) {
+    if (error.code === "ECONNABORTED") return "Service temporairement lent";
+    if (error.code === "ERR_CANCELED" || error.name === "CanceledError") return "Chargement annulé";
+    if (error.response) {
+      const status = error.response.status;
+      if (status >= 500) return "Service indisponible";
+      if (status === 404) return "Données non disponibles";
+      if (status === 401 || status === 403) return "Accès refusé";
+      return "Erreur serveur";
+    }
+    return "Service indisponible";
+  }
+  if (error instanceof Error) return error.message;
+  return "Erreur de chargement";
+}
+
 export async function getLatestValues(filters: MapLatestValuesFilters = {}): Promise<MapLatestValuesResponse> {
   const { data } = await api.get<MapLatestValuesResponse>("/map/latest-values", {
     params: compactParams(filters),

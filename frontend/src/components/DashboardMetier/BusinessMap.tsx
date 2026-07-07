@@ -6,6 +6,7 @@ import { Building2, CloudRain, ShieldCheck, Waves } from "lucide-react";
 import "maplibre-gl/dist/maplibre-gl.css";
 
 import {
+  getMapErrorLabel,
   parseLatestValues,
   strongestClassification,
   type MapBusinessFeature,
@@ -333,7 +334,7 @@ export function BusinessMap({
 
       {error && (
         <div className={`absolute border border-red-200 bg-red-50 text-red-700 shadow ${isHomeMode ? "inset-x-3 bottom-3 rounded-2xl px-3 py-2 text-xs" : "inset-x-4 bottom-4 rounded-lg px-4 py-3 text-sm"}`}>
-          Erreur de chargement : {error.message}
+          {getMapErrorLabel(error)}
         </div>
       )}
 

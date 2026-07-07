@@ -59,11 +59,13 @@ export interface RuntimeDashboardTrendsPayload {
   quality: RuntimeTrendSeries;
 }
 
+const RUNTIME_TIMEOUT_MS = 30_000;
+
 export async function getQualityStationsWithTimeseries(limit = 6, signal?: AbortSignal): Promise<RuntimeQualityStation[]> {
   const { data } = await api.get<RuntimeQualityStation[]>("/quality/stations-with-timeseries", {
     params: { limit },
     signal,
-    timeout: 10_000,
+    timeout: RUNTIME_TIMEOUT_MS,
   });
   return Array.isArray(data) ? data : [];
 }
@@ -72,7 +74,7 @@ export async function getDashboardTrends(days = 30, signal?: AbortSignal): Promi
   const { data } = await api.get<RuntimeDashboardTrendsPayload>("/dashboard/trends", {
     params: { days },
     signal,
-    timeout: 10_000,
+    timeout: RUNTIME_TIMEOUT_MS,
   });
   return data;
 }

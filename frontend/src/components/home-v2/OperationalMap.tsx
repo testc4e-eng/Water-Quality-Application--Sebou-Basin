@@ -65,8 +65,10 @@ function parseEntitiesFilters(featuresEndpoint: string | undefined): MapEntities
 export function OperationalMap({ mapConfig, alerts, actions }: OperationalMapProps) {
   const qualityStationsQuery = useQuery({
     queryKey: ["home-operational-map", "quality-stations"],
-    queryFn: getQualityStations,
+    queryFn: ({ signal }) => getQualityStations({}, signal),
     staleTime: 5 * 60_000,
+    refetchOnWindowFocus: false,
+    retry: false,
   });
 
   const sentinelStations = useMemo(() => {
@@ -172,9 +174,23 @@ export function OperationalMap({ mapConfig, alerts, actions }: OperationalMapPro
     qualityStationsQuery.isLoading ||
     qualityStationsQuery.isFetching ||
     layerQueries.some((query) => query.isLoading || query.isFetching);
-  const mapError =
+
+  const layerErrors = useMemo(() => {
+    const errors: Record<string, Error> = {};
+    layerQueries.forEach((query, index) => {
+      const layerKey = layerRequests[index]?.layerKey;
+      if (layerKey && query.error) {
+        errors[layerKey] = query.error as Error;
+      }
+    });
+    return errors;
+  }, [layerQueries, layerRequests]);
+
+  const hasAnyLayerData = Boolean(combinedMapData && combinedMapData.features.length > 0);
+  const allLayersErrored = layerQueries.length > 0 && layerQueries.every((query) => query.error);
+  const criticalMapError =
     (qualityStationsQuery.error as Error | null | undefined) ??
-    (layerQueries.find((query) => query.error)?.error as Error | null | undefined);
+    (allLayersErrored && !hasAnyLayerData ? (layerQueries.find((query) => query.error)?.error as Error | null | undefined) : undefined);
 
   return (
     <Card className="overflow-hidden rounded-[24px] border-slate-200 bg-white shadow-[0_20px_54px_rgba(15,23,42,0.08)] lg:h-full">
@@ -197,14 +213,14 @@ export function OperationalMap({ mapConfig, alerts, actions }: OperationalMapPro
         </div>
       </CardHeader>
       <CardContent className="space-y-2 p-3 lg:flex lg:min-h-[460px] lg:flex-col">
-        <LayerSummary mapConfig={mapConfig} />
+        <LayerSummary mapConfig={mapConfig} layerErrors={layerErrors} />
 
         <div className="grid gap-2 xl:grid-cols-[minmax(0,2.3fr)_minmax(260px,0.8fr)] 2xl:grid-cols-[minmax(0,2.8fr)_minmax(260px,0.72fr)] lg:flex-1">
           <div className="relative min-h-[360px] xl:min-h-[430px] lg:min-h-[430px]">
             <BusinessMap
               data={combinedMapData}
               loading={mapLoading}
-              error={mapError ?? null}
+              error={criticalMapError ?? null}
               mode="home"
               overlayTitle="CARTE MÉTIER - VUE BASSIN"
               emptyMessage="La carte Home V2 réutilise le moteur métier existant. Le rendu multicouche opérationnel complet reste consolidé dans /dashboard-carto-metier."

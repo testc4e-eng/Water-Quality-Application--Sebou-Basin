@@ -63,29 +63,37 @@ export interface ThresholdsResponse {
 }
 
 export interface QualityStation {
-  support_type?: string;
-  station_id: string;
-  station_name: string;
-  dt_min: string;
-  dt_max: string;
-  n_mesures: number;
+  ire_station: string | null;
+  station_id: string | null;
+  station_nom: string | null;
+  code_station: string | null;
+  bassin_nom: string | null;
+  sous_bassin_nom: string | null;
+  latitude: number | null;
+  longitude: number | null;
+  support_type: string;
+  measure_count: number;
+  parameter_count: number;
+  date_min: string | null;
+  date_max: string | null;
 }
 
 export interface QualityParameter {
-  parameter: string;
-  n_mesures: number;
+  parametre_qualite: string;
+  measure_count: number;
+  station_count: number;
+  date_min: string | null;
+  date_max: string | null;
 }
 
 export interface QualityTimeseriesRow {
-  support_type?: string;
-  source_table?: string;
-  date: string;
-  no3: number | null;
-  ph: number | null;
-  dbo5: number | null;
-  dco: number | null;
-  o2: number | null;
-  mes: number | null;
+  date_mesure: string;
+  ire_station: string | null;
+  station_nom: string | null;
+  parametre_qualite: string;
+  valeur: number | null;
+  support_type: string;
+  source_table: string;
 }
 
 export interface ClassificationResponse {
@@ -117,29 +125,63 @@ export async function getActiveThresholds(): Promise<ThresholdsResponse> {
   return data;
 }
 
-export async function getQualityStations(supportType?: string): Promise<QualityStation[]> {
+const QUALITY_TIMEOUT_MS = 20_000;
+
+export async function getQualityStations(
+  params: {
+    support_type?: string;
+    ire_station?: string;
+    station_id?: string;
+  } = {},
+  signal?: AbortSignal
+): Promise<QualityStation[]> {
   const { data } = await api.get<QualityStation[]>("/quality/unified/stations", {
-    params: supportType ? { support_type: supportType } : undefined,
+    params,
+    signal,
+    timeout: QUALITY_TIMEOUT_MS,
   });
   return Array.isArray(data) ? data : [];
 }
 
-export async function getQualityParameters(supportType?: string, stationId?: string): Promise<QualityParameter[]> {
+export async function getQualityParameters(
+  params: {
+    support_type?: string;
+    ire_station?: string;
+    station_id?: string;
+  } = {},
+  signal?: AbortSignal
+): Promise<QualityParameter[]> {
   const { data } = await api.get<QualityParameter[]>("/quality/unified/parameters", {
-    params: { support_type: supportType || undefined, station_id: stationId || undefined },
+    params,
+    signal,
+    timeout: QUALITY_TIMEOUT_MS,
   });
   return Array.isArray(data) ? data : [];
 }
 
 export async function getQualityTimeseries(
-  supportType: string | undefined,
-  stationId: string,
-  dateStart?: string,
-  dateEnd?: string
+  params: {
+    support_type?: string;
+    ire_station?: string;
+    station_id?: string;
+    parametre_qualite?: string;
+    date_from?: string;
+    date_to?: string;
+    limit?: number;
+  } = {},
+  signal?: AbortSignal
 ): Promise<QualityTimeseriesRow[]> {
+  if (import.meta.env.DEV) {
+    console.debug('[quality unified timeseries] request params:', params);
+  }
   const { data } = await api.get<QualityTimeseriesRow[]>("/quality/unified/timeseries", {
-    params: { support_type: supportType || undefined, ire_station: stationId, date_start: dateStart || undefined, date_end: dateEnd || undefined },
+    params,
+    signal,
+    timeout: QUALITY_TIMEOUT_MS,
   });
+  if (import.meta.env.DEV) {
+    console.debug('[quality unified timeseries] response length:', data?.length);
+  }
   return Array.isArray(data) ? data : [];
 }
 

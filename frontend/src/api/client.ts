@@ -22,10 +22,49 @@ api.interceptors.request.use((config) => {
     config.headers = config.headers || {};
     config.headers.Authorization = `Bearer ${token}`;
   }
+  if (import.meta.env.DEV) {
+    (config as any)._requestStartedAt = performance.now();
+  }
   return config;
 });
 
-// Intercepteur pour gérer les erreurs 401 (Expire/Invalid)
+if (import.meta.env.DEV) {
+  api.interceptors.response.use(
+    (response) => {
+      const config = response.config as any;
+      const startedAt = config?._requestStartedAt;
+      const duration = startedAt ? Math.round(performance.now() - startedAt) : undefined;
+      console.debug(`[API] ${response.status} ${response.config.method?.toUpperCase()} ${response.config.url}${duration !== undefined ? ` (${duration}ms)` : ""}`, {
+        url: response.config.url,
+        params: response.config.params,
+        status: response.status,
+        duration,
+      });
+      return response;
+    },
+    (error) => {
+      const config = error.config as any;
+      const startedAt = config?._requestStartedAt;
+      const duration = startedAt ? Math.round(performance.now() - startedAt) : undefined;
+      const isCanceled = error.code === "ERR_CANCELED" || error.name === "CanceledError";
+      const isTimeout = error.code === "ECONNABORTED";
+      console.warn(`[API] ERROR ${isCanceled ? "CANCELED" : isTimeout ? "TIMEOUT" : "NETWORK"} ${config?.method?.toUpperCase()} ${config?.url}${duration !== undefined ? ` (${duration}ms)` : ""}`, {
+        url: config?.url,
+        params: config?.params,
+        status: error.response?.status,
+        code: error.code,
+        message: error.message,
+        duration,
+      });
+      return Promise.reject(error);
+    }
+  );
+}
+
+// Fallback dev local : si le backend ne répond pas sur 8010, tenter 8011 une seule fois
+let networkFallbackAttempted = false;
+
+// Intercepteur pour gérer les erreurs 401 (Expire/Invalid) + fallback port dev
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -37,6 +76,20 @@ api.interceptors.response.use(
         window.location.href = "/login?expired=true";
       }
     }
+
+    if (
+      !networkFallbackAttempted &&
+      error.config &&
+      (error.message === "Network Error" || error.code === "ECONNREFUSED") &&
+      api.defaults.baseURL?.includes(":8010")
+    ) {
+      networkFallbackAttempted = true;
+      console.warn("API injoignable sur 8010, bascule vers 8011");
+      api.defaults.baseURL = "http://127.0.0.1:8011/api/v1";
+      error.config.baseURL = api.defaults.baseURL;
+      return api.request(error.config);
+    }
+
     return Promise.reject(error);
   }
 );
