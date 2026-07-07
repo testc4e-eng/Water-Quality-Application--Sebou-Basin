@@ -221,32 +221,7 @@ export default function DashboardHomeV2() {
           />
         </section>
 
-        <section className="grid gap-2 xl:grid-cols-4">
-          <HomeSignalCard
-            title="Etat qualité global"
-            value={`${payload.basin_status.quality.conformes}/${payload.basin_status.quality.sentinel_station_count}`}
-            subtitle="Stations sentinelles conformes"
-            footer={`Dernière date: ${payload.basin_status.quality.latest_date ?? "N/D"}`}
-          />
-          <HomeSignalCard
-            title="Pollution / sources à valider"
-            value={String(payload.secondary_kpis.ipp.value ?? "N/D")}
-            subtitle="Indice pression pollution assisté"
-            footer="Lecture DEV assistée, non hydraulique scientifique"
-          />
-          <HomeSignalCard
-            title="Données QA critiques"
-            value={payload.data_freshness.quality_daily.status}
-            subtitle="Fraîcheur données qualité"
-            footer="Compléter par le dashboard Données / QA"
-          />
-          <HomeSignalCard
-            title="Statut RBAC / administration"
-            value="RBAC_REAL"
-            subtitle="Administration pilotée par rôles réels"
-            footer="Taux d'exposition visible dans Administration / RBAC"
-          />
-        </section>
+
       </div>
     </main>
   );
@@ -290,29 +265,6 @@ function HomeSummaryCard({
             </div>
           ))}
         </div>
-      </CardContent>
-    </Card>
-  );
-}
-
-function HomeSignalCard({
-  title,
-  value,
-  subtitle,
-  footer,
-}: {
-  title: string;
-  value: string;
-  subtitle: string;
-  footer: string;
-}) {
-  return (
-    <Card className="rounded-[22px] border-slate-200 bg-white shadow-sm">
-      <CardContent className="p-3">
-        <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">{title}</div>
-        <div className="mt-2 text-2xl font-semibold text-slate-950">{value}</div>
-        <div className="mt-1 text-sm text-slate-600">{subtitle}</div>
-        <div className="mt-3 text-xs text-slate-500">{footer}</div>
       </CardContent>
     </Card>
   );
