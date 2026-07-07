@@ -211,8 +211,11 @@ export function readPreviousDashboardHomeCache(): DashboardHomePayload | undefin
   }
 }
 
-export async function getDashboardHome() {
-  const { data } = await api.get<DashboardHomePayload>("/dashboard/home");
+export async function getDashboardHome(signal?: AbortSignal) {
+  const { data } = await api.get<DashboardHomePayload>("/dashboard/home", {
+    signal,
+    timeout: 10_000,
+  });
   if (typeof window !== "undefined") {
     try {
       const current = window.sessionStorage.getItem(DASHBOARD_HOME_CACHE_KEY);

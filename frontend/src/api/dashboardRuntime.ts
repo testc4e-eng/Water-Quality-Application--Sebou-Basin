@@ -59,12 +59,20 @@ export interface RuntimeDashboardTrendsPayload {
   quality: RuntimeTrendSeries;
 }
 
-export async function getQualityStationsWithTimeseries(limit = 6): Promise<RuntimeQualityStation[]> {
-  const { data } = await api.get<RuntimeQualityStation[]>("/quality/stations-with-timeseries", { params: { limit } });
+export async function getQualityStationsWithTimeseries(limit = 6, signal?: AbortSignal): Promise<RuntimeQualityStation[]> {
+  const { data } = await api.get<RuntimeQualityStation[]>("/quality/stations-with-timeseries", {
+    params: { limit },
+    signal,
+    timeout: 10_000,
+  });
   return Array.isArray(data) ? data : [];
 }
 
-export async function getDashboardTrends(days = 30): Promise<RuntimeDashboardTrendsPayload> {
-  const { data } = await api.get<RuntimeDashboardTrendsPayload>("/dashboard/trends", { params: { days } });
+export async function getDashboardTrends(days = 30, signal?: AbortSignal): Promise<RuntimeDashboardTrendsPayload> {
+  const { data } = await api.get<RuntimeDashboardTrendsPayload>("/dashboard/trends", {
+    params: { days },
+    signal,
+    timeout: 10_000,
+  });
   return data;
 }

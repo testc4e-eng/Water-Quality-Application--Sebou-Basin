@@ -55,8 +55,8 @@ export default function DashboardHomeV2() {
 
   if (!homeQuery.data && (homeQuery.isLoading || homeQuery.isFetching)) {
     return (
-      <main className="min-h-screen bg-[linear-gradient(180deg,#f8fbff_0%,#eef4ff_45%,#f8fafc_100%)] px-4 py-8 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl space-y-6">
+      <main className="min-h-screen bg-[#EEF5FF] px-3 py-2 text-slate-950 sm:px-4 xl:px-4">
+        <div className="flex w-full max-w-[1800px] flex-col gap-2">
           {showSlowLoadNotice ? (
             <Card className="border-amber-200 bg-amber-50 shadow-sm">
               <CardContent className="p-4 text-sm leading-6 text-amber-900">
@@ -64,14 +64,50 @@ export default function DashboardHomeV2() {
               </CardContent>
             </Card>
           ) : null}
-          <div className="h-64 animate-pulse rounded-[28px] bg-slate-200/70" />
-          <div className="grid gap-6 xl:grid-cols-[minmax(0,1.7fr)_minmax(360px,1fr)]">
-            <div className="h-[680px] animate-pulse rounded-[28px] bg-slate-200/70" />
-            <div className="space-y-6">
-              <div className="h-80 animate-pulse rounded-[28px] bg-slate-200/70" />
-              <div className="h-80 animate-pulse rounded-[28px] bg-slate-200/70" />
+
+          {/* Hero skeleton */}
+          <div className="rounded-[28px] border border-slate-200 bg-white/80 p-4 shadow-sm">
+            <div className="h-6 w-64 animate-pulse rounded bg-slate-200" />
+            <div className="mt-2 h-4 w-96 animate-pulse rounded bg-slate-200" />
+            <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {Array.from({ length: 4 }).map((_, i) => (
+                <div key={i} className="h-24 animate-pulse rounded-2xl bg-slate-200/70" />
+              ))}
             </div>
           </div>
+
+          {/* Map skeleton */}
+          <div className="min-h-[520px] animate-pulse rounded-[28px] bg-slate-200/70" />
+
+          {/* Middle grid skeleton */}
+          <section className="grid gap-2 xl:grid-cols-12">
+            <div className="xl:col-span-5">
+              <div className="h-80 animate-pulse rounded-[28px] bg-slate-200/70" />
+            </div>
+            <div className="xl:col-span-3">
+              <div className="h-80 animate-pulse rounded-[28px] bg-slate-200/70" />
+            </div>
+            <div className="xl:col-span-4">
+              <div className="h-80 animate-pulse rounded-[28px] bg-slate-200/70" />
+            </div>
+          </section>
+
+          {/* Summary cards skeleton */}
+          <section className="grid gap-2 xl:grid-cols-4">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div key={i} className="h-64 animate-pulse rounded-[28px] bg-slate-200/70" />
+            ))}
+          </section>
+
+          {/* Signal cards skeleton */}
+          <section className="grid gap-2 xl:grid-cols-4">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div key={i} className="h-40 animate-pulse rounded-[28px] bg-slate-200/70" />
+            ))}
+          </section>
+
+          {/* Footer metadata skeleton */}
+          <div className="h-10 animate-pulse rounded-2xl bg-slate-200/70" />
         </div>
       </main>
     );

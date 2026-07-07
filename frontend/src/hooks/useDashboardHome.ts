@@ -7,10 +7,11 @@ const STALE_TIME_MS = 30_000;
 export function useDashboardHome() {
   return useQuery({
     queryKey: ["dashboard-home-v2"],
-    queryFn: getDashboardHome,
+    queryFn: ({ signal }) => getDashboardHome(signal),
     initialData: readDashboardHomeCache,
     staleTime: STALE_TIME_MS,
     gcTime: 5 * 60_000,
     refetchOnWindowFocus: false,
+    retry: false,
   });
 }

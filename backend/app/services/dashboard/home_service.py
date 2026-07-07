@@ -6,6 +6,7 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import date, datetime, timezone
 import hashlib
+import logging
 import os
 from statistics import mean
 import threading
@@ -35,6 +36,8 @@ SECONDARY_MAP_LAYERS = ["pollution", "campaigns", "swat", "wasp", "historical"]
 HOME_CACHE_KEY = "dashboard_home_v2"
 DEFAULT_HOME_CACHE_SECONDS = 120
 
+log = logging.getLogger(__name__)
+
 
 @dataclass
 class HomeDashboardRuntime:
@@ -52,6 +55,10 @@ _HOME_CACHE: dict[str, dict[str, Any]] = {}
 _HOME_WARM_LOCK = threading.Lock()
 _HOME_WARMING = False
 
+# Short-lived cross-request caches for raw dependencies (latest dates / counts / regulatory context)
+_DEP_CACHE_LOCK = threading.Lock()
+_DEP_CACHE: dict[str, dict[str, Any]] = {}
+
 
 def get_dashboard_home(db: Session) -> dict[str, Any]:
     cached_payload = _cache_get(HOME_CACHE_KEY)
@@ -62,6 +69,7 @@ def get_dashboard_home(db: Session) -> dict[str, Any]:
     partial = {"value": False}
     runtime = HomeDashboardRuntime()
     token = _RUNTIME.set(runtime)
+    total_started_at = time.perf_counter()
     try:
         data_freshness = _profiled_section(
             "data_freshness",
@@ -105,6 +113,15 @@ def get_dashboard_home(db: Session) -> dict[str, Any]:
             "metadata": metadata,
         }
         _cache_set(HOME_CACHE_KEY, payload)
+        total_ms = round((time.perf_counter() - total_started_at) * 1000, 2)
+        log.info(
+            "dashboard_home built in %s ms (status=%s, query_count=%s, query_time_ms=%s, sections=%s)",
+            total_ms,
+            payload["status"],
+            runtime.query_count if runtime else 0,
+            round(runtime.query_seconds * 1000, 2) if runtime else 0,
+            runtime.section_metrics if runtime else {},
+        )
         return payload
     finally:
         _RUNTIME.reset(token)
@@ -221,6 +238,37 @@ def _clear_home_cache() -> None:
         _HOME_CACHE.clear()
 
 
+def _dep_cache_get(key: str) -> Any | None:
+    ttl_seconds = _get_home_cache_seconds()
+    if ttl_seconds <= 0:
+        return None
+    now = time.time()
+    with _DEP_CACHE_LOCK:
+        entry = _DEP_CACHE.get(key)
+        if not entry:
+            return None
+        if entry["expires_at"] <= now:
+            _DEP_CACHE.pop(key, None)
+            return None
+        return copy.deepcopy(entry["payload"])
+
+
+def _dep_cache_set(key: str, payload: Any) -> None:
+    ttl_seconds = _get_home_cache_seconds()
+    if ttl_seconds <= 0:
+        return
+    with _DEP_CACHE_LOCK:
+        _DEP_CACHE[key] = {
+            "expires_at": time.time() + ttl_seconds,
+            "payload": copy.deepcopy(payload),
+        }
+
+
+def _clear_dep_cache() -> None:
+    with _DEP_CACHE_LOCK:
+        _DEP_CACHE.clear()
+
+
 def warm_dashboard_home_cache(session_factory: Callable[[], Session], *, force: bool = False) -> bool:
     global _HOME_WARMING
     if not force and _cache_get(HOME_CACHE_KEY) is not None:
@@ -236,6 +284,7 @@ def warm_dashboard_home_cache(session_factory: Callable[[], Session], *, force: 
         try:
             if force:
                 _clear_home_cache()
+                _clear_dep_cache()
             get_dashboard_home(db)
             return True
         finally:
@@ -285,6 +334,11 @@ def _latest_dates(db: Session) -> dict[str, Any]:
     runtime = _get_runtime()
     if runtime is not None and runtime.latest_dates is not None:
         return runtime.latest_dates
+    cached = _dep_cache_get("latest_dates")
+    if cached is not None:
+        if runtime is not None:
+            runtime.latest_dates = cached
+        return cached
     latest_dates = {
         "barrages": _query_scalar(db, "select max(bucket_day) from api.v_hydro_barrage_param_journalier"),
         "hydro": _query_scalar(db, "select max(bucket_day) from api.v_hydro_debit_journalier_qa"),
@@ -293,6 +347,7 @@ def _latest_dates(db: Session) -> dict[str, Any]:
     }
     if runtime is not None:
         runtime.latest_dates = latest_dates
+    _dep_cache_set("latest_dates", latest_dates)
     return latest_dates
 
 
@@ -300,16 +355,34 @@ def _layer_counts(db: Session) -> dict[str, int]:
     runtime = _get_runtime()
     if runtime is not None and runtime.layer_counts is not None:
         return runtime.layer_counts
+    cached = _dep_cache_get("layer_counts")
+    if cached is not None:
+        if runtime is not None:
+            runtime.layer_counts = cached
+        return cached
 
     latest = _latest_dates(db)
+    quality_latest = latest.get("quality_daily")
+    quality_count_sql = """
+        select count(distinct station_id)
+        from qualite.mesure_qualite_sebou
+        where temps::date >= current_date - interval '30 days'
+    """
+    if quality_latest is not None:
+        quality_count_sql = """
+            select count(distinct station_id)
+            from qualite.mesure_qualite_sebou
+            where temps::date = :latest_day
+        """
     counts = {
         "barrages": int(_count_latest_distinct(db, "api.v_hydro_barrage_param_journalier", "barrage_id", latest["barrages"]) or 0),
         "hydro": int(_count_latest_distinct(db, "api.v_hydro_debit_journalier_qa", "station_id", latest["hydro"]) or 0),
         "pluvio": int(_count_latest_distinct(db, "api.v_meteo_precipitation_journalier_qa", "station_id", latest["pluvio"]) or 0),
-        "quality_daily": int(_query_scalar(db, "select count(distinct station_id) from qualite.mesure_qualite_sebou") or 0),
+        "quality_daily": int(_query_scalar(db, quality_count_sql, {"latest_day": quality_latest} if quality_latest is not None else {}) or 0),
     }
     if runtime is not None:
         runtime.layer_counts = counts
+    _dep_cache_set("layer_counts", counts)
     return counts
 
 
@@ -328,9 +401,15 @@ def _quality_regulatory_context(db: Session) -> dict[str, Any]:
     runtime = _get_runtime()
     if runtime is not None and runtime.quality_regulatory_context is not None:
         return runtime.quality_regulatory_context
+    cached = _dep_cache_get("quality_regulatory_context")
+    if cached is not None:
+        if runtime is not None:
+            runtime.quality_regulatory_context = cached
+        return cached
     regulatory_context = load_regulatory_context(db, type_eau_code=QUALITY_TYPE_EAU)
     if runtime is not None:
         runtime.quality_regulatory_context = regulatory_context
+    _dep_cache_set("quality_regulatory_context", regulatory_context)
     return regulatory_context
 
 
@@ -584,35 +663,15 @@ def _build_rainfall_status(db: Session, latest_day: Any) -> dict[str, Any]:
     stats = _query_mapping(
         db,
         """
-        with daily as (
-            select station_id, bucket_day, val_remplies
-            from api.v_meteo_precipitation_journalier_qa
-            where val_remplies is not null
-        ),
-        latest as (
-            select station_id, val_remplies
-            from daily
-            where bucket_day = :latest_day
-        ),
-        rolling_7 as (
-            select station_id, avg(val_remplies)::double precision as avg_7
-            from daily
-            where bucket_day > cast(:latest_day as date) - interval '7 days'
-              and bucket_day <= :latest_day
-            group by station_id
-        ),
-        rolling_30 as (
-            select station_id, avg(val_remplies)::double precision as avg_30
-            from daily
-            where bucket_day > cast(:latest_day as date) - interval '30 days'
-              and bucket_day <= :latest_day
-            group by station_id
-        )
         select
-            (select avg(val_remplies)::double precision from latest) as cumul_24h,
-            (select avg(avg_7)::double precision from rolling_7) as cumul_7j,
-            (select avg(avg_30)::double precision from rolling_30) as cumul_30j,
-            (select count(distinct station_id)::int from latest) as station_count
+            avg(val_remplies) filter (where bucket_day = :latest_day)::double precision as cumul_24h,
+            avg(val_remplies) filter (where bucket_day > cast(:latest_day as date) - interval '7 days')::double precision as cumul_7j,
+            avg(val_remplies) filter (where bucket_day > cast(:latest_day as date) - interval '30 days')::double precision as cumul_30j,
+            count(distinct station_id) filter (where bucket_day = :latest_day)::int as station_count
+        from api.v_meteo_precipitation_journalier_qa
+        where bucket_day > cast(:latest_day as date) - interval '30 days'
+          and bucket_day <= :latest_day
+          and val_remplies is not null
         """,
         {"latest_day": latest_day},
     ) or {}
