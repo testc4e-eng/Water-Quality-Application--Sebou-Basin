@@ -1,28 +1,49 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { useQuery, useQueries } from '@tanstack/react-query';
 import { getQualityStations, getQualityTimeseries } from '@/api/qualityRegulatory';
+import { getQualityDateRange, type QualityDashboardFilters } from './types';
 import { LineChart, Line, ResponsiveContainer, YAxis } from 'recharts';
 
-export function QualityRealtimeTab() {
+interface QualityRealtimeTabProps {
+  filters?: QualityDashboardFilters;
+}
+
+const normalizeText = (value?: string | null) => (value || '').toLowerCase().trim();
+
+export function QualityRealtimeTab({ filters }: QualityRealtimeTabProps) {
+  const stationSearch = normalizeText(filters?.stationSearch);
+  const { dateStart, dateEnd } = filters ? getQualityDateRange(filters.period) : { dateStart: undefined, dateEnd: undefined };
+
   const { data: stations = [], isLoading: isLoadingStations, error: stationsError } = useQuery({
     queryKey: ['unified-stations', 'SENTINELLE'],
-    queryFn: () => getQualityStations('SENTINELLE'),
+    queryFn: () => getQualityStations({ support_type: 'SENTINELLE' }),
     retry: false,
     staleTime: 30_000,
     refetchOnWindowFocus: false
   });
 
-
   // 1. Filtrer les 6 IREs métiers validés
   const VALID_IRES = ['3695/8', '1541/15', '1540/15', '1355/8', '3738/8', '2263/15'];
-  const filteredStations = stations.filter(s => VALID_IRES.includes(s.ire_station || s.station_id));
+  const filteredStations = useMemo(() => {
+    return stations.filter(s => {
+      const stationId = s.ire_station || s.station_id;
+      const stationText = normalizeText([s.station_nom, s.station_name, s.ire_station, s.station_id, s.code_station].filter(Boolean).join(' '));
+      return !!stationId && VALID_IRES.includes(stationId) && (!stationSearch || stationText.includes(stationSearch));
+    });
+  }, [stations, stationSearch]);
 
   // Fetch timeseries for each station to get latest values and sparklines
   const timeseriesQueries = useQueries({
     queries: filteredStations.map(station => ({
-
-      queryKey: ['unified-timeseries', 'SENTINELLE', station.ire_station || station.station_id],
-      queryFn: () => getQualityTimeseries('SENTINELLE', station.ire_station || station.station_id),
+      queryKey: ['unified-timeseries', 'SENTINELLE', station.ire_station || station.station_id, dateStart, dateEnd, filters?.parameter || 'ALL'],
+      queryFn: () => getQualityTimeseries({
+        support_type: 'SENTINELLE',
+        ire_station: station.ire_station || undefined,
+        station_id: (!station.ire_station && station.station_id) ? station.station_id : undefined,
+        date_from: dateStart,
+        date_to: dateEnd,
+        parametre_qualite: filters?.parameter || undefined,
+      }),
       enabled: !!(station.ire_station || station.station_id)
     }))
   });
@@ -33,13 +54,13 @@ export function QualityRealtimeTab() {
   const stationsData = useMemo(() => {
     if (!filteredStations.length) return [];
     
-        return filteredStations.map((station, index) => {
+    return filteredStations.map((station, index) => {
       const tsQuery = timeseriesQueries[index];
       const tsData = tsQuery?.data || [];
       const isLoadingTs = tsQuery?.isLoading;
+      const errorTs = tsQuery?.error as any;
       const isErrorTs = tsQuery?.isError;
 
-      
       // tsData is an array of rows: { date_mesure, parametre_qualite, valeur }
       // We need to pivot this to get the latest values and sparklines
       const latestValues: Record<string, { value: number, date: string }> = {};
@@ -62,7 +83,6 @@ export function QualityRealtimeTab() {
       });
       
       const sparklineData = Object.values(pivotByDate).sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime());
-      
 
       // Calculate freshness
       let freshness = "Inconnu";
@@ -81,7 +101,6 @@ export function QualityRealtimeTab() {
         }
       }
 
-
       return {
         id: station.ire_station || station.station_id,
         name: station.station_name || station.station_nom,
@@ -93,12 +112,14 @@ export function QualityRealtimeTab() {
         latestValues,
         sparklineData,
         isLoadingTs,
-        isErrorTs
+        isErrorTs,
+        errorTs,
+        hasData: tsData.length > 0
       };
     });
   }, [filteredStations, timeseriesQueries]);
 
-    const [tooLong, setTooLong] = useState(false);
+  const [tooLong, setTooLong] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => setTooLong(true), 8000);
@@ -124,9 +145,10 @@ export function QualityRealtimeTab() {
   }
 
   if (stationsError) {
+    const errorMsg = (stationsError as any)?.message || 'Erreur inconnue';
     return (
       <div className="p-8 text-center bg-red-50 text-red-600 rounded-md border border-red-200">
-        Erreur lors du chargement des stations.
+        Erreur API : {errorMsg}
       </div>
     );
   }
@@ -177,7 +199,11 @@ export function QualityRealtimeTab() {
                 </div>
               ) : station.isErrorTs ? (
                 <div className="h-24 flex items-center justify-center text-red-500 italic text-sm border border-dashed border-red-200 rounded bg-red-50">
-                  Mesures indisponibles
+                  Erreur API : {station.errorTs?.message || 'Inconnue'}
+                </div>
+              ) : !station.hasData ? (
+                <div className="h-24 flex items-center justify-center text-slate-400 italic text-sm border border-dashed border-slate-200 rounded">
+                  Aucune donnée retournée par l'API
                 </div>
               ) : Object.keys(station.latestValues).length > 0 ? (
                 <div className="grid grid-cols-3 gap-3">

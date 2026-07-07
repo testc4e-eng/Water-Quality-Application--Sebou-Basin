@@ -1,23 +1,71 @@
 import React, { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getQualityStations, getQualityParameters } from '@/api/qualityRegulatory';
+import type { QualityDashboardFilters } from './types';
 import {
   PieChart, Pie, Cell, Tooltip as RechartsTooltip, ResponsiveContainer,
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend
 } from 'recharts';
 
-export function QualityOverviewTab() {
-  const { data: stations = [], isLoading: isLoadingStations } = useQuery({
-    queryKey: ['unified-stations'],
-    queryFn: () => getQualityStations()
+interface QualityOverviewTabProps {
+  filters?: QualityDashboardFilters;
+}
+
+const normalizeText = (value?: string | null) => (value || '').toLowerCase().trim();
+const getMeasureCount = (item: any) => item.measure_count || item.n_mesures || 0;
+const getStationName = (station: any) => station.station_nom || station.station_name || station.ire_station || station.station_id || 'Station sans nom';
+const getParameterName = (parameter: any) => parameter.parametre_qualite || parameter.parameter || 'Inconnu';
+
+export function QualityOverviewTab({ filters }: QualityOverviewTabProps) {
+  const supportType = filters?.supportType;
+
+  const { data: stations = [], isLoading: isLoadingStations, error: stationsError } = useQuery({
+    queryKey: ['unified-stations', supportType || 'ALL'],
+    queryFn: () => getQualityStations({ support_type: supportType || undefined }),
+    retry: false,
+    staleTime: 30_000,
+    refetchOnWindowFocus: false
   });
 
-  const { data: parameters = [], isLoading: isLoadingParams } = useQuery({
-    queryKey: ['unified-parameters'],
-    queryFn: () => getQualityParameters()
+  const { data: parameters = [], isLoading: isLoadingParams, error: paramsError } = useQuery({
+    queryKey: ['unified-parameters', supportType || 'ALL'],
+    queryFn: () => getQualityParameters({ support_type: supportType || undefined }),
+    retry: false,
+    staleTime: 30_000,
+    refetchOnWindowFocus: false
   });
 
   const isLoading = isLoadingStations || isLoadingParams;
+
+  const filteredStations = useMemo(() => {
+    if (!filters) return stations;
+    const stationSearch = normalizeText(filters.stationSearch);
+    const sousBassinSearch = normalizeText(filters.sousBassin);
+    const bassinSearch = normalizeText(filters.bassin);
+
+    return stations.filter((station: any) => {
+      const bassin = normalizeText(station.bassin_nom);
+      const sousBassin = normalizeText(station.sous_bassin_nom);
+      const stationText = normalizeText([
+        getStationName(station),
+        station.ire_station,
+        station.station_id,
+        station.code_station,
+      ].filter(Boolean).join(' '));
+
+      return (
+        (!bassinSearch || bassin.includes(bassinSearch)) &&
+        (!sousBassinSearch || sousBassin.includes(sousBassinSearch)) &&
+        (!stationSearch || stationText.includes(stationSearch))
+      );
+    });
+  }, [stations, filters]);
+
+  const filteredParameters = useMemo(() => {
+    if (!filters) return parameters;
+    const parameterSearch = normalizeText(filters.parameter);
+    return parameters.filter((parameter: any) => !parameterSearch || normalizeText(getParameterName(parameter)).includes(parameterSearch));
+  }, [parameters, filters]);
 
   const {
     totalStations,
@@ -26,20 +74,15 @@ export function QualityOverviewTab() {
     periodStr,
     supportData
   } = useMemo(() => {
-    if (!stations.length || !parameters.length) {
+    if (!filteredStations.length || !filteredParameters.length) {
       return { totalStations: 0, totalMesures: 0, totalParameters: 0, periodStr: '...', supportData: [] };
     }
 
-    const totalStations = stations.length;
-    // sum measure_count (it might be in n_mesures or measure_count based on API returned type)
-    // Looking at the endpoint, it returns measure_count, but the TS interface has n_mesures.
-    // Let's handle both to be safe
-    const getMeasureCount = (item: any) => item.measure_count || item.n_mesures || 0;
-    
-    const totalMesures = stations.reduce((sum, s) => sum + getMeasureCount(s), 0);
-    const totalParameters = parameters.length;
+    const totalStations = filteredStations.length;
+    const totalMesures = filteredStations.reduce((sum, s) => sum + getMeasureCount(s), 0);
+    const totalParameters = filteredParameters.length;
 
-    const dates = stations.flatMap(s => {
+    const dates = filteredStations.flatMap(s => {
       const min = s.dt_min || (s as any).date_min;
       const max = s.dt_max || (s as any).date_max;
       const res = [];
@@ -54,7 +97,7 @@ export function QualityOverviewTab() {
 
     // Compute Support Data for Donut
     const supportMap: Record<string, number> = {};
-    stations.forEach(s => {
+    filteredStations.forEach(s => {
       const type = s.support_type || 'INCONNU';
       supportMap[type] = (supportMap[type] || 0) + getMeasureCount(s);
     });
@@ -62,26 +105,41 @@ export function QualityOverviewTab() {
     const supportData = Object.entries(supportMap).map(([name, value]) => ({ name, value })).sort((a, b) => b.value - a.value);
 
     return { totalStations, totalMesures, totalParameters, periodStr, supportData };
-  }, [stations, parameters]);
+  }, [filteredStations, filteredParameters]);
 
   const topParamsData = useMemo(() => {
-    if (!parameters.length) return [];
-    const getMeasureCount = (item: any) => item.measure_count || item.n_mesures || 0;
-    const getName = (item: any) => item.parametre_qualite || item.parameter || 'Inconnu';
-    
-    return [...parameters]
+    if (!filteredParameters.length) return [];
+    return [...filteredParameters]
       .map(p => ({
-        name: getName(p),
+        name: getParameterName(p),
         mesures: getMeasureCount(p)
       }))
       .sort((a, b) => b.mesures - a.mesures)
       .slice(0, 5);
-  }, [parameters]);
+  }, [filteredParameters]);
 
   const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ec4899', '#8b5cf6'];
 
   if (isLoading) {
     return <div className="p-8 text-center text-slate-500">Chargement des données...</div>;
+  }
+
+  if (stationsError || paramsError) {
+    const err = stationsError || paramsError;
+    const errorMsg = (err as any)?.message || 'Erreur inconnue';
+    return (
+      <div className="p-8 text-center bg-red-50 text-red-600 rounded-md border border-red-200">
+        Erreur API : {errorMsg}
+      </div>
+    );
+  }
+
+  if (!filteredStations.length) {
+    return (
+      <div className="p-8 text-center bg-white rounded-md border border-slate-200 shadow-sm text-slate-500 italic">
+        Aucune donnée retournée par l'API
+      </div>
+    );
   }
 
   return (
@@ -107,7 +165,7 @@ export function QualityOverviewTab() {
         </div>
         <div className="bg-white p-4 rounded-md border border-slate-200 shadow-sm flex flex-col justify-center">
           <div className="text-sm text-slate-500 font-medium">Données valides</div>
-          <div className="text-lg font-medium text-slate-400 mt-1 italic">Donnée à brancher</div>
+          <div className="text-sm font-medium text-slate-400 mt-1 italic">Donnée insuffisante</div>
         </div>
       </div>
       
@@ -152,8 +210,8 @@ export function QualityOverviewTab() {
 
         <div className="bg-white p-4 rounded-md border border-slate-200 shadow-sm h-[320px] flex flex-col">
           <h3 className="font-semibold text-slate-900 mb-2">Évolution temporelle des mesures</h3>
-          <div className="flex-1 bg-slate-50 rounded border border-dashed border-slate-300 flex items-center justify-center text-slate-500 text-sm italic">
-            Donnée à brancher
+          <div className="flex-1 bg-slate-50 rounded border border-dashed border-slate-300 flex items-center justify-center text-slate-500 text-sm italic text-center p-4">
+            Donnée insuffisante — nécessite agrégat backend par mois/année.
           </div>
         </div>
 
@@ -175,24 +233,6 @@ export function QualityOverviewTab() {
             )}
           </div>
         </div>
-      </div>
-      
-      <div className="grid grid-cols-2 gap-4">
-        <div className="bg-white p-4 rounded-md border border-slate-200 shadow-sm h-48 flex flex-col">
-          <h3 className="font-semibold text-slate-900 mb-2">Qualité globale (toutes stations, toutes périodes)</h3>
-          <div className="flex-1 bg-slate-50 rounded border border-dashed border-slate-300 flex items-center justify-center text-slate-500 text-sm italic">
-            Donnée à brancher
-          </div>
-        </div>
-        <div className="bg-white p-4 rounded-md border border-slate-200 shadow-sm h-48 flex flex-col">
-          <h3 className="font-semibold text-slate-900 mb-2">Aperçu carte</h3>
-          <div className="flex-1 bg-slate-50 rounded border border-dashed border-slate-300 flex items-center justify-center text-slate-500 text-sm italic">
-            Donnée à brancher
-          </div>
-        </div>
-      </div>
-      <div className="mt-8 text-center text-xs text-slate-400">
-        Source : API Qualité unifiée — vue api.v_qualite_dashboard_unifiee
       </div>
     </div>
   );

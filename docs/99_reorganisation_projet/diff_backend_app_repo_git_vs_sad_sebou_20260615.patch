@@ -1,0 +1,4720 @@
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/api/__init__.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/api/__init__.py
+--- repo_git/backend/app/api/__init__.py	2026-04-06 08:15:19.734190800 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/api/__init__.py	2026-06-23 10:23:20.000000000 +0100
+@@ -1,9 +1,9 @@
+-# backend/app/api/__init__.py
+-from fastapi import APIRouter
+-from app.routers import layers
+-
+-# Création du routeur principal de l'API
+-api_router = APIRouter()
+-
+-# Inclusion des sous-routeurs
+-api_router.include_router(layers.router, prefix="/layers", tags=["layers"])
++# backend/app/api/__init__.py
++from fastapi import APIRouter
++from app.routers import layers
++
++# Création du routeur principal de l'API
++api_router = APIRouter()
++
++# Inclusion des sous-routeurs
++api_router.include_router(layers.router, prefix="/layers", tags=["layers"])
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/api/api_v1.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/api/api_v1.py
+--- repo_git/backend/app/api/api_v1.py	2026-06-16 12:26:24.673376500 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/api/api_v1.py	2026-06-23 10:23:20.000000000 +0100
+@@ -6,14 +6,13 @@
+ from app.api.v1.swat import router as swat_router
+ from app.api.v1.stations import router as stations_router
+ from app.api.v1.geojson import router as geo_router
+-from app.api.v1.measurements import router as meas_router
+-from app.api.v1.alerts import router as alerts_router
+-from app.api.v1.auth import router as auth_router
++from app.api.v1.measurements import router as meas_router
++from app.api.v1.alerts import router as alerts_router
++from app.api.v1.auth import router as auth_router
+ from app.api.v1.meta import router as meta_router
+ from app.api.v1.raw import router as raw_router
+ from app.api.v1.qualite_specialized import router as qualite_specialized_router
+ from app.api.v1.pollution import router as pollution_router
+-from app.api.v1.pollution_campagnes import router as pollution_campagnes_router
+ from app.api.v1.map import router as map_router
+ from app.api.v1.propagation import router as propagation_router
+ from app.api.v1.kpi import router as kpi_router
+@@ -26,21 +25,21 @@
+ 
+ from app.api.v1 import swat
+ 
+-from app.routers import hydro, quality, climate, entities, observatory, analytics, business_map, analysis
+-
+-
+-from app.routers.layers import router as layers_router
+-from app.routers.admin_data_scan import router as admin_data_scan_router
+-from app.routers.names import router as names_router
++from app.routers import hydro, quality, climate, entities, observatory, analytics
++
++
++from app.routers.layers import router as layers_router
++from app.routers.admin_data_scan import router as admin_data_scan_router
++from app.routers.names import router as names_router
+ from app.routers.admin_password_resets import router as admin_password_resets_router
+ from app.routers.admin_users import router as admin_users_router
+ from app.security.routes_users import router as users_router
+ from app.security.routes_logs import router as security_logs_router
+ from app.routers.layer_configs import router as layer_configs_router
+-
+-
+-
+-
++
++
++
++
+ from app.api.v1.routing import router as routing_router
+ 
+ 
+@@ -94,69 +93,66 @@
+ 
+ api_router = APIRouter()
+ api_router.include_router(routing_router, prefix='/routing', tags=['routing'])
+-
+-# =========================
+-# AUTH
+-# =========================
+-api_router.include_router(auth_router, tags=["Auth"])
+-
+-# =========================
+-# CORE API
+-# =========================
+-api_router.include_router(stations_router, tags=["stations"])
+-api_router.include_router(geo_router, tags=["geojson"])
+-api_router.include_router(meas_router, tags=["measurements"])
+-api_router.include_router(alerts_router, tags=["alerts"])
+-api_router.include_router(meta_router, tags=["meta"])
++
++# =========================
++# AUTH
++# =========================
++api_router.include_router(auth_router, tags=["Auth"])
++
++# =========================
++# CORE API
++# =========================
++api_router.include_router(stations_router, tags=["stations"])
++api_router.include_router(geo_router, tags=["geojson"])
++api_router.include_router(meas_router, tags=["measurements"])
++api_router.include_router(alerts_router, tags=["alerts"])
++api_router.include_router(meta_router, tags=["meta"])
+ api_router.include_router(raw_router, tags=["raw"])
+ api_router.include_router(data_admin_router)
+ api_router.include_router(data_admin_ingestion_router)
+ api_router.include_router(data_admin_templates_router)
+ api_router.include_router(data_admin_change_requests_router)
+ api_router.include_router(entities.router, tags=["entities"])
+-
+-# =========================
+-# LAYERS / NAMES
+-# =========================
+-api_router.include_router(layers_router, prefix="/layers", tags=["layers"])
+-api_router.include_router(names_router, prefix="/names", tags=["names"])
+-api_router.include_router(users_router, tags=["users"])
+-api_router.include_router(security_logs_router, tags=["security"])
+-
+-# =========================
+-# ADMIN
+-# =========================
+-api_router.include_router(admin_data_scan_router, prefix="/admin", tags=["admin"])
+-api_router.include_router(admin_password_resets_router, prefix="/admin", tags=["admin"])
+-api_router.include_router(admin_users_router, prefix="/admin", tags=["admin"])
+-
+-
+-# =========================
+-# DASHBOARDS
+-# =========================
++
++# =========================
++# LAYERS / NAMES
++# =========================
++api_router.include_router(layers_router, prefix="/layers", tags=["layers"])
++api_router.include_router(names_router, prefix="/names", tags=["names"])
++api_router.include_router(users_router, tags=["users"])
++api_router.include_router(security_logs_router, tags=["security"])
++
++# =========================
++# ADMIN
++# =========================
++api_router.include_router(admin_data_scan_router, prefix="/admin", tags=["admin"])
++api_router.include_router(admin_password_resets_router, prefix="/admin", tags=["admin"])
++api_router.include_router(admin_users_router, prefix="/admin", tags=["admin"])
++
++
++# =========================
++# DASHBOARDS
++# =========================
+ api_router.include_router(climate.router, prefix="/climate", tags=["Climate"])
+ api_router.include_router(hydro.router, prefix="/hydro", tags=["hydro"])
+ api_router.include_router(quality.router, prefix="/quality", tags=["Quality"])
+ api_router.include_router(qualite_specialized_router)
+ api_router.include_router(pollution_router)
+-api_router.include_router(pollution_campagnes_router)
+ api_router.include_router(map_router)
+-api_router.include_router(business_map.router, prefix="/business-map")
+ api_router.include_router(propagation_router)
+ api_router.include_router(kpi_router)
+ api_router.include_router(recommendations_router)
+ api_router.include_router(dashboard_router)
+ api_router.include_router(observatory.router)
+ api_router.include_router(analytics.router, prefix="/analytics", tags=["Analytics"])
+-api_router.include_router(analysis.router, prefix="/business-map/analysis", tags=["Business Map Analysis"])
+-
++
+ # =========================
+ # SWAT
+ # =========================
+ api_router.include_router(swat_router, tags=["swat"])
+ api_router.include_router(swat.router)
+ SWAT_ANALYSIS_AVAILABLE = _include_optional_swat_analysis(api_router)
+-
++
+ # =========================
+ # INGESTION / SAD
+ # =========================
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/api/deps.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/api/deps.py
+--- repo_git/backend/app/api/deps.py	2026-04-06 08:15:19.736192200 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/api/deps.py	2026-06-23 10:23:20.000000000 +0100
+@@ -1,26 +1,26 @@
+-# backend/app/api/deps.py
+-from fastapi import Depends, HTTPException, status
+-from fastapi.security import OAuth2PasswordBearer
+-from sqlalchemy.orm import Session
+-from app.db.session import SessionLocal
+-from app.core.security import decode_token
+-from app.models.user import User
+-import app.models.item  # noqa: F401  # ensure Item mapper is registered
+-
+-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")
+-
+-def get_db():
+-    db = SessionLocal()
+-    try:
+-        yield db
+-    finally:
+-        db.close()
+-
+-def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)) -> User:
+-    subject = decode_token(token)
+-    if not subject:
+-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid or expired token")
+-    user = db.query(User).filter(User.email == subject).first()
+-    if not user:
+-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found")
+-    return user
++# backend/app/api/deps.py
++from fastapi import Depends, HTTPException, status
++from fastapi.security import OAuth2PasswordBearer
++from sqlalchemy.orm import Session
++from app.db.session import SessionLocal
++from app.core.security import decode_token
++from app.models.user import User
++import app.models.item  # noqa: F401  # ensure Item mapper is registered
++
++oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")
++
++def get_db():
++    db = SessionLocal()
++    try:
++        yield db
++    finally:
++        db.close()
++
++def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)) -> User:
++    subject = decode_token(token)
++    if not subject:
++        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid or expired token")
++    user = db.query(User).filter(User.email == subject).first()
++    if not user:
++        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found")
++    return user
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/api/items.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/api/items.py
+--- repo_git/backend/app/api/items.py	2026-04-06 08:15:19.736192200 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/api/items.py	2026-06-23 10:23:20.000000000 +0100
+@@ -1,13 +1,13 @@
+-from fastapi import APIRouter, Depends
+-from sqlalchemy.orm import Session
+-from db import crud, schemas, database
+-
+-router = APIRouter(prefix="/items", tags=["items"])
+-
+-@router.post("/", response_model=schemas.Item)
+-def create_item(item: schemas.ItemCreate, db: Session = Depends(database.get_db)):
+-    return crud.create_item(db=db, item=item)
+-
+-@router.get("/", response_model=list[schemas.Item])
+-def read_items(skip: int = 0, limit: int = 10, db: Session = Depends(database.get_db)):
+-    return crud.get_items(db=db, skip=skip, limit=limit)
++from fastapi import APIRouter, Depends
++from sqlalchemy.orm import Session
++from db import crud, schemas, database
++
++router = APIRouter(prefix="/items", tags=["items"])
++
++@router.post("/", response_model=schemas.Item)
++def create_item(item: schemas.ItemCreate, db: Session = Depends(database.get_db)):
++    return crud.create_item(db=db, item=item)
++
++@router.get("/", response_model=list[schemas.Item])
++def read_items(skip: int = 0, limit: int = 10, db: Session = Depends(database.get_db)):
++    return crud.get_items(db=db, skip=skip, limit=limit)
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/api/v1/dashboard.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/api/v1/dashboard.py
+--- repo_git/backend/app/api/v1/dashboard.py	2026-06-08 14:59:30.745752300 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/api/v1/dashboard.py	2026-06-25 13:35:57.211707600 +0100
+@@ -1,13 +1,22 @@
+-from fastapi import APIRouter, Depends, Query
++from fastapi import APIRouter, Depends, HTTPException, Query
+ from sqlalchemy.orm import Session
+ 
+ from app.db.climate_database import get_climate_db
+ from app.services.dashboard import get_dashboard_home, get_dashboard_trends
++from app.services.map_business_service import entities_geojson
+ 
+ 
+ router = APIRouter(prefix="/dashboard", tags=["Operational Home V2"])
+ 
+ 
++_LAYER_TO_MAP_FILTERS = {
++    "barrages": {"support": "barrages"},
++    "hydro": {"support": "stations.hydro", "group_code": "stations", "support_code": "hydro"},
++    "pluvio": {"support": "stations.pluvio", "group_code": "stations", "support_code": "pluvio"},
++    "quality_daily": {"support": "stations_qualite"},
++}
++
++
+ @router.get("/home")
+ def get_home_dashboard(db: Session = Depends(get_climate_db)):
+     return get_dashboard_home(db)
+@@ -19,3 +28,16 @@
+     db: Session = Depends(get_climate_db),
+ ):
+     return get_dashboard_trends(db, days=days)
++
++
++@router.get("/map")
++def get_dashboard_map(
++    layers: str = Query(..., description="Layer code exposed by /dashboard/home"),
++    limit: int = Query(200, ge=1, le=5000),
++    db: Session = Depends(get_climate_db),
++):
++    filters = _LAYER_TO_MAP_FILTERS.get(layers)
++    if filters is None:
++        raise HTTPException(status_code=422, detail=f"Layer non supporté: {layers}")
++    return entities_geojson(db, limit=limit, **filters)
++
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/api/v1/items.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/api/v1/items.py
+--- repo_git/backend/app/api/v1/items.py	2026-04-06 08:15:19.742301200 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/api/v1/items.py	2026-06-23 10:23:20.000000000 +0100
+@@ -1,51 +1,51 @@
+-# backend/app/api/v1/items.py
+-from fastapi import APIRouter, Depends, HTTPException, status
+-from sqlalchemy.orm import Session
+-from typing import List
+-from app.api.deps import get_db, get_current_user
+-from app.models.item import Item
+-from app.models.user import User
+-from app.schemas.item import ItemCreate, ItemOut, ItemUpdate
+-
+-router = APIRouter(prefix="/items", tags=["Items"])
+-
+-@router.get("/", response_model=List[ItemOut])
+-def list_items(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+-    return db.query(Item).filter(Item.owner_id == current_user.id).order_by(Item.id.desc()).all()
+-
+-@router.post("/", response_model=ItemOut, status_code=status.HTTP_201_CREATED)
+-def create_item(item_in: ItemCreate, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+-    item = Item(title=item_in.title, description=item_in.description, owner_id=current_user.id)
+-    db.add(item)
+-    db.commit()
+-    db.refresh(item)
+-    return item
+-
+-@router.get("/{item_id}", response_model=ItemOut)
+-def get_item(item_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+-    item = db.query(Item).filter(Item.id == item_id, Item.owner_id == current_user.id).first()
+-    if not item:
+-        raise HTTPException(status_code=404, detail="Item not found")
+-    return item
+-
+-@router.put("/{item_id}", response_model=ItemOut)
+-def update_item(item_id: int, item_in: ItemUpdate, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+-    item = db.query(Item).filter(Item.id == item_id, Item.owner_id == current_user.id).first()
+-    if not item:
+-        raise HTTPException(status_code=404, detail="Item not found")
+-    if item_in.title is not None:
+-        item.title = item_in.title
+-    if item_in.description is not None:
+-        item.description = item_in.description
+-    db.commit()
+-    db.refresh(item)
+-    return item
+-
+-@router.delete("/{item_id}", status_code=status.HTTP_204_NO_CONTENT)
+-def delete_item(item_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+-    item = db.query(Item).filter(Item.id == item_id, Item.owner_id == current_user.id).first()
+-    if not item:
+-        raise HTTPException(status_code=404, detail="Item not found")
+-    db.delete(item)
+-    db.commit()
+-    return
++# backend/app/api/v1/items.py
++from fastapi import APIRouter, Depends, HTTPException, status
++from sqlalchemy.orm import Session
++from typing import List
++from app.api.deps import get_db, get_current_user
++from app.models.item import Item
++from app.models.user import User
++from app.schemas.item import ItemCreate, ItemOut, ItemUpdate
++
++router = APIRouter(prefix="/items", tags=["Items"])
++
++@router.get("/", response_model=List[ItemOut])
++def list_items(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
++    return db.query(Item).filter(Item.owner_id == current_user.id).order_by(Item.id.desc()).all()
++
++@router.post("/", response_model=ItemOut, status_code=status.HTTP_201_CREATED)
++def create_item(item_in: ItemCreate, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
++    item = Item(title=item_in.title, description=item_in.description, owner_id=current_user.id)
++    db.add(item)
++    db.commit()
++    db.refresh(item)
++    return item
++
++@router.get("/{item_id}", response_model=ItemOut)
++def get_item(item_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
++    item = db.query(Item).filter(Item.id == item_id, Item.owner_id == current_user.id).first()
++    if not item:
++        raise HTTPException(status_code=404, detail="Item not found")
++    return item
++
++@router.put("/{item_id}", response_model=ItemOut)
++def update_item(item_id: int, item_in: ItemUpdate, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
++    item = db.query(Item).filter(Item.id == item_id, Item.owner_id == current_user.id).first()
++    if not item:
++        raise HTTPException(status_code=404, detail="Item not found")
++    if item_in.title is not None:
++        item.title = item_in.title
++    if item_in.description is not None:
++        item.description = item_in.description
++    db.commit()
++    db.refresh(item)
++    return item
++
++@router.delete("/{item_id}", status_code=status.HTTP_204_NO_CONTENT)
++def delete_item(item_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
++    item = db.query(Item).filter(Item.id == item_id, Item.owner_id == current_user.id).first()
++    if not item:
++        raise HTTPException(status_code=404, detail="Item not found")
++    db.delete(item)
++    db.commit()
++    return
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/api/v1/pollution_campagnes.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/api/v1/pollution_campagnes.py
+--- repo_git/backend/app/api/v1/pollution_campagnes.py	2026-06-16 12:26:17.380768900 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/api/v1/pollution_campagnes.py	1970-01-01 01:00:00.000000000 +0100
+@@ -1,97 +0,0 @@
+-from __future__ import annotations
+-
+-from datetime import date
+-from typing import Optional
+-
+-from fastapi import APIRouter, Depends, HTTPException, Query, status
+-from sqlalchemy.orm import Session
+-
+-from app.db.climate_database import get_climate_db
+-from app.models import pollution_campagnes_models as models
+-from app.services import pollution_campagnes_service as service
+-
+-router = APIRouter(prefix="/pollution", tags=["Pollution Campagnes"])
+-
+-
+-@router.get("/campagnes", response_model=list[models.CampagneSummary])
+-def get_campagnes(db: Session = Depends(get_climate_db)) -> list[dict]:
+-    """Synthèse des campagnes de prélèvement (déduction provisoire par date)."""
+-    return service.list_campagnes(db)
+-
+-
+-@router.get("/prelevements", response_model=list[models.PrelevementListItem])
+-def get_prelevements(
+-    date_from: Optional[date] = Query(None, description="Date de début (YYYY-MM-DD)"),
+-    date_to: Optional[date] = Query(None, description="Date de fin (YYYY-MM-DD)"),
+-    campagne: Optional[str] = Query(None, description="ID de campagne, ex: IDP_GLOBALE_2024"),
+-    site: Optional[str] = Query(None, description="Recherche libre sur le nom du point"),
+-    parametre: Optional[str] = Query(None, description="Code paramètre, ex: Cd"),
+-    limit: int = Query(500, ge=1, le=2000),
+-    offset: int = Query(0, ge=0),
+-    db: Session = Depends(get_climate_db),
+-) -> list[dict]:
+-    """Liste des prélèvements de campagne, filtrable."""
+-    return service.list_prelevements(
+-        db,
+-        date_from=date_from,
+-        date_to=date_to,
+-        campagne=campagne,
+-        site=site,
+-        parametre=parametre,
+-        limit=limit,
+-        offset=offset,
+-    )
+-
+-
+-@router.get("/prelevements/{id_prelevement}", response_model=models.PrelevementDetail)
+-def get_prelevement_detail(id_prelevement: str, db: Session = Depends(get_climate_db)) -> dict:
+-    """Détail d'un prélèvement."""
+-    detail = service.get_prelevement_detail(db, id_prelevement)
+-    if not detail:
+-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Prélèvement non trouvé")
+-    return detail
+-
+-
+-@router.get("/prelevements/{id_prelevement}/mesures", response_model=models.PrelevementMesuresResponse)
+-def get_prelevement_mesures(id_prelevement: str, db: Session = Depends(get_climate_db)) -> dict:
+-    """Fiche détail : prélèvement + ses mesures paramétrées."""
+-    prelevement = service.get_prelevement_detail(db, id_prelevement)
+-    if not prelevement:
+-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Prélèvement non trouvé")
+-    mesures = service.get_prelevement_mesures(db, id_prelevement)
+-    return {"prelevement": prelevement, "mesures": mesures}
+-
+-
+-@router.get("/prelevements/{id_prelevement}/liens", response_model=models.PrelevementLiensResponse)
+-def get_prelevement_liens(id_prelevement: str, db: Session = Depends(get_climate_db)) -> dict:
+-    """Entités d'inventaire pollution liées au prélèvement."""
+-    # Vérifier l'existence du prélèvement
+-    if not service.get_prelevement_detail(db, id_prelevement):
+-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Prélèvement non trouvé")
+-    entites = service.get_prelevement_liens(db, id_prelevement)
+-    return {"entites": entites}
+-
+-
+-@router.get("/alerts", response_model=list[models.PollutionAlert])
+-def get_pollution_alerts(
+-    date_from: Optional[date] = Query(None),
+-    date_to: Optional[date] = Query(None),
+-    parametre: Optional[str] = Query(None),
+-    level: Optional[str] = Query(None, pattern="^(WARNING|CRITICAL)$"),
+-    campagne: Optional[str] = Query(None),
+-    limit: int = Query(500, ge=1, le=2000),
+-    db: Session = Depends(get_climate_db),
+-) -> list[dict]:
+-    """Dépassements des seuils provisoires sur métaux lourds.
+-
+-    Les seuils sont provisoires et doivent être validés par le service qualité.
+-    """
+-    return service.list_alerts(
+-        db,
+-        date_from=date_from,
+-        date_to=date_to,
+-        parametre=parametre,
+-        level=level,
+-        campagne=campagne,
+-        limit=limit,
+-    )
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/api/v1/propagation.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/api/v1/propagation.py
+--- repo_git/backend/app/api/v1/propagation.py	2026-06-16 11:31:46.935316900 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/api/v1/propagation.py	2026-06-23 10:23:20.000000000 +0100
+@@ -1,10 +1,7 @@
+ from __future__ import annotations
+ 
+-from fastapi import APIRouter, Depends, HTTPException, Query
+-from sqlalchemy.orm import Session
++from fastapi import APIRouter, HTTPException, Query
+ 
+-from app.api.deps import get_db
+-from app.models.propagation_models import SimulatePropagationRequest, SimulatePropagationResponse
+ from app.services.propagation import propagation_pollution_service
+ 
+ 
+@@ -52,33 +49,6 @@
+         raise HTTPException(status_code=400, detail=str(exc)) from exc
+ 
+ 
+-@router.get("/network.geojson")
+-def get_network_geojson():
+-    """Retourne le réseau hydrographique validé utilisé par le moteur de propagation."""
+-    return propagation_pollution_service.get_network_geojson()
+-
+-
+-@router.post("/simulate", response_model=SimulatePropagationResponse)
+-async def simulate_propagation(
+-    request: SimulatePropagationRequest,
+-    db: Session = Depends(get_db),
+-):
+-    """
+-    Simule la propagation d'un polluant depuis un point lat/lon.
+-    """
+-    return propagation_pollution_service.simulate_propagation_from_point(
+-        db=db,
+-        lat=request.lat,
+-        lon=request.lon,
+-        pollutant_type=request.pollutant_type,
+-        initial_concentration_mg_l=request.initial_concentration_mg_l,
+-        timestamp=request.timestamp,
+-        simulation_hours=request.simulation_hours,
+-        vitesse_reference_kmh=request.vitesse_reference_kmh,
+-        lambda_1_per_h=request.lambda_1_per_h,
+-    )
+-
+-
+ @router.get("/snap-diagnostic")
+ def get_snap_diagnostic(
+     site_id: str | None = Query(None),
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/core/logger.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/core/logger.py
+--- repo_git/backend/app/core/logger.py	2026-04-06 08:15:19.748415800 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/core/logger.py	2026-06-23 10:23:20.000000000 +0100
+@@ -1,9 +1,9 @@
+-import logging
+-
+-logging.basicConfig(
+-    level=logging.INFO,
+-    format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
+-)
+-
+-def get_logger(name: str):
+-    return logging.getLogger(name)
++import logging
++
++logging.basicConfig(
++    level=logging.INFO,
++    format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
++)
++
++def get_logger(name: str):
++    return logging.getLogger(name)
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/core/security.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/core/security.py
+--- repo_git/backend/app/core/security.py	2026-04-06 08:15:19.748415800 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/core/security.py	2026-06-23 10:23:20.000000000 +0100
+@@ -1,28 +1,28 @@
+-#backend/app/core/security.py
+-from datetime import datetime, timedelta, timezone
+-from jose import jwt, JWTError
+-from passlib.context import CryptContext
+-from app.core.config import settings
+-
+-pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
+-ALGORITHM = "HS256"
+-
+-def create_access_token(subject: str, expires_minutes: int | None = None) -> str:
+-    if expires_minutes is None:
+-        expires_minutes = settings.ACCESS_TOKEN_EXPIRE_MINUTES
+-    expire = datetime.now(timezone.utc) + timedelta(minutes=expires_minutes)
+-    to_encode = {"sub": subject, "exp": expire}
+-    return jwt.encode(to_encode, settings.SECRET_KEY, algorithm=ALGORITHM)
+-
+-def verify_password(plain_password: str, hashed_password: str) -> bool:
+-    return pwd_context.verify(plain_password, hashed_password)
+-
+-def get_password_hash(password: str) -> str:
+-    return pwd_context.hash(password)
+-
+-def decode_token(token: str):
+-    try:
+-        payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[ALGORITHM])
+-        return payload.get("sub")
+-    except JWTError:
+-        return None
++#backend/app/core/security.py
++from datetime import datetime, timedelta, timezone
++from jose import jwt, JWTError
++from passlib.context import CryptContext
++from app.core.config import settings
++
++pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
++ALGORITHM = "HS256"
++
++def create_access_token(subject: str, expires_minutes: int | None = None) -> str:
++    if expires_minutes is None:
++        expires_minutes = settings.ACCESS_TOKEN_EXPIRE_MINUTES
++    expire = datetime.now(timezone.utc) + timedelta(minutes=expires_minutes)
++    to_encode = {"sub": subject, "exp": expire}
++    return jwt.encode(to_encode, settings.SECRET_KEY, algorithm=ALGORITHM)
++
++def verify_password(plain_password: str, hashed_password: str) -> bool:
++    return pwd_context.verify(plain_password, hashed_password)
++
++def get_password_hash(password: str) -> str:
++    return pwd_context.hash(password)
++
++def decode_token(token: str):
++    try:
++        payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[ALGORITHM])
++        return payload.get("sub")
++    except JWTError:
++        return None
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/db/base.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/db/base.py
+--- repo_git/backend/app/db/base.py	2026-04-06 08:15:19.749415500 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/db/base.py	2026-06-23 10:23:20.000000000 +0100
+@@ -1,5 +1,5 @@
+-# backend/app/db/base.py
+-from sqlalchemy.orm import DeclarativeBase
+-
+-class Base(DeclarativeBase):
+-    pass
++# backend/app/db/base.py
++from sqlalchemy.orm import DeclarativeBase
++
++class Base(DeclarativeBase):
++    pass
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/db/crud.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/db/crud.py
+--- repo_git/backend/app/db/crud.py	2026-04-06 08:15:19.751415600 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/db/crud.py	2026-06-23 10:23:20.000000000 +0100
+@@ -1,13 +1,13 @@
+-#backend\app\db\crud.py
+-from sqlalchemy.orm import Session
+-from . import models, schemas
+-
+-def get_items(db: Session, skip: int = 0, limit: int = 10):
+-    return db.query(models.Item).offset(skip).limit(limit).all()
+-
+-def create_item(db: Session, item: schemas.ItemCreate):
+-    db_item = models.Item(name=item.name, description=item.description)
+-    db.add(db_item)
+-    db.commit()
+-    db.refresh(db_item)
+-    return db_item
++#backend\app\db\crud.py
++from sqlalchemy.orm import Session
++from . import models, schemas
++
++def get_items(db: Session, skip: int = 0, limit: int = 10):
++    return db.query(models.Item).offset(skip).limit(limit).all()
++
++def create_item(db: Session, item: schemas.ItemCreate):
++    db_item = models.Item(name=item.name, description=item.description)
++    db.add(db_item)
++    db.commit()
++    db.refresh(db_item)
++    return db_item
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/db/database.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/db/database.py
+--- repo_git/backend/app/db/database.py	2026-04-06 08:15:19.751415600 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/db/database.py	2026-06-23 10:23:20.000000000 +0100
+@@ -1,6 +1,6 @@
+-# backend/app/db/database.py
+-# Shim de compatibilité : réexporte la session unifiée
+-from app.db.session import engine, SessionLocal, get_db  # noqa: F401
+-
+-# Si d'anciens imports utilisent "Base" depuis database.py, on NE la redéfinit pas ici.
+-# La "Base" unique doit venir de app.db.base import Base.
++# backend/app/db/database.py
++# Shim de compatibilité : réexporte la session unifiée
++from app.db.session import engine, SessionLocal, get_db  # noqa: F401
++
++# Si d'anciens imports utilisent "Base" depuis database.py, on NE la redéfinit pas ici.
++# La "Base" unique doit venir de app.db.base import Base.
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/db/models.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/db/models.py
+--- repo_git/backend/app/db/models.py	2026-04-06 08:15:19.752415500 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/db/models.py	2026-06-23 10:23:20.000000000 +0100
+@@ -1,9 +1,9 @@
+-#backend\app\db\models.py
+-from sqlalchemy import Column, Integer, String
+-from .base import Base
+-
+-class Item(Base):
+-    __tablename__ = "items"
+-    id = Column(Integer, primary_key=True, index=True)
+-    name = Column(String, nullable=False)
+-    description = Column(String)
++#backend\app\db\models.py
++from sqlalchemy import Column, Integer, String
++from .base import Base
++
++class Item(Base):
++    __tablename__ = "items"
++    id = Column(Integer, primary_key=True, index=True)
++    name = Column(String, nullable=False)
++    description = Column(String)
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/db/schemas.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/db/schemas.py
+--- repo_git/backend/app/db/schemas.py	2026-04-06 08:15:19.752415500 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/db/schemas.py	2026-06-23 10:23:20.000000000 +0100
+@@ -1,15 +1,15 @@
+-#backend\app\db\schemas.py
+-from pydantic import BaseModel
+-
+-class ItemBase(BaseModel):
+-    name: str
+-    description: str | None = None
+-
+-class ItemCreate(ItemBase):
+-    pass
+-
+-class Item(ItemBase):
+-    id: int
+-
+-    class Config:
+-        orm_mode = True
++#backend\app\db\schemas.py
++from pydantic import BaseModel
++
++class ItemBase(BaseModel):
++    name: str
++    description: str | None = None
++
++class ItemCreate(ItemBase):
++    pass
++
++class Item(ItemBase):
++    id: int
++
++    class Config:
++        orm_mode = True
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/db_raw.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/db_raw.py
+--- repo_git/backend/app/db_raw.py	2026-04-06 08:15:19.754415300 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/db_raw.py	2026-06-23 10:23:20.000000000 +0100
+@@ -1,118 +1,118 @@
+-# backend/app/db_raw.py
+-
+-import os
+-import logging
+-from contextlib import contextmanager
+-from typing import Iterator, Optional
+-
+-from dotenv import load_dotenv
+-load_dotenv()  # ✅ AVANT l'import settings
+-
+-import psycopg2
+-from psycopg2 import OperationalError
+-from psycopg2.pool import SimpleConnectionPool
+-
+-from app.core.config import settings
+-
+-logger = logging.getLogger(__name__)
+-
+-# --- Support de DATABASE_URL (prioritaire si présent) ---
+-DATABASE_URL = os.getenv("DATABASE_URL")
+-if DATABASE_URL and DATABASE_URL.startswith("postgresql+psycopg2://"):
+-    DATABASE_URL = DATABASE_URL.replace("postgresql+psycopg2://", "postgresql://", 1)
+-
+-DB_HOST = DB_PORT = DB_NAME = DB_USER = DB_PASS = None
+-if not DATABASE_URL:
+-    DB_HOST = os.getenv("DB_HOST") or settings.DB_HOST
+-    DB_PORT = int(os.getenv("DB_PORT", settings.DB_PORT or 5432))
+-    DB_NAME = os.getenv("DB_NAME") or settings.DB_NAME
+-    DB_USER = os.getenv("DB_USER") or settings.DB_USER
+-    DB_PASS = os.getenv("DB_PASS") or settings.DB_PASS
+-
+-# Options supplémentaires (facultatives) depuis .env
+-DB_CONNECT_TIMEOUT = int(os.getenv("DB_CONNECT_TIMEOUT", "5"))
+-DB_APP_NAME = os.getenv("DB_APP_NAME", "hydroqual_api")
+-DB_SSLMODE = os.getenv("DB_SSLMODE", "")
+-
+-# Pool
+-DB_POOL_MIN = int(os.getenv("DB_POOL_MIN", "1"))
+-DB_POOL_MAX = int(os.getenv("DB_POOL_MAX", "10"))
+-
+-
+-def _conn_kwargs() -> dict:
+-    if DATABASE_URL:
+-        return {
+-            "dsn": DATABASE_URL,
+-            "connect_timeout": DB_CONNECT_TIMEOUT,
+-            "application_name": DB_APP_NAME,
+-        }
+-    kwargs = {
+-        "host": DB_HOST,
+-        "port": DB_PORT,
+-        "dbname": DB_NAME,
+-        "user": DB_USER,
+-        "password": DB_PASS,
+-        "connect_timeout": DB_CONNECT_TIMEOUT,
+-        "application_name": DB_APP_NAME,
+-    }
+-    if DB_SSLMODE:
+-        kwargs["sslmode"] = DB_SSLMODE
+-    return kwargs
+-
+-
+-_pool: Optional[SimpleConnectionPool] = None
+-
+-
+-def _ensure_pool() -> SimpleConnectionPool:
+-    global _pool
+-    if _pool is None:
+-        kwargs = _conn_kwargs()
+-        logger.info(
+-            "Initialisation pool PostgreSQL (min=%s, max=%s) via %s",
+-            DB_POOL_MIN, DB_POOL_MAX,
+-            "DATABASE_URL" if DATABASE_URL else f"{kwargs.get('host')}:{kwargs.get('port')}/{kwargs.get('dbname')}",
+-        )
+-        _pool = SimpleConnectionPool(DB_POOL_MIN, DB_POOL_MAX, **kwargs)
+-    return _pool
+-
+-
+-def conn():
+-    """Connexion directe (hors pool)."""
+-    return psycopg2.connect(**_conn_kwargs())
+-
+-
+-def get_conn():
+-    return conn()
+-
+-
+-@contextmanager
+-def connection() -> Iterator[psycopg2.extensions.connection]:
+-    pool = _ensure_pool()
+-    cx = None
+-    try:
+-        cx = pool.getconn()
+-        yield cx
+-        cx.commit()
+-    except Exception as e:
+-        if cx:
+-            cx.rollback()
+-        logger.exception("Erreur DB, rollback: %s", e)
+-        raise
+-    finally:
+-        if cx:
+-            pool.putconn(cx)
+-
+-
+-def ping() -> bool:
+-    try:
+-        with connection() as cx:
+-            with cx.cursor() as cur:
+-                cur.execute("SELECT 1;")
+-                cur.fetchone()
+-        return True
+-    except OperationalError as e:
+-        logger.error("Ping DB échoué (OperationalError): %s", e)
+-        return False
+-    except Exception as e:
+-        logger.error("Ping DB échoué: %s", e)
+-        return False
++# backend/app/db_raw.py
++
++import os
++import logging
++from contextlib import contextmanager
++from typing import Iterator, Optional
++
++from dotenv import load_dotenv
++load_dotenv()  # ✅ AVANT l'import settings
++
++import psycopg2
++from psycopg2 import OperationalError
++from psycopg2.pool import SimpleConnectionPool
++
++from app.core.config import settings
++
++logger = logging.getLogger(__name__)
++
++# --- Support de DATABASE_URL (prioritaire si présent) ---
++DATABASE_URL = os.getenv("DATABASE_URL")
++if DATABASE_URL and DATABASE_URL.startswith("postgresql+psycopg2://"):
++    DATABASE_URL = DATABASE_URL.replace("postgresql+psycopg2://", "postgresql://", 1)
++
++DB_HOST = DB_PORT = DB_NAME = DB_USER = DB_PASS = None
++if not DATABASE_URL:
++    DB_HOST = os.getenv("DB_HOST") or settings.DB_HOST
++    DB_PORT = int(os.getenv("DB_PORT", settings.DB_PORT or 5432))
++    DB_NAME = os.getenv("DB_NAME") or settings.DB_NAME
++    DB_USER = os.getenv("DB_USER") or settings.DB_USER
++    DB_PASS = os.getenv("DB_PASS") or settings.DB_PASS
++
++# Options supplémentaires (facultatives) depuis .env
++DB_CONNECT_TIMEOUT = int(os.getenv("DB_CONNECT_TIMEOUT", "5"))
++DB_APP_NAME = os.getenv("DB_APP_NAME", "hydroqual_api")
++DB_SSLMODE = os.getenv("DB_SSLMODE", "")
++
++# Pool
++DB_POOL_MIN = int(os.getenv("DB_POOL_MIN", "1"))
++DB_POOL_MAX = int(os.getenv("DB_POOL_MAX", "10"))
++
++
++def _conn_kwargs() -> dict:
++    if DATABASE_URL:
++        return {
++            "dsn": DATABASE_URL,
++            "connect_timeout": DB_CONNECT_TIMEOUT,
++            "application_name": DB_APP_NAME,
++        }
++    kwargs = {
++        "host": DB_HOST,
++        "port": DB_PORT,
++        "dbname": DB_NAME,
++        "user": DB_USER,
++        "password": DB_PASS,
++        "connect_timeout": DB_CONNECT_TIMEOUT,
++        "application_name": DB_APP_NAME,
++    }
++    if DB_SSLMODE:
++        kwargs["sslmode"] = DB_SSLMODE
++    return kwargs
++
++
++_pool: Optional[SimpleConnectionPool] = None
++
++
++def _ensure_pool() -> SimpleConnectionPool:
++    global _pool
++    if _pool is None:
++        kwargs = _conn_kwargs()
++        logger.info(
++            "Initialisation pool PostgreSQL (min=%s, max=%s) via %s",
++            DB_POOL_MIN, DB_POOL_MAX,
++            "DATABASE_URL" if DATABASE_URL else f"{kwargs.get('host')}:{kwargs.get('port')}/{kwargs.get('dbname')}",
++        )
++        _pool = SimpleConnectionPool(DB_POOL_MIN, DB_POOL_MAX, **kwargs)
++    return _pool
++
++
++def conn():
++    """Connexion directe (hors pool)."""
++    return psycopg2.connect(**_conn_kwargs())
++
++
++def get_conn():
++    return conn()
++
++
++@contextmanager
++def connection() -> Iterator[psycopg2.extensions.connection]:
++    pool = _ensure_pool()
++    cx = None
++    try:
++        cx = pool.getconn()
++        yield cx
++        cx.commit()
++    except Exception as e:
++        if cx:
++            cx.rollback()
++        logger.exception("Erreur DB, rollback: %s", e)
++        raise
++    finally:
++        if cx:
++            pool.putconn(cx)
++
++
++def ping() -> bool:
++    try:
++        with connection() as cx:
++            with cx.cursor() as cur:
++                cur.execute("SELECT 1;")
++                cur.fetchone()
++        return True
++    except OperationalError as e:
++        logger.error("Ping DB échoué (OperationalError): %s", e)
++        return False
++    except Exception as e:
++        logger.error("Ping DB échoué: %s", e)
++        return False
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/etl/import_swat.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/etl/import_swat.py
+--- repo_git/backend/app/etl/import_swat.py	2026-04-06 08:15:19.755415600 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/etl/import_swat.py	2026-06-23 10:23:20.000000000 +0100
+@@ -1,79 +1,79 @@
+-# backend/app/etl/import_swat.py
+-import pandas as pd
+-from sqlalchemy import text
+-from app.db.session import engine, SessionLocal
+-
+-# ---------- helpers ----------
+-def _ensure_scenario(name: str) -> int:
+-    with SessionLocal() as db:
+-        row = db.execute(text("""
+-            INSERT INTO swat_sebou.swat_scenarios (name)
+-            VALUES (:name)
+-            ON CONFLICT DO NOTHING
+-            RETURNING id
+-        """), {"name": name}).first()
+-        if row:
+-            db.commit()
+-            return row[0]
+-        # déjà existant -> récupérer l’id
+-        row = db.execute(text("SELECT id FROM swat_sebou.swat_scenarios WHERE name=:name"), {"name": name}).first()
+-        return row[0]
+-
+-# ---------- output.sub ----------
+-def import_output_sub(path: str, scenario_name: str, timestep: str = "daily"):
+-    scen_id = _ensure_scenario(scenario_name)
+-    # adapter skiprows selon ton fichier; beaucoup d'export SWAT ont ~9-12 lignes d'en-tête
+-    df = pd.read_fwf(path, skiprows=9, names=[
+-        "sub", "gis", "mon", "area", "precip", "snomelt", "pet",
+-        "et", "sw", "perc", "surq", "gw_q", "wyld",
+-        "syld", "orgn", "orgp", "nsurq", "solp", "sedp"
+-    ])
+-
+-    # Interprétation de "mon" selon timestep (daily/mois/année)
+-    # Ici on suppose "daily" -> 'mon' est une date julienne; sinon adapter (à affiner selon ton export réel)
+-    # Pour démarrer simplement: on suppose que ton fichier contient déjà une colonne 'date' ou on
+-    # utilise une date fictive; le mieux est d'importer aussi un calendrier depuis le run SWAT.
+-    # Exemple minimal: on ignore 'mon' et on crée un index croissant (à adapter !)
+-    df["date"] = pd.date_range("2000-01-01", periods=len(df), freq="D")  # TODO: adapter
+-
+-    rows = df[[
+-        "sub", "date", "precip", "surq", "gw_q", "wyld", "sedp", "orgn", "solp"
+-    ]].copy()
+-    rows["scenario_id"] = scen_id
+-
+-    with engine.begin() as conn:
+-        conn.execute(text("""
+-            INSERT INTO swat_sebou.swat_subbasin_results
+-            (scenario_id, subbasin, date, precip, surq, gw_q, wyld, sedp, orgn, solp)
+-            VALUES (:scenario_id, :sub, :date, :precip, :surq, :gw_q, :wyld, :sedp, :orgn, :solp)
+-        """), rows.to_dict(orient="records"))
+-
+-# ---------- output.rch ----------
+-def import_output_rch(path: str, scenario_name: str):
+-    scen_id = _ensure_scenario(scenario_name)
+-    df = pd.read_fwf(path, skiprows=9, names=[
+-        "rch", "gis", "mon", "area", "flow_in", "flow_out", "evap", "tloss",
+-        "sed_in", "sed_out", "sedconc", "orgn_in", "orgn_out", "orgp_in", "orgp_out",
+-        "no3_in", "no3_out", "nh4_in", "nh4_out", "no2_in", "no2_out", "minp_in", "minp_out",
+-        "chla_in", "chla_out", "cbod_in", "cbod_out", "diox_in", "diox_out"
+-    ])
+-    df["date"] = pd.date_range("2000-01-01", periods=len(df), freq="D")  # TODO: adapter
+-
+-    rows = df[[
+-        "rch", "date", "flow_in", "flow_out", "sed_in", "sed_out", "no3_out", "orgp_out", "chla_out"
+-    ]].copy()
+-    rows.rename(columns={"rch": "reach"}, inplace=True)
+-    rows["scenario_id"] = scen_id
+-
+-    with engine.begin() as conn:
+-        conn.execute(text("""
+-            INSERT INTO swat_sebou.swat_reach_results
+-            (scenario_id, reach, date, flow_in, flow_out, sed_in, sed_out, no3_out, orgp_out, chla_out)
+-            VALUES (:scenario_id, :reach, :date, :flow_in, :flow_out, :sed_in, :sed_out, :no3_out, :orgp_out, :chla_out)
+-        """), rows.to_dict(orient="records"))
+-
+-if __name__ == "__main__":
+-    # Exemple d’usage (mets tes vrais chemins + nom de scénario)
+-    # import_output_sub("C:/SWAT/MonProjet/output.sub", "Baseline_2010")
+-    # import_output_rch("C:/SWAT/MonProjet/output.rch", "Baseline_2010")
+-    pass
++# backend/app/etl/import_swat.py
++import pandas as pd
++from sqlalchemy import text
++from app.db.session import engine, SessionLocal
++
++# ---------- helpers ----------
++def _ensure_scenario(name: str) -> int:
++    with SessionLocal() as db:
++        row = db.execute(text("""
++            INSERT INTO swat_sebou.swat_scenarios (name)
++            VALUES (:name)
++            ON CONFLICT DO NOTHING
++            RETURNING id
++        """), {"name": name}).first()
++        if row:
++            db.commit()
++            return row[0]
++        # déjà existant -> récupérer l’id
++        row = db.execute(text("SELECT id FROM swat_sebou.swat_scenarios WHERE name=:name"), {"name": name}).first()
++        return row[0]
++
++# ---------- output.sub ----------
++def import_output_sub(path: str, scenario_name: str, timestep: str = "daily"):
++    scen_id = _ensure_scenario(scenario_name)
++    # adapter skiprows selon ton fichier; beaucoup d'export SWAT ont ~9-12 lignes d'en-tête
++    df = pd.read_fwf(path, skiprows=9, names=[
++        "sub", "gis", "mon", "area", "precip", "snomelt", "pet",
++        "et", "sw", "perc", "surq", "gw_q", "wyld",
++        "syld", "orgn", "orgp", "nsurq", "solp", "sedp"
++    ])
++
++    # Interprétation de "mon" selon timestep (daily/mois/année)
++    # Ici on suppose "daily" -> 'mon' est une date julienne; sinon adapter (à affiner selon ton export réel)
++    # Pour démarrer simplement: on suppose que ton fichier contient déjà une colonne 'date' ou on
++    # utilise une date fictive; le mieux est d'importer aussi un calendrier depuis le run SWAT.
++    # Exemple minimal: on ignore 'mon' et on crée un index croissant (à adapter !)
++    df["date"] = pd.date_range("2000-01-01", periods=len(df), freq="D")  # TODO: adapter
++
++    rows = df[[
++        "sub", "date", "precip", "surq", "gw_q", "wyld", "sedp", "orgn", "solp"
++    ]].copy()
++    rows["scenario_id"] = scen_id
++
++    with engine.begin() as conn:
++        conn.execute(text("""
++            INSERT INTO swat_sebou.swat_subbasin_results
++            (scenario_id, subbasin, date, precip, surq, gw_q, wyld, sedp, orgn, solp)
++            VALUES (:scenario_id, :sub, :date, :precip, :surq, :gw_q, :wyld, :sedp, :orgn, :solp)
++        """), rows.to_dict(orient="records"))
++
++# ---------- output.rch ----------
++def import_output_rch(path: str, scenario_name: str):
++    scen_id = _ensure_scenario(scenario_name)
++    df = pd.read_fwf(path, skiprows=9, names=[
++        "rch", "gis", "mon", "area", "flow_in", "flow_out", "evap", "tloss",
++        "sed_in", "sed_out", "sedconc", "orgn_in", "orgn_out", "orgp_in", "orgp_out",
++        "no3_in", "no3_out", "nh4_in", "nh4_out", "no2_in", "no2_out", "minp_in", "minp_out",
++        "chla_in", "chla_out", "cbod_in", "cbod_out", "diox_in", "diox_out"
++    ])
++    df["date"] = pd.date_range("2000-01-01", periods=len(df), freq="D")  # TODO: adapter
++
++    rows = df[[
++        "rch", "date", "flow_in", "flow_out", "sed_in", "sed_out", "no3_out", "orgp_out", "chla_out"
++    ]].copy()
++    rows.rename(columns={"rch": "reach"}, inplace=True)
++    rows["scenario_id"] = scen_id
++
++    with engine.begin() as conn:
++        conn.execute(text("""
++            INSERT INTO swat_sebou.swat_reach_results
++            (scenario_id, reach, date, flow_in, flow_out, sed_in, sed_out, no3_out, orgp_out, chla_out)
++            VALUES (:scenario_id, :reach, :date, :flow_in, :flow_out, :sed_in, :sed_out, :no3_out, :orgp_out, :chla_out)
++        """), rows.to_dict(orient="records"))
++
++if __name__ == "__main__":
++    # Exemple d’usage (mets tes vrais chemins + nom de scénario)
++    # import_output_sub("C:/SWAT/MonProjet/output.sub", "Baseline_2010")
++    # import_output_rch("C:/SWAT/MonProjet/output.rch", "Baseline_2010")
++    pass
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/etl/import_swat_final.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/etl/import_swat_final.py
+--- repo_git/backend/app/etl/import_swat_final.py	2026-04-06 08:15:19.756414100 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/etl/import_swat_final.py	2026-06-23 10:23:20.000000000 +0100
+@@ -1,172 +1,172 @@
+-# backend/app/etl/import_swat_final.py
+-"""
+-Importation des résultats SWAT (output.sub & output.rch) vers PostgreSQL.
+-Compatible avec le schéma swat_sebou.
+-"""
+-
+-import pandas as pd
+-from sqlalchemy import text
+-from app.db.session import engine, SessionLocal
+-from datetime import datetime
+-
+-
+-# ==========================================================
+-# 1. Création ou récupération du scénario
+-# ==========================================================
+-def ensure_scenario(scenario_name: str, timestep="daily") -> int:
+-    """Crée un scénario dans swat_sebou.swat_scenarios s’il n’existe pas."""
+-    with SessionLocal() as db:
+-        row = db.execute(text("""
+-            SELECT id FROM swat_sebou.swat_scenarios WHERE name = :name
+-        """), {"name": scenario_name}).first()
+-        if row:
+-            return row[0]
+-
+-        # Sinon on le crée
+-        db.execute(text("""
+-            INSERT INTO swat_sebou.swat_scenarios (name, timestep, start_date, end_date)
+-            VALUES (:name, :timestep, CURRENT_DATE, CURRENT_DATE)
+-        """), {"name": scenario_name, "timestep": timestep})
+-        db.commit()
+-
+-        # Récupération de l’ID
+-        row = db.execute(text("SELECT id FROM swat_sebou.swat_scenarios WHERE name = :name"),
+-                         {"name": scenario_name}).first()
+-        return row[0]
+-
+-
+-# ==========================================================
+-# 2. Importer output.sub
+-# ==========================================================
+-def import_output_sub(filepath: str, scenario_name: str):
+-    print(f"Lecture de {filepath} ...")
+-    scen_id = ensure_scenario(scenario_name, "daily")
+-
+-    # 🔹 Sauter 10 lignes d’en-tête, la ligne 11 contient les noms de colonnes
+-    df = pd.read_fwf(
+-        filepath,
+-        skiprows=10,
+-        names=[
+-            "TAG", "SUB", "MON", "AREA", "PRECIP", "SNOMELT", "PET", "ET",
+-            "SW", "PERC", "SURQ", "GW_Q", "WYLD", "SYLD",
+-            "ORGN", "ORGP", "NSURQ", "SOLP", "SEDP"
+-        ],
+-        widths=[8, 8, 6] + [10] * 16,
+-        comment=" "
+-    )
+-
+-    # 🔹 Garde uniquement les lignes où SUB est un nombre
+-    df = df[pd.to_numeric(df["SUB"], errors="coerce").notna()]
+-    df["SUB"] = df["SUB"].astype(int)
+-
+-    # 🔹 Ajoute la date fictive et le scénario
+-    df["date"] = pd.date_range("2000-01-01", periods=len(df), freq="D")
+-    df["scenario_id"] = scen_id
+-
+-    print(f"{len(df)} lignes valides lues pour output.sub")
+-
+-    # 🔹 Insertion SQL dans la table cible
+-    with engine.begin() as conn:
+-        conn.execute(text("""
+-            INSERT INTO swat_sebou.swat_subbasin_results
+-            (scenario_id, subbasin, date, precip, surq, gw_q, wyld, sedp, orgn, solp)
+-            VALUES (:scenario_id, :SUB, :date, :PRECIP, :SURQ, :GW_Q, :WYLD, :SEDP, :ORGN, :SOLP)
+-        """), df.to_dict(orient="records"))
+-
+-    print("✅ Données output.sub importées avec succès.")
+-
+-
+-
+-
+-# ==========================================================
+-# 3. Importer output.rch
+-# ==========================================================
+-def import_output_rch(filepath: str, scenario_name: str):
+-    print(f"Lecture de {filepath} ...")
+-    scen_id = ensure_scenario(scenario_name, "daily")
+-
+-    # 🔹 Sauter 10 lignes d’en-tête (comme output.sub)
+-    # 🔹 Colonnes principales du fichier SWAT 2025 (simplifiées aux plus utiles)
+-    col_names = [
+-        "TAG", "RCH", "MON", "AREA", "FLOW_IN", "FLOW_OUT", "EVAP", "TLOSS",
+-        "SED_IN", "SED_OUT", "SEDCONC",
+-        "ORGN_IN", "ORGN_OUT", "ORGP_IN", "ORGP_OUT",
+-        "NO3_IN", "NO3_OUT", "NH4_IN", "NH4_OUT",
+-        "NO2_IN", "NO2_OUT", "MINP_IN", "MINP_OUT",
+-        "CHLA_IN", "CHLA_OUT", "CBOD_IN", "CBOD_OUT",
+-        "DISOX_IN", "DISOX_OUT", "TOT_N", "TOT_P", "NO3CONC", "WTMP"
+-    ]
+-
+-    # 🔹 Lecture flexible : largeur approximative (6 premières + colonnes de 10)
+-    df = pd.read_fwf(
+-        filepath,
+-        skiprows=10,
+-        names=col_names,
+-        widths=[8, 8, 5, 10] + [10] * (len(col_names) - 4),
+-        comment=" "
+-    )
+-
+-    # 🔹 Ne garder que les lignes où RCH est numérique
+-    df = df[pd.to_numeric(df["RCH"], errors="coerce").notna()]
+-    df["RCH"] = df["RCH"].astype(int)
+-
+-    # 🔹 Ajouter une date fictive pour le moment
+-    df["date"] = pd.date_range("2000-01-01", periods=len(df), freq="D")
+-    df["scenario_id"] = scen_id
+-
+-    print(f"{len(df)} lignes valides lues pour output.rch")
+-
+-    # 🔹 Insertion SQL simplifiée (choix de quelques colonnes principales)
+-    with engine.begin() as conn:
+-        conn.execute(text("""
+-            INSERT INTO swat_sebou.swat_reach_results
+-            (scenario_id, reach, date, flow_in, flow_out, sed_in, sed_out, no3_out, orgp_out, chla_out)
+-            VALUES (:scenario_id, :RCH, :date, :FLOW_IN, :FLOW_OUT, :SED_IN, :SED_OUT, :NO3_OUT, :ORGP_OUT, :CHLA_OUT)
+-        """), df.to_dict(orient="records"))
+-
+-    print("✅ Données output.rch importées avec succès.")
+-
+-
+-
+-# ==========================================================
+-# 4. Vérification finale de l'importation
+-# ==========================================================
+-from sqlalchemy import text
+-
+-def check_import_summary():
+-    print("\n🧮 Vérification du contenu importé dans la base...\n")
+-    with engine.connect() as conn:
+-        # Nombre de scénarios
+-        scen = conn.execute(text("SELECT COUNT(*) FROM swat_sebou.swat_scenarios")).scalar()
+-        print(f"🧩 Scénarios enregistrés : {scen}")
+-
+-        # Nombre de sous-bassins importés
+-        sub_count = conn.execute(text("SELECT COUNT(DISTINCT subbasin) FROM swat_sebou.swat_subbasin_results")).scalar()
+-        sub_rows = conn.execute(text("SELECT COUNT(*) FROM swat_sebou.swat_subbasin_results")).scalar()
+-        print(f"📘 Sous-bassins : {sub_count} unités, {sub_rows} lignes au total")
+-
+-        # Nombre de tronçons (reaches)
+-        reach_count = conn.execute(text("SELECT COUNT(DISTINCT reach) FROM swat_sebou.swat_reach_results")).scalar()
+-        reach_rows = conn.execute(text("SELECT COUNT(*) FROM swat_sebou.swat_reach_results")).scalar()
+-        print(f"🌊 Tronçons : {reach_count} unités, {reach_rows} lignes au total")
+-
+-        # Vérification rapide des valeurs nulles (NO3 par ex.)
+-        null_no3 = conn.execute(text("SELECT COUNT(*) FROM swat_sebou.swat_reach_results WHERE no3_out IS NULL")).scalar()
+-        print(f"🔍 Lignes sans valeur de NO3 : {null_no3}")
+-
+-        print("\n✅ Vérification terminée : les données SWAT sont bien présentes dans la base.\n")
+-
+-# ==========================================================
+-# 4. Point d’entrée principal
+-# ==========================================================
+-if __name__ == "__main__":
+-    # 🟢 Mets ici ton dossier SWAT réel :
+-    BASE_PATH = r"C:\dev\sad_sebou0210\sad_sebou0210\TxtInOut"
+-
+-    # Nom du scénario (personnalisable)
+-    scenario_name = "Baseline_2010"
+-
+-    import_output_sub(f"{BASE_PATH}\\output.sub", scenario_name)
+-    import_output_rch(f"{BASE_PATH}\\output.rch", scenario_name)
+-
+-    print("✅ Import SWAT terminé avec succès.")
++# backend/app/etl/import_swat_final.py
++"""
++Importation des résultats SWAT (output.sub & output.rch) vers PostgreSQL.
++Compatible avec le schéma swat_sebou.
++"""
++
++import pandas as pd
++from sqlalchemy import text
++from app.db.session import engine, SessionLocal
++from datetime import datetime
++
++
++# ==========================================================
++# 1. Création ou récupération du scénario
++# ==========================================================
++def ensure_scenario(scenario_name: str, timestep="daily") -> int:
++    """Crée un scénario dans swat_sebou.swat_scenarios s’il n’existe pas."""
++    with SessionLocal() as db:
++        row = db.execute(text("""
++            SELECT id FROM swat_sebou.swat_scenarios WHERE name = :name
++        """), {"name": scenario_name}).first()
++        if row:
++            return row[0]
++
++        # Sinon on le crée
++        db.execute(text("""
++            INSERT INTO swat_sebou.swat_scenarios (name, timestep, start_date, end_date)
++            VALUES (:name, :timestep, CURRENT_DATE, CURRENT_DATE)
++        """), {"name": scenario_name, "timestep": timestep})
++        db.commit()
++
++        # Récupération de l’ID
++        row = db.execute(text("SELECT id FROM swat_sebou.swat_scenarios WHERE name = :name"),
++                         {"name": scenario_name}).first()
++        return row[0]
++
++
++# ==========================================================
++# 2. Importer output.sub
++# ==========================================================
++def import_output_sub(filepath: str, scenario_name: str):
++    print(f"Lecture de {filepath} ...")
++    scen_id = ensure_scenario(scenario_name, "daily")
++
++    # 🔹 Sauter 10 lignes d’en-tête, la ligne 11 contient les noms de colonnes
++    df = pd.read_fwf(
++        filepath,
++        skiprows=10,
++        names=[
++            "TAG", "SUB", "MON", "AREA", "PRECIP", "SNOMELT", "PET", "ET",
++            "SW", "PERC", "SURQ", "GW_Q", "WYLD", "SYLD",
++            "ORGN", "ORGP", "NSURQ", "SOLP", "SEDP"
++        ],
++        widths=[8, 8, 6] + [10] * 16,
++        comment=" "
++    )
++
++    # 🔹 Garde uniquement les lignes où SUB est un nombre
++    df = df[pd.to_numeric(df["SUB"], errors="coerce").notna()]
++    df["SUB"] = df["SUB"].astype(int)
++
++    # 🔹 Ajoute la date fictive et le scénario
++    df["date"] = pd.date_range("2000-01-01", periods=len(df), freq="D")
++    df["scenario_id"] = scen_id
++
++    print(f"{len(df)} lignes valides lues pour output.sub")
++
++    # 🔹 Insertion SQL dans la table cible
++    with engine.begin() as conn:
++        conn.execute(text("""
++            INSERT INTO swat_sebou.swat_subbasin_results
++            (scenario_id, subbasin, date, precip, surq, gw_q, wyld, sedp, orgn, solp)
++            VALUES (:scenario_id, :SUB, :date, :PRECIP, :SURQ, :GW_Q, :WYLD, :SEDP, :ORGN, :SOLP)
++        """), df.to_dict(orient="records"))
++
++    print("✅ Données output.sub importées avec succès.")
++
++
++
++
++# ==========================================================
++# 3. Importer output.rch
++# ==========================================================
++def import_output_rch(filepath: str, scenario_name: str):
++    print(f"Lecture de {filepath} ...")
++    scen_id = ensure_scenario(scenario_name, "daily")
++
++    # 🔹 Sauter 10 lignes d’en-tête (comme output.sub)
++    # 🔹 Colonnes principales du fichier SWAT 2025 (simplifiées aux plus utiles)
++    col_names = [
++        "TAG", "RCH", "MON", "AREA", "FLOW_IN", "FLOW_OUT", "EVAP", "TLOSS",
++        "SED_IN", "SED_OUT", "SEDCONC",
++        "ORGN_IN", "ORGN_OUT", "ORGP_IN", "ORGP_OUT",
++        "NO3_IN", "NO3_OUT", "NH4_IN", "NH4_OUT",
++        "NO2_IN", "NO2_OUT", "MINP_IN", "MINP_OUT",
++        "CHLA_IN", "CHLA_OUT", "CBOD_IN", "CBOD_OUT",
++        "DISOX_IN", "DISOX_OUT", "TOT_N", "TOT_P", "NO3CONC", "WTMP"
++    ]
++
++    # 🔹 Lecture flexible : largeur approximative (6 premières + colonnes de 10)
++    df = pd.read_fwf(
++        filepath,
++        skiprows=10,
++        names=col_names,
++        widths=[8, 8, 5, 10] + [10] * (len(col_names) - 4),
++        comment=" "
++    )
++
++    # 🔹 Ne garder que les lignes où RCH est numérique
++    df = df[pd.to_numeric(df["RCH"], errors="coerce").notna()]
++    df["RCH"] = df["RCH"].astype(int)
++
++    # 🔹 Ajouter une date fictive pour le moment
++    df["date"] = pd.date_range("2000-01-01", periods=len(df), freq="D")
++    df["scenario_id"] = scen_id
++
++    print(f"{len(df)} lignes valides lues pour output.rch")
++
++    # 🔹 Insertion SQL simplifiée (choix de quelques colonnes principales)
++    with engine.begin() as conn:
++        conn.execute(text("""
++            INSERT INTO swat_sebou.swat_reach_results
++            (scenario_id, reach, date, flow_in, flow_out, sed_in, sed_out, no3_out, orgp_out, chla_out)
++            VALUES (:scenario_id, :RCH, :date, :FLOW_IN, :FLOW_OUT, :SED_IN, :SED_OUT, :NO3_OUT, :ORGP_OUT, :CHLA_OUT)
++        """), df.to_dict(orient="records"))
++
++    print("✅ Données output.rch importées avec succès.")
++
++
++
++# ==========================================================
++# 4. Vérification finale de l'importation
++# ==========================================================
++from sqlalchemy import text
++
++def check_import_summary():
++    print("\n🧮 Vérification du contenu importé dans la base...\n")
++    with engine.connect() as conn:
++        # Nombre de scénarios
++        scen = conn.execute(text("SELECT COUNT(*) FROM swat_sebou.swat_scenarios")).scalar()
++        print(f"🧩 Scénarios enregistrés : {scen}")
++
++        # Nombre de sous-bassins importés
++        sub_count = conn.execute(text("SELECT COUNT(DISTINCT subbasin) FROM swat_sebou.swat_subbasin_results")).scalar()
++        sub_rows = conn.execute(text("SELECT COUNT(*) FROM swat_sebou.swat_subbasin_results")).scalar()
++        print(f"📘 Sous-bassins : {sub_count} unités, {sub_rows} lignes au total")
++
++        # Nombre de tronçons (reaches)
++        reach_count = conn.execute(text("SELECT COUNT(DISTINCT reach) FROM swat_sebou.swat_reach_results")).scalar()
++        reach_rows = conn.execute(text("SELECT COUNT(*) FROM swat_sebou.swat_reach_results")).scalar()
++        print(f"🌊 Tronçons : {reach_count} unités, {reach_rows} lignes au total")
++
++        # Vérification rapide des valeurs nulles (NO3 par ex.)
++        null_no3 = conn.execute(text("SELECT COUNT(*) FROM swat_sebou.swat_reach_results WHERE no3_out IS NULL")).scalar()
++        print(f"🔍 Lignes sans valeur de NO3 : {null_no3}")
++
++        print("\n✅ Vérification terminée : les données SWAT sont bien présentes dans la base.\n")
++
++# ==========================================================
++# 4. Point d’entrée principal
++# ==========================================================
++if __name__ == "__main__":
++    # 🟢 Mets ici ton dossier SWAT réel :
++    BASE_PATH = r"C:\dev\sad_sebou0210\sad_sebou0210\TxtInOut"
++
++    # Nom du scénario (personnalisable)
++    scenario_name = "Baseline_2010"
++
++    import_output_sub(f"{BASE_PATH}\\output.sub", scenario_name)
++    import_output_rch(f"{BASE_PATH}\\output.rch", scenario_name)
++
++    print("✅ Import SWAT terminé avec succès.")
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/models/analysis_models.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/models/analysis_models.py
+--- repo_git/backend/app/models/analysis_models.py	2026-06-15 16:48:50.277747700 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/models/analysis_models.py	1970-01-01 01:00:00.000000000 +0100
+@@ -1,140 +0,0 @@
+-from pydantic import BaseModel, Field, validator
+-from typing import List, Optional, Literal
+-
+-class SeriesRequestItem(BaseModel):
+-    support_type: str
+-    object_id: str
+-    domain: str
+-    parameter_code: str
+-
+-class BatchSeriesRequest(BaseModel):
+-    date_from: str
+-    date_to: str
+-    aggregation: Literal["raw", "daily", "monthly", "annual"]
+-    series: List[SeriesRequestItem] = Field(..., max_items=20)
+-
+-class SeriesValue(BaseModel):
+-    date: str
+-    value: float | None
+-    quality_flag: Optional[str] = None
+-
+-class SeriesSource(BaseModel):
+-    endpoint: str
+-    table: Optional[str] = None
+-    refreshed_at: Optional[str] = None
+-
+-class AnalyticalSeries(BaseModel):
+-    id: str
+-    support_type: str
+-    object_id: str
+-    object_name: str
+-    domain: str
+-    subdomain: Optional[str] = None
+-    parameter_code: str
+-    parameter_label: str
+-    unit: Optional[str] = None
+-    aggregation: Optional[str] = None
+-    series_type: Optional[str] = "TIME_SERIES"
+-    data_family: Optional[str] = None
+-    measurement_context: Optional[str] = None
+-    date_from: Optional[str] = None
+-    date_to: Optional[str] = None
+-    values: List[SeriesValue]
+-    source: Optional[SeriesSource] = None
+-
+-class BatchWarning(BaseModel):
+-    type: str
+-    series_ref: str
+-    message: str
+-
+-class BatchStatus(BaseModel):
+-    requested: int
+-    returned: int
+-    empty: int
+-    failed: int
+-
+-class BatchMeta(BaseModel):
+-    requested: int
+-    returned: int
+-    aggregation: str
+-
+-class BatchSeriesResponse(BaseModel):
+-    series: List[AnalyticalSeries]
+-    warnings: List[BatchWarning]
+-    meta: BatchMeta
+-    status: BatchStatus
+-
+-
+-# ============================================================
+-# CORRELATION MODELS
+-# ============================================================
+-
+-class CorrelationRequest(BaseModel):
+-    date_from: str
+-    date_to: str
+-    aggregation: Literal["raw", "daily", "monthly", "annual"]
+-    series: List[SeriesRequestItem] = Field(..., min_items=2, max_items=5)
+-
+-
+-class CorrelationSeriesOutput(BaseModel):
+-    object_id: str
+-    parameter_code: str
+-    domain: str
+-    support_type: str
+-    values: List[SeriesValue]
+-
+-
+-class AlignedPoint(BaseModel):
+-    date: str
+-    x: float
+-    y: float
+-
+-
+-class RegressionPoint(BaseModel):
+-    x: float
+-    y: float
+-
+-
+-class CorrelationStats(BaseModel):
+-    pearson_r: float
+-    r_squared: float
+-    slope: float
+-    intercept: float
+-    p_value: Optional[float] = None
+-    n_points: int
+-
+-
+-class CorrelationResponse(BaseModel):
+-    """Résultat d'une corrélation entre deux séries temporelles.
+-
+-    En cas d'erreur métier, seuls les champs `error` et `message` sont renseignés.
+-    """
+-    error: Optional[str] = None
+-    message: Optional[str] = None
+-    series_x: Optional[CorrelationSeriesOutput] = None
+-    series_y: Optional[CorrelationSeriesOutput] = None
+-    aligned_data: Optional[List[AlignedPoint]] = None
+-    correlation: Optional[CorrelationStats] = None
+-    regression_line: Optional[List[RegressionPoint]] = None
+-
+-
+-class CorrelationMatrixItem(BaseModel):
+-    object_id: str
+-    parameter_code: str
+-    domain: str
+-    support_type: str
+-
+-
+-class CorrelationMatrixRequest(BaseModel):
+-    date_from: str
+-    date_to: str
+-    aggregation: Literal["raw", "daily", "monthly", "annual"]
+-    series: List[SeriesRequestItem] = Field(..., min_items=3, max_items=5)
+-
+-
+-class CorrelationMatrixResponse(BaseModel):
+-    error: Optional[str] = None
+-    message: Optional[str] = None
+-    series: Optional[List[CorrelationMatrixItem]] = None
+-    matrix: Optional[List[List[Optional[float]]]] = None
+-    n_points: Optional[List[List[Optional[int]]]] = None
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/models/business_map_models.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/models/business_map_models.py
+--- repo_git/backend/app/models/business_map_models.py	2026-06-15 15:58:29.562153800 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/models/business_map_models.py	1970-01-01 01:00:00.000000000 +0100
+@@ -1,102 +0,0 @@
+-from typing import Any, Literal
+-from pydantic import BaseModel, Field
+-from datetime import date
+-
+-
+-class BusinessMapAvailabilityItem(BaseModel):
+-    support_type: str
+-    domain: str
+-    subdomain: str | None = None
+-    parameter_code: str
+-    parameter_label: str
+-    unit: str | None = None
+-    object_count: int
+-    measure_count: int
+-    date_count: int | None = None
+-    date_min: date | None = None
+-    date_max: date | None = None
+-    has_geometry: bool
+-    has_timeseries: bool
+-    has_thresholds: bool
+-    recommended_v1: bool
+-    authorized_basin: str | None = None
+-    source_table: str | None = None
+-    data_family: str | None = None
+-    measurement_context: str | None = None
+-    data_temporality: str | None = None
+-
+-
+-class AvailableOptions(BaseModel):
+-    supports: list[str]
+-    domains: list[str]
+-    parameters: list[str]
+-
+-
+-class BusinessMapAvailabilityResponse(BaseModel):
+-    items: list[BusinessMapAvailabilityItem]
+-    total: int
+-    available_options: AvailableOptions
+-
+-
+-class FeatureProperties(BaseModel):
+-    object_id: str
+-    object_name: str
+-    object_code: str | None = None
+-    support_type: str
+-    bassin_nom: str | None = None
+-    sous_bassin_nom: str | None = None
+-    attributes: dict[str, Any] = Field(default_factory=dict)
+-    latest_values: dict[str, Any] | None = None
+-    recommended_v1: bool
+-
+-
+-class Feature(BaseModel):
+-    type: Literal["Feature"] = "Feature"
+-    id: str
+-    geometry: dict[str, Any]
+-    properties: FeatureProperties
+-
+-
+-class BusinessMapFeatureCollection(BaseModel):
+-    type: Literal["FeatureCollection"] = "FeatureCollection"
+-    features: list[Feature]
+-    metadata: dict[str, Any]
+-
+-
+-class AnalyticalSeriesValue(BaseModel):
+-    date: str
+-    value: float | None
+-    quality_flag: str | None = None
+-
+-
+-class AnalyticalSeries(BaseModel):
+-    id: str
+-    support_type: str
+-    support_id: str
+-    support_name: str | None = None
+-    domain: str
+-    subdomain: str | None = None
+-    parameter_code: str
+-    parameter_label: str | None = None
+-    unit: str | None = None
+-    date_from: date | None = None
+-    date_to: date | None = None
+-    aggregation: Literal["raw", "daily", "monthly", "annual"] | None = None
+-    series_type: Literal["TIME_SERIES", "POINT_MEASURE"] = "TIME_SERIES"
+-    data_family: str | None = None
+-    measurement_context: str | None = None
+-    source_table: str | None = None
+-    values: list[AnalyticalSeriesValue]
+-
+-
+-class BusinessMapLayer(BaseModel):
+-    layer_id: str
+-    label: str
+-    category: str
+-    visible: bool = True
+-    min_zoom: int = 0
+-    max_zoom: int = 22
+-    style: dict[str, Any] = Field(default_factory=dict)
+-
+-class BusinessMapLayersResponse(BaseModel):
+-    layers: list[BusinessMapLayer]
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/models/item.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/models/item.py
+--- repo_git/backend/app/models/item.py	2026-04-06 08:15:19.757924300 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/models/item.py	2026-06-23 10:23:20.000000000 +0100
+@@ -1,17 +1,17 @@
+-# backend/app/models/item.py
+-from sqlalchemy import String, Integer, Text, DateTime, ForeignKey
+-from sqlalchemy.orm import Mapped, mapped_column, relationship
+-from datetime import datetime, timezone
+-from app.db.base import Base
+-
+-class Item(Base):
+-    __tablename__ = "items"
+-
+-    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+-    title: Mapped[str] = mapped_column(String(255))
+-    description: Mapped[str | None] = mapped_column(Text, nullable=True)
+-    owner_id: Mapped[int] = mapped_column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
+-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
+-    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
+-
+-    owner = relationship("User", back_populates="items")
++# backend/app/models/item.py
++from sqlalchemy import String, Integer, Text, DateTime, ForeignKey
++from sqlalchemy.orm import Mapped, mapped_column, relationship
++from datetime import datetime, timezone
++from app.db.base import Base
++
++class Item(Base):
++    __tablename__ = "items"
++
++    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
++    title: Mapped[str] = mapped_column(String(255))
++    description: Mapped[str | None] = mapped_column(Text, nullable=True)
++    owner_id: Mapped[int] = mapped_column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
++    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
++    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
++
++    owner = relationship("User", back_populates="items")
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/models/pollution_campagnes_models.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/models/pollution_campagnes_models.py
+--- repo_git/backend/app/models/pollution_campagnes_models.py	2026-06-16 17:15:46.683235900 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/models/pollution_campagnes_models.py	1970-01-01 01:00:00.000000000 +0100
+@@ -1,95 +0,0 @@
+-from datetime import date, datetime
+-from typing import List, Optional
+-
+-from pydantic import BaseModel, Field
+-
+-
+-class CampagneSummary(BaseModel):
+-    """Synthèse d'une campagne de prélèvement pollution."""
+-
+-    campagne_id: str = Field(..., description="Identifiant métier de la campagne, déduit de la date (à valider).")
+-    date_min: date
+-    date_max: date
+-    nb_prelevements: int
+-    nb_points: int = Field(..., description="Nombre de points de prélèvement distincts.")
+-    nb_parametres: int = Field(..., description="Nombre de paramètres mesurés dans la campagne.")
+-
+-
+-class PrelevementListItem(BaseModel):
+-    """Prélèvement affiché dans la liste / sur la carte."""
+-
+-    id_prelevement: str
+-    date_prelevement: date
+-    point_prelevement: Optional[str] = None
+-    campagne_id: str
+-    longitude: Optional[float] = None
+-    latitude: Optional[float] = None
+-    nb_mesures: int
+-    nb_alertes: int
+-
+-
+-class PrelevementDetail(BaseModel):
+-    """Métadonnées d'un prélèvement."""
+-
+-    id_prelevement: str
+-    date_prelevement: date
+-    point_prelevement: Optional[str] = None
+-    campagne_id: str
+-    commune: Optional[str] = None
+-    province: Optional[str] = None
+-    nature: Optional[str] = None
+-    observation: Optional[str] = None
+-    debit_raw: Optional[str] = None
+-    coord_x: Optional[float] = None
+-    coord_y: Optional[float] = None
+-    longitude: Optional[float] = None
+-    latitude: Optional[float] = None
+-
+-
+-class MesureItem(BaseModel):
+-    """Mesure paramétrée d'un prélèvement."""
+-
+-    parametre: str = Field(..., alias="param_code_legacy")
+-    valeur: Optional[float] = Field(None, alias="valeur_num")
+-    valeur_raw: Optional[str] = None
+-    unite: Optional[str] = None
+-    lq: Optional[float] = Field(None, description="Limite de quantification déduite de valeur_raw si '< LQ'.")
+-    qualifieur: Optional[str] = Field(None, alias="valeur_qualifier")
+-    alert_level: Optional[str] = Field(None, description="WARNING ou CRITICAL si dépassement.")
+-    is_prioritaire: bool = Field(False, description="Fait partie de la liste des paramètres prioritaires.")
+-
+-    model_config = {"populate_by_name": True}
+-
+-
+-class PrelevementMesuresResponse(BaseModel):
+-    """Fiche détail : prélèvement + ses 51 mesures."""
+-
+-    prelevement: PrelevementDetail
+-    mesures: List[MesureItem]
+-
+-
+-class PrelevementLien(BaseModel):
+-    """Lien vers une entité d'inventaire pollution."""
+-
+-    entite_type: str
+-    entite_id: str
+-    mapping_method: Optional[str] = None
+-    is_primary: bool
+-
+-
+-class PrelevementLiensResponse(BaseModel):
+-    entites: List[PrelevementLien]
+-
+-
+-class PollutionAlert(BaseModel):
+-    """Dépassement de seuil provisoire."""
+-
+-    parametre: str
+-    valeur: float
+-    seuil: float
+-    unite: Optional[str] = None
+-    station_nom: Optional[str] = Field(None, description="Nom du point de prélèvement.")
+-    date_prelevement: date
+-    alert_level: str = Field(..., pattern="^(WARNING|CRITICAL)$")
+-    prelevement_id: str
+-    campagne_id: str
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/models/propagation_models.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/models/propagation_models.py
+--- repo_git/backend/app/models/propagation_models.py	2026-06-16 11:29:10.340160800 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/models/propagation_models.py	1970-01-01 01:00:00.000000000 +0100
+@@ -1,61 +0,0 @@
+-# backend/app/models/propagation_models.py
+-from __future__ import annotations
+-
+-from datetime import datetime
+-from typing import Any, Literal
+-
+-from pydantic import BaseModel, Field
+-
+-
+-class SimulatePropagationRequest(BaseModel):
+-    lat: float = Field(..., ge=-90, le=90, description="Latitude du point de rejet (WGS84)")
+-    lon: float = Field(..., ge=-180, le=180, description="Longitude du point de rejet (WGS84)")
+-    pollutant_type: Literal["Cd", "Pb", "Hg", "Cr", "Hydrocarbures", "Autre"] = Field(
+-        ..., description="Famille de polluant"
+-    )
+-    initial_concentration_mg_l: float = Field(..., gt=0, description="Concentration initiale en mg/L")
+-    timestamp: datetime = Field(..., description="Date/heure du rejet")
+-    simulation_hours: int = Field(default=72, ge=1, le=720, description="Horizon de simulation en heures")
+-    vitesse_reference_kmh: float = Field(default=10.0, gt=0, le=200, description="Vitesse d'écoulement de référence")
+-    lambda_1_per_h: float = Field(default=0.05, ge=0, le=2, description="Coefficient d'atténuation exponentiel (h⁻¹)")
+-
+-
+-class ImpactedStation(BaseModel):
+-    station_id: str
+-    station_name: str
+-    station_type: str
+-    lat: float
+-    lon: float
+-    distance_km: float
+-    arrival_time: datetime
+-    estimated_concentration_mg_l: float
+-    alert_level: Literal["SAFE", "WARNING", "CRITICAL"]
+-
+-
+-class Recommendation(BaseModel):
+-    priority: int
+-    action: str
+-    target: str
+-    deadline: datetime
+-    reason: str
+-
+-
+-class PathSummary(BaseModel):
+-    type: Literal["FeatureCollection"] = "FeatureCollection"
+-    features: list[dict[str, Any]] = Field(default_factory=list)
+-    length_km: float
+-    travel_time_h: float
+-
+-
+-class SimulatePropagationResponse(BaseModel):
+-    propagation_id: str
+-    start_node: dict[str, Any]
+-    pollutant_type: str
+-    initial_concentration_mg_l: float
+-    parameters: dict[str, Any]
+-    path: PathSummary
+-    impacted_stations: list[ImpactedStation]
+-    impacted_barrages: list[ImpactedStation]
+-    impacted_exutoires: list[ImpactedStation]
+-    recommendations: list[Recommendation]
+-    warnings: list[str]
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/models/swat.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/models/swat.py
+--- repo_git/backend/app/models/swat.py	2026-04-06 08:15:19.758936500 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/models/swat.py	2026-06-23 10:23:20.000000000 +0100
+@@ -1,60 +1,60 @@
+-# backend/app/models/swat.py
+-from sqlalchemy import String, Integer, Text, Date, ForeignKey, CheckConstraint, BigInteger, Double
+-from sqlalchemy.orm import Mapped, mapped_column, relationship
+-from datetime import date
+-from app.db.base import Base
+-
+-class SwatModel(Base):
+-    __tablename__ = "swat_models"
+-    __table_args__ = {"schema": "swat_sebou"}
+-
+-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+-    name: Mapped[str] = mapped_column(Text, nullable=False)
+-    version: Mapped[str | None] = mapped_column(Text)
+-    description: Mapped[str | None] = mapped_column(Text)
+-
+-class SwatScenario(Base):
+-    __tablename__ = "swat_scenarios"
+-    __table_args__ = {"schema": "swat_sebou"}
+-
+-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+-    model_id: Mapped[int | None] = mapped_column(Integer, ForeignKey("swat_sebou.swat_models.id", ondelete="SET NULL"))
+-    name: Mapped[str] = mapped_column(Text, nullable=False)
+-    description: Mapped[str | None] = mapped_column(Text)
+-    start_date: Mapped[date | None] = mapped_column(Date)
+-    end_date: Mapped[date | None] = mapped_column(Date)
+-    timestep: Mapped[str | None] = mapped_column(String(16))
+-
+-class SwatSubbasinResult(Base):
+-    __tablename__ = "swat_subbasin_results"
+-    __table_args__ = {"schema": "swat_sebou"}
+-
+-    id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
+-    scenario_id: Mapped[int] = mapped_column(Integer, ForeignKey("swat_sebou.swat_scenarios.id", ondelete="CASCADE"), nullable=False)
+-    subbasin: Mapped[int] = mapped_column(Integer, nullable=False)
+-    date: Mapped[date] = mapped_column(Date, nullable=False)
+-
+-    precip: Mapped[float | None] = mapped_column(Double)
+-    surq:   Mapped[float | None] = mapped_column(Double)
+-    gw_q:   Mapped[float | None] = mapped_column(Double)
+-    wyld:   Mapped[float | None] = mapped_column(Double)
+-    sedp:   Mapped[float | None] = mapped_column(Double)
+-    orgn:   Mapped[float | None] = mapped_column(Double)
+-    solp:   Mapped[float | None] = mapped_column(Double)
+-
+-class SwatReachResult(Base):
+-    __tablename__ = "swat_reach_results"
+-    __table_args__ = {"schema": "swat_sebou"}
+-
+-    id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
+-    scenario_id: Mapped[int] = mapped_column(Integer, ForeignKey("swat_sebou.swat_scenarios.id", ondelete="CASCADE"), nullable=False)
+-    reach: Mapped[int] = mapped_column(Integer, nullable=False)
+-    date: Mapped[date] = mapped_column(Date, nullable=False)
+-
+-    flow_in:  Mapped[float | None] = mapped_column(Double)
+-    flow_out: Mapped[float | None] = mapped_column(Double)
+-    sed_in:   Mapped[float | None] = mapped_column(Double)
+-    sed_out:  Mapped[float | None] = mapped_column(Double)
+-    no3_out:  Mapped[float | None] = mapped_column(Double)
+-    orgp_out: Mapped[float | None] = mapped_column(Double)
+-    chla_out: Mapped[float | None] = mapped_column(Double)
++# backend/app/models/swat.py
++from sqlalchemy import String, Integer, Text, Date, ForeignKey, CheckConstraint, BigInteger, Double
++from sqlalchemy.orm import Mapped, mapped_column, relationship
++from datetime import date
++from app.db.base import Base
++
++class SwatModel(Base):
++    __tablename__ = "swat_models"
++    __table_args__ = {"schema": "swat_sebou"}
++
++    id: Mapped[int] = mapped_column(Integer, primary_key=True)
++    name: Mapped[str] = mapped_column(Text, nullable=False)
++    version: Mapped[str | None] = mapped_column(Text)
++    description: Mapped[str | None] = mapped_column(Text)
++
++class SwatScenario(Base):
++    __tablename__ = "swat_scenarios"
++    __table_args__ = {"schema": "swat_sebou"}
++
++    id: Mapped[int] = mapped_column(Integer, primary_key=True)
++    model_id: Mapped[int | None] = mapped_column(Integer, ForeignKey("swat_sebou.swat_models.id", ondelete="SET NULL"))
++    name: Mapped[str] = mapped_column(Text, nullable=False)
++    description: Mapped[str | None] = mapped_column(Text)
++    start_date: Mapped[date | None] = mapped_column(Date)
++    end_date: Mapped[date | None] = mapped_column(Date)
++    timestep: Mapped[str | None] = mapped_column(String(16))
++
++class SwatSubbasinResult(Base):
++    __tablename__ = "swat_subbasin_results"
++    __table_args__ = {"schema": "swat_sebou"}
++
++    id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
++    scenario_id: Mapped[int] = mapped_column(Integer, ForeignKey("swat_sebou.swat_scenarios.id", ondelete="CASCADE"), nullable=False)
++    subbasin: Mapped[int] = mapped_column(Integer, nullable=False)
++    date: Mapped[date] = mapped_column(Date, nullable=False)
++
++    precip: Mapped[float | None] = mapped_column(Double)
++    surq:   Mapped[float | None] = mapped_column(Double)
++    gw_q:   Mapped[float | None] = mapped_column(Double)
++    wyld:   Mapped[float | None] = mapped_column(Double)
++    sedp:   Mapped[float | None] = mapped_column(Double)
++    orgn:   Mapped[float | None] = mapped_column(Double)
++    solp:   Mapped[float | None] = mapped_column(Double)
++
++class SwatReachResult(Base):
++    __tablename__ = "swat_reach_results"
++    __table_args__ = {"schema": "swat_sebou"}
++
++    id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
++    scenario_id: Mapped[int] = mapped_column(Integer, ForeignKey("swat_sebou.swat_scenarios.id", ondelete="CASCADE"), nullable=False)
++    reach: Mapped[int] = mapped_column(Integer, nullable=False)
++    date: Mapped[date] = mapped_column(Date, nullable=False)
++
++    flow_in:  Mapped[float | None] = mapped_column(Double)
++    flow_out: Mapped[float | None] = mapped_column(Double)
++    sed_in:   Mapped[float | None] = mapped_column(Double)
++    sed_out:  Mapped[float | None] = mapped_column(Double)
++    no3_out:  Mapped[float | None] = mapped_column(Double)
++    orgp_out: Mapped[float | None] = mapped_column(Double)
++    chla_out: Mapped[float | None] = mapped_column(Double)
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/models/user.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/models/user.py
+--- repo_git/backend/app/models/user.py	2026-04-06 08:15:19.759936300 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/models/user.py	2026-06-23 10:23:20.000000000 +0100
+@@ -1,17 +1,17 @@
+-# backend/app/models/user.py
+-from sqlalchemy import String, Boolean, Integer, DateTime
+-from sqlalchemy.orm import Mapped, mapped_column, relationship
+-from datetime import datetime, timezone
+-from app.db.base import Base
+-
+-class User(Base):
+-    __tablename__ = "users"
+-
+-    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+-    email: Mapped[str] = mapped_column(String(255), unique=True, index=True)
+-    hashed_password: Mapped[str] = mapped_column(String(255))
+-    is_active: Mapped[bool] = mapped_column(Boolean, default=True)
+-    is_superuser: Mapped[bool] = mapped_column(Boolean, default=False)
+-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
+-
+-    items = relationship("Item", back_populates="owner", cascade="all, delete-orphan")
++# backend/app/models/user.py
++from sqlalchemy import String, Boolean, Integer, DateTime
++from sqlalchemy.orm import Mapped, mapped_column, relationship
++from datetime import datetime, timezone
++from app.db.base import Base
++
++class User(Base):
++    __tablename__ = "users"
++
++    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
++    email: Mapped[str] = mapped_column(String(255), unique=True, index=True)
++    hashed_password: Mapped[str] = mapped_column(String(255))
++    is_active: Mapped[bool] = mapped_column(Boolean, default=True)
++    is_superuser: Mapped[bool] = mapped_column(Boolean, default=False)
++    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
++
++    items = relationship("Item", back_populates="owner", cascade="all, delete-orphan")
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/routers/analysis.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/routers/analysis.py
+--- repo_git/backend/app/routers/analysis.py	2026-06-15 16:41:31.944386400 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/routers/analysis.py	1970-01-01 01:00:00.000000000 +0100
+@@ -1,55 +0,0 @@
+-from fastapi import APIRouter, Depends
+-from sqlalchemy.orm import Session
+-from app.db.session import SessionLocal
+-from app.models.analysis_models import (
+-    BatchSeriesRequest,
+-    BatchSeriesResponse,
+-    CorrelationRequest,
+-    CorrelationResponse,
+-    CorrelationMatrixRequest,
+-    CorrelationMatrixResponse,
+-)
+-from app.services import analysis_service
+-
+-def get_db():
+-    db = SessionLocal()
+-    try:
+-        yield db
+-    finally:
+-        db.close()
+-
+-router = APIRouter()
+-
+-@router.post("/series/batch", response_model=BatchSeriesResponse, summary="Batch fetch multiple analytical series")
+-def get_batch_series(request: BatchSeriesRequest, db: Session = Depends(get_db)):
+-    """
+-    Fetch multiple analytical series in a single request.
+-    Supports downsampling, deterministic IDs, and detailed status/warnings.
+-    Maximum of 20 series per batch.
+-    """
+-    return analysis_service.process_batch_series(db, request)
+-
+-
+-@router.post(
+-    "/correlation",
+-    response_model=CorrelationResponse,
+-    summary="Corrélation entre deux séries temporelles",
+-)
+-def post_correlation(request: CorrelationRequest, db: Session = Depends(get_db)):
+-    """
+-    Calcule la corrélation de Pearson, R² et la régression linéaire entre deux séries temporelles.
+-    Retourne une erreur métier si les séries ne se chevauchent pas ou si elles sont ponctuelles.
+-    """
+-    return analysis_service.calculate_correlation(db, request)
+-
+-
+-@router.post(
+-    "/correlation/matrix",
+-    response_model=CorrelationMatrixResponse,
+-    summary="Matrice de corrélation entre 3 à 5 séries temporelles",
+-)
+-def post_correlation_matrix(request: CorrelationMatrixRequest, db: Session = Depends(get_db)):
+-    """
+-    Calcule une matrice N×N de corrélations de Pearson entre 3 et 5 séries temporelles.
+-    """
+-    return analysis_service.calculate_correlation_matrix(db, request)
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/routers/business_map.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/routers/business_map.py
+--- repo_git/backend/app/routers/business_map.py	2026-06-15 15:59:05.632918500 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/routers/business_map.py	1970-01-01 01:00:00.000000000 +0100
+@@ -1,120 +0,0 @@
+-from datetime import date
+-from typing import Any
+-
+-from fastapi import APIRouter, Depends, Query, HTTPException
+-
+-from app.db.climate_database import get_climate_db
+-from sqlalchemy.orm import Session
+-from app.models.business_map_models import (
+-    AnalyticalSeries,
+-    BusinessMapAvailabilityResponse,
+-    BusinessMapFeatureCollection,
+-    BusinessMapLayersResponse,
+-)
+-from app.services import business_map_service
+-
+-router = APIRouter(tags=["business-map"])
+-
+-
+-@router.get("/availability", response_model=BusinessMapAvailabilityResponse)
+-def get_business_map_availability(
+-    support_type: str | None = None,
+-    domain: str | None = None,
+-    subdomain: str | None = None,
+-    parameter_code: str | None = None,
+-    bassin_nom: str | None = None,
+-    recommended_v1: bool | None = None,
+-    data_temporality: str | None = None,
+-    data_family: str | None = None,
+-    measurement_context: str | None = None,
+-    db: Session = Depends(get_climate_db),
+-):
+-    result = business_map_service.get_availability(
+-        db=db,
+-        support_type=support_type,
+-        domain=domain,
+-        subdomain=subdomain,
+-        parameter_code=parameter_code,
+-        bassin_nom=bassin_nom,
+-        recommended_v1=recommended_v1,
+-        data_temporality=data_temporality,
+-        data_family=data_family,
+-        measurement_context=measurement_context,
+-    )
+-    return BusinessMapAvailabilityResponse(**result)
+-
+-
+-@router.get("/features", response_model=BusinessMapFeatureCollection)
+-def get_business_map_features(
+-    support_type: str | None = None,
+-    domain: str | None = None,
+-    subdomain: str | None = None,
+-    parameter_code: str | None = None,
+-    bassin_nom: str | None = None,
+-    bbox: str | None = Query(None, description="Format: minx,miny,maxx,maxy (obligatoire pour SOURCE_POLLUTION)"),
+-    limit: int = Query(1000, ge=1, le=5000),
+-    offset: int = Query(0, ge=0),
+-    data_temporality: str | None = None,
+-    data_family: str | None = None,
+-    measurement_context: str | None = None,
+-    db: Session = Depends(get_climate_db),
+-):
+-    try:
+-        return business_map_service.get_features(
+-            db=db,
+-            support_type=support_type,
+-            domain=domain,
+-            subdomain=subdomain,
+-            parameter_code=parameter_code,
+-            bassin_nom=bassin_nom,
+-            bbox=bbox,
+-            limit=limit,
+-            offset=offset,
+-            data_temporality=data_temporality,
+-            data_family=data_family,
+-            measurement_context=measurement_context,
+-        )
+-    except ValueError as e:
+-        raise HTTPException(status_code=400, detail=str(e))
+-
+-
+-@router.get("/series", response_model=AnalyticalSeries)
+-def get_business_map_series(
+-    support_type: str,
+-    object_id: str,
+-    parameter_code: str,
+-    date_from: date | None = None,
+-    date_to: date | None = None,
+-    aggregation: str = Query("raw", regex="^(raw|daily|monthly|annual)$"),
+-    db: Session = Depends(get_climate_db),
+-):
+-    try:
+-        return business_map_service.get_series(
+-            db=db,
+-            support_type=support_type,
+-            object_id=object_id,
+-            parameter_code=parameter_code,
+-            date_from=date_from,
+-            date_to=date_to,
+-            aggregation=aggregation,
+-        )
+-    except ValueError as e:
+-        raise HTTPException(status_code=400, detail=str(e))
+-
+-
+-@router.get("/object/{support_type}/{object_id}")
+-def get_business_map_object(
+-    support_type: str,
+-    object_id: str,
+-    db: Session = Depends(get_climate_db),
+-) -> dict[str, Any]:
+-    obj = business_map_service.get_object(db=db, support_type=support_type, object_id=object_id)
+-    if not obj:
+-        raise HTTPException(status_code=404, detail="Objet non trouvé")
+-    return obj
+-
+-
+-@router.get("/layers", response_model=BusinessMapLayersResponse)
+-def get_business_map_layers() -> BusinessMapLayersResponse:
+-    layers = business_map_service.get_layers()
+-    return BusinessMapLayersResponse(layers=layers)
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/routers/quality.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/routers/quality.py
+--- repo_git/backend/app/routers/quality.py	2026-06-10 16:39:55.091730600 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/routers/quality.py	2026-06-25 17:57:08.651616800 +0100
+@@ -987,26 +987,10 @@
+ @router.get("/unified/stations", response_model=List[UnifiedQualityStationResponse], tags=["Quality Unified"])
+ def get_unified_stations(
+     support_type: Optional[str] = None,
+-    ire_station: Optional[str] = None,
+-    station_id: Optional[str] = None,
+     db: Session = Depends(get_climate_db)
+ ):
+     """Liste les stations avec métadonnées depuis la vue unifiée."""
+-    conditions = []
+-    params = {}
+-    if support_type:
+-        conditions.append("support_type = :support_type")
+-        params["support_type"] = support_type
+-    if ire_station:
+-        conditions.append("ire_station = :ire_station")
+-        params["ire_station"] = ire_station
+-    if station_id:
+-        conditions.append("station_id::text = :station_id")
+-        params["station_id"] = str(station_id)
+-
+-    where_clause = f"WHERE {' AND '.join(conditions)}" if conditions else ""
+-
+-    sql = f"""
++    sql = """
+         WITH stats AS MATERIALIZED (
+             SELECT 
+                 ire_station, station_id::text as sid, support_type,
+@@ -1027,89 +1011,73 @@
+         FROM stats
+         LEFT JOIN dim s ON stats.sid = s.station_id::text
+     """
+-    rows = db.execute(text(sql), params).fetchall()
++    where_clause = "WHERE support_type = :support_type" if support_type else ""
++    sql = sql.format(where_clause=where_clause)
++    rows = db.execute(text(sql), {"support_type": support_type} if support_type else {}).fetchall()
+     return _rows_to_dicts(rows)
+ 
+ @router.get("/unified/parameters", response_model=List[UnifiedQualityParameterResponse], tags=["Quality Unified"])
+-def get_unified_parameters(
+-    support_type: Optional[str] = None,
+-    ire_station: Optional[str] = None,
+-    station_id: Optional[str] = None,
+-    db: Session = Depends(get_climate_db)
+-):
+-    """Liste les paramètres disponibles depuis la vue unifiée."""
+-    conditions = []
+-    params = {}
+-    if support_type:
+-        conditions.append("v.support_type = :support_type")
+-        params["support_type"] = support_type
+-    if ire_station:
+-        conditions.append("v.ire_station = :ire_station")
+-        params["ire_station"] = ire_station
+-    if station_id:
+-        conditions.append("v.station_id::text = :station_id")
+-        params["station_id"] = str(station_id)
+-
+-    where_clause = f"WHERE {' AND '.join(conditions)}" if conditions else ""
+-
+-    sql = f"""
+-        SELECT 
++def get_unified_parameters(
++    support_type: Optional[str] = None,
++    station_id: Optional[str] = None,
++    ire_station: Optional[str] = None,
++    db: Session = Depends(get_climate_db)
++):
++    """Liste les paramètres disponibles depuis la vue unifiée."""
++    sql = """
++        SELECT 
+             v.parametre_qualite,
+             COUNT(v.valeur) as measure_count,
+             COUNT(DISTINCT v.ire_station) as station_count,
+-            MIN(v.date_mesure) as date_min, MAX(v.date_mesure) as date_max
+-        FROM api.v_qualite_dashboard_unifiee v
+-        {where_clause}
+-        GROUP BY v.parametre_qualite
+-    """
+-    rows = db.execute(text(sql), params).fetchall()
+-    return _rows_to_dicts(rows)
++            MIN(v.date_mesure) as date_min, MAX(v.date_mesure) as date_max
++        FROM api.v_qualite_dashboard_unifiee v
++        WHERE (:support_type IS NULL OR v.support_type = :support_type)
++          AND (
++              :station_filter IS NULL
++              OR v.station_id::text = :station_filter
++              OR v.ire_station = :station_filter
++          )
++        GROUP BY v.parametre_qualite
++        ORDER BY measure_count DESC
++    """
++    rows = db.execute(
++        text(sql),
++        {
++            "support_type": support_type,
++            "station_filter": station_id or ire_station,
++        },
++    ).fetchall()
++    return _rows_to_dicts(rows)
+ 
+ @router.get("/unified/timeseries", response_model=List[UnifiedQualityTimeseriesResponse], tags=["Quality Unified"])
+-def get_unified_timeseries(
+-    support_type: Optional[str] = None,
+-    ire_station: Optional[str] = None,
+-    station_id: Optional[str] = None,
+-    parametre_qualite: Optional[str] = None,
+-    date_from: Optional[str] = None,
+-    date_to: Optional[str] = None,
+-    limit: int = 100,
+-    db: Session = Depends(get_climate_db)
+-):
+-    """Liste les séries temporelles depuis la vue unifiée."""
+-    conditions = []
+-    params = {"limit": limit}
+-
+-    if support_type:
+-        conditions.append("v.support_type = :support_type")
+-        params["support_type"] = support_type
+-    if ire_station:
+-        conditions.append("v.ire_station = :ire_station")
+-        params["ire_station"] = ire_station
+-    if station_id:
+-        conditions.append("v.station_id::text = :station_id")
+-        params["station_id"] = str(station_id)
+-    if parametre_qualite:
+-        conditions.append("v.parametre_qualite = :parametre_qualite")
+-        params["parametre_qualite"] = parametre_qualite
+-    if date_from:
+-        conditions.append("v.date_mesure >= CAST(:date_from AS date)")
+-        params["date_from"] = date_from
+-    if date_to:
+-        conditions.append("v.date_mesure <= CAST(:date_to AS date)")
+-        params["date_to"] = date_to
+-
+-    where_clause = f"WHERE {' AND '.join(conditions)}" if conditions else ""
+-
+-    sql = f"""
+-        WITH ts AS MATERIALIZED (
++def get_unified_timeseries(
++    support_type: Optional[str] = None,
++    ire_station: Optional[str] = None,
++    station_id: Optional[str] = None,
++    parametre_qualite: Optional[str] = None,
++    date_start: Optional[str] = None,
++    date_end: Optional[str] = None,
++    limit: int = Query(1000, ge=1, le=5000),
++    db: Session = Depends(get_climate_db)
++):
++    """Liste les séries temporelles depuis la vue unifiée."""
++    sql = """
++        WITH ts AS MATERIALIZED (
+             SELECT 
+-                date_mesure, ire_station, station_id, parametre_qualite, valeur, support_type, source_table
+-            FROM api.v_qualite_dashboard_unifiee v
+-            {where_clause}
+-            ORDER BY date_mesure DESC
+-            LIMIT :limit
+-        ),
++                date_mesure, ire_station, station_id, parametre_qualite, valeur, support_type, source_table
++            FROM api.v_qualite_dashboard_unifiee v
++            WHERE (:support_type IS NULL OR v.support_type = :support_type)
++              AND (
++                  :station_filter IS NULL
++                  OR v.station_id::text = :station_filter
++                  OR v.ire_station = :station_filter
++              )
++              AND (:parametre_qualite IS NULL OR v.parametre_qualite = :parametre_qualite)
++              AND (:date_start IS NULL OR v.date_mesure >= CAST(:date_start AS date))
++              AND (:date_end IS NULL OR v.date_mesure <= CAST(:date_end AS date))
++            ORDER BY date_mesure DESC
++            LIMIT :limit
++        ),
+         dim AS MATERIALIZED (
+             SELECT * FROM api.v_station_dimension
+         )
+@@ -1120,6 +1088,13 @@
+         LEFT JOIN dim s ON ts.station_id::text = s.station_id::text
+         ORDER BY ts.date_mesure DESC
+     """
+-    rows = db.execute(text(sql), params).fetchall()
+-    return _rows_to_dicts(rows)
++    rows = db.execute(text(sql), {
++        "support_type": support_type,
++        "station_filter": station_id or ire_station,
++        "parametre_qualite": parametre_qualite,
++        "date_start": date_start,
++        "date_end": date_end,
++        "limit": limit
++    }).fetchall()
++    return _rows_to_dicts(rows)
+ 
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/schemas/auth.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/schemas/auth.py
+--- repo_git/backend/app/schemas/auth.py	2026-04-06 08:15:19.770937600 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/schemas/auth.py	2026-06-23 10:23:20.000000000 +0100
+@@ -1,6 +1,6 @@
+-# backend/app/schemas/auth.py
+-from pydantic import BaseModel, EmailStr
+-
+-class LoginRequest(BaseModel):
+-    email: EmailStr
++# backend/app/schemas/auth.py
++from pydantic import BaseModel, EmailStr
++
++class LoginRequest(BaseModel):
++    email: EmailStr
+     password: str
+\ No newline at end of file
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/schemas/item.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/schemas/item.py
+--- repo_git/backend/app/schemas/item.py	2026-04-06 08:15:19.771935800 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/schemas/item.py	2026-06-23 10:23:20.000000000 +0100
+@@ -1,20 +1,20 @@
+-# backend/app/schemas/item.py
+-from pydantic import BaseModel
+-
+-class ItemBase(BaseModel):
+-    title: str
+-    description: str | None = None
+-
+-class ItemCreate(ItemBase):
+-    pass
+-
+-class ItemUpdate(BaseModel):
+-    title: str | None = None
+-    description: str | None = None
+-
+-class ItemOut(ItemBase):
+-    id: int
+-    owner_id: int
+-
+-    class Config:
+-        from_attributes = True
++# backend/app/schemas/item.py
++from pydantic import BaseModel
++
++class ItemBase(BaseModel):
++    title: str
++    description: str | None = None
++
++class ItemCreate(ItemBase):
++    pass
++
++class ItemUpdate(BaseModel):
++    title: str | None = None
++    description: str | None = None
++
++class ItemOut(ItemBase):
++    id: int
++    owner_id: int
++
++    class Config:
++        from_attributes = True
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/schemas/user.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/schemas/user.py
+--- repo_git/backend/app/schemas/user.py	2026-04-06 08:15:19.771935800 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/schemas/user.py	2026-06-23 10:23:20.000000000 +0100
+@@ -1,20 +1,20 @@
+-# backend/app/schemas/user.py
+-from pydantic import BaseModel, EmailStr
+-
+-class UserBase(BaseModel):
+-    email: EmailStr
+-
+-class UserCreate(UserBase):
+-    password: str
+-
+-class UserLogin(BaseModel):
+-    email: EmailStr
+-    password: str
+-
+-class UserOut(UserBase):
+-    id: int
+-    is_active: bool
+-    is_superuser: bool
+-
+-    class Config:
+-        from_attributes = True
++# backend/app/schemas/user.py
++from pydantic import BaseModel, EmailStr
++
++class UserBase(BaseModel):
++    email: EmailStr
++
++class UserCreate(UserBase):
++    password: str
++
++class UserLogin(BaseModel):
++    email: EmailStr
++    password: str
++
++class UserOut(UserBase):
++    id: int
++    is_active: bool
++    is_superuser: bool
++
++    class Config:
++        from_attributes = True
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/services/analysis_service.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/services/analysis_service.py
+--- repo_git/backend/app/services/analysis_service.py	2026-06-16 08:18:46.833022200 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/services/analysis_service.py	1970-01-01 01:00:00.000000000 +0100
+@@ -1,436 +0,0 @@
+-import hashlib
+-from typing import List, Optional
+-from datetime import datetime, date
+-import logging
+-
+-import numpy as np
+-import pandas as pd
+-from scipy import stats as scipy_stats
+-
+-from sqlalchemy.orm import Session
+-from fastapi import HTTPException
+-from app.models.analysis_models import (
+-    BatchSeriesRequest,
+-    BatchSeriesResponse,
+-    AnalyticalSeries,
+-    BatchStatus,
+-    BatchMeta,
+-    BatchWarning,
+-    SeriesValue,
+-    SeriesSource,
+-    CorrelationRequest,
+-    CorrelationResponse,
+-    CorrelationMatrixRequest,
+-    CorrelationMatrixResponse,
+-    CorrelationMatrixItem,
+-)
+-from app.services.business_map_service import get_series, series_registry, _resolve_temporality
+-
+-logger = logging.getLogger(__name__)
+-
+-def generate_series_id(support_type: str, object_id: str, domain: str, parameter_code: str, aggregation: str, date_from: str, date_to: str) -> str:
+-    # Use sha1 for stable hashing
+-    raw_str = f"{support_type}|{object_id}|{domain}|{parameter_code}|{aggregation}|{date_from}|{date_to}"
+-    return hashlib.sha1(raw_str.encode('utf-8')).hexdigest()
+-
+-def get_downsampled_aggregation(date_from: date, date_to: date, requested_agg: str) -> str:
+-    days = (date_to - date_from).days
+-    if days <= 90:
+-        return requested_agg
+-    if 90 < days <= 730 and requested_agg == "raw":
+-        return "daily"
+-    if 730 < days <= 3650 and requested_agg in ["raw", "daily"]:
+-        return "monthly"
+-    if days > 3650 and requested_agg in ["raw", "daily", "monthly"]:
+-        return "annual"
+-    return requested_agg
+-
+-def process_batch_series(db: Session, request: BatchSeriesRequest) -> BatchSeriesResponse:
+-    if len(request.series) > 20:
+-        raise HTTPException(status_code=422, detail="Too many series requested. Max allowed: 20.")
+-
+-    requested_count = len(request.series)
+-    returned_count = 0
+-    empty_count = 0
+-    failed_count = 0
+-    
+-    series_results: List[AnalyticalSeries] = []
+-    warnings: List[BatchWarning] = []
+-
+-    try:
+-        d_from = datetime.strptime(request.date_from, "%Y-%m-%d").date()
+-        d_to = datetime.strptime(request.date_to, "%Y-%m-%d").date()
+-    except ValueError:
+-        raise HTTPException(status_code=400, detail="Invalid date format. Expected YYYY-MM-DD")
+-
+-    global_aggregation = get_downsampled_aggregation(d_from, d_to, request.aggregation)
+-
+-    if global_aggregation != request.aggregation:
+-        warnings.append(BatchWarning(
+-            type="aggregation_changed",
+-            series_ref="global",
+-            message=f"Aggregation changed from {request.aggregation} to {global_aggregation} due to long date range."
+-        ))
+-
+-    for item in request.series:
+-        ref_str = f"{item.support_type}|{item.object_id}|{item.parameter_code}"
+-        try:
+-            # Détection métier : pollution IDP = données ponctuelles
+-            is_point_measure = _resolve_temporality(item.support_type) == "POINT_MEASURE"
+-            request_aggregation = "raw" if is_point_measure else global_aggregation
+-
+-            # We call the existing get_series logic (which internally might adjust aggregation again, but we pass our global_aggregation)
+-            result = get_series(
+-                db=db,
+-                support_type=item.support_type,
+-                object_id=item.object_id,
+-                parameter_code=item.parameter_code,
+-                date_from=d_from,
+-                date_to=d_to,
+-                aggregation=request_aggregation
+-            )
+-            
+-            # Map legacy AnalyticalSeries back to our new pydantic models or dictionary output
+-            # business_map_service.get_series returns an AnalyticalSeries schema defined in schemas/business_map.py
+-            # we need to transform it to our new analysis_models.AnalyticalSeries
+-            
+-            val_list = [
+-                SeriesValue(
+-                    date=v.date if isinstance(v.date, str) else v.date.isoformat(),
+-                    value=v.value,
+-                    quality_flag=None
+-                )
+-                for v in result.values
+-            ]
+-
+-            if len(val_list) == 0:
+-                empty_count += 1
+-                warnings.append(BatchWarning(
+-                    type="empty_series",
+-                    series_ref=ref_str,
+-                    message="No values found for selected period."
+-                ))
+-            else:
+-                returned_count += 1
+-
+-            if is_point_measure:
+-                warnings.append(BatchWarning(
+-                    type="point_measure",
+-                    series_ref=ref_str,
+-                    message="Pollution IDP data is point-measure only; returned as values table, not time series."
+-                ))
+-
+-            if len(val_list) > 5000:
+-                warnings.append(BatchWarning(
+-                    type="too_many_points",
+-                    series_ref=ref_str,
+-                    message="Series exceeds 5000 points. Consider using a larger aggregation."
+-                ))
+-
+-            # Resolve source table mapping
+-            # This requires inspecting the provider if possible, but we can hardcode fallback mapping based on support_type
+-            source_table = None
+-            if item.support_type == "STATION_HYDRO":
+-                source_table = "hydro.mesure_debit"
+-            elif item.support_type == "BARRAGE":
+-                source_table = "hydro.mesure_barrage_param"
+-            elif item.support_type == "STATION_METEO":
+-                if item.parameter_code == "PREC":
+-                    source_table = "meteo.mesure_precipitation"
+-                elif item.parameter_code == "TEMP":
+-                    source_table = "meteo.mesure_temperature"
+-                else:
+-                    source_table = "meteo.mesure_evaporation"
+-            elif item.support_type == "STATION_QUALITE":
+-                source_table = "qualite.mesure_qualite_riviere"
+-            elif item.support_type == "STATION_SENTINELLE":
+-                source_table = "qualite.mesure_qualite_sebou"
+-            elif item.support_type == "POINT_PRELEVEMENT_POLLUTION":
+-                source_table = "qualite.source_pollution_mesure_param"
+-            elif item.support_type == "SOURCE_POLLUTION":
+-                source_table = "api.v_pollution_sites"
+-
+-            stable_id = generate_series_id(
+-                item.support_type, item.object_id, item.domain, item.parameter_code, 
+-                global_aggregation, request.date_from, request.date_to
+-            )
+-
+-            # Build the new AnalyticalSeries
+-            series_obj = AnalyticalSeries(
+-                id=stable_id,
+-                support_type=item.support_type,
+-                object_id=item.object_id,
+-                object_name=result.support_name if result.support_name else "Inconnu",
+-                domain=item.domain,
+-                subdomain=result.subdomain,
+-                parameter_code=item.parameter_code,
+-                parameter_label=result.parameter_label if result.parameter_label else item.parameter_code,
+-                unit=result.unit,
+-                aggregation=result.aggregation if is_point_measure else global_aggregation,
+-                series_type=result.series_type if result.series_type else ("POINT_MEASURE" if is_point_measure else "TIME_SERIES"),
+-                data_family=result.data_family,
+-                measurement_context=result.measurement_context,
+-                date_from=request.date_from,
+-                date_to=request.date_to,
+-                values=val_list,
+-                source=SeriesSource(
+-                    endpoint="/api/v1/analysis/series/batch",
+-                    table=source_table,
+-                    refreshed_at=None
+-                )
+-            )
+-
+-            series_results.append(series_obj)
+-
+-        except Exception as e:
+-            logger.error(f"Failed to fetch series {ref_str}: {e}")
+-            failed_count += 1
+-            warnings.append(BatchWarning(
+-                type="unsupported_series" if "Unsupported" in str(e) else "internal_error",
+-                series_ref=ref_str,
+-                message=str(e)
+-            ))
+-
+-    status = BatchStatus(
+-        requested=requested_count,
+-        returned=returned_count,
+-        empty=empty_count,
+-        failed=failed_count
+-    )
+-
+-    meta = BatchMeta(
+-        requested=requested_count,
+-        returned=returned_count,
+-        aggregation=global_aggregation
+-    )
+-
+-    return BatchSeriesResponse(
+-        series=series_results,
+-        warnings=warnings,
+-        meta=meta,
+-        status=status
+-    )
+-
+-
+-# ============================================================
+-# CORRELATION HELPERS
+-# ============================================================
+-
+-def _series_to_dataframe(series: AnalyticalSeries) -> pd.DataFrame:
+-    """Convertit une AnalyticalSeries en DataFrame pandas (date -> value)."""
+-    rows = [{"date": v.date, "value": v.value} for v in series.values if v.value is not None]
+-    df = pd.DataFrame(rows)
+-    if df.empty:
+-        return df
+-    df["date"] = pd.to_datetime(df["date"], errors="coerce")
+-    df = df.dropna(subset=["date"])
+-    df = df.set_index("date").sort_index()
+-    return df
+-
+-
+-def _aggregation_to_freq(aggregation: Optional[str]) -> str:
+-    """Mappe une agrégation API en fréquence pandas pour l'alignement."""
+-    if aggregation == "annual":
+-        return "YS"  # year start
+-    if aggregation == "monthly":
+-        return "MS"  # month start
+-    if aggregation == "daily":
+-        return "D"
+-    # raw -> on aligne au jour pour tolérer des fréquences différentes
+-    return "D"
+-
+-
+-def _resample_to_common(series: AnalyticalSeries, aggregation: str) -> pd.Series:
+-    """Resample une série vers une fréquence commune (moyenne)."""
+-    df = _series_to_dataframe(series)
+-    if df.empty:
+-        return pd.Series(dtype=float)
+-    freq = _aggregation_to_freq(aggregation)
+-    return df["value"].resample(freq).mean().dropna()
+-
+-
+-def _match_series(
+-    series_results: List[AnalyticalSeries], request_item
+-) -> Optional[AnalyticalSeries]:
+-    """Retrouve la série correspondant à la requête initiale."""
+-    for s in series_results:
+-        if (
+-            s.support_type == request_item.support_type
+-            and s.object_id == request_item.object_id
+-            and s.parameter_code == request_item.parameter_code
+-        ):
+-            return s
+-    return None
+-
+-
+-def calculate_correlation(db: Session, request: CorrelationRequest) -> dict:
+-    """Calcule la corrélation entre les deux premières séries de la requête."""
+-    if len(request.series) < 2:
+-        return {"error": "INSUFFICIENT_SERIES", "message": "Au moins 2 séries sont requises pour calculer une corrélation."}
+-
+-    batch_request = BatchSeriesRequest(
+-        date_from=request.date_from,
+-        date_to=request.date_to,
+-        aggregation=request.aggregation,
+-        series=request.series[:2],
+-    )
+-
+-    batch_response = process_batch_series(db, batch_request)
+-
+-    series_x_req = request.series[0]
+-    series_y_req = request.series[1]
+-
+-    series_x = _match_series(batch_response.series, series_x_req)
+-    series_y = _match_series(batch_response.series, series_y_req)
+-
+-    if series_x is None or series_y is None:
+-        return {
+-            "error": "SERIES_NOT_FOUND",
+-            "message": "Impossible de récupérer l'une des séries demandées.",
+-        }
+-
+-    if series_x.series_type != "TIME_SERIES":
+-        return {
+-            "error": "NOT_TIME_SERIES",
+-            "message": f"La série X ({series_x_req.parameter_code}) est ponctuelle (POINT_MEASURE). La corrélation nécessite des séries temporelles.",
+-        }
+-    if series_y.series_type != "TIME_SERIES":
+-        return {
+-            "error": "NOT_TIME_SERIES",
+-            "message": f"La série Y ({series_y_req.parameter_code}) est ponctuelle (POINT_MEASURE). La corrélation nécessite des séries temporelles.",
+-        }
+-
+-    # Alignement temporel : resample vers la fréquence demandée puis jointure interne
+-    effective_aggregation = series_x.aggregation or request.aggregation
+-    xs = _resample_to_common(series_x, effective_aggregation)
+-    ys = _resample_to_common(series_y, effective_aggregation)
+-
+-    aligned = pd.concat([xs, ys], axis=1, join="inner").dropna()
+-    aligned.columns = ["x", "y"]
+-
+-    if aligned.empty or len(aligned) < 2:
+-        return {
+-            "error": "NO_OVERLAP",
+-            "message": "Les deux séries n'ont pas de période commune. Impossible de calculer la corrélation.",
+-        }
+-
+-    x_vals = aligned["x"].to_numpy(dtype=float)
+-    y_vals = aligned["y"].to_numpy(dtype=float)
+-
+-    slope, intercept, r_value, p_value, _ = scipy_stats.linregress(x_vals, y_vals)
+-
+-    if np.isnan(r_value) or np.isnan(slope):
+-        return {
+-            "error": "NO_CORRELATION",
+-            "message": "La corrélation n'est pas définie : une des séries est constante sur la période commune.",
+-        }
+-
+-    r_squared = float(r_value) ** 2
+-
+-    x_min, x_max = float(np.min(x_vals)), float(np.max(x_vals))
+-    regression_line = [
+-        {"x": x_min, "y": float(slope * x_min + intercept)},
+-        {"x": x_max, "y": float(slope * x_max + intercept)},
+-    ]
+-
+-    return {
+-        "series_x": {
+-            "object_id": series_x.object_id,
+-            "parameter_code": series_x.parameter_code,
+-            "domain": series_x.domain,
+-            "support_type": series_x.support_type,
+-            "values": [{"date": d.isoformat(), "value": v} for d, v in xs.items()],
+-        },
+-        "series_y": {
+-            "object_id": series_y.object_id,
+-            "parameter_code": series_y.parameter_code,
+-            "domain": series_y.domain,
+-            "support_type": series_y.support_type,
+-            "values": [{"date": d.isoformat(), "value": v} for d, v in ys.items()],
+-        },
+-        "aligned_data": [
+-            {"date": d.isoformat(), "x": float(row["x"]), "y": float(row["y"])}
+-            for d, row in aligned.iterrows()
+-        ],
+-        "correlation": {
+-            "pearson_r": float(r_value),
+-            "r_squared": float(r_squared),
+-            "slope": float(slope),
+-            "intercept": float(intercept),
+-            "p_value": float(p_value),
+-            "n_points": len(aligned),
+-        },
+-        "regression_line": regression_line,
+-    }
+-
+-
+-def calculate_correlation_matrix(db: Session, request: CorrelationMatrixRequest) -> dict:
+-    """Calcule une matrice de corrélation Pearson entre 3 à 5 séries temporelles."""
+-    if len(request.series) < 3:
+-        return {
+-            "error": "INSUFFICIENT_SERIES",
+-            "message": "Au moins 3 séries sont requises pour calculer une matrice de corrélation.",
+-        }
+-
+-    batch_request = BatchSeriesRequest(
+-        date_from=request.date_from,
+-        date_to=request.date_to,
+-        aggregation=request.aggregation,
+-        series=request.series,
+-    )
+-
+-    batch_response = process_batch_series(db, batch_request)
+-
+-    # Vérifier TIME_SERIES et aligner
+-    series_data = []
+-    for req_item in request.series:
+-        s = _match_series(batch_response.series, req_item)
+-        if s is None:
+-            return {
+-                "error": "SERIES_NOT_FOUND",
+-                "message": f"Impossible de récupérer la série {req_item.parameter_code}.",
+-            }
+-        if s.series_type != "TIME_SERIES":
+-            return {
+-                "error": "NOT_TIME_SERIES",
+-                "message": f"La série {req_item.parameter_code} est ponctuelle. La matrice nécessite des séries temporelles.",
+-            }
+-        effective_aggregation = s.aggregation or request.aggregation
+-        ts = _resample_to_common(s, effective_aggregation)
+-        series_data.append({"req": req_item, "series": s, "ts": ts})
+-
+-    n = len(series_data)
+-    matrix: List[List[Optional[float]]] = [[None] * n for _ in range(n)]
+-    n_points: List[List[Optional[int]]] = [[None] * n for _ in range(n)]
+-
+-    for i in range(n):
+-        for j in range(n):
+-            if i == j:
+-                matrix[i][j] = 1.0
+-                n_points[i][j] = len(series_data[i]["ts"])
+-                continue
+-            aligned = pd.concat([series_data[i]["ts"], series_data[j]["ts"]], axis=1, join="inner").dropna()
+-            if len(aligned) < 2:
+-                matrix[i][j] = None
+-                n_points[i][j] = 0
+-            else:
+-                r, _ = scipy_stats.pearsonr(
+-                    aligned.iloc[:, 0].to_numpy(dtype=float),
+-                    aligned.iloc[:, 1].to_numpy(dtype=float),
+-                )
+-                matrix[i][j] = float(r)
+-                n_points[i][j] = len(aligned)
+-
+-    return {
+-        "series": [
+-            {
+-                "object_id": sd["series"].object_id,
+-                "parameter_code": sd["series"].parameter_code,
+-                "domain": sd["series"].domain,
+-                "support_type": sd["series"].support_type,
+-            }
+-            for sd in series_data
+-        ],
+-        "matrix": matrix,
+-        "n_points": n_points,
+-    }
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/services/business_map_service.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/services/business_map_service.py
+--- repo_git/backend/app/services/business_map_service.py	2026-06-15 15:58:54.207120700 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/services/business_map_service.py	1970-01-01 01:00:00.000000000 +0100
+@@ -1,514 +0,0 @@
+-import json
+-from abc import ABC, abstractmethod
+-from datetime import date
+-from typing import Any
+-
+-from sqlalchemy import text
+-from sqlalchemy.orm import Session
+-
+-from app.models.business_map_models import (
+-    AnalyticalSeries,
+-    AnalyticalSeriesValue,
+-    BusinessMapAvailabilityItem,
+-    BusinessMapFeatureCollection,
+-    BusinessMapLayer,
+-    Feature,
+-    FeatureProperties,
+-)
+-
+-
+-class BaseSeriesProvider(ABC):
+-    @abstractmethod
+-    def build_query(self, object_id: str, parameter_code: str, date_from: date | None, date_to: date | None, aggregation: str) -> text:
+-        pass
+-
+-    @abstractmethod
+-    def execute(self, db: Session, query: text, params: dict[str, Any]) -> list[dict[str, Any]]:
+-        pass
+-
+-    @abstractmethod
+-    def format_response(self, rows: list[dict[str, Any]], support_type: str, object_id: str, parameter_code: str, aggregation: str) -> AnalyticalSeries:
+-        pass
+-
+-
+-class DefaultSeriesProvider(BaseSeriesProvider):
+-    def __init__(self, source_table: str, id_col: str, date_col: str, val_col: str, domain: str):
+-        self.source_table = source_table
+-        self.id_col = id_col
+-        self.date_col = date_col
+-        self.val_col = val_col
+-        self.domain = domain
+-
+-    def _get_trunc_scale(self, aggregation: str) -> str:
+-        if aggregation == "annual":
+-            return "year"
+-        if aggregation == "monthly":
+-            return "month"
+-        if aggregation == "daily":
+-            return "day"
+-        return "day"
+-
+-    def build_query(self, object_id: str, parameter_code: str, date_from: date | None, date_to: date | None, aggregation: str) -> text:
+-        where_clauses = [f"{self.id_col}::text = :object_id"]
+-        if parameter_code and self.domain != "HYDROLOGIE" and self.domain != "CLIMATOLOGIE":
+-            # Rough logic: only applies if there is a parameter_code column. For hydrologie (DEBIT), there is no parameter_col.
+-            pass
+-        
+-        if date_from:
+-            where_clauses.append(f"{self.date_col} >= :date_from")
+-        if date_to:
+-            where_clauses.append(f"{self.date_col} <= :date_to")
+-            
+-        where_str = " AND ".join(where_clauses)
+-        
+-        if aggregation == "raw":
+-            sql = f"""
+-                SELECT {self.date_col} AS sample_date, {self.val_col} AS val
+-                FROM {self.source_table}
+-                WHERE {where_str}
+-                ORDER BY {self.date_col} ASC
+-                LIMIT 5000
+-            """
+-        else:
+-            trunc = self._get_trunc_scale(aggregation)
+-            sql = f"""
+-                SELECT date_trunc(:trunc_scale, {self.date_col}) AS sample_date, avg({self.val_col}) AS val
+-                FROM {self.source_table}
+-                WHERE {where_str}
+-                GROUP BY 1
+-                ORDER BY 1 ASC
+-                LIMIT 5000
+-            """
+-        return text(sql)
+-
+-    def execute(self, db: Session, query: text, params: dict[str, Any]) -> list[dict[str, Any]]:
+-        return [dict(r) for r in db.execute(query, params).mappings().all()]
+-
+-    def format_response(self, rows: list[dict[str, Any]], support_type: str, object_id: str, parameter_code: str, aggregation: str) -> AnalyticalSeries:
+-        values = []
+-        for r in rows:
+-            dt = r["sample_date"]
+-            if dt:
+-                dt_str = dt.isoformat() if hasattr(dt, "isoformat") else str(dt)
+-            else:
+-                dt_str = ""
+-            values.append(AnalyticalSeriesValue(date=dt_str, value=r["val"]))
+-            
+-        return AnalyticalSeries(
+-            id=f"{support_type}_{object_id}_{parameter_code}",
+-            support_type=support_type,
+-            support_id=object_id,
+-            domain=self.domain,
+-            parameter_code=parameter_code,
+-            aggregation=aggregation,
+-            values=values
+-        )
+-
+-
+-class QualitySeriesProvider(DefaultSeriesProvider):
+-    def build_query(self, object_id: str, parameter_code: str, date_from: date | None, date_to: date | None, aggregation: str) -> text:
+-        where_clauses = [f"{self.id_col}::text = :object_id", "trim(parametre_qualite) = :parameter_code"]
+-        if date_from:
+-            where_clauses.append(f"{self.date_col} >= :date_from")
+-        if date_to:
+-            where_clauses.append(f"{self.date_col} <= :date_to")
+-            
+-        where_str = " AND ".join(where_clauses)
+-        
+-        if aggregation == "raw":
+-            sql = f"""
+-                SELECT {self.date_col} AS sample_date, {self.val_col} AS val
+-                FROM {self.source_table}
+-                WHERE {where_str}
+-                ORDER BY {self.date_col} ASC
+-                LIMIT 5000
+-            """
+-        else:
+-            trunc = self._get_trunc_scale(aggregation)
+-            sql = f"""
+-                SELECT date_trunc(:trunc_scale, {self.date_col}) AS sample_date, avg({self.val_col}) AS val
+-                FROM {self.source_table}
+-                WHERE {where_str}
+-                GROUP BY 1
+-                ORDER BY 1 ASC
+-                LIMIT 5000
+-            """
+-        return text(sql)
+-
+-class BarrageSeriesProvider(DefaultSeriesProvider):
+-    def build_query(self, object_id: str, parameter_code: str, date_from: date | None, date_to: date | None, aggregation: str) -> text:
+-        where_clauses = [f"{self.id_col}::text = :object_id", "trim(parametre_code) = :parameter_code"]
+-        if date_from:
+-            where_clauses.append(f"{self.date_col} >= :date_from")
+-        if date_to:
+-            where_clauses.append(f"{self.date_col} <= :date_to")
+-            
+-        where_str = " AND ".join(where_clauses)
+-        
+-        if aggregation == "raw":
+-            sql = f"""
+-                SELECT {self.date_col} AS sample_date, {self.val_col} AS val
+-                FROM {self.source_table}
+-                WHERE {where_str}
+-                ORDER BY {self.date_col} ASC
+-                LIMIT 5000
+-            """
+-        else:
+-            trunc = self._get_trunc_scale(aggregation)
+-            sql = f"""
+-                SELECT date_trunc(:trunc_scale, {self.date_col}) AS sample_date, avg({self.val_col}) AS val
+-                FROM {self.source_table}
+-                WHERE {where_str}
+-                GROUP BY 1
+-                ORDER BY 1 ASC
+-                LIMIT 5000
+-            """
+-        return text(sql)
+-
+-class PollutionSeriesProvider(DefaultSeriesProvider):
+-    def build_query(self, object_id: str, parameter_code: str, date_from: date | None, date_to: date | None, aggregation: str) -> text:
+-        # For pollution, prelevement_id -> site_id
+-        sql = f"""
+-            SELECT COALESCE(p.date_prelevement, p.date_reception) AS sample_date, m.valeur_num AS val
+-            FROM qualite.source_pollution_mesure_param m
+-            JOIN qualite.source_pollution_prelevement p ON p.id = m.prelevement_id
+-            WHERE p.id::text = :object_id
+-              AND trim(m.param_code_legacy) = :parameter_code
+-              {"AND COALESCE(p.date_prelevement, p.date_reception) >= :date_from" if date_from else ""}
+-              {"AND COALESCE(p.date_prelevement, p.date_reception) <= :date_to" if date_to else ""}
+-            ORDER BY COALESCE(p.date_prelevement, p.date_reception) ASC
+-            LIMIT 5000
+-        """
+-        return text(sql)
+-
+-
+-class SeriesProviderRegistry:
+-    def __init__(self):
+-        self._providers: dict[tuple[str, str], BaseSeriesProvider] = {}
+-
+-    def register(self, support_type: str, parameter_code: str, provider: BaseSeriesProvider):
+-        self._providers[(support_type, parameter_code)] = provider
+-
+-    def get_provider(self, support_type: str, parameter_code: str) -> BaseSeriesProvider:
+-        # Use a fallback by parameter if exact match fails, or by support type.
+-        if (support_type, parameter_code) in self._providers:
+-            return self._providers[(support_type, parameter_code)]
+-        # Fallback to a generic domain provider if registered with parameter_code='*'
+-        if (support_type, "*") in self._providers:
+-            return self._providers[(support_type, "*")]
+-        raise ValueError(f"Aucun provider trouvé pour le support {support_type} et le paramètre {parameter_code}")
+-
+-
+-# Singleton Registry Initialization
+-series_registry = SeriesProviderRegistry()
+-series_registry.register("STATION_HYDRO", "DEBIT", DefaultSeriesProvider("hydro.mesure_debit", "station_id", "temps", "valeur", "HYDROLOGIE"))
+-series_registry.register("BARRAGE", "*", BarrageSeriesProvider("hydro.mesure_barrage_param", "barrage_id", "temps", "valeur", "HYDROLOGIE"))
+-series_registry.register("STATION_METEO", "PREC", DefaultSeriesProvider("meteo.mesure_precipitation", "station_id", "temps", "val_observees", "CLIMATOLOGIE"))
+-series_registry.register("STATION_QUALITE", "*", QualitySeriesProvider("qualite.mesure_qualite_riviere", "station_id", "temps", "valeur", "QUALITE"))
+-series_registry.register("STATION_SENTINELLE", "*", QualitySeriesProvider("qualite.mesure_qualite_sebou", "station_id", "temps", "valeur", "QUALITE"))
+-series_registry.register("POINT_PRELEVEMENT_POLLUTION", "*", PollutionSeriesProvider("qualite.source_pollution_mesure_param", "prelevement_id", "temps", "valeur_num", "POLLUTION"))
+-
+-def get_availability(
+-    db: Session,
+-    support_type: str | None = None,
+-    domain: str | None = None,
+-    subdomain: str | None = None,
+-    parameter_code: str | None = None,
+-    bassin_nom: str | None = None,
+-    recommended_v1: bool | None = None,
+-    data_temporality: str | None = None,
+-    data_family: str | None = None,
+-    measurement_context: str | None = None,
+-) -> dict[str, Any]:
+-    where = ["authorized_basin = 'Sebou'"] # V1 Constraint
+-    params: dict[str, Any] = {}
+-
+-    if support_type:
+-        where.append("support_type = :support_type")
+-        params["support_type"] = support_type
+-    if domain:
+-        where.append("domain = :domain")
+-        params["domain"] = domain
+-    if subdomain:
+-        where.append("subdomain = :subdomain")
+-        params["subdomain"] = subdomain
+-    if parameter_code:
+-        where.append("parameter_code = :parameter_code")
+-        params["parameter_code"] = parameter_code
+-    if bassin_nom:
+-        where.append("authorized_basin = :bassin_nom")
+-        params["bassin_nom"] = bassin_nom
+-    if recommended_v1 is not None:
+-        where.append("recommended_v1 = :recommended_v1")
+-        params["recommended_v1"] = recommended_v1
+-    if data_temporality:
+-        where.append("data_temporality = :data_temporality")
+-        params["data_temporality"] = data_temporality
+-    if data_family:
+-        where.append("data_family = :data_family")
+-        params["data_family"] = data_family
+-    if measurement_context:
+-        where.append("measurement_context = :measurement_context")
+-        params["measurement_context"] = measurement_context
+-
+-    sql = text(f"""
+-        SELECT * FROM api.mv_business_map_availability
+-        WHERE {" AND ".join(where)}
+-    """)
+-    rows = db.execute(sql, params).mappings().all()
+-    items = [BusinessMapAvailabilityItem(**row) for row in rows]
+-
+-    available_options = {
+-        "supports": sorted({row["support_type"] for row in rows if row.get("measure_count", 0) > 0}),
+-        "domains": sorted({row["domain"] for row in rows if row.get("measure_count", 0) > 0}),
+-        "parameters": sorted({row["parameter_code"] for row in rows if row.get("measure_count", 0) > 0}),
+-    }
+-
+-    return {
+-        "items": items,
+-        "total": len(items),
+-        "available_options": available_options,
+-    }
+-
+-
+-def get_features(
+-    db: Session,
+-    support_type: str | None = None,
+-    domain: str | None = None,
+-    subdomain: str | None = None,
+-    parameter_code: str | None = None,
+-    bassin_nom: str | None = None,
+-    bbox: str | None = None,
+-    limit: int = 1000,
+-    offset: int = 0,
+-    data_temporality: str | None = None,
+-    data_family: str | None = None,
+-    measurement_context: str | None = None,
+-) -> BusinessMapFeatureCollection:
+-    where = []
+-    params: dict[str, Any] = {"limit": limit, "offset": offset}
+-
+-    if support_type:
+-        where.append("f.support_type = :support_type")
+-        params["support_type"] = support_type
+-    if bassin_nom:
+-        where.append("f.bassin_nom = :bassin_nom")
+-        params["bassin_nom"] = bassin_nom
+-    if data_temporality:
+-        where.append("f.attributes->>'data_temporality' = :data_temporality")
+-        params["data_temporality"] = data_temporality
+-    if data_family:
+-        where.append("f.attributes->>'data_family' = :data_family")
+-        params["data_family"] = data_family
+-    if measurement_context:
+-        where.append("f.attributes->>'measurement_context' = :measurement_context")
+-        params["measurement_context"] = measurement_context
+-
+-    # Determine if we need to join other views
+-    needs_param_join = bool(parameter_code or domain or subdomain)
+-    
+-    if parameter_code:
+-        where.append("lv.parameter_code = :parameter_code")
+-        params["parameter_code"] = parameter_code
+-    if domain:
+-        where.append("a.domain = :domain")
+-        params["domain"] = domain
+-    if subdomain:
+-        where.append("a.subdomain = :subdomain")
+-        params["subdomain"] = subdomain
+-
+-    if bbox:
+-        try:
+-            minx, miny, maxx, maxy = [float(item) for item in bbox.split(",")]
+-            where.append("f.geom && ST_MakeEnvelope(:minx, :miny, :maxx, :maxy, 4326)")
+-            where.append("ST_Intersects(f.geom, ST_MakeEnvelope(:minx, :miny, :maxx, :maxy, 4326))")
+-            params.update({"minx": minx, "miny": miny, "maxx": maxx, "maxy": maxy})
+-        except ValueError:
+-            pass
+-    elif support_type == "SOURCE_POLLUTION":
+-        raise ValueError("bbox est obligatoire pour le support SOURCE_POLLUTION")
+-
+-    where_str = "WHERE " + " AND ".join(where) if where else ""
+-
+-    join_str = ""
+-    if needs_param_join:
+-        join_str = """
+-            JOIN api.mv_business_map_last_values lv ON lv.object_id = f.object_id AND lv.support_type = f.support_type
+-            JOIN api.mv_business_map_availability a ON a.support_type = lv.support_type AND a.parameter_code = lv.parameter_code
+-        """
+-
+-    sql = text(f"""
+-        SELECT DISTINCT
+-            f.object_id, f.object_name, f.object_code, f.support_type,
+-            f.bassin_nom, f.sous_bassin_nom, f.attributes, f.recommended_v1,
+-            f.geometry_geojson
+-            {', lv.parameter_code AS lv_parameter_code, lv.last_value AS lv_last_value' if needs_param_join else ''}
+-        FROM api.mv_business_map_features_v1 f
+-        {join_str}
+-        {where_str}
+-        LIMIT :limit OFFSET :offset
+-    """)
+-
+-    rows = db.execute(sql, params).mappings().all()
+-    features = []
+-    for r in rows:
+-        latest_values: dict[str, Any] | None = None
+-        if needs_param_join and r.get("lv_parameter_code"):
+-            latest_values = {r["lv_parameter_code"]: r["lv_last_value"]}
+-
+-        props = FeatureProperties(
+-            object_id=r["object_id"],
+-            object_name=r["object_name"],
+-            object_code=r["object_code"],
+-            support_type=r["support_type"],
+-            bassin_nom=r["bassin_nom"],
+-            sous_bassin_nom=r["sous_bassin_nom"],
+-            attributes=r["attributes"] or {},
+-            latest_values=latest_values,
+-            recommended_v1=r["recommended_v1"]
+-        )
+-        geom = r["geometry_geojson"]
+-        if isinstance(geom, str):
+-            try:
+-                geom = json.loads(geom)
+-            except Exception:
+-                geom = {}
+-
+-        features.append(Feature(id=r["object_id"], geometry=geom, properties=props))
+-
+-    return BusinessMapFeatureCollection(
+-        features=features,
+-        metadata={"count": len(features), "limit": limit, "offset": offset}
+-    )
+-
+-
+-def _resolve_temporality(support_type: str) -> str:
+-    """Règle métier : la pollution IDP est toujours ponctuelle, le reste est série temporelle par défaut."""
+-    if support_type in ("POINT_PRELEVEMENT_POLLUTION", "SOURCE_POLLUTION"):
+-        return "POINT_MEASURE"
+-    return "TIME_SERIES"
+-
+-
+-def _build_point_measure_response(
+-    support_type: str,
+-    object_id: str,
+-    parameter_code: str,
+-    rows: list[dict[str, Any]],
+-    provider: BaseSeriesProvider,
+-) -> AnalyticalSeries:
+-    values = []
+-    for r in rows:
+-        dt = r.get("sample_date")
+-        if dt:
+-            dt_str = dt.isoformat() if hasattr(dt, "isoformat") else str(dt)
+-        else:
+-            dt_str = ""
+-        values.append(AnalyticalSeriesValue(date=dt_str, value=r.get("val")))
+-
+-    return AnalyticalSeries(
+-        id=f"{support_type}_{object_id}_{parameter_code}",
+-        support_type=support_type,
+-        support_id=object_id,
+-        domain=provider.domain,
+-        parameter_code=parameter_code,
+-        aggregation=None,
+-        series_type="POINT_MEASURE",
+-        data_family="POLLUTION_IDP" if support_type in ("POINT_PRELEVEMENT_POLLUTION", "SOURCE_POLLUTION") else None,
+-        measurement_context="campagne_pollution_idp" if support_type == "POINT_PRELEVEMENT_POLLUTION" else "inventaire_source_pollution" if support_type == "SOURCE_POLLUTION" else None,
+-        source_table=provider.source_table,
+-        values=values,
+-    )
+-
+-
+-def get_series(
+-    db: Session,
+-    support_type: str,
+-    object_id: str,
+-    parameter_code: str,
+-    date_from: date | None,
+-    date_to: date | None,
+-    aggregation: str,
+-) -> AnalyticalSeries:
+-
+-    temporality = _resolve_temporality(support_type)
+-
+-    # Données ponctuelles : on ignore l'agrégation et on retourne les valeurs brutes
+-    if temporality == "POINT_MEASURE":
+-        provider = series_registry.get_provider(support_type, parameter_code)
+-        query = provider.build_query(object_id, parameter_code, date_from, date_to, "raw")
+-        params = {
+-            "object_id": object_id,
+-            "parameter_code": parameter_code,
+-            "date_from": date_from,
+-            "date_to": date_to,
+-        }
+-        rows = provider.execute(db, query, params)
+-        return _build_point_measure_response(support_type, object_id, parameter_code, rows, provider)
+-
+-    # Auto-aggregation logic based on date range (V1 rules)
+-    if date_from and date_to:
+-        days = (date_to - date_from).days
+-        if days > 90 and aggregation == "raw":
+-            aggregation = "daily"
+-        if days > 730 and aggregation in ["raw", "daily"]:
+-            aggregation = "monthly"
+-        if days > 3650 and aggregation in ["raw", "daily", "monthly"]:
+-            aggregation = "annual"
+-
+-    provider = series_registry.get_provider(support_type, parameter_code)
+-
+-    query = provider.build_query(object_id, parameter_code, date_from, date_to, aggregation)
+-    params = {
+-        "object_id": object_id,
+-        "parameter_code": parameter_code,
+-        "date_from": date_from,
+-        "date_to": date_to,
+-    }
+-    if aggregation != "raw":
+-        params["trunc_scale"] = provider._get_trunc_scale(aggregation) if hasattr(provider, "_get_trunc_scale") else "month"
+-
+-    rows = provider.execute(db, query, params)
+-    series = provider.format_response(rows, support_type, object_id, parameter_code, aggregation)
+-    series.series_type = "TIME_SERIES"
+-    return series
+-
+-
+-def get_object(db: Session, support_type: str, object_id: str) -> dict[str, Any]:
+-    # Utilise mv_business_map_features_v1 pour obtenir les details geo/metadatas
+-    sql_feature = text("""
+-        SELECT *
+-        FROM api.mv_business_map_features_v1
+-        WHERE support_type = :support_type AND object_id = :object_id
+-        LIMIT 1
+-    """)
+-    feature_row = db.execute(sql_feature, {"support_type": support_type, "object_id": object_id}).mappings().first()
+-    
+-    if not feature_row:
+-        return {}
+-        
+-    sql_last_values = text("""
+-        SELECT parameter_code, last_date, last_value
+-        FROM api.mv_business_map_last_values
+-        WHERE support_type = :support_type AND object_id = :object_id
+-    """)
+-    values_rows = db.execute(sql_last_values, {"support_type": support_type, "object_id": object_id}).mappings().all()
+-    
+-    result = dict(feature_row)
+-    if isinstance(result.get("geometry_geojson"), str):
+-        try:
+-            result["geometry_geojson"] = json.loads(result["geometry_geojson"])
+-        except Exception:
+-            pass
+-    
+-    result["available_parameters"] = [dict(r) for r in values_rows]
+-    return result
+-
+-
+-def get_layers() -> list[BusinessMapLayer]:
+-    return [
+-        BusinessMapLayer(layer_id="stations_qualite", label="Stations Qualité", category="Qualité"),
+-        BusinessMapLayer(layer_id="stations_hydro", label="Stations Hydrométriques", category="Hydrologie"),
+-        BusinessMapLayer(layer_id="stations_meteo", label="Stations Météorologiques", category="Climatologie"),
+-        BusinessMapLayer(layer_id="barrages", label="Barrages", category="Hydrologie"),
+-        BusinessMapLayer(layer_id="pollutions", label="Sources de Pollution", category="Pollution"),
+-    ]
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/services/map_business_service.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/services/map_business_service.py
+--- repo_git/backend/app/services/map_business_service.py	2026-06-10 09:44:15.824565800 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/services/map_business_service.py	2026-06-26 17:13:05.611402100 +0100
+@@ -91,17 +91,26 @@
+         support="stations_qualite",
+         label="Stations qualite",
+         source="api.v_station_dimension",
+-        id_column="station_id::text",
++        id_column="station_id",
+         name_column="station_nom",
+         geom_column="geom",
+         entity_type="station_qualite",
+         category="qualite",
+-        extra_columns=("code_station", "type_station", "bassin_nom", "sous_bassin_nom", "commune_fr", "province_fr"),
++        extra_columns=("code_station", "type_station", "bassin_nom", "sous_bassin_nom"),
+         source_backend="api.v_station_dimension",
+         display_label="Stations qualite",
+         description="Support technique legacy conservé pour compatibilité.",
+         available_parameters=("DBO5", "DCO", "NH4", "NO3", "O2_DISS", "pH", "Cond"),
+         legacy_support=True,
++        where_sql="""
++        EXISTS (
++            SELECT 1
++            FROM qualite.mesure_qualite_sebou q
++            WHERE q.station_id::text = t.station_id::text
++              AND q.valeur IS NOT NULL
++              AND coalesce(q.est_valide, true) = true
++        )
++        """,
+     ),
+     "step": MapSupportConfig(
+         support="step",
+@@ -198,8 +207,7 @@
+         extra_columns=("commune", "province", "cercle", "nature", "source_system", "n_mesures_parametres"),
+         source_backend="api.v_source_pollution_prelevement",
+         display_label="Points de prélèvement",
+-        description="Points de prélèvement qualité/pollution déjà structurés.",
+-        available_parameters=("DBO5", "DCO", "NH4", "NO3", "O2_DISS", "pH", "Cond"),
++        description="Points de prélèvement qualité/pollution déjà structurés. La vue expose le spatial P0 sans filtre analytique direct.",
+         support_group="stations",
+         support_type="point_prelevement",
+     ),
+@@ -467,6 +475,25 @@
+     return ", ".join(parts)
+ 
+ 
++def _business_label(properties: dict[str, Any], cfg: MapSupportConfig, entity_id: str) -> str:
++    for key in (
++        "label",
++        cfg.name_column,
++        "station_nom",
++        "barrage_nom",
++        "site_name",
++        "point_prelevement",
++        "code_station",
++        "site_code",
++        "code_step",
++        "nom_rejet",
++    ):
++        value = properties.get(key)
++        if value is not None and str(value).strip():
++            return str(value).strip()
++    return entity_id
++
++
+ def entities_geojson(
+     db: Session,
+     *,
+@@ -569,7 +596,7 @@
+         f"""
+         SELECT
+             t.{cfg.id_column}::text AS entity_id,
+-            t.{cfg.name_column}::text AS label,
++            COALESCE(NULLIF(btrim(t.{cfg.name_column}::text), ''), t.{cfg.id_column}::text) AS label,
+             {latest_sql} AS latest_values,
+             jsonb_build_object(
+                 'support', :support,
+@@ -669,6 +696,7 @@
+     if not row:
+         return None
+     properties = dict(row["properties"] or {})
++    properties["label"] = _business_label(properties, cfg, entity_id)
+     properties.update(
+         {
+             "entity_id": entity_id,
+@@ -1062,3 +1090,5 @@
+         params,
+     ).mappings().all()
+     return {"status": "success", "support": support, "count": len(rows), "data": [dict(r) for r in rows]}
++
++
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/services/pollution_campagnes_service.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/services/pollution_campagnes_service.py
+--- repo_git/backend/app/services/pollution_campagnes_service.py	2026-06-16 17:17:59.615860600 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/services/pollution_campagnes_service.py	1970-01-01 01:00:00.000000000 +0100
+@@ -1,494 +0,0 @@
+-"""Service métier pour le dashboard Pollution Campagnes.
+-
+-Lecture seule sur qualite.source_pollution_prelevement et tables associées.
+-Les seuils proviennent de metadata.qualite_seuil_reglementaire quand ils existent,
+-avec un fallback provisoire pour CrT.
+-"""
+-
+-from __future__ import annotations
+-
+-import re
+-from datetime import date
+-from typing import Any, Optional
+-
+-from sqlalchemy import text
+-from sqlalchemy.orm import Session
+-
+-
+-# ============================================================
+-# PARAMÈTRES SURVEILLÉS
+-# ============================================================
+-PARAMETRES_ALERTE_PRIORITAIRES = [
+-    # Métaux lourds
+-    "Cd",
+-    "Pb",
+-    "Hg",
+-    "CrT",
+-    # Métaux traces
+-    "As_",
+-    "Cu",
+-    "Ni",
+-    "Zn",
+-    # Pollution organique
+-    "DBO5",
+-    "DCO",
+-    "MES",
+-    "NH4_",
+-    "NO3_",
+-    # Nutriments
+-    "PT",
+-    "PO43_",
+-    "NTK",
+-    # Physico-chimique
+-    "pH",
+-    "Conduc",
+-    "O2_Diss",
+-    "T_eau",
+-    "Turbidité",
+-]
+-
+-# Seuils fallback pour les paramètres prioritaires non trouvés dans le référentiel
+-SEUILS_FALLBACK: dict[str, dict[str, Any]] = {
+-    "CrT": {"seuil": 0.050, "unite": "mg/L"},
+-}
+-
+-
+-# ============================================================
+-# DÉFINITION DES CAMPAGNES
+-# ============================================================
+-def _campagne_id_sql(column: str = "p.date_prelevement") -> str:
+-    """Expression SQL CASE pour dériver l'identifiant de campagne."""
+-    return f"""
+-        CASE
+-            WHEN {column} BETWEEN '2024-09-01' AND '2024-09-30' THEN 'IDP_GLOBALE_2024'
+-            WHEN {column} BETWEEN '2025-10-01' AND '2025-12-31' THEN 'IDP_MARCHE_CADRE_2024'
+-            ELSE 'INCONNU'
+-        END
+-    """
+-
+-
+-def _campagne_id_from_date(d: Optional[date]) -> str:
+-    if d is None:
+-        return "INCONNU"
+-    if date(2024, 9, 1) <= d <= date(2024, 9, 30):
+-        return "IDP_GLOBALE_2024"
+-    if date(2025, 10, 1) <= d <= date(2025, 12, 31):
+-        return "IDP_MARCHE_CADRE_2024"
+-    return "INCONNU"
+-
+-
+-def _campagne_date_range(campagne_id: Optional[str]) -> tuple[Optional[date], Optional[date]]:
+-    if campagne_id == "IDP_GLOBALE_2024":
+-        return (date(2024, 9, 1), date(2024, 9, 30))
+-    if campagne_id == "IDP_MARCHE_CADRE_2024":
+-        return (date(2025, 10, 1), date(2025, 12, 31))
+-    return (None, None)
+-
+-
+-# ============================================================
+-# UTILITAIRES
+-# ============================================================
+-def _is_below_lq(qualifier: Optional[str], raw: Optional[str]) -> bool:
+-    return bool(qualifier == "<" or (raw and raw.strip().startswith("<")))
+-
+-
+-def _extract_lq(raw: Optional[str]) -> Optional[float]:
+-    """Extrait la valeur après '<' dans valeur_raw, ex: '<0,010' -> 0.01."""
+-    if not raw:
+-        return None
+-    raw = raw.strip().replace(" ", "")
+-    if not raw.startswith("<"):
+-        return None
+-    candidate = raw[1:].replace(",", ".")
+-    candidate = re.sub(r"[^0-9.\-]", "", candidate)
+-    try:
+-        return float(candidate)
+-    except ValueError:
+-        return None
+-
+-
+-def _load_seuils(db: Session) -> dict[str, dict[str, Any]]:
+-    """Charge les seuils réglementaires actifs pour les paramètres prioritaires."""
+-    sql = text(
+-        """
+-        SELECT
+-            m.source_value AS param_code,
+-            MIN(s.borne_max_moteur) AS seuil,
+-            MAX(s.unite_moteur) AS unite
+-        FROM metadata.qualite_seuil_reglementaire s
+-        JOIN metadata.qualite_parametre_reglementaire p ON p.id = s.parametre_reglementaire_id
+-        JOIN metadata.referentiel_parametre r ON r.code_canonique = p.code_canonique_cible
+-        JOIN metadata.mapping_parametre_source m ON m.parametre_ref_id = r.id
+-        WHERE s.actif = true
+-          AND s.borne_max_moteur IS NOT NULL
+-          AND m.source_schema = 'qualite'
+-          AND m.source_table = 'source_pollution_mesure_param'
+-          AND m.source_column = 'param_code_legacy'
+-          AND m.source_value = ANY(:priority_params)
+-        GROUP BY m.source_value
+-        """
+-    )
+-    rows = db.execute(sql, {"priority_params": PARAMETRES_ALERTE_PRIORITAIRES}).mappings().all()
+-    seuils = {row.param_code: {"seuil": float(row.seuil), "unite": row.unite} for row in rows}
+-    for param, fallback in SEUILS_FALLBACK.items():
+-        if param not in seuils:
+-            seuils[param] = fallback.copy()
+-    return seuils
+-
+-
+-def _alert_level(
+-    param_code: str,
+-    valeur: Optional[float],
+-    qualifier: Optional[str],
+-    raw: Optional[str],
+-    seuils: dict[str, dict[str, Any]],
+-) -> Optional[str]:
+-    if valeur is None:
+-        return None
+-    if _is_below_lq(qualifier, raw):
+-        return None
+-    seuil_info = seuils.get(param_code)
+-    if not seuil_info:
+-        return None
+-    seuil = seuil_info["seuil"]
+-    if valeur >= 2 * seuil:
+-        return "CRITICAL"
+-    if valeur >= seuil:
+-        return "WARNING"
+-    return None
+-
+-
+-def _row_to_prelevement_detail(row: Any) -> dict[str, Any]:
+-    return {
+-        "id_prelevement": str(row.id),
+-        "date_prelevement": row.date_prelevement,
+-        "point_prelevement": row.point_prelevement,
+-        "campagne_id": _campagne_id_from_date(row.date_prelevement),
+-        "commune": row.commune,
+-        "province": row.province,
+-        "nature": row.nature,
+-        "observation": row.observation,
+-        "debit_raw": row.debit_raw,
+-        "coord_x": row.coord_x,
+-        "coord_y": row.coord_y,
+-        "longitude": row.longitude,
+-        "latitude": row.latitude,
+-    }
+-
+-
+-# ============================================================
+-# LISTES
+-# ============================================================
+-def list_campagnes(db: Session) -> list[dict[str, Any]]:
+-    """Synthèse par campagne déduite des dates de prélèvement."""
+-    sql = text(
+-        f"""
+-        SELECT
+-            {_campagne_id_sql("p.date_prelevement")} AS campagne_id,
+-            MIN(p.date_prelevement) AS date_min,
+-            MAX(p.date_prelevement) AS date_max,
+-            COUNT(DISTINCT p.id) AS nb_prelevements,
+-            COUNT(DISTINCT p.point_prelevement) AS nb_points,
+-            COUNT(DISTINCT m.param_code_legacy) AS nb_parametres
+-        FROM qualite.source_pollution_prelevement p
+-        LEFT JOIN qualite.source_pollution_mesure_param m
+-               ON m.prelevement_id = p.id
+-        GROUP BY campagne_id
+-        ORDER BY date_min DESC
+-        """
+-    )
+-    rows = db.execute(sql).mappings().all()
+-    return [dict(row) for row in rows]
+-
+-
+-def _count_alertes_par_prelevement(db: Session, ids: list[str]) -> dict[str, int]:
+-    if not ids:
+-        return {}
+-    seuils = _load_seuils(db)
+-    sql = text(
+-        """
+-        SELECT
+-            prelevement_id,
+-            param_code_legacy,
+-            valeur_num,
+-            valeur_raw,
+-            valeur_qualifier
+-        FROM qualite.source_pollution_mesure_param
+-        WHERE prelevement_id::text = ANY(:ids)
+-          AND param_code_legacy = ANY(:priority_params)
+-          AND valeur_num IS NOT NULL
+-          AND COALESCE(valeur_qualifier, '') != '<'
+-          AND valeur_raw NOT LIKE '<%'
+-        """
+-    )
+-    rows = db.execute(
+-        sql, {"ids": ids, "priority_params": PARAMETRES_ALERTE_PRIORITAIRES}
+-    ).mappings().all()
+-    counts: dict[str, int] = {}
+-    for row in rows:
+-        if _alert_level(row.param_code_legacy, row.valeur_num, row.valeur_qualifier, row.valeur_raw, seuils):
+-            pid = str(row.prelevement_id)
+-            counts[pid] = counts.get(pid, 0) + 1
+-    return counts
+-
+-
+-def list_prelevements(
+-    db: Session,
+-    *,
+-    date_from: Optional[date] = None,
+-    date_to: Optional[date] = None,
+-    campagne: Optional[str] = None,
+-    site: Optional[str] = None,
+-    parametre: Optional[str] = None,
+-    limit: int = 500,
+-    offset: int = 0,
+-) -> list[dict[str, Any]]:
+-    """Liste filtrable des prélèvements de campagne."""
+-    params: dict[str, Any] = {"limit": limit, "offset": offset}
+-
+-    where = ["p.geom IS NOT NULL"]
+-
+-    if date_from:
+-        where.append("p.date_prelevement >= :date_from")
+-        params["date_from"] = date_from
+-    if date_to:
+-        where.append("p.date_prelevement <= :date_to")
+-        params["date_to"] = date_to
+-    if site:
+-        where.append("p.point_prelevement ILIKE :site")
+-        params["site"] = f"%{site}%"
+-    if parametre:
+-        where.append(
+-            """
+-            EXISTS (
+-                SELECT 1 FROM qualite.source_pollution_mesure_param m2
+-                WHERE m2.prelevement_id = p.id
+-                  AND m2.param_code_legacy = :parametre
+-            )
+-            """
+-        )
+-        params["parametre"] = parametre
+-
+-    nb_mesures_sub = """
+-        (SELECT COUNT(*) FROM qualite.source_pollution_mesure_param m
+-         WHERE m.prelevement_id = p.id) AS nb_mesures
+-    """
+-
+-    sql = text(
+-        f"""
+-        WITH base AS (
+-            SELECT
+-                p.id,
+-                p.date_prelevement,
+-                p.point_prelevement,
+-                p.commune,
+-                {_campagne_id_sql("p.date_prelevement")} AS campagne_id,
+-                ST_X(ST_Transform(p.geom, 4326)) AS longitude,
+-                ST_Y(ST_Transform(p.geom, 4326)) AS latitude,
+-                {nb_mesures_sub}
+-            FROM qualite.source_pollution_prelevement p
+-            WHERE {" AND ".join(where)}
+-        )
+-        SELECT *
+-        FROM base
+-        WHERE (:campagne IS NULL OR campagne_id = :campagne)
+-        ORDER BY date_prelevement DESC
+-        LIMIT :limit OFFSET :offset
+-        """
+-    )
+-    params["campagne"] = campagne
+-
+-    rows = db.execute(sql, params).mappings().all()
+-    prelevements = [
+-        {
+-            "id_prelevement": str(row.id),
+-            "date_prelevement": row.date_prelevement,
+-            "point_prelevement": row.point_prelevement,
+-            "campagne_id": row.campagne_id,
+-            "longitude": row.longitude,
+-            "latitude": row.latitude,
+-            "nb_mesures": row.nb_mesures,
+-            "nb_alertes": 0,
+-        }
+-        for row in rows
+-    ]
+-
+-    ids = [p["id_prelevement"] for p in prelevements]
+-    counts = _count_alertes_par_prelevement(db, ids)
+-    for p in prelevements:
+-        p["nb_alertes"] = counts.get(p["id_prelevement"], 0)
+-
+-    return prelevements
+-
+-
+-# ============================================================
+-# DÉTAIL / MESURES / LIENS
+-# ============================================================
+-def get_prelevement_detail(db: Session, id_prelevement: str) -> Optional[dict[str, Any]]:
+-    sql = text(
+-        """
+-        SELECT
+-            p.id,
+-            p.date_prelevement,
+-            p.point_prelevement,
+-            p.commune,
+-            p.province,
+-            p.nature,
+-            p.observation,
+-            p.debit_raw,
+-            p.coord_x,
+-            p.coord_y,
+-            ST_X(ST_Transform(p.geom, 4326)) AS longitude,
+-            ST_Y(ST_Transform(p.geom, 4326)) AS latitude
+-        FROM qualite.source_pollution_prelevement p
+-        WHERE p.id = :id
+-        """
+-    )
+-    row = db.execute(sql, {"id": id_prelevement}).mappings().first()
+-    if not row:
+-        return None
+-    return _row_to_prelevement_detail(row)
+-
+-
+-def get_prelevement_mesures(db: Session, id_prelevement: str) -> list[dict[str, Any]]:
+-    seuils = _load_seuils(db)
+-    sql = text(
+-        """
+-        SELECT
+-            m.param_code_legacy,
+-            m.valeur_num,
+-            m.valeur_raw,
+-            m.valeur_qualifier,
+-            ref.unite
+-        FROM qualite.source_pollution_mesure_param m
+-        LEFT JOIN metadata.mapping_parametre_source map
+-               ON map.source_schema = 'qualite'
+-              AND map.source_table = 'source_pollution_mesure_param'
+-              AND map.source_column = 'param_code_legacy'
+-              AND map.source_value = m.param_code_legacy
+-        LEFT JOIN metadata.referentiel_parametre ref
+-               ON ref.id = map.parametre_ref_id
+-        WHERE m.prelevement_id = :id
+-        ORDER BY m.param_code_legacy
+-        """
+-    )
+-    rows = db.execute(sql, {"id": id_prelevement}).mappings().all()
+-    result = []
+-    for row in rows:
+-        alert = _alert_level(row.param_code_legacy, row.valeur_num, row.valeur_qualifier, row.valeur_raw, seuils)
+-        result.append(
+-            {
+-                "param_code_legacy": row.param_code_legacy,
+-                "valeur_num": row.valeur_num,
+-                "valeur_raw": row.valeur_raw,
+-                "valeur_qualifier": row.valeur_qualifier,
+-                "unite": row.unite,
+-                "lq": _extract_lq(row.valeur_raw),
+-                "alert_level": alert,
+-                "is_prioritaire": row.param_code_legacy in PARAMETRES_ALERTE_PRIORITAIRES,
+-            }
+-        )
+-    return result
+-
+-
+-def get_prelevement_liens(db: Session, id_prelevement: str) -> list[dict[str, Any]]:
+-    sql = text(
+-        """
+-        SELECT entite_type, entite_id, mapping_method, is_primary
+-        FROM qualite.source_pollution_prelevement_lien
+-        WHERE prelevement_id = :id
+-        ORDER BY is_primary DESC, entite_type
+-        """
+-    )
+-    rows = db.execute(sql, {"id": id_prelevement}).mappings().all()
+-    return [dict(row) for row in rows]
+-
+-
+-# ============================================================
+-# ALERTES
+-# ============================================================
+-def list_alerts(
+-    db: Session,
+-    *,
+-    date_from: Optional[date] = None,
+-    date_to: Optional[date] = None,
+-    parametre: Optional[str] = None,
+-    level: Optional[str] = None,
+-    campagne: Optional[str] = None,
+-    limit: int = 500,
+-) -> list[dict[str, Any]]:
+-    """Liste des dépassements de seuils sur les paramètres prioritaires."""
+-    seuils = _load_seuils(db)
+-
+-    params: dict[str, Any] = {"limit": limit}
+-    where = [
+-        "m.valeur_num IS NOT NULL",
+-        "COALESCE(m.valeur_qualifier, '') != '<'",
+-        "m.valeur_raw NOT LIKE '<%'",
+-        "m.param_code_legacy = ANY(:priority_params)",
+-    ]
+-    params["priority_params"] = PARAMETRES_ALERTE_PRIORITAIRES
+-
+-    if date_from:
+-        where.append("p.date_prelevement >= :date_from")
+-        params["date_from"] = date_from
+-    if date_to:
+-        where.append("p.date_prelevement <= :date_to")
+-        params["date_to"] = date_to
+-    if parametre:
+-        where.append("m.param_code_legacy = :parametre")
+-        params["parametre"] = parametre
+-
+-    sql = text(
+-        f"""
+-        SELECT
+-            m.param_code_legacy,
+-            m.valeur_num,
+-            m.valeur_raw,
+-            m.valeur_qualifier,
+-            ref.unite AS unite_referentiel,
+-            p.id AS prelevement_id,
+-            p.date_prelevement,
+-            p.point_prelevement,
+-            {_campagne_id_sql("p.date_prelevement")} AS campagne_id
+-        FROM qualite.source_pollution_mesure_param m
+-        JOIN qualite.source_pollution_prelevement p ON p.id = m.prelevement_id
+-        LEFT JOIN metadata.mapping_parametre_source map
+-               ON map.source_schema = 'qualite'
+-              AND map.source_table = 'source_pollution_mesure_param'
+-              AND map.source_column = 'param_code_legacy'
+-              AND map.source_value = m.param_code_legacy
+-        LEFT JOIN metadata.referentiel_parametre ref
+-               ON ref.id = map.parametre_ref_id
+-        WHERE {" AND ".join(where)}
+-        ORDER BY p.date_prelevement DESC, p.point_prelevement, m.param_code_legacy
+-        LIMIT :limit
+-        """
+-    )
+-
+-    rows = db.execute(sql, params).mappings().all()
+-    alerts = []
+-    for row in rows:
+-        alert = _alert_level(row.param_code_legacy, row.valeur_num, row.valeur_qualifier, row.valeur_raw, seuils)
+-        if not alert:
+-            continue
+-        seuil_info = seuils[row.param_code_legacy]
+-        alert_campagne = _campagne_id_from_date(row.date_prelevement)
+-        if campagne and alert_campagne != campagne:
+-            continue
+-        if level and alert != level:
+-            continue
+-        alerts.append(
+-            {
+-                "parametre": row.param_code_legacy,
+-                "valeur": row.valeur_num,
+-                "seuil": seuil_info["seuil"],
+-                "unite": seuil_info.get("unite") or row.unite_referentiel or "",
+-                "station_nom": row.point_prelevement,
+-                "date_prelevement": row.date_prelevement,
+-                "alert_level": alert,
+-                "prelevement_id": str(row.prelevement_id),
+-                "campagne_id": alert_campagne,
+-            }
+-        )
+-    return alerts
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/services/propagation/propagation_pollution_service.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/services/propagation/propagation_pollution_service.py
+--- repo_git/backend/app/services/propagation/propagation_pollution_service.py	2026-06-18 08:54:35.369595100 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/services/propagation/propagation_pollution_service.py	2026-06-23 10:23:20.000000000 +0100
+@@ -4,18 +4,12 @@
+ import logging
+ import math
+ import threading
+-import uuid
+ from dataclasses import dataclass
+-from datetime import datetime, timedelta, timezone
+ from typing import Any
+ 
+ import networkx as nx
+ 
+ from app.db_raw import connection
+-from app.services.propagation.propagation_recommendations import (
+-    generate_recommendations,
+-    get_alert_level,
+-)
+ 
+ 
+ logger = logging.getLogger(__name__)
+@@ -24,7 +18,7 @@
+ NODE_TABLE = "geo_work.reseau_hydro_edges_final_candidate_20260602_vertices_pgr"
+ TARGET_STATION_LEGACY_ID = 52
+ TIME_MODEL = "TOPOLOGICAL_CONSTANT_SPEED_MVP"
+-TIME_WARNING = "Temps de parcours et concentrations indicatifs — modèle topologique simplifié"
++TIME_WARNING = "Temps indicatif non scientifique"
+ 
+ 
+ @dataclass(frozen=True)
+@@ -140,8 +134,8 @@
+             "edge_table": NETWORK_TABLE,
+             "node_table": NODE_TABLE,
+             "scientific_mode": "topological_constant_speed_mvp",
+-            "hydraulic_direction_validated": True,
+-            "direction_validated": True,
++            "hydraulic_direction_validated": False,
++            "direction_validated": False,
+         }
+         G.graph["scientific_mode"] = "topological_constant_speed_mvp"
+         G.graph["network_table"] = NETWORK_TABLE
+@@ -374,41 +368,11 @@
+ def _graph_reachability(graph: nx.MultiDiGraph, start_node: int) -> tuple[set[int], int]:
+     if start_node not in graph:
+         return set(), 0
+-    reachable_nodes_set = get_downstream_nodes(graph, start_node)
++    reachable_nodes_set = nx.descendants(graph, start_node) | {start_node}
+     reachable_edges = graph.subgraph(reachable_nodes_set).number_of_edges() if reachable_nodes_set else 0
+     return reachable_nodes_set, reachable_edges
+ 
+ 
+-def get_downstream_nodes(graph: nx.MultiDiGraph, start_node: int) -> set[int]:
+-    """Return all nodes reachable from start_node following the directed graph (aval)."""
+-    if start_node not in graph:
+-        return set()
+-    return nx.descendants(graph, start_node) | {start_node}
+-
+-
+-def _get_terminal_exutoire_node(graph: nx.MultiDiGraph, garde_node: int) -> int | None:
+-    """Return the terminal exutoire (sink) downstream of the garde node.
+-
+-    A terminal exutoire has no outgoing edges and at least one incoming edge.
+-    If several exist, the farthest from the garde node (by length_m) is chosen.
+-    """
+-    if garde_node not in graph:
+-        return None
+-    candidates = [n for n in graph.nodes() if graph.out_degree(n) == 0 and graph.in_degree(n) >= 1]
+-    reachable = [n for n in candidates if nx.has_path(graph, garde_node, n)]
+-    if not reachable:
+-        return None
+-    return max(
+-        reachable,
+-        key=lambda n: nx.shortest_path_length(graph, garde_node, n, weight="length_m"),
+-    )
+-
+-
+-def build_path_from_nodes(graph: nx.MultiDiGraph, path_nodes: list[int]) -> tuple[dict[str, Any], float]:
+-    """Build a GeoJSON FeatureCollection from an ordered list of nodes."""
+-    return _build_path_geojson(graph, path_nodes)
+-
+-
+ def _shortest_path_length_km(graph: nx.MultiDiGraph, start_node: int, target_node: int) -> float | None:
+     try:
+         length_m = nx.shortest_path_length(graph, source=start_node, target=target_node, weight="length_m")
+@@ -624,62 +588,6 @@
+     return {"type": "FeatureCollection", "features": features}, round(path_length_km, 3)
+ 
+ 
+-def _build_simulation_path_geojson(
+-    graph: nx.MultiDiGraph,
+-    path_nodes: list[int],
+-    vitesse_reference_kmh: float,
+-    lambda_1_per_h: float,
+-    initial_concentration_mg_l: float,
+-    simulation_hours: int,
+-) -> tuple[dict[str, Any], float]:
+-    """Build a single downstream path GeoJSON with concentration/time per edge.
+-
+-    Edges beyond the simulation time horizon are truncated so the displayed path
+-    reflects the actual distance travelled by the pollutant front.
+-    """
+-    features: list[dict[str, Any]] = []
+-    total_length_km = 0.0
+-    cumulative_dist_m = 0.0
+-    max_time_h = 0.0
+-    for u, v in zip(path_nodes[:-1], path_nodes[1:]):
+-        edge_data = _edge_data(graph, u, v)
+-        if not edge_data or not edge_data.get("geom_json"):
+-            continue
+-        length_m = float(edge_data.get("length_m", 0.0))
+-        cumulative_dist_m += length_m
+-        if vitesse_reference_kmh <= 0:
+-            continue
+-        time_h = (cumulative_dist_m / 1000.0) / vitesse_reference_kmh
+-        if time_h > simulation_hours:
+-            break
+-        concentration = initial_concentration_mg_l * math.exp(-lambda_1_per_h * time_h)
+-        features.append(
+-            {
+-                "type": "Feature",
+-                "geometry": edge_data["geom_json"],
+-                "properties": {
+-                    "edge_id": edge_data.get("edge_id"),
+-                    "length_m": length_m,
+-                    "cumulative_time_h": round(time_h, 2),
+-                    "concentration": round(concentration, 4),
+-                    "concentration_ratio": round(
+-                        (concentration / initial_concentration_mg_l) * 100.0, 2
+-                    )
+-                    if initial_concentration_mg_l
+-                    else 0.0,
+-                },
+-            }
+-        )
+-        total_length_km += length_m / 1000.0
+-        max_time_h = time_h
+-
+-    return (
+-        {"type": "FeatureCollection", "features": features},
+-        round(total_length_km, 3),
+-        round(max_time_h, 2),
+-    )
+-
+-
+ def propagate_source_to_garde(
+     *,
+     site_id: str | None = None,
+@@ -1061,335 +969,3 @@
+             "exutoire_rule": "eout=0 AND ein>=1",
+         },
+     }
+-
+-
+-def _reproject_4326_to_26191(lon: float, lat: float) -> tuple[float, float]:
+-    with connection() as cx:
+-        with cx.cursor() as cur:
+-            cur.execute(
+-                """
+-                SELECT
+-                    ST_X(ST_Transform(ST_SetSRID(ST_MakePoint(%s, %s), 4326), 26191))::float8,
+-                    ST_Y(ST_Transform(ST_SetSRID(ST_MakePoint(%s, %s), 4326), 26191))::float8
+-                """,
+-                (lon, lat, lon, lat),
+-            )
+-            row = cur.fetchone()
+-    if not row:
+-        raise RuntimeError("Échec de reprojection des coordonnées source.")
+-    return float(row[0]), float(row[1])
+-
+-
+-def get_network_geojson() -> dict[str, Any]:
+-    """Retourne le réseau hydrographique validé sous forme de GeoJSON FeatureCollection."""
+-    graph = propagation_graph_builder.get_graph()
+-    features: list[dict[str, Any]] = []
+-    for _u, _v, _key, data in graph.edges(data=True, keys=True):
+-        geom = data.get("geom_json")
+-        if not geom:
+-            continue
+-        features.append(
+-            {
+-                "type": "Feature",
+-                "geometry": geom,
+-                "properties": {
+-                    "edge_id": data.get("edge_id"),
+-                    "length_m": data.get("length_m"),
+-                    "flow_status": data.get("flow_status"),
+-                    "component_id": data.get("component_id"),
+-                    "qa_status": data.get("qa_status"),
+-                },
+-            }
+-        )
+-    return {
+-        "type": "FeatureCollection",
+-        "features": features,
+-        "metadata": {
+-            "source_table": NETWORK_TABLE,
+-            "edge_count": len(features),
+-            "node_count": graph.number_of_nodes(),
+-        },
+-    }
+-
+-
+-def _node_coordinates_4326(node_ids: set[int]) -> dict[int, tuple[float, float]]:
+-    if not node_ids:
+-        return {}
+-    with connection() as cx:
+-        with cx.cursor() as cur:
+-            cur.execute(
+-                f"""
+-                SELECT
+-                    n.id,
+-                    ST_Y(ST_Transform(n.the_geom, 4326))::float8,
+-                    ST_X(ST_Transform(n.the_geom, 4326))::float8
+-                FROM {NODE_TABLE} n
+-                WHERE n.id = ANY(%s)
+-                """,
+-                (list(node_ids),),
+-            )
+-            rows = cur.fetchall()
+-    return {int(row[0]): (float(row[1]), float(row[2])) for row in rows}
+-
+-
+-def _station_coords() -> dict[str, dict[str, Any]]:
+-    with connection() as cx:
+-        with cx.cursor() as cur:
+-            cur.execute(
+-                """
+-                SELECT
+-                    s.station_id::text,
+-                    s.station_nom,
+-                    s.type_station,
+-                    ST_Y(ST_Transform(s.geom, 4326))::float8,
+-                    ST_X(ST_Transform(s.geom, 4326))::float8
+-                FROM api.v_station_dimension s
+-                WHERE s.geom IS NOT NULL
+-                """
+-            )
+-            rows = cur.fetchall()
+-    return {
+-        row[0]: {
+-            "station_name": row[1],
+-            "station_type": row[2],
+-            "lat": float(row[3]),
+-            "lon": float(row[4]),
+-        }
+-        for row in rows
+-    }
+-
+-
+-def _barrage_coords() -> dict[str, dict[str, Any]]:
+-    with connection() as cx:
+-        with cx.cursor() as cur:
+-            cur.execute(
+-                """
+-                SELECT
+-                    b.barrage_id::text,
+-                    b.barrage_nom,
+-                    ST_Y(ST_Transform(b.geom, 4326))::float8,
+-                    ST_X(ST_Transform(b.geom, 4326))::float8
+-                FROM api.v_barrage_dimension b
+-                WHERE b.geom IS NOT NULL
+-                """
+-            )
+-            rows = cur.fetchall()
+-    return {
+-        row[0]: {
+-            "barrage_name": row[1],
+-            "lat": float(row[2]),
+-            "lon": float(row[3]),
+-        }
+-        for row in rows
+-    }
+-
+-
+-def _impacted_targets(
+-    target_type: str,
+-    reachable_nodes: set[int],
+-    dist_m: dict[int, float],
+-    timestamp: datetime,
+-    simulation_hours: int,
+-    vitesse_reference_kmh: float,
+-    lambda_1_per_h: float,
+-    initial_concentration_mg_l: float,
+-    pollutant_type: str,
+-) -> list[dict[str, Any]]:
+-    if target_type == "stations":
+-        candidates = _station_candidates(station_type=None)
+-        coords = _station_coords()
+-    elif target_type == "barrages":
+-        candidates = _barrage_candidates()
+-        coords = _barrage_coords()
+-    elif target_type == "exutoires":
+-        candidates = _exutoire_candidates()
+-        node_coords = _node_coordinates_4326({c.node_id for c in candidates})
+-        coords = {}
+-    else:
+-        return []
+-
+-    results: list[dict[str, Any]] = []
+-    for candidate in candidates:
+-        node = candidate.target_node if target_type != "exutoires" else candidate.node_id
+-        if node not in reachable_nodes:
+-            continue
+-        distance_m = float(dist_m.get(node, math.inf))
+-        if math.isinf(distance_m):
+-            continue
+-        distance_km = distance_m / 1000.0
+-        if vitesse_reference_kmh <= 0:
+-            continue
+-        time_h = distance_km / vitesse_reference_kmh
+-        if time_h > simulation_hours:
+-            continue
+-
+-        concentration = initial_concentration_mg_l * math.exp(-lambda_1_per_h * time_h)
+-        alert_level = get_alert_level(pollutant_type, concentration)
+-        arrival_time = timestamp + timedelta(hours=time_h)
+-
+-        if target_type == "stations":
+-            target_id = str(candidate.station_id)
+-            meta = coords.get(target_id, {})
+-            name = meta.get("station_name") or candidate.station_name or f"Station {target_id}"
+-            stype = meta.get("station_type") or candidate.station_type or "STATION_QUALITE"
+-        elif target_type == "barrages":
+-            target_id = str(candidate.barrage_id)
+-            meta = coords.get(target_id, {})
+-            name = meta.get("barrage_name") or candidate.barrage_name or f"Barrage {target_id}"
+-            stype = "BARRAGE"
+-        else:
+-            target_id = str(candidate.node_id)
+-            lat, lon = node_coords.get(candidate.node_id, (0.0, 0.0))
+-            meta = {"lat": lat, "lon": lon}
+-            name = f"Exutoire {target_id}"
+-            stype = "EXUTOIRE"
+-
+-        results.append(
+-            {
+-                "station_id": target_id,
+-                "station_name": name,
+-                "station_type": stype,
+-                "lat": float(meta.get("lat", 0.0)),
+-                "lon": float(meta.get("lon", 0.0)),
+-                "distance_km": round(distance_km, 2),
+-                "arrival_time": arrival_time,
+-                "estimated_concentration_mg_l": round(concentration, 4),
+-                "alert_level": alert_level,
+-            }
+-        )
+-
+-    results.sort(key=lambda item: item["distance_km"])
+-    return results
+-
+-
+-def simulate_propagation_from_point(
+-    db: Any,
+-    lat: float,
+-    lon: float,
+-    pollutant_type: str,
+-    initial_concentration_mg_l: float,
+-    timestamp: datetime,
+-    simulation_hours: int,
+-    vitesse_reference_kmh: float,
+-    lambda_1_per_h: float,
+-) -> dict[str, Any]:
+-    """
+-    Simule la propagation d'un polluant depuis un point lat/lon.
+-
+-    Le modèle est purement topologique et indicatif :
+-    - snap sur le nœud le plus proche du réseau hydro validé
+-    - propagation aval dans le graphe orienté
+-    - temps de parcours = distance / vitesse de référence
+-    - atténuation exponentielle C(t) = C0 * exp(-lambda * t)
+-    """
+-    if isinstance(timestamp, str):
+-        timestamp = datetime.fromisoformat(timestamp.replace("Z", "+00:00"))
+-
+-    x_26191, y_26191 = _reproject_4326_to_26191(lon, lat)
+-    snap = _find_snap(x_26191, y_26191)
+-    start_node = int(snap["start_node"])
+-
+-    graph = propagation_graph_builder.get_graph()
+-    if graph.number_of_nodes() == 0:
+-        raise RuntimeError("Le graphe de propagation candidat n'est pas disponible.")
+-    if start_node not in graph:
+-        raise ValueError(f"Nœud snap {start_node} absent du graphe de propagation.")
+-
+-    reachable_nodes, _reachable_edges = _graph_reachability(graph, start_node)
+-    dist_m = nx.single_source_dijkstra_path_length(graph, start_node, weight="length_m")
+-
+-    # Build a single directed downstream path: source -> garde -> terminal exutoire.
+-    garde_node = _find_target_node()
+-    terminal_node = _get_terminal_exutoire_node(graph, garde_node)
+-    path_nodes: list[int] = []
+-    if terminal_node is not None and nx.has_path(graph, start_node, terminal_node):
+-        path_nodes = nx.shortest_path(graph, start_node, terminal_node, weight="length_m")
+-    elif nx.has_path(graph, start_node, garde_node):
+-        path_nodes = nx.shortest_path(graph, start_node, garde_node, weight="length_m")
+-
+-    path_geojson, total_length_km, max_time_h = _build_simulation_path_geojson(
+-        graph,
+-        path_nodes,
+-        vitesse_reference_kmh,
+-        lambda_1_per_h,
+-        initial_concentration_mg_l,
+-        simulation_hours,
+-    )
+-    path_features = path_geojson["features"]
+-
+-    impacted_stations = _impacted_targets(
+-        "stations",
+-        reachable_nodes,
+-        dist_m,
+-        timestamp,
+-        simulation_hours,
+-        vitesse_reference_kmh,
+-        lambda_1_per_h,
+-        initial_concentration_mg_l,
+-        pollutant_type,
+-    )
+-    impacted_barrages = _impacted_targets(
+-        "barrages",
+-        reachable_nodes,
+-        dist_m,
+-        timestamp,
+-        simulation_hours,
+-        vitesse_reference_kmh,
+-        lambda_1_per_h,
+-        initial_concentration_mg_l,
+-        pollutant_type,
+-    )
+-    impacted_exutoires = _impacted_targets(
+-        "exutoires",
+-        reachable_nodes,
+-        dist_m,
+-        timestamp,
+-        simulation_hours,
+-        vitesse_reference_kmh,
+-        lambda_1_per_h,
+-        initial_concentration_mg_l,
+-        pollutant_type,
+-    )
+-
+-    all_targets = impacted_stations + impacted_barrages + impacted_exutoires
+-    recommendations = generate_recommendations(all_targets, pollutant_type)
+-
+-    warnings: list[str] = []
+-    if snap.get("snap_confidence") == "LOW":
+-        warnings.append(
+-            f"Source éloignée du réseau ({snap['distance_to_network_m']} m) — résultat peu fiable."
+-        )
+-    warnings.append(TIME_WARNING)
+-
+-    start_coords = _node_coordinates_4326({start_node})
+-    start_lat, start_lon = start_coords.get(start_node, (lat, lon))
+-
+-    return {
+-        "propagation_id": str(uuid.uuid4()),
+-        "start_node": {
+-            "id": start_node,
+-            "lat": start_lat,
+-            "lon": start_lon,
+-            "snap_confidence": snap.get("snap_confidence"),
+-            "distance_to_network_m": snap.get("distance_to_network_m"),
+-        },
+-        "pollutant_type": pollutant_type,
+-        "initial_concentration_mg_l": initial_concentration_mg_l,
+-        "parameters": {
+-            "vitesse_kmh": vitesse_reference_kmh,
+-            "lambda_h": lambda_1_per_h,
+-            "simulation_hours": simulation_hours,
+-            "time_model": TIME_MODEL,
+-        },
+-        "path": {
+-            "type": "FeatureCollection",
+-            "features": path_features,
+-            "length_km": round(total_length_km, 2),
+-            "travel_time_h": round(max_time_h, 2),
+-        },
+-        "impacted_stations": impacted_stations,
+-        "impacted_barrages": impacted_barrages,
+-        "impacted_exutoires": impacted_exutoires,
+-        "recommendations": recommendations,
+-        "warnings": warnings,
+-    }
+diff -ruN -x node_modules -x .git -x dist -x build -x __pycache__ -x .pytest_cache -x '*.pyc' -x '*.log' repo_git/backend/app/services/propagation/propagation_recommendations.py SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/services/propagation/propagation_recommendations.py
+--- repo_git/backend/app/services/propagation/propagation_recommendations.py	2026-06-16 11:40:03.184610400 +0100
++++ SAD_SEBOU/Water-Quality-Application--Sebou-Basin-Dev_refonte/Water-Quality-Application--Sebou-Basin-Dev_refonte/backend/app/services/propagation/propagation_recommendations.py	1970-01-01 01:00:00.000000000 +0100
+@@ -1,74 +0,0 @@
+-# backend/app/services/propagation/propagation_recommendations.py
+-from __future__ import annotations
+-
+-from datetime import datetime
+-from typing import Any
+-
+-
+-# Seuils provisoires en mg/L — à valider avec le métier.
+-ALERT_THRESHOLDS: dict[str, dict[str, float]] = {
+-    "Cd": {"WARNING": 0.005, "CRITICAL": 0.01},
+-    "Pb": {"WARNING": 0.01, "CRITICAL": 0.05},
+-    "Hg": {"WARNING": 0.001, "CRITICAL": 0.002},
+-    "Cr": {"WARNING": 0.05, "CRITICAL": 0.1},
+-    "Hydrocarbures": {"WARNING": 0.05, "CRITICAL": 0.1},
+-    "Autre": {"WARNING": 999999.0, "CRITICAL": 999999.0},
+-}
+-
+-
+-def get_alert_level(pollutant_type: str, concentration_mg_l: float) -> str:
+-    thresholds = ALERT_THRESHOLDS.get(pollutant_type, {})
+-    if concentration_mg_l >= thresholds.get("CRITICAL", float("inf")):
+-        return "CRITICAL"
+-    if concentration_mg_l >= thresholds.get("WARNING", float("inf")):
+-        return "WARNING"
+-    return "SAFE"
+-
+-
+-def generate_recommendations(
+-    impacted_stations: list[dict[str, Any]], pollutant_type: str
+-) -> list[dict[str, Any]]:
+-    recommendations: list[dict[str, Any]] = []
+-    thresholds = ALERT_THRESHOLDS.get(pollutant_type, {})
+-    for station in impacted_stations:
+-        alert_level = station.get("alert_level")
+-        arrival_time = station.get("arrival_time")
+-        if not isinstance(arrival_time, datetime):
+-            try:
+-                arrival_time = datetime.fromisoformat(str(arrival_time))
+-            except Exception:
+-                arrival_time = datetime.utcnow()
+-        name = (
+-            station.get("station_name")
+-            or station.get("barrage_name")
+-            or f"Exutoire {station.get('station_id')}"
+-        )
+-        concentration = float(station.get("estimated_concentration_mg_l", 0.0))
+-        if alert_level == "CRITICAL":
+-            recommendations.append(
+-                {
+-                    "priority": 1,
+-                    "action": f"Fermer la prise d'eau à {name}",
+-                    "target": name,
+-                    "deadline": arrival_time,
+-                    "reason": (
+-                        f"Concentration {pollutant_type} estimée {concentration:.3f} mg/L "
+-                        f"(seuil critique : {thresholds.get('CRITICAL')} mg/L)"
+-                    ),
+-                }
+-            )
+-        elif alert_level == "WARNING":
+-            recommendations.append(
+-                {
+-                    "priority": 2,
+-                    "action": f"Surveillance renforcée à {name}",
+-                    "target": name,
+-                    "deadline": arrival_time,
+-                    "reason": (
+-                        f"Concentration {pollutant_type} estimée {concentration:.3f} mg/L "
+-                        f"(seuil warning : {thresholds.get('WARNING')} mg/L)"
+-                    ),
+-                }
+-            )
+-    recommendations.sort(key=lambda x: x["priority"])
+-    return recommendations

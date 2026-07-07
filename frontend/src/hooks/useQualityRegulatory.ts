@@ -20,13 +20,17 @@ export function useActiveThresholds() {
 }
 
 export function useQualityStations(supportType?: string) {
-  return useQuery({ queryKey: ["quality-regulatory", "stations", supportType], queryFn: () => getQualityStations(supportType), staleTime: STALE_TIME_MS });
+  return useQuery({
+    queryKey: ["quality-regulatory", "stations", supportType],
+    queryFn: () => getQualityStations({ support_type: supportType }),
+    staleTime: STALE_TIME_MS,
+  });
 }
 
 export function useQualityParameters(supportType?: string, stationId?: string) {
   return useQuery({
     queryKey: ["quality-regulatory", "parameters", supportType, stationId],
-    queryFn: () => getQualityParameters(supportType, stationId),
+    queryFn: () => getQualityParameters({ support_type: supportType, station_id: stationId }),
     staleTime: STALE_TIME_MS,
   });
 }
@@ -34,7 +38,7 @@ export function useQualityParameters(supportType?: string, stationId?: string) {
 export function useQualityTimeseries(supportType?: string, stationId?: string, dateStart?: string, dateEnd?: string) {
   return useQuery({
     queryKey: ["quality-regulatory", "timeseries", supportType, stationId, dateStart, dateEnd],
-    queryFn: () => getQualityTimeseries(supportType, stationId!, dateStart, dateEnd),
+    queryFn: () => getQualityTimeseries({ support_type: supportType, station_id: stationId, date_from: dateStart, date_to: dateEnd }),
     enabled: Boolean(stationId),
     staleTime: STALE_TIME_MS,
   });

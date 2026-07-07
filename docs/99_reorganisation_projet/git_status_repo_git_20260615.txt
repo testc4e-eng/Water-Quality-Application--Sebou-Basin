@@ -1,0 +1,69 @@
+ M backend/app/api/api_v1.py
+ M backend/app/api/v1/propagation.py
+ M backend/app/routers/quality.py
+ M backend/app/services/propagation/propagation_pollution_service.py
+ M docs/03_ai_knowledge_base/project_structure_for_agents.md
+ M docs/44_bascule_progressive_api_qualite_unifiee/02_tests_api.md
+ M docs/97_dashboard_home_v2_contract/19_home_v2_ux_audit.md
+ M docs/README.md
+ M frontend/package-lock.json
+ M frontend/package.json
+ M frontend/src/App.tsx
+ M frontend/src/api/client.ts
+ M frontend/src/api/propagation.ts
+ M frontend/src/api/qualityRegulatory.ts
+ M frontend/src/components/Layout/Header.tsx
+ M frontend/src/components/Layout/Layout.tsx
+ M frontend/src/components/Layout/Sidebar.tsx
+ M frontend/src/components/Pollution/PollutionIdpMap.tsx
+ M frontend/src/components/quality-dashboard/QualityHistoriqueTab.tsx
+ M frontend/src/components/quality-dashboard/QualityOverviewTab.tsx
+ M frontend/src/components/quality-dashboard/QualityRealtimeTab.tsx
+ M frontend/src/hooks/useQualityRegulatory.ts
+ M frontend/src/index.css
+ M frontend/src/pages/DashboardPollution.tsx
+ M frontend/src/pages/DashboardQualiteReglementaire.tsx
+ M frontend/src/pages/PollutionIdpDevPage.tsx
+ M frontend/vite.config.ts
+?? backend/app/api/v1/pollution_campagnes.py
+?? backend/app/models/pollution_campagnes_models.py
+?? backend/app/models/propagation_models.py
+?? backend/app/services/pollution_campagnes_service.py
+?? backend/app/services/propagation/propagation_recommendations.py
+?? backend/mock_main.py
+?? docs/00_source_of_truth/passation_developpeuse_20260623/
+?? docs/01_livrables_client/
+?? docs/01_project_reference/data.rar
+?? docs/02_documentation_metier/
+?? docs/03_documentation_technique/
+?? docs/04_roadmap_et_pilotage/
+?? docs/05_audits/
+?? docs/06_sprints/
+?? docs/07_validations/
+?? docs/08_archives/
+?? docs/09_media/
+?? docs/50_vision_carte_metier_analytique_v2/
+?? docs/60_cadrage_sprint_3/
+?? docs/70_dashboard_pollution/
+?? docs/72_dashboard_pollution_campagnes/
+?? docs/99_reorganisation_projet/09_commit_code_continuite_resume.md
+?? docs/99_reorganisation_projet/git_status_repo_git_20260615.txt
+?? frontend/src/api/pollutionCampagnes.ts
+?? frontend/src/components/Pollution/CampagneList.tsx
+?? frontend/src/components/Pollution/CampagnePrelevementMap.tsx
+?? frontend/src/components/Pollution/CampagneSidebar.tsx
+?? frontend/src/components/Pollution/PollutionAlertPanel.tsx
+?? frontend/src/components/Pollution/PollutionPropagationResults.tsx
+?? frontend/src/components/Pollution/PollutionSignalMap.tsx
+?? frontend/src/components/Pollution/PollutionSimulationPanel.tsx
+?? frontend/src/components/Pollution/PrelevementDetail.tsx
+?? frontend/src/components/Pollution/PrelevementEntityLink.tsx
+?? frontend/src/components/quality-dashboard/QualityAlertsQATab.tsx
+?? frontend/src/components/quality-dashboard/QualityDamsTab.tsx
+?? frontend/src/components/quality-dashboard/QualityGuardDamsTab.tsx
+?? frontend/src/components/quality-dashboard/QualityParametersTab.tsx
+?? frontend/src/config/thematiques.config.ts
+?? frontend/src/hooks/useCorrelation.ts
+?? frontend/src/hooks/usePollutionCampagnes.ts
+?? frontend/src/pages/DashboardPollutionCampagnes.tsx
+?? frontend/src/pages/DashboardPollutionPropagation.tsx
