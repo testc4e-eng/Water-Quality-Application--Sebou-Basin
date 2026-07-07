@@ -12,7 +12,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useDashboardHome } from "@/hooks/useDashboardHome";
 import { KPI_DEFINITIONS } from "@/lib/kpi-definitions";
 import { readPreviousDashboardHomeCache } from "@/api/dashboardHome";
-import { StatusBadge } from "@/components/ui/status-badge";
 import { useDashboardRuntimeTrends, useQualityStationsWithTimeseries } from "@/hooks/useDashboardRuntime";
 
 export default function DashboardHomeV2() {
@@ -198,30 +197,6 @@ export default function DashboardHomeV2() {
           </div>
         </div>
 
-        <section className="grid gap-2 xl:grid-cols-4">
-          <HomeSummaryCard
-            title="Modules opérationnels"
-            status="OPERATIONNEL"
-            items={["Accueil DG", "Qualité réglementaire", "Pollution assistée", "Données / QA", "Administration / RBAC"]}
-          />
-          <HomeSummaryCard
-            title="Modules partiels"
-            status="PARTIEL"
-            items={["Carte Métier", "Stations en sous-vues", "Barrages en sous-vues", "Référentiel réglementaire sous condition PREPROD"]}
-          />
-          <HomeSummaryCard
-            title="Décisions métier restantes"
-            status="PREPROD_CONDITIONNEL"
-            items={["Validation référentiel réglementaire", "Arbitrages pollution IDP", "Dictionnaire final paramètres"]}
-          />
-          <HomeSummaryCard
-            title="Modules masqués ou déclassés"
-            status="EN_CONSTRUCTION"
-            items={["SWAT", "WASP", "Prédiction pollution", "Recommandations autonomes", "Reporting autonome"]}
-          />
-        </section>
-
-
       </div>
     </main>
   );
@@ -236,34 +211,6 @@ function ConfidencePanel({ ifd, icd, ich }: { ifd: number | null; icd: number | 
           <GaugeRing label="IFD" value={ifd} color="#F59E0B" subtitle="Fraîcheur" info={KPI_DEFINITIONS.ifd} />
           <GaugeRing label="ICD" value={icd} color="#10B981" subtitle="Confiance" info={KPI_DEFINITIONS.icd} />
           <GaugeRing label="ICH" value={ich} color="#0EA5E9" subtitle="Hydraulique" info={KPI_DEFINITIONS.ich} />
-        </div>
-      </CardContent>
-    </Card>
-  );
-}
-
-function HomeSummaryCard({
-  title,
-  status,
-  items,
-}: {
-  title: string;
-  status: "OPERATIONNEL" | "PARTIEL" | "PREPROD_CONDITIONNEL" | "EN_CONSTRUCTION";
-  items: string[];
-}) {
-  return (
-    <Card className="rounded-[22px] border-slate-200 bg-white shadow-sm">
-      <CardContent className="p-3">
-        <div className="flex items-center justify-between gap-2">
-          <div className="text-sm font-semibold text-slate-950">{title}</div>
-          <StatusBadge status={status} />
-        </div>
-        <div className="mt-3 space-y-2 text-sm text-slate-600">
-          {items.map((item) => (
-            <div key={item} className="rounded-xl bg-slate-50 px-3 py-2">
-              {item}
-            </div>
-          ))}
         </div>
       </CardContent>
     </Card>
