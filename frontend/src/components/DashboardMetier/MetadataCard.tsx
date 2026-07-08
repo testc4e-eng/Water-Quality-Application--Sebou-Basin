@@ -1,4 +1,4 @@
-import { ArrowRight, Gauge, MapPin } from "lucide-react";
+import { Activity, ArrowRight, Calendar, Database, Gauge, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import { Badge } from "@/components/ui/badge";
@@ -23,11 +23,12 @@ import {
 
 export type MetadataCardVariant = "compact" | "full";
 
-interface MetadataCardProps {
+export interface MetadataCardProps {
   properties?: MapBusinessEntityProperties | null;
   loading?: boolean;
   error?: unknown | null;
   variant?: MetadataCardVariant;
+  actions?: React.ReactNode;
 }
 
 function SectionTitle({ icon: Icon, children }: { icon: React.ElementType; children: React.ReactNode }) {
@@ -54,7 +55,7 @@ function FreshnessPill({ dateString }: { dateString?: string | null }) {
   );
 }
 
-export function MetadataCard({ properties, loading, error, variant = "full" }: MetadataCardProps) {
+export function MetadataCard({ properties, loading, error, variant = "full", actions }: MetadataCardProps) {
   const isCompact = variant === "compact";
   const title = properties?.label || properties?.station_name || properties?.display_label || "Entité métier";
   const typeLabel = getEntityTypeLabel(properties ?? {});
@@ -186,7 +187,7 @@ export function MetadataCard({ properties, loading, error, variant = "full" }: M
 
       <div className="custom-scrollbar min-h-0 flex-1 space-y-3 overflow-y-auto p-3 pt-2.5">
         <section>
-          <SectionTitle icon={Gauge}>État</SectionTitle>
+          <SectionTitle icon={Activity}>État</SectionTitle>
           <div className="flex flex-wrap items-center gap-2">
             {dataStatus ? (
               <span
@@ -209,54 +210,67 @@ export function MetadataCard({ properties, loading, error, variant = "full" }: M
           <Template properties={properties} />
         </section>
 
-        <section>
-          <SectionTitle icon={Gauge}>Qualité des données</SectionTitle>
-          <div className="grid grid-cols-2 gap-2 text-xs">
-            <div className="rounded border border-slate-100 bg-white p-2">
-              <div className="text-[10px] uppercase text-slate-400">Mesures</div>
-              <div className="font-medium text-slate-800">{formatMeasureCount(properties.measure_count)}</div>
+        {(properties.measure_count !== undefined || properties.parameter_count !== undefined || properties.last_measure_date || properties.date_max || properties.date_min) && (
+          <section>
+            <SectionTitle icon={Database}>Qualité des données</SectionTitle>
+            <div className="grid grid-cols-2 gap-2 text-xs">
+              {properties.measure_count !== undefined && (
+                <div className="rounded border border-slate-100 bg-white p-2">
+                  <div className="text-[10px] uppercase text-slate-400">Mesures</div>
+                  <div className="font-medium text-slate-800">{formatMeasureCount(properties.measure_count)}</div>
+                </div>
+              )}
+              {properties.parameter_count !== undefined && (
+                <div className="rounded border border-slate-100 bg-white p-2">
+                  <div className="text-[10px] uppercase text-slate-400">Paramètres</div>
+                  <div className="font-medium text-slate-800">{formatParameterCount(properties.parameter_count)}</div>
+                </div>
+              )}
+              {(properties.last_measure_date || properties.date_max) && (
+                <div className="rounded border border-slate-100 bg-white p-2">
+                  <div className="text-[10px] uppercase text-slate-400">Dernière mesure</div>
+                  <div className="font-medium text-slate-800">
+                    {formatDate(properties.last_measure_date || properties.date_max) || "—"}
+                  </div>
+                </div>
+              )}
+              {(properties.date_min || properties.date_max) && (
+                <div className="rounded border border-slate-100 bg-white p-2">
+                  <div className="text-[10px] uppercase text-slate-400">Période</div>
+                  <div className="font-medium text-slate-800">{getPeriodLabel(properties) || "—"}</div>
+                </div>
+              )}
             </div>
-            <div className="rounded border border-slate-100 bg-white p-2">
-              <div className="text-[10px] uppercase text-slate-400">Paramètres</div>
-              <div className="font-medium text-slate-800">{formatParameterCount(properties.parameter_count)}</div>
-            </div>
-            <div className="rounded border border-slate-100 bg-white p-2">
-              <div className="text-[10px] uppercase text-slate-400">Dernière mesure</div>
-              <div className="font-medium text-slate-800">
-                {formatDate(properties.last_measure_date || properties.date_max) || "—"}
-              </div>
-            </div>
-            <div className="rounded border border-slate-100 bg-white p-2">
-              <div className="text-[10px] uppercase text-slate-400">Période</div>
-              <div className="font-medium text-slate-800">{getPeriodLabel(properties) || "—"}</div>
-            </div>
-          </div>
-        </section>
+          </section>
+        )}
 
-        <section>
-          <SectionTitle icon={Gauge}>Calendrier</SectionTitle>
-          <div className="text-xs text-slate-600">
-            {properties.date_min || properties.date_max
-              ? `Données du ${formatDate(properties.date_min) || "n/a"} au ${formatDate(properties.date_max) || "n/a"}`
-              : "Période de données non renseignée."}
-          </div>
-        </section>
+        {(properties.date_min || properties.date_max) && (
+          <section>
+            <SectionTitle icon={Calendar}>Calendrier</SectionTitle>
+            <div className="text-xs text-slate-600">
+              Données du {formatDate(properties.date_min) || "n/a"} au {formatDate(properties.date_max) || "n/a"}
+            </div>
+          </section>
+        )}
       </div>
 
-      {properties.detail_route ? (
-        <div className="border-t border-slate-100 p-2.5 pt-2">
-          <Button
-            asChild
-            variant="ghost"
-            className="h-8 w-full justify-between px-2.5 text-xs font-medium text-indigo-600 hover:bg-indigo-50 hover:text-indigo-700"
-          >
-            <Link to={String(properties.detail_route)}>
-              Voir la fiche complète
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-          </Button>
+      {(properties.detail_route || actions) && (
+        <div className="border-t border-slate-100 p-2.5 pt-2 space-y-2">
+          {actions}
+          {properties.detail_route ? (
+            <Button
+              asChild
+              variant="ghost"
+              className="h-8 w-full justify-between px-2.5 text-xs font-medium text-indigo-600 hover:bg-indigo-50 hover:text-indigo-700"
+            >
+              <Link to={String(properties.detail_route)}>
+                Voir la fiche complète
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </Button>
+          ) : null}
         </div>
-      ) : null}
+      )}
     </div>
   );
 }

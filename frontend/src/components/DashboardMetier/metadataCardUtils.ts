@@ -89,7 +89,7 @@ export function renderClassificationBadge(classification: MapClassificationResul
   };
 }
 
-export function getEntityTypeLabel(properties: MapBusinessEntityProperties): string {
+export function getEntityTypeLabel(properties: Partial<MapBusinessEntityProperties>): string {
   return (
     properties.entity_kind ||
     properties.display_label ||

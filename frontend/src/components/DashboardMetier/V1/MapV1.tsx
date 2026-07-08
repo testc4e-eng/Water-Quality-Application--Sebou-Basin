@@ -3,9 +3,11 @@ import type { MapLayerMouseEvent, MapRef, ViewStateChangeEvent } from "react-map
 import Map, { Source, Layer, Popup, NavigationControl, FullscreenControl } from "react-map-gl/maplibre";
 import { useBusinessMapFeatures } from "@/hooks/useBusinessMapV1";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { Loader2, Maximize, Navigation, Activity, Plus } from "lucide-react";
+import { Loader2, Plus } from "lucide-react";
 import { useWorkspaceStore } from "@/store/workspaceStore";
 import { findParameter } from "@/config/thematiques.config";
+import type { MapBusinessEntityProperties, MapLatestValue } from "@/api/mapBusiness";
+import { BusinessPopup } from "../BusinessPopup";
 
 export interface MapV1Props {
   filters: {
@@ -19,6 +21,38 @@ export interface MapV1Props {
 }
 
 const SEBOU_BOUNDS: [number, number, number, number] = [-6.77, 33.15, -4.0, 35.15];
+
+function convertV1LatestValues(values: Record<string, any> | null | undefined): MapLatestValue[] | undefined {
+  if (!values || typeof values !== "object") return undefined;
+  return Object.entries(values).map(([code, value]) => ({
+    parameter_code: code,
+    parameter_label: code,
+    value_numeric: typeof value === "number" ? value : null,
+    value_text: typeof value !== "number" ? (value == null ? null : String(value)) : null,
+  }));
+}
+
+function toMapBusinessEntityProperties(v1: Record<string, any>): MapBusinessEntityProperties {
+  const attrs = (v1.attributes as Record<string, any> | null) || {};
+  return {
+    entity_id: String(v1.object_id ?? v1.id ?? v1.object_code ?? ""),
+    label: v1.object_name,
+    support_type: v1.support_type,
+    entity_type: v1.support_type,
+    station_code: v1.object_code,
+    code_station: v1.object_code,
+    bassin: v1.bassin_nom,
+    sous_bassin_nom: v1.sous_bassin_nom,
+    data_temporality: v1.data_temporality ?? attrs.data_temporality,
+    data_family: v1.data_family ?? attrs.data_family,
+    measurement_context: v1.measurement_context ?? attrs.measurement_context,
+    measure_count: v1.measure_count,
+    date_min: v1.date_min,
+    date_max: v1.date_max,
+    last_measure_date: v1.date_max,
+    latest_values: convertV1LatestValues(v1.latest_values),
+  };
+}
 
 export function MapV1({ filters, onSelectObject }: MapV1Props) {
   const mapRef = useRef<MapRef>(null);
@@ -283,106 +317,55 @@ export function MapV1({ filters, onSelectObject }: MapV1Props) {
             onClose={() => setSelectedFeature(null)}
             closeOnClick={false}
             className="z-50"
+            maxWidth="420px"
           >
-            <div className="p-1 min-w-[220px]">
-              <div className="font-bold text-sm text-slate-800 mb-1 leading-tight">
-                {selectedFeature.properties.object_name || "Entité inconnue"}
-              </div>
-              <div className="text-xs text-slate-500 mb-2">
-                <span className="font-mono bg-slate-100 px-1 rounded">{selectedFeature.properties.object_code}</span>
-              </div>
-              <div className="text-xs text-slate-600 mb-1">
-                <span className="font-semibold">Support:</span> {selectedFeature.properties.support_type}
-              </div>
-              {selectedFeature.properties.bassin_nom && (
-                <div className="text-xs text-slate-600 mb-1">
-                  <span className="font-semibold">Bassin:</span> {selectedFeature.properties.bassin_nom}
-                </div>
-              )}
-              <div className="mb-2 rounded border border-slate-200 bg-slate-50 p-1.5 text-[11px]">
-                <div className="flex justify-between"><span className="text-slate-500">Nature:</span> <span className="font-medium">{selectedFeature.properties.attributes?.data_temporality === 'POINT_MEASURE' ? 'Donnée ponctuelle' : 'Série temporelle'}</span></div>
-                <div className="flex justify-between"><span className="text-slate-500">Famille:</span> <span className="font-medium">{String(selectedFeature.properties.attributes?.data_family || selectedFeature.properties.data_family || '-')}</span></div>
-                <div className="flex justify-between"><span className="text-slate-500">Contexte:</span> <span className="font-medium">{String(selectedFeature.properties.attributes?.measurement_context || selectedFeature.properties.measurement_context || '-')}</span></div>
-              </div>
-              
-              {mode === 'thematic' && activeThematicParam ? (
-                <>
-                  <div className="mb-3 rounded border border-indigo-100 bg-indigo-50 p-2">
-                    <div className="text-[10px] font-bold text-indigo-800 uppercase tracking-wide">
-                      Métrique: {activeThematicParam.label}
-                    </div>
-                    <div className="mt-1 text-xs text-indigo-900 font-medium">
-                      {(selectedFeature.properties.latest_values &&
-                        (selectedFeature.properties.latest_values[activeThematicParam.code] != null ||
-                         selectedFeature.properties.latest_values[activeThematicParam.code.toLowerCase()] != null))
-                        ? `${activeThematicParam.label}: ${
-                            selectedFeature.properties.latest_values[activeThematicParam.code] ??
-                            selectedFeature.properties.latest_values[activeThematicParam.code.toLowerCase()]
-                          }`
-                        : "Aucune valeur récente"}
-                    </div>
-                  </div>
+            <BusinessPopup
+              properties={toMapBusinessEntityProperties(selectedFeature.properties)}
+              variant="full"
+              actions={
+                mode === 'thematic' && activeThematicParam ? (
                   <button
-                     onClick={() => {
-                       addSeriesRequest({
-                         support_type: selectedFeature.properties.support_type,
-                         object_id: selectedFeature.properties.object_id || selectedFeature.id || selectedFeature.properties.object_code,
-                         domain: activeThematicParam.domain,
-                         parameter_code: activeThematicParam.code,
-                         object_name: selectedFeature.properties.object_name,
-                         data_temporality: String(selectedFeature.properties.attributes?.data_temporality || selectedFeature.properties.data_temporality || 'TIME_SERIES'),
-                         data_family: String(selectedFeature.properties.attributes?.data_family || selectedFeature.properties.data_family || ''),
-                         measurement_context: String(selectedFeature.properties.attributes?.measurement_context || selectedFeature.properties.measurement_context || '')
-                       });
-                       setSelectedFeature(null);
+                    onClick={() => {
+                      addSeriesRequest({
+                        support_type: selectedFeature.properties.support_type,
+                        object_id: selectedFeature.properties.object_id || selectedFeature.properties.object_code,
+                        domain: activeThematicParam.domain,
+                        parameter_code: activeThematicParam.code,
+                        object_name: selectedFeature.properties.object_name,
+                        data_temporality: String(selectedFeature.properties.attributes?.data_temporality || selectedFeature.properties.data_temporality || 'TIME_SERIES'),
+                        data_family: String(selectedFeature.properties.attributes?.data_family || selectedFeature.properties.data_family || ''),
+                        measurement_context: String(selectedFeature.properties.attributes?.measurement_context || selectedFeature.properties.measurement_context || '')
+                      });
+                      setSelectedFeature(null);
                     }}
-                    className="w-full mt-2 flex items-center justify-center gap-1.5 rounded bg-indigo-600 px-3 py-1.5 text-xs font-semibold text-white shadow hover:bg-indigo-500"
+                    className="w-full flex items-center justify-center gap-1.5 rounded bg-indigo-600 px-3 py-1.5 text-xs font-semibold text-white shadow hover:bg-indigo-500"
                   >
                     <Plus className="h-3.5 w-3.5" />
                     Ajouter au Workspace
                   </button>
-                </>
-              ) : activeFilters.domain && activeFilters.parameter_code ? (
-                <>
-                  {mode === 'domain' && (
-                    <div className="mb-3 rounded border border-indigo-100 bg-indigo-50 p-2">
-                      <div className="text-[10px] font-bold text-indigo-800 uppercase tracking-wide">
-                        Paramètre: {activeFilters.parameter_code}
-                      </div>
-                      <div className="mt-1 text-xs text-indigo-900 font-medium">
-                        {/* If we have attributes with values, show them. Otherwise show placeholder or just the parameter name */}
-                        {(selectedFeature.properties.attributes && (selectedFeature.properties.attributes as any)[activeFilters.parameter_code]) 
-                          ? `${(selectedFeature.properties.attributes as any)[activeFilters.parameter_code]}`
-                          : "Sélectionné pour analyse"}
-                      </div>
-                    </div>
-                  )}
-                  <button 
+                ) : activeFilters.domain && activeFilters.parameter_code ? (
+                  <button
                     onClick={() => {
-                       addSeriesRequest({
-                         support_type: selectedFeature.properties.support_type,
-                         object_id: selectedFeature.properties.object_id || selectedFeature.id || selectedFeature.properties.object_code,
-                         domain: activeFilters.domain?.toUpperCase()!,
-                         parameter_code: activeFilters.parameter_code?.toUpperCase()!,
-                         object_name: selectedFeature.properties.object_name,
-                         data_temporality: String(selectedFeature.properties.attributes?.data_temporality || selectedFeature.properties.data_temporality || 'TIME_SERIES'),
-                         data_family: String(selectedFeature.properties.attributes?.data_family || selectedFeature.properties.data_family || ''),
-                         measurement_context: String(selectedFeature.properties.attributes?.measurement_context || selectedFeature.properties.measurement_context || '')
-                       });
-                       setSelectedFeature(null);
+                      addSeriesRequest({
+                        support_type: selectedFeature.properties.support_type,
+                        object_id: selectedFeature.properties.object_id || selectedFeature.properties.object_code,
+                        domain: activeFilters.domain?.toUpperCase()!,
+                        parameter_code: activeFilters.parameter_code?.toUpperCase()!,
+                        object_name: selectedFeature.properties.object_name,
+                        data_temporality: String(selectedFeature.properties.attributes?.data_temporality || selectedFeature.properties.data_temporality || 'TIME_SERIES'),
+                        data_family: String(selectedFeature.properties.attributes?.data_family || selectedFeature.properties.data_family || ''),
+                        measurement_context: String(selectedFeature.properties.attributes?.measurement_context || selectedFeature.properties.measurement_context || '')
+                      });
+                      setSelectedFeature(null);
                     }}
-                    className="w-full mt-2 flex items-center justify-center gap-1.5 rounded bg-indigo-600 px-3 py-1.5 text-xs font-semibold text-white shadow hover:bg-indigo-500"
+                    className="w-full flex items-center justify-center gap-1.5 rounded bg-indigo-600 px-3 py-1.5 text-xs font-semibold text-white shadow hover:bg-indigo-500"
                   >
                     <Plus className="h-3.5 w-3.5" />
                     {selectedFeature.properties.attributes?.data_temporality === 'POINT_MEASURE' ? 'Voir les valeurs' : 'Analyser en graphique'}
                   </button>
-                </>
-              ) : (
-                <div className="mt-2 text-[10px] text-amber-600 bg-amber-50 p-1.5 rounded border border-amber-100 text-center">
-                  Sélectionnez un domaine et paramètre à gauche pour analyser.
-                </div>
-              )}
-            </div>
+                ) : null
+              }
+            />
           </Popup>
         )}
       </Map>

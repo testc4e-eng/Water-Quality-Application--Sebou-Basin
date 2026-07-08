@@ -7,8 +7,9 @@ interface BusinessPopupProps {
   loading?: boolean;
   error?: unknown | null;
   variant?: MetadataCardVariant;
+  actions?: React.ReactNode;
 }
 
-export function BusinessPopup({ properties, loading, error, variant = "full" }: BusinessPopupProps) {
-  return <MetadataCard properties={properties} loading={loading} error={error} variant={variant} />;
+export function BusinessPopup({ properties, loading, error, variant = "full", actions }: BusinessPopupProps) {
+  return <MetadataCard properties={properties} loading={loading} error={error} variant={variant} actions={actions} />;
 }
