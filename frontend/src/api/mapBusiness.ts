@@ -91,6 +91,14 @@ export interface MapBusinessEntityProperties {
   detail_route?: string | null;
   validation_status?: string | null;
   qa_status?: string | null;
+  source_type_label?: string | null;
+  source_origin?: string | null;
+  type_barrage?: string | null;
+  statut?: string | null;
+  nom_oued?: string | null;
+  oued?: string | null;
+  code_station?: string | null;
+  barrage_id?: string | null;
   latest_values?: MapLatestValue[] | string | null;
   [key: string]: unknown;
 }

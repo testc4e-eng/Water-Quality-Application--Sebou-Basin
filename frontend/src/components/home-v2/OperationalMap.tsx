@@ -222,6 +222,7 @@ export function OperationalMap({ mapConfig, alerts, actions }: OperationalMapPro
               loading={mapLoading}
               error={criticalMapError ?? null}
               mode="home"
+              popupVariant="compact"
               overlayTitle="CARTE MÉTIER - VUE BASSIN"
               emptyMessage="La carte Home V2 réutilise le moteur métier existant. Le rendu multicouche opérationnel complet reste consolidé dans /dashboard-carto-metier."
             />

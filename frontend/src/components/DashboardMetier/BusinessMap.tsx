@@ -29,6 +29,7 @@ interface BusinessMapProps {
   overlayTitle?: string;
   overlaySubtitle?: string;
   emptyMessage?: string;
+  popupVariant?: "compact" | "full";
 }
 
 type EnrichedProperties = MapBusinessEntityProperties & {
@@ -169,6 +170,7 @@ export function BusinessMap({
   overlayTitle = "Carte metier P0",
   overlaySubtitle,
   emptyMessage = "Selectionner un support metier puis cliquer sur Afficher.",
+  popupVariant = "full",
 }: BusinessMapProps) {
   const mapRef = useRef<MapRef | null>(null);
   const [viewState, setViewState] = useState({
@@ -296,10 +298,15 @@ export function BusinessMap({
             latitude={selected.latitude}
             closeButton
             closeOnClick={false}
-            maxWidth="360px"
+            maxWidth={popupVariant === "compact" ? "330px" : "420px"}
             onClose={() => setSelected(null)}
           >
-            <BusinessPopup properties={popupProperties} />
+            <BusinessPopup
+              properties={popupProperties}
+              loading={selectedDetailQuery.isPending && !popupProperties}
+              error={selectedDetailQuery.error && !popupProperties}
+              variant={popupVariant}
+            />
           </Popup>
         )}
       </Map>
