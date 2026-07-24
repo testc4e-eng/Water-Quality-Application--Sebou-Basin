@@ -33,10 +33,27 @@ def _parse_cors_origins() -> list[str]:
 
 cors_origins = _parse_cors_origins()
 
+
+def _env_flag(name: str, default: bool = False) -> bool:
+    raw_value = os.getenv(name)
+    if raw_value is None:
+        return default
+    return raw_value.strip().lower() in {"1", "true", "yes", "on"}
+
+
+# En production, la documentation interactive (/docs, /openapi.json) est
+# désactivée sauf activation explicite (SAD_EXPOSE_DOCS=true) : elle offre
+# la cartographie complète de l'API à un éventuel attaquant.
+_IS_PROD = os.getenv("ENV", "development").strip().lower() in {"prod", "production"}
+_EXPOSE_DOCS = _env_flag("SAD_EXPOSE_DOCS", default=not _IS_PROD)
+
 app = FastAPI(
     title="SAD_SEBOU API",
     version="1.0.0",
     description="API WebSIG pour la gestion et le suivi de la qualité de l’eau – Bassin du Sebou",
+    docs_url="/docs" if _EXPOSE_DOCS else None,
+    redoc_url="/redoc" if _EXPOSE_DOCS else None,
+    openapi_url="/openapi.json" if _EXPOSE_DOCS else None,
 )
 
 # =========================
@@ -50,6 +67,21 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.add_middleware(GZipMiddleware, minimum_size=1024, compresslevel=6)
+
+
+# =========================
+# HEADERS DE SÉCURITÉ
+# =========================
+@app.middleware("http")
+async def security_headers_middleware(request: Request, call_next):
+    response = await call_next(request)
+    response.headers.setdefault("X-Content-Type-Options", "nosniff")
+    response.headers.setdefault("X-Frame-Options", "DENY")
+    response.headers.setdefault("Referrer-Policy", "no-referrer")
+    response.headers.setdefault(
+        "Permissions-Policy", "geolocation=(), microphone=(), camera=()"
+    )
+    return response
 
 def _sanitize_query_params(request: Request) -> str:
     masked_pairs = []
@@ -183,9 +215,7 @@ def root():
     return {
         "status": "OK",
         "message": "Backend SAD_SEBOU opérationnel",
-        "docs": "/docs",
         "api_base": API_PREFIX,
-        "cors_origins": cors_origins,
     }
 
 
