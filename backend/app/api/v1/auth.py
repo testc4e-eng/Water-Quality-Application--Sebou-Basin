@@ -43,13 +43,16 @@ def _attach_user_auth_context(user: SecurityUser, db: Session) -> SecurityUser:
 @router.post("/register", response_model=UserOut, status_code=status.HTTP_201_CREATED)
 def register(user_in: UserCreate, db: Session = Depends(get_db)):
     try:
+        # Sécurité : le rôle demandé par le client est ignoré sur l'inscription
+        # publique (risque d'escalade de privilèges). Tout nouveau compte est
+        # créé "viewer" ; l'élévation de rôle passe par /admin/users (protégé).
         user = create_user(
             db=db,
             username=user_in.username,
             email=user_in.email,
             full_name=user_in.full_name,
             password=user_in.password,
-            role_code=user_in.role_code,
+            role_code="viewer",
             created_by=None,
         )
         log_event(db, action="USER_CREATED", status="SUCCESS", user_id=user.id, details=user.email)

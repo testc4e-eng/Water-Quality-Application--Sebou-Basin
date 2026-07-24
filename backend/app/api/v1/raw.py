@@ -1,14 +1,21 @@
 # backend/app/api/v1/raw.py
 import logging
-from fastapi import APIRouter, HTTPException, Query, Body
+from fastapi import APIRouter, Depends, HTTPException, Query, Body
 from typing import List, Optional, Dict, Any
 from psycopg2 import sql
 from psycopg2.extras import RealDictCursor
 from app.db_raw import connection
+from app.security.deps import require_roles
 from app.util_dbmeta import get_geom_column, pick_first_existing, table_exists
 
 logger = logging.getLogger(__name__)
-router = APIRouter(prefix="/raw", tags=["Raw"])
+# Accès brut aux tables (lecture/écriture/suppression par schema/table) :
+# outil d'administration des données, réservé au rôle admin (RBAC réel).
+router = APIRouter(
+    prefix="/raw",
+    tags=["Raw"],
+    dependencies=[Depends(require_roles("admin"))],
+)
 
 # Heuristiques pour détection visuelle (optionnel désormais)
 LAT_CANDIDATES = ["lat", "latitude", "y", "lat_dd"]

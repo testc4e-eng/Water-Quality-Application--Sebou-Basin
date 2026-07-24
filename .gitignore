@@ -94,3 +94,19 @@ backend/**/__pycache__/
 backend/**/*.pyc
 backend/**/*.pyo
 backend/**/*.pyd
+
+# =====================================================
+# SECRETS — ne jamais suivre les fichiers d'environnement réels
+# (nécessaire ici car !backend/** et !frontend/** ré-incluent tout)
+# =====================================================
+backend/.env
+backend/.env.*
+frontend/.env
+frontend/.env.*
+wqss.env.txt
+!backend/.env.example
+!frontend/.env.example
+
+# Artefacts de test frontend
+frontend/test-results/
+frontend/playwright-report/
