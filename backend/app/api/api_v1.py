@@ -25,8 +25,6 @@ from app.api.v1.data_admin.ingestion import router as data_admin_ingestion_route
 from app.api.v1.data_admin.templates import router as data_admin_templates_router
 from app.api.v1.data_admin.change_requests import router as data_admin_change_requests_router
 
-from app.api.v1 import swat
-
 from app.routers import hydro, quality, climate, entities, observatory, analytics, business_map, analysis
 
 
@@ -156,7 +154,6 @@ api_router.include_router(analysis.router, prefix="/business-map/analysis", tags
 # SWAT
 # =========================
 api_router.include_router(swat_router, tags=["swat"])
-api_router.include_router(swat.router)
 SWAT_ANALYSIS_AVAILABLE = _include_optional_swat_analysis(api_router)
 
 # =========================

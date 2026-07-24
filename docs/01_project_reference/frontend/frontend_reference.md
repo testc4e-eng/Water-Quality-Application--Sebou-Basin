@@ -119,9 +119,17 @@ Le frontend consomme encore des domaines backend dont la stabilité dépend de m
 
 Ces zones ne doivent pas être présentées comme pleinement stabilisées tant que les références `public.*` n’ont pas été purgées côté backend.
 
-### 5.4 Incohérence SWAT analysis
+### 5.4 SWAT analysis — préfixe vérifié (2026-07-24)
 
-Le frontend attend un usage de type `/swat/analysis/*`, alors que le routeur backend observé est susceptible d’être monté sous un préfixe doublé `/api/v1/api/v1/swat/analysis/*`.
+Vérification terrain (voir `docs/115_nettoyage_dette_technique/01_double_montage_swat.md`) :
+le routeur `swat_analysis` est défini avec `prefix="/swat/analysis"` et monté
+sans préfixe additionnel, soit un chemin réel `/api/v1/swat/analysis/*`
+(**pas** de préfixe doublé). Le frontend attend bien `/swat/analysis/*` : les
+deux sont alignés.
+
+Le défaut réellement présent était un **double montage** du routeur SWAT
+principal dans `backend/app/api/api_v1.py` (routes `/api/v1/swat/*`
+enregistrées deux fois) — corrigé le 2026-07-24.
 
 ## 6. Règle documentaire
 
