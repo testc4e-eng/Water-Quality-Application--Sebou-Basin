@@ -27,6 +27,8 @@ import DashboardCartoMetier from "./pages/DashboardCartoMetier";
 import DashboardQualiteReglementaire from "./pages/DashboardQualiteReglementaire";
 import DashboardScenarios from "./pages/DashboardScenarios";
 import DashboardPollution from "./pages/DashboardPollution";
+import DashboardPollutionPropagation from "./pages/DashboardPollutionPropagation";
+import DashboardPollutionCampagnes from "./pages/DashboardPollutionCampagnes";
 import DashboardDataQuality from "./pages/DashboardDataQuality";
 import DashboardAdministration from "./pages/DashboardAdministration";
 import PollutionIdpDevPage from "./pages/PollutionIdpDevPage";
@@ -38,38 +40,9 @@ import IngestionPage from "./pages/admin/IngestionPage";
 import PopupRulesPage from "./pages/admin/PopupRulesPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import MetauxPage from "./pages/qualite/MetauxPage";
-import { getAuthSession, hasAnyPermission } from "./lib/authz";
 
 const queryClient = new QueryClient();
 const DecisionDashboardTest = React.lazy(() => import("./pages/DecisionDashboardTest"));
-
-function AdminOnly({ children }: { children: JSX.Element }) {
-  const auth = getAuthSession();
-  const canManageUsers = hasAnyPermission(
-    ["security.users.manage", "security.password_reset.manage", "security.logs.read"],
-    auth.permissions,
-  );
-  return canManageUsers ? children : <Navigate to="/" replace />;
-}
-
-function AuthenticatedOnly({ children }: { children: JSX.Element }) {
-  const isAuthenticated = !!getAuthSession().accessToken;
-  return isAuthenticated ? children : <Navigate to="/login" replace />;
-}
-
-function PermissionOnly({
-  permissions,
-  children,
-}: {
-  permissions: string[];
-  children: JSX.Element;
-}) {
-  const auth = getAuthSession();
-  if (!auth.accessToken) {
-    return <Navigate to="/login" replace />;
-  }
-  return hasAnyPermission(permissions, auth.permissions) ? children : <Navigate to="/" replace />;
-}
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -89,6 +62,9 @@ const router = createBrowserRouter(
         <Route path="analyses" element={<Navigate to="/dashboard-carto-metier" replace />} />
         <Route path="dashboard-scenarios" element={<DashboardScenarios />} />
         <Route path="dashboard-pollution" element={<DashboardPollution />} />
+        <Route path="dashboard-declaration-pollution" element={<Navigate to="/dashboard-pollution?view=declaration" replace />} />
+        <Route path="dashboard-pollution-propagation" element={<DashboardPollutionPropagation />} />
+            <Route path="dashboard-pollution-campagnes" element={<DashboardPollutionCampagnes />} />
         <Route path="pollution" element={<DashboardPollution />} />
         <Route path="pollution-idp-dev" element={<PollutionIdpDevPage />} />
         <Route path="qualite/metaux" element={<MetauxPage />} />
@@ -102,72 +78,29 @@ const router = createBrowserRouter(
         />
         <Route path="expert" element={<Navigate to="/dashboard-data-qa" replace />} />
         <Route path="administration" element={<DashboardAdministration />} />
-        <Route
-          path="admin/data-governance/audit"
-          element={
-            <PermissionOnly permissions={["data_admin.audit.read"]}>
-              <DataGovernanceAuditPage />
-            </PermissionOnly>
-          }
-        />
+        <Route path="admin/data-governance/audit" element={<DataGovernanceAuditPage />} />
         <Route path="admin/data-scan" element={<DataScanPage />} />
-        <Route
-          path="admin/gestion-users"
-          element={
-            <AdminOnly>
-              <UsersAuditHubPage />
-            </AdminOnly>
-          }
-        />
+        <Route path="admin/gestion-users" element={<UsersAuditHubPage />} />
         <Route
           path="admin/users"
           element={
-            <AdminOnly>
-              <Navigate to="/admin/gestion-users?mode=users" replace />
-            </AdminOnly>
+            <Navigate to="/admin/gestion-users?mode=users" replace />
           }
         />
-        <Route
-          path="admin/password-resets"
-          element={
-            <AdminOnly>
-              <PasswordResetRequestsPage />
-            </AdminOnly>
-          }
-        />
+        <Route path="admin/password-resets" element={<PasswordResetRequestsPage />} />
         <Route
           path="admin/audit"
           element={
-            <AdminOnly>
-              <Navigate to="/admin/gestion-users?mode=audit" replace />
-            </AdminOnly>
+            <Navigate to="/admin/gestion-users?mode=audit" replace />
           }
         />
-        <Route
-          path="admin/ingestion"
-          element={
-            <AdminOnly>
-              <IngestionPage />
-            </AdminOnly>
-          }
-        />
-        <Route
-          path="admin/popup-rules"
-          element={
-            <AdminOnly>
-              <PopupRulesPage />
-            </AdminOnly>
-          }
-        />
+        <Route path="admin/ingestion" element={<IngestionPage />} />
+        <Route path="admin/popup-rules" element={<PopupRulesPage />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route
           path="data"
-          element={
-            <AdminOnly>
-              <DataViewer />
-            </AdminOnly>
-          }
+          element={<DataViewer />}
         />
       </Route>
 

@@ -214,7 +214,7 @@ export function readPreviousDashboardHomeCache(): DashboardHomePayload | undefin
 export async function getDashboardHome(signal?: AbortSignal) {
   const { data } = await api.get<DashboardHomePayload>("/dashboard/home", {
     signal,
-    timeout: 10_000,
+    timeout: 90_000,
   });
   if (typeof window !== "undefined") {
     try {

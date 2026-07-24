@@ -11,13 +11,23 @@ interface QualityHistoriqueTabProps {
 const normalizeText = (value?: string | null) => (value || '').toLowerCase().trim();
 const getStationName = (station: any) => station.station_nom || station.station_name || station.ire_station || station.station_id || 'Station sans nom';
 const getParameterName = (parameter: any) => parameter.parametre_qualite || parameter.parameter || 'Inconnu';
+const getRowParameter = (row: any) => row.parametre_qualite || row.parameter || '';
+const getRowDate = (row: any) => row.date_mesure || row.date || row.date_prelevement || '';
+const getRowValue = (row: any): number | null => {
+  const raw = row.valeur ?? row.value;
+  if (raw === null || raw === undefined || raw === '') return null;
+  const value = typeof raw === 'number' ? raw : Number(String(raw).replace(',', '.'));
+  return Number.isFinite(value) ? value : null;
+};
+const formatValue = (value: number | null) => value === null ? 'n/a' : value.toLocaleString('fr-FR');
 
 export function QualityHistoriqueTab({ filters }: QualityHistoriqueTabProps) {
   const [selectedStation, setSelectedStation] = useState<string>('');
   const [selectedParam, setSelectedParam] = useState<string>('');
+  const [graphPeriod, setGraphPeriod] = useState<QualityDashboardFilters['period']>('all');
   const stationSearch = normalizeText(filters?.stationSearch);
   const sousBassinSearch = normalizeText(filters?.sousBassin);
-  const { dateStart, dateEnd } = filters ? getQualityDateRange(filters.period) : { dateStart: undefined, dateEnd: undefined };
+  const { dateStart, dateEnd, label: graphPeriodLabel } = getQualityDateRange(graphPeriod);
 
   const { data: stations = [], isLoading: isLoadingStations, error: stationsError } = useQuery({
     queryKey: ['unified-stations', 'RIVIERE'],
@@ -73,18 +83,32 @@ export function QualityHistoriqueTab({ filters }: QualityHistoriqueTabProps) {
     if (!timeseries.length || !effectiveParam) return [];
     
     // The API returns rows with date_mesure, parametre_qualite, valeur
-    const filtered = timeseries.filter((row: any) => 
-      (row.parametre_qualite || row.parameter) === effectiveParam && 
-      (row.valeur || row.value) !== null
-    );
+    const filtered = timeseries.filter((row: any) => getRowParameter(row) === effectiveParam && getRowValue(row) !== null);
     
     return filtered
       .map((row: any) => ({
-        date: new Date(row.date_mesure || row.date).toLocaleDateString('fr-FR'),
-        timestamp: new Date(row.date_mesure || row.date).getTime(),
-        valeur: row.valeur || row.value
+        date: new Date(getRowDate(row)).toLocaleDateString('fr-FR'),
+        timestamp: new Date(getRowDate(row)).getTime(),
+        valeur: getRowValue(row) ?? 0
       }))
+      .filter(row => !Number.isNaN(row.timestamp))
       .sort((a, b) => a.timestamp - b.timestamp);
+  }, [timeseries, effectiveParam]);
+
+  const selectedParamRows = useMemo(() => {
+    if (!timeseries.length || !effectiveParam) return [];
+
+    return timeseries
+      .filter((row: any) => getRowParameter(row) === effectiveParam && getRowValue(row) !== null && getRowDate(row))
+      .map((row: any) => ({
+        param: getRowParameter(row),
+        date: getRowDate(row),
+        timestamp: new Date(getRowDate(row)).getTime(),
+        val: getRowValue(row),
+        source: row.source_table || row.source || row.support_type || 'API qualité',
+      }))
+      .filter(row => !Number.isNaN(row.timestamp))
+      .sort((a, b) => b.timestamp - a.timestamp);
   }, [timeseries, effectiveParam]);
 
   const latestValues = useMemo(() => {
@@ -92,9 +116,9 @@ export function QualityHistoriqueTab({ filters }: QualityHistoriqueTabProps) {
     
     const latestMap: Record<string, any> = {};
     timeseries.forEach((row: any) => {
-      const param = row.parametre_qualite || row.parameter;
-      const date = row.date_mesure || row.date;
-      const val = row.valeur || row.value;
+      const param = getRowParameter(row);
+      const date = getRowDate(row);
+      const val = getRowValue(row);
       
       if (!param || !date || val === null) return;
       
@@ -193,9 +217,21 @@ export function QualityHistoriqueTab({ filters }: QualityHistoriqueTabProps) {
             <option value="">-- Choisir un paramètre --</option>
             {filteredParameters.map((p: any) => (
               <option key={getParameterName(p)} value={getParameterName(p)}>
-                {getParameterName(p)} ({(p as any).measure_count || p.n_mesures} mesures)
+                {getParameterName(p)} ({(p as any).measure_count ?? p.n_mesures ?? 0} mesures)
               </option>
             ))}
+          </select>
+        </div>
+
+        <div className="min-w-[220px]">
+          <label className="text-xs font-medium text-slate-700 block mb-1">Période du graphique</label>
+          <select
+            className="w-full border-slate-200 rounded-md text-sm"
+            value={graphPeriod}
+            onChange={(event) => setGraphPeriod(event.target.value as QualityDashboardFilters['period'])}
+          >
+            <option value="all">Toutes les données</option>
+            <option value="12m">Dernières 12 mois</option>
           </select>
         </div>
       </div>
@@ -226,7 +262,10 @@ export function QualityHistoriqueTab({ filters }: QualityHistoriqueTabProps) {
           
           {/* Main Chart */}
           <div className="lg:col-span-2 bg-white rounded-md border border-slate-200 shadow-sm p-4 h-[400px] flex flex-col">
-            <h3 className="font-semibold text-slate-900 mb-4">Évolution temporelle : {selectedParam || 'Sélectionnez un paramètre'}</h3>
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+              <h3 className="font-semibold text-slate-900">Évolution temporelle : {selectedParam || 'Sélectionnez un paramètre'}</h3>
+              <span className="rounded-full bg-slate-100 px-2 py-1 text-xs text-slate-600">{graphPeriodLabel}</span>
+            </div>
             <div className="flex-1 w-full">
               {!effectiveParam ? (
                 <div className="w-full h-full flex flex-col items-center justify-center text-slate-400 italic border border-dashed border-slate-200 rounded">
@@ -249,11 +288,36 @@ export function QualityHistoriqueTab({ filters }: QualityHistoriqueTabProps) {
             </div>
           </div>
 
-          {/* Side Panel - Latest Values */}
+          {/* Side Panel - Values */}
           <div className="bg-white rounded-md border border-slate-200 shadow-sm p-4 h-[400px] flex flex-col">
-            <h3 className="font-semibold text-slate-900 mb-4">Dernières valeurs</h3>
+            <h3 className="font-semibold text-slate-900 mb-4">{effectiveParam ? 'Valeurs existantes' : 'Dernières valeurs'}</h3>
             <div className="flex-1 overflow-y-auto">
-              {latestValues.length > 0 ? (
+              {effectiveParam ? (
+                selectedParamRows.length > 0 ? (
+                  <table className="w-full text-left text-sm">
+                    <thead className="sticky top-0 bg-slate-50 text-xs uppercase text-slate-500">
+                      <tr>
+                        <th className="px-3 py-2 font-medium">Date</th>
+                        <th className="px-3 py-2 text-right font-medium">Valeur</th>
+                        <th className="px-3 py-2 font-medium">Source</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {selectedParamRows.map((row, index) => (
+                        <tr key={`${row.date}-${index}`} className="border-b border-slate-100 last:border-0 hover:bg-slate-50">
+                          <td className="px-3 py-2 text-slate-600">{new Date(row.date).toLocaleDateString('fr-FR')}</td>
+                          <td className="px-3 py-2 text-right font-semibold text-slate-900">{formatValue(row.val)}</td>
+                          <td className="px-3 py-2 text-xs text-slate-500">{row.source}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                ) : (
+                  <div className="h-full flex items-center justify-center text-slate-400 italic text-sm">
+                    Aucune valeur disponible pour ce paramètre
+                  </div>
+                )
+              ) : latestValues.length > 0 ? (
                 <div className="space-y-2">
                   {latestValues.map((item: any) => (
                     <div key={item.param} className="flex justify-between items-center p-2 bg-slate-50 rounded border border-slate-100">
@@ -261,7 +325,7 @@ export function QualityHistoriqueTab({ filters }: QualityHistoriqueTabProps) {
                         <div className="text-sm font-medium text-slate-900">{item.param}</div>
                         <div className="text-xs text-slate-500">{new Date(item.date).toLocaleDateString('fr-FR')}</div>
                       </div>
-                      <div className="text-sm font-bold text-blue-600">{Number(item.val).toLocaleString('fr-FR')}</div>
+                      <div className="text-sm font-bold text-blue-600">{formatValue(item.val)}</div>
                     </div>
                   ))}
                 </div>

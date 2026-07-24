@@ -10,7 +10,7 @@ export interface QualityDashboardFilters {
 }
 
 export const DEFAULT_QUALITY_FILTERS: QualityDashboardFilters = {
-  period: "12m",
+  period: "all",
   supportType: "",
   bassin: "Sebou",
   sousBassin: "",

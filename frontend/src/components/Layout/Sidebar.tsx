@@ -2,6 +2,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import {
   AlertTriangle,
   Database,
+  FlaskConical,
   Home,
   Map,
   ShieldCheck,
@@ -32,6 +33,7 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
     location.pathname === "/dashboard-carto-metier" ||
     location.pathname === "/dashboard-qualite-reglementaire" ||
     location.pathname === "/dashboard-pollution" ||
+    location.pathname === "/dashboard-pollution-campagnes" ||
     location.pathname === "/dashboard-data-qa" ||
     location.pathname === "/administration" ||
     location.pathname.startsWith("/admin/");
@@ -43,6 +45,7 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
     { to: "/dashboard-qualite-reglementaire", label: "Qualité des eaux", icon: ShieldCheck, status: "PREPROD_CONDITIONNEL", group: "decision" },
     { to: "/dashboard-carto-metier", label: "Carte Métier", icon: Map, status: "PARTIEL", group: "decision" },
     { to: "/dashboard-pollution", label: "Pollution", icon: AlertTriangle, status: "DEV", group: "decision" },
+    { to: "/dashboard-pollution-campagnes", label: "Pollution — Campagnes", icon: FlaskConical, status: "DEV", group: "decision" },
     { to: "/dashboard-data-qa", label: "Données / QA", icon: Database, status: "OPERATIONNEL", group: "decision" },
     { to: "/administration", label: "Administration", icon: BriefcaseBusiness, status: "OPERATIONNEL", group: "administration" },
   ];
@@ -68,6 +71,7 @@ const Sidebar = ({ collapsed }: SidebarProps) => {
         "/dashboard-qualite-reglementaire",
         "/dashboard-carto-metier",
         "/dashboard-pollution",
+        "/dashboard-pollution-campagnes",
         "/dashboard-data-qa",
         "/administration",
       ].includes(item.to)

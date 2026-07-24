@@ -2,15 +2,28 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getQualityStations, getQualityParameters, getQualityTimeseries } from '@/api/qualityRegulatory';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, Legend } from 'recharts';
-import type { QualityDashboardFilters } from './types';
+import { getQualityDateRange, type QualityDashboardFilters } from './types';
 
 interface QualityDamsTabProps {
   filters?: QualityDashboardFilters;
 }
 
+const getParameterName = (parameter: any) => parameter.parametre_qualite || parameter.parameter || 'Inconnu';
+const getRowParameter = (row: any) => row.parametre_qualite || row.parameter || '';
+const getRowDate = (row: any) => row.date_mesure || row.date || row.date_prelevement || '';
+const getRowValue = (row: any): number | null => {
+  const raw = row.valeur ?? row.value;
+  if (raw === null || raw === undefined || raw === '') return null;
+  const value = typeof raw === 'number' ? raw : Number(String(raw).replace(',', '.'));
+  return Number.isFinite(value) ? value : null;
+};
+const formatValue = (value: number | null) => value === null ? 'n/a' : value.toLocaleString('fr-FR');
+
 export function QualityDamsTab({ filters }: QualityDamsTabProps) {
   const [selectedStation, setSelectedStation] = useState<string>('');
   const [selectedParam, setSelectedParam] = useState<string>('');
+  const [graphPeriod, setGraphPeriod] = useState<QualityDashboardFilters['period']>('all');
+  const { dateStart, dateEnd, label: graphPeriodLabel } = getQualityDateRange(graphPeriod);
 
   const { data: stations = [], isLoading: isLoadingStations, error: stationsError } = useQuery({
     queryKey: ['unified-stations', 'BARRAGE'],
@@ -34,11 +47,14 @@ export function QualityDamsTab({ filters }: QualityDamsTabProps) {
   });
 
   const { data: timeseries = [], isLoading: isLoadingTimeseries, error: timeseriesError } = useQuery({
-    queryKey: ['unified-timeseries', 'BARRAGE', selectedStation],
+    queryKey: ['unified-timeseries', 'BARRAGE', selectedStation, selectedParam || 'ALL', dateStart, dateEnd],
     queryFn: () => getQualityTimeseries({
       support_type: 'BARRAGE',
       ire_station: selectedStation?.includes('/') ? selectedStation : undefined,
       station_id: selectedStation && !selectedStation.includes('/') ? selectedStation : undefined,
+      parametre_qualite: selectedParam || undefined,
+      date_from: dateStart,
+      date_to: dateEnd,
     }),
     retry: false,
     staleTime: 30_000,
@@ -69,26 +85,40 @@ export function QualityDamsTab({ filters }: QualityDamsTabProps) {
   // Derived state
   const chartData = useMemo(() => {
     if (!timeseries.length || !selectedParam) return [];
-    const filtered = timeseries.filter((row: any) => 
-      (row.parametre_qualite || row.parameter) === selectedParam && 
-      (row.valeur || row.value) !== null
-    );
+    const filtered = timeseries.filter((row: any) => getRowParameter(row) === selectedParam && getRowValue(row) !== null);
     return filtered
       .map((row: any) => ({
-        date: new Date(row.date_mesure || row.date).toLocaleDateString('fr-FR'),
-        timestamp: new Date(row.date_mesure || row.date).getTime(),
-        valeur: row.valeur || row.value
+        date: new Date(getRowDate(row)).toLocaleDateString('fr-FR'),
+        timestamp: new Date(getRowDate(row)).getTime(),
+        valeur: getRowValue(row) ?? 0
       }))
+      .filter(row => !Number.isNaN(row.timestamp))
       .sort((a, b) => a.timestamp - b.timestamp);
+  }, [timeseries, selectedParam]);
+
+  const selectedParamRows = useMemo(() => {
+    if (!timeseries.length || !selectedParam) return [];
+
+    return timeseries
+      .filter((row: any) => getRowParameter(row) === selectedParam && getRowValue(row) !== null && getRowDate(row))
+      .map((row: any) => ({
+        param: getRowParameter(row),
+        date: getRowDate(row),
+        timestamp: new Date(getRowDate(row)).getTime(),
+        val: getRowValue(row),
+        source: row.source_table || row.source || row.support_type || 'API qualité',
+      }))
+      .filter(row => !Number.isNaN(row.timestamp))
+      .sort((a, b) => b.timestamp - a.timestamp);
   }, [timeseries, selectedParam]);
 
   const latestValues = useMemo(() => {
     if (!timeseries.length) return [];
     const latestMap: Record<string, any> = {};
     timeseries.forEach((row: any) => {
-      const param = row.parametre_qualite || row.parameter;
-      const date = row.date_mesure || row.date;
-      const val = row.valeur || row.value;
+      const param = getRowParameter(row);
+      const date = getRowDate(row);
+      const val = getRowValue(row);
       if (!param || !date || val === null) return;
       if (!latestMap[param] || new Date(date).getTime() > new Date(latestMap[param].date).getTime()) {
         latestMap[param] = { param, date, val };
@@ -119,7 +149,7 @@ export function QualityDamsTab({ filters }: QualityDamsTabProps) {
         </div>
       );
     }
-    return <div className="p-8 text-center text-slate-500">Chargement des stations (Barrages)...</div>;
+    return <div className="p-8 text-center text-slate-500">Chargement des stations (Barrages et lacs)...</div>;
   }
 
   if (stationsError) {
@@ -135,14 +165,14 @@ export function QualityDamsTab({ filters }: QualityDamsTabProps) {
     <div className="space-y-6">
       <div className="flex justify-between items-end">
         <div>
-          <h2 className="text-lg font-semibold text-slate-900">Suivi Qualité Barrages</h2>
-          <p className="text-sm text-slate-500">Qualité des eaux de retenue des barrages</p>
+          <h2 className="text-lg font-semibold text-slate-900">Suivi Qualité Barrages et lacs</h2>
+          <p className="text-sm text-slate-500">Qualité des eaux de retenue des barrages et lacs</p>
         </div>
       </div>
 
       <div className="grid grid-cols-3 gap-4">
         <div className="bg-white p-4 rounded-md border border-slate-200 shadow-sm">
-          <div className="text-sm text-slate-500 font-medium">Barrages suivis</div>
+          <div className="text-sm text-slate-500 font-medium">Barrages et lacs suivis</div>
           <div className="text-2xl font-bold text-slate-900 mt-1">{totalStations}</div>
         </div>
         <div className="bg-white p-4 rounded-md border border-slate-200 shadow-sm">
@@ -182,10 +212,22 @@ export function QualityDamsTab({ filters }: QualityDamsTabProps) {
           >
             <option value="">-- Choisir un paramètre --</option>
             {parameters.map(p => (
-              <option key={p.parametre_qualite || p.parameter} value={p.parametre_qualite || p.parameter}>
-                {p.parametre_qualite || p.parameter} ({(p as any).measure_count || p.n_mesures} mesures)
+              <option key={getParameterName(p)} value={getParameterName(p)}>
+                {getParameterName(p)} ({(p as any).measure_count ?? p.n_mesures ?? 0} mesures)
               </option>
             ))}
+          </select>
+        </div>
+
+        <div className="min-w-[220px]">
+          <label className="text-xs font-medium text-slate-700 block mb-1">Période du graphique</label>
+          <select
+            className="w-full border-slate-200 rounded-md text-sm"
+            value={graphPeriod}
+            onChange={(event) => setGraphPeriod(event.target.value as QualityDashboardFilters['period'])}
+          >
+            <option value="all">Toutes les données</option>
+            <option value="12m">Dernières 12 mois</option>
           </select>
         </div>
       </div>
@@ -208,7 +250,10 @@ export function QualityDamsTab({ filters }: QualityDamsTabProps) {
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <div className="lg:col-span-2 bg-white rounded-md border border-slate-200 shadow-sm p-4 h-[400px] flex flex-col">
-            <h3 className="font-semibold text-slate-900 mb-4">Évolution temporelle : {selectedParam || 'Sélectionnez un paramètre'}</h3>
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+              <h3 className="font-semibold text-slate-900">Évolution temporelle : {selectedParam || 'Sélectionnez un paramètre'}</h3>
+              <span className="rounded-full bg-slate-100 px-2 py-1 text-xs text-slate-600">{graphPeriodLabel}</span>
+            </div>
             <div className="flex-1 w-full">
               {!selectedParam ? (
                 <div className="w-full h-full flex flex-col items-center justify-center text-slate-400 italic border border-dashed border-slate-200 rounded">
@@ -232,9 +277,38 @@ export function QualityDamsTab({ filters }: QualityDamsTabProps) {
           </div>
 
           <div className="bg-white rounded-md border border-slate-200 shadow-sm p-4 flex flex-col h-[400px]">
-            <h3 className="font-semibold text-slate-900 mb-4">Dernières valeurs mesurées</h3>
+            <h3 className="font-semibold text-slate-900 mb-4">{selectedParam ? 'Valeurs existantes' : 'Dernières valeurs mesurées'}</h3>
             <div className="flex-1 overflow-y-auto pr-2">
-              {latestValues.length > 0 ? (
+              {selectedParam ? (
+                selectedParamRows.length > 0 ? (
+                  <table className="w-full text-sm text-left">
+                    <thead className="text-xs text-slate-500 uppercase bg-slate-50 sticky top-0">
+                      <tr>
+                        <th className="px-3 py-2 font-medium">Date</th>
+                        <th className="px-3 py-2 font-medium text-right">Valeur</th>
+                        <th className="px-3 py-2 font-medium">Source</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {selectedParamRows.map((row, index) => (
+                        <tr key={`${row.date}-${index}`} className="border-b border-slate-100 last:border-0 hover:bg-slate-50 transition-colors">
+                          <td className="px-3 py-2 text-slate-500 text-xs">
+                            {new Date(row.date).toLocaleDateString('fr-FR')}
+                          </td>
+                          <td className="px-3 py-2 text-right">
+                            <span className="font-semibold">{formatValue(row.val)}</span>
+                          </td>
+                          <td className="px-3 py-2 text-xs text-slate-500">{row.source}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-slate-400 italic text-center">
+                    Aucune mesure remontée pour ce paramètre
+                  </div>
+                )
+              ) : latestValues.length > 0 ? (
                 <table className="w-full text-sm text-left">
                   <thead className="text-xs text-slate-500 uppercase bg-slate-50 sticky top-0">
                     <tr>
@@ -250,7 +324,7 @@ export function QualityDamsTab({ filters }: QualityDamsTabProps) {
                           {row.param.length > 15 ? row.param.substring(0, 15) + '...' : row.param}
                         </td>
                         <td className="px-3 py-2 text-right">
-                          <span className="font-semibold">{row.val.toLocaleString('fr-FR')}</span>
+                          <span className="font-semibold">{formatValue(row.val)}</span>
                         </td>
                         <td className="px-3 py-2 text-slate-500 text-xs">
                           {new Date(row.date).toLocaleDateString('fr-FR')}

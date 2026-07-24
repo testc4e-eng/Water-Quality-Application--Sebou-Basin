@@ -1,0 +1,60 @@
+{
+  "matrix_id": "NH4_DAR_EL_ARSSA",
+  "matrix_version": "1.0.0",
+  "pollutant": "NH4",
+  "source_file": "matrice qualité.xlsx",
+  "source_sheet": "tableau_scenarios_colonnes_dema",
+  "resource_file": "nh4_dar_el_arssa_v1.csv",
+  "sha256": "52e0cdc65f20a079dc3dd444abdf758812ca890084e2ae920ff6f79aef38ce31",
+  "scenario_count": 1575,
+  "sufficient_count": 1188,
+  "insufficient_count": 387,
+  "source_point_label": "Point source matrice NH4 - secteur Dar El Arssa, localisation exacte a valider",
+  "units": {
+    "Crejet_mg_L": "mg/L",
+    "QRejet_m3_s": "m3/s",
+    "QSebou_m3_s": "m3/s",
+    "QInnaouen_m3_s": "m3/s",
+    "QOuergha_m3_s": "m3/s",
+    "C_SidiAllalTazi_mg_L": "mg/L",
+    "C_BgGarde_mg_L": "mg/L"
+  },
+  "validity_domain": {
+    "Crejet_mg_L": {
+      "min": 100.0,
+      "max": 300.0,
+      "distinct_count": 5
+    },
+    "QRejet_m3_s": {
+      "min": 0.055555556,
+      "max": 2.222222222,
+      "distinct_count": 5
+    },
+    "QSebou_m3_s": {
+      "min": 7.5,
+      "max": 30.0,
+      "distinct_count": 3
+    },
+    "QInnaouen_m3_s": {
+      "min": 10.0,
+      "max": 50.0,
+      "distinct_count": 3
+    },
+    "QOuergha_m3_s": {
+      "min": 10.0,
+      "max": 400.0,
+      "distinct_count": 7
+    },
+    "C_SidiAllalTazi_mg_L": {
+      "min": 0.001254186,
+      "max": 4.926435471,
+      "distinct_count": 1575
+    },
+    "C_BgGarde_mg_L": {
+      "min": 0.001789953,
+      "max": 4.813912392,
+      "distinct_count": 1575
+    }
+  },
+  "generated_at": "2026-07-13T18:49:50.552206+00:00"
+}

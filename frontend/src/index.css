@@ -7,6 +7,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.maplibregl-ctrl-group {
+  z-index: 1000 !important;
+}
+
 /* WaterQual SEBOU Design System - Water Quality Monitoring Platform */
 
 @layer base {

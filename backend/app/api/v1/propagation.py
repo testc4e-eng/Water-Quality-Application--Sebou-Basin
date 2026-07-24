@@ -1,7 +1,10 @@
 from __future__ import annotations
 
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query
+from sqlalchemy.orm import Session
 
+from app.api.deps import get_db
+from app.models.propagation_models import SimulatePropagationRequest, SimulatePropagationResponse
 from app.services.propagation import propagation_pollution_service
 
 
@@ -47,6 +50,33 @@ def _handle_domain_errors(func, **kwargs):
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@router.get("/network.geojson")
+def get_network_geojson():
+    """Retourne le réseau hydrographique validé utilisé par le moteur de propagation."""
+    return propagation_pollution_service.get_network_geojson()
+
+
+@router.post("/simulate", response_model=SimulatePropagationResponse)
+async def simulate_propagation(
+    request: SimulatePropagationRequest,
+    db: Session = Depends(get_db),
+):
+    """
+    Simule la propagation d'un polluant depuis un point lat/lon.
+    """
+    return propagation_pollution_service.simulate_propagation_from_point(
+        db=db,
+        lat=request.lat,
+        lon=request.lon,
+        pollutant_type=request.pollutant_type,
+        initial_concentration_mg_l=request.initial_concentration_mg_l,
+        timestamp=request.timestamp,
+        simulation_hours=request.simulation_hours,
+        vitesse_reference_kmh=request.vitesse_reference_kmh,
+        lambda_1_per_h=request.lambda_1_per_h,
+    )
 
 
 @router.get("/snap-diagnostic")

@@ -13,6 +13,8 @@ from app.api.v1.meta import router as meta_router
 from app.api.v1.raw import router as raw_router
 from app.api.v1.qualite_specialized import router as qualite_specialized_router
 from app.api.v1.pollution import router as pollution_router
+from app.api.v1.pollution_declarations import router as pollution_declarations_router
+from app.api.v1.pollution_campagnes import router as pollution_campagnes_router
 from app.api.v1.map import router as map_router
 from app.api.v1.propagation import router as propagation_router
 from app.api.v1.kpi import router as kpi_router
@@ -25,7 +27,7 @@ from app.api.v1.data_admin.change_requests import router as data_admin_change_re
 
 from app.api.v1 import swat
 
-from app.routers import hydro, quality, climate, entities, observatory, analytics
+from app.routers import hydro, quality, climate, entities, observatory, analytics, business_map, analysis
 
 
 from app.routers.layers import router as layers_router
@@ -138,13 +140,17 @@ api_router.include_router(hydro.router, prefix="/hydro", tags=["hydro"])
 api_router.include_router(quality.router, prefix="/quality", tags=["Quality"])
 api_router.include_router(qualite_specialized_router)
 api_router.include_router(pollution_router)
+api_router.include_router(pollution_declarations_router)
+api_router.include_router(pollution_campagnes_router)
 api_router.include_router(map_router)
+api_router.include_router(business_map.router, prefix="/business-map")
 api_router.include_router(propagation_router)
 api_router.include_router(kpi_router)
 api_router.include_router(recommendations_router)
 api_router.include_router(dashboard_router)
 api_router.include_router(observatory.router)
 api_router.include_router(analytics.router, prefix="/analytics", tags=["Analytics"])
+api_router.include_router(analysis.router, prefix="/business-map/analysis", tags=["Business Map Analysis"])
 
 # =========================
 # SWAT

@@ -1,17 +1,14 @@
 import { AlertTriangle, RefreshCcw, ThermometerSun } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import { BasinStatus } from "@/components/home-v2/BasinStatus";
 import { HeroSection } from "@/components/home-v2/HeroSection";
-import { KpiTooltip } from "@/components/home-v2/KpiTooltip";
 import { OperationalMap } from "@/components/home-v2/OperationalMap";
 import { TrendPanel } from "@/components/home-v2/TrendPanel";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useDashboardHome } from "@/hooks/useDashboardHome";
-import { KPI_DEFINITIONS } from "@/lib/kpi-definitions";
-import { readPreviousDashboardHomeCache } from "@/api/dashboardHome";
 import { useDashboardRuntimeTrends, useQualityStationsWithTimeseries } from "@/hooks/useDashboardRuntime";
 
 export default function DashboardHomeV2() {
@@ -31,26 +28,6 @@ export default function DashboardHomeV2() {
   }, [homeQuery.data, homeQuery.isFetching, homeQuery.isLoading]);
 
   const payload = homeQuery.data;
-  const previousPayload = useMemo(
-    () => (payload?.generated_at ? readPreviousDashboardHomeCache() : null),
-    [payload?.generated_at],
-  );
-  const kpiTrends = useMemo(() => {
-    if (!payload || !previousPayload) {
-      return {};
-    }
-
-    const current = payload.secondary_kpis;
-    const previous = previousPayload.secondary_kpis;
-    const diff = (a: number | null, b: number | null) => (a !== null && b !== null ? a - b : null);
-
-    return {
-      IQGB: diff(current.iqgb.value, previous.iqgb.value),
-      IFD: diff(current.ifd.value, previous.ifd.value),
-      IPP: diff(current.ipp.value, previous.ipp.value),
-      ISR: diff(current.isr.value, previous.isr.value),
-    };
-  }, [payload, previousPayload]);
 
   if (!homeQuery.data && (homeQuery.isLoading || homeQuery.isFetching)) {
     return (
@@ -79,11 +56,8 @@ export default function DashboardHomeV2() {
           <div className="min-h-[520px] animate-pulse rounded-[28px] bg-slate-200/70" />
 
           {/* Middle grid skeleton */}
-          <section className="grid gap-2 xl:grid-cols-12">
+          <section className="grid gap-2 xl:grid-cols-9">
             <div className="xl:col-span-5">
-              <div className="h-80 animate-pulse rounded-[28px] bg-slate-200/70" />
-            </div>
-            <div className="xl:col-span-3">
               <div className="h-80 animate-pulse rounded-[28px] bg-slate-200/70" />
             </div>
             <div className="xl:col-span-4">
@@ -150,7 +124,7 @@ export default function DashboardHomeV2() {
           </div>
         ) : null}
 
-        <HeroSection hero={payload.hero} secondaryKpis={payload.secondary_kpis} kpiTrends={kpiTrends} variant="ultra-compact" />
+        <HeroSection hero={payload.hero} variant="ultra-compact" />
 
         <div className="min-h-[520px]">
           <OperationalMap
@@ -160,7 +134,7 @@ export default function DashboardHomeV2() {
           />
         </div>
 
-        <section className="grid gap-2 xl:grid-cols-12">
+        <section className="grid gap-2 xl:grid-cols-9">
           <div className="xl:col-span-5">
             <BasinStatus
               basinStatus={payload.basin_status}
@@ -168,13 +142,6 @@ export default function DashboardHomeV2() {
               stations={qualityStationsQuery.data ?? []}
               stationsLoading={qualityStationsQuery.isLoading || qualityStationsQuery.isFetching}
               stationsError={qualityStationsQuery.isError}
-            />
-          </div>
-          <div className="xl:col-span-3">
-            <ConfidencePanel
-            ifd={payload.secondary_kpis.ifd.value}
-            icd={payload.secondary_kpis.icd.value}
-            ich={payload.secondary_kpis.ich.value}
             />
           </div>
           <div className="xl:col-span-4">
@@ -199,73 +166,5 @@ export default function DashboardHomeV2() {
 
       </div>
     </main>
-  );
-}
-
-function ConfidencePanel({ ifd, icd, ich }: { ifd: number | null; icd: number | null; ich: number | null }) {
-  return (
-    <Card className="rounded-[22px] border-slate-200 bg-white shadow-sm lg:h-full">
-      <CardContent className="p-2.5">
-        <div className="text-sm font-semibold text-slate-950">Confiance données</div>
-        <div className="mt-2 space-y-1.5">
-          <GaugeRing label="IFD" value={ifd} color="#F59E0B" subtitle="Fraîcheur" info={KPI_DEFINITIONS.ifd} />
-          <GaugeRing label="ICD" value={icd} color="#10B981" subtitle="Confiance" info={KPI_DEFINITIONS.icd} />
-          <GaugeRing label="ICH" value={ich} color="#0EA5E9" subtitle="Hydraulique" info={KPI_DEFINITIONS.ich} />
-        </div>
-      </CardContent>
-    </Card>
-  );
-}
-
-function GaugeRing({
-  label,
-  value,
-  color,
-  subtitle,
-  info,
-}: {
-  label: string;
-  value: number | null;
-  color: string;
-  subtitle: string;
-  info?: {
-    title: string;
-    definition: string;
-    calculation: string;
-    interpretation?: string;
-    source?: string;
-    thresholds?: string;
-  };
-}) {
-  const safeValue = Math.max(0, Math.min(100, value ?? 0));
-  const angle = (safeValue / 100) * 360;
-  return (
-    <div className="flex items-center gap-2 rounded-2xl bg-slate-50 p-2">
-      <div
-        className="relative grid h-10 w-10 place-items-center rounded-full xl:h-12 xl:w-12"
-        style={{ background: `conic-gradient(${color} ${angle}deg, #e2e8f0 ${angle}deg 360deg)` }}
-      >
-        <div className="grid h-7 w-7 place-items-center rounded-full bg-white text-center xl:h-8 xl:w-8">
-          <div className="text-[9px] font-semibold text-slate-500">{label}</div>
-          <div className="text-[10px] font-semibold text-slate-950 xl:text-xs">{safeValue}</div>
-        </div>
-      </div>
-      <div>
-        <div className="flex items-center gap-1">
-          <div className="text-[11px] font-semibold text-slate-900">{subtitle}</div>
-          {info ? (
-            <KpiTooltip
-              title={info.title}
-              definition={info.definition}
-              calculation={info.calculation}
-              interpretation={info.interpretation}
-              source={info.source}
-              thresholds={info.thresholds}
-            />
-          ) : null}
-        </div>
-        <div className="text-[9px] text-slate-500">{safeValue}/100</div>
-      </div>
-    </div>
   );
 }

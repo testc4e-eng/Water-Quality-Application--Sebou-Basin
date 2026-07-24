@@ -1,4 +1,4 @@
-import { Eye, EyeOff, AlertCircle } from "lucide-react";
+import { Eye, AlertCircle } from "lucide-react";
 
 import type { DashboardHomeMap } from "@/api/dashboardHome";
 
@@ -32,16 +32,6 @@ export function LayerSummary({ mapConfig, layerErrors = {} }: LayerSummaryProps)
           </div>
         );
       })}
-
-      {mapConfig.secondary_layers.map((layerKey) => (
-        <div key={layerKey} className="inline-flex items-center gap-1.5 rounded-full border border-dashed border-slate-300 bg-slate-50/80 px-3 py-1.5">
-          <span className="text-[11px] font-medium capitalize text-slate-700">{layerKey}</span>
-          <span className="flex items-center gap-1 text-[10px] font-medium text-slate-500">
-            <EyeOff className="h-3 w-3" />
-            Option
-          </span>
-        </div>
-      ))}
     </div>
   );
 }

@@ -1,16 +1,32 @@
-import { useMemo, useState } from "react";
-import { AlertTriangle, ArrowRight, BadgeAlert, Factory, FlaskConical, Route, ShieldAlert, Waves } from "lucide-react";
+import type { FeatureCollection } from "geojson";
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { AlertTriangle, ArrowRight, BadgeAlert, Factory, FlaskConical, MapPin, MousePointerClick, Route, ShieldAlert, Waves } from "lucide-react";
 
 import type { PollutionSiteProperties } from "@/api/pollutionIdp";
+import type { PollutionDeclarationEvaluationResponse } from "@/api/pollutionDeclarations";
+import { simulatePropagation } from "@/api/propagation";
+import type { SimulatePropagationResponse } from "@/api/propagation";
+import DeclarationDecisionPanel from "@/components/Pollution/DeclarationDecisionPanel";
+import DeclarationDilutionStrategiesPanel from "@/components/Pollution/DeclarationDilutionStrategiesPanel";
+import DeclarationReportPanel from "@/components/Pollution/DeclarationReportPanel";
+import DeclarationResultsPanel from "@/components/Pollution/DeclarationResultsPanel";
+import DeclarationWorkspace from "@/components/Pollution/DeclarationWorkspace";
 import PollutionIdpMap from "@/components/Pollution/PollutionIdpMap";
+import PollutionDashboardModeSwitcher, {
+  type PollutionDashboardMode,
+} from "@/components/Pollution/PollutionDashboardModeSwitcher";
+import type { PollutionDeclarationDraft } from "@/components/Pollution/declarationDraft.types";
+import { EMPTY_POLLUTION_DECLARATION_DRAFT } from "@/components/Pollution/declarationDraft.types";
+import type { DeclarationPoint } from "@/components/Pollution/declarationPoint.types";
 import PageHeader from "@/components/Layout/PageHeader";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { StatusBadge } from "@/components/ui/status-badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useDecisionRecommendations } from "@/hooks/useDecisionIntelligence";
 import { usePollutionIdp, usePollutionLatestResults } from "@/hooks/usePollutionIdp";
+import { useBusinessMapFeatures } from "@/hooks/useBusinessMapV1";
 import {
   usePropagationToBarrages,
   usePropagationToExutoires,
@@ -19,31 +35,156 @@ import {
   useSnapDiagnostic,
 } from "@/hooks/usePropagation";
 import { buildPollutionSummary, pollutionSeverity } from "@/lib/decision-metrics";
+import { toast } from "@/components/ui/sonner";
 
 export default function DashboardPollution() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const requestedMode: PollutionDashboardMode = searchParams.get("view") === "declaration" ? "declaration" : "normal";
+  const [dashboardMode, setDashboardMode] = useState<PollutionDashboardMode>(requestedMode);
+  const [declarationPoint, setDeclarationPoint] = useState<DeclarationPoint | null>(null);
+  const [declarationDraft, setDeclarationDraft] = useState<PollutionDeclarationDraft>(EMPTY_POLLUTION_DECLARATION_DRAFT);
+  const [declarationEvaluation, setDeclarationEvaluation] = useState<PollutionDeclarationEvaluationResponse | null>(null);
+  const [isDeclarationPointPicking, setIsDeclarationPointPicking] = useState(false);
   const [selectedSiteId, setSelectedSiteId] = useState<string>("");
   const [symbologyMode, setSymbologyMode] = useState<"validation_status" | "regulatory_status">("regulatory_status");
+  const [simulationResults, setSimulationResults] = useState<SimulatePropagationResponse | null>(null);
+  const [simulating, setSimulating] = useState(false);
+  const [simulationError, setSimulationError] = useState<string | null>(null);
+  const [sitesVisible, setSitesVisible] = useState(false);
+  const [drawMode, setDrawMode] = useState(false);
+  const [signalPoint, setSignalPoint] = useState<{ lat: number; lon: number } | null>(null);
+
+  const runPropagationFromCoords = async (lat: number, lon: number) => {
+    setSimulating(true);
+    setSimulationError(null);
+    setSimulationResults(null);
+    try {
+      const data = await simulatePropagation({
+        lat,
+        lon,
+        pollutant_type: "Autre",
+        initial_concentration_mg_l: 10,
+        timestamp: new Date().toISOString(),
+        simulation_hours: 72,
+        vitesse_reference_kmh: 10,
+        lambda_1_per_h: 0.05,
+      });
+      setSimulationResults(data);
+      const dist = data.start_node?.distance_to_network_m;
+      if (dist != null && dist > 250) {
+        toast.warning("Source éloignée du réseau hydro", {
+          description: `Snap à ${dist.toFixed(0)} m — propagation indicative.`,
+        });
+      } else if (data.start_node?.snap_confidence === "LOW") {
+        toast.warning("Source faiblement raccordée au réseau hydro", {
+          description: "Le point cliqué est éloigné du réseau ; propagation indicative.",
+        });
+      }
+    } catch (err) {
+      setSimulationError(err instanceof Error ? err.message : "Erreur lors de la propagation");
+    } finally {
+      setSimulating(false);
+    }
+  };
+
+  const runPropagation = async (feature: PollutionSiteProperties & { geometry?: { type: string; coordinates: number[] } }) => {
+    const [lon, lat] = feature.geometry?.coordinates ?? [feature.longitude, feature.latitude];
+    if (lat == null || lon == null) {
+      setSimulationError("Site sans coordonnées exploitables.");
+      return;
+    }
+    setSignalPoint(null);
+    await runPropagationFromCoords(lat, lon);
+  };
+
+  const handleMapClick = (lat: number, lon: number) => {
+    setSelectedSiteId("");
+    setSignalPoint({ lat, lon });
+    void runPropagationFromCoords(lat, lon);
+  };
+
+  const handleSelectSite = (siteId: string) => {
+    setDrawMode(false);
+    setSignalPoint(null);
+    setSelectedSiteId(siteId);
+  };
+
+  useEffect(() => {
+    setDashboardMode(requestedMode);
+  }, [requestedMode]);
+
+  const handleDashboardModeChange = (mode: PollutionDashboardMode) => {
+    setDashboardMode(mode);
+    setSearchParams(mode === "declaration" ? { view: "declaration" } : {}, { replace: true });
+    if (mode === "normal") {
+      setIsDeclarationPointPicking(false);
+      return;
+    }
+    setDrawMode(false);
+  };
+
+  const handleDeclarationMapClick = (point: { longitude: number; latitude: number }) => {
+    setDeclarationPoint({
+      longitude: point.longitude,
+      latitude: point.latitude,
+      source: "map",
+    });
+    setIsDeclarationPointPicking(false);
+  };
 
   const pollutionQuery = usePollutionIdp({ limit: 500 });
   const latestResultsQuery = usePollutionLatestResults({ limit: 250 });
+  const qualityQualiteQuery = useBusinessMapFeatures({ support_type: "STATION_QUALITE", limit: 500 });
+  const qualitySentinelleQuery = useBusinessMapFeatures({ support_type: "STATION_SENTINELLE", limit: 500 });
   const pollutionFeatures = pollutionQuery.data?.features ?? [];
+
+  const qualityStationsGeojson = useMemo<FeatureCollection>(() => {
+    const features = [
+      ...(qualityQualiteQuery.data?.features ?? []),
+      ...(qualitySentinelleQuery.data?.features ?? []),
+    ];
+    return {
+      type: "FeatureCollection",
+      features: features
+        .filter((f) => f.geometry?.type === "Point")
+        .map((f) => ({
+          type: "Feature" as const,
+          id: f.id,
+          geometry: f.geometry,
+          properties: {
+            ...f.properties,
+            station_id: f.properties.object_id,
+            station_name: f.properties.object_name,
+            code_station: f.properties.object_code,
+          },
+        })),
+    };
+  }, [qualityQualiteQuery.data, qualitySentinelleQuery.data]);
   const selectedFeature = pollutionFeatures.find((feature) => feature.properties.site_id === selectedSiteId);
   const selectedSite = selectedFeature?.properties;
+
+  useEffect(() => {
+    if (!selectedFeature) {
+      setSimulationResults(null);
+      return;
+    }
+    runPropagation(selectedFeature as PollutionSiteProperties & { geometry?: { type: string; coordinates: number[] } });
+  }, [selectedFeature?.properties.site_id]);
 
   const propagationParams = selectedSite ? { site_id: selectedSite.site_id, vitesse_reference_kmh: 10, limit: 10 } : null;
 
   const snapQuery = useSnapDiagnostic(propagationParams, Boolean(propagationParams));
   const gardeQuery = usePropagationToGarde(propagationParams, Boolean(propagationParams));
   const stationsQuery = usePropagationToStations(
-    propagationParams ? { ...propagationParams, only_reachable: true, limit: 8 } : null,
+    propagationParams ? { ...propagationParams, only_reachable: true, limit: 100 } : null,
     Boolean(propagationParams)
   );
   const barragesQuery = usePropagationToBarrages(
-    propagationParams ? { ...propagationParams, only_reachable: true, limit: 8 } : null,
+    propagationParams ? { ...propagationParams, only_reachable: true, limit: 100 } : null,
     Boolean(propagationParams)
   );
   const exutoiresQuery = usePropagationToExutoires(
-    propagationParams ? { ...propagationParams, only_reachable: true, limit: 8 } : null,
+    propagationParams ? { ...propagationParams, only_reachable: true, limit: 100 } : null,
     Boolean(propagationParams)
   );
 
@@ -105,34 +246,105 @@ export default function DashboardPollution() {
   ]
     .filter((item) => item.distance != null)
     .sort((a, b) => Number(a.distance) - Number(b.distance))
-    .slice(0, 8);
+    .slice(0, 100);
 
   return (
     <div className="min-h-screen bg-[#EEF5FF]">
       <PageHeader
         title="Pollution"
-        subtitle="Pilotage décisionnel des pollutions déclarées, de la propagation topologique MVP et des recommandations d'action."
+        subtitle="Pilotage décisionnel des pollutions déclarées, de la propagation topologique et des recommandations d'action."
         action={
-          <div className="flex gap-2">
-            <Button variant="outline" onClick={() => setSymbologyMode((value) => (value === "regulatory_status" ? "validation_status" : "regulatory_status"))}>
-              Changer la symbologie
-            </Button>
+          <div className="flex flex-wrap gap-2">
+            <PollutionDashboardModeSwitcher value={dashboardMode} onChange={handleDashboardModeChange} />
+            {dashboardMode === "normal" && (
+              <>
+                <Button variant="outline" onClick={() => setSymbologyMode((value) => (value === "regulatory_status" ? "validation_status" : "regulatory_status"))}>
+                  Changer la symbologie
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => setSitesVisible((v) => !v)}
+                  className={sitesVisible ? "bg-slate-100" : ""}
+                >
+                  {sitesVisible ? (
+                    <><MapPin className="mr-2 h-4 w-4" /> Masquer sites pollution</>
+                  ) : (
+                    <><MapPin className="mr-2 h-4 w-4" /> Afficher sites pollution</>
+                  )}
+                </Button>
+                <Button
+                  variant={drawMode ? "default" : "outline"}
+                  onClick={() => setDrawMode((v) => !v)}
+                >
+                  <MousePointerClick className="mr-2 h-4 w-4" />
+                  {drawMode ? "Annuler le pointage" : "Pointer une source"}
+                </Button>
+              </>
+            )}
           </div>
         }
       />
 
       <div className="mx-auto flex max-w-[1600px] flex-col gap-5 px-4 py-5 sm:px-6 lg:px-8">
-        <section className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-950">
-          <div className="flex flex-wrap items-center gap-2">
-            <StatusBadge status="DEV" />
-            <Badge variant="outline" className="border-amber-300 text-amber-900">TOPOLOGIQUE</Badge>
-            <Badge variant="outline" className="border-amber-300 text-amber-900">NON HYDRAULIQUE SCIENTIFIQUE</Badge>
-          </div>
-          <div className="mt-3 font-semibold">Propagation topologique</div>
-          <div className="mt-1">Aide à la décision préliminaire.</div>
-          <div className="mt-1">Validation hydraulique avancée future.</div>
-        </section>
+        {dashboardMode === "declaration" ? (
+          <div className="space-y-5">
+            <section className="grid min-w-0 gap-5 xl:grid-cols-[minmax(0,1.8fr)_minmax(380px,0.9fr)] 2xl:grid-cols-[minmax(0,2fr)_minmax(420px,0.9fr)]">
+            <Card className="min-w-0 border-slate-200">
+              <CardHeader>
+                <div className="flex items-center justify-between gap-3">
+                <CardTitle>Carte de declaration</CardTitle>
+                {declarationEvaluation?.snapshot_id && (
+                  <Badge variant="outline" className="border-green-300 bg-green-50 text-green-800">
+                    Analyse disponible
+                  </Badge>
+                )}
+              </div>
+              </CardHeader>
+              <CardContent className="p-3 sm:p-4">
+                <PollutionIdpMap
+                  data={pollutionQuery.data}
+                  loading={pollutionQuery.isLoading}
+                  error={pollutionQuery.error as Error | null}
+                  symbologyMode={symbologyMode}
+                  selectedSiteId={null}
+                  sitesVisible={sitesVisible}
+                  qualityStations={qualityStationsGeojson}
+                  declarationMode
+                  declarationPoint={declarationPoint}
+                  isDeclarationPointPicking={isDeclarationPointPicking}
+                  onDeclarationMapClick={handleDeclarationMapClick}
+                  declarationTopologyResult={declarationEvaluation?.topology_result ?? null}
+                  declarationMatrixResult={declarationEvaluation?.matrix_result ?? null}
+                  declarationWarnings={declarationEvaluation?.warnings ?? []}
+                />
+              </CardContent>
+            </Card>
 
+            <aside className="min-w-0 xl:max-h-[calc(100vh-180px)] xl:overflow-y-auto xl:pr-1">
+              <DeclarationWorkspace
+                declarationPoint={declarationPoint}
+                onDeclarationPointChange={setDeclarationPoint}
+                declarationDraft={declarationDraft}
+                onDeclarationDraftChange={setDeclarationDraft}
+                onEvaluationChange={setDeclarationEvaluation}
+                isMapPickingActive={isDeclarationPointPicking}
+                onStartMapPicking={() => setIsDeclarationPointPicking(true)}
+                onCancelMapPicking={() => setIsDeclarationPointPicking(false)}
+              />
+            </aside>
+            </section>
+
+            {declarationEvaluation && (
+              <section className="space-y-5">
+                <DeclarationResultsPanel evaluation={declarationEvaluation} />
+                <DeclarationDecisionPanel evaluation={declarationEvaluation} />
+                <DeclarationDilutionStrategiesPanel evaluation={declarationEvaluation} />
+                <DeclarationReportPanel evaluation={declarationEvaluation} />
+              </section>
+            )}
+          </div>
+        ) : (
+          <>
         <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           <Card className="border-slate-200">
             <CardContent className="p-4">
@@ -189,7 +401,26 @@ export default function DashboardPollution() {
                   error={pollutionQuery.error as Error | null}
                   symbologyMode={symbologyMode}
                   selectedSiteId={selectedSiteId || null}
-                  onSiteSelect={(properties) => setSelectedSiteId(properties.site_id)}
+                  onSiteSelect={(properties) => handleSelectSite(properties.site_id)}
+                  propagationPath={simulationResults?.path}
+                  impactedTargets={[
+                    ...(simulationResults?.impacted_stations ?? []),
+                    ...(simulationResults?.impacted_barrages ?? []),
+                    ...(simulationResults?.impacted_exutoires ?? []),
+                  ]}
+                  simulating={simulating}
+                  selectedSiteCoordinates={
+                    selectedFeature?.geometry?.type === "Point"
+                      ? (selectedFeature.geometry.coordinates as [number, number])
+                      : signalPoint
+                        ? ([signalPoint.lon, signalPoint.lat] as [number, number])
+                        : undefined
+                  }
+                  sitesVisible={sitesVisible}
+                  qualityStations={qualityStationsGeojson}
+                  drawMode={drawMode}
+                  onMapClick={handleMapClick}
+                  signalPoint={signalPoint}
                 />
               </CardContent>
             </Card>
@@ -220,7 +451,7 @@ export default function DashboardPollution() {
                           <Badge className="bg-slate-900 text-white hover:bg-slate-900">Risque {pollutionSeverity(site)}</Badge>
                         </div>
                         <div className="mt-3">
-                          <Button variant="outline" size="sm" onClick={() => setSelectedSiteId(site.site_id)}>
+                          <Button variant="outline" size="sm" onClick={() => handleSelectSite(site.site_id)}>
                             Analyser ce site
                           </Button>
                         </div>
@@ -292,7 +523,7 @@ export default function DashboardPollution() {
                       <CardTitle>Stations impactées</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                      {(stationsQuery.data?.targets ?? []).slice(0, 6).map((target) => (
+                      {(stationsQuery.data?.targets ?? []).slice(0, 12).map((target) => (
                         <div key={target.station_id} className="rounded-xl border border-slate-200 bg-slate-50 p-3">
                           <div className="font-semibold text-slate-950">{target.station_name}</div>
                           <div className="mt-1 text-sm text-slate-600">
@@ -308,7 +539,7 @@ export default function DashboardPollution() {
                       <CardTitle>Barrages impactés</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                      {(barragesQuery.data?.targets ?? []).slice(0, 6).map((target) => (
+                      {(barragesQuery.data?.targets ?? []).slice(0, 12).map((target) => (
                         <div key={target.barrage_id} className="rounded-xl border border-slate-200 bg-slate-50 p-3">
                           <div className="font-semibold text-slate-950">{target.barrage_name}</div>
                           <div className="mt-1 text-sm text-slate-600">
@@ -324,7 +555,7 @@ export default function DashboardPollution() {
                       <CardTitle>Exutoires impactés</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                      {(exutoiresQuery.data?.targets ?? []).slice(0, 6).map((target) => (
+                      {(exutoiresQuery.data?.targets ?? []).slice(0, 12).map((target) => (
                         <div key={target.node_id} className="rounded-xl border border-slate-200 bg-slate-50 p-3">
                           <div className="font-semibold text-slate-950">Exutoire {target.node_id}</div>
                           <div className="mt-1 text-sm text-slate-600">
@@ -343,7 +574,47 @@ export default function DashboardPollution() {
                     <CardTitle>Impacts potentiels</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3">
-                    {impactedAssets.length > 0 ? (
+                    {simulationResults ? (
+                      [
+                        ...simulationResults.impacted_stations,
+                        ...simulationResults.impacted_barrages,
+                        ...simulationResults.impacted_exutoires,
+                      ]
+                        .sort((a, b) => a.distance_km - b.distance_km)
+                        .map((target) => (
+                          <div
+                            key={`${target.station_type}-${target.station_id}`}
+                            className={`rounded-2xl border p-4 ${
+                              target.alert_level === "CRITICAL"
+                                ? "border-red-200 bg-red-50"
+                                : target.alert_level === "WARNING"
+                                  ? "border-amber-200 bg-amber-50"
+                                  : "border-slate-200 bg-slate-50"
+                            }`}
+                          >
+                            <div className="flex items-center justify-between">
+                              <div className="font-semibold text-slate-950">{target.station_name}</div>
+                              <div className="text-xs font-semibold uppercase text-slate-500">{target.station_type}</div>
+                            </div>
+                            <div className="mt-1 text-sm text-slate-600">
+                              {target.distance_km.toFixed(1)} km · arrivée{" "}
+                              {target.arrival_time ? new Date(target.arrival_time).toLocaleString("fr-MA") : "n/a"}
+                            </div>
+                            <div className="mt-1 text-sm text-slate-600">
+                              Concentration estimée : {target.estimated_concentration_mg_l.toFixed(3)} mg/L
+                            </div>
+                            <div className="mt-2 text-xs font-semibold uppercase">
+                              {target.alert_level === "CRITICAL" ? (
+                                <span className="text-red-700">Critique</span>
+                              ) : target.alert_level === "WARNING" ? (
+                                <span className="text-amber-700">Attention</span>
+                              ) : (
+                                <span className="text-green-700">Safe</span>
+                              )}
+                            </div>
+                          </div>
+                        ))
+                    ) : impactedAssets.length > 0 ? (
                       impactedAssets.map((asset) => (
                         <div key={asset.key} className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 p-4">
                           <div>
@@ -396,7 +667,7 @@ export default function DashboardPollution() {
                 <select
                   className="h-11 w-full rounded-md border border-slate-300 bg-white px-3 text-sm"
                   value={selectedSiteId}
-                  onChange={(event) => setSelectedSiteId(event.target.value)}
+                  onChange={(event) => handleSelectSite(event.target.value)}
                 >
                   <option value="">Sélectionner un site déclaré</option>
                   {sortedSites.slice(0, 100).map((site) => (
@@ -406,23 +677,71 @@ export default function DashboardPollution() {
                   ))}
                 </select>
                 {selectedSite ? (
-                  <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                    <div className="font-semibold text-slate-950">{selectedSite.site_name || selectedSite.site_code || "Site sélectionné"}</div>
-                    <div className="mt-1 text-sm text-slate-600">{selectedSite.commune || "Commune non renseignée"}</div>
-                    <div className="mt-3 grid gap-2 text-sm">
-                      <div className="flex items-center gap-2">
-                        <Factory className="h-4 w-4 text-slate-500" />
-                        {selectedSite.source_type_label || selectedSite.source_type_code || "Typologie non renseignée"}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <FlaskConical className="h-4 w-4 text-slate-500" />
-                        Sévérité MVP : {pollutionSeverity(selectedSite)}
+                  <div className="space-y-3">
+                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                      <div className="font-semibold text-slate-950">{selectedSite.site_name || selectedSite.site_code || "Site sélectionné"}</div>
+                      <div className="mt-1 text-sm text-slate-600">{selectedSite.commune || "Commune non renseignée"}</div>
+                      <div className="mt-3 grid gap-2 text-sm">
+                        <div className="flex items-center gap-2">
+                          <Factory className="h-4 w-4 text-slate-500" />
+                          {selectedSite.source_type_label || selectedSite.source_type_code || "Typologie non renseignée"}
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <FlaskConical className="h-4 w-4 text-slate-500" />
+                          Sévérité MVP : {pollutionSeverity(selectedSite)}
+                        </div>
                       </div>
                     </div>
+                    <Button
+                      className="w-full"
+                      onClick={() => selectedFeature && runPropagation(selectedFeature as PollutionSiteProperties & { geometry?: { type: string; coordinates: number[] } })}
+                      disabled={simulating}
+                    >
+                      {simulating ? "Propagation en cours..." : "Lancer la propagation"}
+                    </Button>
+                    {simulationError && (
+                      <div className="rounded-lg border border-red-200 bg-red-50 p-2 text-xs text-red-700">
+                        {simulationError}
+                      </div>
+                    )}
+                    {simulationResults && (
+                      <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-xs text-slate-600">
+                        <div className="font-semibold text-slate-900">Résultat simulation</div>
+                        <div className="mt-1">{simulationResults.path.length_km.toFixed(1)} km parcourus</div>
+                        <div>{simulationResults.path.travel_time_h.toFixed(1)} h de temps de transit</div>
+                        <div>{simulationResults.impacted_stations.length} station(s)</div>
+                        <div>{simulationResults.impacted_barrages.length} barrage(s)</div>
+                        <div>{simulationResults.impacted_exutoires.length} exutoire(s)</div>
+                      </div>
+                    )}
+                  </div>
+                ) : signalPoint ? (
+                  <div className="space-y-3">
+                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                      <div className="font-semibold text-slate-950">Source pointée sur la carte</div>
+                      <div className="mt-1 text-sm text-slate-600">
+                        lat {signalPoint.lat.toFixed(5)}, lon {signalPoint.lon.toFixed(5)}
+                      </div>
+                    </div>
+                    {simulationError && (
+                      <div className="rounded-lg border border-red-200 bg-red-50 p-2 text-xs text-red-700">
+                        {simulationError}
+                      </div>
+                    )}
+                    {simulationResults && (
+                      <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-xs text-slate-600">
+                        <div className="font-semibold text-slate-900">Résultat simulation</div>
+                        <div className="mt-1">{simulationResults.path.length_km.toFixed(1)} km parcourus</div>
+                        <div>{simulationResults.path.travel_time_h.toFixed(1)} h de temps de transit</div>
+                        <div>{simulationResults.impacted_stations.length} station(s)</div>
+                        <div>{simulationResults.impacted_barrages.length} barrage(s)</div>
+                        <div>{simulationResults.impacted_exutoires.length} exutoire(s)</div>
+                      </div>
+                    )}
                   </div>
                 ) : (
                   <div className="rounded-2xl border border-dashed border-slate-300 p-4 text-sm text-slate-500">
-                    Choisissez un site pour lancer l'analyse de propagation.
+                    Choisissez un site déclaré ou pointez une source sur la carte pour lancer l'analyse de propagation.
                   </div>
                 )}
               </CardContent>
@@ -462,7 +781,17 @@ export default function DashboardPollution() {
             </Card>
           </aside>
         </div>
+          </>
+        )}
       </div>
     </div>
   );
 }
+
+
+
+
+
+
+
+

@@ -987,10 +987,26 @@ def get_quality_latest(
 @router.get("/unified/stations", response_model=List[UnifiedQualityStationResponse], tags=["Quality Unified"])
 def get_unified_stations(
     support_type: Optional[str] = None,
+    ire_station: Optional[str] = None,
+    station_id: Optional[str] = None,
     db: Session = Depends(get_climate_db)
 ):
     """Liste les stations avec métadonnées depuis la vue unifiée."""
-    sql = """
+    conditions = []
+    params = {}
+    if support_type:
+        conditions.append("support_type = :support_type")
+        params["support_type"] = support_type
+    if ire_station:
+        conditions.append("ire_station = :ire_station")
+        params["ire_station"] = ire_station
+    if station_id:
+        conditions.append("station_id::text = :station_id")
+        params["station_id"] = str(station_id)
+
+    where_clause = f"WHERE {' AND '.join(conditions)}" if conditions else ""
+
+    sql = f"""
         WITH stats AS MATERIALIZED (
             SELECT 
                 ire_station, station_id::text as sid, support_type,
@@ -1007,46 +1023,90 @@ def get_unified_stations(
         SELECT 
             stats.ire_station, stats.sid as station_id, stats.support_type,
             stats.date_min, stats.date_max, stats.measure_count, stats.parameter_count,
-            s.station_nom, s.code_station, s.bassin_nom, s.sous_bassin_nom, s.latitude, s.longitude
+            s.station_nom,
+            s.code_station,
+            COALESCE(NULLIF(TRIM(s.bassin_nom), ''), 'Sebou') AS bassin_nom,
+            s.sous_bassin_nom,
+            s.latitude,
+            s.longitude
         FROM stats
         LEFT JOIN dim s ON stats.sid = s.station_id::text
     """
-    where_clause = "WHERE support_type = :support_type" if support_type else ""
-    sql = sql.format(where_clause=where_clause)
-    rows = db.execute(text(sql), {"support_type": support_type} if support_type else {}).fetchall()
+    rows = db.execute(text(sql), params).fetchall()
     return _rows_to_dicts(rows)
 
 @router.get("/unified/parameters", response_model=List[UnifiedQualityParameterResponse], tags=["Quality Unified"])
 def get_unified_parameters(
     support_type: Optional[str] = None,
+    ire_station: Optional[str] = None,
+    station_id: Optional[str] = None,
     db: Session = Depends(get_climate_db)
 ):
     """Liste les paramètres disponibles depuis la vue unifiée."""
-    sql = """
+    conditions = []
+    params = {}
+    if support_type:
+        conditions.append("v.support_type = :support_type")
+        params["support_type"] = support_type
+    if ire_station:
+        conditions.append("v.ire_station = :ire_station")
+        params["ire_station"] = ire_station
+    if station_id:
+        conditions.append("v.station_id::text = :station_id")
+        params["station_id"] = str(station_id)
+
+    where_clause = f"WHERE {' AND '.join(conditions)}" if conditions else ""
+
+    sql = f"""
         SELECT 
             v.parametre_qualite,
             COUNT(v.valeur) as measure_count,
             COUNT(DISTINCT v.ire_station) as station_count,
             MIN(v.date_mesure) as date_min, MAX(v.date_mesure) as date_max
         FROM api.v_qualite_dashboard_unifiee v
-        WHERE (:support_type IS NULL OR v.support_type = :support_type)
+        {where_clause}
         GROUP BY v.parametre_qualite
     """
-    where_clause = "WHERE support_type = :support_type" if support_type else ""
-    sql = sql.format(where_clause=where_clause)
-    rows = db.execute(text(sql), {"support_type": support_type} if support_type else {}).fetchall()
+    rows = db.execute(text(sql), params).fetchall()
     return _rows_to_dicts(rows)
 
 @router.get("/unified/timeseries", response_model=List[UnifiedQualityTimeseriesResponse], tags=["Quality Unified"])
 def get_unified_timeseries(
     support_type: Optional[str] = None,
     ire_station: Optional[str] = None,
+    station_id: Optional[str] = None,
     parametre_qualite: Optional[str] = None,
+    date_from: Optional[str] = None,
+    date_to: Optional[str] = None,
     limit: int = 100,
     db: Session = Depends(get_climate_db)
 ):
     """Liste les séries temporelles depuis la vue unifiée."""
-    sql = """
+    conditions = []
+    params = {"limit": limit}
+
+    if support_type:
+        conditions.append("v.support_type = :support_type")
+        params["support_type"] = support_type
+    if ire_station:
+        conditions.append("v.ire_station = :ire_station")
+        params["ire_station"] = ire_station
+    if station_id:
+        conditions.append("v.station_id::text = :station_id")
+        params["station_id"] = str(station_id)
+    if parametre_qualite:
+        conditions.append("v.parametre_qualite = :parametre_qualite")
+        params["parametre_qualite"] = parametre_qualite
+    if date_from:
+        conditions.append("v.date_mesure >= CAST(:date_from AS date)")
+        params["date_from"] = date_from
+    if date_to:
+        conditions.append("v.date_mesure <= CAST(:date_to AS date)")
+        params["date_to"] = date_to
+
+    where_clause = f"WHERE {' AND '.join(conditions)}" if conditions else ""
+
+    sql = f"""
         WITH ts AS MATERIALIZED (
             SELECT 
                 date_mesure, ire_station, station_id, parametre_qualite, valeur, support_type, source_table
@@ -1065,11 +1125,6 @@ def get_unified_timeseries(
         LEFT JOIN dim s ON ts.station_id::text = s.station_id::text
         ORDER BY ts.date_mesure DESC
     """
-    rows = db.execute(text(sql), {
-        "support_type": support_type,
-        "ire_station": ire_station,
-        "parametre_qualite": parametre_qualite,
-        "limit": limit
-    }).fetchall()
+    rows = db.execute(text(sql), params).fetchall()
     return _rows_to_dicts(rows)
 

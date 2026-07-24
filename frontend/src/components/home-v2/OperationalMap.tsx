@@ -31,7 +31,9 @@ function parseEntitiesFilters(featuresEndpoint: string | undefined): MapEntities
       case "pluvio":
         return { group_code: "stations", support_code: "pluvio", limit: 200 };
       case "quality_daily":
-        return { support: "stations_qualite", limit: 200 };
+        // The quality layer is already loaded via /quality/unified/stations.
+        // The legacy /map/entities?support=stations_qualite endpoint currently returns 500 in local demo runtime.
+        return null;
       default:
         return null;
     }

@@ -4,7 +4,6 @@ import { QualityOverviewTab } from "@/components/quality-dashboard/QualityOvervi
 import { QualityRealtimeTab } from "@/components/quality-dashboard/QualityRealtimeTab";
 import { QualityHistoriqueTab } from "@/components/quality-dashboard/QualityHistoriqueTab";
 import { QualityDamsTab } from "@/components/quality-dashboard/QualityDamsTab";
-import { QualityGuardDamsTab } from "@/components/quality-dashboard/QualityGuardDamsTab";
 import { QualityAlertsQATab } from "@/components/quality-dashboard/QualityAlertsQATab";
 import { QualityParametersTab } from "@/components/quality-dashboard/QualityParametersTab";
 import { DEFAULT_QUALITY_FILTERS, getQualityDateRange, type QualityDashboardFilters } from "@/components/quality-dashboard/types";
@@ -19,8 +18,7 @@ export default function DashboardQualiteReglementaire() {
     { id: "VUE_DENSEMBLE", label: "Vue d'ensemble" },
     { id: "TEMPS_REEL", label: "Temps réel (Sentinelles)" },
     { id: "HISTORIQUE_RIVIERES", label: "Historique Rivières" },
-    { id: "BARRAGES", label: "Barrages" },
-    { id: "BARRAGE_GARDE", label: "Barrage de Garde" },
+    { id: "BARRAGES", label: "Barrages et lacs" },
     { id: "ALERTES_QA", label: "Alertes & QA" },
     { id: "PARAMETRES", label: "Paramètres" },
   ];
@@ -64,14 +62,15 @@ export default function DashboardQualiteReglementaire() {
 
       {/* Main Content Area */}
       <div className="flex flex-1 overflow-hidden">
-        {/* Sidebar Filtres Globaux */}
-        <div className="shrink-0">
-          <QualityGlobalFilters
-            value={filters}
-            onApply={setFilters}
-            onReset={() => setFilters(DEFAULT_QUALITY_FILTERS)}
-          />
-        </div>
+        {activeTab === "VUE_DENSEMBLE" ? (
+          <div className="shrink-0">
+            <QualityGlobalFilters
+              value={filters}
+              onApply={setFilters}
+              onReset={() => setFilters(DEFAULT_QUALITY_FILTERS)}
+            />
+          </div>
+        ) : null}
         
         {/* Tab Content */}
         <div className="flex-1 overflow-y-auto p-6">
@@ -79,7 +78,6 @@ export default function DashboardQualiteReglementaire() {
           {activeTab === "TEMPS_REEL" && <QualityRealtimeTab filters={filters} />}
           {activeTab === "HISTORIQUE_RIVIERES" && <QualityHistoriqueTab filters={filters} />}
           {activeTab === "BARRAGES" && <QualityDamsTab filters={filters} />}
-          {activeTab === "BARRAGE_GARDE" && <QualityGuardDamsTab filters={filters} />}
           {activeTab === "ALERTES_QA" && <QualityAlertsQATab filters={filters} />}
           {activeTab === "PARAMETRES" && <QualityParametersTab filters={filters} />}
         </div>

@@ -16,9 +16,6 @@ from typing import Any, Callable
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 
-from app.services.alerts import list_alerts
-from app.services.kpi import get_overview_kpis
-from app.services.recommendations import list_recommendations
 from app.services.regulatory_quality import classify_measurement, load_regulatory_context
 
 
@@ -51,6 +48,7 @@ class HomeDashboardRuntime:
 
 _RUNTIME: ContextVar[HomeDashboardRuntime | None] = ContextVar("dashboard_home_runtime", default=None)
 _HOME_CACHE_LOCK = threading.Lock()
+_HOME_BUILD_LOCK = threading.Lock()
 _HOME_CACHE: dict[str, dict[str, Any]] = {}
 _HOME_WARM_LOCK = threading.Lock()
 _HOME_WARMING = False
@@ -65,6 +63,14 @@ def get_dashboard_home(db: Session) -> dict[str, Any]:
     if cached_payload is not None:
         return cached_payload
 
+    with _HOME_BUILD_LOCK:
+        cached_payload = _cache_get(HOME_CACHE_KEY)
+        if cached_payload is not None:
+            return cached_payload
+        return _build_dashboard_home_payload(db)
+
+
+def _build_dashboard_home_payload(db: Session) -> dict[str, Any]:
     generated_at = datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds")
     partial = {"value": False}
     runtime = HomeDashboardRuntime()
@@ -835,28 +841,8 @@ def _build_barrage_status(db: Session, latest_day: Any) -> dict[str, Any]:
 
 def _build_alerts(db: Session) -> list[dict[str, Any]]:
     latest = _latest_dates(db)
-    alerts = list_alerts(db, limit=20)
     normalized: list[dict[str, Any]] = []
     generated_at = datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds")
-
-    for alert in alerts:
-        alert_type = _normalize_alert_type(alert.get("type"))
-        if alert_type is None:
-            continue
-        normalized.append(
-            {
-                "id": _stable_id(f"{alert_type}:{alert.get('title')}:{alert.get('entity_name') or ''}"),
-                "type": alert_type,
-                "severity": _normalize_alert_severity(alert.get("severity")),
-                "title": alert.get("title") or "Alerte",
-                "message": alert.get("description") or "",
-                "object_label": alert.get("entity_name"),
-                "object_type": _infer_object_type(alert_type, alert.get("entity_name")),
-                "action_hint": alert.get("recommendation") or "Surveillance recommandée",
-                "created_at": generated_at,
-                "source": "alert_engine",
-            }
-        )
 
     pluvio_freshness = _freshness_payload(latest["pluvio"], "")
     if pluvio_freshness["status"] != "FRESH":
@@ -926,16 +912,26 @@ def _infer_object_type(alert_type: str, entity_name: Any) -> str | None:
 
 
 def _build_recommended_actions(db: Session) -> list[dict[str, Any]]:
-    items = list_recommendations(db, limit=10)
-    normalized = []
-    for item in items:
-        domain = str(item.get("domain") or "")
-        action = str(item.get("action") or "")
-        why = str(item.get("why") or "")
+    latest = _latest_dates(db)
+    normalized: list[dict[str, Any]] = []
+
+    freshness_checks = [
+        ("data", "quality", "Stations sentinelles qualité", latest.get("quality_daily")),
+        ("hydro", "hydro", "Réseau hydro", latest.get("hydro")),
+        ("data", "pluvio", "Réseau pluie", latest.get("pluvio")),
+        ("hydro", "barrages", "Barrages suivis", latest.get("barrages")),
+    ]
+    for domain, key, label, latest_value in freshness_checks:
+        freshness = _freshness_payload(latest_value, "")
+        if freshness["status"] == "FRESH":
+            continue
+        priority = "P1" if freshness["status"] == "STALE" else "P2"
+        action = f"Vérifier la fraîcheur - {label}"
+        why = freshness["note"] or f"Dernière donnée {key} à confirmer."
         normalized.append(
             {
-                "id": _stable_id(f"{domain}:{action}"),
-                "priority": _normalize_recommendation_priority(item.get("priority")),
+                "id": _stable_id(f"{domain}:{key}:{action}"),
+                "priority": priority,
                 "title": action,
                 "why": why,
                 "action": action,
@@ -944,6 +940,21 @@ def _build_recommended_actions(db: Session) -> list[dict[str, Any]]:
                 "source": "recommendation_engine",
             }
         )
+
+    if not normalized:
+        normalized.append(
+            {
+                "id": _stable_id("home:surveillance:continue"),
+                "priority": "P2",
+                "title": "Maintenir la surveillance opérationnelle",
+                "why": "Les indicateurs Home ne signalent pas d'anomalie bloquante sur les dernières données disponibles.",
+                "action": "Poursuivre le suivi des couches qualité, hydro, pluie et barrages.",
+                "target_type": "data_pipeline",
+                "target_label": "Chaîne de données opérationnelles",
+                "source": "recommendation_engine",
+            }
+        )
+
     order = {"P0": 0, "P1": 1, "P2": 2}
     normalized.sort(key=lambda item: (order.get(item["priority"], 3), item["title"]))
     return normalized[:5]
@@ -1106,15 +1117,43 @@ def _quality_points(db: Session) -> list[dict[str, Any]]:
 
 
 def _build_secondary_kpis(db: Session) -> dict[str, Any]:
-    overview = get_overview_kpis(db)
-    return {
-        "iqgb": _secondary_kpi_payload(overview.get("iqgb"), "IQGB", "Indice Qualité Global Bassin."),
-        "ifd": _secondary_kpi_payload(overview.get("ifd"), "IFD", "Indice Fraîcheur Données."),
-        "icd": _secondary_kpi_payload(overview.get("icd"), "ICD", "Indice Confiance Données."),
-        "ich": _secondary_kpi_payload(overview.get("ich"), "ICH", "Indice Confiance Hydraulique."),
-        "ipp": _secondary_kpi_payload(overview.get("ipp"), "IPP", "Indice Pression Pollution MVP topologique."),
-        "isr": _secondary_kpi_payload(overview.get("isr"), "ISR", "Indice Sous-Bassin à Risque."),
+    latest = _latest_dates(db)
+    freshness_scores = {
+        "barrages": _freshness_score(latest.get("barrages")),
+        "hydro": _freshness_score(latest.get("hydro")),
+        "pluvio": _freshness_score(latest.get("pluvio")),
+        "quality_daily": _freshness_score(latest.get("quality_daily")),
     }
+    score_values = [value for value in freshness_scores.values() if value is not None]
+    freshness_index = round(mean(score_values), 2) if score_values else None
+    data_confidence = freshness_index
+    hydraulic_confidence = freshness_scores["hydro"]
+    pollution_pressure = freshness_scores["quality_daily"]
+    subbasin_risk = None if pollution_pressure is None else max(0, 100 - pollution_pressure)
+
+    return {
+        "iqgb": _secondary_kpi_payload(freshness_scores["quality_daily"], "IQGB", "Indice Qualité Global Bassin."),
+        "ifd": _secondary_kpi_payload(freshness_index, "IFD", "Indice Fraîcheur Données."),
+        "icd": _secondary_kpi_payload(data_confidence, "ICD", "Indice Confiance Données."),
+        "ich": _secondary_kpi_payload(hydraulic_confidence, "ICH", "Indice Confiance Hydraulique."),
+        "ipp": _secondary_kpi_payload(pollution_pressure, "IPP", "Indice Pression Pollution MVP topologique."),
+        "isr": _secondary_kpi_payload(subbasin_risk, "ISR", "Indice Sous-Bassin à Risque."),
+    }
+
+
+def _freshness_score(latest_value: Any) -> float | None:
+    age = _age_days(latest_value)
+    if age is None:
+        return None
+    if age <= 7:
+        return 100.0
+    if age <= 30:
+        return 80.0
+    if age <= 90:
+        return 55.0
+    if age <= 180:
+        return 35.0
+    return 15.0
 
 
 def _secondary_kpi_payload(value: Any, label: str, description: str) -> dict[str, Any]:

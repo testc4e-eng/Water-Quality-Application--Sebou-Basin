@@ -18,6 +18,7 @@ const Layout = () => {
       path === "/dashboard-carto-metier" ||
       path === "/dashboard-qualite-reglementaire" ||
       path === "/dashboard-pollution" ||
+      path === "/dashboard-pollution-propagation" ||
       path === "/dashboard-data-qa" ||
       path === "/administration" ||
       path.startsWith("/admin/")

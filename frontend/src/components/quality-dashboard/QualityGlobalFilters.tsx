@@ -9,7 +9,7 @@ interface QualityGlobalFiltersProps {
 
 export function QualityGlobalFilters({ value, onApply, onReset }: QualityGlobalFiltersProps) {
   const [draft, setDraft] = useState<QualityDashboardFilters>(value ?? {
-    period: "12m",
+    period: "all",
     supportType: "",
     bassin: "Sebou",
     sousBassin: "",
@@ -47,8 +47,8 @@ export function QualityGlobalFilters({ value, onApply, onReset }: QualityGlobalF
             value={draft.period}
             onChange={(event) => updateDraft('period', event.target.value as QualityDashboardFilters['period'])}
           >
-            <option value="12m">Dernières 12 mois</option>
             <option value="all">Toutes les données</option>
+            <option value="12m">Dernières 12 mois</option>
           </select>
         </div>
         

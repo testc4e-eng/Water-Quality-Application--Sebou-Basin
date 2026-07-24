@@ -1,3 +1,5 @@
+import type { FeatureCollection } from "geojson";
+
 import { api } from "@/api/client";
 
 export interface PropagationSourceInput {
@@ -131,6 +133,64 @@ export interface PropagationToExutoiresResponse {
   metadata: PropagationMetadata;
 }
 
+export interface SimulatePropagationRequest {
+  lat: number;
+  lon: number;
+  pollutant_type: "Cd" | "Pb" | "Hg" | "Cr" | "Hydrocarbures" | "Autre";
+  initial_concentration_mg_l: number;
+  timestamp: string;
+  simulation_hours: number;
+  vitesse_reference_kmh: number;
+  lambda_1_per_h: number;
+}
+
+export interface ImpactedStation {
+  station_id: string;
+  station_name: string;
+  station_type: string;
+  lat: number;
+  lon: number;
+  distance_km: number;
+  arrival_time: string;
+  estimated_concentration_mg_l: number;
+  alert_level: "SAFE" | "WARNING" | "CRITICAL";
+}
+
+export interface PropagationRecommendation {
+  priority: number;
+  action: string;
+  target: string;
+  deadline: string;
+  reason: string;
+}
+
+export interface PathSummary {
+  type: "FeatureCollection";
+  features: unknown[];
+  length_km: number;
+  travel_time_h: number;
+}
+
+export interface SimulatePropagationResponse {
+  propagation_id: string;
+  start_node: {
+    id: number;
+    lat: number;
+    lon: number;
+    snap_confidence?: string;
+    distance_to_network_m?: number;
+  };
+  pollutant_type: string;
+  initial_concentration_mg_l: number;
+  parameters: Record<string, unknown>;
+  path: PathSummary;
+  impacted_stations: ImpactedStation[];
+  impacted_barrages: ImpactedStation[];
+  impacted_exutoires: ImpactedStation[];
+  recommendations: PropagationRecommendation[];
+  warnings: string[];
+}
+
 function compactParams(params: PropagationSourceInput) {
   return Object.fromEntries(
     Object.entries(params).filter(([, value]) => value !== undefined && value !== null && value !== "")
@@ -169,5 +229,15 @@ export async function getPropagationToExutoires(params: PropagationSourceInput) 
   const { data } = await api.get<PropagationToExutoiresResponse>("/propagation/source-to-exutoires", {
     params: compactParams(params),
   });
+  return data;
+}
+
+export async function simulatePropagation(params: SimulatePropagationRequest) {
+  const { data } = await api.post<SimulatePropagationResponse>("/propagation/simulate", params);
+  return data;
+}
+
+export async function getPropagationNetworkGeoJSON() {
+  const { data } = await api.get<FeatureCollection>("/propagation/network.geojson");
   return data;
 }

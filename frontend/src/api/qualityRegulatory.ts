@@ -1,3 +1,4 @@
+import axios from "axios";
 import { api } from "@/api/client";
 
 export const REGULATORY_TYPE_EAU = "surface_generale";
@@ -127,6 +128,25 @@ export async function getActiveThresholds(): Promise<ThresholdsResponse> {
 
 const QUALITY_TIMEOUT_MS = 20_000;
 
+export function formatQualityApiError(error: unknown, context: string): string {
+  if (axios.isAxiosError(error)) {
+    if (import.meta.env.DEV) {
+      console.error(`[quality API] ${context}`, {
+        method: error.config?.method?.toUpperCase(),
+        url: error.config?.url,
+        params: error.config?.params,
+        status: error.response?.status,
+        message: error.message,
+      });
+    }
+    return "Service Qualité indisponible ou route API non exposée";
+  }
+  if (import.meta.env.DEV) {
+    console.error(`[quality API] ${context}`, error);
+  }
+  return "Service Qualité indisponible ou route API non exposée";
+}
+
 export async function getQualityStations(
   params: {
     support_type?: string;
@@ -135,11 +155,17 @@ export async function getQualityStations(
   } = {},
   signal?: AbortSignal
 ): Promise<QualityStation[]> {
+  if (import.meta.env.DEV) {
+    console.debug("[quality unified stations] GET /quality/unified/stations", params);
+  }
   const { data } = await api.get<QualityStation[]>("/quality/unified/stations", {
     params,
     signal,
     timeout: QUALITY_TIMEOUT_MS,
   });
+  if (import.meta.env.DEV) {
+    console.debug("[quality unified stations] response length:", data?.length);
+  }
   return Array.isArray(data) ? data : [];
 }
 
@@ -151,11 +177,17 @@ export async function getQualityParameters(
   } = {},
   signal?: AbortSignal
 ): Promise<QualityParameter[]> {
+  if (import.meta.env.DEV) {
+    console.debug("[quality unified parameters] GET /quality/unified/parameters", params);
+  }
   const { data } = await api.get<QualityParameter[]>("/quality/unified/parameters", {
     params,
     signal,
     timeout: QUALITY_TIMEOUT_MS,
   });
+  if (import.meta.env.DEV) {
+    console.debug("[quality unified parameters] response length:", data?.length);
+  }
   return Array.isArray(data) ? data : [];
 }
 

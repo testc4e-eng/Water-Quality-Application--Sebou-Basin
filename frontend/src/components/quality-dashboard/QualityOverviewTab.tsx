@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { getQualityStations, getQualityParameters } from '@/api/qualityRegulatory';
+import { formatQualityApiError, getQualityStations, getQualityParameters } from '@/api/qualityRegulatory';
 import type { QualityDashboardFilters } from './types';
 import {
   PieChart, Pie, Cell, Tooltip as RechartsTooltip, ResponsiveContainer,
@@ -15,6 +15,10 @@ const normalizeText = (value?: string | null) => (value || '').toLowerCase().tri
 const getMeasureCount = (item: any) => item.measure_count || item.n_mesures || 0;
 const getStationName = (station: any) => station.station_nom || station.station_name || station.ire_station || station.station_id || 'Station sans nom';
 const getParameterName = (parameter: any) => parameter.parametre_qualite || parameter.parameter || 'Inconnu';
+const normalizeSupportType = (value?: string | null) => {
+  if (value === 'BARRAGE_GARDE') return 'BARRAGE';
+  return value || 'INCONNU';
+};
 
 export function QualityOverviewTab({ filters }: QualityOverviewTabProps) {
   const supportType = filters?.supportType;
@@ -98,7 +102,7 @@ export function QualityOverviewTab({ filters }: QualityOverviewTabProps) {
     // Compute Support Data for Donut
     const supportMap: Record<string, number> = {};
     filteredStations.forEach(s => {
-      const type = s.support_type || 'INCONNU';
+      const type = normalizeSupportType(s.support_type);
       supportMap[type] = (supportMap[type] || 0) + getMeasureCount(s);
     });
 
@@ -118,6 +122,27 @@ export function QualityOverviewTab({ filters }: QualityOverviewTabProps) {
       .slice(0, 5);
   }, [filteredParameters]);
 
+  const yearlyMeasureData = useMemo(() => {
+    const byYear = new Map<number, number>();
+
+    filteredStations.forEach((station: any) => {
+      const dateValue = station.dt_max || station.date_max || station.dt_min || station.date_min;
+      const timestamp = dateValue ? new Date(dateValue).getTime() : NaN;
+      if (Number.isNaN(timestamp)) return;
+
+      const year = new Date(timestamp).getFullYear();
+      byYear.set(year, (byYear.get(year) ?? 0) + getMeasureCount(station));
+    });
+
+    return Array.from(byYear.entries())
+      .sort(([yearA], [yearB]) => yearA - yearB)
+      .slice(-12)
+      .map(([year, mesures]) => ({
+        year: String(year),
+        mesures,
+      }));
+  }, [filteredStations]);
+
   const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ec4899', '#8b5cf6'];
 
   if (isLoading) {
@@ -125,11 +150,13 @@ export function QualityOverviewTab({ filters }: QualityOverviewTabProps) {
   }
 
   if (stationsError || paramsError) {
-    const err = stationsError || paramsError;
-    const errorMsg = (err as any)?.message || 'Erreur inconnue';
+    const context = stationsError
+      ? 'QualityOverviewTab → getQualityStations → GET /quality/unified/stations'
+      : 'QualityOverviewTab → getQualityParameters → GET /quality/unified/parameters';
+    const errorMsg = formatQualityApiError(stationsError || paramsError, context);
     return (
       <div className="p-8 text-center bg-red-50 text-red-600 rounded-md border border-red-200">
-        Erreur API : {errorMsg}
+        {errorMsg}
       </div>
     );
   }
@@ -145,7 +172,7 @@ export function QualityOverviewTab({ filters }: QualityOverviewTabProps) {
   return (
     <div className="space-y-4">
       {/* KPIs */}
-      <div className="grid grid-cols-5 gap-4">
+      <div className="grid grid-cols-4 gap-4">
         <div className="bg-white p-4 rounded-md border border-slate-200 shadow-sm">
           <div className="text-sm text-slate-500 font-medium">Stations</div>
           <div className="text-2xl font-bold text-slate-900 mt-1">{totalStations.toLocaleString('fr-FR')}</div>
@@ -162,10 +189,6 @@ export function QualityOverviewTab({ filters }: QualityOverviewTabProps) {
         <div className="bg-white p-4 rounded-md border border-slate-200 shadow-sm">
           <div className="text-sm text-slate-500 font-medium">Période des données</div>
           <div className="text-2xl font-bold text-slate-900 mt-1">{periodStr}</div>
-        </div>
-        <div className="bg-white p-4 rounded-md border border-slate-200 shadow-sm flex flex-col justify-center">
-          <div className="text-sm text-slate-500 font-medium">Données valides</div>
-          <div className="text-sm font-medium text-slate-400 mt-1 italic">Donnée insuffisante</div>
         </div>
       </div>
       
@@ -210,8 +233,22 @@ export function QualityOverviewTab({ filters }: QualityOverviewTabProps) {
 
         <div className="bg-white p-4 rounded-md border border-slate-200 shadow-sm h-[320px] flex flex-col">
           <h3 className="font-semibold text-slate-900 mb-2">Évolution temporelle des mesures</h3>
-          <div className="flex-1 bg-slate-50 rounded border border-dashed border-slate-300 flex items-center justify-center text-slate-500 text-sm italic text-center p-4">
-            Donnée insuffisante — nécessite agrégat backend par mois/année.
+          <div className="flex-1 w-full">
+            {yearlyMeasureData.length > 0 ? (
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={yearlyMeasureData} margin={{ top: 10, right: 20, left: 0, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                  <XAxis dataKey="year" tick={{ fontSize: 12 }} />
+                  <YAxis tick={{ fontSize: 12 }} tickFormatter={(value: number) => value.toLocaleString('fr-FR')} />
+                  <RechartsTooltip formatter={(val: number) => `${val.toLocaleString('fr-FR')} mesures`} />
+                  <Bar dataKey="mesures" fill="#2563eb" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            ) : (
+              <div className="flex h-full items-center justify-center rounded border border-dashed border-slate-300 bg-slate-50 p-4 text-center text-sm italic text-slate-500">
+                Aucune série temporelle exploitable pour les filtres sélectionnés.
+              </div>
+            )}
           </div>
         </div>
 

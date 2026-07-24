@@ -1,0 +1,19 @@
+Troncon,Distance (km),Tc observe,Unite,Vitesse (Km/h),Tc Calcule,Observation
+Dar Al Arsa → RP26,60.393201820000002,14,h,4.3138001299999997,,Calcul de Tc à travers le dacallage entre les evenements de crue
+RP26 → Azib Soltane,53.856743690000002,10,h,5.3856743690000002,,
+Azibe Soltane → Belksiri,136.86773147,38,h,3.6017824071052629,,
+Belksiri → Barrage de Garde,92.38,20,h,4.6189999999999998,,
+Dar Al Arsa → Barrage de Garde,343.5,82,h,4.1890243902439028,,
+Al Wahda → Belksiri,171.88921503442936,2–3,j,,47.723375708466513,Absence des données hydrologiques à pas horaire (calcul avec vitesse)
+Jorf El malha → Belksiri,109.98089999999999,30,h,3.6660299999999997,,Calcul de Tc à travers le dacallage entre les evenements de crue
+Tissa → RP26,112.74494454699999,20,h,5.6372472273499996,,Calcul de Tc à travers le dacallage entre les evenements de crue
+Idriss 1er → RP26,88.48988460999999,1–2,j,,15.697357423083606,Absence des données hydrologiques à pas horaire (calcul avec vitesse)
+Dar Al Arsa,dar el arsa,Code 2263/15,,,,
+RP26,pont rp 26,Code 1541/15,,,,
+Azib Soltane,azib soltane,Code 1540/15,,,,
+Belksiri,aval bel ksiri,Code 3695/8,,,,
+Barrage de Garde,amont barrage de garde,Code 3738/8,,,,
+Al Wahda,barrage el wahda,code 1709/9,,,,
+Jorf El malha,jorf el melha,code 1826/9,,,,
+Tissa,tissa,code 2551/15,,,,
+Idriss 1er,barrage idriss 1er,code 3264/15,,,,

@@ -6,7 +6,7 @@ import {
   type PollutionP0Parameter,
   type PollutionSymbologyMode,
 } from "@/api/pollutionIdp";
-import PollutionIdpMap from "@/components/pollution/PollutionIdpMap";
+import PollutionIdpMap from "@/components/Pollution/PollutionIdpMap";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

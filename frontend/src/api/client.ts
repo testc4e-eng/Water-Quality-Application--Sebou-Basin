@@ -1,7 +1,6 @@
 import axios from "axios";
 import type { FeatureCollection, Geometry, GeoJsonProperties } from "geojson";
 import { API_BASE_URL } from "@/config/api";
-import { clearAuthSession } from "@/lib/authz";
 
 /* ================================
    1) CONFIG AXIOS (base unique)
@@ -48,6 +47,9 @@ if (import.meta.env.DEV) {
       const duration = startedAt ? Math.round(performance.now() - startedAt) : undefined;
       const isCanceled = error.code === "ERR_CANCELED" || error.name === "CanceledError";
       const isTimeout = error.code === "ECONNABORTED";
+      if (isCanceled) {
+        return Promise.reject(error);
+      }
       console.warn(`[API] ERROR ${isCanceled ? "CANCELED" : isTimeout ? "TIMEOUT" : "NETWORK"} ${config?.method?.toUpperCase()} ${config?.url}${duration !== undefined ? ` (${duration}ms)` : ""}`, {
         url: config?.url,
         params: config?.params,
@@ -64,17 +66,13 @@ if (import.meta.env.DEV) {
 // Fallback dev local : si le backend ne répond pas sur 8010, tenter 8011 une seule fois
 let networkFallbackAttempted = false;
 
-// Intercepteur pour gérer les erreurs 401 (Expire/Invalid) + fallback port dev
+// Intercepteur fallback port dev. Les erreurs 401 restent visibles dans les pages
+// pour éviter une redirection bloquante vers /login pendant la démonstration.
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
     if (error.response?.status === 401) {
-      console.warn("Session expirée ou invalide. Redirection vers /login");
-      clearAuthSession();
-      // On redirige uniquement si on n'est pas déjà sur la page de login
-      if (!window.location.pathname.includes("/login")) {
-        window.location.href = "/login?expired=true";
-      }
+      console.warn("Accès API non authentifié ou non autorisé. Affichage de l'erreur sans redirection.");
     }
 
     if (

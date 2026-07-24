@@ -192,20 +192,9 @@ def list_quality_stations_with_timeseries(db: Session, limit: int = HOME_QUALITY
         )
         SELECT
             sr.*,
-            admin_loc.commune_fr AS commune,
-            admin_loc.province_fr AS province
+            NULL::text AS commune,
+            NULL::text AS province
         FROM station_rollup sr
-        LEFT JOIN LATERAL (
-            SELECT c.commune_fr, c.province_fr
-            FROM admin.communes c
-            WHERE sr.lon IS NOT NULL
-              AND sr.lat IS NOT NULL
-              AND ST_Contains(
-                    ST_Transform(c.geom, 4326),
-                    ST_SetSRID(ST_MakePoint(sr.lon, sr.lat), 4326)
-                  )
-            LIMIT 1
-        ) admin_loc ON true
         ORDER BY sr.date_max DESC, sr.measure_count DESC, sr.station_name
         LIMIT :limit
         """,

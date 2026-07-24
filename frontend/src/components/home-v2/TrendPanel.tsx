@@ -18,7 +18,7 @@ export function TrendPanel({ trends }: TrendPanelProps) {
           Tendances
         </CardTitle>
       </CardHeader>
-      <CardContent className="grid gap-1.5 sm:grid-cols-2 xl:grid-cols-4">
+      <CardContent className="grid gap-1.5 sm:grid-cols-2 xl:grid-cols-3">
         <TrendCard
           title="Pluie"
           series={trends.rainfall}
@@ -56,19 +56,6 @@ export function TrendPanel({ trends }: TrendPanelProps) {
             definition: "Température moyenne journalière.",
             calculation: "Moyenne des stations actives sur les 30 derniers jours.",
             source: "meteo.mesure_temperature",
-          }}
-        />
-        <TrendCard
-          title="Qualité"
-          series={trends.quality}
-          color="#7c3aed"
-          compact
-          emptyMessage={trends.quality.message || "Série qualité indisponible"}
-          info={{
-            title: "Qualité",
-            definition: "Indice global qualité.",
-            calculation: "Score calculé à partir des stations sentinelles. Basé sur IFD + ICD + ISR.",
-            source: "qualite.mesure_qualite_sebou",
           }}
         />
       </CardContent>

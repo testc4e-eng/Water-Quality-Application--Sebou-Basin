@@ -22,6 +22,8 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
     location.pathname === "/dashboard-carto-metier" ||
     location.pathname === "/dashboard-qualite-reglementaire" ||
     location.pathname === "/dashboard-pollution" ||
+    location.pathname === "/dashboard-pollution-propagation" ||
+    location.pathname === "/dashboard-pollution-campagnes" ||
     location.pathname === "/dashboard-data-qa" ||
     location.pathname === "/administration" ||
     location.pathname.startsWith("/admin/");
@@ -55,6 +57,7 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
     { to: "/dashboard-qualite-reglementaire", label: "Qualité des eaux" },
     { to: "/dashboard-carto-metier", label: "Carte Métier" },
     { to: "/dashboard-pollution", label: "Pollution" },
+    { to: "/dashboard-pollution-campagnes", label: "Campagnes" },
     { to: "/dashboard-data-qa", label: "Données / QA" },
     { to: "/administration", label: "Administration" },
   ];
@@ -71,11 +74,12 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }: HeaderProps) => {
             "/dashboard-qualite-reglementaire",
             "/dashboard-carto-metier",
             "/dashboard-pollution",
+            "/dashboard-pollution-campagnes",
             "/dashboard-data-qa",
             ...(canUseLegacyData ? ["/administration"] : []),
           ].includes(item.to);
         }
-        return ["/", "/dashboard-qualite-reglementaire", "/dashboard-carto-metier", "/dashboard-pollution", "/dashboard-data-qa"].includes(item.to);
+        return ["/", "/dashboard-qualite-reglementaire", "/dashboard-carto-metier", "/dashboard-pollution", "/dashboard-pollution-campagnes", "/dashboard-data-qa"].includes(item.to);
       }),
     [auth.permissions, isAdmin, roleLower]
   );

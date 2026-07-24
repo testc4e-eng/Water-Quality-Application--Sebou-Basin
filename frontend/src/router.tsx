@@ -40,7 +40,7 @@ const router = createBrowserRouter(
         <Route path="qualite/metaux" element={<MetauxPage />} />
         <Route path="decision-dashboard-test" element={<DecisionDashboardTest />} />
         <Route path="pollution-idp-dev" element={<PollutionIdpDevPage />} />
-        <Route path="about" element={<About />} />
+      <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route path="data" element={<DataViewer />} />
         <Route path="admin/users" element={<UserManagementPage />} />

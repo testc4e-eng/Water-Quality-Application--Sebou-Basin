@@ -831,6 +831,58 @@ def _quality_station_metrics(db: Session, entity_id: str) -> dict[str, Any]:
     return dict(fallback) if fallback else {"measure_count": 0, "parameter_count": 0, "date_min": None, "date_max": None}
 
 
+def _pollution_latest_values_for_site(db: Session, entity_id: str) -> list[dict[str, Any]]:
+    rows = db.execute(
+        text(
+            """
+            SELECT
+                parameter_code,
+                parameter_label,
+                value_numeric,
+                value_text,
+                unit,
+                sample_date,
+                quality_flag
+            FROM api.v_pollution_latest_results
+            WHERE site_id::text = :entity_id
+            ORDER BY parameter_code
+            """
+        ),
+        {"entity_id": entity_id},
+    ).mappings().all()
+    regulatory_context = load_regulatory_context(db)
+    latest_values: list[dict[str, Any]] = []
+    for row in rows:
+        item = dict(row)
+        if item.get("parameter_code") in {"NH4", "DBO5", "DCO", "NO3", "O2_DISS", "pH", "Cond"}:
+            item["classification"] = classify_measurement(
+                regulatory_context,
+                parameter_code=item["parameter_code"],
+                value_numeric=item.get("value_numeric"),
+                unit=item.get("unit"),
+            )
+        latest_values.append(item)
+    return latest_values
+
+
+def _pollution_metrics_for_site(db: Session, entity_id: str) -> dict[str, Any]:
+    row = db.execute(
+        text(
+            """
+            SELECT
+                count(*)::int AS measure_count,
+                count(distinct parameter_code)::int AS parameter_count,
+                min(sample_date)::date AS date_min,
+                max(sample_date)::date AS date_max
+            FROM api.v_pollution_latest_results
+            WHERE site_id::text = :entity_id
+            """
+        ),
+        {"entity_id": entity_id},
+    ).mappings().first()
+    return dict(row) if row else {"measure_count": 0, "parameter_count": 0, "date_min": None, "date_max": None}
+
+
 def _latest_signal_for_station(
     db: Session,
     *,
@@ -1005,6 +1057,21 @@ def _enrich_entity_properties(
             {
                 "measure_count": metrics.get("measure_count") or 0,
                 "parameter_count": len(latest_values),
+                "date_min": _iso_date(metrics.get("date_min")),
+                "date_max": _iso_date(metrics.get("date_max")),
+                "last_measure_date": _iso_date(metrics.get("date_max")),
+                "latest_values": latest_values,
+                "data_status_label": _detail_data_status(metrics.get("date_max"), has_data=bool(metrics.get("measure_count"))),
+            }
+        )
+
+    if cfg.support == "idp_pollution":
+        metrics = _pollution_metrics_for_site(db, entity_id)
+        latest_values = _pollution_latest_values_for_site(db, entity_id)
+        properties.update(
+            {
+                "measure_count": metrics.get("measure_count") or 0,
+                "parameter_count": metrics.get("parameter_count") or 0,
                 "date_min": _iso_date(metrics.get("date_min")),
                 "date_max": _iso_date(metrics.get("date_max")),
                 "last_measure_date": _iso_date(metrics.get("date_max")),

@@ -1,0 +1,61 @@
+{
+  "reference_id": "TC_STATIONS_V1",
+  "reference_version": "1.0.0",
+  "generated_at": "2026-07-16T07:43:37.332462+00:00",
+  "source_excel": "C:\\dev\\WQDSS\\data\\Tc_Stations.xlsx",
+  "source_excel_sha256": "3578f957bdadbb998f6d222afc1baa03491cf84fbbf360a0ce9576a5b0c6a608",
+  "csv_sha256": "a7d494dffa5b1e7b67aab0cdfa0a8db5821d243e01b69ec949f26b67d04dfa3b",
+  "worksheet": "Sheet1",
+  "row_count": 18,
+  "columns": [
+    "Troncon",
+    "Distance (km)",
+    "Tc observe",
+    "Unite",
+    "Vitesse (Km/h)",
+    "Tc Calcule",
+    "Observation"
+  ],
+  "required_targets": {
+    "origin": {
+      "code": "2263/15",
+      "label": "Dar Al Arsa"
+    },
+    "p29": {
+      "code": "1355/8",
+      "label": "P29 a Allal Tazi"
+    },
+    "garde": {
+      "code": "3738/8",
+      "label": "Amont Barrage de Garde"
+    }
+  },
+  "status": "VALIDATED_FOR_MVP_WITH_RESERVES",
+  "checks": [
+    {
+      "name": "source_excel_exists",
+      "status": "PASS"
+    },
+    {
+      "name": "csv_generated",
+      "status": "PASS"
+    },
+    {
+      "name": "canonical_source_path",
+      "status": "PASS"
+    },
+    {
+      "name": "source_checksum_recorded",
+      "status": "PASS"
+    },
+    {
+      "name": "merged_troncon_columns_normalized",
+      "status": "PASS"
+    }
+  ],
+  "limitations": [
+    "Le point source exact en amont de Dar Al Arsa reste a quantifier.",
+    "P29 utilise une vitesse moyenne fallback car aucun Tc direct Dar Al Arsa -> P29 n existe.",
+    "Les temps Tc sont des proxies issus d evenements de crue, pas une modelisation hydraulique complete."
+  ]
+}

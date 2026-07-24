@@ -27,7 +27,7 @@ export function selectTemplate(properties: MapBusinessEntityProperties | null): 
     return StationHydroTemplate;
   }
 
-  if (entityType === "station_pluvio" || supportType === "pluvio") {
+  if (entityType === "station_pluvio" || entityType === "station_meteo" || supportType === "pluvio" || supportType === "station_meteo") {
     return StationPluvioTemplate;
   }
 
