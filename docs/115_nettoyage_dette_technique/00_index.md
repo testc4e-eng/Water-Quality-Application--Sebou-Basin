@@ -24,7 +24,13 @@ concernées → commit dédié.
 | 2 | Quarantaine `routers_legacy_public` (code mort `public.*`) | `backend/app/routers_legacy_public/` | Faible | ✅ Supprimé | [02](02_suppression_routers_legacy_public.md) |
 | 3 | Fallback runtime port `8011` obsolète | `frontend/src/api/client.ts` | Moyen (runtime) | ✅ Corrigé | [03](03_fallback_port_8011.md) |
 | 4 | Incohérence `lacher_m3s` (rejeté mais accepté par regex) | `backend/app/routers/observatory.py` | Moyen (logique métier) | ✅ Corrigé | [04](04_lacher_m3s.md) |
-| 5 | Bundle Vite non découpé (avertissement > 500 kB, ~3,56 Mo) | `frontend/vite.config.ts` | Moyen (build) | ⏳ À traiter | — |
+| 5 | Bundle Vite non découpé (avertissement > 500 kB, ~3,56 Mo) | `frontend/vite.config.ts` | Moyen (build) | ✅ Corrigé | [05](05_bundle_vite_chunks.md) |
+
+## Candidats identifiés en cours de route (non traités)
+
+| Candidat | Constat | Source |
+|----------|---------|--------|
+| Composants graphiques plotly morts ? | `plotly.js` importé par 4 composants `frontend/src/components/Charts/*.jsx` mais absent du build (tree-shakés) → aucune route vivante ne les atteint. | Item [05](05_bundle_vite_chunks.md) |
 
 ## Principe de prudence (phase stabilisation)
 
