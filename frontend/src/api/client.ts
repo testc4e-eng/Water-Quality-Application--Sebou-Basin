@@ -63,29 +63,13 @@ if (import.meta.env.DEV) {
   );
 }
 
-// Fallback dev local : si le backend ne répond pas sur 8010, tenter 8011 une seule fois
-let networkFallbackAttempted = false;
-
-// Intercepteur fallback port dev. Les erreurs 401 restent visibles dans les pages
+// Intercepteur d'erreurs API. Les erreurs 401 restent visibles dans les pages
 // pour éviter une redirection bloquante vers /login pendant la démonstration.
 api.interceptors.response.use(
   (response) => response,
-  async (error) => {
+  (error) => {
     if (error.response?.status === 401) {
       console.warn("Accès API non authentifié ou non autorisé. Affichage de l'erreur sans redirection.");
-    }
-
-    if (
-      !networkFallbackAttempted &&
-      error.config &&
-      (error.message === "Network Error" || error.code === "ECONNREFUSED") &&
-      api.defaults.baseURL?.includes(":8010")
-    ) {
-      networkFallbackAttempted = true;
-      console.warn("API injoignable sur 8010, bascule vers 8011");
-      api.defaults.baseURL = "http://127.0.0.1:8011/api/v1";
-      error.config.baseURL = api.defaults.baseURL;
-      return api.request(error.config);
     }
 
     return Promise.reject(error);

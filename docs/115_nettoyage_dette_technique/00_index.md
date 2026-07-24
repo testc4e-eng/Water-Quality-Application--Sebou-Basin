@@ -22,7 +22,7 @@ concernées → commit dédié.
 |---|-------|-----------|--------|--------|-------|
 | 1 | Double montage du routeur SWAT | `backend/app/api/api_v1.py` | Faible (inerte) | ✅ Corrigé | [01](01_double_montage_swat.md) |
 | 2 | Quarantaine `routers_legacy_public` (code mort `public.*`) | `backend/app/routers_legacy_public/` | Faible | ✅ Supprimé | [02](02_suppression_routers_legacy_public.md) |
-| 3 | Fallback runtime port `8011` obsolète | `frontend/src/api/client.ts` | Moyen (runtime) | ⏳ À traiter | — |
+| 3 | Fallback runtime port `8011` obsolète | `frontend/src/api/client.ts` | Moyen (runtime) | ✅ Corrigé | [03](03_fallback_port_8011.md) |
 | 4 | Incohérence `lacher_m3s` (rejeté mais accepté par regex) | `backend/app/routers/observatory.py` | Moyen (logique métier) | ⏳ À traiter | — |
 | 5 | Bundle Vite non découpé (avertissement > 500 kB, ~3,56 Mo) | `frontend/vite.config.ts` | Moyen (build) | ⏳ À traiter | — |
 

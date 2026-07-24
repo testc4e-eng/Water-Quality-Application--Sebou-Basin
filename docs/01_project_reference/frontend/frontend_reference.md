@@ -100,14 +100,23 @@ Les documents antérieurs omettaient plusieurs routes réellement présentes :
 
 Ils présentaient aussi `/admin/users` et `/admin/audit` comme des pages autonomes alors qu’il s’agit de redirections.
 
-### 5.2 Dette de configuration backend URL
+### 5.2 Configuration backend URL — normalisée (mise à jour 2026-07-24)
 
-Le backend local est désormais normalisé sur le port `8000` (`http://127.0.0.1:8000/api/v1`). Tout document ou module frontend pointant encore vers `8011` doit être considéré comme obsolète. Les clients suivants ont été alignés :
+Ports de référence :
 
-- `frontend/src/api/client.ts`
-- `frontend/src/api/climate.ts`
+- **`8000`** : backend natif (`http://127.0.0.1:8000/api/v1`).
+- **`8010`** : stack SAD Docker locale (`http://127.0.0.1:8010/api/v1`) —
+  valeur par défaut de `frontend/src/config/api.ts` et cible du proxy Vite
+  (`frontend/vite.config.ts`). Surchargeable via `VITE_API_BASE_URL` /
+  `VITE_API_PROXY`.
+- **`8011`** : **port abandonné**. Plus aucune référence dans `frontend/src/`.
 
-Cette incohérence doit être considérée comme une dette technique tant qu’elle n’est pas corrigée dans le code.
+Le fallback runtime qui basculait `client.ts` sur `:8011` en cas de
+« Network Error » a été **supprimé** le 2026-07-24 (voir
+`docs/115_nettoyage_dette_technique/03_fallback_port_8011.md`) : il retentait
+une requête vouée à l'échec vers un port mort, ajoutant latence et un
+avertissement trompeur. La dette de port `8011` est donc **soldée** côté
+frontend.
 
 ### 5.3 Dépendances backend legacy
 
