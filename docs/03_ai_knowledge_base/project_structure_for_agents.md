@@ -41,7 +41,27 @@ repo_git/
 │   ├── 105_ml_experiments/
 │   ├── 12_historique_et_archives/
 │   ├── 90_reorganisation_documentaire_finale/
+│   ├── 99_reorganisation_projet/
 │   └── 99_legacy_archive/
+├── artifacts/
+│   ├── screenshots/
+│   ├── exports/
+│   ├── reports/
+│   └── temp/
+├── logs/
+│   ├── backend/
+│   ├── frontend/
+│   ├── console/
+│   └── runtime/
+├── archive/
+│   ├── obsolete/
+│   ├── old_snapshots/
+│   └── raw_temp/
+├── scripts/
+│   ├── maintenance/
+│   ├── python/
+│   ├── powershell/
+│   └── sql/
 ├── README.md
 └── requirements.txt
 ```
@@ -73,6 +93,11 @@ repo_git/
 - `docs/03_ai_knowledge_base`: mémoire synthétique pour agents
 - `docs/12_historique_et_archives/root_legacy`: anciens fichiers historiques racine déplacés le 2026-05-22
 - `docs/90_reorganisation_documentaire_finale`: audit global, mapping de déplacement, écarts documentation/BD/pipelines/dashboards et rapport final
+- `docs/99_reorganisation_projet`: reorganisation ciblée 2026-06-22 de la racine, avec audit, mapping et script dry-run/apply
+- `artifacts/screenshots/*`: captures UI, audits visuels et sorties de vérification hors documentation active
+- `logs/runtime`: traces d'exécution, retours curl et logs techniques hors racine
+- `archive/old_snapshots`: snapshots Markdown/SQL et sauvegardes temporaires hors parcours courant
+- `scripts/maintenance/reorganize_project_files.py`: utilitaire de réorganisation contrôlée, dry-run par défaut
 - `docs/95_dashboard_decisionnel_abh`: documentation active du chantier dashboard decisionnel ABH
 - `docs/96_dashboard_operationnel/` : conception de l'accueil opérationnel SAD centré sur barrages, hydro, pluvio et 6 stations qualité, avec architecture métier, données, alertes, prévisions et plan de mise en œuvre
 - `docs/97_dashboard_home_v2_contract/` : contrat JSON détaillé du futur endpoint `GET /api/v1/dashboard/home`, mapping sources BD/API, règles métier pluvio/qualité, plans backend/frontend et tests de validation
@@ -186,3 +211,4 @@ Mise à jour 2026-06-02 :
 - couche de diagnostic : `geo_work.reseau_hydro_nodes_final_candidate_20260602`
 - cible garde validée : station `legacy_station_id = 52` / `brg de garde / sebou`
 - métriques finales : `746` segments, `3,994,886.25 m`, `7` composantes, `0` intersection `ST_Crosses`, `0` gap candidat `< 50 m`
+

@@ -1,0 +1,1858 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.483048095,
+          34.341159009
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 11,
+        "node_a": 73,
+        "edge_b": 4,
+        "distance_m": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.944468778,
+          33.715238121
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 159,
+        "node_a": 27,
+        "edge_b": 163,
+        "distance_m": 0.06
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.884265448,
+          33.654366812
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 160,
+        "node_a": 136,
+        "edge_b": 187,
+        "distance_m": 11.723
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.952634451,
+          33.696164994
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 162,
+        "node_a": 29,
+        "edge_b": 163,
+        "distance_m": 0.033
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.944469215,
+          33.715237726
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 163,
+        "node_a": 28,
+        "edge_b": 159,
+        "distance_m": 0.06
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.952634359,
+          33.696165277
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 163,
+        "node_a": 30,
+        "edge_b": 162,
+        "distance_m": 0.033
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.917880926,
+          33.660948028
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 185,
+        "node_a": 358,
+        "edge_b": 161,
+        "distance_m": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.884193949,
+          33.654279615
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 186,
+        "node_a": 131,
+        "edge_b": 160,
+        "distance_m": 11.723
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.884265448,
+          33.654366812
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 186,
+        "node_a": 136,
+        "edge_b": 187,
+        "distance_m": 11.723
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.884193949,
+          33.654279615
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 187,
+        "node_a": 131,
+        "edge_b": 160,
+        "distance_m": 11.723
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.832562813,
+          34.484929195
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 220,
+        "node_a": 22,
+        "edge_b": 40,
+        "distance_m": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.764159201,
+          34.418726392
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 234,
+        "node_a": 311,
+        "edge_b": 36,
+        "distance_m": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.437120238,
+          34.277097042
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 349,
+        "node_a": 450,
+        "edge_b": 21,
+        "distance_m": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.291059294,
+          34.015504555
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 407,
+        "node_a": 47,
+        "edge_b": 392,
+        "distance_m": 0.13
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.291059294,
+          34.015504555
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 407,
+        "node_a": 47,
+        "edge_b": 406,
+        "distance_m": 0.131
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.291059294,
+          34.015504555
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 407,
+        "node_a": 47,
+        "edge_b": 408,
+        "distance_m": 0.131
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.195908672,
+          34.596009895
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 416,
+        "node_a": 83,
+        "edge_b": 439,
+        "distance_m": 14.528
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.191001918,
+          34.837352104
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 421,
+        "node_a": 15,
+        "edge_b": 440,
+        "distance_m": 0.043
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.195769951,
+          34.596073101
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 438,
+        "node_a": 82,
+        "edge_b": 416,
+        "distance_m": 14.528
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.195908672,
+          34.596009895
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 438,
+        "node_a": 83,
+        "edge_b": 439,
+        "distance_m": 14.528
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.195769951,
+          34.596073101
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 439,
+        "node_a": 82,
+        "edge_b": 416,
+        "distance_m": 14.528
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.191001966,
+          34.837351721
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 440,
+        "node_a": 16,
+        "edge_b": 421,
+        "distance_m": 0.043
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.191001966,
+          34.837351721
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 440,
+        "node_a": 16,
+        "edge_b": 444,
+        "distance_m": 0.043
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.191001966,
+          34.837351721
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 441,
+        "node_a": 16,
+        "edge_b": 421,
+        "distance_m": 0.043
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.191001918,
+          34.837352104
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 441,
+        "node_a": 15,
+        "edge_b": 440,
+        "distance_m": 0.043
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.191001966,
+          34.837351721
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 441,
+        "node_a": 16,
+        "edge_b": 444,
+        "distance_m": 0.043
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.191001918,
+          34.837352104
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 444,
+        "node_a": 15,
+        "edge_b": 440,
+        "distance_m": 0.043
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.042269625,
+          34.934116826
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 463,
+        "node_a": 70,
+        "edge_b": 472,
+        "distance_m": 0.017
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.042269611,
+          34.934116671
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 471,
+        "node_a": 71,
+        "edge_b": 463,
+        "distance_m": 0.017
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.042269625,
+          34.934116826
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 471,
+        "node_a": 70,
+        "edge_b": 472,
+        "distance_m": 0.017
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.042269611,
+          34.934116671
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 471,
+        "node_a": 71,
+        "edge_b": 485,
+        "distance_m": 0.017
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.042269611,
+          34.934116671
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 472,
+        "node_a": 71,
+        "edge_b": 463,
+        "distance_m": 0.017
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.042269611,
+          34.934116671
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 472,
+        "node_a": 71,
+        "edge_b": 485,
+        "distance_m": 0.017
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.042269625,
+          34.934116826
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 485,
+        "node_a": 70,
+        "edge_b": 472,
+        "distance_m": 0.017
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.882718252,
+          34.930542655
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 500,
+        "node_a": 105,
+        "edge_b": 519,
+        "distance_m": 0.085
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.815000584,
+          34.213256547
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 517,
+        "node_a": 69,
+        "edge_b": 537,
+        "distance_m": 0.111
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.882717331,
+          34.930542577
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 519,
+        "node_a": 106,
+        "edge_b": 500,
+        "distance_m": 0.085
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.754581495,
+          34.494348828
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 524,
+        "node_a": 2,
+        "edge_b": 569,
+        "distance_m": 0.042
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.842066009,
+          34.502903057
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 527,
+        "node_a": 190,
+        "edge_b": 491,
+        "distance_m": 0.011
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.842066009,
+          34.502903057
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 527,
+        "node_a": 190,
+        "edge_b": 526,
+        "distance_m": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.842066009,
+          34.502903057
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 527,
+        "node_a": 190,
+        "edge_b": 528,
+        "distance_m": 0.003
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.815000584,
+          34.213256547
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 536,
+        "node_a": 69,
+        "edge_b": 537,
+        "distance_m": 0.111
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.815000253,
+          34.213255584
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 537,
+        "node_a": 68,
+        "edge_b": 517,
+        "distance_m": 0.111
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.815000253,
+          34.213255584
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 537,
+        "node_a": 68,
+        "edge_b": 536,
+        "distance_m": 0.109
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.815000253,
+          34.213255584
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 538,
+        "node_a": 68,
+        "edge_b": 517,
+        "distance_m": 0.111
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.815000253,
+          34.213255584
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 538,
+        "node_a": 68,
+        "edge_b": 536,
+        "distance_m": 0.109
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.815000584,
+          34.213256547
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 538,
+        "node_a": 69,
+        "edge_b": 537,
+        "distance_m": 0.111
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.754581264,
+          34.494348496
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 569,
+        "node_a": 1,
+        "edge_b": 524,
+        "distance_m": 0.042
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.754581264,
+          34.494348496
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 569,
+        "node_a": 1,
+        "edge_b": 578,
+        "distance_m": 0.027
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.754581264,
+          34.494348496
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 570,
+        "node_a": 1,
+        "edge_b": 524,
+        "distance_m": 0.042
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.754581495,
+          34.494348828
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 570,
+        "node_a": 2,
+        "edge_b": 569,
+        "distance_m": 0.042
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.754581264,
+          34.494348496
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 570,
+        "node_a": 1,
+        "edge_b": 578,
+        "distance_m": 0.027
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.754581495,
+          34.494348828
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 578,
+        "node_a": 2,
+        "edge_b": 569,
+        "distance_m": 0.042
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618407372,
+          34.479478816
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 596,
+        "node_a": 4,
+        "edge_b": 615,
+        "distance_m": 0.066
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618407372,
+          34.479478816
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 596,
+        "node_a": 4,
+        "edge_b": 616,
+        "distance_m": 0.149
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618407372,
+          34.479478816
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 596,
+        "node_a": 4,
+        "edge_b": 617,
+        "distance_m": 0.149
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618407372,
+          34.479478816
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 596,
+        "node_a": 4,
+        "edge_b": 746,
+        "distance_m": 0.066
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618406126,
+          34.479479678
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 613,
+        "node_a": 3,
+        "edge_b": 596,
+        "distance_m": 0.149
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618406126,
+          34.479479678
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 613,
+        "node_a": 3,
+        "edge_b": 614,
+        "distance_m": 0.119
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618407372,
+          34.479478816
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 613,
+        "node_a": 4,
+        "edge_b": 615,
+        "distance_m": 0.066
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618407372,
+          34.479478816
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 613,
+        "node_a": 4,
+        "edge_b": 616,
+        "distance_m": 0.149
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618407372,
+          34.479478816
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 613,
+        "node_a": 4,
+        "edge_b": 617,
+        "distance_m": 0.149
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618406126,
+          34.479479678
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 613,
+        "node_a": 3,
+        "edge_b": 746,
+        "distance_m": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618407372,
+          34.479478816
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 614,
+        "node_a": 4,
+        "edge_b": 615,
+        "distance_m": 0.066
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618407372,
+          34.479478816
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 614,
+        "node_a": 4,
+        "edge_b": 616,
+        "distance_m": 0.149
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618407372,
+          34.479478816
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 614,
+        "node_a": 4,
+        "edge_b": 617,
+        "distance_m": 0.149
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618407372,
+          34.479478816
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 614,
+        "node_a": 4,
+        "edge_b": 746,
+        "distance_m": 0.066
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618406824,
+          34.479479195
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 615,
+        "node_a": 89,
+        "edge_b": 596,
+        "distance_m": 0.066
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618406824,
+          34.479479195
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 615,
+        "node_a": 89,
+        "edge_b": 613,
+        "distance_m": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618406824,
+          34.479479195
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 615,
+        "node_a": 89,
+        "edge_b": 614,
+        "distance_m": 0.052
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618406824,
+          34.479479195
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 615,
+        "node_a": 89,
+        "edge_b": 616,
+        "distance_m": 0.084
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618406824,
+          34.479479195
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 615,
+        "node_a": 89,
+        "edge_b": 617,
+        "distance_m": 0.084
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618406126,
+          34.479479678
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 615,
+        "node_a": 3,
+        "edge_b": 746,
+        "distance_m": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618406126,
+          34.479479678
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 616,
+        "node_a": 3,
+        "edge_b": 596,
+        "distance_m": 0.149
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618405951,
+          34.4794798
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 616,
+        "node_a": 88,
+        "edge_b": 613,
+        "distance_m": 0.021
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618406126,
+          34.479479678
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 616,
+        "node_a": 3,
+        "edge_b": 614,
+        "distance_m": 0.119
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618405951,
+          34.4794798
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 616,
+        "node_a": 88,
+        "edge_b": 615,
+        "distance_m": 0.021
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618405951,
+          34.4794798
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 616,
+        "node_a": 88,
+        "edge_b": 617,
+        "distance_m": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618406126,
+          34.479479678
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 616,
+        "node_a": 3,
+        "edge_b": 746,
+        "distance_m": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618406126,
+          34.479479678
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 617,
+        "node_a": 3,
+        "edge_b": 596,
+        "distance_m": 0.149
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618406126,
+          34.479479678
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 617,
+        "node_a": 3,
+        "edge_b": 614,
+        "distance_m": 0.119
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618406126,
+          34.479479678
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 617,
+        "node_a": 3,
+        "edge_b": 746,
+        "distance_m": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.294669712,
+          34.627966842
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 683,
+        "node_a": 56,
+        "edge_b": 713,
+        "distance_m": 0.027
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.294669495,
+          34.627967006
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 708,
+        "node_a": 67,
+        "edge_b": 683,
+        "distance_m": 0.027
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.294669495,
+          34.627967006
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 708,
+        "node_a": 67,
+        "edge_b": 712,
+        "distance_m": 0.026
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.294669712,
+          34.627966842
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 708,
+        "node_a": 56,
+        "edge_b": 713,
+        "distance_m": 0.027
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.188610696,
+          34.630373412
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 709,
+        "node_a": 289,
+        "edge_b": 727,
+        "distance_m": 5.428
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.294669712,
+          34.627966842
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 712,
+        "node_a": 56,
+        "edge_b": 713,
+        "distance_m": 0.027
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.294669495,
+          34.627967006
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 713,
+        "node_a": 67,
+        "edge_b": 683,
+        "distance_m": 0.027
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.294669495,
+          34.627967006
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 713,
+        "node_a": 67,
+        "edge_b": 712,
+        "distance_m": 0.026
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.18855121,
+          34.630373411
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 723,
+        "node_a": 288,
+        "edge_b": 709,
+        "distance_m": 5.428
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.188610696,
+          34.630373412
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 723,
+        "node_a": 289,
+        "edge_b": 727,
+        "distance_m": 5.428
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.18855121,
+          34.630373411
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 727,
+        "node_a": 288,
+        "edge_b": 709,
+        "distance_m": 5.428
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.063580624,
+          34.50377092
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 729,
+        "node_a": 248,
+        "edge_b": 736,
+        "distance_m": 0.026
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.063580426,
+          34.503771086
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 736,
+        "node_a": 249,
+        "edge_b": 729,
+        "distance_m": 0.026
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.063580426,
+          34.503771086
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 742,
+        "node_a": 249,
+        "edge_b": 729,
+        "distance_m": 0.026
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.063580624,
+          34.50377092
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 742,
+        "node_a": 248,
+        "edge_b": 736,
+        "distance_m": 0.026
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.952634359,
+          33.696165277
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 743,
+        "node_a": 30,
+        "edge_b": 162,
+        "distance_m": 0.033
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.952634451,
+          33.696164994
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 743,
+        "node_a": 29,
+        "edge_b": 163,
+        "distance_m": 0.033
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.944469215,
+          33.715237726
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 744,
+        "node_a": 28,
+        "edge_b": 159,
+        "distance_m": 0.06
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.944468778,
+          33.715238121
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 744,
+        "node_a": 27,
+        "edge_b": 163,
+        "distance_m": 0.06
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.882717331,
+          34.930542577
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 745,
+        "node_a": 106,
+        "edge_b": 500,
+        "distance_m": 0.085
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.882718252,
+          34.930542655
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 745,
+        "node_a": 105,
+        "edge_b": 519,
+        "distance_m": 0.085
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618406824,
+          34.479479195
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 746,
+        "node_a": 89,
+        "edge_b": 596,
+        "distance_m": 0.066
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618406824,
+          34.479479195
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 746,
+        "node_a": 89,
+        "edge_b": 613,
+        "distance_m": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618406824,
+          34.479479195
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 746,
+        "node_a": 89,
+        "edge_b": 614,
+        "distance_m": 0.052
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618405951,
+          34.4794798
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 746,
+        "node_a": 88,
+        "edge_b": 615,
+        "distance_m": 0.021
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618406824,
+          34.479479195
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 746,
+        "node_a": 89,
+        "edge_b": 616,
+        "distance_m": 0.084
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.618405951,
+          34.4794798
+        ]
+      },
+      "properties": {
+        "type": "ENDPOINT_TO_LINE_CANDIDATE",
+        "edge_a": 746,
+        "node_a": 88,
+        "edge_b": 617,
+        "distance_m": 0.0
+      }
+    }
+  ]
+}

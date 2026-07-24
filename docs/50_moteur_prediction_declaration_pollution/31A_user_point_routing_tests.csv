@@ -1,0 +1,9 @@
+point_label,source_segment_id,longitude,latitude,snap_edge_id,snap_distance_m,p29_status,p29_distance_km,garde_status,garde_distance_km,encountered_dams,status,error
+WASP_SEGMENT_13,13,-4.929117,34.211101,504,93.82,success,323.078,success,336.717,sidi chahed (151.64 km); garde sebou (336.72 km),REACHES_GARDE,
+WASP_SEGMENT_26,26,-4.962473,34.286581,425,152.83,success,299.544,success,313.184,sidi chahed (128.11 km); garde sebou (313.18 km),REACHES_GARDE,
+WASP_SEGMENT_63,63,-5.330729,34.261331,356,244.57,success,240.278,success,253.917,sidi chahed (68.84 km); garde sebou (253.92 km),REACHES_GARDE,
+WASP_SEGMENT_130,130,-5.8043,34.462905,39,329.2,success,130.895,success,144.534,garde sebou (144.53 km),REACHES_GARDE,
+WASP_SEGMENT_175,175,-6.092606,34.609052,52,312.13,success,60.889,success,74.529,garde sebou (74.53 km),REACHES_GARDE,
+DAR_EL_ARSSA_DEMO,,-6.30540031,34.515619453,61,0.0,success,5.576,success,19.216,garde sebou (19.22 km),REACHES_GARDE,
+P29_OFFICIAL,,-6.326761863500497,34.518629489594126,62,170.89,success,0.0,success,13.639,garde sebou (13.64 km),REACHES_GARDE,
+GARDE_OFFICIAL,,-6.4128407680116295,34.48822256266676,66,283.77,partial,,success,0.0,garde sebou (0.0 km),REACHES_GARDE,

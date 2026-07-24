@@ -88,3 +88,15 @@ Depuis le 2026-05-22, le pilotage projet passe aussi par une couche de gouvernan
 - Les exports bureautiques ne remplacent jamais la version Markdown source.
 - Les archives sont conservées pour traçabilité, pas pour usage courant.
 - Si une spécification cible diverge de la réalité technique vérifiée, il faut documenter l’écart explicitement au lieu de laisser la divergence implicite.
+
+## Dossiers transverses ajoutes
+
+Ces dossiers completent l''arborescence active sans la remplacer :
+
+- `docs/01_livrables_client/` : exports bureautiques et livrables client reclasses
+- `docs/02_documentation_metier/` a `docs/09_media/` : buckets transverses de classement futur
+- `docs/99_reorganisation_projet/` : audit, mapping et execution de la reorganisation 2026-06-22
+- `artifacts/` : captures, exports, rapports d''execution et fichiers temporaires hors documentation active
+- `logs/` : traces runtime/backend/frontend/console hors racine
+- `archive/` : snapshots et fichiers bruts ou obsoletes hors parcours courant
+- `scripts/sql/`, `scripts/python/`, `scripts/powershell/`, `scripts/maintenance/` : regroupement des utilitaires isoles precedemment a la racine

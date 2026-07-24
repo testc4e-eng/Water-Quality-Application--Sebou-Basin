@@ -1,6 +1,6 @@
 # Tests de Validation de l'API Unifiée
 
-Le script de test `test_api.py` a été exécuté sur les endpoints unifiés expérimentaux.
+Le script de test `scripts/python/audit/test_api.py` a été exécuté sur les endpoints unifiés expérimentaux.
 
 ## Requêtes exécutées
 - `GET /api/v1/quality/unified/stations?support_type=SENTINELLE`
@@ -15,3 +15,4 @@ Tous les tests ont réussi (Code HTTP 200).
 - Les jointures entre `api.v_qualite_dashboard_unifiee` et `api.v_station_dimension` ont retourné correctement les noms métier (`station_nom`).
 - Le filtrage par `support_type` a permis d'isoler efficacement les données (ex: temps réel pour `SENTINELLE`).
 - Les données sont formatées selon les Pydantic Models définis (`UnifiedQualityStationResponse`, etc.), offrant une structure claire et uniforme au frontend.
+

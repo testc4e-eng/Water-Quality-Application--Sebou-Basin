@@ -1,0 +1,4 @@
+legacy_code_station,code_station,station_nom,legacy_station_id,longitude,latitude,edge_id,source,target,snapped_node,distance_m,snap_status,component_id
+3738/8,3738/8,amont barrage de garde,94.0,-6.4128407680116295,34.48822256266676,66,98,99,98,283.7684074952369,LOW,5
+2263/15,2263/15,dar el arsa,17.0,-4.9285031210990065,34.19565290018216,504,547,670,547,217.35306150119484,MEDIUM,5
+1355/8,1355/8,P29 a allal tazi  ,341.0,-6.326761863500497,34.518629489594126,62,463,464,464,170.89232370084963,MEDIUM,5

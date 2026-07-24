@@ -8,9 +8,9 @@
 
 Captures utilisées :
 
-- `C:\dev\WQDSS\repo_git\audit_home_1920_loaded.png`
-- `C:\dev\WQDSS\repo_git\audit_home_1600.png`
-- `C:\dev\WQDSS\repo_git\audit_home_1366.png`
+- `C:\dev\WQDSS\repo_git\artifacts\screenshots\dashboards\audit_home_1920_loaded.png`
+- `C:\dev\WQDSS\repo_git\artifacts\screenshots\dashboards\audit_home_1600.png`
+- `C:\dev\WQDSS\repo_git\artifacts\screenshots\dashboards\audit_home_1366.png`
 
 ## Espace perdu
 
@@ -84,3 +84,4 @@ Le dashboard a désormais une densité institutionnelle crédible, sans tomber d
 - UX Home V2 : `GOOD_FOR_DEMO`
 - encore améliorable en micro-compactage sur `1366x768`
 - niveau actuel compatible démonstration DG / exploitation
+
