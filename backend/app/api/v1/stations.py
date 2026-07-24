@@ -1,6 +1,8 @@
 # backend/app/api/v1/stations.py
 import os
 import re
+import threading
+import time
 from fastapi import APIRouter, HTTPException, Query
 from app.db_raw import conn
 from app.util_dbmeta import (
@@ -9,6 +11,39 @@ from app.util_dbmeta import (
 )
 
 router = APIRouter(prefix="/stations")
+
+# Cache en mémoire de la liste des stations : le filtre with_data=True scanne
+# trois tables de mesures volumineuses (DISTINCT + UNION) et coûtait ~15 s par
+# appel. La liste des stations évolue rarement -> TTL long (600 s par défaut,
+# surchargeable via SAD_STATIONS_CACHE_SECONDS ; 0 pour désactiver).
+_LIST_CACHE_LOCK = threading.Lock()
+_LIST_CACHE: dict[tuple, dict] = {}
+
+
+def _stations_cache_seconds() -> int:
+    try:
+        return max(0, int(os.getenv("SAD_STATIONS_CACHE_SECONDS", "600")))
+    except (TypeError, ValueError):
+        return 600
+
+
+def _list_cache_get(key: tuple):
+    ttl = _stations_cache_seconds()
+    if ttl <= 0:
+        return None
+    with _LIST_CACHE_LOCK:
+        entry = _LIST_CACHE.get(key)
+        if not entry or entry["expires_at"] <= time.time():
+            return None
+        return entry["payload"]
+
+
+def _list_cache_set(key: tuple, payload) -> None:
+    ttl = _stations_cache_seconds()
+    if ttl <= 0:
+        return
+    with _LIST_CACHE_LOCK:
+        _LIST_CACHE[key] = {"expires_at": time.time() + ttl, "payload": payload}
 
 def _q_ident(name: str) -> str:
     if re.match(r"^[a-z_][a-z0-9_]*$", name):
@@ -33,6 +68,11 @@ def list_stations(
     limit: int = 1000,
     with_data: bool = Query(True, description="Ne retourner que les stations avec mesures"),
 ):
+    cache_key = (limit, with_data)
+    cached = _list_cache_get(cache_key)
+    if cached is not None:
+        return cached
+
     if not TABLE or not table_exists(TABLE):
         raise HTTPException(500, "Table des stations introuvable. Définis STATIONS_TABLE ou renomme la table.")
 
@@ -115,7 +155,9 @@ def list_stations(
         with cx.cursor() as cur:
             cur.execute(sql, (limit,))
             rows = cur.fetchall()
-            return [
+            payload = [
                 {"id": r[0], "name": r[1], "river": r[2], "lat": float(r[3]), "lon": float(r[4])}
                 for r in rows
             ]
+            _list_cache_set(cache_key, payload)
+            return payload

@@ -63,6 +63,15 @@ def get_dashboard_home(db: Session) -> dict[str, Any]:
     if cached_payload is not None:
         return cached_payload
 
+    # Stale-while-revalidate : la reconstruction complète coûte ~20-40 s.
+    # Si un payload expiré existe encore, on le sert immédiatement et on
+    # relance la reconstruction dans un thread d'arrière-plan — aucun
+    # utilisateur ne repaye le coût de construction après le premier warm-up.
+    stale_payload = _cache_get_stale(HOME_CACHE_KEY)
+    if stale_payload is not None:
+        _trigger_background_refresh()
+        return stale_payload
+
     with _HOME_BUILD_LOCK:
         cached_payload = _cache_get(HOME_CACHE_KEY)
         if cached_payload is not None:
@@ -223,9 +232,52 @@ def _cache_get(key: str) -> dict[str, Any] | None:
         if not entry:
             return None
         if entry["expires_at"] <= now:
-            _HOME_CACHE.pop(key, None)
+            # Ne pas supprimer l'entrée expirée : elle sert de payload
+            # "stale" pendant qu'une reconstruction tourne en arrière-plan
+            # (stale-while-revalidate, voir get_dashboard_home).
             return None
         return copy.deepcopy(entry["payload"])
+
+
+def _cache_get_stale(key: str) -> dict[str, Any] | None:
+    """Retourne le payload même expiré (stale-while-revalidate)."""
+    ttl_seconds = _get_home_cache_seconds()
+    if ttl_seconds <= 0:
+        return None
+    with _HOME_CACHE_LOCK:
+        entry = _HOME_CACHE.get(key)
+        if not entry:
+            return None
+        return copy.deepcopy(entry["payload"])
+
+
+def _trigger_background_refresh() -> None:
+    """Relance la construction du payload dans un thread dédié (anti-avalanche)."""
+    global _HOME_WARMING
+    with _HOME_WARM_LOCK:
+        if _HOME_WARMING:
+            return
+        _HOME_WARMING = True
+
+    def _refresh() -> None:
+        global _HOME_WARMING
+        try:
+            from app.db.climate_database import ClimateSessionLocal
+
+            db = ClimateSessionLocal()
+            try:
+                with _HOME_BUILD_LOCK:
+                    if _cache_get(HOME_CACHE_KEY) is None:
+                        _build_dashboard_home_payload(db)
+            finally:
+                db.close()
+        except Exception:
+            log.exception("dashboard_home: échec du rafraîchissement en arrière-plan")
+        finally:
+            with _HOME_WARM_LOCK:
+                _HOME_WARMING = False
+
+    threading.Thread(target=_refresh, name="dashboard-home-refresh", daemon=True).start()
 
 
 def _cache_set(key: str, payload: dict[str, Any]) -> None:
