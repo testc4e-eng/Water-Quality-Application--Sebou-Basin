@@ -26,6 +26,9 @@ BARRAGE_METRIC_TO_PARAM = {
     "transfert": "TRANSFERT",
 }
 
+# Métriques legacy à ne plus exposer comme flux métier barrage (cf. MEMORY_CORE §7).
+# Désormais aussi bloquées en amont par les regex Query des endpoints /barrage/*
+# (rejet 422 explicite). Ce garde-fou reste comme défense en profondeur.
 BARRAGE_LEGACY_REJECTED_METRICS = {"lacher_m3s"}
 
 
@@ -1521,7 +1524,7 @@ def barrage_stations(db: Session = Depends(get_climate_db)):
 @router.get("/barrage/timeseries")
 def barrage_timeseries(
     barrage_id: str,
-    metric: str = Query("niveau_barrage", pattern="^(niveau_barrage|volume_barrage|lacher_barrage|apport|apports_hm3|transfert|cote_m|volume_mm3|lacher_m3s)$"),
+    metric: str = Query("niveau_barrage", pattern="^(niveau_barrage|volume_barrage|lacher_barrage|apport|apports_hm3|transfert|cote_m|volume_mm3)$"),
     date_start: str | None = Query(None),
     date_end: str | None = Query(None),
     db: Session = Depends(get_climate_db),
@@ -1551,7 +1554,7 @@ def barrage_timeseries(
 
 @router.get("/barrage/latest")
 def barrage_latest(
-    metric: str = Query("niveau_barrage", pattern="^(niveau_barrage|volume_barrage|lacher_barrage|apport|apports_hm3|transfert|cote_m|volume_mm3|lacher_m3s)$"),
+    metric: str = Query("niveau_barrage", pattern="^(niveau_barrage|volume_barrage|lacher_barrage|apport|apports_hm3|transfert|cote_m|volume_mm3)$"),
     date_start: str | None = Query(None),
     date_end: str | None = Query(None),
     db: Session = Depends(get_climate_db),

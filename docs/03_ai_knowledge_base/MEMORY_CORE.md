@@ -68,6 +68,11 @@ Le projet met en place un système d’aide à la décision web pour la gestion 
 - `TRANSFERT` = volume journalier transfere = `Mm3/j`.
 - `VOLUME` = stock barrage = `Mm3`.
 - `lacher_m3s` est legacy technique et ne doit plus etre expose comme flux metier barrage.
+  Depuis 2026-07-24, `lacher_m3s` est retire des regex des endpoints
+  `/observatory/barrage/timeseries` et `/observatory/barrage/latest` : il n'est
+  plus une valeur `metric` acceptee (rejet 422) au lieu de renvoyer un tableau
+  vide silencieux. Le set `BARRAGE_LEGACY_REJECTED_METRICS` subsiste en defense
+  en profondeur. Voir `docs/115_nettoyage_dette_technique/04_lacher_m3s.md`.
 
 ## 8. Regles qualite sensibles a la casse
 
