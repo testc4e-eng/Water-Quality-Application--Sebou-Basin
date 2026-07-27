@@ -234,6 +234,7 @@ def test_db_connection():
         from app.db_raw import connection
         from app.db.climate_database import ClimateSessionLocal
         from app.services.dashboard.home_service import warm_dashboard_home_cache
+        from app.services.dashboard.runtime_service import warm_dashboard_trends_cache
         with connection() as cx:
             with cx.cursor() as cur:
                 cur.execute("SELECT 1;")
@@ -243,6 +244,13 @@ def test_db_connection():
             target=warm_dashboard_home_cache,
             args=(ClimateSessionLocal,),
             kwargs={"force": False},
+            daemon=True,
+        ).start()
+        # Même warm-up pour les tendances (fenêtre 30 j par défaut de l'Accueil)
+        threading.Thread(
+            target=warm_dashboard_trends_cache,
+            args=(ClimateSessionLocal,),
+            kwargs={"days": 30},
             daemon=True,
         ).start()
     except Exception as e:

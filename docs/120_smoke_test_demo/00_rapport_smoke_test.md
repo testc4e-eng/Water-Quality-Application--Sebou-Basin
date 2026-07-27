@@ -46,13 +46,25 @@ conçue pour se connecter en `postgres` (propriétaire, défaut du compose).
 
 ## Réserves (non bloquantes)
 
-1. **Perf à cache froid** (premier appel après redémarrage / expiration TTL) :
-   `dashboard/home` 20,6 s · `stations` 15,2 s · `dashboard/trends?days=30`
-   **19,5 s même à chaud (non caché)**. Home et stations sont couverts par le
-   warm-up au démarrage + stale-while-revalidate ; **`/dashboard/trends` n'a
-   aucun cache** et l'Accueil DG l'appelle → à chaque fenêtre de 2 min un
-   utilisateur peut attendre ~19 s. Correctif recommandé avant mardi :
-   appliquer le même cache TTL que `home` à `dashboard/trends`.
+1. ~~**Perf à cache froid** sur `/dashboard/trends` (~19,5 s, non caché)~~
+   **✅ CORRIGÉ le 2026-07-27.** Le même mécanisme que `dashboard/home`
+   (cache TTL + stale-while-revalidate, même source de TTL
+   `_get_home_cache_seconds`) a été appliqué à `get_dashboard_trends`, keyé
+   par `days`, avec warm-up au démarrage pour la fenêtre 30 j de l'Accueil.
+   Mesures avant/après :
+
+   | Appel | Avant | Après |
+   |-------|------:|------:|
+   | `trends?days=30` (fenêtre Accueil, réchauffée) 1er appel | 19,5 s | **0,047 s** |
+   | `trends?days=30` appels suivants | 19,5 s | **0,012 s** |
+   | `trends?days=90` (non réchauffée) 1er appel | 19,5 s | 19,7 s (build synchrone) |
+   | `trends?days=90` appels suivants | 19,5 s | **0,013 s** |
+
+   L'Accueil DG n'utilise que `days=30` (réchauffé au démarrage) → **aucune
+   attente proche de 19 s**. Vérifié en navigateur : Accueil instantané,
+   `trends?days=30` → 200, aucune erreur console. Reste `dashboard/home`
+   20,6 s et `stations` 15,2 s au tout premier appel à froid (couverts par
+   le warm-up de démarrage → non visibles en usage réel).
 2. **404 mineurs** : `/api/v1/layers/configs` (Carte Métier, x2) et
    `/api/v1/security/logs` (chemin réel différent) — non bloquants, mais à
    corriger côté frontend (mauvais chemin) ou backend (route manquante).

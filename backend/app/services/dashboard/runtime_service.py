@@ -1,5 +1,9 @@
 from __future__ import annotations
 
+import copy
+import logging
+import threading
+import time
 from collections import defaultdict
 from datetime import date, datetime
 from statistics import mean
@@ -8,10 +12,22 @@ from typing import Any
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 
+from app.services.dashboard.home_service import _get_home_cache_seconds
 from app.services.regulatory_quality import classify_measurement, load_regulatory_context
 
 
+log = logging.getLogger(__name__)
+
 HOME_QUALITY_STATION_LIMIT = 6
+
+# Cache trends : même mécanisme que dashboard/home (TTL + stale-while-revalidate),
+# même source de TTL (_get_home_cache_seconds / SAD_DASHBOARD_HOME_CACHE_SECONDS).
+# Keyé par `days` car le payload dépend de la fenêtre demandée.
+_TRENDS_CACHE_LOCK = threading.Lock()
+_TRENDS_BUILD_LOCK = threading.Lock()
+_TRENDS_CACHE: dict[int, dict[str, Any]] = {}
+_TRENDS_WARM_LOCK = threading.Lock()
+_TRENDS_WARMING: set[int] = set()
 
 QUALITY_PARAM_REGULATORY_MAP: dict[str, tuple[str, str, str | None]] = {
     "ammonium": ("NH4", "Ammonium", "mg/L"),
@@ -315,6 +331,109 @@ def _quality_trend_rows(db: Session, days: int) -> list[dict[str, Any]]:
 
 
 def get_dashboard_trends(db: Session, days: int = 30) -> dict[str, Any]:
+    """Version cachée (TTL + stale-while-revalidate) de la construction des
+    tendances. Miroir du mécanisme validé sur dashboard/home : la construction
+    coûte ~19 s, jamais payée par une requête après le premier warm-up."""
+    cached = _trends_cache_get(days)
+    if cached is not None:
+        return cached
+
+    stale = _trends_cache_get_stale(days)
+    if stale is not None:
+        _trigger_trends_refresh(days)
+        return stale
+
+    with _TRENDS_BUILD_LOCK:
+        cached = _trends_cache_get(days)
+        if cached is not None:
+            return cached
+        payload = _build_dashboard_trends_payload(db, days=days)
+        _trends_cache_set(days, payload)
+        return payload
+
+
+def _trends_cache_get(days: int) -> dict[str, Any] | None:
+    ttl_seconds = _get_home_cache_seconds()
+    if ttl_seconds <= 0:
+        return None
+    with _TRENDS_CACHE_LOCK:
+        entry = _TRENDS_CACHE.get(days)
+        if not entry or entry["expires_at"] <= time.time():
+            return None
+        return copy.deepcopy(entry["payload"])
+
+
+def _trends_cache_get_stale(days: int) -> dict[str, Any] | None:
+    ttl_seconds = _get_home_cache_seconds()
+    if ttl_seconds <= 0:
+        return None
+    with _TRENDS_CACHE_LOCK:
+        entry = _TRENDS_CACHE.get(days)
+        if not entry:
+            return None
+        return copy.deepcopy(entry["payload"])
+
+
+def _trends_cache_set(days: int, payload: dict[str, Any]) -> None:
+    ttl_seconds = _get_home_cache_seconds()
+    if ttl_seconds <= 0:
+        return
+    with _TRENDS_CACHE_LOCK:
+        _TRENDS_CACHE[days] = {
+            "expires_at": time.time() + ttl_seconds,
+            "payload": copy.deepcopy(payload),
+        }
+
+
+def _trigger_trends_refresh(days: int) -> None:
+    """Reconstruit le payload trends dans un thread dédié (anti-avalanche)."""
+    with _TRENDS_WARM_LOCK:
+        if days in _TRENDS_WARMING:
+            return
+        _TRENDS_WARMING.add(days)
+
+    def _refresh() -> None:
+        try:
+            from app.db.climate_database import ClimateSessionLocal
+
+            db = ClimateSessionLocal()
+            try:
+                with _TRENDS_BUILD_LOCK:
+                    if _trends_cache_get(days) is None:
+                        payload = _build_dashboard_trends_payload(db, days=days)
+                        _trends_cache_set(days, payload)
+            finally:
+                db.close()
+        except Exception:
+            log.exception("dashboard_trends: échec du rafraîchissement en arrière-plan")
+        finally:
+            with _TRENDS_WARM_LOCK:
+                _TRENDS_WARMING.discard(days)
+
+    threading.Thread(target=_refresh, name=f"dashboard-trends-refresh-{days}", daemon=True).start()
+
+
+def warm_dashboard_trends_cache(session_factory, *, days: int = 30) -> bool:
+    """Pré-remplit le cache trends au démarrage (miroir de
+    warm_dashboard_home_cache). Retourne True si le cache a été construit."""
+    if _trends_cache_get(days) is not None:
+        return False
+    try:
+        db = session_factory()
+        try:
+            with _TRENDS_BUILD_LOCK:
+                if _trends_cache_get(days) is None:
+                    payload = _build_dashboard_trends_payload(db, days=days)
+                    _trends_cache_set(days, payload)
+            return True
+        finally:
+            db.close()
+    except Exception:
+        log.exception("dashboard_trends: échec du warm-up")
+        return False
+
+
+def _build_dashboard_trends_payload(db: Session, days: int = 30) -> dict[str, Any]:
     rainfall_rows = _trend_rows(
         db,
         source_table="meteo.mesure_precipitation",
